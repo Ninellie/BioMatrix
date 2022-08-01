@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainScript : MonoBehaviour
+public class Main : MonoBehaviour
 {
 
     public GameObject playerPrefab;
@@ -11,6 +11,7 @@ public class MainScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         Debug.Log("Game launched");
 
         Debug.Log("Trying to create a player prefab");
@@ -19,8 +20,9 @@ public class MainScript : MonoBehaviour
 
         Debug.Log("Trying to create an ememy prefab");
         Instantiate(enemyPrefab, new Vector2(0, 0), Quaternion.identity);
+        Debug.Log("Enemy prefab was created");
     }
-
+    
     // Update is called once per frame
     void Update()
     {
