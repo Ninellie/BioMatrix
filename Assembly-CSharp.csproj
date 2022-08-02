@@ -88,7 +88,7 @@
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPInstance.cs" />
     <Compile Include="Assets\GG\Scripts\Main.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineTrack.cs" />
-    <Compile Include="Assets\GG\Scripts\Player.cs" />
+    <Compile Include="Assets\GG\Scripts\PlayerMove.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline2d.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinePerformance.cs" />
@@ -97,6 +97,8 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasic.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
+    <Compile Include="Assets\GG\Scripts\PlayerMovePhys.cs" />
+    <Compile Include="Assets\GG\Scripts\MainCameraPlayerSeek.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LeanTween\ReadMe.txt" />
