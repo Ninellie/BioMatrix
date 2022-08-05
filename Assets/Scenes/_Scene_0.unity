@@ -169,7 +169,6 @@ MonoBehaviour:
   - {fileID: 8954189743293124748, guid: 31b0110467a1ce14e96a54e0a5736dfe, type: 3}
   enemySpawnPerSecond: 0.5
   enemyDefaultPadding: 1.5
-  isOnScreen: 1
   camWidth: 0
   camHeight: 0
 --- !u!1001 &1570661139
@@ -197,7 +196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6798056590901079273, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: orthographic size
-      value: 540
+      value: 205
       objectReference: {fileID: 0}
     - target: {fileID: 7589287234032929290, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: m_RootOrder

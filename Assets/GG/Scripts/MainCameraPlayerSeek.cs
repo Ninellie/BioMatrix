@@ -2,23 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MainCameraPlayerSeek : MonoBehaviour
 {
-    private Vector3 newPosition
-    {
-        get
-        {
-            var horizontal = GameObject.FindGameObjectsWithTag("Player")[0].transform.position.x;
-            var vertical = GameObject.FindGameObjectsWithTag("Player")[0].transform.position.y;
-
-            //The z-axis does not change
-            return new Vector3(horizontal, vertical, -100.0f);
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
-        transform.position = newPosition;
+        //Debug.Log(Lib2DMethods.PlayerPos);
+
+        transform.position = new Vector3(Lib2DMethods.PlayerPos.x, Lib2DMethods.PlayerPos.y, -100.0f);
     }
 }
