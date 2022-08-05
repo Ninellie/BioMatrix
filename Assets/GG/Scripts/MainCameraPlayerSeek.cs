@@ -12,14 +12,10 @@ public class MainCameraPlayerSeek : MonoBehaviour
             var vertical = GameObject.FindGameObjectsWithTag("Player")[0].transform.position.y;
 
             //The z-axis does not change
-            return new Vector3(horizontal, vertical, -10);
+            return new Vector3(horizontal, vertical, -100.0f);
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
     // Update is called once per frame
     void Update()
     {

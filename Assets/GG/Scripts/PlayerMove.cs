@@ -5,28 +5,40 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public float movementSpeed = 2f;
+    private Rigidbody2D rb2d;
+
+    private void Start()
+    {
+        rb2d = this.GetComponent<Rigidbody2D>();
+    }
 
     //Return Vector3 from pressed keys
-    private Vector3 moveVector
+    private Vector2 moveVector
     {
         get
         {
             var horizontal = Input.GetAxisRaw("Horizontal");
             var vertical = Input.GetAxisRaw("Vertical");
 
-            //The z-axis does not change
-            return new Vector3(horizontal, vertical, 0.0f);
+            return new Vector2(horizontal, vertical);
         }
     }
     //Non-physical movement method
     private void MovementLogic()
     {
+
+
         transform.Translate(moveVector.normalized * movementSpeed * Time.deltaTime);
     }
 
     //Called once per frame
     private void Update()
     {
-        MovementLogic();
+        //MovementLogic();
+    }
+
+    private void FixedUpdate()
+    {
+        rb2d.MovePosition(rb2d.position + moveVector.normalized * movementSpeed * Time.fixedDeltaTime);
     }
 }
