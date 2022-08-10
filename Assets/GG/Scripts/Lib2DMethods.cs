@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public static class Lib2DMethods
 {
@@ -35,10 +36,19 @@ public static class Lib2DMethods
             return new Vector2(horizontal, vertical);
         }
      }
+    //Actually this is distance, not direction
     public static Vector2 DirectionToPlayer(Vector2 myPos)
     {
         var horizontal = GameObject.FindGameObjectsWithTag("Player")[0].transform.position.x - myPos.x;
         var vertical = GameObject.FindGameObjectsWithTag("Player")[0].transform.position.y - myPos.y;
+
+        return new Vector2(horizontal, vertical);
+    }
+
+    public static Vector2 DirectionToMe (Vector2 myPos)
+    {
+        var horizontal = myPos.x - GameObject.FindGameObjectsWithTag("Player")[0].transform.position.x;
+        var vertical = myPos.y - GameObject.FindGameObjectsWithTag("Player")[0].transform.position.y;
 
         return new Vector2(horizontal, vertical);
     }
@@ -52,6 +62,13 @@ public static class Lib2DMethods
             return new Vector2(horizontal, vertical);
         }
     }
+
+    public static Vector2 ReportMousePosition()
+    {
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        return mousePosition;
+    }
+
     public static Vector2 RandOnCircle(float radius)
     {
         float randAng = UnityEngine.Random.Range(0, Mathf.PI * 2);

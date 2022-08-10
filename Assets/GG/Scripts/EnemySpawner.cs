@@ -6,9 +6,9 @@ using System;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Set in Inspector")]
-    public GameObject[] prefabEnemies; // Массив шаблонов Enemy
-    public float enemySpawnPerSecond = 0.5f; // Вражеских кораблей в секунду
-    public float enemyDefaultPadding = 1.5f; // Отступ для позиционирования
+    public GameObject[] prefabEnemies; 
+    public float enemySpawnPerSecond = 0.5f; 
+    public float enemyDefaultPadding = 1.5f; 
 
     [Header("Set Dynamically")]
     public float camWidth;
@@ -55,11 +55,5 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

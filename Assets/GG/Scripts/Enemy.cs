@@ -18,6 +18,15 @@ public class Enemy : MonoBehaviour
         switch (otherGO.tag)
         {
             case "Player":
+                lifePoints = 0;
+                if (lifePoints <= 0)
+                {
+                    //Destroy this enemy
+                    Destroy(gameObject);
+                }
+                break;
+
+            case "Projectile":
                 lifePoints--;
                 if (lifePoints <= 0)
                 {
