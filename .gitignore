@@ -12,3 +12,9 @@
 /Temp
 /obj
 /Packages
+*.dll
+/Assets/TextMesh Pro
+/MonoBleedingEdge
+/My project_BurstDebugInformation_DoNotShip
+/My project_Data
+*.exe

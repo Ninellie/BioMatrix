@@ -8,22 +8,11 @@ public class Main : MonoBehaviour
     public GameObject playerPrefab;
 
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         Debug.Log("Game launched");
         Debug.Log("Trying to create a player prefab");
         Instantiate(playerPrefab, new Vector2(0, 0), Quaternion.identity);
         Debug.Log("Player prefab was created");
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene("_Scene_0");
     }
 }

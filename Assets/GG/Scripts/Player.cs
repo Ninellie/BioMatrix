@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -10,11 +11,27 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb2D;
     private Vector2 moveVec;
+
+    public static Action OnGamePaused;
+
     public void OnMove(InputValue input)
     {
         Vector2 inputVec = input.Get<Vector2>();
         moveVec = new Vector2(inputVec.x, inputVec.y);
     }
+
+    public void OnPause(InputValue input)
+    {
+        OnGamePaused?.Invoke();
+        Debug.Log("»√–¿ Õ¿ œ¿”«≈");
+    }
+
+    public void OnUnpause(InputValue input)
+    {
+        OnGamePaused?.Invoke();
+        Debug.Log("»√–¿ —Õﬂ“¿ — œ¿”«€");
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7452234380026767843}
   - component: {fileID: -7184005435606418289}
   - component: {fileID: -5073979555168187676}
-  - component: {fileID: 1595865244544681914}
+  - component: {fileID: 4797799252330293022}
   m_Layer: 7
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -168,7 +168,7 @@ MonoBehaviour:
   fireRate: 1
   mousePosition: {x: 0, y: 0}
   direction: {x: 0, y: 0}
---- !u!114 &1595865244544681914
+--- !u!114 &4797799252330293022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,27 +192,7 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 8ccdc8d347ce3b448b4f41d21e5cbadb, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: b8821f1f-3dba-452d-9ade-9d34be131933
-    m_ActionName: Player/Move[/Keyboard/anyKey]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 27c3027c-fdf7-4456-85c1-f38e1e187ed6
-    m_ActionName: Player/Fire[/Mouse/leftButton]
+  m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC_Control_scheme
   m_DefaultActionMap: Player
