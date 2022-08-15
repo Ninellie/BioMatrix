@@ -162,6 +162,12 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Death",
+            "id": "b7ef492d-6b83-4bb6-86e4-327cf4c20cea",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": [

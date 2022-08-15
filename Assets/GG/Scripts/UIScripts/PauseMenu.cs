@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
-    public GameObject SettingsMenuUI;
+    public GameObject settingsMenuUI;
 
     private void OnEnable()
     {
@@ -37,7 +37,7 @@ public class PauseMenu : MonoBehaviour
     {
         GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
         pauseMenuUI.SetActive(false);
-        SettingsMenuUI.SetActive(false);
+        settingsMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }

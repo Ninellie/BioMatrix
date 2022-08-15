@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private Vector2 moveVec;
 
     public static Action OnGamePaused;
+    public static Action OnCharacterDeath;
 
     public void OnMove(InputValue input)
     {
@@ -23,13 +24,13 @@ public class Player : MonoBehaviour
     public void OnPause(InputValue input)
     {
         OnGamePaused?.Invoke();
-        Debug.Log("»√–¿ Õ¿ œ¿”«≈");
+        Debug.Log("Game on pause");
     }
 
     public void OnUnpause(InputValue input)
     {
         OnGamePaused?.Invoke();
-        Debug.Log("»√–¿ —Õﬂ“¿ — œ¿”«€");
+        Debug.Log("Game is active");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -53,8 +54,7 @@ public class Player : MonoBehaviour
 
         if (lifePoints <= 0)
         {
-            //Destroy this enemy
-            Destroy(gameObject);
+            OnCharacterDeath?.Invoke();
         }
     }
     // Start is called before the first frame update
