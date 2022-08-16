@@ -108,6 +108,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\GG\Scripts\Shooting.cs" />
+    <Compile Include="Assets\GG\Scripts\UIScripts\PauseMenu.cs" />
     <Compile Include="Assets\GG\Scripts\UIScripts\SettingMenu.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPInstance.cs" />
     <Compile Include="Assets\GG\Scripts\Main.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineTrack.cs" />
+    <Compile Include="Assets\GG\Scripts\UIScripts\DeathScreen.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
@@ -140,8 +142,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
-    <Compile Include="Assets\GG\Scripts\UIScripts\PauseMenu.cs" />
-    <Compile Include="Assets\GG\Scripts\UIScripts\DeathScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

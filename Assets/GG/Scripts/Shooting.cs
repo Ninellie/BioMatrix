@@ -30,7 +30,5 @@ public class Shooting : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb2D = bullet.GetComponent<Rigidbody2D>();
         rb2D.AddForce(direction.normalized * bulletForce, ForceMode2D.Impulse);
-        Debug.Log(mousePosition.normalized);
-        //bullet.GetComponent<Bullet>().Direction = mousePosition;
     }
 }

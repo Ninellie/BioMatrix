@@ -85,7 +85,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!61 &7208249027541576594
 BoxCollider2D:
@@ -146,4 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f2de2718ef2a840ae20e8a817e32e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOnScreen: 0
   lifePoints: 1
