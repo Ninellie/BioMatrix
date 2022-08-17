@@ -33,7 +33,10 @@ public class Bullet : MonoBehaviour
     public bool CheckVisibility()
     {
         var screenPos = m_camera.WorldToScreenPoint(transform.position);
-        var onScreen = screenPos.x > 0f && screenPos.x < Screen.width && screenPos.y > 0f && screenPos.y < Screen.height;
+        var onScreen = screenPos.x > 0f &&
+                       screenPos.x < Screen.width &&
+                       screenPos.y > 0f &&
+                       screenPos.y < Screen.height;
         return onScreen;
     }
 
