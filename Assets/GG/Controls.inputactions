@@ -16,9 +16,18 @@
                 },
                 {
                     "name": "Fire",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "27c3027c-fdf7-4456-85c1-f38e1e187ed6",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "FireOff",
+                    "type": "Value",
+                    "id": "afe5e2bf-12f9-4a9a-a5c3-56ad55ada013",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -91,17 +100,6 @@
                 },
                 {
                     "name": "",
-                    "id": "f27db48d-1bf1-4268-af86-5fd9f81b968e",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC_Control_scheme",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "38b97f04-3661-49eb-81b0-7b041e37c81d",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -119,6 +117,28 @@
                     "processors": "",
                     "groups": "PC_Control_scheme",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92137e0f-42f2-4e07-8607-bdea75781675",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press(pressPoint=1.401298E-45)",
+                    "processors": "",
+                    "groups": "PC_Control_scheme",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95037464-4044-4ac7-84e0-3196f9da59f0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press(pressPoint=1.401298E-45,behavior=1)",
+                    "processors": "",
+                    "groups": "PC_Control_scheme",
+                    "action": "FireOff",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

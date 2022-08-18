@@ -171,9 +171,10 @@ MonoBehaviour:
   firePoint: {fileID: 766516748403551923}
   bulletPrefab: {fileID: 2741946790039367102, guid: 62ab6d6883f51534595dccca64c6bacb, type: 3}
   bulletForce: 1000
-  fireRate: 1
+  fireRate: 10
   mousePosition: {x: 0, y: 0}
   direction: {x: 0, y: 0}
+  isFire: 0
 --- !u!114 &4797799252330293022
 MonoBehaviour:
   m_ObjectHideFlags: 0
