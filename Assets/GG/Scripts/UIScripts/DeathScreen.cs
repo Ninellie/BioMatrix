@@ -10,6 +10,7 @@ public class DeathScreen : MonoBehaviour
     public static bool gameIsOver = false;
 
     public GameObject deathScreenUI;
+    public GameObject timer;
 
     private void OnEnable()
     {
@@ -26,6 +27,7 @@ public class DeathScreen : MonoBehaviour
         GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInput>().SwitchCurrentActionMap("Death");
         deathScreenUI.SetActive(true);
         Time.timeScale = 0f;
+        timer.GetComponent<Timer>().TimeStop();
         gameIsOver = true;
     }
 }

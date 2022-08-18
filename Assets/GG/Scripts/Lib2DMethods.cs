@@ -52,6 +52,15 @@ public static class Lib2DMethods
 
         return new Vector2(horizontal, vertical);
     }
+
+    public static Vector2 DirectionToTarget(Vector2 myPos, Vector2 targetPos)
+    {
+        var horizontal = myPos.x - targetPos.x;
+        var vertical = myPos.y - targetPos.y;
+
+        return new Vector2(horizontal, vertical);
+    }
+
     public static Vector2 inputVector
     {
         get

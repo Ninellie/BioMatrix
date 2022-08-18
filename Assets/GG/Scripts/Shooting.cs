@@ -16,14 +16,16 @@ public class Shooting : MonoBehaviour
     public void OnFire(InputValue input)
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        direction = Lib2DMethods.DirectionToMe(mousePosition);
+        //direction = Lib2DMethods.DirectionToMe(mousePosition);
+        direction = Lib2DMethods.DirectionToTarget(mousePosition, firePoint.position);
+
 
         Shoot();
     }
     // Start is called before the first frame update
     void Start()
     {
-        firePoint = this.transform;
+        //firePoint = this.transform;
     }
     void Shoot()
     {

@@ -8,14 +8,25 @@ public class EnemySpawner : MonoBehaviour
     [Header("Set in Inspector")]
     public GameObject[] prefabEnemies; 
     public float enemySpawnPerSecond = 0.5f; 
-    public float enemyDefaultPadding = 1.5f; 
+    public float enemyDefaultPadding = 1.5f;
+    public GameObject timer;
+
 
     [Header("Set Dynamically")]
     public float camWidth;
     public float camHeight;
 
+    private float CalculateSpawnPerSecond()
+    {
+        float seconds = timer.GetComponent<Timer>().GetTotalSeconds();
+
+        return enemySpawnPerSecond + (seconds / 30f);
+    }
+
     public void SpawnEnemy()
     {
+        Debug.Log(CalculateSpawnPerSecond());
+
         int ndx = UnityEngine.Random.Range(0, prefabEnemies.Length);
         GameObject go = Instantiate<GameObject>(prefabEnemies[ndx]);
 
@@ -48,12 +59,12 @@ public class EnemySpawner : MonoBehaviour
         go.transform.position = localPos;
 
         // Invoke SpawnEnemy() again
-        Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);
+        Invoke("SpawnEnemy", 1f / CalculateSpawnPerSecond());
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);
+        Invoke("SpawnEnemy", 1f / CalculateSpawnPerSecond());
     }
 }

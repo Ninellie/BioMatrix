@@ -11,12 +11,7 @@ public class Timer : MonoBehaviour
 
     private Stopwatch stopwatch = new();
 
-    void Update()
-    {
-        var elapsed = stopwatch.Elapsed;
-        var greatThenHour = elapsed >= TimeSpan.FromHours(1);
-        textTimer.text = elapsed.ToString(greatThenHour ? "hh\\:mm\\:ss" : "mm\\:ss");
-    }
+
     public void TimeStop()
     {
         stopwatch.Stop();
@@ -24,6 +19,18 @@ public class Timer : MonoBehaviour
     public void TimeStart()
     {
         stopwatch.Start();
+    }
+    public float GetTotalSeconds()
+    {
+        TimeSpan ts = stopwatch.Elapsed;
+        return (float)ts.TotalSeconds;
+    }
+
+    void Update()
+    {
+        var elapsed = stopwatch.Elapsed;
+        var greatThenHour = elapsed >= TimeSpan.FromHours(1);
+        textTimer.text = elapsed.ToString(greatThenHour ? "hh\\:mm\\:ss" : "mm\\:ss");
     }
     private void Awake()
     {

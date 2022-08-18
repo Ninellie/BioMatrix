@@ -3809,6 +3809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathScreenUI: {fileID: 2077307398}
+  timer: {fileID: 2049719694}
 --- !u!1 &1249147648
 GameObject:
   m_ObjectHideFlags: 0
@@ -4461,6 +4462,7 @@ MonoBehaviour:
   - {fileID: 8954189743293124748, guid: 31b0110467a1ce14e96a54e0a5736dfe, type: 3}
   enemySpawnPerSecond: 0.5
   enemyDefaultPadding: 1.5
+  timer: {fileID: 2049719694}
   camWidth: 0
   camHeight: 0
 --- !u!20 &1365173402 stripped

@@ -11,14 +11,24 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb2D;
     private Vector2 moveVec;
+    private SpriteRenderer sprite;
 
     public static Action OnGamePaused;
     public static Action OnCharacterDeath;
+
 
     public void OnMove(InputValue input)
     {
         Vector2 inputVec = input.Get<Vector2>();
         moveVec = new Vector2(inputVec.x, inputVec.y);
+        if (inputVec.x < 0)
+        {
+            sprite.flipX = true;
+        }
+        if (inputVec.x > 0)
+        {
+            sprite.flipX = false;
+        }
     }
 
     public void OnPause(InputValue input)
@@ -60,6 +70,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sprite = this.GetComponent<SpriteRenderer>();
         rb2D = this.GetComponent<Rigidbody2D>();
     }
     private void FixedUpdate()
