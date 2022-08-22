@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     public Camera m_camera;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("The bullet hit the target");
+        Debug.Log("The bullet hit a target");
         GameObject otherGO = collision.gameObject;
         switch (otherGO.tag)
 

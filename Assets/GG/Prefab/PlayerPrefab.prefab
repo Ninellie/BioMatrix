@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1183143756002398565}
   - component: {fileID: 7452234380026767843}
   - component: {fileID: -7184005435606418289}
-  - component: {fileID: -5073979555168187676}
   - component: {fileID: 4797799252330293022}
   m_Layer: 7
   m_Name: PlayerPrefab
@@ -156,25 +155,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifePoints: 10
   movementSpeed: 200
---- !u!114 &-5073979555168187676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671026415413744665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a417d85170e5ab448a9ed8b035247e5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 766516748403551923}
-  bulletPrefab: {fileID: 2741946790039367102, guid: 62ab6d6883f51534595dccca64c6bacb, type: 3}
-  bulletForce: 1000
-  fireRate: 10
-  mousePosition: {x: 0, y: 0}
-  direction: {x: 0, y: 0}
-  isFire: 0
 --- !u!114 &4797799252330293022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 766516748403551923}
+  - component: {fileID: 2129946137434048192}
   m_Layer: 7
   m_Name: FirePoint
   m_TagString: Player
@@ -236,3 +217,17 @@ Transform:
   m_Father: {fileID: 885779190258261260}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2129946137434048192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7539270031280201737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9d4e7200f633842a8ffec304afe2f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerWeapons:
+  - {fileID: 3233653779076600719, guid: 8d79294ae0387bd40ba1997b383de427, type: 3}

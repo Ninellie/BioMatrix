@@ -5,17 +5,17 @@ using UnityEngine.InputSystem;
 using System;
 using System.Diagnostics;
 
-public class Shooting : MonoBehaviour
+public class WeaponGun : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public float bulletForce = 200f;
-    public float fireRate = 10f;
-    public Vector2 mousePosition;
-    public Vector2 direction;
+    public float bulletForce;
+    public float fireRate;
 
+    private Vector2 mousePosition;
+    private Vector2 direction;
     //Is the fire button pressed
-    public bool isFire;
+    //public bool isFire;
 
     public Stopwatch stopwatch = new();
 
@@ -27,7 +27,8 @@ public class Shooting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isFire = false;
+        firePoint = this.transform;
+        
         stopwatch.Start();
     }
     //If the reload has passed, then the shot is fired 
@@ -43,18 +44,18 @@ public class Shooting : MonoBehaviour
             stopwatch.Restart();
         }
     }
-    public void OnFire()
-    {
-        isFire = true;
-    }
-    public void OnFireOff()
-    {
-        isFire = false;
-    }
+    //public void OnFire()
+    //{
+    //    isFire = true;
+    //}
+    //public void OnFireOff()
+    //{
+    //    isFire = false;
+    //}
     private void Update()
     {
         //Shoot if the fire button is pressed
-        if (isFire)
+        if (GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().isFire)
         {
             Shoot();
         }

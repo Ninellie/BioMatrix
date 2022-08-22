@@ -16,7 +16,17 @@ public class Player : MonoBehaviour
     public static Action OnGamePaused;
     public static Action OnCharacterDeath;
 
+    //Is the fire button pressed
+    public bool isFire;
 
+    public void OnFire()
+    {
+        isFire = true;
+    }
+    public void OnFireOff()
+    {
+        isFire = false;
+    }
     public void OnMove(InputValue input)
     {
         Vector2 inputVec = input.Get<Vector2>();
@@ -70,6 +80,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isFire = false;
         sprite = this.GetComponent<SpriteRenderer>();
         rb2D = this.GetComponent<Rigidbody2D>();
     }
