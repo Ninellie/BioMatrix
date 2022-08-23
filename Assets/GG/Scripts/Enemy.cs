@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("CharacterCharacteristics")]
+    [Header("EnemyCharacteristics")]
     public int lifePoints = 1;
     public float movementSpeed = 2f;
+    public GameObject onDeathDrop;
 
     private Rigidbody2D rb2D;
     public bool isOnScreen;
@@ -18,18 +19,16 @@ public class Enemy : MonoBehaviour
         switch (otherGO.tag)
         {
             case "Player":
-                lifePoints = 0;
-                if (lifePoints <= 0)
-                {
                     //Destroy this enemy
                     Destroy(gameObject);
-                }
                 break;
 
             case "Projectile":
                 lifePoints--;
                 if (lifePoints <= 0)
                 {
+                    //Drop experiance shard
+                    Instantiate(onDeathDrop, rb2D.position, rb2D.transform.rotation);
                     //Destroy this enemy
                     Destroy(gameObject);
                 }
