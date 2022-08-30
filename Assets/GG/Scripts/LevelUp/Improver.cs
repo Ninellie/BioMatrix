@@ -5,8 +5,6 @@ using System.Linq;
 
 public class Improver : MonoBehaviour
 {
-    public CardManager cardManager = new CardManager();
-
     public void Improve(CardManager.Card card)
     {
         var key = card.improvement.Keys.First();
@@ -44,17 +42,5 @@ public class Improver : MonoBehaviour
 
                 break;
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Improve(cardManager.GetRandomCard());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
