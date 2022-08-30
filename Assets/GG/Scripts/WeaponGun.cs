@@ -9,13 +9,12 @@ public class WeaponGun : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public float bulletForce;
+    public float projectileSpeed;
     public float fireRate;
+    public int pierceNumber = 1;
 
     private Vector2 mousePosition;
     private Vector2 direction;
-    //Is the fire button pressed
-    //public bool isFire;
 
     public Stopwatch stopwatch = new();
 
@@ -39,19 +38,12 @@ public class WeaponGun : MonoBehaviour
             mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             direction = Lib2DMethods.DirectionToTarget(mousePosition, firePoint.position);
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            bullet.GetComponent<Bullet>().lifePoints = pierceNumber;
             Rigidbody2D rb2D = bullet.GetComponent<Rigidbody2D>();
-            rb2D.AddForce(direction.normalized * bulletForce, ForceMode2D.Impulse);
+            rb2D.AddForce(direction.normalized * projectileSpeed, ForceMode2D.Impulse);
             stopwatch.Restart();
         }
     }
-    //public void OnFire()
-    //{
-    //    isFire = true;
-    //}
-    //public void OnFireOff()
-    //{
-    //    isFire = false;
-    //}
     private void Update()
     {
         //Shoot if the fire button is pressed

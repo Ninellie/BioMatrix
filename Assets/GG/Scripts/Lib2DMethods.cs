@@ -5,22 +5,20 @@ using UnityEngine.InputSystem;
 
 public static class Lib2DMethods
 {
-    /// Summary:
-    ///     Moves Rigidbody2D of the object in a direction
-    ///
-    /// Parameters:
-    ///   rigidBody2D:
-    ///     The Rigidbody2D component of the object to be moved.
-    ///
-    ///   movementVector:
-    ///     2D vector towards which the object will be moved
-    ///
-    ///   movementSpeed:
-    ///     The speed at which the object will move
+    /// <summary>
+    /// Moves Rigidbody2D of the object in a direction
+    /// </summary>
+    /// <param name="rigidBody2D">The Rigidbody2D component of the object to be moved.</param>
+    /// <param name="movementVector">2D vector towards which the object will be moved</param>
+    /// <param name="movementSpeed">The speed at which the object will move</param>
     public static void MovePhys2D(Rigidbody2D rigidBody2D, Vector2 movementVector, float movementSpeed)
     {
         rigidBody2D.MovePosition(rigidBody2D.position + movementVector.normalized * movementSpeed * Time.fixedDeltaTime);
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="rigidBody2D"></param>
     public static void LookToPlayer(Rigidbody2D rigidBody2D)
     {
         float angle = (Mathf.Atan2(DirectionToPlayer(rigidBody2D.position).y, DirectionToPlayer(rigidBody2D.position).x) - Mathf.PI / 2) * Mathf.Rad2Deg;
@@ -37,6 +35,12 @@ public static class Lib2DMethods
         }
      }
     //Actually this is distance, not direction
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="myPos"></param>
+    /// <returns></returns>
     public static Vector2 DirectionToPlayer(Vector2 myPos)
     {
         var horizontal = GameObject.FindGameObjectsWithTag("Player")[0].transform.position.x - myPos.x;
