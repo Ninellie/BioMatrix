@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Improver : MonoBehaviour
 {
-    public void Improve(CardManager.Card card)
+    public void Improve(Card card)
     {
         var key = card.improvement.Keys.First();
         var value = card.improvement.Values.First();
