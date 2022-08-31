@@ -18,11 +18,12 @@ public class Player : MonoBehaviour
 
     public static Action OnGamePaused;
     public static Action OnCharacterDeath;
-    //public static Action OnLevelUp;
+    public static Action OnLevelUp;
 
     [Header("Is the fire button pressed")]
     //Is the fire button pressed
     public bool isFire;
+
 
     public void OnFire()
     {
@@ -91,6 +92,7 @@ public class Player : MonoBehaviour
         {
             experience = 0;
             level++;
+            OnLevelUp?.Invoke();
         }
     }
     private void FixedUpdate()

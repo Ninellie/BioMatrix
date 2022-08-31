@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        Debug.Log(CalculateSpawnPerSecond());
+        //Debug.Log(CalculateSpawnPerSecond());
 
         int ndx = UnityEngine.Random.Range(0, prefabEnemies.Length);
         GameObject go = Instantiate<GameObject>(prefabEnemies[ndx]);

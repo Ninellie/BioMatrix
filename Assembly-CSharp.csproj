@@ -70,6 +70,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSimpleUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineEndless.cs" />
+    <Compile Include="Assets\GG\Scripts\LevelUp\Deck\Card.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier.cs" />
     <Compile Include="Assets\GG\Scripts\Ortho2dCamera.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
@@ -79,7 +80,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListeners.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
-    <Compile Include="Assets\GG\Scripts\LevelUp\CardManager.cs" />
+    <Compile Include="Assets\GG\Scripts\LevelUp\Deck\CardManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Assets\GG\Scripts\WeaponManager.cs" />
     <Compile Include="Assets\GG\Scripts\WeaponGun.cs" />
     <Compile Include="Assets\GG\Scripts\UIScripts\PauseMenu.cs" />
+    <Compile Include="Assets\GG\Scripts\LevelUp\Deck\ArrayCardRepository.cs" />
     <Compile Include="Assets\GG\Scripts\UIScripts\SettingMenu.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
@@ -134,6 +136,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline2d.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinePerformance.cs" />
     <Compile Include="Assets\GG\Scripts\Bullet.cs" />
+    <Compile Include="Assets\GG\Scripts\LevelUp\Deck\ICardRepository.cs" />
     <Compile Include="Assets\GG\Scripts\Player.cs" />
     <Compile Include="Assets\GG\Scripts\UIScripts\MainMenu.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
@@ -148,9 +151,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
-    <Compile Include="Assets\GG\Scripts\LevelUp\ArrayCardRepository.cs" />
-    <Compile Include="Assets\GG\Scripts\LevelUp\Card.cs" />
-    <Compile Include="Assets\GG\Scripts\LevelUp\ICardRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
