@@ -10,8 +10,9 @@ public class LVLUpManager : MonoBehaviour
     public GameObject canvasUI;
     public TMPro.TMP_Text[] cardsText;
 
-    private ArrayCardRepository cardRepository = new();
     private List<Card> selectedCards = new();
+    private static ArrayCardRepository cardRepository = new();
+    private readonly CardManager cardManager = new(cardRepository);
 
     private void OnEnable()
     {
@@ -30,48 +31,22 @@ public class LVLUpManager : MonoBehaviour
         lvlUpUI.SetActive(true);
     }
 
-    private void CardsFill(List<Card> cardsList)
-    {
-        for (int i = 0; i < cardRepository.CardCount; i++)
-        {
-            Card card = cardRepository.Get(i);
-            cardsList.Add(card);
-        }
-    }
-    /// <summary>
-    /// Takes 3 cards
-    /// </summary>
-    /// <returns>List of Cards with 3 different cards</returns>
-    private List<Card> CardsIdentify()
-    {
-        List<Card> cardsList = new();
-
-        CardsFill(cardsList);
-
-        List<Card> selectedCards = new();
-
-        for(int i = 0; i < 3; i++)
-        {
-            var rand = Random.Range(0, cardsList.Count);
-            var card = cardsList[rand];
-            selectedCards.Add(card);
-            cardsList.RemoveAt(rand);
-        }
-        return selectedCards;
-    }
-
     /// <summary>
     /// Displays 3 random cards on screen
     /// </summary>
     private void CardsDisplay()
     {
-        selectedCards = CardsIdentify();
+        selectedCards = cardManager.GetDeck(3);
 
         for(int i = 0; i < cardsText.Length; i++)
         {
-            cardsText[i].text = selectedCards[i].description;
+            cardsText[i].text = selectedCards[i].title;
         }
     }
+    /// <summary>
+    /// Applies an improvement
+    /// </summary>
+    /// <param name="index">Index of card in list</param>
     public void Improve(int index)
     {
         var key = selectedCards[index].improvement.Keys.First();
