@@ -75,7 +75,7 @@ public class CardManager
         //Подгатавливает лист для возвращения колоды
         List<Card> selectedCards = new();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < numberOfCards; i++)
         {
             var card = GetRandomCardFromList(cardsList);
             selectedCards.Add(card);

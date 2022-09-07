@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public int lifePoints = 10;
     public float movementSpeed = 2f;
     public int experience = 0;
+    public int expToLvlup = 0;
     public int level = 0;
 
     private Rigidbody2D rb2D;
@@ -88,6 +89,15 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        if(level == 0)
+        {
+            expToLvlup = 10 - experience;
+        }
+        else
+        {
+            expToLvlup = (level * 10) - experience;
+        }
+        
         if(experience >= 10 + (level * 10))
         {
             experience = 0;

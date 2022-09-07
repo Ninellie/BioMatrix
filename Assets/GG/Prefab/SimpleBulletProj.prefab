@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOnScreen: 0
   lifePoints: 1
+  m_camera: {fileID: 0}

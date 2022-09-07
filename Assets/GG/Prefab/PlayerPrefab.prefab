@@ -153,12 +153,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ccdc8d347ce3b448b4f41d21e5cbadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 100
-  movementSpeed: 100
+  lifePoints: 3
+  movementSpeed: 150
   experience: 0
+  expToLvlup: 0
   level: 0
   isFire: 0
-  lvlupscript: {fileID: 0}
 --- !u!114 &4797799252330293022
 MonoBehaviour:
   m_ObjectHideFlags: 0

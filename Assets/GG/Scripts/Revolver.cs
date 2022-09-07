@@ -5,43 +5,71 @@ using UnityEngine.InputSystem;
 using System;
 using System.Diagnostics;
 
-public class WeaponGun : MonoBehaviour
+public class Revolver : MonoBehaviour
 {
+    public GameObject reloadLable;
     public Transform firePoint;
     public GameObject bulletPrefab;
     public float projectileSpeed;
     public float fireRate;
-    public int pierceNumber = 1;
+    public int pierceNumber;
+    public int magazineMax;
+    public int magazineCurrent;
+    public float reloadSpeed;
 
     private Vector2 mousePosition;
     private Vector2 direction;
 
-    public Stopwatch stopwatch = new();
+    public Stopwatch fireDelayStopwatch = new();
+    public Stopwatch reloadStopwatch = new();
 
-    public float GetTotalSeconds()
+    public float GetTotalSeconds(Stopwatch stopwatch)
     {
-        TimeSpan ts = stopwatch.Elapsed;
-        return (float)ts.TotalSeconds;
+        TimeSpan timeSpan = stopwatch.Elapsed;
+        return (float)timeSpan.TotalSeconds;
     }
+
+    private void Reload()
+    {
+        reloadLable.SetActive(true);
+        Invoke("ReloadOff", reloadSpeed);
+    }
+
+    private void ReloadOff()
+    {
+        reloadLable.SetActive(false);
+        magazineCurrent = magazineMax;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        firePoint = this.transform;
+        pierceNumber = 1;
+        magazineMax = 6;
+        reloadLable = GameObject.FindWithTag("Canvas").GetComponent<ReloadLabel>().reloadLabel;
+        reloadLable.SetActive(false);
+        firePoint = GetComponentInParent<WeaponManager>().transform;
         
-        stopwatch.Start();
+        fireDelayStopwatch.Start();
+        reloadStopwatch.Stop();
     }
     //If the reload has passed, then the shot is fired 
     public void Shoot()
     {
-        if (GetTotalSeconds() >= (1f / fireRate))
+        if (GetTotalSeconds(fireDelayStopwatch) >= (1f / fireRate) && magazineCurrent > 0)
         {
+            magazineCurrent--;
             mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             direction = Lib2DMethods.DirectionToTarget(mousePosition, firePoint.position);
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             bullet.GetComponent<Bullet>().lifePoints = pierceNumber;
             Rigidbody2D rb2D = bullet.GetComponent<Rigidbody2D>();
             rb2D.AddForce(direction.normalized * projectileSpeed, ForceMode2D.Impulse);
-            stopwatch.Restart();
+            fireDelayStopwatch.Restart();
+            if(magazineCurrent <= 0)
+            {
+                Reload();
+            }
         }
     }
     private void Update()

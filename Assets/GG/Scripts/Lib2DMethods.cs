@@ -51,10 +51,11 @@ public static class Lib2DMethods
 
     public static Vector2 DirectionToMe (Vector2 myPos)
     {
-        var horizontal = myPos.x - GameObject.FindGameObjectsWithTag("Player")[0].transform.position.x;
-        var vertical = myPos.y - GameObject.FindGameObjectsWithTag("Player")[0].transform.position.y;
+        //var horizontal = myPos.x - GameObject.FindGameObjectsWithTag("Player")[0].transform.position.x;
+        //var vertical = myPos.y - GameObject.FindGameObjectsWithTag("Player")[0].transform.position.y;
 
-        return new Vector2(horizontal, vertical);
+        //return new Vector2(horizontal, vertical);
+        return DirectionToTarget(myPos, GameObject.FindGameObjectsWithTag("Player")[0].transform.position);
     }
 
     public static Vector2 DirectionToTarget(Vector2 myPos, Vector2 targetPos)

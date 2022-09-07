@@ -11,7 +11,7 @@ public class LVLUpManager : MonoBehaviour
     public TMPro.TMP_Text[] cardsText;
 
     private List<Card> selectedCards = new();
-    private static ArrayCardRepository cardRepository = new();
+    private static ICardRepository cardRepository = new ArrayCardRepository();
     private readonly CardManager cardManager = new(cardRepository);
 
     private void OnEnable()
@@ -69,13 +69,13 @@ public class LVLUpManager : MonoBehaviour
 
                 break;
             case "fireRate":
-                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<WeaponGun>().fireRate += value;
+                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Revolver>().fireRate += value;
                 break;
             case "projectileSpeed":
-                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<WeaponGun>().projectileSpeed += value;
+                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Revolver>().projectileSpeed += value;
                 break;
             case "pierceNumber":
-                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<WeaponGun>().pierceNumber += (int)value;
+                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Revolver>().pierceNumber += (int)value;
                 break;
             case "reloadSpeed":
 
