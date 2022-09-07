@@ -32,7 +32,7 @@ public class Revolver : MonoBehaviour
     private void Reload()
     {
         reloadLable.SetActive(true);
-        Invoke("ReloadOff", reloadSpeed);
+        Invoke("ReloadOff", 1 / reloadSpeed);
     }
 
     private void ReloadOff()
@@ -44,8 +44,10 @@ public class Revolver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        reloadSpeed = 0.3f;
         pierceNumber = 1;
         magazineMax = 6;
+        magazineCurrent = magazineMax;
         reloadLable = GameObject.FindWithTag("Canvas").GetComponent<ReloadLabel>().reloadLabel;
         reloadLable.SetActive(false);
         firePoint = GetComponentInParent<WeaponManager>().transform;

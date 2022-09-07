@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            expToLvlup = (level * 10) - experience;
+            expToLvlup = 10 + (level * 10) - experience;
         }
         
         if(experience >= 10 + (level * 10))

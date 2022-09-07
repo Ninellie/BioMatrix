@@ -78,7 +78,7 @@ public class LVLUpManager : MonoBehaviour
                 GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Revolver>().pierceNumber += (int)value;
                 break;
             case "reloadSpeed":
-
+                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Revolver>().reloadSpeed += value;
                 break;
             case "projectileNumber":
 

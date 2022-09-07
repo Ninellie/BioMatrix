@@ -82,7 +82,7 @@ public class ArrayCardRepository : ICardRepository
             dropWeight = 1000,
             improvement = new Dictionary<string, float>
             {
-                ["reloadSpeed"] = 10.0f,
+                ["reloadSpeed"] = 0.2f,
             }
         },
         new Card
