@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         isFire = false;
         sprite = this.GetComponent<SpriteRenderer>();
         rb2D = this.GetComponent<Rigidbody2D>();

@@ -5,11 +5,15 @@ using UnityEngine;
 public class HPUI : MonoBehaviour
 {
     public TMPro.TMP_Text hpUI;
+    public TMPro.TMP_Text ammoUI;
 
     // Update is called once per frame
     void Update()
     {
-        string text = "HP: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().lifePoints.ToString();
-        hpUI.text = text;
+        string textHP = "HP: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().lifePoints.ToString();
+        string textAmmo = "AMMO: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Revolver>().magazineCurrent.ToString();
+
+        hpUI.text = textHP;
+        ammoUI.text = textAmmo;
     }
 }

@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ccdc8d347ce3b448b4f41d21e5cbadb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 3
-  movementSpeed: 150
+  lifePoints: 5
+  movementSpeed: 200
   experience: 0
   expToLvlup: 0
   level: 0
