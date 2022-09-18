@@ -44,7 +44,7 @@ public class Revolver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        reloadSpeed = 0.3f;
+        reloadSpeed = 0.8f;
         pierceNumber = 1;
         magazineMax = 6;
         magazineCurrent = magazineMax;
