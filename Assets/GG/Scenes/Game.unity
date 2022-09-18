@@ -1819,7 +1819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!156049354 &320754241
 Grid:
   m_ObjectHideFlags: 0
@@ -1861,6 +1861,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1228520834}
+  tilemapRenderer: {fileID: 1228520833}
+  tileGrass: {fileID: 11400000, guid: 715a255757fcc54479500da182b845dd, type: 2}
+  camera: {fileID: 1365173402}
 --- !u!1 &385976892
 GameObject:
   m_ObjectHideFlags: 0
