@@ -8,34 +8,39 @@ public class Floor : MonoBehaviour
     public Tilemap tilemap;
     public TilemapRenderer tilemapRenderer;
     public TileBase tileGrass;
-    public Camera camera;
 
+    private Camera mainCamera;
     private Vector2 camCenterWorld;
     private Vector3Int cellInCenterOfCam;
 
     private void Start()
     {
-        camCenterWorld = camera.ScreenToWorldPoint(camera.pixelRect.center);
+        mainCamera = Camera.main;
+        camCenterWorld = mainCamera.ScreenToWorldPoint(mainCamera.pixelRect.center);
         cellInCenterOfCam = tilemap.WorldToCell(camCenterWorld);
     }
 
     private void Update()
     {
-        camCenterWorld = camera.ScreenToWorldPoint(camera.pixelRect.center);
-
-        if (cellInCenterOfCam == tilemap.WorldToCell(camCenterWorld)) { } else { Fill(tilemap, GetBoundsIntFromCamera(camera, tilemap, tilemapRenderer), tileGrass); }
+        camCenterWorld = mainCamera.ScreenToWorldPoint(mainCamera.pixelRect.center);
+        Vector3Int currentCell = tilemap.WorldToCell(camCenterWorld);
+        if (cellInCenterOfCam != currentCell)
+        {
+            BoundsInt boundsInt = GetBoundsIntFromCamera(mainCamera, tilemap, tilemapRenderer.chunkCullingBounds);
+            Fill(tilemap, boundsInt, tileGrass);
+        }
 
         cellInCenterOfCam = tilemap.WorldToCell(camCenterWorld);
     }
 
-    void Fill(Tilemap tilemap, BoundsInt boundsInt, TileBase tile)
+    private void Fill(Tilemap tilemap, BoundsInt boundsInt, TileBase tile)
     {
         TileBase[] tileArray = GetTileArray(boundsInt.size.x * boundsInt.size.y, tile);
 
         tilemap.SetTilesBlock(boundsInt, tileArray);
     }
 
-    TileBase[] GetTileArray(int length, TileBase tile)
+    private TileBase[] GetTileArray(int length, TileBase tile)
     {
         TileBase[] tileArray = new TileBase[length];
 
@@ -47,16 +52,16 @@ public class Floor : MonoBehaviour
         return tileArray;
     }
 
-    BoundsInt GetBoundsIntFromCamera(Camera camera, Tilemap tilemap, TilemapRenderer tilemapRenderer)
+    private BoundsInt GetBoundsIntFromCamera(Camera camera, Tilemap tilemap, Vector3 chunkCullingBounds)
     {
-        int cellBoundsPadding = 2;
+        int cellBoundsPadding = 5;
         //Делит сумму высоты-ширины камеры и высоты-ширины чанк куллинга на высоту-ширину клетки в тайлмапе и прибавляет паддинг и сохраняет результат в Vector3Int
-        Vector3Int boundsIntSize = new Vector3Int( ( ( (int)camera.pixelRect.width + (int)tilemapRenderer.chunkCullingBounds.x ) / (int)tilemap.cellSize.x ) + cellBoundsPadding,
-                                                   ( ( (int)camera.pixelRect.height + (int)tilemapRenderer.chunkCullingBounds.y ) / (int)tilemap.cellSize.y ) + cellBoundsPadding,
+        Vector3Int boundsIntSize = new Vector3Int( ( ( (int)camera.pixelRect.width + (int)chunkCullingBounds.x ) / (int)tilemap.cellSize.x ) + cellBoundsPadding,
+                                                   ( ( (int)camera.pixelRect.height + (int)chunkCullingBounds.y ) / (int)tilemap.cellSize.y ) + cellBoundsPadding,
                                                      1);
         Vector3 camCenterWorld = camera.ScreenToWorldPoint(camera.pixelRect.center);
         Vector3Int cellInCenterOfCam = tilemap.WorldToCell(camCenterWorld);
-        Vector3Int boundsIntOrigin = new Vector3Int(cellInCenterOfCam.x - (boundsIntSize.x / 2), cellInCenterOfCam.y - boundsIntSize.y / 2, 1);
+        Vector3Int boundsIntOrigin = new(cellInCenterOfCam.x - (boundsIntSize.x / 2), cellInCenterOfCam.y - boundsIntSize.y / 2, 1);
         BoundsInt boundsInt = new BoundsInt(boundsIntOrigin, boundsIntSize);
         return boundsInt;
     }
