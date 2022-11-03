@@ -47,8 +47,8 @@ MonoBehaviour:
   reloadLable: {fileID: 4452044536186125706, guid: 533466c17824b2d408295f83794f42b6, type: 3}
   firePoint: {fileID: 0}
   bulletPrefab: {fileID: 2741946790039367102, guid: 62ab6d6883f51534595dccca64c6bacb, type: 3}
-  projectileSpeed: 600
-  fireRate: 2
+  shootForce: 500
+  bulletsPerSecond: 2
   pierceNumber: 1
   magazineMax: 6
   magazineCurrent: 6

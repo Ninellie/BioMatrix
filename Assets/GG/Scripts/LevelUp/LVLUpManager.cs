@@ -69,10 +69,10 @@ public class LVLUpManager : MonoBehaviour
 
                 break;
             case "fireRate":
-                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Revolver>().fireRate += value;
+                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Revolver>().bulletsPerSecond += value;
                 break;
             case "projectileSpeed":
-                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Revolver>().projectileSpeed += value;
+                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Revolver>().shootForce += value;
                 break;
             case "pierceNumber":
                 GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Revolver>().pierceNumber += (int)value;

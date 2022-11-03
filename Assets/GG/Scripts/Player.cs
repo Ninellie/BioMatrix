@@ -21,18 +21,16 @@ public class Player : MonoBehaviour
     public static Action OnCharacterDeath;
     public static Action OnLevelUp;
 
-    [Header("Is the fire button pressed")]
-    //Is the fire button pressed
-    public bool isFire;
+    public bool isFireButtonPressed;
 
 
     public void OnFire()
     {
-        isFire = true;
+        isFireButtonPressed = true;
     }
     public void OnFireOff()
     {
-        isFire = false;
+        isFireButtonPressed = false;
     }
     public void OnMove(InputValue input)
     {
@@ -84,7 +82,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
-        isFire = false;
+        isFireButtonPressed = false;
         sprite = this.GetComponent<SpriteRenderer>();
         rb2D = this.GetComponent<Rigidbody2D>();
     }
