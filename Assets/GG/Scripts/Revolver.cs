@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 using System.Diagnostics;
+using System.Linq;
+using JetBrains.Annotations;
+using UnityEngine.UI;
+using System.Runtime.CompilerServices;
+using UnityEngine.UIElements;
 
 public class Revolver : MonoBehaviour
 {
@@ -17,6 +22,7 @@ public class Revolver : MonoBehaviour
     public int magazineMax;
     public int magazineCurrent;
     public float reloadSpeed;
+    public float MaxShotDeflectionAngle;
     private bool isReloadInProcess;
 
     private Stopwatch previousShootStopwatch = new();
@@ -28,7 +34,7 @@ public class Revolver : MonoBehaviour
     private TimeSpan MinShootInterval => TimeSpan.FromSeconds(1d / bulletsPerSecond);
     private bool IsMagazineEmpty => magazineCurrent == 0;
     private static bool IsFireButtonPressed => GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().isFireButtonPressed;
-    private Vector2 GetDirection => Lib2DMethods.DirectionToTarget(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), firePoint.position);
+    private Vector2 GetRawShotDirection => Lib2DMethods.DirectionToTarget(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), firePoint.position);
 
     // Start is called before the first frame update
     void Start()
@@ -97,13 +103,7 @@ public class Revolver : MonoBehaviour
     private void FireBullet()
     {
         bullet = CreateProjectile(bulletPrefab);
-        AccelerateProjectileInDirection(bullet, shootForce, GetDirection);
-    }
-
-    private void AccelerateProjectileInDirection(GameObject projectile, float force, Vector2 direction)
-    {
-        Rigidbody2D rb2D = projectile.GetComponent<Rigidbody2D>();
-        rb2D.AddForce(direction.normalized * force, ForceMode2D.Impulse);
+        AccelerateProjectileInDirection(bullet, shootForce, GetActualShotDirection(GetRawShotDirection, MaxShotDeflectionAngle));
     }
 
     private GameObject CreateProjectile(GameObject projectile)
@@ -112,6 +112,29 @@ public class Revolver : MonoBehaviour
         bullet.GetComponent<Bullet>().lifePoints = pierceNumber;
         return bullet;
     }
+
+    private Vector2 GetActualShotDirection (Vector2 direction, float MaxShotDeflectionAngle)
+    {
+        float angleInRad = (float)Mathf.Deg2Rad * MaxShotDeflectionAngle;
+        float shotDeflectionAngle = UnityEngine.Random.Range(-angleInRad, angleInRad);
+        return rotate(direction, shotDeflectionAngle);
+    }
+
+    private Vector2 rotate(Vector2 point, float angle)
+    {
+        Vector2 rotated_point;
+        rotated_point.x = point.x * Mathf.Cos(angle) - point.y * Mathf.Sin(angle);
+        rotated_point.y = point.x * Mathf.Sin(angle) + point.y * Mathf.Cos(angle);
+        return rotated_point;
+    }
+
+    private void AccelerateProjectileInDirection(GameObject projectile, float force, Vector2 direction)
+    {
+        Rigidbody2D rb2D = projectile.GetComponent<Rigidbody2D>();
+        rb2D.AddForce(direction.normalized * force, ForceMode2D.Impulse);
+    }
+
+
     private bool CanShoot()
     {
         return previousShootStopwatch.Elapsed >= MinShootInterval && !IsMagazineEmpty;
