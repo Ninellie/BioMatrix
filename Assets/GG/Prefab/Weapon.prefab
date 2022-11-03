@@ -53,4 +53,4 @@ MonoBehaviour:
   magazineMax: 6
   magazineCurrent: 6
   reloadSpeed: 0.8
-  MaxShotDeflectionAngle: 5
+  MaxShotDeflectionAngle: 10

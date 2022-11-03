@@ -122,6 +122,7 @@
     <Compile Include="Assets\GG\Scripts\Enemy.cs" />
     <Compile Include="Assets\GG\Scripts\UIScripts\Timer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
+    <Compile Include="Assets\GG\Scripts\PeterAcklamInverseCDF.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

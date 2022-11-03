@@ -1,18 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 using System.Diagnostics;
-using System.Linq;
-using JetBrains.Annotations;
-using UnityEngine.UI;
-using System.Runtime.CompilerServices;
-using UnityEngine.UIElements;
 
 public class Revolver : MonoBehaviour
 {
-
     public GameObject reloadLable;
     public Transform firePoint;
     public GameObject bulletPrefab;
@@ -39,9 +31,9 @@ public class Revolver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        reloadSpeed = 0.8f;
-        pierceNumber = 1;
-        magazineMax = 6;
+        //reloadSpeed = 0.8f;
+        //pierceNumber = 1;
+        //magazineMax = 6;
         magazineCurrent = magazineMax;
         reloadLable = GameObject.FindWithTag("Canvas").GetComponent<ReloadLabel>().reloadLabel;
         reloadLable.SetActive(false);
@@ -116,8 +108,25 @@ public class Revolver : MonoBehaviour
     private Vector2 GetActualShotDirection (Vector2 direction, float MaxShotDeflectionAngle)
     {
         float angleInRad = (float)Mathf.Deg2Rad * MaxShotDeflectionAngle;
-        float shotDeflectionAngle = UnityEngine.Random.Range(-angleInRad, angleInRad);
+        float shotDeflectionAngle = Range(-angleInRad, angleInRad);
         return rotate(direction, shotDeflectionAngle);
+    }
+
+
+    private float Range(float minInclusive, float maxInclusive)
+    {
+        float std = PeterAcklamInverseCDF.NormInv(UnityEngine.Random.value);
+        return PeterAcklamInverseCDF.RandomGaussian(std, minInclusive, maxInclusive);
+    }
+
+    private float Range1(float minInclusive, float maxInclusive)
+    {
+        return UnityEngine.Random.Range(minInclusive, maxInclusive);
+    }
+
+    private float Range2(float minInclusive, float maxInclusive)
+    {
+        return PeterAcklamInverseCDF.RandomGaussian(minInclusive, maxInclusive);
     }
 
     private Vector2 rotate(Vector2 point, float angle)
@@ -133,11 +142,8 @@ public class Revolver : MonoBehaviour
         Rigidbody2D rb2D = projectile.GetComponent<Rigidbody2D>();
         rb2D.AddForce(direction.normalized * force, ForceMode2D.Impulse);
     }
-
-
     private bool CanShoot()
     {
         return previousShootStopwatch.Elapsed >= MinShootInterval && !IsMagazineEmpty;
-    }
-    
+    } 
 }
