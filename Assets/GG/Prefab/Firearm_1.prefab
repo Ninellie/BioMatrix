@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9126805039593386211}
-  - component: {fileID: 6998006867553312791}
+  - component: {fileID: -1404001588738971627}
   m_Layer: 7
-  m_Name: Weapon
+  m_Name: Firearm_1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6998006867553312791
+--- !u!114 &-1404001588738971627
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3233653779076600719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a417d85170e5ab448a9ed8b035247e5a, type: 3}
+  m_Script: {fileID: 11500000, guid: a569aeec82b42b84fac631bde52082be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 3233653779076600719, guid: 2d73b73b3c04fa041b2b1183e105c274, type: 3}
-  bulletPrefab: {fileID: 2741946790039367102, guid: 62ab6d6883f51534595dccca64c6bacb, type: 3}
-  reloadLable: {fileID: 4452044536186125706, guid: 533466c17824b2d408295f83794f42b6, type: 3}
-  firePoint: {fileID: 0}
+  shootForce: 500
+  bulletsPerSecond: 6
+  pierceNumber: 1
+  magazineMax: 5
+  reloadSpeed: 1
+  maxShotDeflectionAngle: 5

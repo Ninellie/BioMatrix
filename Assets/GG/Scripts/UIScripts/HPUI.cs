@@ -11,7 +11,7 @@ public class HPUI : MonoBehaviour
     void Update()
     {
         string textHP = "HP: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().lifePoints.ToString();
-        string textAmmo = "AMMO: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Revolver>().magazineCurrent.ToString();
+        string textAmmo = "AMMO: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Firearm>().MagazineCurrent.ToString();
 
         hpUI.text = textHP;
         ammoUI.text = textAmmo;

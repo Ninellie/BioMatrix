@@ -3,38 +3,50 @@ using UnityEngine.InputSystem;
 using System;
 using System.Diagnostics;
 
-public class Revolver : MonoBehaviour
+public class Firearm : MonoBehaviour
 {
+    private float ShootForce => settings.shootForce;
+    private float BulletsPerSecond => settings.bulletsPerSecond;
+    private int PierceNumber => settings.pierceNumber;
+    private int MagazineMax => settings.magazineMax;
+    private float ReloadSpeed => settings.reloadSpeed;
+    private float MaxShotDeflectionAngle => settings.maxShotDeflectionAngle;
+
+    [Header("Used weapon")]
+    public GameObject weaponPrefab;
+    [Header("Used bullet")]
+    public GameObject bulletPrefab;
+
     public GameObject reloadLable;
     public Transform firePoint;
-    public GameObject bulletPrefab;
-    public float shootForce;    
-    public float bulletsPerSecond;
-    public int pierceNumber;
-    public int magazineMax;
-    public int magazineCurrent;
-    public float reloadSpeed;
-    public float MaxShotDeflectionAngle;
-    private bool isReloadInProcess;
 
+    private FirearmSettings settings;
+    
+    private GameObject bullet;
+
+    public int MagazineCurrent { get; private set; }
+
+    private bool isReloadInProcess;
+    
     private Stopwatch previousShootStopwatch = new();
     private Stopwatch reloadStopwatch = new();
 
     public static Action OnMagazineEmpty;
-    private GameObject bullet;
 
-    private TimeSpan MinShootInterval => TimeSpan.FromSeconds(1d / bulletsPerSecond);
-    private bool IsMagazineEmpty => magazineCurrent == 0;
+
+    private TimeSpan MinShootInterval => TimeSpan.FromSeconds(1d / BulletsPerSecond);
+    private bool IsMagazineEmpty => MagazineCurrent == 0;
     private static bool IsFireButtonPressed => GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().isFireButtonPressed;
     private Vector2 GetRawShotDirection => Lib2DMethods.DirectionToTarget(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), firePoint.position);
 
     // Start is called before the first frame update
     void Start()
     {
+        settings = weaponPrefab.GetComponent<FirearmSettings>();
         //reloadSpeed = 0.8f;
         //pierceNumber = 1;
         //magazineMax = 6;
-        magazineCurrent = magazineMax;
+        MagazineCurrent = MagazineMax;
         reloadLable = GameObject.FindWithTag("Canvas").GetComponent<ReloadLabel>().reloadLabel;
         reloadLable.SetActive(false);
         firePoint = GetComponentInParent<WeaponManager>().transform;
@@ -63,31 +75,31 @@ public class Revolver : MonoBehaviour
 
     private void OnEnable()
     {
-        Revolver.OnMagazineEmpty += Reload;
+        Firearm.OnMagazineEmpty += Reload;
     }
     
     private void OnDisable()
     {
-        Revolver.OnMagazineEmpty -= Reload;
+        Firearm.OnMagazineEmpty -= Reload;
     }
 
     private void Reload()
     {
         isReloadInProcess = true;
         reloadLable.SetActive(true);
-        Invoke("ReloadOff", 1 / reloadSpeed);
+        Invoke("ReloadOff", 1 / ReloadSpeed);
     }
 
     private void ReloadOff()
     {
         isReloadInProcess = false;
         reloadLable.SetActive(false);
-        magazineCurrent = magazineMax;
+        MagazineCurrent = MagazineMax;
     }
 
     private void DoShoot()
     {        
-        magazineCurrent--;
+        MagazineCurrent--;
         FireBullet();
         previousShootStopwatch.Restart();
     }
@@ -95,13 +107,13 @@ public class Revolver : MonoBehaviour
     private void FireBullet()
     {
         bullet = CreateProjectile(bulletPrefab);
-        AccelerateProjectileInDirection(bullet, shootForce, GetActualShotDirection(GetRawShotDirection, MaxShotDeflectionAngle));
+        AccelerateProjectileInDirection(bullet, ShootForce, GetActualShotDirection(GetRawShotDirection, MaxShotDeflectionAngle));
     }
 
     private GameObject CreateProjectile(GameObject projectile)
     {
         GameObject bullet = Instantiate(projectile, firePoint.position, firePoint.rotation);
-        bullet.GetComponent<Bullet>().lifePoints = pierceNumber;
+        bullet.GetComponent<Bullet>().lifePoints = PierceNumber;
         return bullet;
     }
 
