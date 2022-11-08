@@ -109,7 +109,7 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.32341623, y: -0.06808734}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 2.56, y: 0.24, z: 1.8299999, w: 0.44}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 10.24, y: 10.24}
     newSize: {x: 10.24, y: 10.24}
@@ -158,7 +158,7 @@ MonoBehaviour:
   experience: 0
   expToLvlup: 0
   level: 0
-  isFire: 0
+  isFireButtonPressed: 0
 --- !u!114 &4797799252330293022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,4 +234,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerWeapons:
-  - {fileID: 3233653779076600719, guid: 8d79294ae0387bd40ba1997b383de427, type: 3}
+  - {fileID: 3233653779076600719, guid: 1efe1dd8adcbfe74595487da48627252, type: 3}

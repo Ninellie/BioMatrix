@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using System.Linq;
 
 public class LVLUpManager : MonoBehaviour
@@ -27,14 +25,14 @@ public class LVLUpManager : MonoBehaviour
     private void InitiateLvlUp()
     {
         canvasUI.GetComponent<PauseMenu>().PauseGame();
-        CardsDisplay();
+        DispleyThreeCards();
         lvlUpUI.SetActive(true);
     }
 
     /// <summary>
     /// Displays 3 random cards on screen
     /// </summary>
-    private void CardsDisplay()
+    private void DispleyThreeCards()
     {
         selectedCards = cardManager.GetDeck(3);
 

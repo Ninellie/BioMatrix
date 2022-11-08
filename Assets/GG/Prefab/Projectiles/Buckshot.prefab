@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5384938256212642916}
   - component: {fileID: 7208249027541576594}
   - component: {fileID: 2316403284215167119}
-  - component: {fileID: 7082847116386798798}
+  - component: {fileID: 940719928442343407}
+  - component: {fileID: 1689177873524153429}
   m_Layer: 8
-  m_Name: SimpleBulletProj
+  m_Name: Buckshot
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,7 +135,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7082847116386798798
+--- !u!114 &940719928442343407
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,9 +144,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 2741946790039367102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f2de2718ef2a840ae20e8a817e32e7, type: 3}
+  m_Script: {fileID: 11500000, guid: f9f9a2f66e160244ab26387213a1b2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOnScreen: 0
-  lifePoints: 1
-  m_camera: {fileID: 0}
+  isBuckshot: 0
+  pierceCount: 1
+  damage: 1
+  size: 1
+  mass: 1
+  secondaryProjectilesCount: 0
+  secondaryProjectile: {fileID: 0}
+--- !u!114 &1689177873524153429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741946790039367102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 877126a743e017d48b69204471ff8cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
