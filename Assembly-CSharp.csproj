@@ -59,10 +59,12 @@
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPSpriteInfo.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
-    <Compile Include="Assets\GG\Scripts\Shooting\BulletManager.cs" />
+    <Compile Include="Assets\GG\Scripts\Shooting\Shooter.cs" />
+    <Compile Include="Assets\GG\Scripts\Shooting\ProjectileManager.cs" />
+    <Compile Include="Assets\GG\Scripts\Shooting\Magazine.cs" />
     <Compile Include="Assets\GG\Scripts\Lib2DMethods.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
-    <Compile Include="Assets\GG\Scripts\Shooting\BulletSettings.cs" />
+    <Compile Include="Assets\GG\Scripts\Shooting\ProjectileSettings.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\GG\Scripts\LevelUp\Deck\Card.cs" />
     <Compile Include="Assets\GG\Scripts\Ortho2dCamera.cs" />
@@ -73,8 +75,9 @@
     <Compile Include="Assets\GG\Scripts\TileManager\FloorManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
+    <Compile Include="Assets\GG\Scripts\Shooting\Reload.cs" />
     <Compile Include="Assets\GG\Scripts\LevelUp\Deck\CardManager.cs" />
-    <Compile Include="Assets\GG\Scripts\UIScripts\ReloadLabel.cs" />
+    <Compile Include="Assets\GG\Scripts\UIScripts\ReloadPlate.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
@@ -103,6 +106,7 @@
     <Compile Include="Assets\GG\Scripts\UIScripts\SettingMenu.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\UITexturePacker.cs" />
+    <Compile Include="Assets\GG\Scripts\Shooting\Ammo.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPActionType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPInstance.cs" />
@@ -111,8 +115,9 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
-    <Compile Include="Assets\GG\Scripts\Shooting\PeterAcklamInverseCDF.cs" />
+    <Compile Include="Assets\GG\Scripts\PeterAcklamInverseCDF.cs" />
     <Compile Include="Assets\GG\Scripts\Shooting\FirearmSettings.cs" />
+    <Compile Include="Assets\GG\Scripts\Shooting\Bullet.cs" />
     <Compile Include="Assets\GG\Scripts\LevelUp\Deck\ICardRepository.cs" />
     <Compile Include="Assets\GG\Scripts\Player.cs" />
     <Compile Include="Assets\GG\Scripts\UIScripts\MainMenu.cs" />
@@ -121,6 +126,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\GG\Scripts\UIScripts\ExpUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
+    <Compile Include="Assets\GG\Scripts\Shooting\ProjectileCreater.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPAction.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\GG\Scripts\Enemy.cs" />

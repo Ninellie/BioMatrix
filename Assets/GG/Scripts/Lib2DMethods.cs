@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -66,31 +64,58 @@ public static class Lib2DMethods
         return new Vector2(horizontal, vertical);
     }
 
-    public static Vector2 inputVector
-    {
-        get
-        {
-            var horizontal = Input.GetAxisRaw("Horizontal");
-            var vertical = Input.GetAxisRaw("Vertical");
+    //public static Vector2 inputVector
+    //{
+    //    get
+    //    {
+    //        var horizontal = Input.GetAxisRaw("Horizontal");
+    //        var vertical = Input.GetAxisRaw("Vertical");
 
-            return new Vector2(horizontal, vertical);
-        }
-    }
+    //        return new Vector2(horizontal, vertical);
+    //    }
+    //}
 
-    public static Vector2 ReportMousePosition()
-    {
-        Vector2 mousePosition = Mouse.current.position.ReadValue();
-        return mousePosition;
-    }
+    //public static Vector2 ReportMousePosition()
+    //{
+    //    Vector2 mousePosition = Mouse.current.position.ReadValue();
+    //    return mousePosition;
+    //}
 
     public static Vector2 RandOnCircle(float radius)
     {
-        float randAng = UnityEngine.Random.Range(0, Mathf.PI * 2);
+        float randAng = Random.Range(0, Mathf.PI * 2);
         return new Vector2(Mathf.Cos(randAng) * radius, Mathf.Sin(randAng) * radius);
 
     }
     public static float HypotenuseLength(float sideALength, float sideBLength)
     {
         return Mathf.Sqrt(sideALength * sideALength + sideBLength * sideBLength);
+    }
+    public static float Range(float minInclusive, float maxInclusive)
+    {
+        float std = PeterAcklamInverseCDF.NormInv(Random.value);
+        return PeterAcklamInverseCDF.RandomGaussian(std, minInclusive, maxInclusive);
+    }
+    public static float Range2(float minInclusive, float maxInclusive)
+    {
+        return PeterAcklamInverseCDF.RandomGaussian(minInclusive, maxInclusive);
+    }
+    public static Vector2 Rotate(Vector2 point, float angle)
+    {
+        Vector2 rotated_point;
+        rotated_point.x = point.x * Mathf.Cos(angle)
+                        - point.y * Mathf.Sin(angle);
+        rotated_point.y = point.x * Mathf.Sin(angle)
+                        + point.y * Mathf.Cos(angle);
+        return rotated_point;
+    }
+    public static bool CheckVisibilityOnCamera(Camera camera, GameObject gameObject)
+    {
+        var screenPos = camera.WorldToScreenPoint(gameObject.transform.position);
+        var onScreen = screenPos.x > 0f &&
+                       screenPos.x < Screen.width &&
+                       screenPos.y > 0f &&
+                       screenPos.y < Screen.height;
+        return onScreen;
     }
 }

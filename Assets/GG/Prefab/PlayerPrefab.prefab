@@ -234,4 +234,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerWeapons:
-  - {fileID: 3233653779076600719, guid: 1efe1dd8adcbfe74595487da48627252, type: 3}
+  - {fileID: 3233653779076600719, guid: 8d79294ae0387bd40ba1997b383de427, type: 3}

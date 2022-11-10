@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 9126805039593386211}
   - component: {fileID: 6998006867553312791}
   - component: {fileID: 4780351059727897899}
-  - component: {fileID: 9162794802662707118}
-  - component: {fileID: -9124298648503422750}
-  - component: {fileID: 1292892945837984927}
-  - component: {fileID: 1793360017038764338}
+  - component: {fileID: 5476377242001413591}
+  - component: {fileID: 2671465678819718784}
+  - component: {fileID: 4947334848165532768}
+  - component: {fileID: -7495283518028734063}
   m_Layer: 7
-  m_Name: AutomaticPistol
+  m_Name: Fowling piece
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,14 +61,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a569aeec82b42b84fac631bde52082be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootForce: 1000
+  shootForce: 700
   shotsPerSecond: 2
-  maxShotDeflectionAngle: 5
-  magazineSize: 20
-  reloadSpeed: 0.5
-  singleShotProjectiles: 1
-  ammo: {fileID: 2741946790039367102, guid: 62ab6d6883f51534595dccca64c6bacb, type: 3}
---- !u!114 &9162794802662707118
+  maxShotDeflectionAngle: 20
+  magazineSize: 2
+  reloadSpeed: 0.3
+  singleShotProjectiles: 5
+  ammo: {fileID: 2741946790039367102, guid: b7be3762c752817418d43ecc1a80b121, type: 3}
+--- !u!114 &5476377242001413591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,7 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71f96002dbc58f4d958fa6f2d81fcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-9124298648503422750
+  plateUI: {fileID: 0}
+--- !u!114 &2671465678819718784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f718c19cb04b7f74a93651eb9fff276b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1292892945837984927
+--- !u!114 &4947334848165532768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b6c56da68b614e479d0ecbf0d5e843a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1793360017038764338
+--- !u!114 &-7495283518028734063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

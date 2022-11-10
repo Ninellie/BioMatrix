@@ -29,9 +29,6 @@ public class LVLUpManager : MonoBehaviour
         lvlUpUI.SetActive(true);
     }
 
-    /// <summary>
-    /// Displays 3 random cards on screen
-    /// </summary>
     private void DispleyThreeCards()
     {
         selectedCards = cardManager.GetDeck(3);
@@ -41,10 +38,6 @@ public class LVLUpManager : MonoBehaviour
             cardsText[i].text = selectedCards[i].title;
         }
     }
-    /// <summary>
-    /// Applies an improvement
-    /// </summary>
-    /// <param name="index">Index of card in list</param>
     public void Improve(int index)
     {
         var key = selectedCards[index].improvement.Keys.First();
@@ -57,29 +50,17 @@ public class LVLUpManager : MonoBehaviour
             case "movementSpeed":
                 GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().movementSpeed += value;
                 break;
-            case "maximumHP":
-                //GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().movementSpeed += value;
-                break;
-            case "shieldCount":
-
-                break;
-            case "regenerationRate":
-
-                break;
             case "fireRate":
-                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<FirearmSettings>().bulletsPerSecond += value;
+                //GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<FirearmSettings>().BulletsPerSecond += value;
                 break;
             case "projectileSpeed":
-                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<FirearmSettings>().shootForce += value;
+                //GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<FirearmSettings>().ShootForce += value;
                 break;
             case "pierceNumber":
-                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<FirearmSettings>().pierceNumber += (int)value;
+                //GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<FirearmSettings>().PierceNumber += (int)value;
                 break;
             case "reloadSpeed":
-                GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<FirearmSettings>().reloadSpeed += value;
-                break;
-            case "projectileNumber":
-
+                //GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<FirearmSettings>().ReloadSpeed += value;
                 break;
         }
     }

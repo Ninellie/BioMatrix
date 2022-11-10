@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
@@ -10,7 +8,10 @@ public class WeaponManager : MonoBehaviour
     public void CreateWeapon(GameObject[] weapons, int i)
     {
         GameObject weapon = Instantiate(weapons[i]);
-        weapon.transform.SetParent(this.transform);
+        
+        weapon.transform.SetParent(transform);
+
+        weapon.transform.position = gameObject.transform.position;
     }
 
     // Start is called before the first frame update
