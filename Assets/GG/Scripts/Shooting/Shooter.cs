@@ -6,32 +6,31 @@ using System.Diagnostics;
 public class Shooter : MonoBehaviour
 {
     private FirearmSettings FirearmSettings => GetComponent<FirearmSettings>();
-    private ProjectileCreater ProjectileCreater => GetComponent<ProjectileCreater>();
+    private ProjectileCreater ProjectileCreator => GetComponent<ProjectileCreater>();
     private Magazine Magazine => GetComponent<Magazine>();
-    private Stopwatch previousShootStopwatch = new();
+    private readonly Stopwatch _previousShootStopwatch = new();
     private TimeSpan MinShootInterval => TimeSpan.FromSeconds(1d / FirearmSettings.ShotsPerSecond);
-    public bool CanShoot => previousShootStopwatch.Elapsed >= MinShootInterval && !Magazine.IsEmpty;
+    public bool CanShoot => _previousShootStopwatch.Elapsed >= MinShootInterval && !Magazine.IsEmpty;
     void Start()
     {
-        previousShootStopwatch.Start();
+        _previousShootStopwatch.Start();
     }
     public void Shoot()
     {
-        Magazine.CurrentAmount--;
-        GameObject[] projectiles = ProjectileCreater.CreateProjectiles(FirearmSettings);
+        Magazine.Pop();
+        GameObject[] projectiles = ProjectileCreator.CreateProjectiles(FirearmSettings);
         Vector2 direction = GetShotDirection();
-        for (int i = 0; i < projectiles.Length; i++)
+        foreach (var projectile in projectiles)
         {
-            projectiles[i].GetComponent<Ammo>().Launch(direction, FirearmSettings);
+            projectile.GetComponent<Ammo>().Launch(direction, FirearmSettings);
         }
-        previousShootStopwatch.Restart();
+        _previousShootStopwatch.Restart();
     }
     private Vector2 GetShotDirection()
     {
-        Vector2 shotDirection;
-        return shotDirection = Lib2DMethods.DirectionToTarget(
-                Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()),
-                gameObject.transform.position);
+        return Lib2DMethods.DirectionToTarget(
+            Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()),
+            gameObject.transform.position);
     }
 }
 

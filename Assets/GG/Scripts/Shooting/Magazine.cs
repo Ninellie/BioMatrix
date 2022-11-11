@@ -3,12 +3,15 @@ using System;
 
 public class Magazine : MonoBehaviour
 {
-    public int CurrentAmount { get; set; }
+    [SerializeField] private int _currentAmount;
     private int Size => GetComponent<FirearmSettings>().MagazineSize;
+    public int CurrentAmount
+    {
+        get => _currentAmount;
+        private set => _currentAmount = value;
+    }
     public bool IsEmpty => CurrentAmount == 0;
-
     public static Action OnEmpty;
-
     void Start()
     {
         FullFill();
@@ -16,5 +19,9 @@ public class Magazine : MonoBehaviour
     public void FullFill()
     {
         CurrentAmount = Size;
+    }
+    public void Pop()
+    {
+        CurrentAmount--;
     }
 }

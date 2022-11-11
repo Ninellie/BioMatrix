@@ -5,16 +5,16 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("EnemyCharacteristics")]
-    public int lifePoints = 1;
+    public int lifePoints;
     public bool isAlive;
-    public float movementSpeed = 2f;
+    public float movementSpeed;
     public GameObject onDeathDrop;
     private Rigidbody2D rb2D;
     private int killDamage;
     
 
     [SerializeField] private GameObject damagePopup;
-    private GameObject droppedDamagePopup;
+    //private GameObject droppedDamagePopup;
 
     private Vector2 collisionPoint;
 
@@ -23,14 +23,23 @@ public class Enemy : MonoBehaviour
         isAlive = true;
         rb2D = this.GetComponent<Rigidbody2D>();
         killDamage = lifePoints;
+        
     }
-    void FixedUpdate()
+    private void Awake()
     {
-        //Turns the face of this object towards the player
-        Lib2DMethods.LookToPlayer(rb2D);
-        //Moves this object to the player
-        Lib2DMethods.MovePhys2D(rb2D, Lib2DMethods.DirectionToPlayer(rb2D.position), movementSpeed);
+        gameObject.AddComponent<Movement>();
+        gameObject.GetComponent<Movement>().ChangeMode(2);
+        gameObject.GetComponent<Movement>().SetPursuingTarget(GameObject.FindGameObjectsWithTag("Player")[0]);
+        gameObject.GetComponent<Movement>().Accelerate(movementSpeed);
     }
+
+    //void FixedUpdate()
+    //{
+    //    //Turns the face of this object towards the player
+    //    Lib2DMethods.LookToPlayer(rb2D);
+    //    //Moves this object to the player
+    //    Lib2DMethods.MovePhys2D(rb2D, Lib2DMethods.DirectionToPlayer(rb2D.position), movementSpeed);
+    //}
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject otherGO = collision.gameObject;
@@ -44,11 +53,11 @@ public class Enemy : MonoBehaviour
             case "Projectile":
                 if (lifePoints > 0)
                 {
-                    TakeDamage(killDamage);
+                    TakeDamage(1);
                     if (lifePoints <= 0)
                     {
-                        DropBonus();
                         Die();
+                        DropBonus();
                     }
                 }
 
@@ -58,13 +67,12 @@ public class Enemy : MonoBehaviour
 
     private void TakeDamage(int DamageTaken)
     {
-        isAlive = false;
         lifePoints -= DamageTaken;
-        Debug.Log(lifePoints);
         DropDamagePopup(DamageTaken, collisionPoint);
     }
     private void Die()
     {
+        isAlive = false;
         gameObject.SetActive(false);
         Destroy(gameObject);
     }
@@ -74,7 +82,7 @@ public class Enemy : MonoBehaviour
     }
     private void DropDamagePopup(int damage, Vector2 transform)
     {
-        droppedDamagePopup = Instantiate(damagePopup);
+        GameObject droppedDamagePopup = Instantiate(damagePopup);
         droppedDamagePopup.transform.position = transform;
         droppedDamagePopup.GetComponent<DamagePopup>().Setup(damage);
     }

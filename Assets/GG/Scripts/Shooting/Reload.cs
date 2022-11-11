@@ -6,12 +6,13 @@ public class Reload : MonoBehaviour
     private float ReloadSpeed => GetComponent<FirearmSettings>().ReloadSpeed;
     private Magazine Magazine => GetComponent<Magazine>();
 
-    [SerializeField] private GameObject plateUI;
+    [SerializeField] private GameObject _plateUi;
     public bool IsInProcess { get; private set; }
 
     private void Awake()
     {
-        plateUI = CreateDisabled(GetReloadPlate());
+        //plateUI = CreateDisabled(GetReloadPlate());
+        _plateUi = GetReloadPlate();
     }
     private void OnEnable()
     {
@@ -24,13 +25,13 @@ public class Reload : MonoBehaviour
     private void Initiate()
     {
         IsInProcess = true;
-        plateUI.SetActive(true);
+        _plateUi.SetActive(true);
         Invoke("Complete", 1 / ReloadSpeed);
     }
     private void Complete()
     {
         IsInProcess = false;
-        plateUI.SetActive(false);
+        _plateUi.SetActive(false);
         Magazine.FullFill();
     }
     private GameObject CreateDisabled(GameObject gameObject)
