@@ -6,7 +6,7 @@ public class Bullet : Ammo
     {
         Vector2 actualShotDirection = GetActualShotDirection(direction, firearmSettings.MaxShotDeflectionAngle);
         gameObject.AddComponent<Movement>();
-        gameObject.GetComponent<Movement>().ChangeMode(0);
+        gameObject.GetComponent<Movement>().ChangeMode(MovementMode.Rectilinear);
         gameObject.GetComponent<Movement>().AccelerateInDirection(firearmSettings.ShootForce, actualShotDirection);
     }
     private Vector2 GetActualShotDirection(Vector2 direction, float maxShotDeflectionAngle)

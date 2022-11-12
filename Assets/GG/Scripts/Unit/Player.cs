@@ -78,6 +78,13 @@ public class Player : MonoBehaviour
             OnCharacterDeath?.Invoke();
         }
     }
+    private void Awake()
+    {
+        gameObject.AddComponent<Movement>();
+        gameObject.GetComponent<Movement>().ChangeMode(MovementMode.Rectilinear);
+        gameObject.GetComponent<Movement>().Accelerate(movementSpeed);
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -106,6 +113,7 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Lib2DMethods.MovePhys2D(rb2D, moveVec, movementSpeed);
+        gameObject.GetComponent<Movement>().SetMovementDirection(moveVec);
+        //Lib2DMethods.MovePhys2D(rb2D, moveVec, movementSpeed);
     }
 }
