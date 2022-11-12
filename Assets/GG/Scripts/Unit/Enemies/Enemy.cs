@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         gameObject.AddComponent<Movement>();
-        gameObject.GetComponent<Movement>().ChangeMode(2);
+        gameObject.GetComponent<Movement>().ChangeMode(MovementMode.Seek);
         gameObject.GetComponent<Movement>().SetPursuingTarget(GameObject.FindGameObjectsWithTag("Player")[0]);
         gameObject.GetComponent<Movement>().Accelerate(movementSpeed);
     }
