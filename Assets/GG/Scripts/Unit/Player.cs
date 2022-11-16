@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     [Header("Player characteristics")]
     public int lifePoints = 10;
-    public float movementSpeed = 2f;
+    public float movementSpeed;
     public int experience = 0;
     public int expToLvlup = 0;
     public int level = 0;

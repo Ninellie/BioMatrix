@@ -1,0 +1,93 @@
+[
+  {
+    "Title": "Movement speed",
+    "Description": "+ 25% to movement speed multiplier",
+    "DropWeight": 1000,
+    "ModifierList": [
+      {
+        "Target": "Player",
+        "ParameterName": "movementSpeed",
+        "Operation": "Multiplication",
+        "Value": 25.0
+      }
+    ]
+  },
+  {
+    "Title": "Maximum HP",
+    "Description": "+ 1 to maximum HP",
+    "DropWeight": 1000,
+    "ModifierList": [
+      {
+        "Target": "Player",
+        "ParameterName": "maximumHP",
+        "Operation": "Addition",
+        "Value": 1.0
+      }
+    ]
+  },
+  {
+    "Title": "Fire rate",
+    "Description": "+ 10% to fire rate multiplier",
+    "DropWeight": 1000,
+    "ModifierList": [
+      {
+        "Target": "Player",
+        "ParameterName": "fireRate",
+        "Operation": "Multiplication",
+        "Value": 10.0
+      }
+    ]
+  },
+  {
+    "Title": "Projectile speed",
+    "Description": "+ 10% to projectile speed multiplier",
+    "DropWeight": 1000,
+    "ModifierList": [
+      {
+        "Target": "Player",
+        "ParameterName": "projectileSpeed",
+        "Operation": "Multiplication",
+        "Value": 10.0
+      }
+    ]
+  },
+  {
+    "Title": "Piercing projectiles",
+    "Description": "Projectiles pierce + 1 enemy",
+    "DropWeight": 100,
+    "ModifierList": [
+      {
+        "Target": "Player",
+        "ParameterName": "pierceNumber",
+        "Operation": "Addition",
+        "Value": 1.0
+      }
+    ]
+  },
+  {
+    "Title": "Reload speed",
+    "Description": "+25% to reload speed",
+    "DropWeight": 1000,
+    "ModifierList": [
+      {
+        "Target": "Player",
+        "ParameterName": "reloadSpeed",
+        "Operation": "Multiplication",
+        "Value": 25.0
+      }
+    ]
+  },
+  {
+    "Title": "Additional projectile",
+    "Description": "The weapon fires an additional secondary projectile",
+    "DropWeight": 10,
+    "ModifierList": [
+      {
+        "Target": "Player",
+        "ParameterName": "projectileNumber",
+        "Operation": "Addition",
+        "Value": 1.0
+      }
+    ]
+  }
+]

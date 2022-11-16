@@ -1,28 +1,31 @@
 using System;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Movement 
 {
-    [SerializeField] private GameObject _pursuingTarget;
-    [SerializeField] private MovementMode _mode = MovementMode.Idle;
-    [SerializeField] private float _speed;
-    [SerializeField] private Vector2 _movementDirection;
+    public float Speed { get; private set; }
+    private GameObject _pursuingTarget;
+    private MovementMode _mode;
+    private Vector2 _movementDirection;
+    private readonly GameObject _drivenGameObject;
+    private Rigidbody2D DrivenRigidbody2D => _drivenGameObject.GetComponent<Rigidbody2D>();
+    private Vector2 Velocity => _movementDirection.normalized * Speed;
 
-    //private bool IsIdle => _movementMode == 0;
-    //private bool IsRectilinear => _movementMode == 1;
-    //private bool IsPursuing => _movementMode == 2;
-    //private bool IsSeeking => _movementMode == 3;
-
-    private GameObject DrivenGameObject => gameObject;
-    private Rigidbody2D DrivenRigidbody2D => DrivenGameObject.GetComponent<Rigidbody2D>();
-    private Vector2 Velocity => _movementDirection.normalized * _speed;
-    private void Awake()
+    public Movement(GameObject drivenGameObject) : this(drivenGameObject, MovementMode.Idle, 0)
     {
-        _speed = 0;
-        _movementDirection = Vector2.zero.normalized;
     }
-
-    private void FixedUpdate()
+    public Movement(GameObject drivenGameObject, float speed) : this(drivenGameObject, MovementMode.Idle, speed)
+    {
+    }
+    public Movement(GameObject drivenGameObject, MovementMode mode, float speed)
+    {
+        _mode = mode;
+        Speed = speed;
+        _movementDirection = Vector2.zero.normalized;
+        _pursuingTarget = null;
+        _drivenGameObject = drivenGameObject;
+    }
+    public void FixedUpdateMove()
     {
         switch (_mode)
         {
@@ -59,24 +62,24 @@ public class Movement : MonoBehaviour
     {
         if (speed >= 0)
         {
-            _speed += speed;
+            Speed += speed;
         }
         else
         {
             return;
         }
     }
-    //public void SlowDown(float speed)
-    //{
-    //    if (speed >= 0)
-    //    {
-    //        _speed -= speed;
-    //    }
-    //    else
-    //    {
-    //        return;
-    //    }
-    //}
+    public void SlowDown(float speed)
+    {
+        if (speed >= 0)
+        {
+            Speed -= speed;
+        }
+        else
+        {
+            return;
+        }
+    }
     public void ChangeMovementDirection(Vector2 direction)
     {
         _movementDirection += direction;

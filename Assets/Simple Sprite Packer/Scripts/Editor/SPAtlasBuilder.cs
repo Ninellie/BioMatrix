@@ -171,7 +171,7 @@ namespace SimpleSpritePackerEditor
 					// Set the sprite import data
 					spritesImportData[ia] = importData;
 					
-					// Increase the indexer
+					// Addition the indexer
 					ia++;
 				}
 				

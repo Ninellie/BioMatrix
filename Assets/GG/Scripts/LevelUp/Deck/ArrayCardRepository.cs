@@ -1,117 +1,148 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 public class ArrayCardRepository : ICardRepository
 {
-    private readonly Card[] cards = new Card[]
+    private static readonly Card[] DefaultCards = new Card[]
     {
         new Card
         {
-            title = "Movement speed",
-            description = "+ 5% to movement speed",
-            dropWeight = 1000,
-            improvement = new Dictionary<string, float>
-            {
-                ["movementSpeed"] = 100.0f,
-            }
+            Title = "Movement speed",
+            Description = "+ 25% to movement speed multiplier",
+            DropWeight = 1000,
+            ModifierList = new Modifier[]
+                {
+                    new Modifier
+                    {
+                        Target = EntityType.Player,
+                        ParameterName = "movementSpeed",
+                        Operation = Operation.Multiplication,
+                        Value = 25,
+                    }
+                },
         },
         new Card
         {
-            title = "Maximum HP",
-            description = "+ 1 to maximum HP",
-            dropWeight = 1000,
-            improvement = new Dictionary<string, float>
+            Title = "Maximum HP",
+            Description = "+ 1 to maximum HP",
+            DropWeight = 1000,
+            ModifierList = new Modifier[]
             {
-                ["maximumHP"] = 1.0f,
-            }
+                new Modifier
+                {
+                    Target = EntityType.Player,
+                    ParameterName = "maximumHP",
+                    Operation = Operation.Addition,
+                    Value = 1,
+                }
+            },
         },
         new Card
         {
-            title = "Shield",
-            description = "Adds one shield to the hero that absorbs one enemy hit and goes on cooldown for 20 seconds",
-            dropWeight = 100,
-            improvement = new Dictionary<string, float>
+            Title = "Fire rate",
+            Description = "+ 10% to fire rate multiplier",
+            DropWeight = 1000,
+            ModifierList = new Modifier[]
             {
-                ["shieldCount"] = 1.0f,
-            }
+                new Modifier
+                {
+                    Target = EntityType.Player,
+                    ParameterName = "fireRate",
+                    Operation = Operation.Multiplication,
+                    Value = 10,
+                }
+            },
         },
         new Card
         {
-            title = "Regeneration",
-            description = "The hero regenerates 1 HP over 15 seconds",
-            dropWeight = 300,
-            improvement = new Dictionary<string, float>
+            Title = "Projectile speed",
+            Description = "+ 10% to projectile speed multiplier",
+            DropWeight = 1000,
+            ModifierList = new Modifier[]
             {
-                ["regenerationRate"] = 1.0f,
-            }
+                new Modifier
+                {
+                    Target = EntityType.Player,
+                    ParameterName = "projectileSpeed",
+                    Operation = Operation.Multiplication,
+                    Value = 10,
+                }
+            },
         },
         new Card
         {
-            title = "Fire rate",
-            description = "+10 to fire rate",
-            dropWeight = 1000,
-            improvement = new Dictionary<string, float>
+            Title = "Piercing projectiles",
+            Description = "Projectiles pierce + 1 enemy",
+            DropWeight = 100,
+            ModifierList = new Modifier[]
             {
-                ["fireRate"] = 10.0f,
-            }
+                new Modifier
+                {
+                    Target = EntityType.Player,
+                    ParameterName = "pierceNumber",
+                    Operation = Operation.Addition,
+                    Value = 1,
+                }
+            },
         },
         new Card
         {
-            title = "Projectile speed",
-            description = "+100 to projectile speed",
-            dropWeight = 1000,
-            improvement = new Dictionary<string, float>
+            Title = "Reload speed",
+            Description = "+25% to reload speed",
+            DropWeight = 1000,
+            ModifierList = new Modifier[]
             {
-                ["projectileSpeed"] = 100.0f,
-            }
+                new Modifier
+                {
+                    Target = EntityType.Player,
+                    ParameterName = "reloadSpeed",
+                    Operation = Operation.Multiplication,
+                    Value = 25,
+                }
+            },
         },
         new Card
         {
-            title = "Piercing projectiles",
-            description = "Projectiles pierce +1 enemy",
-            dropWeight = 100,
-            improvement = new Dictionary<string, float>
+            Title = "Additional projectile",
+            Description = "The weapon fires an additional secondary projectile",
+            DropWeight = 10,
+            ModifierList = new Modifier[]
             {
-                ["pierceNumber"] = 1.0f,
-            }
-        },
-        new Card
-        {
-            title = "Reload speed",
-            description = "+10 to reload speed",
-            dropWeight = 1000,
-            improvement = new Dictionary<string, float>
-            {
-                ["reloadSpeed"] = 0.2f,
-            }
-        },
-        new Card
-        {
-            title = "Additional projectile",
-            description = "The weapon fires an additional secondary projectile",
-            dropWeight = 10,
-            improvement = new Dictionary<string, float>
-            {
-                ["projectileNumber"] = 1.0f,
-            }
+                new Modifier
+                {
+                    Target = EntityType.Player,
+                    ParameterName = "projectileNumber",
+                    Operation = Operation.Addition,
+                    Value = 1,
+                }
+            },
         },
     };
+    private readonly Card[] _cards;
+
+    public ArrayCardRepository() : this(DefaultCards)
+    {
+    }
+
+    public ArrayCardRepository(Card[] cards)
+    {
+        _cards = cards;
+    }
 
     /// <summary>
     /// Returns a card by its index in the deck
     /// </summary>
     /// <param name="i">Index of card</param>
     /// <returns>Card</returns>
-    public Card Get(int i) => cards[i];
+    public Card Get(int i) => _cards[i];
 
     /// <summary>
-    /// Returns the sum of the drop weights of all cards
+    /// Returns the sum of the drop weights of all cards in the deck
     /// </summary>
-    /// <returns>Intp</returns>
-    public int GetDropWeightSum() => cards.Sum(x => x.dropWeight);
+    /// <returns>Int</returns>
+    public int GetDropWeightSum() => _cards.Sum(x => x.DropWeight);
 
     /// <summary>
     /// Returns the length of the deck array
     /// </summary>
-    public int CardCount => cards.Length;
+    public int CardCount => _cards.Length;
 }
