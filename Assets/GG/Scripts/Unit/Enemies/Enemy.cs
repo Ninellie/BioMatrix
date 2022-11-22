@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
     //    //Turns the face of this object towards the player
     //    Lib2DMethods.LookToPlayer(rb2D);
     //    //Moves this object to the player
-    //    Lib2DMethods.MovePhys2D(rb2D, Lib2DMethods.DirectionToPlayer(rb2D.position), movementSpeed);
+    //    Lib2DMethods.MovePhys2D(rb2D, Lib2DMethods.DirectionToPlayer(rb2D.position), speed);
     //}
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
@@ -7,15 +5,15 @@ using System;
 public class Player : MonoBehaviour
 {
     [Header("Player characteristics")]
-    public int lifePoints = 10;
-    public float movementSpeed;
-    public int experience = 0;
-    public int expToLvlup = 0;
-    public int level = 0;
+    private float currentLifePoints = 10;
+    private float speed;
+    private int _level = 0;
+    private int _experience = 0;
+    private int _expToLvlup = 0;
 
-    private Rigidbody2D rb2D;
     private Vector2 moveVec;
     private SpriteRenderer sprite;
+    private Movement _movement;
 
     public static Action OnGamePaused;
     public static Action OnCharacterDeath;
@@ -36,13 +34,14 @@ public class Player : MonoBehaviour
     {
         Vector2 inputVec = input.Get<Vector2>();
         moveVec = new Vector2(inputVec.x, inputVec.y);
-        if (inputVec.x < 0)
+        switch (inputVec.x)
         {
-            sprite.flipX = true;
-        }
-        if (inputVec.x > 0)
-        {
-            sprite.flipX = false;
+            case < 0:
+                sprite.flipX = true;
+                break;
+            case > 0:
+                sprite.flipX = false;
+                break;
         }
     }
     public void OnPause(InputValue input)
@@ -57,63 +56,57 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        int newLifePointsValue = lifePoints - 2;
+        float newLifePointsValue = currentLifePoints - 2;
 
         Debug.Log("Dont touch the Hero!");
         GameObject otherGO = collision.gameObject;
         switch (otherGO.tag)
         {
             case "Enemy":
-                lifePoints = newLifePointsValue;
+                currentLifePoints = newLifePointsValue;
                 break;
             case "Projectile":
-                lifePoints--;
+                currentLifePoints--;
                 break;
             case "Boon":
-                experience++;
+                _experience++;
                 break;
         }
-        if (lifePoints <= 0)
+        if (currentLifePoints <= 0)
         {
             OnCharacterDeath?.Invoke();
         }
     }
     private void Awake()
     {
-        gameObject.AddComponent<Movement>();
-        gameObject.GetComponent<Movement>().ChangeMode(MovementMode.Rectilinear);
-        gameObject.GetComponent<Movement>().Accelerate(movementSpeed);
-        
+        _movement = new Movement(gameObject, MovementMode.Rectilinear, speed);
     }
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Time.timeScale = 1f;
         isFireButtonPressed = false;
         sprite = this.GetComponent<SpriteRenderer>();
-        rb2D = this.GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
-        if(level == 0)
+        if(_level == 0)
         {
-            expToLvlup = 10 - experience;
+            _expToLvlup = 10 - _experience;
         }
         else
         {
-            expToLvlup = 10 + (level * 2) - experience;
+            _expToLvlup = 10 + (_level * 2) - _experience;
         }
         
-        if(experience >= 10 + (level * 2))
+        if(_experience >= 10 + (_level * 2))
         {
-            experience = 0;
-            level++;
+            _experience = 0;
+            _level++;
             OnLevelUp?.Invoke();
         }
     }
     private void FixedUpdate()
     {
-        gameObject.GetComponent<Movement>().SetMovementDirection(moveVec);
-        //Lib2DMethods.MovePhys2D(rb2D, moveVec, movementSpeed);
+        _movement.SetMovementDirection(moveVec);
     }
 }

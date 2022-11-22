@@ -16,11 +16,11 @@ public class Reload : MonoBehaviour
     }
     private void OnEnable()
     {
-        Magazine.OnEmpty += Initiate;
+        Magazine.onEmpty += Initiate;
     }
     private void OnDisable()
     {
-        Magazine.OnEmpty -= Initiate;
+        Magazine.onEmpty -= Initiate;
     }
     private void Initiate()
     {

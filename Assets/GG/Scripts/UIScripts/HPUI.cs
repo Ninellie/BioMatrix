@@ -10,7 +10,7 @@ public class HPUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string textHP = "HP: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().lifePoints.ToString();
+        string textHP = "HP: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().currentLifePoints.ToString();
         string textAmmo = "AMMO: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Magazine>().CurrentAmount.ToString();
 
         hpUI.text = textHP;

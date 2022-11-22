@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 public class ArrayCardRepository : ICardRepository
 {
@@ -9,15 +10,13 @@ public class ArrayCardRepository : ICardRepository
             Title = "Movement speed",
             Description = "+ 25% to movement speed multiplier",
             DropWeight = 1000,
-            ModifierList = new Modifier[]
+            InfluencedStats = new[]
+            {
+                "speed",
+            },
+            ModifierList = new StatModifier[]
                 {
-                    new Modifier
-                    {
-                        Target = EntityType.Player,
-                        ParameterName = "movementSpeed",
-                        Operation = Operation.Multiplication,
-                        Value = 25,
-                    }
+                    new StatModifier(OperationType.Multiplication, 25)
                 },
         },
         new Card
@@ -25,15 +24,13 @@ public class ArrayCardRepository : ICardRepository
             Title = "Maximum HP",
             Description = "+ 1 to maximum HP",
             DropWeight = 1000,
-            ModifierList = new Modifier[]
+            InfluencedStats = new[]
             {
-                new Modifier
-                {
-                    Target = EntityType.Player,
-                    ParameterName = "maximumHP",
-                    Operation = Operation.Addition,
-                    Value = 1,
-                }
+                "maximumHP",
+            },
+            ModifierList = new StatModifier[]
+            {
+                new StatModifier(OperationType.Addition, 1)
             },
         },
         new Card
@@ -41,15 +38,13 @@ public class ArrayCardRepository : ICardRepository
             Title = "Fire rate",
             Description = "+ 10% to fire rate multiplier",
             DropWeight = 1000,
-            ModifierList = new Modifier[]
+            InfluencedStats = new[]
             {
-                new Modifier
-                {
-                    Target = EntityType.Player,
-                    ParameterName = "fireRate",
-                    Operation = Operation.Multiplication,
-                    Value = 10,
-                }
+                "fireRate",
+            },
+            ModifierList = new StatModifier[]
+            {
+                new StatModifier(OperationType.Multiplication, 10)
             },
         },
         new Card
@@ -57,15 +52,13 @@ public class ArrayCardRepository : ICardRepository
             Title = "Projectile speed",
             Description = "+ 10% to projectile speed multiplier",
             DropWeight = 1000,
-            ModifierList = new Modifier[]
+            InfluencedStats = new[]
             {
-                new Modifier
-                {
-                    Target = EntityType.Player,
-                    ParameterName = "projectileSpeed",
-                    Operation = Operation.Multiplication,
-                    Value = 10,
-                }
+                "projectileSpeed",
+            },
+            ModifierList = new StatModifier[]
+            {
+                new StatModifier(OperationType.Multiplication, 10)
             },
         },
         new Card
@@ -73,15 +66,13 @@ public class ArrayCardRepository : ICardRepository
             Title = "Piercing projectiles",
             Description = "Projectiles pierce + 1 enemy",
             DropWeight = 100,
-            ModifierList = new Modifier[]
+            InfluencedStats = new[]
             {
-                new Modifier
-                {
-                    Target = EntityType.Player,
-                    ParameterName = "pierceNumber",
-                    Operation = Operation.Addition,
-                    Value = 1,
-                }
+                "pierceNumber",
+            },
+            ModifierList = new StatModifier[]
+            {
+                new StatModifier(OperationType.Addition, 1)
             },
         },
         new Card
@@ -89,15 +80,13 @@ public class ArrayCardRepository : ICardRepository
             Title = "Reload speed",
             Description = "+25% to reload speed",
             DropWeight = 1000,
-            ModifierList = new Modifier[]
+            InfluencedStats = new[]
             {
-                new Modifier
-                {
-                    Target = EntityType.Player,
-                    ParameterName = "reloadSpeed",
-                    Operation = Operation.Multiplication,
-                    Value = 25,
-                }
+                "reloadSpeed",
+            },
+            ModifierList = new StatModifier[]
+            {
+                new StatModifier(OperationType.Multiplication, 25)
             },
         },
         new Card
@@ -105,15 +94,13 @@ public class ArrayCardRepository : ICardRepository
             Title = "Additional projectile",
             Description = "The weapon fires an additional secondary projectile",
             DropWeight = 10,
-            ModifierList = new Modifier[]
+            InfluencedStats = new[]
             {
-                new Modifier
-                {
-                    Target = EntityType.Player,
-                    ParameterName = "projectileNumber",
-                    Operation = Operation.Addition,
-                    Value = 1,
-                }
+                "projectileNumber",
+            },
+            ModifierList = new StatModifier[]
+            {
+                new StatModifier(OperationType.Addition, 1)
             },
         },
     };

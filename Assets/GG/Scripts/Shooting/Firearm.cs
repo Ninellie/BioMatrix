@@ -15,7 +15,7 @@ public class Firearm : MonoBehaviour
     {
         if (!Reload.IsInProcess && Magazine.IsEmpty)
         {
-            Magazine.OnEmpty?.Invoke();
+            Magazine.onEmpty?.Invoke();
             Debug.Log("Magazine of " + gameObject.name + " is empty");
         }
         if (!IsFireButtonPressed) return;

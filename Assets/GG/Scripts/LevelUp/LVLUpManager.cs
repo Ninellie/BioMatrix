@@ -51,8 +51,8 @@ public class LVLUpManager : MonoBehaviour
 
             switch (key)
             {
-                case "movementSpeed":
-                    GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().movementSpeed += value;
+                case "speed":
+                    GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().speed += value;
                     break;
                 case "fireRate":
                     //GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<FirearmSettings>().BulletsPerSecond += value;

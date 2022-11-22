@@ -1,5 +1,5 @@
 //public class CharacterCharacteristics
 //{
-//    public int lifePoints;
-//    public float movementSpeed;
+//    public int currentLifePoints;
+//    public float speed;
 //}
