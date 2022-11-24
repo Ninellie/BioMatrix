@@ -3,15 +3,13 @@ using UnityEngine;
 
 public class Reload : MonoBehaviour
 {
-    private float ReloadSpeed => GetComponent<FirearmSettings>().ReloadSpeed;
+    private float ReloadSpeed => GetComponent<Firearmr>().reloadSpeed.Value;
     private Magazine Magazine => GetComponent<Magazine>();
 
     [SerializeField] private GameObject _plateUi;
     public bool IsInProcess { get; private set; }
-
     private void Awake()
     {
-        //plateUI = CreateDisabled(GetReloadPlate());
         _plateUi = GetReloadPlate();
     }
     private void OnEnable()

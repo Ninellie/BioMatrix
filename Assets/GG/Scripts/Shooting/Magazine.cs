@@ -3,14 +3,10 @@ using System;
 
 public class Magazine : MonoBehaviour
 {
-    [SerializeField] private float _currentAmount;
     //private int size => GetComponent<FirearmSettings>().MagazineSize;
     public float size;
-    public float CurrentAmount
-    {
-        get => _currentAmount;
-        private set => _currentAmount = value;
-    }
+    public float CurrentAmount { get; private set; }
+
     public bool IsEmpty => CurrentAmount == 0;
     public static Action onEmpty;
     //void Start()
@@ -24,5 +20,8 @@ public class Magazine : MonoBehaviour
     public void Pop()
     {
         CurrentAmount--;
+        if (CurrentAmount != 0) return;
+        Magazine.onEmpty?.Invoke();
+        UnityEngine.Debug.Log("Magazine of " + gameObject.name + " is empty");
     }
 }
