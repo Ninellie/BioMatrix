@@ -8,10 +8,10 @@ public class HPUI : MonoBehaviour
     public TMPro.TMP_Text ammoUI;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        string textHP = "HP: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().currentLifePoints.ToString();
-        string textAmmo = "AMMO: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Magazine>().CurrentAmount.ToString();
+        var textHP = "HP: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().CurrentLifePoints.ToString();
+        var textAmmo = "AMMO: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponentInChildren<Magazine>().CurrentAmount.ToString();
 
         hpUI.text = textHP;
         ammoUI.text = textAmmo;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
@@ -13,19 +11,19 @@ public class PauseMenu : MonoBehaviour
     public GameObject timerUI;
     public GameObject lvlUpMenuUI;
 
-    //Подписка метода OnPause() на событие OnGamePaused в методе OnEnable()
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ OnPause() пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ OnGamePaused пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ OnEnable()
     private void OnEnable()
     {
-        Player.OnGamePaused += OnPause;
+        Player.onGamePaused += OnPause;
     }
-    //Отписка метода OnPause() от события OnGamePaused в методе OnDisable()
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ OnPause() пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ OnGamePaused пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ OnDisable()
     private void OnDisable()
     {
-        Player.OnGamePaused -= OnPause;
+        Player.onGamePaused -= OnPause;
     }
 
     /// <summary>
-    /// Если меню паузы или меню настроек открыто, вызывает функцию Resume(), иначе вызывает функцию Pause()
+    /// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Resume(), пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Pause()
     /// </summary>
     public void OnPause()
     {
@@ -40,7 +38,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Скрывает pauseMenuUI и settingsMenuUI. Также, если lvlUpMenuUI открыто, делает его кнопки интерактивными, иначе вызывает метод ResumeGame()
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ pauseMenuUI пїЅ settingsMenuUI. пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ lvlUpMenuUI пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ ResumeGame()
     /// </summary>
     public void Resume()
     {
@@ -62,7 +60,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Вызывает метод PauseGame() и открывает pauseMenuUI. Также, если lvlUpMenuUI открыто, делает его кнопки неинтерактивными.
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ PauseGame() пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ pauseMenuUI. пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ lvlUpMenuUI пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     /// </summary>
     public void Pause()
     {
@@ -79,7 +77,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Меняет ActionMap на "Menu". Выставляет timeScale = 0, замораживая игру. Останавливает игровой таймер. Устанавливает GameIsPaused = true.
+    /// пїЅпїЅпїЅпїЅпїЅпїЅ ActionMap пїЅпїЅ "Menu". пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ timeScale = 0, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GameIsPaused = true.
     /// </summary>
     public void PauseGame()
     {
@@ -89,7 +87,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = true;
     }
     /// <summary>
-    /// Меняет ActionMap на "Player". Выставляет timeScale = 1, возобновляя течение игры. Возобновляет игровой таймер. Устанавливает GameIsPaused = false.
+    /// пїЅпїЅпїЅпїЅпїЅпїЅ ActionMap пїЅпїЅ "Player". пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ timeScale = 1, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GameIsPaused = false.
     /// </summary>
     public void ResumeGame()
     {
@@ -100,7 +98,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Загружает сцену с индексом 1 (Главное меню игры)
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1 (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ)
     /// </summary>
     public void BackToMainMenu()
     {

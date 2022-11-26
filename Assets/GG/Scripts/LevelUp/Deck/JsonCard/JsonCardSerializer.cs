@@ -5,12 +5,10 @@ using Newtonsoft.Json;
 public class JsonCardSerializer
 {
     private readonly ICardRepository _cardRepository;
-
     public JsonCardSerializer(ICardRepository cardRepository)
     {
         _cardRepository = cardRepository;
     }
-
     public void Serialize(string fileName)
     {
         var list = new List<Card>();
@@ -19,7 +17,6 @@ public class JsonCardSerializer
             var card = _cardRepository.Get(i);
             list.Add(card);
         }
-
         var json = JsonConvert.SerializeObject(list.ToArray(), Formatting.Indented);
         File.WriteAllText(fileName, json);
     }

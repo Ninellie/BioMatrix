@@ -10,8 +10,8 @@ public class ExpUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string textLvl = "LVL: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>()._level.ToString();
-        string textExp = "exp to lvl up: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().expToLvlup.ToString();
+        string textLvl = "LVL: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().Level.ToString();
+        string textExp = "exp to lvl up: " + GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>().ExpToLvlup.ToString();
 
         lvlUI.text = textLvl;
         expUI.text = textExp;

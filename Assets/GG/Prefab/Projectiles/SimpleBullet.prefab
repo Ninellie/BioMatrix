@@ -12,9 +12,7 @@ GameObject:
   - component: {fileID: 5384938256212642916}
   - component: {fileID: 7208249027541576594}
   - component: {fileID: 2316403284215167119}
-  - component: {fileID: 940719928442343407}
-  - component: {fileID: 1689177873524153429}
-  - component: {fileID: 5742978491104310943}
+  - component: {fileID: 5703302999806875184}
   m_Layer: 8
   m_Name: SimpleBullet
   m_TagString: Projectile
@@ -136,7 +134,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &940719928442343407
+--- !u!114 &5703302999806875184
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,33 +143,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2741946790039367102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9f9a2f66e160244ab26387213a1b2a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pierceCount: 1
-  size: 2
-  mass: 1
---- !u!114 &1689177873524153429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2741946790039367102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 877126a743e017d48b69204471ff8cca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5742978491104310943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2741946790039367102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ff66f24677ad0c4c8f06b1484343475, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b57a2a00642ad84892aa8d396643e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

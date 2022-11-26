@@ -5,8 +5,7 @@ public class JsonCardDeserializer
 {
     public ICardRepository Deserialize(string fileName)
     {
-        string json = File.ReadAllText(fileName);
-        //JsonConvert.DeserializeObject<Card[]>(json);
+        var json = File.ReadAllText(fileName);
         var cardArray = JsonConvert.DeserializeObject<Card[]>(json);
         return new ArrayCardRepository(cardArray);
     }

@@ -14,12 +14,12 @@ public class DeathScreen : MonoBehaviour
 
     private void OnEnable()
     {
-        Player.OnCharacterDeath += EnableDeathScreen;
+        Player.onCharacterDeath += EnableDeathScreen;
     }
 
     private void OnDisable()
     {
-        Player.OnCharacterDeath -= EnableDeathScreen;
+        Player.onCharacterDeath -= EnableDeathScreen;
     }
 
     public void EnableDeathScreen()

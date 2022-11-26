@@ -30,15 +30,15 @@ public class EnemySpawner : MonoBehaviour
         int ndx = UnityEngine.Random.Range(0, prefabEnemies.Length);
         GameObject go = Instantiate<GameObject>(prefabEnemies[ndx]);
 
-        //Get camera height
+        //Get m_camera height
         camHeight = Camera.main.orthographicSize * 2;
 
-        //Get camera width
+        //Get m_camera width
         camWidth = camHeight * Camera.main.aspect;
 
-        //Debug.Log("Width and height of camera= " + camWidth + " " + camHeight);
+        //Debug.Log("Width and height of m_camera= " + camWidth + " " + camHeight);
 
-        //Get the radius of the circle circumscribed around the camera rectangle
+        //Get the radius of the circle circumscribed around the m_camera rectangle
         float radius = Lib2DMethods.HypotenuseLength(camHeight, camWidth) / 2;
         //Debug.Log("radius of circle= " + radius);
 

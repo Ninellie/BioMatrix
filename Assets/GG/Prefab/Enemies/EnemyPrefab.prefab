@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3572984765799172596}
   - component: {fileID: -3517159354389899128}
   - component: {fileID: 3774024594271913881}
-  - component: {fileID: 2113750429125432536}
+  - component: {fileID: 4175075465637114512}
   m_Layer: 6
   m_Name: EnemyPrefab
   m_TagString: Enemy
@@ -134,7 +134,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2113750429125432536
+--- !u!114 &4175075465637114512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,8 +146,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2796ea7871d958b4db79e009230765b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 2
-  isAlive: 0
-  movementSpeed: 100
-  onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
-  damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
