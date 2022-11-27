@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
-    [SerializeField] private GameObject onDeathDrop;
+    [SerializeField] private GameObject _onDeathDrop;
     [SerializeField] private GameObject _damagePopup;
     //private GameObject _droppedDamagePopup;
     
@@ -34,7 +34,7 @@ public class Enemy : Unit
         Debug.Log($"{gameObject.name} Enemy Awake");
         _rb2D = GetComponent<Rigidbody2D>();
         //_level = InitialLevel;
-        var movement = new Movement(gameObject, MovementMode.Pursue, settings.Speed);
+        var movement = new Movement(gameObject, MovementMode.Seek, settings.Speed);
         movement.SetPursuingTarget(GameObject.FindGameObjectsWithTag("Player")[0]);
         base.BaseAwake(settings, movement);
     }
@@ -48,7 +48,7 @@ public class Enemy : Unit
     }
     private void DropBonus()
     {
-        Instantiate(onDeathDrop, _rb2D.position, _rb2D.transform.rotation);
+        Instantiate(_onDeathDrop, _rb2D.position, _rb2D.transform.rotation);
     }
     private void DropDamagePopup(int damage, Vector2 positionVector2)
     {

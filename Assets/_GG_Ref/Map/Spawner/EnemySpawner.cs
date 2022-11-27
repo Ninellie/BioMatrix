@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
 
     private float CalculateSpawnPerSecond()
     {
-        float seconds = timer.GetComponent<Timer>().GetTotalSeconds();
+        var seconds = timer.GetComponent<Timer>().GetTotalSeconds();
 
         return enemySpawnPerSecond + (seconds / 30f);
     }
@@ -30,28 +30,28 @@ public class EnemySpawner : MonoBehaviour
         int ndx = UnityEngine.Random.Range(0, prefabEnemies.Length);
         GameObject go = Instantiate<GameObject>(prefabEnemies[ndx]);
 
-        //Get m_camera height
+        
         camHeight = Camera.main.orthographicSize * 2;
 
-        //Get m_camera width
+        
         camWidth = camHeight * Camera.main.aspect;
 
         //Debug.Log("Width and height of m_camera= " + camWidth + " " + camHeight);
 
         //Get the radius of the circle circumscribed around the m_camera rectangle
-        float radius = Lib2DMethods.HypotenuseLength(camHeight, camWidth) / 2;
+        var radius = Lib2DMethods.HypotenuseLength(camHeight, camWidth) / 2;
         //Debug.Log("radius of circle= " + radius);
 
         Vector2 localPos = Lib2DMethods.RandOnCircle(radius);
 
-        float xSelfPos = Lib2DMethods.PlayerPos.x;
-        float ySelfPos = Lib2DMethods.PlayerPos.y;
+        var xSelfPos = Lib2DMethods.PlayerPos.x;
+        var ySelfPos = Lib2DMethods.PlayerPos.y;
 
-        float xOnCirclePos = localPos.x;
-        float yOnCirclePos = localPos.y;
+        var xOnCirclePos = localPos.x;
+        var yOnCirclePos = localPos.y;
 
-        float xResult = xSelfPos + xOnCirclePos;
-        float yResult = ySelfPos + yOnCirclePos;
+        var xResult = xSelfPos + xOnCirclePos;
+        var yResult = ySelfPos + yOnCirclePos;
 
         localPos.x = xResult;
         localPos.y = yResult;
@@ -63,7 +63,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Invoke("SpawnEnemy", 1f / CalculateSpawnPerSecond());
     }

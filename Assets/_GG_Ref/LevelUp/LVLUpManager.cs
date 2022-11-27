@@ -13,18 +13,29 @@ public class LVLUpManager : MonoBehaviour
 
     private void OnEnable()
     {
-        FindObjectOfType<Camera>().GetComponent<PlayerCreator>().onPlayerCreated += Subscription;
+        FindObjectOfType<Camera>()
+            .GetComponent<PlayerCreator>().onPlayerCreated += Subscription;
     }
     private void OnDisable()
     {
-        FindObjectOfType<Camera>().GetComponent<PlayerCreator>().onPlayerCreated -= Subscription;
-        GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onLevelUp -= InitiateLvlUp;
+        FindObjectOfType<Camera>()
+            .GetComponent<PlayerCreator>().onPlayerCreated -= Subscription;
     }
     private void Subscription()
     {
         GameObject.FindGameObjectsWithTag("Player")[0]
             .GetComponent<Player>().onLevelUp += InitiateLvlUp;
+
+        GameObject.FindGameObjectsWithTag("Player")[0]
+            .GetComponent<Player>().onPlayerDeath += Unsubscription;
+    }
+    private void Unsubscription()
+    {
+        GameObject.FindGameObjectsWithTag("Player")[0]
+            .GetComponent<Player>().onLevelUp -= InitiateLvlUp;
+
+        GameObject.FindGameObjectsWithTag("Player")[0]
+            .GetComponent<Player>().onPlayerDeath -= Unsubscription;
     }
     private void InitiateLvlUp()
     {

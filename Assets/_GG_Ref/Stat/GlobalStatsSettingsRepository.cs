@@ -15,27 +15,27 @@ public class GlobalStatsSettingsRepository
 
     public static readonly UnitStatsSettings PlayerStats = new UnitStatsSettings()
     {
-        Size = 5,
+        Size = 1,
         MaximumLife = 5,
         Speed = 600,
     };
 
     public static readonly UnitStatsSettings EnemyStats = new UnitStatsSettings()
     {
-        Size = 3,
+        Size = 1,
         MaximumLife = 5,
-        Speed = 300,
+        Speed = 100,
     };
 
     public static readonly UnitStatsSettings BoonStats = new UnitStatsSettings()
     {
-        Size = 2,
+        Size = 1,
         MaximumLife = 1,
         Speed = 0,
     };
     public static readonly UnitStatsSettings ProjectileStats = new UnitStatsSettings()
     {
-        Size = 2,
+        Size = 1,
         MaximumLife = 1,
         Speed = 700,
     };
@@ -43,11 +43,11 @@ public class GlobalStatsSettingsRepository
     public static readonly FirearmStatsSettings ShotgunSettings = new FirearmStatsSettings()
     {
         Damage = 1,
-        ShootForce = 700,
-        ShootsPerSecond = 1,
-        MaxShootDeflectionAngle = 15,
-        MagazineSize = 2,
+        ShootForce = 500,
+        ShootsPerSecond = 2,
+        MaxShootDeflectionAngle = 1,
+        MagazineSize = 25,
         ReloadSpeed = 1,
-        SingleShootProjectile = 10,
+        SingleShootProjectile = 1,
     };
 }

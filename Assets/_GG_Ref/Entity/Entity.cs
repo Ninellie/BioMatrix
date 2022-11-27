@@ -1,12 +1,9 @@
 using System;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
     public Action onCurrentLifePointsChanged;
-    public Action onEnableAction;
-    public Action onDisableAction;
     public bool IsOnScreen { get; private set; }
     public bool Alive => IsAlive();
     public const int DeathLifePointsThreshold = 0;
@@ -21,16 +18,19 @@ public class Entity : MonoBehaviour
             {
                 case < 0:
                     _currentLifePoints = DeathLifePointsThreshold;
+                    Debug.Log("Life Points SET " + gameObject.name);
                     onCurrentLifePointsChanged?.Invoke();
                     Death();
                     break;
                 case 0:
                     _currentLifePoints = value;
+                    Debug.Log("Life Points SET " + gameObject.name);
                     onCurrentLifePointsChanged?.Invoke();
                     Death();
                     break;
                 case > 0:
                     _currentLifePoints = value;
+                    Debug.Log("Life Points SET " + gameObject.name);
                     onCurrentLifePointsChanged?.Invoke();
                     break;
             }
@@ -54,13 +54,11 @@ public class Entity : MonoBehaviour
     }
     protected virtual void BaseOnEnable()
     {
-        onEnableAction?.Invoke();
-        Size.onValueChanged += ChangeCurrentSize;
+        //Size.onValueChanged += ChangeCurrentSize;
     }
     protected virtual void BaseOnDisable()
     {
-        onDisableAction?.Invoke();
-        Size.onValueChanged -= ChangeCurrentSize;
+        //Size.onValueChanged -= ChangeCurrentSize;
     }
     protected virtual void BaseUpdate()
     {
@@ -70,6 +68,7 @@ public class Entity : MonoBehaviour
     {
         var lifePoints = CurrentLifePoints - amount;
         CurrentLifePoints = lifePoints;
+        Debug.Log("Damage is taken " + gameObject.name);
     }
     protected virtual bool IsAlive()
     {
@@ -86,6 +85,6 @@ public class Entity : MonoBehaviour
     }
     protected virtual void ChangeCurrentSize()
     {
-        gameObject.GetComponent<Transform>().position.Scale(new Vector3(Size.Value, Size.Value));
+        //gameObject.GetComponent<Transform>().position.Scale(new Vector3(Size.Value, Size.Value));
     }
 }

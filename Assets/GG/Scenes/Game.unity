@@ -623,7 +623,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1094596401}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 1}
@@ -3303,7 +3303,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Test
+  m_text: Serialise
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4529,8 +4529,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1322806789}
   - {fileID: 99330205}
+  - {fileID: 1322806789}
   m_Father: {fileID: 1239585261}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4589,8 +4589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2195d05cc5d964387458b752232871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expUI: {fileID: 99330206}
-  lvlUI: {fileID: 1322806790}
+  experienceToNextLevelBar: {fileID: 99330206}
+  levelBar: {fileID: 1322806790}
 --- !u!1 &1126331378
 GameObject:
   m_ObjectHideFlags: 0
@@ -28984,7 +28984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1580dab0a0b10d45820c5f516455dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathScreenUI: {fileID: 2077307398}
+  deathScreen: {fileID: 2077307398}
   timer: {fileID: 2049719694}
 --- !u!114 &1239585264
 MonoBehaviour:
@@ -29443,7 +29443,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1094596401}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -29781,6 +29781,25 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 6798056590901079273, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
   m_PrefabInstance: {fileID: 1570661139}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1365173406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365173394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f28df27bdbbdb4cb55f6538ec3d0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabEnemies:
+  - {fileID: 8954189743293124748, guid: 31b0110467a1ce14e96a54e0a5736dfe, type: 3}
+  enemySpawnPerSecond: 0.5
+  enemyDefaultPadding: 1.5
+  timer: {fileID: 2049719694}
+  camWidth: 0
+  camHeight: 0
 --- !u!1 &1371623710
 GameObject:
   m_ObjectHideFlags: 0
@@ -30126,6 +30145,10 @@ PrefabInstance:
     - target: {fileID: 6515404101765844687, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: m_LocalPosition.z
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515404101765844687, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6798056590901079273, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: orthographic size
@@ -30527,7 +30550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce189915e06394d4db9a28625baf228e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpUI: {fileID: 240021402}
+  currentLifePointsBar: {fileID: 240021402}
 --- !u!114 &1610744636
 MonoBehaviour:
   m_ObjectHideFlags: 0

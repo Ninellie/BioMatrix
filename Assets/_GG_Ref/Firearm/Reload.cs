@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Reload : MonoBehaviour
 {
-    private float ReloadSpeed => GetComponent<Firearm>().reloadSpeed.Value;
+    private float ReloadSpeed => GetComponent<Firearm>().ReloadSpeed.Value;
     private Magazine Magazine => GetComponent<Magazine>();
 
     [SerializeField] private GameObject _plateUi;

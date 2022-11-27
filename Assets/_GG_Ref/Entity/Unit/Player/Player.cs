@@ -6,7 +6,7 @@ public class Player : Unit
 {
     //public Action onPlayerAwake;
     public Action onGamePaused;
-    public Action onCharacterDeath;
+    public Action onPlayerDeath;
     public Action onLevelUp;
     public Action onExperienceTaken;
     
@@ -39,12 +39,12 @@ public class Player : Unit
     private const int ExperienceToSecondLevel = 10;
     private const int ExperienceAmountIncreasingPerLevel = 2;
     private const int InitialLevel = 1;
-    
+    private const int InitialExperience = 0;
+
     private int _level;
     private int _experience;
     private SpriteRenderer Sprite => GetComponent<SpriteRenderer>();
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.PlayerStats);
-    
     private void Start() => Time.timeScale = 1f;
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
@@ -56,7 +56,7 @@ public class Player : Unit
         switch (collisionGameObject.tag)
         {
             case "Enemy":
-                TakeDamage(1);
+                TakeDamage(MinimalDamageTaken);
                 break;
             case "Boon":
                 Experience++;
@@ -66,8 +66,8 @@ public class Player : Unit
     protected void BaseAwake(UnitStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Player Awake");
-        //onPlayerAwake?.Invoke();
         _level = InitialLevel;
+        _experience = InitialExperience;
         var movement = new Movement(gameObject, MovementMode.Rectilinear, settings.Speed);
         base.BaseAwake(settings, movement);
     }
@@ -105,7 +105,7 @@ public class Player : Unit
     }
     protected override void Death()
     {
-        onCharacterDeath?.Invoke();
+        onPlayerDeath?.Invoke();
         base.Death();
     }
 }

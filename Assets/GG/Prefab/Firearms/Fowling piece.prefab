@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee81df67b8f5f8a4fa628c8d22e6fa4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: {fileID: 2741946790039367102, guid: 62ab6d6883f51534595dccca64c6bacb, type: 3}
+  _ammo: {fileID: 2741946790039367102, guid: 62ab6d6883f51534595dccca64c6bacb, type: 3}
 --- !u!114 &2073174384341714352
 MonoBehaviour:
   m_ObjectHideFlags: 0

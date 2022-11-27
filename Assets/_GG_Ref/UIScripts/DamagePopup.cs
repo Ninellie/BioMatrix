@@ -3,7 +3,7 @@ using TMPro;
 
 public class DamagePopup : MonoBehaviour
 {
-    [SerializeField] private TextMeshPro textMeshPro;
+    [SerializeField] private TextMeshPro _textMeshPro;
 
     private float _disappearTimer;
     private readonly float _moveYSpeed = 20f;
@@ -11,32 +11,28 @@ public class DamagePopup : MonoBehaviour
     private Color _textColor;
     private void Awake()
     {
-        textMeshPro = gameObject.GetComponent<TextMeshPro>();
+        _textMeshPro = gameObject.GetComponent<TextMeshPro>();
     }
-
     private void Update()
     {
-        
         transform.position += new Vector3(_moveXSpeed, _moveYSpeed) * Time.deltaTime;
-
         _disappearTimer -= Time.deltaTime;
         if(_disappearTimer < 0)
         {
             //Start disapearing
             var disapearingSpeed = 3f;
             _textColor.a -= disapearingSpeed * Time.deltaTime;
-            textMeshPro.color = _textColor;
+            _textMeshPro.color = _textColor;
             if (_textColor.a < 0)
             {
                 Destroy(gameObject);
             }
         }
     }
-
     public void Setup(int damageAmount)
     {
-        textMeshPro.SetText(damageAmount.ToString());
-        _textColor = textMeshPro.color;
+        _textMeshPro.SetText(damageAmount.ToString());
+        _textColor = _textMeshPro.color;
         _disappearTimer = 1f;
     }
 }

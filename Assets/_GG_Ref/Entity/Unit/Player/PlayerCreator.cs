@@ -9,7 +9,12 @@ public class PlayerCreator : MonoBehaviour
     private void Awake()
     {
         if (_playerPrefab == null) return;
-        Instantiate(_playerPrefab, new Vector2(0, 0), Quaternion.identity);
+        CreatePlayer(_playerPrefab);
+    }
+
+    public void CreatePlayer(GameObject playerPrefab)
+    {
+        Instantiate(playerPrefab, new Vector2(0, 0), Quaternion.identity);
         CurrentPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         onPlayerCreated?.Invoke();
     }

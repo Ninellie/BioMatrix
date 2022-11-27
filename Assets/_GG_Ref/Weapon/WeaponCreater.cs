@@ -2,17 +2,18 @@ using UnityEngine;
 
 public class WeaponCreater : MonoBehaviour
 {
-    public GameObject[] playerWeapons;
-    public void CreateWeapon(GameObject[] weapons, int i)
+    public GameObject playerWeapon;
+    
+    private void Start()
     {
-        GameObject weapon = Instantiate(weapons[i]);
-        
+        CreateWeapon(playerWeapon);
+    }
+    private void CreateWeapon(GameObject weapons)
+    {
+        var weapon = Instantiate(weapons);
+
         weapon.transform.SetParent(transform);
 
         weapon.transform.position = gameObject.transform.position;
-    }
-    private void Start()
-    {
-        CreateWeapon(playerWeapons, 0);
     }
 }
