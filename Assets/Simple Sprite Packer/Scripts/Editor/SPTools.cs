@@ -434,7 +434,7 @@ namespace SimpleSpritePackerEditor
 		/// Loads a sprite from a texture.
 		/// </summary>
 		/// <returns>The sprite.</returns>
-		/// <param name="mainTexture">PlayerCreater texture.</param>
+		/// <param name="mainTexture">PlayerCreator texture.</param>
 		/// <param name="name">Name.</param>
 		public static Sprite LoadSprite(Texture2D mainTexture, string name)
 		{

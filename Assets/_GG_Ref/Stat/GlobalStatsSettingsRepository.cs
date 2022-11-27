@@ -33,6 +33,12 @@ public class GlobalStatsSettingsRepository
         MaximumLife = 1,
         Speed = 0,
     };
+    public static readonly UnitStatsSettings ProjectileStats = new UnitStatsSettings()
+    {
+        Size = 2,
+        MaximumLife = 1,
+        Speed = 700,
+    };
 
     public static readonly FirearmStatsSettings ShotgunSettings = new FirearmStatsSettings()
     {

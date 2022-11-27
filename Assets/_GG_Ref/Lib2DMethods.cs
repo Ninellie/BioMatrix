@@ -17,7 +17,7 @@ public static class Lib2DMethods
     /// <param name="rigidBody2D"></param>
     public static void LookToPlayer(Rigidbody2D rigidBody2D)
     {
-        float angle = (Mathf.Atan2(DirectionToPlayer(rigidBody2D.position).y, DirectionToPlayer(rigidBody2D.position).x) - Mathf.PI / 2) * Mathf.Rad2Deg;
+        var angle = (Mathf.Atan2(DirectionToPlayer(rigidBody2D.position).y, DirectionToPlayer(rigidBody2D.position).x) - Mathf.PI / 2) * Mathf.Rad2Deg;
         rigidBody2D.rotation = angle;
     }
     public static Vector2 PlayerPos

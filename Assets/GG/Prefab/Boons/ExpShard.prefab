@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5384938256212642916}
   - component: {fileID: 7208249027541576594}
   - component: {fileID: 2316403284215167119}
+  - component: {fileID: 3585179562831082455}
   m_Layer: 9
   m_Name: ExpShard
   m_TagString: Boon
@@ -133,3 +134,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3585179562831082455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741946790039367102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67adaac0812b6d46be2ba92177ef62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

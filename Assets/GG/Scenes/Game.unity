@@ -29775,26 +29775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c5fa820929c904cae5aaff3f637eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 6671026415413744665, guid: d77549fb193519146a7a33771c9312b9, type: 3}
---- !u!114 &1365173400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365173394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f28df27bdbbdb4cb55f6538ec3d0b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabEnemies:
-  - {fileID: 8954189743293124748, guid: 31b0110467a1ce14e96a54e0a5736dfe, type: 3}
-  enemySpawnPerSecond: 0.5
-  enemyDefaultPadding: 1.5
-  timer: {fileID: 2049719694}
-  camWidth: 0
-  camHeight: 0
+  _playerPrefab: {fileID: 6671026415413744665, guid: d77549fb193519146a7a33771c9312b9, type: 3}
 --- !u!20 &1365173402 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6798056590901079273, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
@@ -30547,7 +30528,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpUI: {fileID: 240021402}
-  ammoUI: {fileID: 277438309}
 --- !u!114 &1610744636
 MonoBehaviour:
   m_ObjectHideFlags: 0

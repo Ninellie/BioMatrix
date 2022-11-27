@@ -4,72 +4,52 @@ using UnityEngine.InputSystem;
 
 public class Player : Unit
 {
-    public static Action onGamePaused;
-    public static Action onCharacterDeath;
-    public static Action onLevelUp;
+    //public Action onPlayerAwake;
+    public Action onGamePaused;
+    public Action onCharacterDeath;
+    public Action onLevelUp;
+    public Action onExperienceTaken;
+    
     public bool isFireButtonPressed = false;
     public int Level
     {
-        get => level;
+        get => _level;
         set
         {
-            //if (value <= 0) throw new ArgumentOutOfRangeException(nameof(value));
-            level = value;
+            if (value < InitialLevel) throw new ArgumentOutOfRangeException(nameof(value));
+            _level = value;
             onLevelUp?.Invoke();
         }
     }
     public int ExpToLvlup => ExperienceToSecondLevel + (Level * ExperienceAmountIncreasingPerLevel) - Experience;
     public int Experience
     {
-        private get => Experience;
+        private get => _experience;
         set
         {
-            Experience = value;
+            _experience = value;
+            onExperienceTaken?.Invoke();
             if (ExpToLvlup == 0)
             {
-                Experience = 0;
+                _experience = 0;
                 Level++;
-                
             }
         }
     }
-    protected const int ExperienceToSecondLevel = 10;
-    protected const int ExperienceAmountIncreasingPerLevel = 2;
-    protected const int InitialLevel = 1;
-    protected override EntityStatsSettings Settings => GlobalStatsSettingsRepository.PlayerStats;
-    private int level;
+    private const int ExperienceToSecondLevel = 10;
+    private const int ExperienceAmountIncreasingPerLevel = 2;
+    private const int InitialLevel = 1;
+    
+    private int _level;
+    private int _experience;
     private SpriteRenderer Sprite => GetComponent<SpriteRenderer>();
-    protected new void Awake()
-    {
-        base.Awake();
-        Level = InitialLevel;
-    }
-    private void Start()
-    {
-        Time.timeScale = 1f;
-    }
-    protected new void OnEnable()
-    {
-        base.OnEnable();
-    }
-    protected new void OnDisable()
-    {
-        base.OnDisable();
-    }
-    private new void Update()
-    {
-        base.Update();
-        if (ExpToLvlup == 0)
-        {
-            Experience = 0;
-            Level++;
-            onLevelUp?.Invoke();
-        }
-    }
-    protected new void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
+    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.PlayerStats);
+    
+    private void Start() => Time.timeScale = 1f;
+    private void OnEnable() => BaseOnEnable();
+    private void OnDisable() => BaseOnDisable();
+    private void Update() => BaseUpdate();
+    private void FixedUpdate() => Movement.FixedUpdateMove();
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var collisionGameObject = collision.gameObject;
@@ -83,10 +63,18 @@ public class Player : Unit
                 break;
         }
     }
+    protected void BaseAwake(UnitStatsSettings settings)
+    {
+        Debug.Log($"{gameObject.name} Player Awake");
+        //onPlayerAwake?.Invoke();
+        _level = InitialLevel;
+        var movement = new Movement(gameObject, MovementMode.Rectilinear, settings.Speed);
+        base.BaseAwake(settings, movement);
+    }
     public void OnMove(InputValue input)
     {
         var inputVector2 = input.Get<Vector2>();
-        movement.SetMovementDirection(inputVector2);
+        Movement.SetMovementDirection(inputVector2);
         switch (inputVector2.x)
         {
             case < 0:
@@ -108,12 +96,12 @@ public class Player : Unit
     public void OnPause(InputValue input)
     {
         onGamePaused?.Invoke();
-        UnityEngine.Debug.Log("Game on pause");
+        Debug.Log("Game on pause");
     }
-    public void OnUnPause(InputValue input)
+    public void OnUnpause(InputValue input)
     {
         onGamePaused?.Invoke();
-        UnityEngine.Debug.Log("Game is active");
+        Debug.Log("Game is active");
     }
     protected override void Death()
     {

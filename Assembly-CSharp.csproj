@@ -116,7 +116,7 @@
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPActionType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPInstance.cs" />
-    <Compile Include="Assets\_GG_Ref\Entity\Unit\Player\PlayerCreater.cs" />
+    <Compile Include="Assets\_GG_Ref\Entity\Unit\Player\PlayerCreator.cs" />
     <Compile Include="Assets\_GG_Ref\Entity\Unit\Projectile\Projectile.cs" />
     <Compile Include="Assets\_GG_Ref\UIScripts\DeathScreen.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
@@ -126,6 +126,7 @@
     <Compile Include="Assets\_GG_Ref\PeterAcklamInverseCDF.cs" />
     <Compile Include="Assets\_GG_Ref\Entity\Unit\Unit.cs" />
     <Compile Include="Assets\_GG_Ref\LevelUp\Deck\ICardRepository.cs" />
+    <Compile Include="Assets\_GG_Ref\Entity\Unit\Enemy\Enemy.cs" />
     <Compile Include="Assets\_GG_Ref\Stat\GlobalStatsSettingsRepository.cs" />
     <Compile Include="Assets\_GG_Ref\UIScripts\MainMenu.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
@@ -139,7 +140,6 @@
     <Compile Include="Assets\_GG_Ref\Firearm\Firearm.cs" />
     <Compile Include="Assets\_GG_Ref\UIScripts\Timer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\_GG_Ref\Entity\Unit\Enemy\Enemy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

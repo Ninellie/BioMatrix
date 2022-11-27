@@ -10,37 +10,30 @@ public class PauseMenu : MonoBehaviour
     public GameObject settingsMenuUI;
     public GameObject timerUI;
     public GameObject lvlUpMenuUI;
-
-    //�������� ������ OnPause() �� ������� OnGamePaused � ������ OnEnable()
     private void OnEnable()
     {
-        Player.onGamePaused += OnPause;
+        FindObjectOfType<Camera>().GetComponent<PlayerCreator>().onPlayerCreated += Subscription;
     }
-    //������� ������ OnPause() �� ������� OnGamePaused � ������ OnDisable()
     private void OnDisable()
     {
-        Player.onGamePaused -= OnPause;
-    }
+        FindObjectOfType<Camera>().GetComponent<PlayerCreator>().onPlayerCreated -= Subscription;
+        GameObject.FindGameObjectsWithTag("Player")[0]
+            .GetComponent<Player>().onGamePaused -= OnPause;
 
-    /// <summary>
-    /// ���� ���� ����� ��� ���� �������� �������, �������� ������� Resume(), ����� �������� ������� Pause()
-    /// </summary>
+    }
+    private void Subscription()
+    {
+        GameObject.FindGameObjectsWithTag("Player")[0]
+            .GetComponent<Player>().onGamePaused += OnPause;
+    }
     public void OnPause()
     {
         if (pauseMenuUI.activeInHierarchy || settingsMenuUI.activeInHierarchy)
-        {
             Resume();
-        }
         else
-        {
             Pause();
-        }
     }
-
-    /// <summary>
-    /// �������� pauseMenuUI � settingsMenuUI. �����, ���� lvlUpMenuUI �������, ������ ��� ������ ��������������, ����� �������� ����� ResumeGame()
-    /// </summary>
-    public void Resume()
+    private void Resume()
     {
         pauseMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
@@ -58,11 +51,7 @@ public class PauseMenu : MonoBehaviour
             ResumeGame();
         }
     }
-
-    /// <summary>
-    /// �������� ����� PauseGame() � ��������� pauseMenuUI. �����, ���� lvlUpMenuUI �������, ������ ��� ������ ����������������.
-    /// </summary>
-    public void Pause()
+    private void Pause()
     {
         PauseGame();
         if (lvlUpMenuUI.activeInHierarchy)
@@ -75,10 +64,6 @@ public class PauseMenu : MonoBehaviour
         }
         pauseMenuUI.SetActive(true);
     }
-
-    /// <summary>
-    /// ������ ActionMap �� "Menu". ���������� timeScale = 0, ����������� ����. ������������� ������� ������. ������������� GameIsPaused = true.
-    /// </summary>
     public void PauseGame()
     {
         GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
@@ -86,20 +71,13 @@ public class PauseMenu : MonoBehaviour
         timerUI.GetComponent<Timer>().TimeStop();
         GameIsPaused = true;
     }
-    /// <summary>
-    /// ������ ActionMap �� "Player". ���������� timeScale = 1, ����������� ������� ����. ������������ ������� ������. ������������� GameIsPaused = false.
-    /// </summary>
-    public void ResumeGame()
+    private void ResumeGame()
     {
         GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
         Time.timeScale = 1f;
         timerUI.GetComponent<Timer>().TimeStart();
         GameIsPaused = false;
     }
-
-    /// <summary>
-    /// ��������� ����� � �������� 1 (������� ���� ����)
-    /// </summary>
     public void BackToMainMenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);

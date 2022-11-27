@@ -7,14 +7,14 @@ public class Stat
     public float Value => GetActualValue();
     //public IEnumerable<StatModifier> Modifiers => _modifiers;
     public Action onValueChanged;
-    public readonly float baseValue;
-    public readonly bool isModifiable;
-    public readonly float baseAddedValue;
+
+    private float BaseValue { get; }
+    private bool IsModifiable { get; }
+    private float BaseAddedValue { get; }
     private float AddedValue => GetAddedValue();
-    private readonly float _baseMultiplierValue;
+    private float BaseMultiplierValue { get; }
     private float MultiplierValue => GetMultiplierValue();
-    private readonly List<StatModifier> _modifiers;
-    private float _oldValue;
+    private readonly List<StatModifier> _modifiers = new List<StatModifier>();
 
     //Without multiplierValue (with multiplierValue = 1)
     //public Stat(float baseValue, bool isModifiable) : this(baseValue, isModifiable, 1)
@@ -37,66 +37,61 @@ public class Stat
     //}
     public Stat(float baseValue) : this(baseValue, true, 1, 0)
     {
-        _modifiers = new List<StatModifier>();
     }
     public Stat(float baseValue, bool isModifiable, float baseMultiplierValue, float baseAddedValue)
     {
-        this.baseValue = baseValue;
-        this.isModifiable = isModifiable;
-        _baseMultiplierValue = baseMultiplierValue;
-        this.baseAddedValue = baseAddedValue;
+        this.BaseValue = baseValue;
+        this.IsModifiable = isModifiable;
+        BaseMultiplierValue = baseMultiplierValue;
+        this.BaseAddedValue = baseAddedValue;
     }
     public void AddModifier(StatModifier modifier)
     {
-        RememberCurrentValue();
+        var oldValue = Value;
         _modifiers.Add(modifier);
-        OnValueChanged();
+        OnValueChanged(oldValue);
     }
     public bool RemoveModifier(StatModifier modifier)
     {
-        RememberCurrentValue();
-        if (_modifiers.Contains(modifier))
-        {
-            _modifiers.Remove(modifier);
-            OnValueChanged();
-            return true;
-        };
-        return false;
+        if (!_modifiers.Contains(modifier))
+            return false;
+        var oldValue = Value;
+        _modifiers.Remove(modifier);
+        OnValueChanged(oldValue);
+        return true;
     }
     public bool ClearModifiersList()
     {
-        RememberCurrentValue();
         if (_modifiers.Count == 0)
-        {
             return false;
-        }
+        var oldValue = Value;
         _modifiers.Clear();
-        OnValueChanged();
+        OnValueChanged(oldValue);
         return true;
     }
     private float GetAddedValue()
     {
-        return _modifiers.Where(modifier => modifier.Type == OperationType.Addition).Sum(modifier => modifier.Value) + baseAddedValue;
+        return BaseAddedValue + _modifiers
+            .Where(modifier => modifier.Type == OperationType.Addition)
+            .Sum(modifier => modifier.Value);
     }
     private float GetMultiplierValue()
     {
-        return _modifiers.Where(modifier => modifier.Type == OperationType.Multiplication).Sum(modifier => modifier.Value) + _baseMultiplierValue;
+        return BaseMultiplierValue + _modifiers
+            .Where(modifier => modifier.Type == OperationType.Multiplication)
+            .Sum(modifier => modifier.Value);
     }
     private float GetActualValue()
     {
-        if (isModifiable == false)
+        if (IsModifiable == false)
         {
-            return (baseValue + baseAddedValue) * _baseMultiplierValue;
+            return (BaseValue + BaseAddedValue) * BaseMultiplierValue;
         }
-        return (baseValue + AddedValue) * MultiplierValue;
+        return (BaseValue + AddedValue) * MultiplierValue;
     }
-    private void RememberCurrentValue()
+    private void OnValueChanged(float oldValue)
     {
-        _oldValue = GetActualValue();
-    }
-    private void OnValueChanged()
-    {
-        if (Value.Equals(_oldValue))
+        if (Value.Equals(oldValue))
         {
             onValueChanged?.Invoke();
         }

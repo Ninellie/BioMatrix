@@ -2,24 +2,11 @@ using UnityEngine;
 
 public class Projectile : Unit
 {
-    protected new bool IsOnScreen
-    {
-        get => IsOnScreen;
-        private set
-        {
-            switch (value)
-            {
-                case false:
-                    IsOnScreen = false;
-                    TakeDamage(CurrentLifePoints);
-                    break;
-                case true:
-                    IsOnScreen = true;
-                    break;
-            }
-        }
-    }
-
+    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.ProjectileStats);
+    private void OnEnable() => BaseOnEnable();
+    private void OnDisable() => BaseOnDisable();
+    private void Update() => BaseUpdate();
+    private void FixedUpdate() => Movement.FixedUpdateMove();
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var collisionGameObject = collision.gameObject;
@@ -33,10 +20,18 @@ public class Projectile : Unit
                 break;
         }
     }
+    protected override void BaseUpdate()
+    {
+        base.BaseUpdate();
+        if (IsOnScreen == false)
+        {
+            TakeDamage(CurrentLifePoints);
+        }
+    }
     public virtual void Launch(Vector2 direction, float force)
     {
-        movement.ChangeMode(MovementMode.Rectilinear);
-        movement.AccelerateInDirection(force, direction);
+        Movement.ChangeMode(MovementMode.Rectilinear);
+        Movement.AccelerateInDirection(force, direction);
     }
     public void Launch(Vector2 direction, float maxShotDeflectionAngle, float force)
     {

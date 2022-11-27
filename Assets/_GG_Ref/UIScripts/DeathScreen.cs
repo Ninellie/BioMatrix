@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-using System;
 
 public class DeathScreen : MonoBehaviour
 {
@@ -14,14 +10,26 @@ public class DeathScreen : MonoBehaviour
 
     private void OnEnable()
     {
-        Player.onCharacterDeath += EnableDeathScreen;
+        FindObjectOfType<Camera>()
+            .GetComponent<PlayerCreator>()
+            .onPlayerCreated += Subscription;
     }
-
     private void OnDisable()
     {
-        Player.onCharacterDeath -= EnableDeathScreen;
-    }
+        FindObjectOfType<Camera>()
+            .GetComponent<PlayerCreator>()
+            .onPlayerCreated -= Subscription;
 
+        GameObject.FindGameObjectsWithTag("Player")[0]
+            .GetComponent<Player>()
+            .onCharacterDeath -= EnableDeathScreen;
+    }
+    private void Subscription()
+    {
+        GameObject.FindGameObjectsWithTag("Player")[0]
+            .GetComponent<Player>()
+            .onCharacterDeath += EnableDeathScreen;
+    }
     public void EnableDeathScreen()
     {
         GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInput>().SwitchCurrentActionMap("Death");

@@ -103,7 +103,7 @@ public class Movement
     }
     private void LookToPursuingTarget()
     {
-        float angle = (Mathf.Atan2(DirectionToPursuingTarget().y, DirectionToPursuingTarget().x) - Mathf.PI / 2) * Mathf.Rad2Deg;
+        var angle = (Mathf.Atan2(DirectionToPursuingTarget().y, DirectionToPursuingTarget().x) - Mathf.PI / 2) * Mathf.Rad2Deg;
 
         DrivenRigidbody2D.rotation = angle;
     }

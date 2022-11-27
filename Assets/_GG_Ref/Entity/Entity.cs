@@ -4,50 +4,65 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    public bool IsOnScreen { get; protected set; }
+    public Action onCurrentLifePointsChanged;
+    public Action onEnableAction;
+    public Action onDisableAction;
+    public bool IsOnScreen { get; private set; }
     public bool Alive => IsAlive();
+    public const int DeathLifePointsThreshold = 0;
+    public const int MinimalDamageTaken = 1;
     public float CurrentLifePoints
     {
-        get => CurrentLifePoints;
+        get => _currentLifePoints;
         protected set
         {
-            var difValue = value - DeathLifePointsLevel;
+            var difValue = value - DeathLifePointsThreshold;
             switch (difValue)
             {
                 case < 0:
-                    CurrentLifePoints = DeathLifePointsLevel;
+                    _currentLifePoints = DeathLifePointsThreshold;
+                    onCurrentLifePointsChanged?.Invoke();
                     Death();
                     break;
                 case 0:
-                    CurrentLifePoints = value;
+                    _currentLifePoints = value;
+                    onCurrentLifePointsChanged?.Invoke();
                     Death();
                     break;
                 case > 0:
-                    CurrentLifePoints = value;
+                    _currentLifePoints = value;
+                    onCurrentLifePointsChanged?.Invoke();
                     break;
             }
         }
     }
-    protected virtual EntityStatsSettings Settings => GlobalStatsSettingsRepository.EntityStats;
-    protected Stat size;
-    protected Stat maximumLifePoints;
-    private const int DeathLifePointsLevel = 0;
-    public const int MinimalDamageTaken = 1;
+    protected Stat Size { get; private set; }
+    protected Stat MaximumLifePoints { get; private set; }
+    private float _currentLifePoints;
     private Camera _mCamera;
-    protected virtual void Awake()
+    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EntityStats);
+    private void OnEnable() => BaseOnEnable();
+    private void OnDisable() => BaseOnDisable();
+    private void Update() => BaseUpdate();
+    protected void BaseAwake(EntityStatsSettings settings)
     {
+        Debug.Log($"{gameObject.name} Entity Awake");
         _mCamera = FindObjectOfType<Camera>();
-        SetStats(Settings);
+        Size = new Stat(settings.Size);
+        MaximumLifePoints = new Stat(settings.MaximumLife);
+        _currentLifePoints = MaximumLifePoints.Value;
     }
-    protected virtual void OnEnable()
+    protected virtual void BaseOnEnable()
     {
-        size.onValueChanged += ChangeCurrentSize;
+        onEnableAction?.Invoke();
+        Size.onValueChanged += ChangeCurrentSize;
     }
-    protected virtual void OnDisable()
+    protected virtual void BaseOnDisable()
     {
-        size.onValueChanged -= ChangeCurrentSize;
+        onDisableAction?.Invoke();
+        Size.onValueChanged -= ChangeCurrentSize;
     }
-    protected virtual void Update()
+    protected virtual void BaseUpdate()
     {
         IsOnScreen = Lib2DMethods.CheckVisibilityOnCamera(_mCamera, gameObject);
     }
@@ -58,22 +73,19 @@ public class Entity : MonoBehaviour
     }
     protected virtual bool IsAlive()
     {
-        return CurrentLifePoints > DeathLifePointsLevel;
+        return CurrentLifePoints > DeathLifePointsThreshold;
     }
     protected virtual void Death()
     {
         gameObject.SetActive(false);
         Destroy(gameObject);
     }
+    protected virtual void RestoreLifePoints()
+    {
+        CurrentLifePoints = MaximumLifePoints.Value;
+    }
     protected virtual void ChangeCurrentSize()
     {
-        gameObject.GetComponent<Transform>().position.Scale(new Vector3(size.Value, size.Value));
-    }
-    protected virtual void SetStats([NotNull] EntityStatsSettings settings)
-    {
-        if (settings == null) throw new ArgumentNullException(nameof(settings));
-        
-        size = new Stat(settings.Size);
-        maximumLifePoints = new Stat(settings.MaximumLife);
+        gameObject.GetComponent<Transform>().position.Scale(new Vector3(Size.Value, Size.Value));
     }
 }

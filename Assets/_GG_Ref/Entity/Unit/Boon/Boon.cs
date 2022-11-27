@@ -2,29 +2,11 @@ using UnityEngine;
 
 public class Boon : Unit
 {
-    protected override EntityStatsSettings Settings => GlobalStatsSettingsRepository.UnitStats;
-    protected new void OnEnable()
-    {
-        base.OnEnable();
-    }
-    protected new void OnDisable()
-    {
-        base.OnDisable();
-    }
-    protected new void Awake()
-    {
-        SetStats(Settings);
-        SetMovement();
-        RestoreLifePoints();
-    }
-    protected new void Update()
-    {
-        base.Update();
-    }
-    protected new void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
+    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.BoonStats);
+    private void OnEnable() => BaseOnEnable();
+    private void OnDisable() => BaseOnDisable();
+    private void Update() => BaseUpdate();
+    private void FixedUpdate() => Movement.FixedUpdateMove();
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("The Boon was taken");
@@ -36,8 +18,10 @@ public class Boon : Unit
                 break;
         }
     }
-    protected override void SetMovement()
+    protected void BaseAwake(UnitStatsSettings settings)
     {
-        movement = new Movement(gameObject, MovementMode.Idle, speed.Value);
+        Debug.Log($"{gameObject.name} Boon Awake");
+        var movement = new Movement(gameObject, MovementMode.Idle, settings.Speed);
+        base.BaseAwake(settings, movement);
     }
 }

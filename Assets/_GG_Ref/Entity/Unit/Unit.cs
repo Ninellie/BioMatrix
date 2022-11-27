@@ -1,63 +1,43 @@
 using System;
-using JetBrains.Annotations;
+using UnityEngine;
 
 public class Unit : Entity
 {
-    protected override EntityStatsSettings Settings => GlobalStatsSettingsRepository.UnitStats;
-    protected Stat speed;
-    protected Movement movement;
-    protected new void OnEnable()
+    protected Stat Speed { get; private set; }
+    protected Movement Movement { get; private set; }
+    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.UnitStats);
+    private void OnEnable() => BaseOnEnable();
+    private void OnDisable() => BaseOnDisable();
+    private void Update() => BaseUpdate();
+    private void FixedUpdate() => Movement.FixedUpdateMove();
+    protected void BaseAwake(UnitStatsSettings settings, Movement movement = null)
     {
-        base.OnEnable();
-        speed.onValueChanged += ChangeCurrentSpeed;
+        Debug.Log($"{gameObject.name} Unit Awake");
+        base.BaseAwake(settings);
+        Speed = new Stat(settings.Speed);
+        Movement = movement ?? new Movement(gameObject, Speed.Value);
     }
-    protected new void OnDisable()
+    protected override void BaseOnEnable()
     {
-        base.OnDisable();
-        speed.onValueChanged -= ChangeCurrentSpeed;
+        base.BaseOnEnable();
+        if (Speed != null) Speed.onValueChanged += ChangeCurrentSpeed;
     }
-    protected new void Awake()
+    protected override void BaseOnDisable()
     {
-        SetStats(Settings);
-        SetMovement();
-        RestoreLifePoints();
-    }
-    protected new void Update()
-    {
-        base.Update();
-    }
-    protected void FixedUpdate()
-    {
-        movement.FixedUpdateMove();
-    }
-    protected void SetStats([NotNull] UnitStatsSettings settings)
-    {
-        if (settings == null) throw new ArgumentNullException(nameof(settings));
-        size = new Stat(settings.Size);
-
-        speed = new Stat(settings.Speed);
-        
-        maximumLifePoints = new Stat(settings.MaximumLife);
-    }
-    protected virtual void SetMovement()
-    {
-        movement = new Movement(gameObject, speed.Value);
-    }
-    protected virtual void RestoreLifePoints()
-    {
-        CurrentLifePoints = maximumLifePoints.Value;
+        base.BaseOnDisable();
+        if (Speed != null) Speed.onValueChanged -= ChangeCurrentSpeed;
     }
     protected void ChangeCurrentSpeed()
     {
-        var oldSpeed = movement.Speed;
-        var speedDif = speed.Value - oldSpeed;
+        var oldSpeed = Movement.Speed;
+        var speedDif = Speed.Value - oldSpeed;
         switch (speedDif)
         {
             case > 0:
-                movement.Accelerate(speedDif);
+                Movement.Accelerate(speedDif);
                 break;
             case < 0:
-                movement.SlowDown(speedDif * -1);
+                Movement.SlowDown(speedDif * -1);
                 break;
             case 0:
                 throw new ArgumentOutOfRangeException();

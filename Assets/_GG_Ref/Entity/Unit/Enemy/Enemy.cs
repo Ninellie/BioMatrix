@@ -2,37 +2,18 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
-    public GameObject onDeathDrop;
-    protected override EntityStatsSettings Settings => GlobalStatsSettingsRepository.EnemyStats;
+    [SerializeField] private GameObject onDeathDrop;
     [SerializeField] private GameObject _damagePopup;
-    private GameObject _droppedDamagePopup;
+    //private GameObject _droppedDamagePopup;
     
     private Vector2 _collisionPoint;
     private GameObject _collisionGameObject;
     private Rigidbody2D _rb2D;
-    protected new void OnEnable()
-    {
-        base.OnEnable();
-    }
-    protected new void OnDisable()
-    {
-        base.OnDisable();
-    }
-    protected new void Awake()
-    {
-        _rb2D = this.GetComponent<Rigidbody2D>();
-        SetStats(Settings);
-        SetMovement();
-        RestoreLifePoints();
-    }
-    protected new void Update()
-    {
-        base.Update();
-    }
-    protected new void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
+    private void OnEnable() => BaseOnEnable();
+    private void OnDisable() => BaseOnDisable();
+    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EnemyStats);
+    private void Update() => BaseUpdate();
+    private void FixedUpdate() => Movement.FixedUpdateMove();
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _collisionGameObject = collision.gameObject;
@@ -48,6 +29,15 @@ public class Enemy : Unit
                 break;
         }
     }
+    protected void BaseAwake(UnitStatsSettings settings)
+    {
+        Debug.Log($"{gameObject.name} Enemy Awake");
+        _rb2D = GetComponent<Rigidbody2D>();
+        //_level = InitialLevel;
+        var movement = new Movement(gameObject, MovementMode.Pursue, settings.Speed);
+        movement.SetPursuingTarget(GameObject.FindGameObjectsWithTag("Player")[0]);
+        base.BaseAwake(settings, movement);
+    }
     protected override void Death()
     {
         base.Death();
@@ -56,20 +46,14 @@ public class Enemy : Unit
             DropBonus();
         }
     }
-    protected override void SetMovement()
-    {
-        movement = new Movement(gameObject, MovementMode.Pursue, speed.Value);
-        movement.SetPursuingTarget(GameObject.FindGameObjectsWithTag("Player")[0]);
-    }
-    
     private void DropBonus()
     {
         Instantiate(onDeathDrop, _rb2D.position, _rb2D.transform.rotation);
     }
-    private void DropDamagePopup(int damage, Vector2 transform)
+    private void DropDamagePopup(int damage, Vector2 positionVector2)
     {
         var droppedDamagePopup = Instantiate(_damagePopup);
-        droppedDamagePopup.transform.position = transform;
+        droppedDamagePopup.transform.position = positionVector2;
         droppedDamagePopup.GetComponent<DamagePopup>().Setup(damage);
     }
 }
