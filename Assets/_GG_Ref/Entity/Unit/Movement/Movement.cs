@@ -93,6 +93,7 @@ public class Movement
     }
     private void Pursue()
     {
+        if (_pursuingTarget == null) return;
         SetMovementDirection(_pursuingTarget.GetComponent<Rigidbody2D>().position - DrivenRigidbody2D.position);
         Move();
     }
@@ -109,7 +110,8 @@ public class Movement
     }
     private Vector2 DirectionToPursuingTarget()
     {
-        var horizontal = _pursuingTarget.transform.position.x - DrivenRigidbody2D.transform.position.x;
+        if (_pursuingTarget == null) return new Vector2(0, 0);
+            var horizontal = _pursuingTarget.transform.position.x - DrivenRigidbody2D.transform.position.x;
         var vertical = _pursuingTarget.transform.position.y - DrivenRigidbody2D.transform.position.y;
 
         return new Vector2(horizontal, vertical);

@@ -17,13 +17,13 @@ public class GlobalStatsSettingsRepository
     {
         Size = 1,
         MaximumLife = 5,
-        Speed = 600,
+        Speed = 250,
     };
 
     public static readonly UnitStatsSettings EnemyStats = new UnitStatsSettings()
     {
         Size = 1,
-        MaximumLife = 5,
+        MaximumLife = 2,
         Speed = 100,
     };
 
@@ -40,7 +40,7 @@ public class GlobalStatsSettingsRepository
         Speed = 700,
     };
 
-    public static readonly FirearmStatsSettings ShotgunSettings = new FirearmStatsSettings()
+    public static readonly FirearmStatsSettings ShotgunStats = new FirearmStatsSettings()
     {
         Damage = 1,
         ShootForce = 500,

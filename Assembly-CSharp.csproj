@@ -82,6 +82,7 @@
     <Compile Include="Assets\_GG_Ref\Entity\Unit\Movement\Movement.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
+    <Compile Include="Assets\_GG_Ref\UIScripts\AmmoBar.cs" />
     <Compile Include="Assets\_GG_Ref\LevelUp\LVLUpManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\_GG_Ref\Entity\Unit\Movement\MovementMode.cs" />
@@ -105,7 +106,7 @@
     <Compile Include="Assets\_GG_Ref\Weapon\WeaponCreater.cs" />
     <Compile Include="Assets\_GG_Ref\Entity\Unit\Player\Player.cs" />
     <Compile Include="Assets\_GG_Ref\Camera\MainCameraPlayerSeek.cs" />
-    <Compile Include="Assets\_GG_Ref\UIScripts\HPUI.cs" />
+    <Compile Include="Assets\_GG_Ref\UIScripts\LifeBar.cs" />
     <Compile Include="Assets\_GG_Ref\UIScripts\PauseMenu.cs" />
     <Compile Include="Assets\_GG_Ref\LevelUp\Deck\ArrayCardRepository.cs" />
     <Compile Include="Assets\_GG_Ref\UIScripts\SettingMenu.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Assets\_GG_Ref\Firearm\Firearm.cs" />
     <Compile Include="Assets\_GG_Ref\UIScripts\Timer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
+    <Compile Include="Assets\_GG_Ref\CurrentPlayerSeecker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

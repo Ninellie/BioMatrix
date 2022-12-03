@@ -25,10 +25,12 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
+        if(GameObject.FindGameObjectWithTag("Player") == null) return;
+        
         //Debug.Log(CalculateSpawnPerSecond());
 
-        int ndx = UnityEngine.Random.Range(0, prefabEnemies.Length);
-        GameObject go = Instantiate<GameObject>(prefabEnemies[ndx]);
+        var index = UnityEngine.Random.Range(0, prefabEnemies.Length);
+        var spawnedGameObject = Instantiate<GameObject>(prefabEnemies[index]);
 
         
         camHeight = Camera.main.orthographicSize * 2;
@@ -56,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
         localPos.x = xResult;
         localPos.y = yResult;
 
-        go.transform.position = localPos;
+        spawnedGameObject.transform.position = localPos;
 
         // Invoke SpawnEnemy() again
         Invoke("SpawnEnemy", 1f / CalculateSpawnPerSecond());

@@ -35,7 +35,7 @@ public class Enemy : Unit
         _rb2D = GetComponent<Rigidbody2D>();
         //_level = InitialLevel;
         var movement = new Movement(gameObject, MovementMode.Seek, settings.Speed);
-        movement.SetPursuingTarget(GameObject.FindGameObjectsWithTag("Player")[0]);
+        movement.SetPursuingTarget(CurrentPlayerSeecker.CurrentPlayer);
         base.BaseAwake(settings, movement);
     }
     protected override void Death()

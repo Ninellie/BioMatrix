@@ -13,27 +13,24 @@ public class Entity : MonoBehaviour
         get => _currentLifePoints;
         protected set
         {
+            Debug.Log($"Try to set life of {gameObject.name} to value: {value}");
             var difValue = value - DeathLifePointsThreshold;
+        
             switch (difValue)
             {
                 case < 0:
                     _currentLifePoints = DeathLifePointsThreshold;
-                    Debug.Log("Life Points SET " + gameObject.name);
-                    onCurrentLifePointsChanged?.Invoke();
                     Death();
                     break;
                 case 0:
                     _currentLifePoints = value;
-                    Debug.Log("Life Points SET " + gameObject.name);
-                    onCurrentLifePointsChanged?.Invoke();
                     Death();
                     break;
                 case > 0:
                     _currentLifePoints = value;
-                    Debug.Log("Life Points SET " + gameObject.name);
-                    onCurrentLifePointsChanged?.Invoke();
                     break;
             }
+            onCurrentLifePointsChanged?.Invoke();
         }
     }
     protected Stat Size { get; private set; }
@@ -66,8 +63,7 @@ public class Entity : MonoBehaviour
     }
     public virtual void TakeDamage(float amount)
     {
-        var lifePoints = CurrentLifePoints - amount;
-        CurrentLifePoints = lifePoints;
+        CurrentLifePoints -= amount;
         Debug.Log("Damage is taken " + gameObject.name);
     }
     protected virtual bool IsAlive()

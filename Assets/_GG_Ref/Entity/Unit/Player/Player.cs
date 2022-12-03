@@ -4,12 +4,11 @@ using UnityEngine.InputSystem;
 
 public class Player : Unit
 {
-    //public Action onPlayerAwake;
     public Action onGamePaused;
     public Action onPlayerDeath;
     public Action onLevelUp;
     public Action onExperienceTaken;
-    
+
     public bool isFireButtonPressed = false;
     public int Level
     {
@@ -63,6 +62,8 @@ public class Player : Unit
                 break;
         }
     }
+
+    [SerializeField] private Transform _firePoint;
     protected void BaseAwake(UnitStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Player Awake");
@@ -70,6 +71,14 @@ public class Player : Unit
         _experience = InitialExperience;
         var movement = new Movement(gameObject, MovementMode.Rectilinear, settings.Speed);
         base.BaseAwake(settings, movement);
+    }
+    public void CreateWeapon(GameObject weapons)
+    {
+        var weapon = Instantiate(weapons);
+
+        weapon.transform.SetParent(_firePoint);
+
+        weapon.transform.position = _firePoint.transform.position;
     }
     public void OnMove(InputValue input)
     {

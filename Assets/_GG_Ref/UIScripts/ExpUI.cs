@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ExpUI : MonoBehaviour
@@ -12,32 +10,19 @@ public class ExpUI : MonoBehaviour
         UpdateExperienceBar();
         UpdateLevelBar();
     }
-    private void UpdateExperienceBar()
+    //private void OnEnable()
+    //{
+    //    FindObjectOfType<Camera>()
+    //        .GetComponent<PlayerCreator>().onPlayerCreated += Subscription;
+    //}
+    //private void OnDisable()
+    //{
+    //    FindObjectOfType<Camera>()
+    //        .GetComponent<PlayerCreator>().onPlayerCreated -= Subscription;
+    //}
+    public void Subscription()
     {
-        var experienceToNextLevelText = "exp to lvl up: "
-                                    + GameObject.FindGameObjectsWithTag("Player")[0]
-                                        .GetComponent<Player>().ExpToLvlup.ToString();
-        experienceToNextLevelBar.text = experienceToNextLevelText;
-    }
-    private void UpdateLevelBar()
-    {
-        var levelText = "LVL: " +
-                                    GameObject.FindGameObjectsWithTag("Player")[0]
-                                        .GetComponent<Player>().Level.ToString();
-        levelBar.text = levelText;
-    }
-    private void OnEnable()
-    {   
-        FindObjectOfType<Camera>()
-            .GetComponent<PlayerCreator>().onPlayerCreated += Subscription;
-    }
-    private void OnDisable()
-    {
-        FindObjectOfType<Camera>()
-            .GetComponent<PlayerCreator>().onPlayerCreated -= Subscription;
-    }
-    private void Subscription()
-    {
+        Debug.Log("Experience and level started subscribing on current exp and level of Player");
         GameObject.FindGameObjectsWithTag("Player")[0]
             .GetComponent<Player>().onLevelUp += UpdateLevelBar;
 
@@ -49,6 +34,8 @@ public class ExpUI : MonoBehaviour
     }
     private void Unsubscription()
     {
+        Debug.Log("Experience and level started unsubscribing on current exp and level of Player");
+
         GameObject.FindGameObjectsWithTag("Player")[0]
             .GetComponent<Player>().onLevelUp -= UpdateLevelBar;
 
@@ -57,5 +44,21 @@ public class ExpUI : MonoBehaviour
 
         GameObject.FindGameObjectsWithTag("Player")[0]
             .GetComponent<Player>().onPlayerDeath -= Unsubscription;
+    }
+    private void UpdateExperienceBar()
+    {
+        var experienceToNextLevelText = "exp to lvl up: "
+                                        + GameObject.FindGameObjectsWithTag("Player")[0]
+                                            .GetComponent<Player>().ExpToLvlup.ToString();
+        experienceToNextLevelBar.text = experienceToNextLevelText;
+        Debug.Log("Experience bar was updated");
+    }
+    private void UpdateLevelBar()
+    {
+        var levelText = "LVL: " +
+                        GameObject.FindGameObjectsWithTag("Player")[0]
+                            .GetComponent<Player>().Level.ToString();
+        levelBar.text = levelText;
+        Debug.Log("Level bar was updated");
     }
 }
