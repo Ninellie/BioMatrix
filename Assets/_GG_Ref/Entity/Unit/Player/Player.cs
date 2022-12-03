@@ -4,12 +4,11 @@ using UnityEngine.InputSystem;
 
 public class Player : Unit
 {
-    //public Action onPlayerAwake;
     public Action onGamePaused;
     public Action onPlayerDeath;
     public Action onLevelUp;
     public Action onExperienceTaken;
-    
+
     public bool isFireButtonPressed = false;
     public int Level
     {
@@ -36,8 +35,8 @@ public class Player : Unit
             }
         }
     }
-    private const int ExperienceToSecondLevel = 10;
-    private const int ExperienceAmountIncreasingPerLevel = 2;
+    private const int ExperienceToSecondLevel = 2;
+    private const int ExperienceAmountIncreasingPerLevel = 1;
     private const int InitialLevel = 1;
     private const int InitialExperience = 0;
 
@@ -63,6 +62,8 @@ public class Player : Unit
                 break;
         }
     }
+
+    [SerializeField] private Transform _firePoint;
     protected void BaseAwake(UnitStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Player Awake");
@@ -70,6 +71,32 @@ public class Player : Unit
         _experience = InitialExperience;
         var movement = new Movement(gameObject, MovementMode.Rectilinear, settings.Speed);
         base.BaseAwake(settings, movement);
+    }
+    public void CreateWeapon(GameObject weapons)
+    {
+        var weapon = Instantiate(weapons);
+
+        weapon.transform.SetParent(_firePoint);
+
+        weapon.transform.position = _firePoint.transform.position;
+    }
+    protected override void Death()
+    {
+        onPlayerDeath?.Invoke();
+        base.Death();
+    }
+
+    public void AddStatModifier(string statName, StatModifier statModifier)
+    {
+        switch (statName)
+        {
+            case "speed":
+                Speed.AddModifier(statModifier);
+                break;
+            case "maximumLifePoints":
+                MaximumLifePoints.AddModifier(statModifier);
+                break;
+        }
     }
     public void OnMove(InputValue input)
     {
@@ -102,10 +129,5 @@ public class Player : Unit
     {
         onGamePaused?.Invoke();
         Debug.Log("Game is active");
-    }
-    protected override void Death()
-    {
-        onPlayerDeath?.Invoke();
-        base.Death();
     }
 }

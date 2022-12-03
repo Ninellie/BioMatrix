@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.UI;
 
 public class SettingMenu : MonoBehaviour
 {
@@ -10,24 +8,24 @@ public class SettingMenu : MonoBehaviour
 
     public TMPro.TMP_Dropdown resolutionDropdown;
 
-    Resolution[] resolutions;
+    Resolution[] _resolutions;
 
     private void Start()
     {
-        resolutions = Screen.resolutions;
+        _resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
 
-        List<string> options = new List<string>();
+        var options = new List<string>();
 
-        int currentResolutionIndex = 0;
-        for (int i = 0; i < resolutions.Length; i++)
+        var currentResolutionIndex = 0;
+        for (int i = 0; i < _resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
+            string option = _resolutions[i].width + " x " + _resolutions[i].height;
             options.Add(option);
 
-            if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
+            if (_resolutions[i].width == Screen.currentResolution.width &&
+                _resolutions[i].height == Screen.currentResolution.height)
             {
                 currentResolutionIndex = i;
             }
@@ -40,7 +38,7 @@ public class SettingMenu : MonoBehaviour
 
     public void SetResolution(int resolutionIndex)
     {
-        Resolution resolution = resolutions[resolutionIndex];
+        Resolution resolution = _resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
@@ -54,8 +52,8 @@ public class SettingMenu : MonoBehaviour
         QualitySettings.SetQualityLevel(qualityIndex);
     }
 
-    public void SetFullscreen(bool isFullsceen)
+    public void SetFullscreen(bool isFullScreen)
     {
-        Screen.fullScreen = isFullsceen;
+        Screen.fullScreen = isFullScreen;
     }
 }

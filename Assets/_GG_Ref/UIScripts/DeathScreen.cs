@@ -7,17 +7,17 @@ public class DeathScreen : MonoBehaviour
     public GameObject deathScreen;
     public GameObject timer;
 
-    private void OnEnable()
-    {
-        FindObjectOfType<Camera>()
-            .GetComponent<PlayerCreator>().onPlayerCreated += Subscription;
-    }
-    private void OnDisable()
-    {
-        FindObjectOfType<Camera>()
-            .GetComponent<PlayerCreator>().onPlayerCreated -= Subscription;
-    }
-    private void Subscription()
+    //private void OnEnable()
+    //{
+    //    FindObjectOfType<Camera>()
+    //        .GetComponent<PlayerCreator>().onPlayerCreated += Subscription;
+    //}
+    //private void OnDisable()
+    //{
+    //    FindObjectOfType<Camera>()
+    //        .GetComponent<PlayerCreator>().onPlayerCreated -= Subscription;
+    //}
+    public void Subscription()
     {
         GameObject.FindGameObjectsWithTag("Player")[0]
             .GetComponent<Player>().onPlayerDeath += EnableDeathScreen;

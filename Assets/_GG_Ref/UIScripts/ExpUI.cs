@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ExpUI : MonoBehaviour
@@ -12,50 +10,38 @@ public class ExpUI : MonoBehaviour
         UpdateExperienceBar();
         UpdateLevelBar();
     }
+    public void Subscription()
+    {
+        Debug.Log("Experience and level started subscribing on current exp and level of Player");
+        FindObjectOfType<Player>().onLevelUp += UpdateLevelBar;
+
+        FindObjectOfType<Player>().onExperienceTaken += UpdateExperienceBar;
+
+        FindObjectOfType<Player>().onPlayerDeath += Unsubscription;
+    }
+    private void Unsubscription()
+    {
+        Debug.Log("Experience and level started unsubscribing on current exp and level of Player");
+
+        FindObjectOfType<Player>().onLevelUp -= UpdateLevelBar;
+
+        FindObjectOfType<Player>().onExperienceTaken -= UpdateExperienceBar;
+
+        FindObjectOfType<Player>().onPlayerDeath -= Unsubscription;
+    }
+
     private void UpdateExperienceBar()
     {
-        var experienceToNextLevelText = "exp to lvl up: "
-                                    + GameObject.FindGameObjectsWithTag("Player")[0]
-                                        .GetComponent<Player>().ExpToLvlup.ToString();
-        experienceToNextLevelBar.text = experienceToNextLevelText;
+        var experienceToNextLevelText = $"exp to lvl up: {FindObjectOfType<Player>().ExpToLvlup}";
+
+    experienceToNextLevelBar.text = experienceToNextLevelText;
+        Debug.Log("Experience bar was updated");
     }
     private void UpdateLevelBar()
     {
         var levelText = "LVL: " +
-                                    GameObject.FindGameObjectsWithTag("Player")[0]
-                                        .GetComponent<Player>().Level.ToString();
+                        FindObjectOfType<Player>().Level.ToString();
         levelBar.text = levelText;
-    }
-    private void OnEnable()
-    {   
-        FindObjectOfType<Camera>()
-            .GetComponent<PlayerCreator>().onPlayerCreated += Subscription;
-    }
-    private void OnDisable()
-    {
-        FindObjectOfType<Camera>()
-            .GetComponent<PlayerCreator>().onPlayerCreated -= Subscription;
-    }
-    private void Subscription()
-    {
-        GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onLevelUp += UpdateLevelBar;
-
-        GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onExperienceTaken += UpdateExperienceBar;
-
-        GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onPlayerDeath += Unsubscription;
-    }
-    private void Unsubscription()
-    {
-        GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onLevelUp -= UpdateLevelBar;
-
-        GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onExperienceTaken -= UpdateExperienceBar;
-
-        GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onPlayerDeath -= Unsubscription;
+        Debug.Log("Level bar was updated");
     }
 }

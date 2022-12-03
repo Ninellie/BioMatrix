@@ -4,11 +4,11 @@ public class Enemy : Unit
 {
     [SerializeField] private GameObject _onDeathDrop;
     [SerializeField] private GameObject _damagePopup;
-    //private GameObject _droppedDamagePopup;
-    
-    private Vector2 _collisionPoint;
+
+    private Vector2 _collisionGameObjectCentre;
     private GameObject _collisionGameObject;
-    private Rigidbody2D _rb2D;
+    private Rigidbody2D _rigidbody2D;
+    private CircleCollider2D _circleCollider2D;
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EnemyStats);
@@ -17,7 +17,7 @@ public class Enemy : Unit
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _collisionGameObject = collision.gameObject;
-        _collisionPoint = _collisionGameObject.transform.position;
+        _collisionGameObjectCentre = _collisionGameObject.transform.position;
         switch (_collisionGameObject.tag)
         {
             case "Player":
@@ -25,17 +25,20 @@ public class Enemy : Unit
                 break;
             case "Projectile":
                 TakeDamage(MinimalDamageTaken);
-                DropDamagePopup(MinimalDamageTaken, _collisionPoint);
+                DropDamagePopup(MinimalDamageTaken, _collisionGameObjectCentre);
+                break;
+            case "Enemy":
                 break;
         }
     }
     protected void BaseAwake(UnitStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Enemy Awake");
-        _rb2D = GetComponent<Rigidbody2D>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _circleCollider2D = GetComponent<CircleCollider2D>();
         //_level = InitialLevel;
         var movement = new Movement(gameObject, MovementMode.Seek, settings.Speed);
-        movement.SetPursuingTarget(GameObject.FindGameObjectsWithTag("Player")[0]);
+        movement.SetPursuingTarget(FindObjectOfType<Player>().gameObject);
         base.BaseAwake(settings, movement);
     }
     protected override void Death()
@@ -48,7 +51,7 @@ public class Enemy : Unit
     }
     private void DropBonus()
     {
-        Instantiate(_onDeathDrop, _rb2D.position, _rb2D.transform.rotation);
+        Instantiate(_onDeathDrop, _rigidbody2D.position, _rigidbody2D.transform.rotation);
     }
     private void DropDamagePopup(int damage, Vector2 positionVector2)
     {

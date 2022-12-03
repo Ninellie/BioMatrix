@@ -887,7 +887,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1239585262}
+      - m_Target: {fileID: 1239585266}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: BackToMainMenu
         m_Mode: 1
@@ -1045,9 +1045,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1239585262}
+      - m_Target: {fileID: 1239585266}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: ResumeGame
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1144,7 +1144,7 @@ GameObject:
   - component: {fileID: 240021403}
   - component: {fileID: 240021402}
   m_Layer: 5
-  m_Name: TextHP
+  m_Name: LifePointsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1388,7 +1388,7 @@ GameObject:
   - component: {fileID: 277438310}
   - component: {fileID: 277438309}
   m_Layer: 5
-  m_Name: TextAmmo
+  m_Name: AmmoAmountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1754,9 +1754,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1239585262}
+      - m_Target: {fileID: 1239585266}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: ResumeGame
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4524,7 +4524,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094596400}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4852,6 +4852,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 662952946}
+  - {fileID: 1807219893}
   m_Father: {fileID: 1239585261}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28841,10 +28842,10 @@ GameObject:
   - component: {fileID: 1239585259}
   - component: {fileID: 1239585258}
   - component: {fileID: 1239585257}
-  - component: {fileID: 1239585262}
   - component: {fileID: 1239585263}
   - component: {fileID: 1239585264}
   - component: {fileID: 1239585265}
+  - component: {fileID: 1239585266}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Canvas
@@ -28956,22 +28957,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1239585262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239585256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a0c4acc5ec9a0143b29d1362e79412e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 786324380}
-  settingsMenuUI: {fileID: 944327644}
-  timerUI: {fileID: 2049719694}
-  lvlUpMenuUI: {fileID: 755406562}
 --- !u!114 &1239585263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29017,6 +29002,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reloadPlate: {fileID: 66326568}
+--- !u!114 &1239585266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239585256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0c4acc5ec9a0143b29d1362e79412e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 786324380}
+  settingsMenuUI: {fileID: 944327644}
+  timerUI: {fileID: 2049719694}
+  lvlUpMenuUI: {fileID: 755406562}
 --- !u!1 &1249147648
 GameObject:
   m_ObjectHideFlags: 0
@@ -29763,19 +29764,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 381442720280931422, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
   m_PrefabInstance: {fileID: 1570661139}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1365173399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365173394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c5fa820929c904cae5aaff3f637eab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 6671026415413744665, guid: d77549fb193519146a7a33771c9312b9, type: 3}
 --- !u!20 &1365173402 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6798056590901079273, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
@@ -29800,6 +29788,26 @@ MonoBehaviour:
   timer: {fileID: 2049719694}
   camWidth: 0
   camHeight: 0
+--- !u!114 &1365173414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365173394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c5fa820929c904cae5aaff3f637eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceBar: {fileID: 1094596405}
+  ammoBar: {fileID: 1610744639}
+  lifeBar: {fileID: 1610744638}
+  pauseMenu: {fileID: 1239585266}
+  levelUp: {fileID: 1239585264}
+  deathScreen: {fileID: 1239585263}
+  _playerPrefab: {fileID: 6671026415413744665, guid: d77549fb193519146a7a33771c9312b9, type: 3}
+  _playerWeapon: {fileID: 3233653779076600719, guid: 1efe1dd8adcbfe74595487da48627252, type: 3}
 --- !u!1 &1371623710
 GameObject:
   m_ObjectHideFlags: 0
@@ -30447,9 +30455,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1239585262}
+      - m_Target: {fileID: 1239585266}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: ResumeGame
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -30508,9 +30516,10 @@ GameObject:
   - component: {fileID: 1610744634}
   - component: {fileID: 1610744637}
   - component: {fileID: 1610744636}
-  - component: {fileID: 1610744635}
+  - component: {fileID: 1610744639}
+  - component: {fileID: 1610744638}
   m_Layer: 5
-  m_Name: HP
+  m_Name: Life and ammo bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30538,19 +30547,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 1}
---- !u!114 &1610744635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1610744633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce189915e06394d4db9a28625baf228e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentLifePointsBar: {fileID: 240021402}
 --- !u!114 &1610744636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30589,6 +30585,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610744633}
   m_CullTransparentMesh: 1
+--- !u!114 &1610744638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610744633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce189915e06394d4db9a28625baf228e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _life: {fileID: 240021402}
+--- !u!114 &1610744639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610744633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a35dd86b2b2994c9970a7a9e37d3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ammo: {fileID: 277438309}
 --- !u!1 &1648758411
 GameObject:
   m_ObjectHideFlags: 0
@@ -30673,7 +30695,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1239585262}
+      - m_Target: {fileID: 1239585266}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1
@@ -30996,13 +31018,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807219891}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.630596, y: 141.40579, z: 111.907074}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 36.484447, y: -59.11673, z: 1.8011253}
+  m_LocalScale: {x: 0.94444436, y: 0.94444436, z: 0.94444436}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1140396568}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1824829865
 GameObject:
@@ -31668,7 +31690,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1239585262}
+      - m_Target: {fileID: 1239585266}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: BackToMainMenu
         m_Mode: 1

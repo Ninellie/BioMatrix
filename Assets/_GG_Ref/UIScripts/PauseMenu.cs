@@ -10,31 +10,16 @@ public class PauseMenu : MonoBehaviour
     public GameObject settingsMenuUI;
     public GameObject timerUI;
     public GameObject lvlUpMenuUI;
-    private void OnEnable()
+    public void Subscription()
     {
-        FindObjectOfType<Camera>()
-            .GetComponent<PlayerCreator>().onPlayerCreated += Subscription;
-    }
-    private void OnDisable()
-    {
-        FindObjectOfType<Camera>()
-            .GetComponent<PlayerCreator>().onPlayerCreated -= Subscription;
-    }
-    private void Subscription()
-    {
-        GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onGamePaused += OnPause;
+        FindObjectOfType<Player>().onGamePaused += OnPause;
 
-        GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onPlayerDeath += Unsubscription;
+        FindObjectOfType<Player>().onPlayerDeath += Unsubscription;
     }
-
     private void Unsubscription()
     {
-        GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onGamePaused -= OnPause;
-        GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onPlayerDeath -= Unsubscription;
+        FindObjectOfType<Player>().onGamePaused -= OnPause;
+        FindObjectOfType<Player>().onPlayerDeath -= Unsubscription;
     }
     public void OnPause()
     {
@@ -43,17 +28,17 @@ public class PauseMenu : MonoBehaviour
         else
             Pause();
     }
-    private void Resume()
+    public void Resume()
     {
         pauseMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
 
         if (lvlUpMenuUI.activeInHierarchy)
         {
-            var button = lvlUpMenuUI.GetComponentsInChildren<Button>();
-            for (int i = 0; i < button.Length; i++)
+            var buttons = lvlUpMenuUI.GetComponentsInChildren<Button>();
+            foreach (var button in buttons)
             {
-                button[i].interactable = true;
+                button.interactable = true;
             }
         }
         else
@@ -66,10 +51,10 @@ public class PauseMenu : MonoBehaviour
         PauseGame();
         if (lvlUpMenuUI.activeInHierarchy)
         {
-            var button = lvlUpMenuUI.GetComponentsInChildren<Button>();
-            for(int i = 0;  i < button.Length; i++)
+            var buttons = lvlUpMenuUI.GetComponentsInChildren<Button>();
+            foreach (var button in buttons)
             {
-                button[i].interactable = false;
+                button.interactable = false;
             }
         }
         pauseMenuUI.SetActive(true);

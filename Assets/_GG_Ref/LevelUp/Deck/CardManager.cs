@@ -40,10 +40,8 @@ public class CardManager
 
         var limit = 0;
 
-        for (int i = 0; i < cardList.Count; i++)
+        foreach (var card in cardList)
         {
-            var card = cardList[i];
-
             limit += card.DropWeight;
             if (next < limit)
             {

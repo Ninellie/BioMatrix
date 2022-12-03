@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 public class ArrayCardRepository : ICardRepository
 {
@@ -8,25 +7,25 @@ public class ArrayCardRepository : ICardRepository
         new Card
         {
             Title = "Movement speed",
-            Description = "+ 25% to movement speed multiplier",
+            Description = "+ 50% to movement speed multiplier",
             DropWeight = 1000,
             InfluencedStats = new[]
             {
                 "speed",
             },
             ModifierList = new StatModifier[]
-                {
-                    new StatModifier(OperationType.Multiplication, 25)
-                },
+            {
+                new StatModifier(OperationType.Multiplication, 50)
+            },
         },
         new Card
         {
-            Title = "Maximum HP",
+            Title = "Maximum life points",
             Description = "+ 1 to maximum HP",
             DropWeight = 1000,
             InfluencedStats = new[]
             {
-                "maximumHP",
+                "maximumLifePoints",
             },
             ModifierList = new StatModifier[]
             {
@@ -36,7 +35,7 @@ public class ArrayCardRepository : ICardRepository
         new Card
         {
             Title = "Fire rate",
-            Description = "+ 10% to fire rate multiplier",
+            Description = "+ 25% to fire rate multiplier",
             DropWeight = 1000,
             InfluencedStats = new[]
             {
@@ -44,13 +43,13 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Multiplication, 10)
+                new StatModifier(OperationType.Multiplication, 25)
             },
         },
         new Card
         {
             Title = "Projectile speed",
-            Description = "+ 10% to projectile speed multiplier",
+            Description = "+ 25% to projectile speed multiplier",
             DropWeight = 1000,
             InfluencedStats = new[]
             {
@@ -58,14 +57,14 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Multiplication, 10)
+                new StatModifier(OperationType.Multiplication, 25)
             },
         },
         new Card
         {
             Title = "Piercing projectiles",
             Description = "Projectiles pierce + 1 enemy",
-            DropWeight = 100,
+            DropWeight = 10,
             InfluencedStats = new[]
             {
                 "pierceNumber",
@@ -93,7 +92,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Additional projectile",
             Description = "The weapon fires an additional secondary projectile",
-            DropWeight = 10,
+            DropWeight = 100,
             InfluencedStats = new[]
             {
                 "projectileNumber",

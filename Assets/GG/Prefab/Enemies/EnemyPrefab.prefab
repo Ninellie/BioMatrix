@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6042837996286799121}
   - component: {fileID: 3572984765799172596}
-  - component: {fileID: -3517159354389899128}
   - component: {fileID: 3774024594271913881}
   - component: {fileID: 8165684587596004793}
+  - component: {fileID: 5590340840478446595}
   m_Layer: 6
   m_Name: EnemyPrefab
   m_TagString: Enemy
@@ -87,32 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-3517159354389899128
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8954189743293124748}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.24, y: 10.24}
-    newSize: {x: 10.24, y: 10.24}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 7.05, y: 7.05}
-  m_EdgeRadius: 0
 --- !u!50 &3774024594271913881
 Rigidbody2D:
   serializedVersion: 4
@@ -148,3 +122,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
   _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
+--- !u!58 &5590340840478446595
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3.64

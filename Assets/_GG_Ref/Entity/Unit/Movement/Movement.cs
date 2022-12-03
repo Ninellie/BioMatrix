@@ -93,6 +93,7 @@ public class Movement
     }
     private void Pursue()
     {
+        if (_pursuingTarget == null) return;
         SetMovementDirection(_pursuingTarget.GetComponent<Rigidbody2D>().position - DrivenRigidbody2D.position);
         Move();
     }
@@ -109,9 +110,33 @@ public class Movement
     }
     private Vector2 DirectionToPursuingTarget()
     {
-        var horizontal = _pursuingTarget.transform.position.x - DrivenRigidbody2D.transform.position.x;
+        if (_pursuingTarget == null) return new Vector2(0, 0);
+            var horizontal = _pursuingTarget.transform.position.x - DrivenRigidbody2D.transform.position.x;
         var vertical = _pursuingTarget.transform.position.y - DrivenRigidbody2D.transform.position.y;
 
         return new Vector2(horizontal, vertical);
     }
+    //private void Repel()
+    //{
+    //    Debug.Log("11111111111111111 enemy collision");
+    //    if (_collisionGameObject.tag != "Enemy") return;
+
+    //    var collisionGameObjectCircleCollider2D = _collisionGameObject.GetComponent<CircleCollider2D>();
+
+    //    var overlap = _circleCollider2D.Distance(collisionGameObjectCircleCollider2D).isOverlapped;
+
+    //    if (!overlap) return;
+
+    //    var repelVector2 = Vector2.zero;
+
+    //    var a_pointOnMyCircle = _circleCollider2D.ClosestPoint(_collisionGameObject.transform.position);
+
+    //    var b_pointOnCollisionGameObjectCircle = collisionGameObjectCircleCollider2D.ClosestPoint(gameObject.transform.position);
+
+    //    var c = b_pointOnCollisionGameObjectCircle - a_pointOnMyCircle;
+
+    //    repelVector2 = c - a_pointOnMyCircle;
+
+    //    _rigidbody2D.MovePosition(repelVector2 + new Vector2(1, 1));
+    //}
 }

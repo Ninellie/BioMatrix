@@ -1,6 +1,5 @@
 using System;
 using System.Diagnostics;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 [RequireComponent(typeof(Reload))]
@@ -15,20 +14,21 @@ public class Firearm : MonoBehaviour
     public Stat MagazineSize { get; private set; }
     public Stat ReloadSpeed { get; private set; }
     public Stat SingleShootProjectile { get; private set; }
+    
     [SerializeField] private GameObject _ammo;
     public bool CanShoot => _previousShootStopwatch.Elapsed >= MinShootInterval
                             && !Magazine.IsEmpty
                             && !Reload.IsInProcess;
+    public Magazine Magazine => GetComponent<Magazine>();
     private bool IsFireButtonPressed =>
         GameObject.FindGameObjectsWithTag("Player")[0]
             .GetComponent<Player>()
             .isFireButtonPressed;
     private Reload Reload => GetComponent<Reload>();
-    private Magazine Magazine => GetComponent<Magazine>();
     private ProjectileCreator ProjectileCreator => GetComponent<ProjectileCreator>();
     private readonly Stopwatch _previousShootStopwatch = new();
     private TimeSpan MinShootInterval => TimeSpan.FromSeconds(1d / ShootsPerSecond.Value);
-    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.ShotgunSettings);
+    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.ShotgunStats);
     private void BaseAwake(FirearmStatsSettings settings)
     {
         Damage = new Stat(settings.Damage);
@@ -45,7 +45,34 @@ public class Firearm : MonoBehaviour
         if (!IsFireButtonPressed) return;
         if (CanShoot) Shoot();
     }
-    public void Shoot()
+    public void AddStatModifier(string statName, StatModifier statModifier)
+    {
+        switch (statName)
+        {
+            case "firearmDamage":
+                Damage.AddModifier(statModifier);
+                break;
+            case "projectileSpeed":
+                ShootForce.AddModifier(statModifier);
+                break;
+            case "fireRate":
+                ShootsPerSecond.AddModifier(statModifier);
+                break;
+            case "bulletsSpread":
+                MaxShootDeflectionAngle.AddModifier(statModifier);
+                break;
+            case "magazineSize":
+                MagazineSize.AddModifier(statModifier);
+                break;
+            case "reloadSpeed":
+                ReloadSpeed.AddModifier(statModifier);
+                break;
+            case "projectileNumber":
+                SingleShootProjectile.AddModifier(statModifier);
+                break;
+        }
+    }
+    private void Shoot()
     {
         Magazine.Pop();
         var projectiles = ProjectileCreator.CreateProjectiles((int)SingleShootProjectile.Value, _ammo, gameObject.transform);
@@ -56,6 +83,7 @@ public class Firearm : MonoBehaviour
         }
         _previousShootStopwatch.Restart();
     }
+
     private Vector2 GetShotDirection()
     {
         return Lib2DMethods.DirectionToTarget(

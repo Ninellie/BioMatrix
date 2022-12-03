@@ -15,6 +15,7 @@ public class Stat
     private float BaseMultiplierValue { get; }
     private float MultiplierValue => GetMultiplierValue();
     private readonly List<StatModifier> _modifiers = new List<StatModifier>();
+    private const float MultiplierDivisor = 100;
 
     //Without multiplierValue (with multiplierValue = 1)
     //public Stat(float baseValue, bool isModifiable) : this(baseValue, isModifiable, 1)
@@ -35,7 +36,7 @@ public class Stat
     //{
     //    _modifiers = modifiers;
     //}
-    public Stat(float baseValue) : this(baseValue, true, 1, 0)
+    public Stat(float baseValue) : this(baseValue, true, 100, 0)
     {
     }
     public Stat(float baseValue, bool isModifiable, float baseMultiplierValue, float baseAddedValue)
@@ -83,11 +84,9 @@ public class Stat
     }
     private float GetActualValue()
     {
-        if (IsModifiable == false)
-        {
-            return (BaseValue + BaseAddedValue) * BaseMultiplierValue;
-        }
-        return (BaseValue + AddedValue) * MultiplierValue;
+        return IsModifiable == false
+            ? (BaseValue + BaseAddedValue) * (BaseMultiplierValue / MultiplierDivisor)
+            : (BaseValue + AddedValue) * (MultiplierValue / MultiplierDivisor);
     }
     private void OnValueChanged(float oldValue)
     {
