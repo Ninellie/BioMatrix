@@ -8,6 +8,18 @@ public class AmmoBar : MonoBehaviour
     {
         UpdateBar();
     }
+    //private void OnEnable()
+    //{
+    //    Debug.Log("AmmoBar OnEnable");
+    //    FindObjectOfType<Camera>()
+    //        .GetComponent<PlayerCreator>().onPlayerCreated += Subscription;
+    //}
+    //private void OnDisable()
+    //{
+    //    Debug.Log("AmmoBar OnDisable");
+    //    FindObjectOfType<Camera>()
+    //        .GetComponent<PlayerCreator>().onPlayerCreated -= Subscription;
+    //}
     public void Subscription()
     {
         Debug.Log("Ammo bar started subscribing on current ammo amount tof Player's Firearm");
