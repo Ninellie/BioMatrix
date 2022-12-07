@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Enemy : Unit
@@ -14,6 +15,18 @@ public class Enemy : Unit
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EnemyStats);
     private void Update() => BaseUpdate();
     private void FixedUpdate() => Movement.FixedUpdateMove();
+    //private void Repel()
+    //{
+    //    if (_collisionGameObject.tag != "Enemy") return;
+    //    var collisionGameObjectCircleCollider2D = _collisionGameObject.GetComponent<CircleCollider2D>();
+    //    var overlap = _circleCollider2D.Distance(collisionGameObjectCircleCollider2D).isOverlapped;
+    //    if (!overlap) return;
+    //    var a_pointOnMyCircle = _circleCollider2D.ClosestPoint(_collisionGameObject.transform.position);
+    //    var b_pointOnCollisionGameObjectCircle = collisionGameObjectCircleCollider2D.ClosestPoint(gameObject.transform.position);
+    //    var c = b_pointOnCollisionGameObjectCircle - a_pointOnMyCircle;
+    //    var repelVector2 = a_pointOnMyCircle - c;
+    //    _rigidbody2D.MovePosition(repelVector2);
+    //}
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _collisionGameObject = collision.gameObject;
@@ -28,6 +41,7 @@ public class Enemy : Unit
                 DropDamagePopup(MinimalDamageTaken, _collisionGameObjectCentre);
                 break;
             case "Enemy":
+                //Repel();
                 break;
         }
     }
