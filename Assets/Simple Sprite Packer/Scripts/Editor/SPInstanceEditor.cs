@@ -47,7 +47,7 @@ namespace SimpleSpritePackerEditor
 			EditorGUILayout.PropertyField(this.serializedObject.FindProperty("m_Texture"), new GUIContent("Atlas Texture"));
 			EditorGUILayout.Space();
 			EditorGUILayout.PropertyField(this.serializedObject.FindProperty("m_Padding"), new GUIContent("Packing Padding"));
-			this.MaxSizePopup(this.serializedObject.FindProperty("m_MaxSize"), "Packing Max Size");
+			this.MaxSizePopup(this.serializedObject.FindProperty("m_MaxSize"), "Packing Max size");
 			EditorGUILayout.PropertyField(this.serializedObject.FindProperty("m_PackingMethod"));
 			EditorGUILayout.Space();
 			EditorGUILayout.PropertyField(this.serializedObject.FindProperty("m_DefaultPivot"));
