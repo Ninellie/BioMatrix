@@ -20,11 +20,12 @@ public class GlobalStatsSettingsRepository
         Speed = 250,
     };
 
-    public static readonly UnitStatsSettings EnemyStats = new UnitStatsSettings()
+    public static readonly EnemyStatsSettings EnemyStats = new EnemyStatsSettings()
     {
         Size = 1,
-        MaximumLife = 2,
+        MaximumLife = 1,
         Speed = 100,
+        SpawnWeight = 1000,
     };
 
     public static readonly UnitStatsSettings BoonStats = new UnitStatsSettings()

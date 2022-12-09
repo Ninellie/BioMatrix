@@ -5,6 +5,6 @@ public class MainCameraPlayerSeek : MonoBehaviour
     private void Update()
     {
         if (IsPlayerExists)
-            transform.position = new Vector3(Lib2DMethods.PlayerPos.x, Lib2DMethods.PlayerPos.y, -100.0f);
+            transform.position = new Vector3(Lib2DMethods.PlayerPosition.x, Lib2DMethods.PlayerPosition.y, -100.0f);
     }
 }

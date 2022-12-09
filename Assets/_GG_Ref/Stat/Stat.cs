@@ -61,14 +61,17 @@ public class Stat
         OnValueChanged(oldValue);
         return true;
     }
-    public bool ClearModifiersList()
+
+    public bool IsModifierListEmpty()
     {
-        if (_modifiers.Count == 0)
-            return false;
+        return _modifiers.Count == 0;
+    }
+    public void ClearModifiersList()
+    {
+        if (IsModifierListEmpty()) return;
         var oldValue = Value;
         _modifiers.Clear();
         OnValueChanged(oldValue);
-        return true;
     }
     private float GetAddedValue()
     {
@@ -90,9 +93,7 @@ public class Stat
     }
     private void OnValueChanged(float oldValue)
     {
-        if (Value.Equals(oldValue))
-        {
-            onValueChanged?.Invoke();
-        }
+        if (Value.Equals(oldValue)) return;
+        onValueChanged?.Invoke();
     }
 }

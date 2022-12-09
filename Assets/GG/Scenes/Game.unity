@@ -29781,13 +29781,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f28df27bdbbdb4cb55f6538ec3d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabEnemies:
+  enemyTypes:
   - {fileID: 8954189743293124748, guid: 31b0110467a1ce14e96a54e0a5736dfe, type: 3}
   enemySpawnPerSecond: 0.5
   enemyDefaultPadding: 1.5
-  timer: {fileID: 2049719694}
-  camWidth: 0
-  camHeight: 0
+  timerGameObject: {fileID: 2049719694}
 --- !u!114 &1365173414
 MonoBehaviour:
   m_ObjectHideFlags: 0

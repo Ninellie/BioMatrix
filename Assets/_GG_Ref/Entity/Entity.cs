@@ -66,6 +66,15 @@ public class Entity : MonoBehaviour
         CurrentLifePoints -= amount;
         Debug.Log("Damage is taken " + gameObject.name);
     }
+    public virtual void RestoreLifePoints()
+    {
+        CurrentLifePoints = MaximumLifePoints.Value;
+    }
+    public virtual void RestoreLifePoints(int value)
+    {
+        if (value < 1) return;
+        CurrentLifePoints += value;
+    }
     protected virtual bool IsAlive()
     {
         return CurrentLifePoints > DeathLifePointsThreshold;
@@ -75,10 +84,7 @@ public class Entity : MonoBehaviour
         gameObject.SetActive(false);
         Destroy(gameObject);
     }
-    protected virtual void RestoreLifePoints()
-    {
-        CurrentLifePoints = MaximumLifePoints.Value;
-    }
+    
     protected virtual void ChangeCurrentSize()
     {
         //gameObject.GetComponent<Transform>().position.Scale(new Vector3(Size.Value, Size.Value));

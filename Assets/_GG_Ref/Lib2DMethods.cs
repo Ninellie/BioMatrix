@@ -20,24 +20,14 @@ public static class Lib2DMethods
     //    var angle = (Mathf.Atan2(DistanceToPlayer(rigidBody2D.position).y, DistanceToPlayer(rigidBody2D.position).x) - Mathf.PI / 2) * Mathf.Rad2Deg;
     //    rigidBody2D.rotation = angle;
     //}
-    public static Vector2 PlayerPos
+    public static Vector2 PlayerPosition
     {
         get
         {
-            if (GameObject.FindObjectOfType<Player>() != null)
-            {
-                var horizontal = GameObject.FindGameObjectsWithTag("Player")[0].transform.position.x;
-                var vertical = GameObject.FindGameObjectsWithTag("Player")[0].transform.position.y;
-
-                return new Vector2(horizontal, vertical);
-            }
-            return Vector2.zero;
-            //else
-            //{
-            //    var horizontal = GameObject.FindObjectOfType<Camera>().transform.position.x;
-            //    var vertical = GameObject.FindObjectOfType<Camera>().transform.position.y;
-            //    return new Vector2(horizontal, vertical);
-            //}
+            if (GameObject.FindObjectOfType<Player>() == null) return Vector2.zero;
+            var horizontal = GameObject.FindGameObjectsWithTag("Player")[0].transform.position.x;
+            var vertical = GameObject.FindGameObjectsWithTag("Player")[0].transform.position.y;
+            return new Vector2(horizontal, vertical);
         }
      }
     //public static Vector2 DistanceToPlayer(Vector2 myPos)
