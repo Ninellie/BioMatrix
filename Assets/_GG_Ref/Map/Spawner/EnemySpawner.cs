@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Set in Inspector")]
     public GameObject[] enemyTypes;
-    public float enemySpawnPerSecond = 0.5f;
+    public float enemySpawnPerSecond = 0.2f;
     public float enemyDefaultPadding = 1.5f;
     public GameObject timerGameObject;
 
@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         SpawnEnemy();
-        Invoke("SpawnEnemy", 1f / CalculateSpawnPerSecond());
+        //Invoke("SpawnEnemy", 1f / CalculateSpawnPerSecond());
     }
     public void SpawnEnemy()
     {
@@ -41,12 +41,7 @@ public class EnemySpawner : MonoBehaviour
     {
         return (int)timer.GetTotalSeconds() / Complicator;
     }
-    private Vector2 GetRandomPointOnCircle(float radius, Vector2 circleCenter)
-    {
-        var randomPointOnBaseCircle = Lib2DMethods.RandOnCircle(radius);
-        var randomPointOnActualCircle = circleCenter + randomPointOnBaseCircle;
-        return randomPointOnActualCircle;
-    }
+    
     private float GetCircleRadiusInscribedAroundTheCamera()
     {
         var camHeight = Camera.main.orthographicSize * 2;
@@ -60,7 +55,6 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Spawn()
     {
-
         var spawn = GetEnemyList(EnemiesInWave, enemyTypes);
         
         var spawnedEnemies = new GameObject[EnemiesInWave];
@@ -75,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
             ImproveAccordingToTimer(enemy.GetComponent<Enemy>());
         }
 
-        PlaceEnemies(spawnedEnemies, GroupingMode.Default);
+        PlaceEnemies(spawnedEnemies, GroupingMode.Surround);
     }
     private GameObject GetRandomEnemyFromList(List<GameObject> enemyList)
     {
@@ -109,43 +103,57 @@ public class EnemySpawner : MonoBehaviour
         {
             var randomEnemyFromList = GetRandomEnemyFromList(enemyList);
             selectedEnemies.Add(randomEnemyFromList);
-            //enemyList.Remove(randomEnemyFromList);
         }
         return selectedEnemies.ToArray();
     }
     private void PlaceEnemies(GameObject[] enemies, GroupingMode mode)
     {
+        var radius = GetCircleRadiusInscribedAroundTheCamera();
+        var playerPoint = (Vector2)FindObjectOfType<Player>().transform.position;
         switch (mode)
         {
             case GroupingMode.Default:
-                PlaceDefaultEnemies(enemies);
+                PlaceDefaultEnemies(enemies, radius, playerPoint);
                 break;
             case GroupingMode.Surround:
-                PlaceRingEnemies(enemies);
+                PlaceRingEnemies(enemies, radius, playerPoint);
                 break;
             case GroupingMode.Group:
-                PlaceGroupEnemies(enemies);
+                PlaceGroupEnemies(enemies, radius, playerPoint);
                 break;
         }
     }
-    private void PlaceDefaultEnemies(IEnumerable<GameObject> enemies)
+    private void PlaceDefaultEnemies(IEnumerable<GameObject> enemies, float radius, Vector2 playerPoint)
     {
-        var radius = GetCircleRadiusInscribedAroundTheCamera();
-        var playerPoint = Lib2DMethods.PlayerPosition;
-
         foreach (var enemy in enemies)
         {
-            enemy.transform.position = GetRandomPointOnCircle(radius, playerPoint);
+            var randomAng = GetRandomAngle();
+            enemy.transform.position = GetPointOnCircle(radius, playerPoint, randomAng);
         }
     }
-    private void PlaceRingEnemies(GameObject[] arrayEnemies)
+    private void PlaceRingEnemies(IEnumerable<GameObject> enemies, float radius, Vector2 playerPoint)
     {
-        var radius = GetCircleRadiusInscribedAroundTheCamera();
-        var playerPoint = Lib2DMethods.PlayerPosition;
+        var enemiesArray = enemies as GameObject[] ?? enemies.ToArray();
+        var angleStep = (float)Math.PI * 2f / enemiesArray.Length;
+        var nextAngle = GetRandomAngle();
+
+        foreach (var enemy in enemiesArray)
+        {
+            enemy.transform.position = GetPointOnCircle(radius, playerPoint, nextAngle);
+            nextAngle += angleStep;
+        }
     }
-    private void PlaceGroupEnemies(GameObject[] arrayEnemies)
+    private void PlaceGroupEnemies(GameObject[] arrayEnemies, float radius, Vector2 playerPoint)
     {
-        var radius = GetCircleRadiusInscribedAroundTheCamera();
-        var playerPoint = Lib2DMethods.PlayerPosition;
+    }
+    private float GetRandomAngle()
+    {
+        return UnityEngine.Random.Range(0, Mathf.PI * 2);
+    }
+    private Vector2 GetPointOnCircle(float radius, Vector2 circleCenter, float fi)
+    {
+        var randomPointOnBaseCircle = new Vector2(Mathf.Cos(fi) * radius, Mathf.Sin(fi) * radius);
+        var randomPointOnActualCircle = circleCenter + randomPointOnBaseCircle;
+        return randomPointOnActualCircle;
     }
 }

@@ -67,12 +67,11 @@ public static class Lib2DMethods
     //    return mousePosition;
     //}
 
-    public static Vector2 RandOnCircle(float radius)
-    {
-        float randAng = Random.Range(0, Mathf.PI * 2);
-        return new Vector2(Mathf.Cos(randAng) * radius, Mathf.Sin(randAng) * radius);
-
-    }
+    //public static Vector2 RandOnCircle(float radius)
+    //{
+    //    float randAng = Random.Range(0, Mathf.PI * 2);
+    //    return new Vector2(Mathf.Cos(randAng) * radius, Mathf.Sin(randAng) * radius);
+    //}
     public static float HypotenuseLength(float sideALength, float sideBLength)
     {
         return Mathf.Sqrt(sideALength * sideALength + sideBLength * sideBLength);
