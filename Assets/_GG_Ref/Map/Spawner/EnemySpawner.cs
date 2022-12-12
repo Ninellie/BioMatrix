@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -10,9 +13,9 @@ public class EnemySpawner : MonoBehaviour
     public float enemySpawnPerSecond = 0.2f;
     public float enemyDefaultPadding = 1.5f;
     public GameObject timerGameObject;
-
+    
     private const int Complicator = 30;
-    private const int EnemiesInWave = 1;
+    private const int EnemiesInWave = 30;
     private Timer _timer;
     private readonly System.Random _random = new();
     private void Awake()
@@ -22,7 +25,6 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         SpawnEnemy();
-        //Invoke("SpawnEnemy", 1f / CalculateSpawnPerSecond());
     }
     public void SpawnEnemy()
     {
@@ -30,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
 
         Spawn();
 
-        Invoke("SpawnEnemy", 1f / CalculateSpawnPerSecond());
+        Invoke("SpawnEnemy", 5f / CalculateSpawnPerSecond());
     }
     private void ImproveAccordingToTimer(Enemy enemy)
     {
@@ -41,12 +43,16 @@ public class EnemySpawner : MonoBehaviour
     {
         return (int)timer.GetTotalSeconds() / Complicator;
     }
-    
     private float GetCircleRadiusInscribedAroundTheCamera()
     {
         var camHeight = Camera.main.orthographicSize * 2;
         var camWidth = camHeight * Camera.main.aspect;
-        return Lib2DMethods.HypotenuseLength(camHeight, camWidth) / 2;
+        return GetHypotenuseLength(camHeight, camWidth) / 2;
+        
+    }
+    public float GetHypotenuseLength(float sideALength, float sideBLength)
+    {
+        return Mathf.Sqrt(sideALength * sideALength + sideBLength * sideBLength);
     }
     private float CalculateSpawnPerSecond()
     {
@@ -69,7 +75,7 @@ public class EnemySpawner : MonoBehaviour
             ImproveAccordingToTimer(enemy.GetComponent<Enemy>());
         }
 
-        PlaceEnemies(spawnedEnemies, GroupingMode.Surround);
+        PlaceEnemies(spawnedEnemies, GroupingMode.Group);
     }
     private GameObject GetRandomEnemyFromList(List<GameObject> enemyList)
     {
@@ -143,12 +149,27 @@ public class EnemySpawner : MonoBehaviour
             nextAngle += angleStep;
         }
     }
-    private void PlaceGroupEnemies(GameObject[] arrayEnemies, float radius, Vector2 playerPoint)
+    private void PlaceGroupEnemies(IEnumerable<GameObject> enemies, float radius, Vector2 playerPoint)
     {
+        var enemiesArray = enemies as GameObject[] ?? enemies.ToArray();
+        var padding = enemiesArray.Sum(enemy => enemy.GetComponent<CircleCollider2D>().radius) / 2;
+        var packCentre = GetPointOnCircle(radius + padding, playerPoint, GetRandomAngle());
+        foreach (var enemy in enemiesArray)
+        {
+            var v2 = new Vector2(Random.value, Random.value);
+            if (Random.value > 0.5f)
+            {
+                enemy.transform.position = packCentre - v2;
+            }
+            else
+            {
+                enemy.transform.position = packCentre + v2;
+            }
+        }
     }
     private float GetRandomAngle()
     {
-        return UnityEngine.Random.Range(0, Mathf.PI * 2);
+        return Random.Range(0, Mathf.PI * 2);
     }
     private Vector2 GetPointOnCircle(float radius, Vector2 circleCenter, float fi)
     {

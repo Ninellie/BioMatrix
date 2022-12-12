@@ -86,8 +86,6 @@ public class Firearm : MonoBehaviour
 
     private Vector2 GetShotDirection()
     {
-        return Lib2DMethods.DirectionToTarget(
-            Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()),
-            gameObject.transform.position);
+        return Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - gameObject.transform.position;
     }
 }

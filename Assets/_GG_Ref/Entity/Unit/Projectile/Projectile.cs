@@ -41,7 +41,21 @@ public class Projectile : Unit
     private Vector2 GetActualShotDirection(Vector2 direction, float maxShotDeflectionAngle)
     {
         var angleInRad = (float)Mathf.Deg2Rad * maxShotDeflectionAngle;
-        var shotDeflectionAngle = Lib2DMethods.Range(-angleInRad, angleInRad);
-        return Lib2DMethods.Rotate(direction, shotDeflectionAngle);
+        var shotDeflectionAngle = Range(-angleInRad, angleInRad);
+        return Rotate(direction, shotDeflectionAngle);
+    }
+    private float Range(float minInclusive, float maxInclusive)
+    {
+        var std = PeterAcklamInverseCDF.NormInv(Random.value);
+        return PeterAcklamInverseCDF.RandomGaussian(std, minInclusive, maxInclusive);
+    }
+    private Vector2 Rotate(Vector2 point, float angle)
+    {
+        Vector2 rotatedPoint;
+        rotatedPoint.x = point.x * Mathf.Cos(angle)
+                          - point.y * Mathf.Sin(angle);
+        rotatedPoint.y = point.x * Mathf.Sin(angle)
+                          + point.y * Mathf.Cos(angle);
+        return rotatedPoint;
     }
 }

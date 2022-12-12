@@ -59,7 +59,7 @@ public class Entity : MonoBehaviour
     }
     protected virtual void BaseUpdate()
     {
-        IsOnScreen = Lib2DMethods.CheckVisibilityOnCamera(_mCamera, gameObject);
+        IsOnScreen = CheckVisibilityOnCamera(_mCamera, gameObject);
     }
     public virtual void TakeDamage(float amount)
     {
@@ -84,9 +84,17 @@ public class Entity : MonoBehaviour
         gameObject.SetActive(false);
         Destroy(gameObject);
     }
-    
     protected virtual void ChangeCurrentSize()
     {
         //gameObject.GetComponent<Transform>().position.Scale(new Vector3(Size.Value, Size.Value));
+    }
+    private bool CheckVisibilityOnCamera(Camera camera, GameObject gameObject)
+    {
+        var screenPos = camera.WorldToScreenPoint(gameObject.transform.position);
+        var onScreen = screenPos.x > 0f && 
+                       screenPos.x < Screen.width &&
+                       screenPos.y > 0f &&
+                       screenPos.y < Screen.height;
+        return onScreen;
     }
 }

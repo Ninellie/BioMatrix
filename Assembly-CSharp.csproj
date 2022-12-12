@@ -62,7 +62,6 @@
     <Compile Include="Assets\_GG_Ref\Firearm\Magazine.cs" />
     <Compile Include="Assets\_GG_Ref\Firearm\FirearmStatsSettings.cs" />
     <Compile Include="Assets\_GG_Ref\UIScripts\TestJson.cs" />
-    <Compile Include="Assets\_GG_Ref\Lib2DMethods.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\_GG_Ref\LevelUp\Deck\Card.cs" />
@@ -122,6 +121,7 @@
     <Compile Include="Assets\_GG_Ref\Entity\Unit\Projectile\Projectile.cs" />
     <Compile Include="Assets\_GG_Ref\UIScripts\DeathScreen.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
+    <Compile Include="Assets\_GG_Ref\Map\Spawner\CirclePacker.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\_GG_Ref\Camera\Ortho2dCamera.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
