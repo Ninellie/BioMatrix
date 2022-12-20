@@ -142,6 +142,7 @@
     <Compile Include="Assets\_GG_Ref\Firearm\Firearm.cs" />
     <Compile Include="Assets\_GG_Ref\UIScripts\Timer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
+    <Compile Include="Assets\_GG_Ref\Entity\Unit\Enemy\Rarity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -162,6 +163,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Simple Sprite Packer\Changelog.txt" />
+    <None Include="Assets\Shaders\EnemyOutline.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Simple Sprite Packer\readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />

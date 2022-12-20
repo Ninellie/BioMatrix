@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class Enemy : Unit
@@ -8,9 +7,10 @@ public class Enemy : Unit
     [SerializeField] private GameObject _damagePopup;
 
     public Stat SpawnWeight = new(GlobalStatsSettingsRepository.EnemyStats.SpawnWeight);
-
+    private Rarity _rarity;
     private GameObject _collisionGameObject;
-    private Rigidbody2D Rigidbody2D => GetComponent<Rigidbody2D>();
+    private Rigidbody2D _rigidbody2D;
+    private SpriteRenderer _spriteRenderer;
 
     private const int MinInitialLevel = 1;
     private const float MaxLifeIncreasePerLevel = 1;
@@ -48,14 +48,43 @@ public class Enemy : Unit
     protected void BaseAwake(EnemyStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Enemy Awake");
-        
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         
         var movement = new Movement(gameObject, MovementMode.Seek, settings.Speed);
         movement.SetPursuingTarget(FindObjectOfType<Player>().gameObject);
         base.BaseAwake(settings, movement);
-
+        _rarity = Rarity.Normal;
         Level = MinInitialLevel;
         RestoreLifePoints();
+    }
+    public void SetRarity(Rarity rarity)
+    {
+        _rarity = rarity;
+        switch (rarity)
+        {
+            case Rarity.Normal:
+                _spriteRenderer.material.SetFloat("_OutlineWidth", 0);
+                _spriteRenderer.material.SetColor("_OutlineColor", Color.white);
+                break;
+            case Rarity.Magic:
+                _spriteRenderer.material.SetFloat("_OutlineWidth", 0.02f);
+                _spriteRenderer.material.SetColor("_OutlineColor", Color.cyan);
+                MaximumLifePoints.AddModifier(new StatModifier(OperationType.Multiplication, 500));
+                break;
+            case Rarity.Rare:
+                _spriteRenderer.material.SetFloat("_OutlineWidth", 0.02f);
+                _spriteRenderer.material.SetColor("_OutlineColor", Color.yellow);
+                MaximumLifePoints.AddModifier(new StatModifier(OperationType.Multiplication, 1000));
+                break;
+            case Rarity.Unique:
+                _spriteRenderer.material.SetFloat("_OutlineWidth", 0.02f);
+                _spriteRenderer.material.SetColor("_OutlineColor", Color.magenta);
+                MaximumLifePoints.AddModifier(new StatModifier(OperationType.Multiplication, 1500));
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null);
+        }
     }
     public void LevelUp(int value)
     {
@@ -72,7 +101,7 @@ public class Enemy : Unit
     }
     private void DropBonus()
     {
-        Instantiate(_onDeathDrop, Rigidbody2D.position, Rigidbody2D.transform.rotation);
+        Instantiate(_onDeathDrop, _rigidbody2D.position, _rigidbody2D.transform.rotation);
     }
     private void DropDamagePopup(int damage, Vector2 positionVector2)
     {

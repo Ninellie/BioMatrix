@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,9 +11,9 @@ public class EnemySpawner : MonoBehaviour
     public float enemySpawnPerSecond = 0.2f;
     public float enemyDefaultPadding = 1.5f;
     public GameObject timerGameObject;
-    
+
     private const int Complicator = 30;
-    private const int EnemiesInWave = 30;
+    private const int EnemiesInWave = 1;
     private Timer _timer;
     private readonly System.Random _random = new();
     private void Awake()
@@ -72,7 +70,11 @@ public class EnemySpawner : MonoBehaviour
 
         foreach (var enemy in spawnedEnemies)
         {
-            ImproveAccordingToTimer(enemy.GetComponent<Enemy>());
+            var _enemy = enemy.GetComponent<Enemy>();
+            
+            _enemy.SetRarity(Rarity.Rare);
+
+            ImproveAccordingToTimer(_enemy);
         }
 
         PlaceEnemies(spawnedEnemies, GroupingMode.Group);
