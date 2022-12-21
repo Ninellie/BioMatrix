@@ -8,29 +8,68 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Set in Inspector")]
     public GameObject[] enemyTypes;
-    public float enemySpawnPerSecond = 0.2f;
     public float enemyDefaultPadding = 1.5f;
     public GameObject timerGameObject;
+    [SerializeField] private int _secondsBetweenWaves = 1;
 
     private const int Complicator = 30;
-    private const int EnemiesInWave = 1;
+    private const int MaxEnemiesInWave = 2;
+    private const int MinEnemiesInWave = 1;
+    
+    private int MaxEnemiesInNormalWave
+    {
+        get
+        {
+            var complicator = _timer.GetTotalSeconds() / 30;
+            if (complicator >= 1f)
+            {
+                return (int)(MaxEnemiesInWave + complicator);
+            }
+            
+            return MaxEnemiesInWave;
+        }
+    }
+    private int MinEnemiesInNormalWave
+    {
+        get
+        {
+            var complicator = _timer.GetTotalSeconds() / 60;
+            if (complicator >= 1f)
+            {
+                return (int)(MinEnemiesInWave + complicator);
+            }
+
+            return MinEnemiesInWave;
+        }
+    }
     private Timer _timer;
     private readonly System.Random _random = new();
+
     private void Awake()
     {
         _timer = timerGameObject.GetComponent<Timer>();
     }
     private void Start()
     {
-        SpawnEnemy();
+        SpawnWave();
     }
-    public void SpawnEnemy()
+    public void SpawnWave()
     {
         if(GameObject.FindGameObjectWithTag("Player") == null) return;
 
-        Spawn();
+        var spawn = CreateSpawn();
 
-        Invoke("SpawnEnemy", 5f / CalculateSpawnPerSecond());
+        var r = Random.Range(0f, 1f);
+
+        if (r > 0.8)
+        {
+            PlaceEnemies(spawn, GroupingMode.Default);
+        }
+        else
+        {
+            PlaceEnemies(spawn, r > 0.2 ? GroupingMode.Group : GroupingMode.Surround);
+        }
+        Invoke("SpawnWave", _secondsBetweenWaves);
     }
     private void ImproveAccordingToTimer(Enemy enemy)
     {
@@ -52,16 +91,17 @@ public class EnemySpawner : MonoBehaviour
     {
         return Mathf.Sqrt(sideALength * sideALength + sideBLength * sideBLength);
     }
-    private float CalculateSpawnPerSecond()
+    private float CalculateWavesPerSecond()
     {
         var seconds = _timer.GetTotalSeconds();
-        return enemySpawnPerSecond + (seconds / Complicator);
+        return _secondsBetweenWaves + (seconds / Complicator);
     }
-    private void Spawn()
+    private GameObject[] CreateSpawn()
     {
-        var spawn = GetEnemyList(EnemiesInWave, enemyTypes);
+        var enemiesInWave = Random.Range(MinEnemiesInNormalWave, MaxEnemiesInNormalWave);
+        var spawn = GetEnemyList(enemiesInWave, enemyTypes);
         
-        var spawnedEnemies = new GameObject[EnemiesInWave];
+        var spawnedEnemies = new GameObject[enemiesInWave];
 
         for (var i = 0; i < spawn.Length; i++)
         {
@@ -70,14 +110,21 @@ public class EnemySpawner : MonoBehaviour
 
         foreach (var enemy in spawnedEnemies)
         {
-            var _enemy = enemy.GetComponent<Enemy>();
-            
-            _enemy.SetRarity(Rarity.Rare);
-
-            ImproveAccordingToTimer(_enemy);
+            var e = enemy.GetComponent<Enemy>();
+            var r = Random.Range(0f, 1f);
+            if (r > 0.99)
+            {
+                e.SetRarity(Rarity.Rare);
+            }
+            else
+            {
+                e.SetRarity(r > 0.85 ? Rarity.Magic : Rarity.Normal);
+            }
+            ImproveAccordingToTimer(e);
         }
 
-        PlaceEnemies(spawnedEnemies, GroupingMode.Group);
+        return spawnedEnemies;
+        
     }
     private GameObject GetRandomEnemyFromList(List<GameObject> enemyList)
     {
