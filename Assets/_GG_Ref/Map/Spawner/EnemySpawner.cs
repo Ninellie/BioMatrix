@@ -71,6 +71,33 @@ public class EnemySpawner : MonoBehaviour
         }
         Invoke("SpawnWave", _secondsBetweenWaves);
     }
+    private GameObject[] CreateSpawn()
+    {
+        var enemiesInWave = Random.Range(MinEnemiesInNormalWave, MaxEnemiesInNormalWave);
+        var spawn = GetEnemyList(enemiesInWave, enemyTypes);
+
+        var spawnedEnemies = new GameObject[enemiesInWave];
+
+        for (var i = 0; i < spawn.Length; i++)
+        {
+            spawnedEnemies[i] = Instantiate<GameObject>(spawn[i]);
+        }
+
+        foreach (var enemy in spawnedEnemies)
+        {
+            var e = enemy.GetComponent<Enemy>();
+            var r = Random.Range(0f, 1f);
+
+            var rarity = r > 0.99 ? RarityEnum.Rare
+                : r > 0.85 ? RarityEnum.Magic
+                : RarityEnum.Normal;
+
+            e.SetRarity(rarity);
+
+            ImproveAccordingToTimer(e);
+        }
+        return spawnedEnemies;
+    }
     private void ImproveAccordingToTimer(Enemy enemy)
     {
         enemy.LevelUp(GetTimerBonus(_timer));
@@ -96,42 +123,12 @@ public class EnemySpawner : MonoBehaviour
         var seconds = _timer.GetTotalSeconds();
         return _secondsBetweenWaves + (seconds / Complicator);
     }
-    private GameObject[] CreateSpawn()
-    {
-        var enemiesInWave = Random.Range(MinEnemiesInNormalWave, MaxEnemiesInNormalWave);
-        var spawn = GetEnemyList(enemiesInWave, enemyTypes);
-        
-        var spawnedEnemies = new GameObject[enemiesInWave];
-
-        for (var i = 0; i < spawn.Length; i++)
-        {
-            spawnedEnemies[i] = Instantiate<GameObject>(spawn[i]);
-        }
-
-        foreach (var enemy in spawnedEnemies)
-        {
-            var e = enemy.GetComponent<Enemy>();
-            var r = Random.Range(0f, 1f);
-            if (r > 0.99)
-            {
-                e.SetRarity(Rarity.Rare);
-            }
-            else
-            {
-                e.SetRarity(r > 0.85 ? Rarity.Magic : Rarity.Normal);
-            }
-            ImproveAccordingToTimer(e);
-        }
-
-        return spawnedEnemies;
-        
-    }
     private GameObject GetRandomEnemyFromList(List<GameObject> enemyList)
     {
         var sum = 0;
         foreach (var enemy in enemyList)
         {
-            sum += (int)enemy.GetComponent<Enemy>().SpawnWeight.Value;
+            sum += (int)enemy.GetComponent<Enemy>().spawnWeight.Value;
         }
 
         var next = _random.Next(sum);
@@ -140,7 +137,7 @@ public class EnemySpawner : MonoBehaviour
 
         foreach (var enemy in enemyList)
         {
-            limit += (int)enemy.GetComponent<Enemy>().SpawnWeight.Value;
+            limit += (int)enemy.GetComponent<Enemy>().spawnWeight.Value;
             if (next < limit)
             {
                 return enemy;

@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPSpriteInfo.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
+    <Compile Include="Assets\_GG_Ref\Entity\Unit\Enemy\Rarity.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\_GG_Ref\Firearm\Magazine.cs" />
     <Compile Include="Assets\_GG_Ref\Firearm\FirearmStatsSettings.cs" />
@@ -117,12 +118,11 @@
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPActionType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPInstance.cs" />
-    <Compile Include="Assets\_GG_Ref\Entity\Unit\Enemy\Rarity.cs" />
+    <Compile Include="Assets\_GG_Ref\Entity\Unit\Enemy\RarityEnum.cs" />
     <Compile Include="Assets\_GG_Ref\Entity\Unit\Player\PlayerCreator.cs" />
     <Compile Include="Assets\_GG_Ref\Entity\Unit\Projectile\Projectile.cs" />
     <Compile Include="Assets\_GG_Ref\UIScripts\DeathScreen.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
-    <Compile Include="Assets\_GG_Ref\Map\Spawner\CirclePacker.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\_GG_Ref\Camera\Ortho2dCamera.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
