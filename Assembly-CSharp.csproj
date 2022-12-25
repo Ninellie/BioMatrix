@@ -117,7 +117,7 @@
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPActionType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPInstance.cs" />
-    <Compile Include="Assets\_GG_Ref\Entity\Unit\Enemy\Rarity.cs" />
+    <Compile Include="Assets\_GG_Ref\Entity\Unit\Enemy\RarityEnum.cs" />
     <Compile Include="Assets\_GG_Ref\Entity\Unit\Player\PlayerCreator.cs" />
     <Compile Include="Assets\_GG_Ref\Entity\Unit\Projectile\Projectile.cs" />
     <Compile Include="Assets\_GG_Ref\UIScripts\DeathScreen.cs" />
@@ -143,6 +143,7 @@
     <Compile Include="Assets\_GG_Ref\Firearm\Firearm.cs" />
     <Compile Include="Assets\_GG_Ref\UIScripts\Timer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
+    <Compile Include="Assets\_GG_Ref\Entity\Unit\Enemy\Rarity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
