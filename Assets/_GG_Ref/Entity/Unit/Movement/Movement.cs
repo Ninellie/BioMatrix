@@ -137,6 +137,6 @@ public class Movement
 
     //    repelVector2 = c - a_pointOnMyCircle;
 
-    //    _rigidbody2D.MovePosition(repelVector2 + new Vector2(1, 1));
+    //    _rigidbody2D.MovePosition(repelVector2);
     //}
 }
