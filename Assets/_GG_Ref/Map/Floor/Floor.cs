@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
 
 public class Floor : MonoBehaviour
 {
-    public Tilemap tilemap;
-    public TilemapRenderer tilemapRenderer;
-    public TileBase tileGrass;
+    [SerializeField] private Tilemap tilemap;
+    [SerializeField] private TilemapRenderer tilemapRenderer;
+    [SerializeField] private TileBase BaseTile;
 
     private Camera mainCamera;
     private Vector2 camCenterWorld;
@@ -26,7 +24,7 @@ public class Floor : MonoBehaviour
         if (cellInCenterOfCam != currentCell)
         {
             BoundsInt boundsInt = GetBoundsIntFromCamera(mainCamera, tilemap, tilemapRenderer.chunkCullingBounds);
-            Fill(tilemap, boundsInt, tileGrass);
+            Fill(tilemap, boundsInt, BaseTile);
         }
         cellInCenterOfCam = tilemap.WorldToCell(camCenterWorld);
     }
@@ -50,9 +48,12 @@ public class Floor : MonoBehaviour
     private BoundsInt GetBoundsIntFromCamera(Camera camera, Tilemap tilemap, Vector3 chunkCullingBounds)
     {
         int cellBoundsPadding = 5;
-        Vector3Int boundsIntSize = new Vector3Int( ( ( (int)camera.pixelRect.width + (int)chunkCullingBounds.x ) / (int)tilemap.cellSize.x ) + cellBoundsPadding,
-                                                   ( ( (int)camera.pixelRect.height + (int)chunkCullingBounds.y ) / (int)tilemap.cellSize.y ) + cellBoundsPadding,
-                                                     1);
+        Vector3Int boundsIntSize = new Vector3Int(
+            (((int)camera.pixelRect.width + (int)chunkCullingBounds.x) /
+             (int)tilemap.cellSize.x) + cellBoundsPadding,
+            (((int)camera.pixelRect.height + (int)chunkCullingBounds.y) /
+             (int)tilemap.cellSize.y) + cellBoundsPadding,
+            1);
         Vector3 camCenterWorld = camera.ScreenToWorldPoint(camera.pixelRect.center);
         Vector3Int cellInCenterOfCam = tilemap.WorldToCell(camCenterWorld);
         Vector3Int boundsIntOrigin = new(cellInCenterOfCam.x - (boundsIntSize.x / 2), cellInCenterOfCam.y - boundsIntSize.y / 2, 1);
