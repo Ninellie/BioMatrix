@@ -88,7 +88,8 @@ public class Enemy : Unit
     }
     private void DropBonus()
     {
-        Instantiate(_onDeathDrop, _rigidbody2D.position, _rigidbody2D.transform.rotation);
+        var rotation = new Quaternion(0, 0, 0, 0);
+        Instantiate(_onDeathDrop, _rigidbody2D.position, rotation);
     }
     private void DropDamagePopup(int damage, Vector2 positionVector2)
     {
