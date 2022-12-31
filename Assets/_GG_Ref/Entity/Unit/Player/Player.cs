@@ -8,6 +8,8 @@ public class Player : Unit
     public Action onPlayerDeath;
     public Action onLevelUp;
     public Action onExperienceTaken;
+    protected Stat MagnetismRadius { get; private set; }
+    protected Stat MagnetismPower { get; private set; }
 
     public bool isFireButtonPressed = false;
     public int Level
@@ -23,7 +25,7 @@ public class Player : Unit
     public int ExpToLvlup => ExperienceToSecondLevel + (Level * ExperienceAmountIncreasingPerLevel) - Experience;
     public int Experience
     {
-        private get => _experience;
+        get => _experience;
         set
         {
             _experience = value;
@@ -35,6 +37,7 @@ public class Player : Unit
             }
         }
     }
+
     private const int ExperienceToSecondLevel = 2;
     private const int ExperienceAmountIncreasingPerLevel = 1;
     private const int InitialLevel = 1;
@@ -52,23 +55,21 @@ public class Player : Unit
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var collisionGameObject = collision.gameObject;
-        switch (collisionGameObject.tag)
+        if (collisionGameObject.tag == "Enemy")
         {
-            case "Enemy":
-                TakeDamage(MinimalDamageTaken);
-                break;
-            case "Boon":
-                Experience++;
-                break;
+            TakeDamage(MinimalDamageTaken);
         }
     }
+    
 
     [SerializeField] private Transform _firePoint;
-    protected void BaseAwake(UnitStatsSettings settings)
+    protected void BaseAwake(HeroStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Player Awake");
         _level = InitialLevel;
         _experience = InitialExperience;
+        MagnetismRadius = new Stat(settings.MagnetismRadius);
+        MagnetismPower = new Stat(settings.MagnetismPower);
         var movement = new Movement(gameObject, MovementMode.Rectilinear, settings.Speed);
         base.BaseAwake(settings, movement);
     }

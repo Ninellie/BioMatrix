@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using Color = UnityEngine.Color;
 
@@ -12,14 +13,33 @@ public class Boon : Unit
     private void FixedUpdate() => Movement.FixedUpdateMove();
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("The Boon was taken");
         var collisionGameObject = collision.gameObject;
-        switch (collisionGameObject.tag)
+
+        if (collisionGameObject.tag != "Player") return;
+        if (collision.collider is BoxCollider2D)
         {
-            case "Player":
-                TakeDamage(CurrentLifePoints);
-                break;
+            Debug.Log("The exp crystal was taken");
+            TakeDamage(CurrentLifePoints);
+            collisionGameObject.GetComponent<Player>().Experience++;
+            return;
         }
+        Debug.Log("The exp crystal pursue player");
+        //Movement.ChangeMode(MovementMode.Pursue);
+        //Movement.SetPursuingTarget(collisionGameObject);
+        //var magnetismPower = collisionGameObject.GetComponent<Player>().MagnetismPower.Value;
+        //if (Speed.Value == magnetismPower) return;
+        //var mod = new StatModifier(OperationType.Addition, magnetismPower);
+        //Speed.AddModifier(mod);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        var collisionGameObject = collision.gameObject;
+
+        if (collisionGameObject.tag != "Player") return;
+        if (collision.collider is not CircleCollider2D) return;
+        Speed.ClearModifiersList();
+        Movement.ChangeMode(MovementMode.Idle);
     }
     protected void BaseAwake(UnitStatsSettings settings)
     {

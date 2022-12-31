@@ -111,6 +111,7 @@
     <Compile Include="Assets\_GG_Ref\LevelUp\Deck\ArrayCardRepository.cs" />
     <Compile Include="Assets\_GG_Ref\UIScripts\SettingMenu.cs" />
     <Compile Include="Assets\_GG_Ref\Entity\Unit\EnemyStatsSettings.cs" />
+    <Compile Include="Assets\_GG_Ref\Entity\Unit\HeroStatsSettings.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\_GG_Ref\Stat\StatModifier.cs" />
     <Compile Include="Assets\_GG_Ref\LevelUp\Deck\JsonCard\JsonCardSerializer.cs" />

@@ -13,11 +13,13 @@ public class GlobalStatsSettingsRepository
         Speed = 100,
     };
 
-    public static readonly UnitStatsSettings PlayerStats = new UnitStatsSettings()
+    public static readonly HeroStatsSettings PlayerStats = new HeroStatsSettings()
     {
         Size = 1,
         MaximumLife = 5,
         Speed = 250,
+        MagnetismRadius = 10,
+        MagnetismPower = 50,
     };
 
     public static readonly EnemyStatsSettings EnemyStats = new EnemyStatsSettings()

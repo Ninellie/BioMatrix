@@ -36,7 +36,10 @@ public class Enemy : Unit
         switch (_collisionGameObject.tag)
         {
             case "Player":
-                TakeDamage(CurrentLifePoints);
+                if (collision.collider is BoxCollider2D)
+                {
+                    TakeDamage(CurrentLifePoints);
+                }
                 break;
             case "Projectile":
                 TakeDamage(MinimalDamageTaken);
@@ -55,6 +58,7 @@ public class Enemy : Unit
         var movement = new Movement(gameObject, MovementMode.Seek, settings.Speed);
         movement.SetPursuingTarget(FindObjectOfType<Player>().gameObject);
         base.BaseAwake(settings, movement);
+
         _rarity.Value = RarityEnum.Normal;
         Level = MinInitialLevel;
         RestoreLifePoints();
