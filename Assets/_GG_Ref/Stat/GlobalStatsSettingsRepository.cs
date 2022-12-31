@@ -19,7 +19,7 @@ public class GlobalStatsSettingsRepository
         MaximumLife = 5,
         Speed = 250,
         MagnetismRadius = 10,
-        MagnetismPower = 50,
+        MagnetismPower = 100,
     };
 
     public static readonly EnemyStatsSettings EnemyStats = new EnemyStatsSettings()

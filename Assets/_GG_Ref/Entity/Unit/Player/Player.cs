@@ -45,6 +45,9 @@ public class Player : Unit
 
     private int _level;
     private int _experience;
+    [SerializeField] private Transform _firePoint;
+    private CircleCollider2D _circleCollider;
+    private PointEffector2D _pointEffector;
     private SpriteRenderer Sprite => GetComponent<SpriteRenderer>();
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.PlayerStats);
     private void Start() => Time.timeScale = 1f;
@@ -60,18 +63,47 @@ public class Player : Unit
             TakeDamage(MinimalDamageTaken);
         }
     }
-    
-
-    [SerializeField] private Transform _firePoint;
     protected void BaseAwake(HeroStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Player Awake");
         _level = InitialLevel;
         _experience = InitialExperience;
+        _circleCollider = GetComponent<CircleCollider2D>();
+        _pointEffector = GetComponent<PointEffector2D>();
         MagnetismRadius = new Stat(settings.MagnetismRadius);
+        if (MagnetismRadius.Value < 0)
+        {
+            _circleCollider.radius = 0;
+        }
+        _circleCollider.radius = MagnetismRadius.Value;
         MagnetismPower = new Stat(settings.MagnetismPower);
+        _pointEffector.forceMagnitude = MagnetismPower.Value * -1;
         var movement = new Movement(gameObject, MovementMode.Rectilinear, settings.Speed);
         base.BaseAwake(settings, movement);
+    }
+    protected override void BaseOnEnable()
+    {
+        base.BaseOnEnable();
+        if (MagnetismPower != null) MagnetismPower.onValueChanged += ChangeCurrentMagnetismPower;
+        if (MagnetismRadius != null) MagnetismRadius.onValueChanged += ChangeCurrentMagnetismRadius;
+    }
+    protected override void BaseOnDisable()
+    {
+        base.BaseOnDisable();
+        if (MagnetismPower != null) MagnetismPower.onValueChanged -= ChangeCurrentMagnetismPower;
+        if (MagnetismRadius != null) MagnetismRadius.onValueChanged -= ChangeCurrentMagnetismRadius;
+    }
+    private void ChangeCurrentMagnetismPower()
+    {
+        _pointEffector.forceMagnitude = MagnetismPower.Value * -1;
+    }
+    private void ChangeCurrentMagnetismRadius()
+    {
+        if (MagnetismRadius.Value < 0)
+        {
+            _circleCollider.radius = 0;
+        }
+        _circleCollider.radius = MagnetismRadius.Value;
     }
     public void CreateWeapon(GameObject weapons)
     {
