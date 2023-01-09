@@ -43,7 +43,7 @@ public class GlobalStatsSettingsRepository
     };
     public static readonly UnitStatsSettings ProjectileStats = new UnitStatsSettings()
     {
-        Size = 2,
+        Size = 1,
         MaximumLife = 1,
         LifeRegenerationInSecond = 0,
         Speed = 700,
