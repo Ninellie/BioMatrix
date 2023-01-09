@@ -129,6 +129,15 @@ public class Player : Unit
             case "maximumLifePoints":
                 MaximumLifePoints.AddModifier(statModifier);
                 break;
+            case "magnetismPower":
+                MagnetismPower.AddModifier(statModifier);
+                break;
+            case "magnetismRadius":
+                MagnetismRadius.AddModifier(statModifier);
+                break;
+            case "lifeRegenerationPerSecond":
+                LifeRegenerationPerSecond.AddModifier(statModifier);
+                break;
         }
     }
     public void OnMove(InputValue input)

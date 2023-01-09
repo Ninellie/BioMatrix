@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -8,12 +9,17 @@ public class Entity : MonoBehaviour
     public bool Alive => IsAlive();
     public const int DeathLifePointsThreshold = 0;
     public const int MinimalDamageTaken = 1;
+    public const int LifePointAmount = 1;
+    private float _reservedLife = 0;
     public float CurrentLifePoints
     {
         get => _currentLifePoints;
         protected set
         {
             Debug.Log($"Try to set life of {gameObject.name} to value: {value}");
+
+            
+
             var difValue = value - DeathLifePointsThreshold;
         
             switch (difValue)
@@ -27,6 +33,11 @@ public class Entity : MonoBehaviour
                     Death();
                     break;
                 case > 0:
+                    if (value >= MaximumLifePoints.Value)
+                    {
+                        _currentLifePoints = MaximumLifePoints.Value;
+                        break;
+                    }
                     _currentLifePoints = value;
                     break;
             }
@@ -35,6 +46,7 @@ public class Entity : MonoBehaviour
     }
     protected Stat Size { get; private set; }
     protected Stat MaximumLifePoints { get; private set; }
+    protected Stat LifeRegenerationPerSecond { get; private set; }
     private float _currentLifePoints;
     private Camera _mCamera;
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EntityStats);
@@ -47,19 +59,40 @@ public class Entity : MonoBehaviour
         _mCamera = FindObjectOfType<Camera>();
         Size = new Stat(settings.Size);
         MaximumLifePoints = new Stat(settings.MaximumLife);
+        LifeRegenerationPerSecond = new Stat(settings.LifeRegenerationInSecond);
+
+        this.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
+
         _currentLifePoints = MaximumLifePoints.Value;
+
+        Regeneration();
     }
     protected virtual void BaseOnEnable()
     {
-        //Size.onValueChanged += ChangeCurrentSize;
+        Size.onValueChanged += ChangeCurrentSize;
     }
     protected virtual void BaseOnDisable()
     {
-        //Size.onValueChanged -= ChangeCurrentSize;
+        Size.onValueChanged -= ChangeCurrentSize;
     }
     protected virtual void BaseUpdate()
     {
         IsOnScreen = CheckVisibilityOnCamera(_mCamera, gameObject);
+    }
+    protected virtual void Regeneration()
+    {
+        if (gameObject == null)
+        {
+            return;
+        }
+        _reservedLife += LifeRegenerationPerSecond.Value;
+        if (_reservedLife >= LifePointAmount)
+        {
+            _reservedLife -= LifePointAmount;
+            RestoreLifePoints(LifePointAmount);
+            Debug.Log($"Regeneration of {gameObject.name} completed");
+        }
+        Invoke("Regeneration", 1);
     }
     public virtual void TakeDamage(float amount)
     {
@@ -72,8 +105,16 @@ public class Entity : MonoBehaviour
     }
     public virtual void RestoreLifePoints(int value)
     {
-        if (value < 1) return;
-        CurrentLifePoints += value;
+        if (value < LifePointAmount) return;
+
+        if (value >= MaximumLifePoints.Value)
+        {
+            CurrentLifePoints = MaximumLifePoints.Value;
+        }
+        else
+        {
+            CurrentLifePoints += value;
+        }
     }
     protected virtual bool IsAlive()
     {
@@ -86,7 +127,7 @@ public class Entity : MonoBehaviour
     }
     protected virtual void ChangeCurrentSize()
     {
-        //gameObject.GetComponent<Transform>().position.Scale(new Vector3(Size.Value, Size.Value));
+        this.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
     }
     private bool CheckVisibilityOnCamera(Camera camera, GameObject gameObject)
     {

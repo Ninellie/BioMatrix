@@ -4,12 +4,14 @@ public class GlobalStatsSettingsRepository
     {
         Size = 1,
         MaximumLife = 1,
+        LifeRegenerationInSecond = 0,
     };
 
     public static readonly UnitStatsSettings UnitStats = new UnitStatsSettings()
     {
         Size = 1,
         MaximumLife = 1,
+        LifeRegenerationInSecond = 0,
         Speed = 100,
     };
 
@@ -17,8 +19,9 @@ public class GlobalStatsSettingsRepository
     {
         Size = 1,
         MaximumLife = 5,
+        LifeRegenerationInSecond = 0,
         Speed = 250,
-        MagnetismRadius = 10,
+        MagnetismRadius = 100,
         MagnetismPower = 100,
     };
 
@@ -26,6 +29,7 @@ public class GlobalStatsSettingsRepository
     {
         Size = 1,
         MaximumLife = 1,
+        LifeRegenerationInSecond = 0,
         Speed = 100,
         SpawnWeight = 1000,
     };
@@ -34,12 +38,14 @@ public class GlobalStatsSettingsRepository
     {
         Size = 1,
         MaximumLife = 1,
+        LifeRegenerationInSecond = 0,
         Speed = 0,
     };
     public static readonly UnitStatsSettings ProjectileStats = new UnitStatsSettings()
     {
-        Size = 1,
+        Size = 2,
         MaximumLife = 1,
+        LifeRegenerationInSecond = 0,
         Speed = 700,
     };
 

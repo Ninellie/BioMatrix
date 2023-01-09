@@ -7,7 +7,6 @@ public class Stat
     public float Value => GetActualValue();
     //public IEnumerable<StatModifier> Modifiers => _modifiers;
     public Action onValueChanged;
-
     private float BaseValue { get; }
     private bool IsModifiable { get; }
     private float BaseAddedValue { get; }

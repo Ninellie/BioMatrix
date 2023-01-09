@@ -102,6 +102,48 @@ public class ArrayCardRepository : ICardRepository
                 new StatModifier(OperationType.Addition, 1)
             },
         },
+        new Card
+        {
+            Title = "Magnetism power",
+            Description = "+ 20% to attraction force for boons",
+            DropWeight = 1000,
+            InfluencedStats = new[]
+            {
+                "magnetismPower",
+            },
+            ModifierList = new StatModifier[]
+            {
+                new StatModifier(OperationType.Multiplication, 20)
+            },
+        },
+        new Card
+        {
+            Title = "Magnetism radius",
+            Description = "+ 50% to radius of boon attraction",
+            DropWeight = 1000,
+            InfluencedStats = new[]
+            {
+                "magnetismRadius",
+            },
+            ModifierList = new StatModifier[]
+            {
+                new StatModifier(OperationType.Multiplication, 50)
+            },
+        },
+        new Card
+        {
+            Title = "Life regeneration",
+            Description = "Recover one life point per five seconds",
+            DropWeight = 500,
+            InfluencedStats = new[]
+            {
+                "lifeRegenerationPerSecond",
+            },
+            ModifierList = new StatModifier[]
+            {
+                new StatModifier(OperationType.Addition, 0.2f)
+            },
+        },
     };
     private readonly Card[] _cards;
 
