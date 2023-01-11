@@ -17,7 +17,7 @@ public class ExpUI : MonoBehaviour
 
         FindObjectOfType<Player>().onExperienceTaken += UpdateExperienceBar;
 
-        FindObjectOfType<Player>().onPlayerDeath += Unsubscription;
+        FindObjectOfType<Player>().onDeath += Unsubscription;
     }
     private void Unsubscription()
     {
@@ -27,7 +27,7 @@ public class ExpUI : MonoBehaviour
 
         FindObjectOfType<Player>().onExperienceTaken -= UpdateExperienceBar;
 
-        FindObjectOfType<Player>().onPlayerDeath -= Unsubscription;
+        FindObjectOfType<Player>().onDeath -= Unsubscription;
     }
 
     private void UpdateExperienceBar()

@@ -20,17 +20,17 @@ public class DeathScreen : MonoBehaviour
     public void Subscription()
     {
         GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onPlayerDeath += EnableDeathScreen;
+            .GetComponent<Player>().onDeath += EnableDeathScreen;
         GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onPlayerDeath += Unsubscription;
+            .GetComponent<Player>().onDeath += Unsubscription;
 
     }
     private void Unsubscription()
     {
         GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onPlayerDeath -= EnableDeathScreen;
+            .GetComponent<Player>().onDeath -= EnableDeathScreen;
         GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>().onPlayerDeath -= Unsubscription;
+            .GetComponent<Player>().onDeath -= Unsubscription;
     }
     public void EnableDeathScreen()
     {

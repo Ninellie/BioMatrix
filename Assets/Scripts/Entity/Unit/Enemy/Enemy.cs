@@ -1,5 +1,8 @@
 using System;
+using System.Diagnostics;
+using UnityEditor;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class Enemy : Unit
 {
@@ -12,9 +15,11 @@ public class Enemy : Unit
     private GameObject _collisionGameObject;
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
-
+    private Stopwatch _deathTimer = new Stopwatch();
+    private bool _isPaused = false;
     private const int MinInitialLevel = 1;
     private const float MaxLifeIncreasePerLevel = 1;
+    private const long OffscreenDieMilliseconds = 10000;
     private int Level
     {
         get => _level;
@@ -62,6 +67,67 @@ public class Enemy : Unit
         _rarity.Value = RarityEnum.Normal;
         Level = MinInitialLevel;
         RestoreLifePoints();
+        Subscription();
+    }
+    protected override void BaseUpdate()
+    {
+        base.BaseUpdate();
+        DeathTimerCheck();
+    }
+    public void Subscription()
+    {
+        FindObjectOfType<Player>().onGamePaused += OnPause;
+        FindObjectOfType<Player>().onDeath += Unsubscription;
+    }
+    private void Unsubscription()
+    {
+        FindObjectOfType<Player>().onGamePaused -= OnPause;
+        FindObjectOfType<Player>().onDeath -= Unsubscription;
+    }
+    private void DeathTimerCheck()
+    {
+        if (_isPaused) { return; }
+
+        if (!IsOnScreen)
+        {
+            switch (_deathTimer.IsRunning)
+            {
+                case true:
+                {
+                    if (_deathTimer.ElapsedMilliseconds >= OffscreenDieMilliseconds)
+                    {
+                        TakeDamage(CurrentLifePoints);
+                        Debug.Log($"Unit named {gameObject.name} died because it was off screen for too long");
+                    }
+                    break;
+                }
+                case false:
+                    Debug.Log($"Death timer of {gameObject.name} started");
+                    _deathTimer.Start();
+                    break;
+            }
+        }
+        else
+        {
+            if (_deathTimer.IsRunning)
+            {
+                _deathTimer.Reset();
+            }
+        }
+    }
+    private void OnPause()
+    {
+        if (_deathTimer.IsRunning)
+        {
+            _isPaused = true;
+            _deathTimer.Stop();
+        }
+        else
+        {
+            _isPaused = false;
+            _deathTimer.Start();
+        }
+
     }
     public void SetRarity(RarityEnum rarityEnum)
     {
@@ -85,7 +151,7 @@ public class Enemy : Unit
     protected override void Death()
     {
         base.Death();
-        if (_collisionGameObject.tag == "Projectile")
+        if (_collisionGameObject != null && _collisionGameObject.tag == "Projectile")
         {
             DropBonus();
         }
