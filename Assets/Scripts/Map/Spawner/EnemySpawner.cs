@@ -10,22 +10,37 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemyTypes;
     public float enemyDefaultPadding = 1.5f;
     public GameObject timerGameObject;
-    [SerializeField] private int _secondsBetweenWaves = 1;
+    [SerializeField] private int _secondsBetweenWaves = 2;
 
-    private const int Complicator = 30;
+    private const int Complicator = 60;
     private const int MaxEnemiesInWave = 2;
     private const int MinEnemiesInWave = 1;
     
+    private Timer _timer;
+    private readonly System.Random _random = new();
+    
+    private int TimerBonus
+    {
+        get
+        {
+            if (_timer.GetTotalSeconds() < Complicator)
+            {
+                return 0;
+            }
+            var remainder = _timer.GetTotalSeconds() % Complicator;
+            return (int)(_timer.GetTotalSeconds() - remainder) / Complicator;
+        }
+    }
+
     private int MaxEnemiesInNormalWave
     {
         get
         {
-            var complicator = _timer.GetTotalSeconds() / 30;
+            var complicator = _timer.GetTotalSeconds() / Complicator;
             if (complicator >= 1f)
             {
                 return (int)(MaxEnemiesInWave + complicator);
             }
-            
             return MaxEnemiesInWave;
         }
     }
@@ -33,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
     {
         get
         {
-            var complicator = _timer.GetTotalSeconds() / 60;
+            var complicator = _timer.GetTotalSeconds() / Complicator * 2;
             if (complicator >= 1f)
             {
                 return (int)(MinEnemiesInWave + complicator);
@@ -42,8 +57,6 @@ public class EnemySpawner : MonoBehaviour
             return MinEnemiesInWave;
         }
     }
-    private Timer _timer;
-    private readonly System.Random _random = new();
 
     private void Awake()
     {
@@ -88,8 +101,8 @@ public class EnemySpawner : MonoBehaviour
             var e = enemy.GetComponent<Enemy>();
             var r = Random.Range(0f, 1f);
 
-            var rarity = r > 0.99 ? RarityEnum.Rare
-                : r > 0.85 ? RarityEnum.Magic
+            var rarity = r > 0.999 ? RarityEnum.Rare
+                : r > 0.98 ? RarityEnum.Magic
                 : RarityEnum.Normal;
 
             e.SetRarity(rarity);
@@ -100,29 +113,24 @@ public class EnemySpawner : MonoBehaviour
     }
     private void ImproveAccordingToTimer(Enemy enemy)
     {
-        enemy.LevelUp(GetTimerBonus(_timer));
+        enemy.LevelUp(TimerBonus);
         enemy.RestoreLifePoints();
-    }
-    private int GetTimerBonus(Timer timer)
-    {
-        return (int)timer.GetTotalSeconds() / Complicator;
     }
     private float GetCircleRadiusInscribedAroundTheCamera()
     {
         var camHeight = Camera.main.orthographicSize * 2;
         var camWidth = camHeight * Camera.main.aspect;
         return GetHypotenuseLength(camHeight, camWidth) / 2;
-        
     }
     public float GetHypotenuseLength(float sideALength, float sideBLength)
     {
         return Mathf.Sqrt(sideALength * sideALength + sideBLength * sideBLength);
     }
-    private float CalculateWavesPerSecond()
-    {
-        var seconds = _timer.GetTotalSeconds();
-        return _secondsBetweenWaves + (seconds / Complicator);
-    }
+    //private float CalculateWavesPerSecond()
+    //{
+    //    var seconds = _timer.GetTotalSeconds();
+    //    return _secondsBetweenWaves + (seconds / Complicator);
+    //}
     private GameObject GetRandomEnemyFromList(List<GameObject> enemyList)
     {
         var sum = 0;

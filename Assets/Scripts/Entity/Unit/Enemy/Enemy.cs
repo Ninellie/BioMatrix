@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -11,11 +12,11 @@ public class Enemy : Unit
 
     public Stat spawnWeight = new(GlobalStatsSettingsRepository.EnemyStats.SpawnWeight);
 
-    private Rarity _rarity = new Rarity();
+    private readonly Rarity _rarity = new Rarity();
     private GameObject _collisionGameObject;
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
-    private Stopwatch _deathTimer = new Stopwatch();
+    private readonly Stopwatch _deathTimer = new Stopwatch();
     private bool _isPaused = false;
     private const int MinInitialLevel = 1;
     private const float MaxLifeIncreasePerLevel = 1;
@@ -25,7 +26,14 @@ public class Enemy : Unit
         get => _level;
         set
         {
-            _level = value < MinInitialLevel ? MinInitialLevel : value;
+            if (_level != value)
+            {
+                if (value >= MinInitialLevel)
+                {
+                    _level = value;
+                }
+            }
+            //_level = value < MinInitialLevel ? MinInitialLevel : value;
             UpdateMaxLifeStat();
         }
     }
@@ -145,7 +153,7 @@ public class Enemy : Unit
     }
     public void LevelUp(int value)
     {
-        if(value < 1) return;
+        //if(value < MinInitialLevel) return;
         Level += value;
     }
     protected override void Death()
@@ -169,11 +177,10 @@ public class Enemy : Unit
     }
     private void UpdateMaxLifeStat()
     {
-        if (!MaximumLifePoints.IsModifierListEmpty())
-        {
-            MaximumLifePoints.ClearModifiersList();
-        }
-        var mod = new StatModifier(OperationType.Addition, _level * MaxLifeIncreasePerLevel);
+        MaximumLifePoints.ClearModifiersList();
+        if (Level <= 1) return;
+        var multiplier= (_level - 1) * MaxLifeIncreasePerLevel * 100;
+        var mod = new StatModifier(OperationType.Multiplication, multiplier);
         MaximumLifePoints.AddModifier(mod);
     }
 }
