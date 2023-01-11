@@ -177,10 +177,12 @@ public class Enemy : Unit
     }
     private void UpdateMaxLifeStat()
     {
-        MaximumLifePoints.ClearModifiersList();
+        //MaximumLifePoints.ClearModifiersList();
         if (Level <= 1) return;
-        var multiplier= (_level - 1) * MaxLifeIncreasePerLevel * 100;
-        var mod = new StatModifier(OperationType.Multiplication, multiplier);
+        //var multiplier= (_level - 1) * MaxLifeIncreasePerLevel * 100;
+        var addingValue = (_level - 1) * MaxLifeIncreasePerLevel;
+        //var mod = new StatModifier(OperationType.Multiplication, multiplier);
+        var mod = new StatModifier(OperationType.Addition, addingValue);
         MaximumLifePoints.AddModifier(mod);
     }
 }

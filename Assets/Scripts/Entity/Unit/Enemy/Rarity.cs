@@ -30,9 +30,9 @@ public class Rarity
             Value switch
             {
                 RarityEnum.Normal => 0,
-                RarityEnum.Magic => 500,
-                RarityEnum.Rare => 1000,
-                RarityEnum.Unique => 1500,
+                RarityEnum.Magic => 1000,
+                RarityEnum.Rare => 1500,
+                RarityEnum.Unique => 2500,
                 _ => throw new ArgumentOutOfRangeException(nameof(Value), Value, null)
             };
     public Rarity(RarityEnum value) => Value = value;

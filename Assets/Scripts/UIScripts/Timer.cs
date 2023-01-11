@@ -11,7 +11,6 @@ public class Timer : MonoBehaviour
 
     private Stopwatch stopwatch = new();
 
-
     public void TimeStop()
     {
         stopwatch.Stop();

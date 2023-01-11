@@ -15,6 +15,8 @@ public class EnemySpawner : MonoBehaviour
     private const int Complicator = 60;
     private const int MaxEnemiesInWave = 2;
     private const int MinEnemiesInWave = 1;
+    private const int MaxEnemiesInFirstWave = 15;
+    private const int MinEnemiesInFirstWave = 10;
     
     private Timer _timer;
     private readonly System.Random _random = new();
@@ -64,32 +66,38 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Start()
     {
-        SpawnWave();
+        SpawnFirstWave();
     }
     public void SpawnWave()
     {
         if(GameObject.FindGameObjectWithTag("Player") == null) return;
-
-        var spawn = CreateSpawn();
-
-        var r = Random.Range(0f, 1f);
-
-        if (r > 0.8)
-        {
-            PlaceEnemies(spawn, GroupingMode.Default);
-        }
-        else
-        {
-            PlaceEnemies(spawn, r > 0.2 ? GroupingMode.Group : GroupingMode.Surround);
-        }
+        var spawn = CreateSpawn(MinEnemiesInNormalWave, MaxEnemiesInNormalWave);
+        var mode = GetGroupingMode();
+        PlaceEnemies(spawn, mode);
         Invoke("SpawnWave", _secondsBetweenWaves);
     }
-    private GameObject[] CreateSpawn()
+    public void SpawnFirstWave()
     {
-        var enemiesInWave = Random.Range(MinEnemiesInNormalWave, MaxEnemiesInNormalWave);
-        var spawn = GetEnemyList(enemiesInWave, enemyTypes);
+        if (GameObject.FindGameObjectWithTag("Player") == null) return;
+        var spawn = CreateSpawn(MinEnemiesInFirstWave, MaxEnemiesInFirstWave);
+        var mode = GetGroupingMode();
+        PlaceEnemies(spawn, mode);
+        Invoke("SpawnWave", _secondsBetweenWaves);
+    }
 
-        var spawnedEnemies = new GameObject[enemiesInWave];
+    public GroupingMode GetGroupingMode()
+    {
+        var r = Random.Range(0f, 1f);
+        return r > 0.1 ? GroupingMode.Default
+            : r > 0.05 ? GroupingMode.Group
+            : GroupingMode.Surround;
+    }
+    private GameObject[] CreateSpawn(int minEnemies, int maxEnemies)
+    {
+        var enemiesInSpawn = Random.Range(minEnemies, maxEnemies);
+        var spawn = GetEnemyList(enemiesInSpawn, enemyTypes);
+
+        var spawnedEnemies = new GameObject[enemiesInSpawn];
 
         for (var i = 0; i < spawn.Length; i++)
         {
@@ -106,15 +114,10 @@ public class EnemySpawner : MonoBehaviour
                 : RarityEnum.Normal;
 
             e.SetRarity(rarity);
-
-            ImproveAccordingToTimer(e);
+            e.LevelUp(TimerBonus);
+            e.RestoreLifePoints();
         }
         return spawnedEnemies;
-    }
-    private void ImproveAccordingToTimer(Enemy enemy)
-    {
-        enemy.LevelUp(TimerBonus);
-        enemy.RestoreLifePoints();
     }
     private float GetCircleRadiusInscribedAroundTheCamera()
     {
