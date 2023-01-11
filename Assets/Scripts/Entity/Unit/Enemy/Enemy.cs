@@ -153,7 +153,7 @@ public class Enemy : Unit
     }
     public void LevelUp(int value)
     {
-        //if(value < MinInitialLevel) return;
+        if(value < 0) return;
         Level += value;
     }
     protected override void Death()
