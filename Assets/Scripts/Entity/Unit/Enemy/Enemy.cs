@@ -1,7 +1,4 @@
-using System;
 using System.Diagnostics;
-using Unity.VisualScripting.Dependencies.NCalc;
-using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -33,7 +30,6 @@ public class Enemy : Unit
                     _level = value;
                 }
             }
-            //_level = value < MinInitialLevel ? MinInitialLevel : value;
             UpdateMaxLifeStat();
         }
     }
@@ -98,21 +94,17 @@ public class Enemy : Unit
 
         if (!IsOnScreen)
         {
-            switch (_deathTimer.IsRunning)
+            if (!_deathTimer.IsRunning)
             {
-                case true:
-                {
-                    if (_deathTimer.ElapsedMilliseconds >= OffscreenDieMilliseconds)
-                    {
-                        TakeDamage(CurrentLifePoints);
-                        Debug.Log($"Unit named {gameObject.name} died because it was off screen for too long");
-                    }
-                    break;
-                }
-                case false:
-                    Debug.Log($"Death timer of {gameObject.name} started");
-                    _deathTimer.Start();
-                    break;
+                if (_deathTimer.IsRunning) return;
+                Debug.Log($"Death timer of {gameObject.name} started");
+                _deathTimer.Start();
+            }
+            else
+            {
+                if (_deathTimer.ElapsedMilliseconds < OffscreenDieMilliseconds) return;
+                TakeDamage(CurrentLifePoints);
+                Debug.Log($"Unit named {gameObject.name} died because it was off screen for too long");
             }
         }
         else
@@ -177,11 +169,8 @@ public class Enemy : Unit
     }
     private void UpdateMaxLifeStat()
     {
-        //MaximumLifePoints.ClearModifiersList();
         if (Level <= 1) return;
-        //var multiplier= (_level - 1) * MaxLifeIncreasePerLevel * 100;
         var addingValue = (_level - 1) * MaxLifeIncreasePerLevel;
-        //var mod = new StatModifier(OperationType.Multiplication, multiplier);
         var mod = new StatModifier(OperationType.Addition, addingValue);
         MaximumLifePoints.AddModifier(mod);
     }

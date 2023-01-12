@@ -142,7 +142,7 @@
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPAction.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Scripts\Firearm\Firearm.cs" />
-    <Compile Include="Assets\Scripts\UIScripts\Timer.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\GameTimer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
   </ItemGroup>
   <ItemGroup>

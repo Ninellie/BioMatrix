@@ -10,59 +10,57 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemyTypes;
     public float enemyDefaultPadding = 1.5f;
     public GameObject timerGameObject;
-    [SerializeField] private int _secondsBetweenWaves = 2;
 
-    private const int Complicator = 60;
+    private Player _player;
+    [SerializeField] private int _secondsBetweenWaves = 2;
+    private GameTimer _gameTimer;
+    private readonly System.Random _random = new();
+
+    private const int DefaultComplicationValue = 60;
     private const int MaxEnemiesInWave = 2;
     private const int MinEnemiesInWave = 1;
     private const int MaxEnemiesInFirstWave = 15;
     private const int MinEnemiesInFirstWave = 10;
     
-    private Timer _timer;
-    private readonly System.Random _random = new();
-    
     private int TimerBonus
     {
         get
         {
-            if (_timer.GetTotalSeconds() < Complicator)
+            var seconds = _gameTimer.GetTotalSeconds();
+            if (seconds < DefaultComplicationValue)
             {
                 return 0;
             }
-            var remainder = _timer.GetTotalSeconds() % Complicator;
-            return (int)(_timer.GetTotalSeconds() - remainder) / Complicator;
+            var remainder = seconds % DefaultComplicationValue;
+            return (int)(seconds - remainder) / DefaultComplicationValue;
         }
     }
-
-    private int MaxEnemiesInNormalWave
+    private int GetEnemiesInNormalWave(bool isMax)
     {
-        get
-        {
-            var complicator = _timer.GetTotalSeconds() / Complicator;
-            if (complicator >= 1f)
-            {
-                return (int)(MaxEnemiesInWave + complicator);
-            }
-            return MaxEnemiesInWave;
-        }
+        var seconds = _gameTimer.GetTotalSeconds();
+        return isMax ? GetMaxEnemiesInNormalWave(seconds) : GetMinEnemiesInNormalWave(seconds);
     }
-    private int MinEnemiesInNormalWave
+    private int GetMaxEnemiesInNormalWave(float seconds)
     {
-        get
+        var complicationValue = seconds / DefaultComplicationValue;
+        if (complicationValue >= 1f)
         {
-            var complicator = _timer.GetTotalSeconds() / Complicator * 2;
-            if (complicator >= 1f)
-            {
-                return (int)(MinEnemiesInWave + complicator);
-            }
-
-            return MinEnemiesInWave;
+            return (int)(MaxEnemiesInWave + complicationValue);
         }
+        return MaxEnemiesInWave;
     }
-
+    private int GetMinEnemiesInNormalWave(float seconds)
+    {
+        var complicationValue = seconds / (DefaultComplicationValue * 2);
+        if (complicationValue >= 1f)
+        {
+            return (int)(MinEnemiesInWave + complicationValue);
+        }
+        return MinEnemiesInWave;
+    }
     private void Awake()
     {
-        _timer = timerGameObject.GetComponent<Timer>();
+        _gameTimer = timerGameObject.GetComponent<GameTimer>();
     }
     private void Start()
     {
@@ -71,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnWave()
     {
         if(GameObject.FindGameObjectWithTag("Player") == null) return;
-        var spawn = CreateSpawn(MinEnemiesInNormalWave, MaxEnemiesInNormalWave);
+        var spawn = CreateSpawn(GetEnemiesInNormalWave(false), GetEnemiesInNormalWave(true));
         var mode = GetGroupingMode();
         PlaceEnemies(spawn, mode);
         Invoke("SpawnWave", _secondsBetweenWaves);
@@ -116,6 +114,7 @@ public class EnemySpawner : MonoBehaviour
             e.SetRarity(rarity);
             e.LevelUp(TimerBonus);
             e.RestoreLifePoints();
+
         }
         return spawnedEnemies;
     }
@@ -129,11 +128,6 @@ public class EnemySpawner : MonoBehaviour
     {
         return Mathf.Sqrt(sideALength * sideALength + sideBLength * sideBLength);
     }
-    //private float CalculateWavesPerSecond()
-    //{
-    //    var seconds = _timer.GetTotalSeconds();
-    //    return _secondsBetweenWaves + (seconds / Complicator);
-    //}
     private GameObject GetRandomEnemyFromList(List<GameObject> enemyList)
     {
         var sum = 0;

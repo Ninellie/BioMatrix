@@ -63,14 +63,14 @@ public class PauseMenu : MonoBehaviour
     {
         GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
         Time.timeScale = 0f;
-        timerUI.GetComponent<Timer>().TimeStop();
+        timerUI.GetComponent<GameTimer>().TimeStop();
         GameIsPaused = true;
     }
     private void ResumeGame()
     {
         GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
         Time.timeScale = 1f;
-        timerUI.GetComponent<Timer>().TimeStart();
+        timerUI.GetComponent<GameTimer>().TimeStart();
         GameIsPaused = false;
     }
     public void BackToMainMenu()
