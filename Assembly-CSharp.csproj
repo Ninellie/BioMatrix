@@ -103,6 +103,7 @@
     <Compile Include="Assets\Scripts\UIScripts\DamagePopup.cs" />
     <Compile Include="Assets\Scripts\Stat\OperationType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\WinScreen.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Camera\MainCameraPlayerSeek.cs" />
@@ -142,7 +143,7 @@
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPAction.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Scripts\Firearm\Firearm.cs" />
-    <Compile Include="Assets\Scripts\UIScripts\Timer.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\GameTimer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
   </ItemGroup>
   <ItemGroup>

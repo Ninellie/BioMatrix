@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     {
         get
         {
-            var complicator = _timer.GetTotalSeconds() / 30;
+            var complicator = _gameTimer.GetTotalSeconds() / 30;
             if (complicator >= 1f)
             {
                 return (int)(MaxEnemiesInWave + complicator);
@@ -33,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
     {
         get
         {
-            var complicator = _timer.GetTotalSeconds() / 60;
+            var complicator = _gameTimer.GetTotalSeconds() / 60;
             if (complicator >= 1f)
             {
                 return (int)(MinEnemiesInWave + complicator);
@@ -42,12 +42,12 @@ public class EnemySpawner : MonoBehaviour
             return MinEnemiesInWave;
         }
     }
-    private Timer _timer;
+    private GameTimer _gameTimer;
     private readonly System.Random _random = new();
 
     private void Awake()
     {
-        _timer = timerGameObject.GetComponent<Timer>();
+        _gameTimer = timerGameObject.GetComponent<GameTimer>();
     }
     private void Start()
     {
@@ -100,12 +100,12 @@ public class EnemySpawner : MonoBehaviour
     }
     private void ImproveAccordingToTimer(Enemy enemy)
     {
-        enemy.LevelUp(GetTimerBonus(_timer));
+        enemy.LevelUp(GetTimerBonus(_gameTimer));
         enemy.RestoreLifePoints();
     }
-    private int GetTimerBonus(Timer timer)
+    private int GetTimerBonus(GameTimer gameTimer)
     {
-        return (int)timer.GetTotalSeconds() / Complicator;
+        return (int)gameTimer.GetTotalSeconds() / Complicator;
     }
     private float GetCircleRadiusInscribedAroundTheCamera()
     {
@@ -120,7 +120,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private float CalculateWavesPerSecond()
     {
-        var seconds = _timer.GetTotalSeconds();
+        var seconds = _gameTimer.GetTotalSeconds();
         return _secondsBetweenWaves + (seconds / Complicator);
     }
     private GameObject GetRandomEnemyFromList(List<GameObject> enemyList)
