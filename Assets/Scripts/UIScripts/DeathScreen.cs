@@ -3,18 +3,16 @@ using UnityEngine.InputSystem;
 
 public class DeathScreen : MonoBehaviour
 {
-    public bool gameIsOver = false;
     public GameObject deathScreen;
-    //public GameObject timer;
     public void Subscription()
     {
-        FindObjectOfType<Player>().onPlayerDeath += EnableDeathScreen;
-        FindObjectOfType<Player>().onPlayerDeath += Unsubscription;
+        FindObjectOfType<Player>().onDeath += EnableDeathScreen;
+        FindObjectOfType<Player>().onDeath += Unsubscription;
     }
     private void Unsubscription()
     {
-        FindObjectOfType<Player>().onPlayerDeath -= EnableDeathScreen;
-        FindObjectOfType<Player>().onPlayerDeath -= Unsubscription;
+        FindObjectOfType<Player>().onDeath -= EnableDeathScreen;
+        FindObjectOfType<Player>().onDeath -= Unsubscription;
     }
     public void EnableDeathScreen()
     {

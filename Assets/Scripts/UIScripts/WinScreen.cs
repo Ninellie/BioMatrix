@@ -19,12 +19,12 @@ public class WinScreen : MonoBehaviour
     }
     public void Subscription()
     {
-        FindObjectOfType<Player>().onPlayerDeath += Unsubscription;
+        FindObjectOfType<Player>().onDeath += Unsubscription;
         onGameWinning += EnableWinScreen;
     }
     private void Unsubscription()
     {
-        FindObjectOfType<Player>().onPlayerDeath -= Unsubscription;
+        FindObjectOfType<Player>().onDeath -= Unsubscription;
         onGameWinning -= EnableWinScreen;
     }
     private void EnableWinScreen()
