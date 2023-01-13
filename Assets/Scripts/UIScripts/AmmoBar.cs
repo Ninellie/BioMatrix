@@ -25,14 +25,14 @@ public class AmmoBar : MonoBehaviour
         Debug.Log("Ammo bar started subscribing on current ammo amount tof Player's Firearm");
 
         FindObjectOfType<Firearm>().Magazine.onCurrentAmountChanged += UpdateBar;
-        FindObjectOfType<Player>().onPlayerDeath += Unsubscription;
+        FindObjectOfType<Player>().onDeath += Unsubscription;
     }
     private void Unsubscription()
     {
         Debug.Log("Ammo bar started unsubscribing from current ammo amount tof Player's Firearm");
 
         FindObjectOfType<Firearm>().Magazine.onCurrentAmountChanged -= UpdateBar;
-        FindObjectOfType<Player>().onPlayerDeath -= Unsubscription;
+        FindObjectOfType<Player>().onDeath -= Unsubscription;
     }
     private void UpdateBar()
     {

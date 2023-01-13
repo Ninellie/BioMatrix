@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Unit : Entity
 {
+    public Action onDeath;
     protected Stat Speed { get; private set; }
     protected Movement Movement { get; private set; }
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.UnitStats);
@@ -26,6 +27,11 @@ public class Unit : Entity
     {
         base.BaseOnDisable();
         if (Speed != null) Speed.onValueChanged -= ChangeCurrentSpeed;
+    }
+    protected override void Death()
+    {
+        onDeath?.Invoke();
+        base.Death();
     }
     protected void ChangeCurrentSpeed()
     {

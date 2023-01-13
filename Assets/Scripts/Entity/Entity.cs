@@ -11,6 +11,7 @@ public class Entity : MonoBehaviour
     public const int MinimalDamageTaken = 1;
     public const int LifePointAmount = 1;
     private float _reservedLife = 0;
+    private Renderer _renderer;
     public float CurrentLifePoints
     {
         get => _currentLifePoints;
@@ -49,6 +50,7 @@ public class Entity : MonoBehaviour
     protected Stat LifeRegenerationPerSecond { get; private set; }
     private float _currentLifePoints;
     private Camera _mCamera;
+
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EntityStats);
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
@@ -57,6 +59,7 @@ public class Entity : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} Entity Awake");
         _mCamera = FindObjectOfType<Camera>();
+        _renderer = this.GetComponent<Renderer>();
         Size = new Stat(settings.Size);
         MaximumLifePoints = new Stat(settings.MaximumLife);
         LifeRegenerationPerSecond = new Stat(settings.LifeRegenerationInSecond);
@@ -77,7 +80,7 @@ public class Entity : MonoBehaviour
     }
     protected virtual void BaseUpdate()
     {
-        IsOnScreen = CheckVisibilityOnCamera(_mCamera, gameObject);
+        IsOnScreen = CheckVisibilityOnCamera();
     }
     protected virtual void Regeneration()
     {
@@ -132,10 +135,15 @@ public class Entity : MonoBehaviour
     private bool CheckVisibilityOnCamera(Camera camera, GameObject gameObject)
     {
         var screenPos = camera.WorldToScreenPoint(gameObject.transform.position);
-        var onScreen = screenPos.x > 0f && 
-                       screenPos.x < Screen.width &&
-                       screenPos.y > 0f &&
-                       screenPos.y < Screen.height;
+        var onScreen =
+            screenPos.x > 0f && screenPos.x < Screen.width &&
+            screenPos.y > 0f && screenPos.y < Screen.height;
+        return onScreen;
+    }
+
+    private bool CheckVisibilityOnCamera()
+    {
+        var onScreen = _renderer.isVisible;
         return onScreen;
     }
 }

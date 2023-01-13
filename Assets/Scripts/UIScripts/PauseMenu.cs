@@ -13,12 +13,12 @@ public class PauseMenu : MonoBehaviour
     public void Subscription()
     {
         FindObjectOfType<Player>().onGamePaused += OnPause;
-        FindObjectOfType<Player>().onPlayerDeath += Unsubscription;
+        FindObjectOfType<Player>().onDeath += Unsubscription;
     }
     private void Unsubscription()
     {
         FindObjectOfType<Player>().onGamePaused -= OnPause;
-        FindObjectOfType<Player>().onPlayerDeath -= Unsubscription;
+        FindObjectOfType<Player>().onDeath -= Unsubscription;
     }
     public void OnPause()
     {

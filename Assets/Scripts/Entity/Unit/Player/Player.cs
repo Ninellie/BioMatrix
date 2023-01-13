@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public class Player : Unit
 {
     public Action onGamePaused;
-    public Action onPlayerDeath;
     public Action onLevelUp;
     public Action onExperienceTaken;
     protected Stat MagnetismRadius { get; private set; }
@@ -113,11 +112,11 @@ public class Player : Unit
 
         weapon.transform.position = _firePoint.transform.position;
     }
-    protected override void Death()
-    {
-        onPlayerDeath?.Invoke();
-        base.Death();
-    }
+    //protected override void Death()
+    //{
+    //    onPlayerDeath?.Invoke();
+    //    base.Death();
+    //}
 
     public void AddStatModifier(string statName, StatModifier statModifier)
     {
