@@ -174,4 +174,10 @@ public class Enemy : Unit
         var mod = new StatModifier(OperationType.Addition, addingValue);
         MaximumLifePoints.AddModifier(mod);
     }
+    public void LookAt2D(Vector2 target)
+    {
+        var direction = (Vector2)_rigidbody2D.transform.position - target;
+        var angle = (Mathf.Atan2(direction.y, direction.x) + Mathf.PI / 2) * Mathf.Rad2Deg;
+        _rigidbody2D.SetRotation(angle);
+    }
 }

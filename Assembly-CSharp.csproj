@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Firearm\FirearmStatsSettings.cs" />
     <Compile Include="Assets\Scripts\UIScripts\TestJson.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
+    <Compile Include="Assets\Scripts\Map\Spawner\Circle.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\LevelUp\Deck\Card.cs" />
     <Compile Include="Assets\Scripts\Entity\Entity.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Assets\Scripts\Entity\Unit\Movement\Movement.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
+    <Compile Include="Assets\Scripts\Map\Spawner\EnemyWave.cs" />
     <Compile Include="Assets\Scripts\UIScripts\AmmoBar.cs" />
     <Compile Include="Assets\Scripts\LevelUp\LevelUp.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Assets\Scripts\Entity\Unit\UnitStatsSettings.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
+    <Compile Include="Assets\Scripts\Map\Spawner\EnemyPlacer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Boon\Boon.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
@@ -134,12 +137,14 @@
     <Compile Include="Assets\Scripts\Stat\GlobalStatsSettingsRepository.cs" />
     <Compile Include="Assets\Scripts\UIScripts\MainMenu.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
+    <Compile Include="Assets\Scripts\Map\Spawner\Grouping.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\Scripts\UIScripts\ExpUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Projectile\ProjectileCreator.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPAction.cs" />
+    <Compile Include="Assets\Scripts\Map\Spawner\WaveType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Scripts\Firearm\Firearm.cs" />
     <Compile Include="Assets\Scripts\UIScripts\GameTimer.cs" />

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -11,17 +11,16 @@ public class EnemySpawner : MonoBehaviour
     public float enemyDefaultPadding = 1.5f;
     public GameObject timerGameObject;
 
-    private Player _player;
     [SerializeField] private int _secondsBetweenWaves = 2;
     private GameTimer _gameTimer;
     private readonly System.Random _random = new();
+    private readonly EnemyPlacer _enemyPlacer = new();
+    private readonly Grouping _grouping = new();
+    private readonly Rarity _rarity = new();
+    private Player _player;
+    private EnemyWave _enemyWave;
 
     private const int DefaultComplicationValue = 60;
-    private const int MaxEnemiesInWave = 2;
-    private const int MinEnemiesInWave = 1;
-    private const int MaxEnemiesInFirstWave = 15;
-    private const int MinEnemiesInFirstWave = 10;
-    
     private int TimerBonus
     {
         get
@@ -35,32 +34,15 @@ public class EnemySpawner : MonoBehaviour
             return (int)(seconds - remainder) / DefaultComplicationValue;
         }
     }
-    private int GetEnemiesInNormalWave(bool isMax)
-    {
-        var seconds = _gameTimer.GetTotalSeconds();
-        return isMax ? GetMaxEnemiesInNormalWave(seconds) : GetMinEnemiesInNormalWave(seconds);
-    }
-    private int GetMaxEnemiesInNormalWave(float seconds)
-    {
-        var complicationValue = seconds / DefaultComplicationValue;
-        if (complicationValue >= 1f)
-        {
-            return (int)(MaxEnemiesInWave + complicationValue);
-        }
-        return MaxEnemiesInWave;
-    }
-    private int GetMinEnemiesInNormalWave(float seconds)
-    {
-        var complicationValue = seconds / (DefaultComplicationValue * 2);
-        if (complicationValue >= 1f)
-        {
-            return (int)(MinEnemiesInWave + complicationValue);
-        }
-        return MinEnemiesInWave;
-    }
     private void Awake()
     {
         _gameTimer = timerGameObject.GetComponent<GameTimer>();
+        _enemyWave = new EnemyWave(_gameTimer);
+        if (FindObjectOfType<Player>() == null)
+        {
+            Debug.Log("Player script is null in scene");
+        }
+        _player = FindObjectOfType<Player>();
     }
     private void Start()
     {
@@ -68,78 +50,55 @@ public class EnemySpawner : MonoBehaviour
     }
     public void SpawnWave()
     {
-        if(GameObject.FindGameObjectWithTag("Player") == null) return;
-        var spawn = CreateSpawn(GetEnemiesInNormalWave(false), GetEnemiesInNormalWave(true));
-        var mode = GetGroupingMode();
-        PlaceEnemies(spawn, mode);
-        Invoke("SpawnWave", _secondsBetweenWaves);
+        if(_player == null) return;
+        var playerPosition = (Vector2)_player.transform.position;
+        var spawn = CreateSpawn(_enemyWave.GetSize(WaveType.Normal), playerPosition);
+        var mode = _grouping.GetRandomMode();
+        _enemyPlacer.PlaceEnemies(spawn, mode, playerPosition);
     }
     public void SpawnFirstWave()
     {
-        if (GameObject.FindGameObjectWithTag("Player") == null) return;
-        var spawn = CreateSpawn(MinEnemiesInFirstWave, MaxEnemiesInFirstWave);
-        var mode = GetGroupingMode();
-        PlaceEnemies(spawn, mode);
-        Invoke("SpawnWave", _secondsBetweenWaves);
+        if (_player == null) return;
+        var playerPosition = (Vector2)_player.transform.position;
+        var spawn = CreateSpawn(_enemyWave.GetSize(WaveType.First), playerPosition);
+        var mode = _grouping.GetRandomMode();
+        _enemyPlacer.PlaceEnemies(spawn, mode, playerPosition);
+        PrepareEnemies(spawn, playerPosition);
+        InvokeRepeating("SpawnWave", _secondsBetweenWaves, _secondsBetweenWaves);
     }
-
-    public GroupingMode GetGroupingMode()
+    private GameObject[] CreateSpawn(int enemiesInSpawn, Vector2 playerPosition)
     {
-        var r = Random.Range(0f, 1f);
-        return r > 0.1 ? GroupingMode.Default
-            : r > 0.05 ? GroupingMode.Group
-            : GroupingMode.Surround;
-    }
-    private GameObject[] CreateSpawn(int minEnemies, int maxEnemies)
-    {
-        var enemiesInSpawn = Random.Range(minEnemies, maxEnemies);
         var spawn = GetEnemyList(enemiesInSpawn, enemyTypes);
-
         var spawnedEnemies = new GameObject[enemiesInSpawn];
 
         for (var i = 0; i < spawn.Length; i++)
         {
             spawnedEnemies[i] = Instantiate<GameObject>(spawn[i]);
         }
-
-        foreach (var enemy in spawnedEnemies)
-        {
-            var e = enemy.GetComponent<Enemy>();
-            var r = Random.Range(0f, 1f);
-
-            var rarity = r > 0.999 ? RarityEnum.Rare
-                : r > 0.98 ? RarityEnum.Magic
-                : RarityEnum.Normal;
-
-            e.SetRarity(rarity);
-            e.LevelUp(TimerBonus);
-            e.RestoreLifePoints();
-
-        }
         return spawnedEnemies;
     }
-    private float GetCircleRadiusInscribedAroundTheCamera()
+    private void PrepareEnemies(GameObject[] enemies, Vector2 playerPosition)
     {
-        var camHeight = Camera.main.orthographicSize * 2;
-        var camWidth = camHeight * Camera.main.aspect;
-        return GetHypotenuseLength(camHeight, camWidth) / 2;
+        foreach (var enemy in enemies)
+        {
+            var e = enemy.GetComponent<Enemy>();
+            PrepareEnemyToSpawn(e, playerPosition);
+        }
     }
-    public float GetHypotenuseLength(float sideALength, float sideBLength)
+    private void PrepareEnemyToSpawn(Enemy enemy, Vector2 playerPosition)
     {
-        return Mathf.Sqrt(sideALength * sideALength + sideBLength * sideBLength);
+        var rarity = _rarity.GetRandomRarity();
+        var levelUpBonus = TimerBonus;
+        enemy.SetRarity(rarity);
+        enemy.LevelUp(levelUpBonus);
+        enemy.RestoreLifePoints();
+        enemy.LookAt2D(playerPosition);
     }
     private GameObject GetRandomEnemyFromList(List<GameObject> enemyList)
     {
-        var sum = 0;
-        foreach (var enemy in enemyList)
-        {
-            sum += (int)enemy.GetComponent<Enemy>().spawnWeight.Value;
-        }
-
+        var sum = enemyList.Sum(enemy => (int)enemy.GetComponent<Enemy>().spawnWeight.Value);
         var next = _random.Next(sum);
-
         var limit = 0;
-
         foreach (var enemy in enemyList)
         {
             limit += (int)enemy.GetComponent<Enemy>().spawnWeight.Value;
@@ -162,70 +121,5 @@ public class EnemySpawner : MonoBehaviour
             selectedEnemies.Add(randomEnemyFromList);
         }
         return selectedEnemies.ToArray();
-    }
-    private void PlaceEnemies(GameObject[] enemies, GroupingMode mode)
-    {
-        var radius = GetCircleRadiusInscribedAroundTheCamera();
-        var playerPoint = (Vector2)FindObjectOfType<Player>().transform.position;
-        switch (mode)
-        {
-            case GroupingMode.Default:
-                PlaceDefaultEnemies(enemies, radius, playerPoint);
-                break;
-            case GroupingMode.Surround:
-                PlaceRingEnemies(enemies, radius, playerPoint);
-                break;
-            case GroupingMode.Group:
-                PlaceGroupEnemies(enemies, radius, playerPoint);
-                break;
-        }
-    }
-    private void PlaceDefaultEnemies(IEnumerable<GameObject> enemies, float radius, Vector2 playerPoint)
-    {
-        foreach (var enemy in enemies)
-        {
-            var randomAng = GetRandomAngle();
-            enemy.transform.position = GetPointOnCircle(radius, playerPoint, randomAng);
-        }
-    }
-    private void PlaceRingEnemies(IEnumerable<GameObject> enemies, float radius, Vector2 playerPoint)
-    {
-        var enemiesArray = enemies as GameObject[] ?? enemies.ToArray();
-        var angleStep = (float)Math.PI * 2f / enemiesArray.Length;
-        var nextAngle = GetRandomAngle();
-
-        foreach (var enemy in enemiesArray)
-        {
-            enemy.transform.position = GetPointOnCircle(radius, playerPoint, nextAngle);
-            nextAngle += angleStep;
-        }
-    }
-    private void PlaceGroupEnemies(IEnumerable<GameObject> enemies, float radius, Vector2 playerPoint)
-    {
-        var enemiesArray = enemies as GameObject[] ?? enemies.ToArray();
-        var padding = enemiesArray.Sum(enemy => enemy.GetComponent<CircleCollider2D>().radius) / 2;
-        var packCentre = GetPointOnCircle(radius + padding, playerPoint, GetRandomAngle());
-        foreach (var enemy in enemiesArray)
-        {
-            var v2 = new Vector2(Random.value, Random.value);
-            if (Random.value > 0.5f)
-            {
-                enemy.transform.position = packCentre - v2;
-            }
-            else
-            {
-                enemy.transform.position = packCentre + v2;
-            }
-        }
-    }
-    private float GetRandomAngle()
-    {
-        return Random.Range(0, Mathf.PI * 2);
-    }
-    private Vector2 GetPointOnCircle(float radius, Vector2 circleCenter, float fi)
-    {
-        var randomPointOnBaseCircle = new Vector2(Mathf.Cos(fi) * radius, Mathf.Sin(fi) * radius);
-        var randomPointOnActualCircle = circleCenter + randomPointOnBaseCircle;
-        return randomPointOnActualCircle;
     }
 }

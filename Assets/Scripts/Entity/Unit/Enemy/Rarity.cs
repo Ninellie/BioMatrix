@@ -1,13 +1,21 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Rarity
 {
     public RarityEnum Value { get; set; }
-    private readonly Color _magic = new Color(0.8352942f, 0.2352941f, 0.4156863f);
-    private readonly Color _rare = new Color(1f, 0.509804f, 0.454902f);
+    private readonly Color _magic = new(0.8352942f, 0.2352941f, 0.4156863f);
+    private readonly Color _rare = new(1f, 0.509804f, 0.454902f);
     private readonly float _normalOutline = 0.01f;
-
+    private readonly Dictionary<RarityEnum, int> _rarityWeights = new()
+    {
+        {RarityEnum.Normal, 970},
+        {RarityEnum.Magic, 29 },
+        {RarityEnum.Rare, 1}
+    };
     public float Width =>
     Value switch
     {
@@ -37,4 +45,29 @@ public class Rarity
             };
     public Rarity(RarityEnum value) => Value = value;
     public Rarity() => Value = RarityEnum.Normal;
+    public RarityEnum GetRandomRarity()
+    {
+        var sum = GetWeightSum();
+
+        var next = Random.Range(0, sum);
+
+        var limit = 0;
+        var rarityTypes = _rarityWeights.Keys.ToList();
+        var weights = _rarityWeights.Values.ToList();
+
+        for (var i = 0; i < _rarityWeights.Count; i++)
+        {
+            var groupingMode = rarityTypes[i];
+            limit += weights[i];
+            if (next < limit)
+            {
+                return groupingMode;
+            }
+        }
+        throw new InvalidOperationException("");
+    }
+    private int GetWeightSum()
+    {
+        return _rarityWeights.Sum(keyValuePair => keyValuePair.Value);
+    }
 }
