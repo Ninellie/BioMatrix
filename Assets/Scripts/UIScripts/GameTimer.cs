@@ -5,29 +5,28 @@ using System.Diagnostics;
 public class GameTimer : MonoBehaviour
 {
     public TMPro.TMP_Text textTimer;
-
-    private Stopwatch stopwatch = new();
+    private readonly Stopwatch _stopwatch = new();
+    private void Awake()
+    {
+        _stopwatch.Start();
+    }
     private void Update()
     {
-        var elapsed = stopwatch.Elapsed;
+        var elapsed = _stopwatch.Elapsed;
         var greatThenHour = elapsed >= TimeSpan.FromHours(1);
         textTimer.text = elapsed.ToString(greatThenHour ? "hh\\:mm\\:ss" : "mm\\:ss");
     }
-    private void Awake()
-    {
-        stopwatch.Start();
-    }
     public void TimeStop()
     {
-        stopwatch.Stop();
+        _stopwatch.Stop();
     }
     public void TimeStart()
     {
-        stopwatch.Start();
+        _stopwatch.Start();
     }
     public float GetTotalSeconds()
     {
-        var ts = stopwatch.Elapsed;
+        var ts = _stopwatch.Elapsed;
         return (float)ts.TotalSeconds;
     }
 }

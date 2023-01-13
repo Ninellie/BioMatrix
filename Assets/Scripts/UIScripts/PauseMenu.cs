@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
+    public bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject settingsMenuUI;
     public GameObject timerUI;
@@ -13,7 +13,6 @@ public class PauseMenu : MonoBehaviour
     public void Subscription()
     {
         FindObjectOfType<Player>().onGamePaused += OnPause;
-
         FindObjectOfType<Player>().onDeath += Unsubscription;
     }
     private void Unsubscription()

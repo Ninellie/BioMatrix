@@ -11,6 +11,7 @@ public class PlayerCreator : MonoBehaviour
     public PauseMenu pauseMenu;
     public LevelUp levelUp;
     public DeathScreen deathScreen;
+    public WinScreen winScreen;
 
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private GameObject _playerWeapon;
@@ -18,6 +19,7 @@ public class PlayerCreator : MonoBehaviour
     private void Awake()
     {
         if (_playerPrefab == null) return;
+        winScreen = FindObjectOfType<WinScreen>(true);
         CreatePlayer(_playerPrefab);
         CurrentPlayer.GetComponent<Player>().CreateWeapon(_playerWeapon);
         Subscription();
@@ -36,5 +38,6 @@ public class PlayerCreator : MonoBehaviour
         pauseMenu.Subscription();
         levelUp.Subscription();
         deathScreen.Subscription();
+        winScreen.Subscription();
     }
 }
