@@ -20,10 +20,8 @@ public class Firearm : MonoBehaviour
                             && !Magazine.IsEmpty
                             && !Reload.IsInProcess;
     public Magazine Magazine => GetComponent<Magazine>();
-    private bool IsFireButtonPressed =>
-        GameObject.FindGameObjectsWithTag("Player")[0]
-            .GetComponent<Player>()
-            .isFireButtonPressed;
+    private bool IsFireButtonPressed => _player.isFireButtonPressed;
+    private Player _player;
     private Reload Reload => GetComponent<Reload>();
     private ProjectileCreator ProjectileCreator => GetComponent<ProjectileCreator>();
     private readonly Stopwatch _previousShootStopwatch = new();
@@ -39,6 +37,7 @@ public class Firearm : MonoBehaviour
         ReloadSpeed = new Stat(settings.ReloadSpeed);
         SingleShootProjectile = new Stat(settings.SingleShootProjectile);
         _previousShootStopwatch.Start();
+        _player = FindObjectOfType<Player>();
     }
     private void Update()
     {
@@ -79,13 +78,32 @@ public class Firearm : MonoBehaviour
         var direction = GetShotDirection();
         foreach (var projectile in projectiles)
         {
-            projectile.GetComponent<Projectile>().Launch(direction, MaxShootDeflectionAngle.Value, ShootForce.Value);
+            var actualShotDirection = GetActualShotDirection(direction, MaxShootDeflectionAngle.Value);
+            projectile.GetComponent<Projectile>().Launch(actualShotDirection, ShootForce.Value);
         }
         _previousShootStopwatch.Restart();
     }
-
     private Vector2 GetShotDirection()
     {
         return Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - gameObject.transform.position;
+    }
+
+    private Vector2 GetActualShotDirection(Vector2 direction, float maxShotDeflectionAngle)
+    {
+        var angleInRad = (float)Mathf.Deg2Rad * maxShotDeflectionAngle;
+        var shotDeflectionAngle = Range(-angleInRad, angleInRad);
+        return Rotate(direction, shotDeflectionAngle);
+    }
+    private float Range(float minInclusive, float maxInclusive)
+    {
+        var std = PeterAcklamInverseCDF.NormInv(UnityEngine.Random.value);
+        return PeterAcklamInverseCDF.RandomGaussian(std, minInclusive, maxInclusive);
+    }
+    private Vector2 Rotate(Vector2 point, float angle)
+    {
+        Vector2 rotatedPoint;
+        rotatedPoint.x = point.x * Mathf.Cos(angle) - point.y * Mathf.Sin(angle);
+        rotatedPoint.y = point.x * Mathf.Sin(angle) + point.y * Mathf.Cos(angle);
+        return rotatedPoint;
     }
 }

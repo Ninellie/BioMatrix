@@ -29,11 +29,9 @@ public class Player : Unit
         {
             _experience = value;
             onExperienceTaken?.Invoke();
-            if (ExpToLvlup == 0)
-            {
-                _experience = 0;
-                Level++;
-            }
+            if (ExpToLvlup != 0) return;
+            _experience = 0;
+            Level++;
         }
     }
 
@@ -77,7 +75,7 @@ public class Player : Unit
         _circleCollider.radius = MagnetismRadius.Value;
         MagnetismPower = new Stat(settings.MagnetismPower);
         _pointEffector.forceMagnitude = MagnetismPower.Value * -1;
-        var movement = new Movement(gameObject, MovementMode.Rectilinear, settings.Speed);
+        var movement = new Movement(this, MovementState.Rectilinear, settings.Speed);
         base.BaseAwake(settings, movement);
     }
     protected override void BaseOnEnable()
@@ -112,12 +110,6 @@ public class Player : Unit
 
         weapon.transform.position = _firePoint.transform.position;
     }
-    //protected override void Death()
-    //{
-    //    onPlayerDeath?.Invoke();
-    //    base.Death();
-    //}
-
     public void AddStatModifier(string statName, StatModifier statModifier)
     {
         switch (statName)

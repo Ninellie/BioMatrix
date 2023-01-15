@@ -64,7 +64,7 @@ public class Enemy : Unit
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         
-        var movement = new Movement(gameObject, MovementMode.Seek, settings.Speed);
+        var movement = new Movement(this, MovementState.Seek, settings.Speed);
         movement.SetPursuingTarget(FindObjectOfType<Player>().gameObject);
         base.BaseAwake(settings, movement);
 
@@ -151,10 +151,9 @@ public class Enemy : Unit
     protected override void Death()
     {
         base.Death();
-        if (_collisionGameObject != null && _collisionGameObject.tag == "Projectile")
-        {
-            DropBonus();
-        }
+        if (_collisionGameObject == null) return;
+        if (_collisionGameObject.tag != "Projectile") return;
+        DropBonus();
     }
     private void DropBonus()
     {

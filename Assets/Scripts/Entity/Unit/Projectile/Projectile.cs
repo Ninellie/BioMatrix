@@ -28,34 +28,11 @@ public class Projectile : Unit
             TakeDamage(CurrentLifePoints);
         }
     }
-    public virtual void Launch(Vector2 direction, float force)
+    public void Launch(Vector2 direction, float force)
     {
-        Movement.ChangeMode(MovementMode.Rectilinear);
-        Movement.AccelerateInDirection(force, direction);
-    }
-    public void Launch(Vector2 direction, float maxShotDeflectionAngle, float force)
-    {
-        var actualShotDirection = GetActualShotDirection(direction, maxShotDeflectionAngle);
-        Launch(actualShotDirection, force);
-    }
-    private Vector2 GetActualShotDirection(Vector2 direction, float maxShotDeflectionAngle)
-    {
-        var angleInRad = (float)Mathf.Deg2Rad * maxShotDeflectionAngle;
-        var shotDeflectionAngle = Range(-angleInRad, angleInRad);
-        return Rotate(direction, shotDeflectionAngle);
-    }
-    private float Range(float minInclusive, float maxInclusive)
-    {
-        var std = PeterAcklamInverseCDF.NormInv(Random.value);
-        return PeterAcklamInverseCDF.RandomGaussian(std, minInclusive, maxInclusive);
-    }
-    private Vector2 Rotate(Vector2 point, float angle)
-    {
-        Vector2 rotatedPoint;
-        rotatedPoint.x = point.x * Mathf.Cos(angle)
-                          - point.y * Mathf.Sin(angle);
-        rotatedPoint.y = point.x * Mathf.Sin(angle)
-                          + point.y * Mathf.Cos(angle);
-        return rotatedPoint;
+        Movement.SetMovementDirection(direction);
+        var speedMod = new StatModifier(OperationType.Addition, force);
+        Speed.AddModifier(speedMod);
+        Movement.ChangeState(MovementState.Rectilinear);
     }
 }

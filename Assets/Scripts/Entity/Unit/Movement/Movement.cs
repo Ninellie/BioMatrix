@@ -1,69 +1,68 @@
 using System;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
-
 public class Movement 
 {
     public float Speed { get; private set; }
-    private const float RotationSpeed = 1f;
-    private GameObject _pursuingTarget;
-    private MovementMode _mode;
+    public float TurningSpeed { get; private set; }
+    private Rigidbody2D _pursuingRigidbody2D;
+    private readonly Unit _drivenUnit;
+    private MovementState _currentState;
     private Vector2 _movementDirection;
     private readonly Rigidbody2D _drivenRigidbody2D;
-    private readonly Transform _drivenTransform;
     private Vector2 Velocity => _movementDirection.normalized * Speed;
     private Vector2 LocalUp => _drivenRigidbody2D.transform.up;
-    public Movement(GameObject drivenGameObject) : this(drivenGameObject, MovementMode.Idle, 0)
+    public Movement(Unit drivenUnit) : this(drivenUnit, MovementState.Idle, 0)
     {
     }
-    public Movement(GameObject drivenGameObject, float speed) : this(drivenGameObject, MovementMode.Idle, speed)
+    public Movement(Unit drivenUnit, float speed) : this(drivenUnit, MovementState.Idle, speed)
     {
     }
-    public Movement(GameObject drivenGameObject, MovementMode mode, float speed)
+    public Movement(Unit drivenUnit, MovementState currentState, float speed)
     {
-        _mode = mode;
+        _drivenUnit = drivenUnit;
+        _currentState = currentState;
         Speed = speed;
+        TurningSpeed = 1f;
         _movementDirection = Vector2.zero.normalized;
-        _pursuingTarget = null;
-        _drivenRigidbody2D = drivenGameObject.GetComponent<Rigidbody2D>();
-        _drivenTransform = drivenGameObject.transform;
+        _pursuingRigidbody2D = null;
+        _drivenRigidbody2D = drivenUnit.GetComponent<Rigidbody2D>();
     }
     public void FixedUpdateMove()
     {
-        switch (_mode)
+        Move();
+    }
+    private void Move()
+    {
+        switch (_currentState)
         {
-            case MovementMode.Idle:
+            case MovementState.Idle:
                 //DrivenRigidbody2D.velocity = Vector2.zero;
                 break;
-            case MovementMode.Rectilinear:
-                ApplyVelocity();
+            case MovementState.Rectilinear:
+                SetVelocity();
                 break;
-            case MovementMode.Pursue:
+            case MovementState.Pursue:
                 Pursue();
                 break;
-            case MovementMode.Seek:
+            case MovementState.Seek:
                 Seek();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
     }
-    public void ChangeMode(MovementMode mode)
+    public void ChangeState(MovementState state)
     {
-        _mode = mode;
-        if (mode == MovementMode.Idle)
+        _currentState = state;
+        if (state == MovementState.Idle)
         {
             _drivenRigidbody2D.velocity = Vector2.zero;
         }
     }
     public void SetPursuingTarget(GameObject pursuingTarget)
     {
-        _pursuingTarget = pursuingTarget;
-    }
-    public void AccelerateInDirection(float speed, Vector2 direction)
-    {
-        ChangeMovementDirection(direction);
-        Accelerate(speed);
+        _pursuingRigidbody2D = pursuingTarget.GetComponent<Rigidbody2D>();
     }
     public void Accelerate(float speed)
     {
@@ -79,47 +78,35 @@ public class Movement
             Speed -= speed;
         }
     }
-    public void ChangeMovementDirection(Vector2 direction)
-    {
-        _movementDirection += direction;
-    }
+
     public void SetMovementDirection(Vector2 direction)
     {
         _movementDirection = direction;
     }
-    private void ApplyVelocity()
+    private void SetVelocity()
     {
         _drivenRigidbody2D.velocity = Velocity;
-        //DrivenRigidbody2D.MovePosition(DrivenRigidbody2D.position + Velocity * Time.fixedDeltaTime);
     }
     private void Pursue()
     {
-        if (_pursuingTarget == null) return;
-        SetMovementDirection(_pursuingTarget.GetComponent<Rigidbody2D>().position - _drivenRigidbody2D.position);
-        ApplyVelocity();
+        if (_pursuingRigidbody2D == null) return;
+        SetMovementDirection(_pursuingRigidbody2D.position - _drivenRigidbody2D.position);
+        SetVelocity();
     }
     private void Seek()
     {
-        if (_pursuingTarget == null) return;
+        if (_pursuingRigidbody2D == null) return;
         TurnToPursuingTarget();
         SetMovementDirection(LocalUp);
-        ApplyVelocity();
-    }
-    private void LookToPursuingTarget()
-    {
-        var direction = GetDirectionToPursuingTarget();
-        var angle = (Mathf.Atan2(direction.y, direction.x)
-                     - Mathf.PI / 2) * Mathf.Rad2Deg;
-        _drivenRigidbody2D.rotation = angle;
+        SetVelocity();
     }
     private void TurnToPursuingTarget()
     {
         var angle = GetAngleToPursuingTarget();
-        var speed = RotationSpeed * Time.fixedDeltaTime;
+        var speed = TurningSpeed * Time.fixedDeltaTime;
         var lerpAngle = Mathf.LerpAngle(_drivenRigidbody2D.rotation, angle, speed);
         _drivenRigidbody2D.rotation = lerpAngle;
     }
-
     private float GetAngleToPursuingTarget()
     {
         var direction = GetDirectionToPursuingTarget();
@@ -128,8 +115,8 @@ public class Movement
     }
     private Vector2 GetDirectionToPursuingTarget()
     {
-        if (_pursuingTarget == null) return new Vector2(0, 0);
-        var vec = (Vector2)_pursuingTarget.transform.position - _drivenRigidbody2D.position;
+        if (_pursuingRigidbody2D == null) return new Vector2(0, 0);
+        var vec = (Vector2)_pursuingRigidbody2D.transform.position - _drivenRigidbody2D.position;
         return vec;
     }
 }

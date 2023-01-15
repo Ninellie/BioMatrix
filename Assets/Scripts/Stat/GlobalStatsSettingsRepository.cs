@@ -18,9 +18,9 @@ public class GlobalStatsSettingsRepository
     public static readonly HeroStatsSettings PlayerStats = new HeroStatsSettings()
     {
         Size = 1,
-        MaximumLife = 5,
+        MaximumLife = 3,
         LifeRegenerationInSecond = 0,
-        Speed = 250,
+        Speed = 170,
         MagnetismRadius = 100,
         MagnetismPower = 100,
     };

@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     public float enemyDefaultPadding = 1.5f;
     public GameObject timerGameObject;
 
-    [SerializeField] private int _secondsBetweenWaves = 2;
+    private readonly int _secondsBetweenWaves = 1;
     private GameTimer _gameTimer;
     private readonly System.Random _random = new();
     private readonly EnemyPlacer _enemyPlacer = new();
@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
     private Player _player;
     private EnemyWave _enemyWave;
 
-    private const int DefaultComplicationValue = 60;
+    private const int DefaultComplicationValue = 30;
     private int TimerBonus
     {
         get
@@ -46,6 +46,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         SpawnFirstWave();
+        InvokeRepeating("SpawnWave", _secondsBetweenWaves, _secondsBetweenWaves);
     }
     public void SpawnWave()
     {
@@ -54,6 +55,7 @@ public class EnemySpawner : MonoBehaviour
         var spawn = CreateSpawn(_enemyWave.GetSize(WaveType.Normal), playerPosition);
         var mode = _grouping.GetRandomMode();
         _enemyPlacer.PlaceEnemies(spawn, mode, playerPosition);
+        PrepareEnemies(spawn, playerPosition);
     }
     public void SpawnFirstWave()
     {
@@ -63,7 +65,6 @@ public class EnemySpawner : MonoBehaviour
         var mode = _grouping.GetRandomMode();
         _enemyPlacer.PlaceEnemies(spawn, mode, playerPosition);
         PrepareEnemies(spawn, playerPosition);
-        InvokeRepeating("SpawnWave", _secondsBetweenWaves, _secondsBetweenWaves);
     }
     private GameObject[] CreateSpawn(int enemiesInSpawn, Vector2 playerPosition)
     {
@@ -92,6 +93,7 @@ public class EnemySpawner : MonoBehaviour
         enemy.LevelUp(levelUpBonus);
         enemy.RestoreLifePoints();
         enemy.LookAt2D(playerPosition);
+        Debug.LogWarning("EnemySpawnFull");
     }
     private GameObject GetRandomEnemyFromList(List<GameObject> enemyList)
     {

@@ -1,4 +1,4 @@
-public enum MovementMode
+public enum MovementState
 {
     Idle,
     Rectilinear,
