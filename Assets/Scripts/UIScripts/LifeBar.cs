@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class LifeBar : MonoBehaviour
 {
-    [SerializeField] private TMPro.TMP_Text _life;
-
+    [SerializeField] private TMPro.TMP_Text _lifebar;
+    private Player _player;
     private void Start()
     {
         UpdateBar();
@@ -11,22 +11,23 @@ public class LifeBar : MonoBehaviour
     public void Subscription()
     {
         Debug.Log("Life bar started subscribing on current life points of Player");
-        
-        FindObjectOfType<Player>().onCurrentLifePointsChanged += UpdateBar;
-        FindObjectOfType<Player>().onDeath += Unsubscription;
+        _player = FindObjectOfType<Player>();
+        _player.MaximumLifePoints.onValueChanged += UpdateBar;
+        _player.onCurrentLifePointsChanged += UpdateBar;
+        _player.onDeath += Unsubscription;
     }
     private void Unsubscription()
     {
         Debug.Log("Life bar started unsubscribing from current life points of Player");
-
-        FindObjectOfType<Player>().onCurrentLifePointsChanged -= UpdateBar;
-        FindObjectOfType<Player>().onDeath -= Unsubscription;
+        _player.MaximumLifePoints.onValueChanged -= UpdateBar;
+        _player.onCurrentLifePointsChanged -= UpdateBar;
+        _player.onDeath -= Unsubscription;
     }
     private void UpdateBar()
     {
-        var lifeText =
-            $"HP: {FindObjectOfType<Player>().CurrentLifePoints}";
-        _life.text = lifeText;
+        var text =
+            $"HP: {_player.CurrentLifePoints} / {_player.MaximumLifePoints.Value}";
+        _lifebar.text = text;
         Debug.Log("Life bar has been updated");
     }
 }

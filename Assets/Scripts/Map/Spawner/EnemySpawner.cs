@@ -93,7 +93,19 @@ public class EnemySpawner : MonoBehaviour
         enemy.LevelUp(levelUpBonus);
         enemy.RestoreLifePoints();
         enemy.LookAt2D(playerPosition);
-        Debug.LogWarning("EnemySpawnFull");
+    }
+    private GameObject[] GetEnemyList(int numberOfEnemies, IEnumerable<GameObject> _enemyTypes)
+    {
+        var enemyList = _enemyTypes.ToList();
+
+        List<GameObject> selectedEnemies = new();
+
+        for (var i = 0; i < numberOfEnemies; i++)
+        {
+            var randomEnemyFromList = GetRandomEnemyFromList(enemyList);
+            selectedEnemies.Add(randomEnemyFromList);
+        }
+        return selectedEnemies.ToArray();
     }
     private GameObject GetRandomEnemyFromList(List<GameObject> enemyList)
     {
@@ -109,18 +121,5 @@ public class EnemySpawner : MonoBehaviour
             }
         }
         throw new InvalidOperationException("");
-    }
-    private GameObject[] GetEnemyList(int numberOfEnemies, IEnumerable<GameObject> _enemyTypes)
-    {
-        var enemyList = _enemyTypes.ToList();
-
-        List<GameObject> selectedEnemies = new();
-
-        for (var i = 0; i < numberOfEnemies; i++)
-        {
-            var randomEnemyFromList = GetRandomEnemyFromList(enemyList);
-            selectedEnemies.Add(randomEnemyFromList);
-        }
-        return selectedEnemies.ToArray();
     }
 }

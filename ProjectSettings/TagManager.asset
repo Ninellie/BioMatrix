@@ -15,10 +15,10 @@ TagManager:
   - 
   - Water
   - UI
-  - Enemy
-  - Player
-  - Projectile
-  - Boon
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -44,4 +44,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 3124598011
+    locked: 0
+  - name: Entity
+    uniqueID: 2591669779
+    locked: 0
+  - name: UI
+    uniqueID: 2191484165
     locked: 0

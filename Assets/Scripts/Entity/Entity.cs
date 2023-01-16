@@ -45,9 +45,9 @@ public class Entity : MonoBehaviour
             onCurrentLifePointsChanged?.Invoke();
         }
     }
-    protected Stat Size { get; private set; }
-    protected Stat MaximumLifePoints { get; private set; }
-    protected Stat LifeRegenerationPerSecond { get; private set; }
+    public Stat Size { get; private set; }
+    public Stat MaximumLifePoints { get; private set; }
+    public Stat LifeRegenerationPerSecond { get; private set; }
     private float _currentLifePoints;
     private Camera _mCamera;
 
