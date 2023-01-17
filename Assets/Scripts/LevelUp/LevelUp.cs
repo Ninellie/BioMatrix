@@ -13,7 +13,6 @@ public class LevelUp : MonoBehaviour
     public void Subscription()
     {
         FindObjectOfType<Player>().onLevelUp += InitiateLvlUp;
-
         FindObjectOfType<Player>().onDeath += Unsubscription;
     }
     private void Unsubscription()

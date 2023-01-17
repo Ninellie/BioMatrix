@@ -32,7 +32,7 @@ public class WinScreen : MonoBehaviour
         Debug.Log("Win screen enabled");
         winScreen.SetActive(true);
         GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInput>().SwitchCurrentActionMap("Death");
-        FindObjectOfType<GameTimer>().TimeStop();
+        FindObjectOfType<GameTimer>().Stop();
         Time.timeScale = 0f;
         onGameWinning -= EnableWinScreen;
     }

@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject settingsMenuUI;
     public GameObject timerUI;
@@ -62,14 +61,14 @@ public class PauseMenu : MonoBehaviour
     {
         GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
         Time.timeScale = 0f;
-        timerUI.GetComponent<GameTimer>().TimeStop();
+        timerUI.GetComponent<GameTimer>().Stop();
         GameIsPaused = true;
     }
     private void ResumeGame()
     {
         GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
         Time.timeScale = 1f;
-        timerUI.GetComponent<GameTimer>().TimeStart();
+        timerUI.GetComponent<GameTimer>().Resume();
         GameIsPaused = false;
     }
     public void BackToMainMenu()

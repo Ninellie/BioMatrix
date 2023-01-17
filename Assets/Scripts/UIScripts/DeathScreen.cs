@@ -19,6 +19,6 @@ public class DeathScreen : MonoBehaviour
         GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInput>().SwitchCurrentActionMap("Death");
         deathScreen.SetActive(true);
         Time.timeScale = 0f;
-        FindObjectOfType<GameTimer>().TimeStop();
+        FindObjectOfType<GameTimer>().Stop();
     }
 }

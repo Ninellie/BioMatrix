@@ -16,11 +16,11 @@ public class GameTimer : MonoBehaviour
         var greatThenHour = elapsed >= TimeSpan.FromHours(1);
         textTimer.text = elapsed.ToString(greatThenHour ? "hh\\:mm\\:ss" : "mm\\:ss");
     }
-    public void TimeStop()
+    public void Stop()
     {
         _stopwatch.Stop();
     }
-    public void TimeStart()
+    public void Resume()
     {
         _stopwatch.Start();
     }
