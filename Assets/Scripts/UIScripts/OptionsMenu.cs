@@ -1,27 +1,27 @@
+using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
-public class SettingMenu : MonoBehaviour
+public class OptionsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
-
     public TMPro.TMP_Dropdown resolutionDropdown;
+    public Action onBackToMainMenu;
 
-    Resolution[] _resolutions;
+    private Resolution[] _resolutions;
 
     private void Start()
     {
         _resolutions = Screen.resolutions;
-
         resolutionDropdown.ClearOptions();
-
         var options = new List<string>();
-
         var currentResolutionIndex = 0;
-        for (int i = 0; i < _resolutions.Length; i++)
+        for (var i = 0; i < _resolutions.Length; i++)
         {
-            string option = _resolutions[i].width + " x " + _resolutions[i].height;
+            var option = _resolutions[i].width + " x " + _resolutions[i].height;
             options.Add(option);
 
             if (_resolutions[i].width == Screen.currentResolution.width &&
@@ -35,25 +35,26 @@ public class SettingMenu : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
-
     public void SetResolution(int resolutionIndex)
     {
-        Resolution resolution = _resolutions[resolutionIndex];
+        var resolution = _resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
-
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
     }
-
     public void SetQuality(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
     }
-
     public void SetFullscreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+    }
+    public void BackToMainMenu()
+    {
+        onBackToMainMenu?.Invoke();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }
