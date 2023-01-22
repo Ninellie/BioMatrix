@@ -111,12 +111,10 @@
     <Compile Include="Assets\Scripts\Stat\OperationType.cs" />
     <Compile Include="Assets\Scripts\Map\OptionsMapState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
-    <Compile Include="Assets\Scripts\UIScripts\WinScreen.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Camera\MainCameraPlayerSeek.cs" />
     <Compile Include="Assets\Scripts\UIScripts\LifeBar.cs" />
-    <Compile Include="Assets\Scripts\UIScripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\LevelUp\Deck\ArrayCardRepository.cs" />
     <Compile Include="Assets\Scripts\UIScripts\OptionsMenu.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\EnemyStatsSettings.cs" />
@@ -134,7 +132,6 @@
     <Compile Include="Assets\Scripts\Entity\Unit\Player\PlayerCreator.cs" />
     <Compile Include="Assets\Scripts\Map\IMapState.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Projectile\Projectile.cs" />
-    <Compile Include="Assets\Scripts\UIScripts\DeathScreen.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\Scripts\Camera\Ortho2dCamera.cs" />
@@ -160,6 +157,7 @@
     <Compile Include="Assets\Scripts\Firearm\Firearm.cs" />
     <Compile Include="Assets\Scripts\UIScripts\GameTimer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
+    <Compile Include="Assets\Scripts\Map\MapState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

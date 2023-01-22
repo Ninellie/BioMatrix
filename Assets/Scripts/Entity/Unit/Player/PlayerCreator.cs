@@ -12,10 +12,6 @@ public class PlayerCreator : MonoBehaviour
     private GameTimer _gameTimer;
     private OptionsMenu _optionsMenu;
     private ScreenUIController _UIController;
-    //public PauseMenu pauseMenu;
-    //public LevelUp levelUp;
-    //public DeathScreen deathScreen;
-    //public WinScreen winScreen;
 
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private GameObject _playerWeapon;
@@ -29,7 +25,6 @@ public class PlayerCreator : MonoBehaviour
         _ammoBar = FindObjectOfType<AmmoBar>();
         _optionsMenu = FindObjectOfType<OptionsMenu>();
         if (_playerPrefab == null) return;
-        //winScreen = FindObjectOfType<WinScreen>(true);
         CreatePlayer(_playerPrefab);
         CurrentPlayer.GetComponent<Player>().CreateWeapon(_playerWeapon);
         _UIController.AwakeController();
@@ -45,15 +40,11 @@ public class PlayerCreator : MonoBehaviour
         _experienceBar.Subscription();
         _ammoBar.Subscription();
         _lifeBar.Subscription();
-        //pauseMenu.Subscription();
-        //levelUp.Subscription();
-        //deathScreen.Subscription();
-        //winScreen.Subscription();
 
-        CurrentPlayer.onGamePaused += _UIController.map.Menu;
-        CurrentPlayer.onLevelUp += _UIController.map.LevelUp;
-        CurrentPlayer.onDeath += _UIController.map.Lose;
-        _gameTimer.onGameWinning += _UIController.map.Win;
+        CurrentPlayer.onGamePaused += _UIController.Menu;
+        CurrentPlayer.onLevelUp += _UIController.LevelUp;
+        CurrentPlayer.onDeath += _UIController.Lose;
+        _gameTimer.onGameWinning += _UIController.Win;
         CurrentPlayer.onDeath += Unsubscription;
         _gameTimer.onGameWinning += Unsubscription;
         _optionsMenu.onBackToMainMenu += Unsubscription;
@@ -61,10 +52,10 @@ public class PlayerCreator : MonoBehaviour
 
     public void Unsubscription()
     {
-        CurrentPlayer.onGamePaused -= _UIController.map.Menu;
-        CurrentPlayer.onLevelUp -= _UIController.map.LevelUp;
-        CurrentPlayer.onDeath -= _UIController.map.Lose;
-        _gameTimer.onGameWinning -= _UIController.map.Win;
+        CurrentPlayer.onGamePaused -= _UIController.Menu;
+        CurrentPlayer.onLevelUp -= _UIController.LevelUp;
+        CurrentPlayer.onDeath -= _UIController.Lose;
+        _gameTimer.onGameWinning -= _UIController.Win;
         CurrentPlayer.onDeath -= Unsubscription;
         _gameTimer.onGameWinning -= Unsubscription;
         _optionsMenu.onBackToMainMenu -= Unsubscription;

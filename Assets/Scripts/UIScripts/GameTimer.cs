@@ -8,7 +8,6 @@ public class GameTimer : MonoBehaviour
     public Action onGameWinning;
     private const float WinTime = 600;
     private Stopwatch _stopwatch;
-    //public GameTimer(TMP_Text textTimer) { this.textTimer = textTimer; }
 
     private void Awake()
     {
@@ -38,10 +37,6 @@ public class GameTimer : MonoBehaviour
     }
     private bool IsTimeToWin()
     {
-        if (GetTotalSeconds() > WinTime)
-        {
-            return true;
-        }
-        return false;
+        return GetTotalSeconds() > WinTime;
     }
 }

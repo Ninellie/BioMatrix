@@ -4,41 +4,38 @@ namespace Assets.Scripts.Map
 {
     public class ActiveMapState : IMapState
     {
-        public void Menu(Map map)
+        public MapState Name => MapState.Active;
+        public void Menu(Map map, IMapController mapController)
         {
-            map.RememberPreviousState();
-            map.SetMenu();
-            map.Freeze();
-            map.OpenMenu();
+            map.ChangeState(MapState.Menu);
+            mapController.Freeze();
+            mapController.OpenMenu();
         }
-        public void Resume(Map map)
+        public void Resume(Map map, IMapController mapController)
         {
             Debug.LogWarning("Massage");
         }
-        public void Options(Map map)
+        public void Options(Map map, IMapController mapController)
         {
             Debug.LogWarning("Massage");
         }
-        public void LevelUp(Map map)
+        public void LevelUp(Map map, IMapController mapController)
         {
-            map.RememberPreviousState();
-            map.SetLevelUp();
-            map.Freeze();
-            map.InitiateLevelUp();
+            map.ChangeState(MapState.LevelUp);
+            mapController.Freeze();
+            mapController.InitiateLevelUp();
         }
-        public void Win(Map map)
+        public void Win(Map map, IMapController mapController)
         {
-            map.RememberPreviousState();
-            map.SetGameEnd();
-            map.Freeze();
-            map.WinGame();
+            map.ChangeState(MapState.GameEnd);
+            mapController.Freeze();
+            mapController.OpenWinScreen();
         }
-        public void Lose(Map map)
+        public void Lose(Map map, IMapController mapController)
         {
-            map.RememberPreviousState();
-            map.SetGameEnd();
-            map.Freeze();
-            map.LoseGame();
+            map.ChangeState(MapState.GameEnd);
+            mapController.Freeze();
+            mapController.OpenLoseScreen();
         }
     }
 }

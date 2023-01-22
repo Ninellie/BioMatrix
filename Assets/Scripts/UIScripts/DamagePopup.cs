@@ -17,16 +17,13 @@ public class DamagePopup : MonoBehaviour
     {
         transform.position += new Vector3(_moveXSpeed, _moveYSpeed) * Time.deltaTime;
         _disappearTimer -= Time.deltaTime;
-        if(_disappearTimer < 0)
+        if (!(_disappearTimer < 0)) return;
+        var disapearingSpeed = 3f;
+        _textColor.a -= disapearingSpeed * Time.deltaTime;
+        _textMeshPro.color = _textColor;
+        if (_textColor.a < 0)
         {
-            //Start disapearing
-            var disapearingSpeed = 3f;
-            _textColor.a -= disapearingSpeed * Time.deltaTime;
-            _textMeshPro.color = _textColor;
-            if (_textColor.a < 0)
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
     public void Setup(int damageAmount)

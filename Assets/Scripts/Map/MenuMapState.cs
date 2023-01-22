@@ -1,55 +1,45 @@
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Map
 {
     public class MenuMapState : IMapState
     {
-        public void Menu(Map map)
+        public MapState Name => MapState.Menu;
+        public void Menu(Map map, IMapController mapController)
         {
-            Resume(map);
+            Resume(map, mapController);
         }
-        public void Resume(Map map)
+        public void Resume(Map map, IMapController mapController)
         {
-            if (map.previousState == Map.activeState)
+            var prevState = map.GetPreviousState();
+            switch (prevState)
             {
-                map.RememberPreviousState();
-                map.SetActive();
-                map.Unfreeze();
+                case MapState.GameEnd or MapState.LevelUp:
+                    map.ChangeState(prevState);
+                    break;
+                case MapState.Active or MapState.Options:
+                    map.ChangeState(MapState.Active);
+                    mapController.Unfreeze();
+                    break;
             }
-            if (map.previousState == Map.levelUpState)
-            {
-                map.RememberPreviousState();
-                map.SetLevelUp();
-            }
-            if (map.previousState == Map.gameEndState)
-            {
-                map.RememberPreviousState();
-                map.SetGameEnd();
-            }
-            if (map.previousState == Map.optionsState)
-            {
-                map.RememberPreviousState();
-                map.SetActive();
-                map.Unfreeze();
-            }
-            map.CloseMenu();
+            mapController.CloseMenu();
         }
-        public void Options(Map map)
+        public void Options(Map map, IMapController mapController)
         {
-            map.RememberPreviousState();
-            map.SetOptions();
-            map.CloseMenu();
-            map.OpenOptions();
+            map.ChangeState(MapState.Options);
+            mapController.CloseMenu();
+            mapController.OpenOptions();
         }
-        public void LevelUp(Map map)
+        public void LevelUp(Map map, IMapController mapController)
         {
             Debug.LogWarning("Massage");
         }
-        public void Win(Map map)
+        public void Win(Map map, IMapController mapController)
         {
             Debug.LogWarning("Massage");
         }
-        public void Lose(Map map)
+        public void Lose(Map map, IMapController mapController)
         {
             Debug.LogWarning("Massage");
         }

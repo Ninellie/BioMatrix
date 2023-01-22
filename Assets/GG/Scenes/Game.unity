@@ -8574,11 +8574,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a5cc6e3510d6e45a931c33ed93005e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuUI: {fileID: 786324380}
-  optionsUI: {fileID: 944327644}
-  levelUpUI: {fileID: 755406562}
-  winScreenUI: {fileID: 1860478504}
-  loseScreenUI: {fileID: 2077307398}
+  _menuUi: {fileID: 786324380}
+  _optionsUi: {fileID: 944327644}
+  _levelUpUi: {fileID: 755406562}
+  _winScreenUi: {fileID: 1860478504}
+  _loseScreenUi: {fileID: 2077307398}
 --- !u!1 &1249147648
 GameObject:
   m_ObjectHideFlags: 0
@@ -9342,10 +9342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c5fa820929c904cae5aaff3f637eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experienceBar: {fileID: 1094596405}
-  ammoBar: {fileID: 1610744639}
-  lifeBar: {fileID: 1610744638}
-  gameTimer: {fileID: 0}
   _playerPrefab: {fileID: 6671026415413744665, guid: d77549fb193519146a7a33771c9312b9, type: 3}
   _playerWeapon: {fileID: 3233653779076600719, guid: 1efe1dd8adcbfe74595487da48627252, type: 3}
 --- !u!114 &1365173418

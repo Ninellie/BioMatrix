@@ -4,29 +4,29 @@ namespace Assets.Scripts.Map
 {
     public class GameEndMapState : IMapState
     {
-        public void Menu(Map map)
+        public MapState Name => MapState.GameEnd;
+        public void Menu(Map map, IMapController mapController)
         {
-            map.RememberPreviousState();
-            map.SetMenu();
-            map.OpenMenu();
+            map.ChangeState(MapState.Menu);
+            mapController.OpenMenu();
         }
-        public void Resume(Map map)
-        {
-            Debug.LogWarning("Massage");
-        }
-        public void Options(Map map)
+        public void Resume(Map map, IMapController mapController)
         {
             Debug.LogWarning("Massage");
         }
-        public void LevelUp(Map map)
+        public void Options(Map map, IMapController mapController)
         {
             Debug.LogWarning("Massage");
         }
-        public void Win(Map map)
+        public void LevelUp(Map map, IMapController mapController)
         {
             Debug.LogWarning("Massage");
         }
-        public void Lose(Map map)
+        public void Win(Map map, IMapController mapController)
+        {
+            Debug.LogWarning("Massage");
+        }
+        public void Lose(Map map, IMapController mapController)
         {
             Debug.LogWarning("Massage");
         }
