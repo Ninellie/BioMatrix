@@ -4,38 +4,45 @@ namespace Assets.Scripts.Map
 {
     public class ActiveMapState : IMapState
     {
-        public MapState Name => MapState.Active;
-        public void Menu(Map map, IMapController mapController)
+        public MapStateType Name => MapStateType.Active;
+        private readonly Map _map;
+        private readonly IMapController _mapController;
+        public ActiveMapState(Map map, IMapController mapController)
         {
-            map.ChangeState(MapState.Menu);
-            mapController.Freeze();
-            mapController.OpenMenu();
+            _map = map;
+            _mapController = mapController;
         }
-        public void Resume(Map map, IMapController mapController)
+        public void Menu()
+        {
+            _map.ChangeState(MapStateType.Menu);
+            _mapController.Freeze();
+            _mapController.OpenMenu();
+        }
+        public void Resume()
         {
             Debug.LogWarning("Massage");
         }
-        public void Options(Map map, IMapController mapController)
+        public void Options()
         {
             Debug.LogWarning("Massage");
         }
-        public void LevelUp(Map map, IMapController mapController)
+        public void LevelUp()
         {
-            map.ChangeState(MapState.LevelUp);
-            mapController.Freeze();
-            mapController.InitiateLevelUp();
+            _map.ChangeState(MapStateType.LevelUp);
+            _mapController.Freeze();
+            _mapController.InitiateLevelUp();
         }
-        public void Win(Map map, IMapController mapController)
+        public void Win()
         {
-            map.ChangeState(MapState.GameEnd);
-            mapController.Freeze();
-            mapController.OpenWinScreen();
+            _map.ChangeState(MapStateType.GameEnd);
+            _mapController.Freeze();
+            _mapController.OpenWinScreen();
         }
-        public void Lose(Map map, IMapController mapController)
+        public void Lose()
         {
-            map.ChangeState(MapState.GameEnd);
-            mapController.Freeze();
-            mapController.OpenLoseScreen();
+            _map.ChangeState(MapStateType.GameEnd);
+            _mapController.Freeze();
+            _mapController.OpenLoseScreen();
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Map
 {
-    public class ScreenUIController : MonoBehaviour 
+    public class ScreenUIController : MonoBehaviour
     {
         [SerializeField] private GameObject _menuUi;
         [SerializeField] private GameObject _optionsUi;

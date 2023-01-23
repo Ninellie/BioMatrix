@@ -1,6 +1,6 @@
 namespace Assets.Scripts.Map
 {
-    public enum MapState
+    public enum MapStateType
     {
         Active,
         Options,

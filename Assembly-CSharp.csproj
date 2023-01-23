@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Entity\EntityStatsSettings.cs" />
     <Compile Include="Assets\Scripts\Map\ActiveMapState.cs" />
     <Compile Include="Assets\Scripts\TileManager\FloorManager.cs" />
+    <Compile Include="Assets\Scripts\Map\MapStateType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\Map\Spawner\GroupingMode.cs" />
@@ -157,7 +158,6 @@
     <Compile Include="Assets\Scripts\Firearm\Firearm.cs" />
     <Compile Include="Assets\Scripts\UIScripts\GameTimer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Scripts\Map\MapState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

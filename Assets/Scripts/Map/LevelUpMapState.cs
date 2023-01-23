@@ -4,31 +4,38 @@ namespace Assets.Scripts.Map
 {
     public class LevelUpMapState : IMapState
     {
-        public MapState Name => MapState.LevelUp;
-        public void Menu(Map map, IMapController mapController)
+        public MapStateType Name => MapStateType.LevelUp;
+        private readonly Map _map;
+        private readonly IMapController _mapController;
+        public LevelUpMapState(Map map, IMapController mapController)
         {
-            map.ChangeState(MapState.Menu);
-            mapController.OpenMenu();
+            _map = map;
+            _mapController = mapController;
         }
-        public void Resume(Map map, IMapController mapController)
+        public void Menu()
         {
-            map.ChangeState(MapState.Active);
-            mapController.CloseLevelUp();
-            mapController.Unfreeze();
+            _map.ChangeState(MapStateType.Menu);
+            _mapController.OpenMenu();
         }
-        public void Options(Map map, IMapController mapController)
+        public void Resume()
+        {
+            _map.ChangeState(MapStateType.Active);
+            _mapController.CloseLevelUp();
+            _mapController.Unfreeze();
+        }
+        public void Options()
         {
             Debug.LogWarning("Massage");
         }
-        public void LevelUp(Map map, IMapController mapController)
+        public void LevelUp()
         {
             Debug.LogWarning("Massage");
         }
-        public void Win(Map map, IMapController mapController)
+        public void Win()
         {
             Debug.LogWarning("Massage");
         }
-        public void Lose(Map map, IMapController mapController)
+        public void Lose()
         {
             Debug.LogWarning("Massage");
         }

@@ -4,30 +4,37 @@ namespace Assets.Scripts.Map
 {
     public class OptionsMapState : IMapState
     {
-        public MapState Name => MapState.Options;
-        public void Menu(Map map, IMapController mapController)
+        public MapStateType Name => MapStateType.Options;
+        private readonly Map _map;
+        private readonly IMapController _mapController;
+        public OptionsMapState(Map map, IMapController mapController)
         {
-            map.ChangeState(MapState.Menu);
-            mapController.CloseOptions();
-            mapController.OpenMenu();
+            _map = map;
+            _mapController = mapController;
         }
-        public void Resume(Map map, IMapController mapController)
+        public void Menu()
         {
-            Menu(map, mapController);
+            _map.ChangeState(MapStateType.Menu);
+            _mapController.CloseOptions();
+            _mapController.OpenMenu();
         }
-        public void Options(Map map, IMapController mapController)
+        public void Resume()
+        {
+            Menu();
+        }
+        public void Options()
         {
             Debug.LogWarning("Massage");
         }
-        public void LevelUp(Map map, IMapController mapController)
+        public void LevelUp()
         {
             Debug.LogWarning("Massage");
         }
-        public void Win(Map map, IMapController mapController)
+        public void Win()
         {
             Debug.LogWarning("Massage");
         }
-        public void Lose(Map map, IMapController mapController)
+        public void Lose()
         {
             Debug.LogWarning("Massage");
         }
