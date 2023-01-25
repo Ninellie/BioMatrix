@@ -3,35 +3,34 @@ using UnityEngine;
 
 public class LevelUp : MonoBehaviour
 {
-    public GameObject lvlUpUI;
-    public GameObject canvasUI;
+    //public GameObject lvlUpUI;
+    //public GameObject canvasUI;
     public TMPro.TMP_Text[] cardsText;
 
     private List<Card> _selectedCards = new();
     private static readonly ICardRepository CardRepository = new ArrayCardRepository();
     private readonly CardManager _cardManager = new(CardRepository);
-    public void Subscription()
+    //public void Subscription()
+    //{
+    //    FindObjectOfType<Player>().onLevelUp += InitiateLvlUp;
+    //    FindObjectOfType<Player>().onDeath += Unsubscription;
+    //}
+    //private void Unsubscription()
+    //{
+    //    FindObjectOfType<Player>().onLevelUp -= InitiateLvlUp;
+    //    FindObjectOfType<Player>().onDeath -= Unsubscription;
+    //}
+    //private void InitiateLvlUp()
+    //{
+    //    canvasUI.GetComponent<PauseMenu>().PauseGame();
+    //    DisplayThreeCards();
+    //    lvlUpUI.SetActive(true);
+    //}
+    public void DisplayCards()
     {
-        FindObjectOfType<Player>().onLevelUp += InitiateLvlUp;
+        _selectedCards = _cardManager.GetDeck(cardsText.Length);
 
-        FindObjectOfType<Player>().onDeath += Unsubscription;
-    }
-    private void Unsubscription()
-    {
-        FindObjectOfType<Player>().onLevelUp -= InitiateLvlUp;
-        FindObjectOfType<Player>().onDeath -= Unsubscription;
-    }
-    private void InitiateLvlUp()
-    {
-        canvasUI.GetComponent<PauseMenu>().PauseGame();
-        DisplayThreeCards();
-        lvlUpUI.SetActive(true);
-    }
-    private void DisplayThreeCards()
-    {
-        _selectedCards = _cardManager.GetDeck(3);
-
-        for(var i = 0; i < cardsText.Length; i++)
+        for (var i = 0; i < cardsText.Length; i++)
         {
             cardsText[i].text = _selectedCards[i].Title;
         }
@@ -80,4 +79,5 @@ public class LevelUp : MonoBehaviour
             }
         }
     }
+    
 }

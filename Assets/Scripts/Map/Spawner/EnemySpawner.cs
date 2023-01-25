@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
     private Player _player;
     private EnemyWave _enemyWave;
 
-    private const int DefaultComplicationValue = 30;
+    private const int DefaultComplicationValue = 60;
     private int TimerBonus
     {
         get
