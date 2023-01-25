@@ -44,11 +44,5 @@ namespace Assets.Scripts.Map
         {
             return _previousState;
         }
-        public void OpenMenu() { _currentState.Menu(); }
-        public void Resume() { _currentState.Resume(); }
-        public void OpenOptions() { _currentState.Options(); }
-        public void InitiateLevelUp() { _currentState.LevelUp(); }
-        public void Win() { _currentState.Win(); }
-        public void Lose() { _currentState.Lose(); }
     }
 }

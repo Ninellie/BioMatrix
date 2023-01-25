@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,51 +18,19 @@ namespace Assets.Scripts.Map
             var mapController = CreateMapController();
             _map = new Map(mapController);
         }
-        public void Menu() { _map.OpenMenu(); }
-        public void Resume() { _map.Resume(); }
-        public void Options() { _map.OpenOptions(); }
-        public void LevelUp() { _map.InitiateLevelUp(); }
-        public void Win() { _map.Win(); }
-        public void Lose() { _map.Lose(); }
+        public void Menu() { _map.GetCurrentState().Menu(); }
+        public void Resume() { _map.GetCurrentState().Resume(); }
+        public void Options() { _map.GetCurrentState().Options(); }
+        public void LevelUp() { _map.GetCurrentState().LevelUp(); }
+        public void Win() { _map.GetCurrentState().Win(); }
+        public void Lose() { _map.GetCurrentState().Lose(); }
 
         private IMapController CreateMapController()
         {
-            if (!IsUIObjectsNotNull()) return null;
             var currentPlayer = FindObjectOfType<Player>();
             var playerInput = currentPlayer.GetComponent<PlayerInput>();
             var mapController = new SimpleMapController(playerInput, _menuUi, _optionsUi, _levelUpUi, _winScreenUi, _loseScreenUi);
             return mapController;
-        }
-
-        private bool IsUIObjectsNotNull()
-        {
-            var isNotNull = true;
-            if (_menuUi is null)
-            {
-                Debug.LogWarning("_menuUI is null");
-                isNotNull = false;
-            }
-            if (_optionsUi is null)
-            {
-                Debug.LogWarning("_optionsUi is null");
-                isNotNull = false;
-            }
-            if (_levelUpUi is null)
-            {
-                Debug.LogWarning("_levelUpUi is null");
-                isNotNull = false;
-            }
-            if (_winScreenUi is null)
-            {
-                Debug.LogWarning("_winScreenUi is null");
-                isNotNull = false;
-            }
-            if (_loseScreenUi is null)
-            {
-                Debug.LogWarning("_loseScreenUi is null");
-                isNotNull = false;
-            }
-            return isNotNull;
         }
     }
 }

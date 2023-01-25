@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,7 +6,7 @@ namespace Assets.Scripts.Map
 {
     public class SimpleMapController : IMapController
     {
-        private PlayerInput _playerInput;
+        private readonly PlayerInput _playerInput;
         private GameTimer _gameTimer;
         private LevelUp _levelUp;
 
@@ -17,12 +18,12 @@ namespace Assets.Scripts.Map
 
         public SimpleMapController(PlayerInput playerInput, GameObject menuUI, GameObject optionsUI, GameObject levelUpUI, GameObject winScreenUI, GameObject loseScreenUI)
         {
-            _playerInput = playerInput;
-            _menuUI = menuUI;
-            _optionsUI = optionsUI;
-            _levelUpUI = levelUpUI;
-            _winScreenUI = winScreenUI;
-            _loseScreenUI = loseScreenUI;
+            _playerInput = playerInput ?? throw new ArgumentNullException(nameof(playerInput));
+            _menuUI = menuUI ?? throw new ArgumentNullException(nameof(menuUI));
+            _optionsUI = optionsUI ?? throw new ArgumentNullException(nameof(optionsUI));
+            _levelUpUI = levelUpUI ?? throw new ArgumentNullException(nameof(levelUpUI));
+            _winScreenUI = winScreenUI ?? throw new ArgumentNullException(nameof(winScreenUI));
+            _loseScreenUI = loseScreenUI ?? throw new ArgumentNullException(nameof(loseScreenUI));
 
         }
         public void Freeze()
