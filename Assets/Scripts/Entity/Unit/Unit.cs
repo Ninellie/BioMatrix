@@ -8,6 +8,7 @@ public class Unit : Entity
     protected Stat TurningSpeed { get; private set; }
     protected Movement Movement { get; private set; }
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.UnitStats);
+    private void Start() => BaseStart();
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();
@@ -19,6 +20,10 @@ public class Unit : Entity
         Speed = new Stat(settings.Speed);
         Movement = movement ?? new Movement(this, Speed.Value);
     }
+    protected void BaseStart()
+    {
+        Movement.SetVelocity();
+    }
     protected override void BaseOnEnable()
     {
         base.BaseOnEnable();
@@ -28,6 +33,10 @@ public class Unit : Entity
     {
         base.BaseOnDisable();
         if (Speed != null) Speed.onValueChanged -= ChangeCurrentSpeed;
+    }
+    protected void KnockBack(Rigidbody2D collisionRb2D, float thrustPower)
+    {
+        Movement.KnockBack(collisionRb2D, thrustPower);
     }
     protected override void Death()
     {

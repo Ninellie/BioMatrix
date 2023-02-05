@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Map
 {
-    public class SimpleMapController : IMapController
+    public class SimpleViewController : IViewController
     {
         private readonly PlayerInput _playerInput;
         private GameTimer _gameTimer;
@@ -16,7 +16,7 @@ namespace Assets.Scripts.Map
         private GameObject _winScreenUI;
         private GameObject _loseScreenUI;
 
-        public SimpleMapController(PlayerInput playerInput, GameObject menuUI, GameObject optionsUI, GameObject levelUpUI, GameObject winScreenUI, GameObject loseScreenUI)
+        public SimpleViewController(PlayerInput playerInput, GameObject menuUI, GameObject optionsUI, GameObject levelUpUI, GameObject winScreenUI, GameObject loseScreenUI)
         {
             _playerInput = playerInput ?? throw new ArgumentNullException(nameof(playerInput));
             _menuUI = menuUI ?? throw new ArgumentNullException(nameof(menuUI));

@@ -1,6 +1,6 @@
 namespace Assets.Scripts.Map
 {
-    public interface IMapController
+    public interface IViewController
     {
         void Freeze();
         void Unfreeze();

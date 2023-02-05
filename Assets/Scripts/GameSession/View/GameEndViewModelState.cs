@@ -2,20 +2,20 @@ using UnityEngine;
 
 namespace Assets.Scripts.Map
 {
-    public class GameEndMapState : IMapState
+    public class GameEndViewModelState : IViewModelState
     {
-        public MapStateType Name => MapStateType.GameEnd;
-        private readonly Map _map;
-        private readonly IMapController _mapController;
-        public GameEndMapState(Map map, IMapController mapController)
+        public ViewModelStateType Name => ViewModelStateType.GameEnd;
+        private readonly ViewModel _viewModel;
+        private readonly IViewController _viewController;
+        public GameEndViewModelState(ViewModel viewModel, IViewController viewController)
         {
-            _map = map;
-            _mapController = mapController;
+            _viewModel = viewModel;
+            _viewController = viewController;
         }
         public void Menu()
         {
-            _map.ChangeState(MapStateType.Menu);
-            _mapController.OpenMenu();
+            _viewModel.ChangeState(ViewModelStateType.Menu);
+            _viewController.OpenMenu();
         }
         public void Resume()
         {

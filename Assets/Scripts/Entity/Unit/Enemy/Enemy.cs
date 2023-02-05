@@ -13,11 +13,15 @@ public class Enemy : Unit
     private GameObject _collisionGameObject;
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
+    private Color _spriteColor;
+    private const float ReturnToDefaultColorSpeed = 5f;
+
     private readonly Stopwatch _deathTimer = new Stopwatch();
     private bool _isPaused = false;
     private const int MinInitialLevel = 1;
     private const float MaxLifeIncreasePerLevel = 1;
     private const long OffscreenDieMilliseconds = 10000;
+
     private int Level
     {
         get => _level;
@@ -53,6 +57,9 @@ public class Enemy : Unit
             case "Projectile":
                 TakeDamage(MinimalDamageTaken);
                 DropDamagePopup(MinimalDamageTaken, _collisionGameObject.transform.position);
+                _rigidbody2D.AddForce(Vector2.up * 10000f, ForceMode2D.Impulse);
+                Movement.Stag();
+                _spriteRenderer.color = Color.cyan;
                 break;
             case "Enemy":
                 break;
@@ -63,7 +70,7 @@ public class Enemy : Unit
         Debug.Log($"{gameObject.name} Enemy Awake");
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        
+        _spriteColor = _spriteRenderer.color;
         var movement = new Movement(this, MovementState.Seek, settings.Speed);
         movement.SetPursuingTarget(FindObjectOfType<Player>().gameObject);
         base.BaseAwake(settings, movement);
@@ -77,6 +84,12 @@ public class Enemy : Unit
     {
         base.BaseUpdate();
         DeathTimerCheck();
+        if (_spriteRenderer.color == Color.white) return;
+        _spriteColor = _spriteRenderer.color;
+        _spriteColor.r += ReturnToDefaultColorSpeed * Time.deltaTime;
+        _spriteColor.g += ReturnToDefaultColorSpeed * Time.deltaTime;
+        _spriteColor.b += ReturnToDefaultColorSpeed * Time.deltaTime;
+        _spriteRenderer.color = _spriteColor;
     }
     public void Subscription()
     {

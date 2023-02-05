@@ -21,14 +21,14 @@ public class GlobalStatsSettingsRepository
         MaximumLife = 3,
         LifeRegenerationInSecond = 0,
         Speed = 170,
-        MagnetismRadius = 100,
-        MagnetismPower = 100,
+        MagnetismRadius = 150,
+        MagnetismPower = 1000,
     };
 
     public static readonly EnemyStatsSettings EnemyStats = new EnemyStatsSettings()
     {
         Size = 1,
-        MaximumLife = 1,
+        MaximumLife = 2,
         LifeRegenerationInSecond = 0,
         Speed = 100,
         SpawnWeight = 1000,

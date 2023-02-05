@@ -1,8 +1,8 @@
 namespace Assets.Scripts.Map
 {
-    public interface IMapState
+    public interface IViewModelState
     {
-        MapStateType Name { get; }
+        ViewModelStateType Name { get; }
         void Menu();
         void Resume();
         void Options();

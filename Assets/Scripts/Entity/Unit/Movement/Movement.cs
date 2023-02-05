@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
-public class Movement 
+public class Movement
 {
     public float Speed { get; private set; }
     public float TurningSpeed { get; private set; }
@@ -10,7 +10,35 @@ public class Movement
     private MovementState _currentState;
     private Vector2 _movementDirection;
     private readonly Rigidbody2D _drivenRigidbody2D;
-    private Vector2 Velocity => _movementDirection.normalized * Speed;
+    private float _velocityScale = 1f;
+    private const float VelocityScaleStep = 0.05f;
+    private float VelocityScale
+    {
+        get => _velocityScale;
+        set
+        {
+            if (value >= 1f)
+            {
+                if (_isStagger) 
+                {
+                    _isStagger = false;
+                }
+                _velocityScale = 1f;
+            }
+            if (value <= 0)
+            {
+                _velocityScale = 0;
+            }
+            else
+            {
+                _velocityScale = value;
+            }
+        }
+    }
+
+    private bool _isStagger = false;
+
+    private Vector2 Velocity => _movementDirection.normalized * Speed * VelocityScale;
     private Vector2 LocalUp => _drivenRigidbody2D.transform.up;
     public Movement(Unit drivenUnit) : this(drivenUnit, MovementState.Idle, 0)
     {
@@ -23,7 +51,7 @@ public class Movement
         _drivenUnit = drivenUnit;
         _currentState = currentState;
         Speed = speed;
-        TurningSpeed = 1f;
+        TurningSpeed = 5f;
         _movementDirection = Vector2.zero.normalized;
         _pursuingRigidbody2D = null;
         _drivenRigidbody2D = drivenUnit.GetComponent<Rigidbody2D>();
@@ -40,13 +68,16 @@ public class Movement
                 //DrivenRigidbody2D.velocity = Vector2.zero;
                 break;
             case MovementState.Rectilinear:
+                if (_isStagger) VelocityScale += VelocityScaleStep;
                 SetVelocity();
-                break;
+                    break;
             case MovementState.Pursue:
+                if (_isStagger) VelocityScale += VelocityScaleStep;
                 Pursue();
                 break;
             case MovementState.Seek:
-                Seek();
+                if (_isStagger) VelocityScale += VelocityScaleStep;
+                SeekAndPursue();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -78,12 +109,24 @@ public class Movement
             Speed -= speed;
         }
     }
-
     public void SetMovementDirection(Vector2 direction)
     {
         _movementDirection = direction;
     }
-    private void SetVelocity()
+    public void Stag()
+    {
+        VelocityScale = 0;
+        _isStagger = true;
+    }
+    public void KnockBack(Rigidbody2D collisionRb2D, float thrustPower)
+    {
+        Vector2 difference = _drivenRigidbody2D.transform.position - collisionRb2D.transform.position;
+        Vector2 knockbackVelocity = difference.normalized * thrustPower;
+        _drivenRigidbody2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
+        //var speedDif = Speed - StagSpeed;
+        //SlowDown(speedDif);
+    }
+    public void SetVelocity()
     {
         _drivenRigidbody2D.velocity = Velocity;
     }
@@ -93,12 +136,13 @@ public class Movement
         SetMovementDirection(_pursuingRigidbody2D.position - _drivenRigidbody2D.position);
         SetVelocity();
     }
-    private void Seek()
+    private void SeekAndPursue()
     {
         if (_pursuingRigidbody2D == null) return;
         TurnToPursuingTarget();
         SetMovementDirection(LocalUp);
         SetVelocity();
+        
     }
     private void TurnToPursuingTarget()
     {

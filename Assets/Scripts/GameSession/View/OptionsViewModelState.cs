@@ -2,21 +2,21 @@ using UnityEngine;
 
 namespace Assets.Scripts.Map
 {
-    public class OptionsMapState : IMapState
+    public class OptionsViewModelState : IViewModelState
     {
-        public MapStateType Name => MapStateType.Options;
-        private readonly Map _map;
-        private readonly IMapController _mapController;
-        public OptionsMapState(Map map, IMapController mapController)
+        public ViewModelStateType Name => ViewModelStateType.Options;
+        private readonly ViewModel _viewModel;
+        private readonly IViewController _viewController;
+        public OptionsViewModelState(ViewModel viewModel, IViewController viewController)
         {
-            _map = map;
-            _mapController = mapController;
+            _viewModel = viewModel;
+            _viewController = viewController;
         }
         public void Menu()
         {
-            _map.ChangeState(MapStateType.Menu);
-            _mapController.CloseOptions();
-            _mapController.OpenMenu();
+            _viewModel.ChangeState(ViewModelStateType.Menu);
+            _viewController.CloseOptions();
+            _viewController.OpenMenu();
         }
         public void Resume()
         {

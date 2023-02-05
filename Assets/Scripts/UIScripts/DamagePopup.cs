@@ -15,11 +15,16 @@ public class DamagePopup : MonoBehaviour
     }
     private void Update()
     {
+        Disappear();
+    }
+
+    private void Disappear()
+    {
         transform.position += new Vector3(_moveXSpeed, _moveYSpeed) * Time.deltaTime;
         _disappearTimer -= Time.deltaTime;
         if (!(_disappearTimer < 0)) return;
-        var disapearingSpeed = 3f;
-        _textColor.a -= disapearingSpeed * Time.deltaTime;
+        var disappearingSpeed = 3f;
+        _textColor.a -= disappearingSpeed * Time.deltaTime;
         _textMeshPro.color = _textColor;
         if (_textColor.a < 0)
         {

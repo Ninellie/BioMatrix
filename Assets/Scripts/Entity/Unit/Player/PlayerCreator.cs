@@ -11,7 +11,7 @@ public class PlayerCreator : MonoBehaviour
     private LifeBar _lifeBar;
     private GameTimer _gameTimer;
     private OptionsMenu _optionsMenu;
-    private ScreenUIController _UIController;
+    private ViewController _UIController;
 
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private GameObject _playerWeapon;
@@ -19,7 +19,7 @@ public class PlayerCreator : MonoBehaviour
     private void Awake()
     {
         _gameTimer = FindObjectOfType<GameTimer>();
-        _UIController = FindObjectOfType<ScreenUIController>();
+        _UIController = FindObjectOfType<ViewController>();
         _experienceBar = FindObjectOfType<ExpUI>();
         _lifeBar = FindObjectOfType<LifeBar>();
         _ammoBar = FindObjectOfType<AmmoBar>();
