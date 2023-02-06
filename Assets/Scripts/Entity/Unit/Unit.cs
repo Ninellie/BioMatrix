@@ -34,9 +34,9 @@ public class Unit : Entity
         base.BaseOnDisable();
         if (Speed != null) Speed.onValueChanged -= ChangeCurrentSpeed;
     }
-    protected void KnockBack(Rigidbody2D collisionRb2D, float thrustPower)
+    protected void KnockBack(Entity collisionEntity)
     {
-        Movement.KnockBack(collisionRb2D, thrustPower);
+        Movement.KnockBack(collisionEntity);
     }
     protected override void Death()
     {

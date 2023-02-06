@@ -41,8 +41,12 @@ public class Enemy : Unit
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EnemyStats);
+    private void Start() => BaseStart();
     private void Update() => BaseUpdate();
-    private void FixedUpdate() => Movement.FixedUpdateMove();
+    private void FixedUpdate()
+    {
+        Movement.FixedUpdateMove();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _collisionGameObject = collision.gameObject;
@@ -57,8 +61,8 @@ public class Enemy : Unit
             case "Projectile":
                 TakeDamage(MinimalDamageTaken);
                 DropDamagePopup(MinimalDamageTaken, _collisionGameObject.transform.position);
-                _rigidbody2D.AddForce(Vector2.up * 10000f, ForceMode2D.Impulse);
-                Movement.Stag();
+                var collisionEntity = _collisionGameObject.GetComponent<Entity>();
+                KnockBack(collisionEntity);
                 _spriteRenderer.color = Color.cyan;
                 break;
             case "Enemy":

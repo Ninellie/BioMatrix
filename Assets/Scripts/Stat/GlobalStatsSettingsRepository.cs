@@ -5,7 +5,8 @@ public class GlobalStatsSettingsRepository
         Size = 1,
         MaximumLife = 1,
         LifeRegenerationInSecond = 0,
-    };
+        KnockbackPower = 0,
+};
 
     public static readonly UnitStatsSettings UnitStats = new UnitStatsSettings()
     {
@@ -13,6 +14,7 @@ public class GlobalStatsSettingsRepository
         MaximumLife = 1,
         LifeRegenerationInSecond = 0,
         Speed = 100,
+        KnockbackPower = 0,
     };
 
     public static readonly HeroStatsSettings PlayerStats = new HeroStatsSettings()
@@ -23,15 +25,17 @@ public class GlobalStatsSettingsRepository
         Speed = 170,
         MagnetismRadius = 150,
         MagnetismPower = 1000,
+        KnockbackPower = 0,
     };
 
     public static readonly EnemyStatsSettings EnemyStats = new EnemyStatsSettings()
     {
-        Size = 1,
+        Size = 0.8f,
         MaximumLife = 2,
         LifeRegenerationInSecond = 0,
         Speed = 100,
         SpawnWeight = 1000,
+        KnockbackPower = 0,
     };
 
     public static readonly UnitStatsSettings BoonStats = new UnitStatsSettings()
@@ -40,6 +44,7 @@ public class GlobalStatsSettingsRepository
         MaximumLife = 1,
         LifeRegenerationInSecond = 0,
         Speed = 0,
+        KnockbackPower = 0,
     };
     public static readonly UnitStatsSettings ProjectileStats = new UnitStatsSettings()
     {
@@ -47,6 +52,7 @@ public class GlobalStatsSettingsRepository
         MaximumLife = 1,
         LifeRegenerationInSecond = 0,
         Speed = 700,
+        KnockbackPower = 50,
     };
 
     public static readonly FirearmStatsSettings ShotgunStats = new FirearmStatsSettings()

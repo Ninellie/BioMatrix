@@ -101,7 +101,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 0
   m_AngularDrag: 1000
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -130,7 +130,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 2741946790039367102}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 271470a56a36e514d9ffe355cf7bb247, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

@@ -11,7 +11,8 @@ public class Movement
     private Vector2 _movementDirection;
     private readonly Rigidbody2D _drivenRigidbody2D;
     private float _velocityScale = 1f;
-    private const float VelocityScaleStep = 0.05f;
+    private const float VelocityScaleStep = 0.1f;
+    private const float AccelerationSpeed = 100f;
     private float VelocityScale
     {
         get => _velocityScale;
@@ -70,7 +71,8 @@ public class Movement
             case MovementState.Rectilinear:
                 if (_isStagger) VelocityScale += VelocityScaleStep;
                 SetVelocity();
-                    break;
+                //Force(ForceMode2D.Impulse);
+                break;
             case MovementState.Pursue:
                 if (_isStagger) VelocityScale += VelocityScaleStep;
                 Pursue();
@@ -82,6 +84,16 @@ public class Movement
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    private void Force(ForceMode2D forceMode2D)
+    {
+        if (_drivenRigidbody2D.velocity.magnitude.Equals(Velocity.magnitude)) return;
+
+        var difference = Velocity - _drivenRigidbody2D.velocity;
+
+        var forcePower = difference.normalized * AccelerationSpeed * _drivenRigidbody2D.mass;
+        _drivenRigidbody2D.AddForce(forcePower, forceMode2D);
     }
     public void ChangeState(MovementState state)
     {
@@ -113,18 +125,18 @@ public class Movement
     {
         _movementDirection = direction;
     }
-    public void Stag()
+    public void KnockBack(Entity collisionEntity)
+    {
+        float thrustPower = collisionEntity.KnockbackPower.Value;
+        Vector2 difference = (Vector2)_drivenRigidbody2D.transform.position - (Vector2)collisionEntity.transform.position;
+        Vector2 knockbackVelocity = difference.normalized * thrustPower * _drivenRigidbody2D.mass;
+        _drivenRigidbody2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
+        Stag();
+    }
+    private void Stag()
     {
         VelocityScale = 0;
         _isStagger = true;
-    }
-    public void KnockBack(Rigidbody2D collisionRb2D, float thrustPower)
-    {
-        Vector2 difference = _drivenRigidbody2D.transform.position - collisionRb2D.transform.position;
-        Vector2 knockbackVelocity = difference.normalized * thrustPower;
-        _drivenRigidbody2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
-        //var speedDif = Speed - StagSpeed;
-        //SlowDown(speedDif);
     }
     public void SetVelocity()
     {
@@ -134,15 +146,16 @@ public class Movement
     {
         if (_pursuingRigidbody2D == null) return;
         SetMovementDirection(_pursuingRigidbody2D.position - _drivenRigidbody2D.position);
-        SetVelocity();
+        //SetVelocity();
+        Force(ForceMode2D.Force);
     }
     private void SeekAndPursue()
     {
         if (_pursuingRigidbody2D == null) return;
         TurnToPursuingTarget();
         SetMovementDirection(LocalUp);
-        SetVelocity();
-        
+        //SetVelocity();
+        Force(ForceMode2D.Force);
     }
     private void TurnToPursuingTarget()
     {

@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -48,6 +47,7 @@ public class Entity : MonoBehaviour
     public Stat Size { get; private set; }
     public Stat MaximumLifePoints { get; private set; }
     public Stat LifeRegenerationPerSecond { get; private set; }
+    public Stat KnockbackPower { get; private set; }
     private float _currentLifePoints;
     private Camera _mCamera;
 
@@ -63,7 +63,7 @@ public class Entity : MonoBehaviour
         Size = new Stat(settings.Size);
         MaximumLifePoints = new Stat(settings.MaximumLife);
         LifeRegenerationPerSecond = new Stat(settings.LifeRegenerationInSecond);
-
+        KnockbackPower = new Stat(settings.KnockbackPower);
         this.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
 
         _currentLifePoints = MaximumLifePoints.Value;
