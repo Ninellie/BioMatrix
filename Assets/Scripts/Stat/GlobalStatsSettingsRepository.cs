@@ -6,7 +6,16 @@ public class GlobalStatsSettingsRepository
         MaximumLife = 1,
         LifeRegenerationInSecond = 0,
         KnockbackPower = 0,
-};
+    };
+
+    public static readonly EnclosureStatsSettings EnclosureStats = new EnclosureStatsSettings()
+    {
+        Size = 1,
+        MaximumLife = 1000,
+        LifeRegenerationInSecond = 0,
+        KnockbackPower = 700,
+        ConstrictionRate = 0.00035f,
+    };
 
     public static readonly UnitStatsSettings UnitStats = new UnitStatsSettings()
     {
@@ -20,12 +29,12 @@ public class GlobalStatsSettingsRepository
     public static readonly HeroStatsSettings PlayerStats = new HeroStatsSettings()
     {
         Size = 1,
-        MaximumLife = 3,
+        MaximumLife = 30000,
         LifeRegenerationInSecond = 0,
         Speed = 170,
         MagnetismRadius = 150,
         MagnetismPower = 1000,
-        KnockbackPower = 0,
+        KnockbackPower = 100,
     };
 
     public static readonly EnemyStatsSettings EnemyStats = new EnemyStatsSettings()
@@ -35,7 +44,7 @@ public class GlobalStatsSettingsRepository
         LifeRegenerationInSecond = 0,
         Speed = 100,
         SpawnWeight = 1000,
-        KnockbackPower = 0,
+        KnockbackPower = 700,
     };
 
     public static readonly UnitStatsSettings BoonStats = new UnitStatsSettings()

@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\LevelUp\Deck\Card.cs" />
     <Compile Include="Assets\Scripts\Entity\Entity.cs" />
     <Compile Include="Assets\Scripts\GameSession\Floor\Floor.cs" />
+    <Compile Include="Assets\Scripts\Entity\Enclosure\Enclosure.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\Entity\EntityStatsSettings.cs" />
@@ -119,9 +120,10 @@
     <Compile Include="Assets\Scripts\LevelUp\Deck\ArrayCardRepository.cs" />
     <Compile Include="Assets\Scripts\GameSession\View\ActiveViewModelState.cs" />
     <Compile Include="Assets\Scripts\UIScripts\OptionsMenu.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\EnemyStatsSettings.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\HeroStatsSettings.cs" />
+    <Compile Include="Assets\Scripts\Entity\Unit\Enemy\EnemyStatsSettings.cs" />
+    <Compile Include="Assets\Scripts\Entity\Unit\Player\HeroStatsSettings.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+    <Compile Include="Assets\Scripts\Entity\Enclosure\EnclosureStatsSettings.cs" />
     <Compile Include="Assets\Scripts\Stat\StatModifier.cs" />
     <Compile Include="Assets\Scripts\LevelUp\Deck\JsonCard\JsonCardSerializer.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\UITexturePacker.cs" />

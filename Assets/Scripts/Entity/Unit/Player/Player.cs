@@ -51,13 +51,23 @@ public class Player : Unit
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();
-    private void FixedUpdate() => Movement.FixedUpdateMove();
+    private void FixedUpdate() => BaseFixedUpdate();
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var collisionGameObject = collision.gameObject;
-        if (collisionGameObject.tag == "Enemy")
+        switch (collisionGameObject.tag)
         {
-            TakeDamage(MinimalDamageTaken);
+            case "Enemy":
+                var collisionEnemyEntity = collisionGameObject.GetComponent<Entity>();
+                TakeDamage(MinimalDamageTaken);
+                KnockBack(collisionEnemyEntity);
+                break;
+            case "Enclosure":
+            {
+                var collisionEnclosureEntity = collisionGameObject.GetComponent<Entity>();
+                KnockBack(collisionEnclosureEntity);
+                break;
+            }
         }
     }
     protected void BaseAwake(HeroStatsSettings settings)

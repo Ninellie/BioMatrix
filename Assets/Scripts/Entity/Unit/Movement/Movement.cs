@@ -69,9 +69,15 @@ public class Movement
                 //DrivenRigidbody2D.velocity = Vector2.zero;
                 break;
             case MovementState.Rectilinear:
-                if (_isStagger) VelocityScale += VelocityScaleStep;
-                SetVelocity();
-                //Force(ForceMode2D.Impulse);
+                if (_isStagger)
+                {
+                    VelocityScale += VelocityScaleStep;
+                    Force(ForceMode2D.Impulse);
+                }
+                else
+                {
+                    SetVelocity();
+                }
                 break;
             case MovementState.Pursue:
                 if (_isStagger) VelocityScale += VelocityScaleStep;
@@ -89,9 +95,7 @@ public class Movement
     private void Force(ForceMode2D forceMode2D)
     {
         if (_drivenRigidbody2D.velocity.magnitude.Equals(Velocity.magnitude)) return;
-
         var difference = Velocity - _drivenRigidbody2D.velocity;
-
         var forcePower = difference.normalized * AccelerationSpeed * _drivenRigidbody2D.mass;
         _drivenRigidbody2D.AddForce(forcePower, forceMode2D);
     }
@@ -127,11 +131,11 @@ public class Movement
     }
     public void KnockBack(Entity collisionEntity)
     {
+        Stag();
         float thrustPower = collisionEntity.KnockbackPower.Value;
         Vector2 difference = (Vector2)_drivenRigidbody2D.transform.position - (Vector2)collisionEntity.transform.position;
         Vector2 knockbackVelocity = difference.normalized * thrustPower * _drivenRigidbody2D.mass;
         _drivenRigidbody2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
-        Stag();
     }
     private void Stag()
     {

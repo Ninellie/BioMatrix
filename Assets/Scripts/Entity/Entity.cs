@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class Entity : MonoBehaviour
 {
@@ -80,6 +81,7 @@ public class Entity : MonoBehaviour
     }
     protected virtual void BaseUpdate()
     {
+        if (Time.timeScale == 0) return;
         IsOnScreen = CheckVisibilityOnCamera();
     }
     protected virtual void Regeneration()

@@ -5,7 +5,6 @@ using System.Linq;
 public class Stat
 {
     public float Value => GetActualValue();
-    //public IEnumerable<StatModifier> Modifiers => _modifiers;
     public Action onValueChanged;
     private float BaseValue { get; }
     private bool IsModifiable { get; }
@@ -60,7 +59,6 @@ public class Stat
         OnValueChanged(oldValue);
         return true;
     }
-
     public bool IsModifierListEmpty()
     {
         return _modifiers.Count == 0;

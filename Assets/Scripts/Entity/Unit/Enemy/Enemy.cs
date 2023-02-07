@@ -43,10 +43,7 @@ public class Enemy : Unit
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EnemyStats);
     private void Start() => BaseStart();
     private void Update() => BaseUpdate();
-    private void FixedUpdate()
-    {
-        Movement.FixedUpdateMove();
-    }
+    private void FixedUpdate() => BaseFixedUpdate();
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _collisionGameObject = collision.gameObject;
@@ -55,7 +52,9 @@ public class Enemy : Unit
             case "Player":
                 if (collision.collider is BoxCollider2D)
                 {
-                    TakeDamage(CurrentLifePoints);
+                    //TakeDamage(CurrentLifePoints);
+                    var collisionPlayerEntity = _collisionGameObject.GetComponent<Entity>();
+                    KnockBack(collisionPlayerEntity);
                 }
                 break;
             case "Projectile":

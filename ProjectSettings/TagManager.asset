@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - Boon
   - Canvas
+  - Enclosure
   layers:
   - Default
   - TransparentFX
@@ -15,11 +16,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - Enclosure
+  - Boon
+  - Projectile
   - 
   - 
   - 
@@ -47,6 +48,9 @@ TagManager:
     locked: 0
   - name: Floor
     uniqueID: 3124598011
+    locked: 0
+  - name: Obstruction
+    uniqueID: 3417134107
     locked: 0
   - name: Entity
     uniqueID: 2591669779

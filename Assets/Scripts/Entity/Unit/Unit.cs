@@ -12,7 +12,7 @@ public class Unit : Entity
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();
-    private void FixedUpdate() => Movement.FixedUpdateMove();
+    private void FixedUpdate() => BaseFixedUpdate();
     protected void BaseAwake(UnitStatsSettings settings, Movement movement = null)
     {
         Debug.Log($"{gameObject.name} Unit Awake");
@@ -33,6 +33,11 @@ public class Unit : Entity
     {
         base.BaseOnDisable();
         if (Speed != null) Speed.onValueChanged -= ChangeCurrentSpeed;
+    }
+
+    protected virtual void BaseFixedUpdate()
+    {
+        Movement.FixedUpdateMove();
     }
     protected void KnockBack(Entity collisionEntity)
     {
