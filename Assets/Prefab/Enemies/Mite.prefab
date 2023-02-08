@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8165684587596004793}
   - component: {fileID: 5590340840478446595}
   - component: {fileID: 5218541398406255388}
+  - component: {fileID: -2167475189181900128}
   m_Layer: 6
   m_Name: Mite
   m_TagString: Enemy
@@ -56,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e5b34ce7078fa6b448514de61970ac2f, type: 2}
+  - {fileID: 2100000, guid: f75642c718743f94bbfe39b1791e3470, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -159,3 +160,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-2167475189181900128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b7cba45c5ad02489e4178a669a3bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}

@@ -10,18 +10,16 @@ public class Enemy : Unit
     public Stat spawnWeight = new(GlobalStatsSettingsRepository.EnemyStats.SpawnWeight);
 
     private readonly Rarity _rarity = new Rarity();
+    private SpriteOutline _spriteOutline;
     private GameObject _collisionGameObject;
-    //private Rigidbody2D _rigidbody2D;
-    //private SpriteRenderer _spriteRenderer;
     private Color _spriteColor;
     private const float ReturnToDefaultColorSpeed = 5f;
-
-    private readonly Stopwatch _deathTimer = new Stopwatch();
-    private bool _isPaused = false;
+    private float _deathTimer;
     private const int MinInitialLevel = 1;
     private const float MaxLifeIncreasePerLevel = 1;
-    private const long OffscreenDieMilliseconds = 10000;
+    private const long OffscreenDieSeconds = 60;
 
+    private int _level;
     private int Level
     {
         get => _level;
@@ -37,13 +35,17 @@ public class Enemy : Unit
             UpdateMaxLifeStat();
         }
     }
-    private int _level;
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EnemyStats);
     private void Start() => BaseStart();
     private void Update() => BaseUpdate();
-    private void FixedUpdate() => BaseFixedUpdate();
+    private void FixedUpdate()
+    {
+        DeathTimerFixedUpdate();
+        BaseFixedUpdate();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _collisionGameObject = collision.gameObject;
@@ -71,22 +73,28 @@ public class Enemy : Unit
     protected void BaseAwake(EnemyStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Enemy Awake");
-        //_rigidbody2D = GetComponent<Rigidbody2D>();
+
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteOutline = GetComponent<SpriteOutline>();
         _spriteColor = _spriteRenderer.color;
+
         var movement = new Movement(this, MovementState.Seek, settings.Speed);
         movement.SetPursuingTarget(FindObjectOfType<Player>().gameObject);
+
         base.BaseAwake(settings, movement);
 
         _rarity.Value = RarityEnum.Normal;
+
         Level = MinInitialLevel;
         RestoreLifePoints();
-        Subscription();
     }
     protected override void BaseUpdate()
     {
         base.BaseUpdate();
-        DeathTimerCheck();
+        BackToNormalColor();
+    }
+    private void BackToNormalColor()
+    {
         if (_spriteRenderer.color == Color.white) return;
         _spriteColor = _spriteRenderer.color;
         _spriteColor.r += ReturnToDefaultColorSpeed * Time.deltaTime;
@@ -94,68 +102,29 @@ public class Enemy : Unit
         _spriteColor.b += ReturnToDefaultColorSpeed * Time.deltaTime;
         _spriteRenderer.color = _spriteColor;
     }
-    public void Subscription()
+    private void DeathTimerFixedUpdate()
     {
-        FindObjectOfType<Player>().onGamePaused += OnPause;
-        FindObjectOfType<Player>().onDeath += Unsubscription;
-    }
-    private void Unsubscription()
-    {
-        FindObjectOfType<Player>().onGamePaused -= OnPause;
-        FindObjectOfType<Player>().onDeath -= Unsubscription;
-    }
-    private void DeathTimerCheck()
-    {
-        if (_isPaused) { return; }
-
-        if (!IsOnScreen)
+        if (IsOnScreen)
         {
-            if (!_deathTimer.IsRunning)
-            {
-                if (_deathTimer.IsRunning) return;
-                Debug.Log($"Death timer of {gameObject.name} started");
-                _deathTimer.Start();
-            }
-            else
-            {
-                if (_deathTimer.ElapsedMilliseconds < OffscreenDieMilliseconds) return;
-                TakeDamage(CurrentLifePoints);
-                Debug.Log($"Unit named {gameObject.name} died because it was off screen for too long");
-            }
+            _deathTimer = 0; 
+            return;
         }
-        else
-        {
-            if (_deathTimer.IsRunning)
-            {
-                _deathTimer.Reset();
-            }
-        }
-    }
-    private void OnPause()
-    {
-        if (_deathTimer.IsRunning)
-        {
-            _isPaused = true;
-            _deathTimer.Stop();
-        }
-        else
-        {
-            _isPaused = false;
-            _deathTimer.Start();
-        }
-
+        //if (Time.timeScale == 0) return;
+        _deathTimer += Time.fixedDeltaTime;
+        if (!(_deathTimer >= OffscreenDieSeconds)) return;
+        TakeDamage(CurrentLifePoints);
     }
     public void SetRarity(RarityEnum rarityEnum)
     {
         _rarity.Value = rarityEnum;
         if (rarityEnum == RarityEnum.Normal) return;
 
-        var width = _rarity.Width;
         var color = _rarity.Color;
         var multiplier = _rarity.Multiplier;
 
-        _spriteRenderer.material.SetFloat("_OutlineWidth", width);
-        _spriteRenderer.material.SetColor("_OutlineColor", color);
+        _spriteOutline.enabled = true;
+        _spriteOutline.color = color;
+        
         var statMod = new StatModifier(OperationType.Multiplication, multiplier);
         MaximumLifePoints.AddModifier(statMod);
     }

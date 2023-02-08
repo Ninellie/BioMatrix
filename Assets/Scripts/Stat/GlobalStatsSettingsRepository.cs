@@ -68,9 +68,9 @@ public class GlobalStatsSettingsRepository
     {
         Damage = 1,
         ShootForce = 500,
-        ShootsPerSecond = 2,
+        ShootsPerSecond = 3,
         MaxShootDeflectionAngle = 1,
-        MagazineSize = 25,
+        MagazineSize = 6,
         ReloadSpeed = 1,
         SingleShootProjectile = 1,
     };
