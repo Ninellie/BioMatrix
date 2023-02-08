@@ -43,6 +43,11 @@ public class Unit : Entity
     {
         Movement.KnockBack(collisionEntity);
     }
+    protected void KnockBackFromPlayer(Entity collisionEntity)
+    {
+        Vector2 playerPosition = FindObjectOfType<Player>().transform.position;
+        Movement.KnockBackFromPlayer(collisionEntity, playerPosition);
+    }
     protected override void Death()
     {
         onDeath?.Invoke();

@@ -141,6 +141,18 @@ public class Movement
         Vector2 knockbackVelocity = difference.normalized * thrustPower * _drivenRigidbody2D.mass;
         _drivenRigidbody2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
     }
+    public void KnockBackFromPlayer(Entity collisionEntity, Vector2 playerPosition)
+    {
+        if (_isStagger)
+        {
+            return;
+        }
+        Stag();
+        float thrustPower = collisionEntity.KnockbackPower.Value;
+        Vector2 difference = (Vector2)_drivenRigidbody2D.transform.position - playerPosition;
+        Vector2 knockbackVelocity = difference.normalized * thrustPower * _drivenRigidbody2D.mass;
+        _drivenRigidbody2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
+    }
     private void Stag()
     {
         VelocityScale = 0;

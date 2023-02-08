@@ -61,7 +61,7 @@ public class Enemy : Unit
                 TakeDamage(MinimalDamageTaken);
                 DropDamagePopup(MinimalDamageTaken, _collisionGameObject.transform.position);
                 var collisionEntity = _collisionGameObject.GetComponent<Entity>();
-                KnockBack(collisionEntity);
+                KnockBackFromPlayer(collisionEntity);
                 _spriteRenderer.color = Color.cyan;
                 break;
             case "Enemy":
