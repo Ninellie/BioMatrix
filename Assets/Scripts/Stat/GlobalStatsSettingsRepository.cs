@@ -61,7 +61,7 @@ public class GlobalStatsSettingsRepository
         MaximumLife = 1,
         LifeRegenerationInSecond = 0,
         Speed = 700,
-        KnockbackPower = 200,
+        KnockbackPower = 100,
     };
 
     public static readonly FirearmStatsSettings ShotgunStats = new FirearmStatsSettings()

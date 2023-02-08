@@ -1,10 +1,9 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using Color = UnityEngine.Color;
 
 public class Boon : Unit
 {
-    private SpriteRenderer _spriteRenderer;
+    //private SpriteRenderer _spriteRenderer;
     private readonly Rarity _rarity = new Rarity();
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.BoonStats);
     private void OnEnable() => BaseOnEnable();

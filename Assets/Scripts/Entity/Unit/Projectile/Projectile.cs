@@ -2,11 +2,25 @@ using UnityEngine;
 
 public class Projectile : Unit
 {
+    private const float SpeedDecrease = 15f;
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.ProjectileStats);
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();
-    private void FixedUpdate() => BaseFixedUpdate();
+    private void FixedUpdate()
+    {
+        if (_rigidbody2D.velocity == Vector2.zero)
+        {
+            Death();
+            return;
+        }
+
+        BaseFixedUpdate();
+
+        var mod = new StatModifier(OperationType.Addition, SpeedDecrease * -1);
+        Speed.AddModifier(mod);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var collisionGameObject = collision.gameObject;
@@ -23,6 +37,9 @@ public class Projectile : Unit
     protected override void BaseUpdate()
     {
         base.BaseUpdate();
+        
+        
+
         if (IsOnScreen == false)
         {
             TakeDamage(CurrentLifePoints);

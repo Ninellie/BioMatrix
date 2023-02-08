@@ -11,8 +11,8 @@ public class Enemy : Unit
 
     private readonly Rarity _rarity = new Rarity();
     private GameObject _collisionGameObject;
-    private Rigidbody2D _rigidbody2D;
-    private SpriteRenderer _spriteRenderer;
+    //private Rigidbody2D _rigidbody2D;
+    //private SpriteRenderer _spriteRenderer;
     private Color _spriteColor;
     private const float ReturnToDefaultColorSpeed = 5f;
 
@@ -71,7 +71,7 @@ public class Enemy : Unit
     protected void BaseAwake(EnemyStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Enemy Awake");
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        //_rigidbody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteColor = _spriteRenderer.color;
         var movement = new Movement(this, MovementState.Seek, settings.Speed);

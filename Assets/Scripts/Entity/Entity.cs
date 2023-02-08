@@ -10,8 +10,6 @@ public class Entity : MonoBehaviour
     public const int DeathLifePointsThreshold = 0;
     public const int MinimalDamageTaken = 1;
     public const int LifePointAmount = 1;
-    private float _reservedLife = 0;
-    private Renderer _renderer;
     public float CurrentLifePoints
     {
         get => _currentLifePoints;
@@ -48,8 +46,11 @@ public class Entity : MonoBehaviour
     public Stat Size { get; private set; }
     public Stat MaximumLifePoints { get; private set; }
     public Stat LifeRegenerationPerSecond { get; private set; }
+    //protected Renderer _renderer;
+    protected SpriteRenderer _spriteRenderer;
     public Stat KnockbackPower { get; private set; }
     private float _currentLifePoints;
+    private float _reservedLife = 0;
     private Camera _mCamera;
 
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EntityStats);
@@ -59,16 +60,18 @@ public class Entity : MonoBehaviour
     protected void BaseAwake(EntityStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Entity Awake");
+
         _mCamera = FindObjectOfType<Camera>();
-        _renderer = this.GetComponent<Renderer>();
+        _spriteRenderer = this.GetComponent<SpriteRenderer>();
+
         Size = new Stat(settings.Size);
         MaximumLifePoints = new Stat(settings.MaximumLife);
         LifeRegenerationPerSecond = new Stat(settings.LifeRegenerationInSecond);
         KnockbackPower = new Stat(settings.KnockbackPower);
+
         this.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
 
         _currentLifePoints = MaximumLifePoints.Value;
-
         Regeneration();
     }
     protected virtual void BaseOnEnable()
@@ -145,7 +148,7 @@ public class Entity : MonoBehaviour
 
     private bool CheckVisibilityOnCamera()
     {
-        var onScreen = _renderer.isVisible;
+        var onScreen = _spriteRenderer.isVisible;
         return onScreen;
     }
 }

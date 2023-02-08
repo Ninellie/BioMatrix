@@ -113,17 +113,15 @@ public class Movement
     }
     public void Accelerate(float speed)
     {
-        if (speed >= 0)
-        {
-            Speed += speed;
-        }
+        if (speed < 0) return;
+        Speed += speed;
     }
     public void SlowDown(float speed)
     {
-        if (speed >= 0)
-        {
-            Speed -= speed;
-        }
+        if (speed < 0) return;
+        var newSpeed = Speed - speed;
+        if (newSpeed <= 0) { Speed = 0; }
+        else { Speed -= speed; }
     }
     public void SetMovementDirection(Vector2 direction)
     {
