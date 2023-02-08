@@ -11,8 +11,8 @@ public class Movement
     private Vector2 _movementDirection;
     private readonly Rigidbody2D _drivenRigidbody2D;
     private float _velocityScale = 1f;
-    private const float VelocityScaleStep = 0.1f;
-    private const float AccelerationSpeed = 100f;
+    private const float VelocityScaleStep = 0.05f;
+    private const float AccelerationSpeed = 200f;
     private float VelocityScale
     {
         get => _velocityScale;
@@ -131,6 +131,10 @@ public class Movement
     }
     public void KnockBack(Entity collisionEntity)
     {
+        if (_isStagger)
+        {
+            return;
+        }
         Stag();
         float thrustPower = collisionEntity.KnockbackPower.Value;
         Vector2 difference = (Vector2)_drivenRigidbody2D.transform.position - (Vector2)collisionEntity.transform.position;

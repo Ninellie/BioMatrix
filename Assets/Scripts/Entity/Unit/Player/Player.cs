@@ -65,6 +65,7 @@ public class Player : Unit
             case "Enclosure":
             {
                 var collisionEnclosureEntity = collisionGameObject.GetComponent<Entity>();
+                TakeDamage(MinimalDamageTaken);
                 KnockBack(collisionEnclosureEntity);
                 break;
             }

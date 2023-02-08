@@ -13,7 +13,7 @@ public class GlobalStatsSettingsRepository
         Size = 1,
         MaximumLife = 1000,
         LifeRegenerationInSecond = 0,
-        KnockbackPower = 700,
+        KnockbackPower = 1100,
         ConstrictionRate = 0.00035f,
     };
 
@@ -34,7 +34,7 @@ public class GlobalStatsSettingsRepository
         Speed = 170,
         MagnetismRadius = 150,
         MagnetismPower = 1000,
-        KnockbackPower = 100,
+        KnockbackPower = 200,
     };
 
     public static readonly EnemyStatsSettings EnemyStats = new EnemyStatsSettings()
@@ -61,7 +61,7 @@ public class GlobalStatsSettingsRepository
         MaximumLife = 1,
         LifeRegenerationInSecond = 0,
         Speed = 700,
-        KnockbackPower = 50,
+        KnockbackPower = 200,
     };
 
     public static readonly FirearmStatsSettings ShotgunStats = new FirearmStatsSettings()
