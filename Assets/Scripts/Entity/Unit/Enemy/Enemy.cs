@@ -53,7 +53,7 @@ public class Enemy : Unit
         {
             case "Player":
                 if (collision.collider is BoxCollider2D)
-                {
+                {   
                     //TakeDamage(CurrentLifePoints);
                     var collisionPlayerEntity = _collisionGameObject.GetComponent<Entity>();
                     KnockBack(collisionPlayerEntity);

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
+
 public class Movement
 {
     public float Speed { get; private set; }
@@ -125,7 +126,7 @@ public class Movement
     }
     public void SetMovementDirection(Vector2 direction)
     {
-        _movementDirection = direction;
+        _movementDirection = direction.normalized;
     }
     public void KnockBack(Entity collisionEntity)
     {

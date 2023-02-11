@@ -4,7 +4,7 @@ using UnityEngine;
 public class Unit : Entity
 {
     public Action onDeath;
-    protected Stat Speed { get; private set; }
+    public Stat Speed { get; private set; }
     protected Stat TurningSpeed { get; private set; }
     protected Movement Movement { get; private set; }
     protected Rigidbody2D _rigidbody2D;
