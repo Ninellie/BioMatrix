@@ -110,6 +110,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\Scripts\TileManager\RuleTileGenerator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
+    <Compile Include="Assets\Scripts\Entity\Unit\Movement\Math2D.cs" />
     <Compile Include="Assets\Scripts\GameSession\Spawner\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\UIScripts\DamagePopup.cs" />
     <Compile Include="Assets\Scripts\Stat\OperationType.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\Scripts\UIScripts\ExpUI.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementState.cs" />
+    <Compile Include="Assets\Scripts\Entity\Unit\Movement\VelocityController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Projectile\ProjectileCreator.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPAction.cs" />
@@ -162,8 +164,6 @@
     <Compile Include="Assets\Scripts\Firearm\Firearm.cs" />
     <Compile Include="Assets\Scripts\UIScripts\GameTimer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Movement\Math2D.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Movement\VelocityController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

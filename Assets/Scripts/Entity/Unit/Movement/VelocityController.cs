@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class VelocityController
 {
-    private Vector2 Velocity
+    public Vector2 Velocity
     {
         get => _velocity;
-        set
+        private set
         {
-            if (value.sqrMagnitude > SpeedMax * SpeedMax)
+            if (value.magnitude > SpeedMax)
             {
                 _velocity = value.normalized * SpeedMax;
+                return;
             }
-
+            _velocity = value;
         }
     }
     private Vector2 Acceleration => SpeedMax * MovementDirection * Time.fixedDeltaTime;
@@ -67,16 +68,18 @@ public class VelocityController
         get => _target == null ? _direction : (TargetPosition - MyPosition).normalized;
         set => _direction = value.normalized;
     }
-
     private Vector2 _direction;
     private GameObject _target;
     private Vector2 TargetPosition => _target == null ? Vector2.zero : _target.transform.position;
-
     private Vector2 MyPosition => _myUnit.transform.position;
-
-    public VelocityController(Unit myUnit)
+    public VelocityController(Unit unit)
     {
-        _myUnit = myUnit;
+        _myUnit = unit;
+    }
+
+    public void ResolveCollisions(Unit other)
+    {
+        
     }
     public void ResolveCollision(VelocityController other, ContactPoint2D contactPoint2D)
     {
@@ -84,7 +87,7 @@ public class VelocityController
 
         float velAlongNormal = Vector2.Dot(rv, contactPoint2D.normal);
 
-        if (velAlongNormal > 0) { return; }
+        //if (velAlongNormal > 0) { return; }
 
         float e = MathF.Min(Restitution, other.Restitution);
 
@@ -96,18 +99,9 @@ public class VelocityController
         float massSum = Mass + Mass;
 
         float ratio = Mass / massSum;
-        Velocity -= ratio * impulse;
-        PositionalCorrection(other, contactPoint2D);
-    }
-    private void PositionalCorrection(VelocityController other, ContactPoint2D contactPoint2D)
-    {
-        float penetration = contactPoint2D.separation;
-        const float percent = 0.2f; // 20% - 80%
-        const float slop = 0.01f; // 0.01 - 0.1
-        var correction = MathF.Max(penetration - slop, 0.0f) /
-            (InvMass + other.InvMass) * percent * contactPoint2D.normal;
-        Vector3 aPos = (Vector2)_myUnit.transform.position - InvMass * correction;
-        _myUnit.transform.position = aPos;
+        Velocity += ratio * impulse;
+        Debug.LogWarning("Resolve collision");
+        //PositionalCorrection(other, contactPoint2D);
     }
     //public void ResolveCollision(VelocityController A, VelocityController B, ContactPoint2D contactPoint2D)
     //{
@@ -145,7 +139,7 @@ public class VelocityController
     //}
     public void SetDirection(Vector2 direction)
     {
-        MovementDirection = direction;
+        MovementDirection = direction.normalized;
     }
     public void SetTarget(GameObject target)
     {
@@ -154,12 +148,22 @@ public class VelocityController
     public Vector2 GetFixedUpdateStep()
     {
         Velocity += Acceleration;
-        _myUnit.GetComponent<Rigidbody2D>().velocity = Velocity;
+        _myUnit._rigidbody2D.velocity = Velocity;
         return Velocity;
     }
     public void FixedUpdateStep()
     {
         Velocity += Acceleration;
-        _myUnit.GetComponent<Rigidbody2D>().velocity = Velocity;
+        _myUnit._rigidbody2D.velocity = Velocity;
+    }
+    private void PositionalCorrection(VelocityController other, ContactPoint2D contactPoint2D)
+    {
+        float penetration = contactPoint2D.separation;
+        const float percent = 0.2f; // 20% - 80%
+        const float slop = 0.01f; // 0.01 - 0.1
+        var correction = MathF.Max(penetration - slop, 0.0f) /
+            (InvMass + other.InvMass) * percent * contactPoint2D.normal;
+        Vector3 aPos = (Vector2)_myUnit.transform.position - InvMass * correction;
+        _myUnit.transform.position = aPos;
     }
 }

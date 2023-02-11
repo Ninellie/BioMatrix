@@ -138,10 +138,10 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 1
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 92e3d236e32a33f46a18737a699ef543, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &4797799252330293022
 MonoBehaviour:
@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d608d0387591429429c4f44477dba9d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody2D: {fileID: 0}
   isFireButtonPressed: 0
   _firePoint: {fileID: 766516748403551923}
 --- !u!58 &2449300099634026346

@@ -145,7 +145,8 @@ public class Player : Unit
     public void OnMove(InputValue input)
     {
         var inputVector2 = input.Get<Vector2>();
-        Movement.SetMovementDirection(inputVector2);
+        //Movement.SetMovementDirection(inputVector2);
+        VelocityController.SetDirection(inputVector2);
         switch (inputVector2.x)
         {
             case < 0:

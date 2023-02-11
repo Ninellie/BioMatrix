@@ -9,7 +9,12 @@ public class Boon : Unit
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();
-    private void FixedUpdate() => Movement.FixedUpdateMove();
+    private void FixedUpdate()
+    {
+        BaseFixedUpdate();
+        //Movement.FixedUpdateMove();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var collisionGameObject = collision.gameObject;
@@ -31,7 +36,7 @@ public class Boon : Unit
         if (collisionGameObject.tag != "Player") return;
         if (collision.collider is not CircleCollider2D) return;
         Speed.ClearModifiersList();
-        Movement.ChangeState(MovementState.Idle);
+        //Movement.ChangeState(MovementState.Idle);
     }
     protected void BaseAwake(UnitStatsSettings settings)
     {

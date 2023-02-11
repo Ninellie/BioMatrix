@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -45,7 +46,6 @@ public class Enemy : Unit
         DeathTimerFixedUpdate();
         BaseFixedUpdate();
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _collisionGameObject = collision.gameObject;
@@ -63,10 +63,13 @@ public class Enemy : Unit
                 TakeDamage(MinimalDamageTaken);
                 DropDamagePopup(MinimalDamageTaken, _collisionGameObject.transform.position);
                 var collisionEntity = _collisionGameObject.GetComponent<Entity>();
-                KnockBackFromPlayer(collisionEntity);
+                //KnockBackFromPlayer(collisionEntity);
                 _spriteRenderer.color = Color.cyan;
                 break;
             case "Enemy":
+                var collisionEnemyUnit = _collisionGameObject.GetComponent<Unit>();
+
+                VelocityController.ResolveCollision(collisionEnemyUnit.VelocityController, collision.GetContact(0));
                 break;
         }
     }
@@ -78,15 +81,21 @@ public class Enemy : Unit
         _spriteOutline = GetComponent<SpriteOutline>();
         _spriteColor = _spriteRenderer.color;
 
-        var movement = new Movement(this, MovementState.Seek, settings.Speed);
-        movement.SetPursuingTarget(FindObjectOfType<Player>().gameObject);
+        //var movement = new Movement(this, MovementState.Seek, settings.Speed);
+        //movement.SetPursuingTarget(FindObjectOfType<Player>().gameObject);
+        //base.BaseAwake(settings, movement);
+        base.BaseAwake(settings);
 
-        base.BaseAwake(settings, movement);
 
         _rarity.Value = RarityEnum.Normal;
 
+
         Level = MinInitialLevel;
         RestoreLifePoints();
+
+
+        var player = FindObjectOfType<Player>().gameObject;
+        VelocityController.SetTarget(player);
     }
     protected override void BaseUpdate()
     {
@@ -109,7 +118,7 @@ public class Enemy : Unit
             _deathTimer = 0; 
             return;
         }
-        //if (Time.timeScale == 0) return;
+        if (Time.timeScale == 0) return;
         _deathTimer += Time.fixedDeltaTime;
         if (!(_deathTimer >= OffscreenDieSeconds)) return;
         TakeDamage(CurrentLifePoints);

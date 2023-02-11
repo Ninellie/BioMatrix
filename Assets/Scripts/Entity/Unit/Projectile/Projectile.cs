@@ -37,19 +37,14 @@ public class Projectile : Unit
     protected override void BaseUpdate()
     {
         base.BaseUpdate();
-        
-        
-
-        if (IsOnScreen == false)
-        {
-            TakeDamage(CurrentLifePoints);
-        }
+        if (IsOnScreen == false) { TakeDamage(CurrentLifePoints); }
     }
     public void Launch(Vector2 direction, float force)
     {
-        Movement.SetMovementDirection(direction);
+        //Movement.SetMovementDirection(direction);
+        VelocityController.SetDirection(direction);
         var speedMod = new StatModifier(OperationType.Addition, force);
         Speed.AddModifier(speedMod);
-        Movement.ChangeState(MovementState.Rectilinear);
+        //Movement.ChangeState(MovementState.Rectilinear);
     }
 }
