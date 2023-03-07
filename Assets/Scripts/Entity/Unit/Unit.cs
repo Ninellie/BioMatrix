@@ -1,79 +1,30 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Unit : Entity
 {
     public Action onDeath;
     public Stat Speed { get; private set; }
-    protected Stat TurningSpeed { get; private set; }
-
-    public VelocityController VelocityController;
-    //protected Movement Movement { get; private set; }
-    public Rigidbody2D _rigidbody2D;
+    public Stat AccelerationSpeed { get; private set; }
+    public Stat RotationSpeed { get; private set; }
+    public Rigidbody2D rb2D;
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.UnitStats);
-    private void Start() => BaseStart();
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();
-    private void FixedUpdate() => BaseFixedUpdate();
-    protected void BaseAwake(UnitStatsSettings settings, Movement movement = null)
+    protected virtual void BaseAwake(UnitStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Unit Awake");
         base.BaseAwake(settings);
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();
+
         Speed = new Stat(settings.Speed);
-        //Movement = movement ?? new Movement(this, Speed.Value);
-        VelocityController = new VelocityController(this);
-    }
-    protected void BaseStart()
-    {
-        
-        //Movement.SetVelocity();
-    }
-    protected override void BaseOnEnable()
-    {
-        base.BaseOnEnable();
-        //if (Speed != null) Speed.onValueChanged += ChangeCurrentSpeed;
-    }
-    protected override void BaseOnDisable()
-    {
-        base.BaseOnDisable();
-        //if (Speed != null) Speed.onValueChanged -= ChangeCurrentSpeed;
-    }
-    protected virtual void BaseFixedUpdate()
-    {
-        //Movement.FixedUpdateMove();
-        VelocityController.FixedUpdateStep();
-    }
-    protected void KnockBack(Entity collisionEntity)
-    {
-        //Movement.KnockBack(collisionEntity);
-    }
-    protected void KnockBackFromPlayer(Entity collisionEntity)
-    {
-        Vector2 playerPosition = FindObjectOfType<Player>().transform.position;
-        //Movement.KnockBackFromPlayer(collisionEntity, playerPosition);
+        AccelerationSpeed = new Stat(settings.AccelerationSpeed);
+        RotationSpeed = new Stat(settings.RotationSpeed);
     }
     protected override void Death()
     {
         onDeath?.Invoke();
         base.Death();
     }
-    //protected void ChangeCurrentSpeed()
-    //{
-    //    var oldSpeed = Movement.Speed;
-    //    var speedDif = Speed.Value - oldSpeed;
-    //    switch (speedDif)
-    //    {
-    //        case > 0:
-    //            Movement.Accelerate(speedDif);
-    //            break;
-    //        case < 0:
-    //            Movement.SlowDown(speedDif * -1);
-    //            break;
-    //        case 0:
-    //            throw new ArgumentOutOfRangeException();
-    //    }
-    //}
 }

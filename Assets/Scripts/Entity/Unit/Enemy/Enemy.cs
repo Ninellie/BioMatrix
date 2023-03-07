@@ -1,5 +1,3 @@
-using System.Diagnostics;
-using Unity.VisualScripting;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -7,9 +5,9 @@ public class Enemy : Unit
 {
     [SerializeField] private GameObject _onDeathDrop;
     [SerializeField] private GameObject _damagePopup;
-
     public Stat spawnWeight = new(GlobalStatsSettingsRepository.EnemyStats.SpawnWeight);
 
+    private MovementControllerAboveViewEnemy _movementController;
     private readonly Rarity _rarity = new Rarity();
     private SpriteOutline _spriteOutline;
     private GameObject _collisionGameObject;
@@ -39,13 +37,8 @@ public class Enemy : Unit
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EnemyStats);
-    private void Start() => BaseStart();
     private void Update() => BaseUpdate();
-    private void FixedUpdate()
-    {
-        DeathTimerFixedUpdate();
-        BaseFixedUpdate();
-    }
+    private void FixedUpdate() => BaseFixedUpdate();
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _collisionGameObject = collision.gameObject;
@@ -53,49 +46,37 @@ public class Enemy : Unit
         {
             case "Player":
                 if (collision.collider is BoxCollider2D)
-                {   
-                    //TakeDamage(CurrentLifePoints);
+                {
                     var collisionPlayerEntity = _collisionGameObject.GetComponent<Entity>();
-                    KnockBack(collisionPlayerEntity);
                 }
                 break;
             case "Projectile":
                 TakeDamage(MinimalDamageTaken);
                 DropDamagePopup(MinimalDamageTaken, _collisionGameObject.transform.position);
                 var collisionEntity = _collisionGameObject.GetComponent<Entity>();
-                //KnockBackFromPlayer(collisionEntity);
-                _spriteRenderer.color = Color.cyan;
-                break;
-            case "Enemy":
-                var collisionEnemyUnit = _collisionGameObject.GetComponent<Unit>();
-
-                VelocityController.ResolveCollision(collisionEnemyUnit.VelocityController, collision.GetContact(0));
+                _movementController.KnockBackFromTarget(collisionEntity);
+                spriteRenderer.color = Color.cyan;
                 break;
         }
+    }
+    protected void BaseFixedUpdate()
+    {
+        DeathTimerFixedUpdate();
+        _movementController.FixedUpdateAccelerationStep();
     }
     protected void BaseAwake(EnemyStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Enemy Awake");
-
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteOutline = GetComponent<SpriteOutline>();
-        _spriteColor = _spriteRenderer.color;
-
-        //var movement = new Movement(this, MovementState.Seek, settings.Speed);
-        //movement.SetPursuingTarget(FindObjectOfType<Player>().gameObject);
-        //base.BaseAwake(settings, movement);
         base.BaseAwake(settings);
 
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteOutline = GetComponent<SpriteOutline>();
+        _spriteColor = spriteRenderer.color;
         _rarity.Value = RarityEnum.Normal;
-
-
         Level = MinInitialLevel;
         RestoreLifePoints();
-
-
         var player = FindObjectOfType<Player>().gameObject;
-        VelocityController.SetTarget(player);
+        _movementController = new MovementControllerAboveViewEnemy(this, player);
     }
     protected override void BaseUpdate()
     {
@@ -104,12 +85,12 @@ public class Enemy : Unit
     }
     private void BackToNormalColor()
     {
-        if (_spriteRenderer.color == Color.white) return;
-        _spriteColor = _spriteRenderer.color;
+        if (spriteRenderer.color == Color.white) return;
+        _spriteColor = spriteRenderer.color;
         _spriteColor.r += ReturnToDefaultColorSpeed * Time.deltaTime;
         _spriteColor.g += ReturnToDefaultColorSpeed * Time.deltaTime;
         _spriteColor.b += ReturnToDefaultColorSpeed * Time.deltaTime;
-        _spriteRenderer.color = _spriteColor;
+        spriteRenderer.color = _spriteColor;
     }
     private void DeathTimerFixedUpdate()
     {
@@ -152,7 +133,7 @@ public class Enemy : Unit
     private void DropBonus()
     {
         var rotation = new Quaternion(0, 0, 0, 0);
-        Instantiate(_onDeathDrop, _rigidbody2D.position, rotation);
+        Instantiate(_onDeathDrop, rb2D.position, rotation);
     }
     private void DropDamagePopup(int damage, Vector2 positionVector2)
     {
@@ -169,8 +150,9 @@ public class Enemy : Unit
     }
     public void LookAt2D(Vector2 target)
     {
-        var direction = (Vector2)_rigidbody2D.transform.position - target;
+        var direction = (Vector2)rb2D.transform.position - target;
         var angle = (Mathf.Atan2(direction.y, direction.x) + Mathf.PI / 2) * Mathf.Rad2Deg;
-        _rigidbody2D.SetRotation(angle);
+        rb2D.rotation = angle;
+        rb2D.SetRotation(angle);
     }
 }

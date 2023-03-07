@@ -9,11 +9,6 @@ public class Boon : Unit
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();
-    private void FixedUpdate()
-    {
-        BaseFixedUpdate();
-        //Movement.FixedUpdateMove();
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -38,19 +33,18 @@ public class Boon : Unit
         Speed.ClearModifiersList();
         //Movement.ChangeState(MovementState.Idle);
     }
-    protected void BaseAwake(UnitStatsSettings settings)
+    protected override void BaseAwake(UnitStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Boon Awake");
-        var movement = new Movement(this, MovementState.Idle, settings.Speed);
-        base.BaseAwake(settings, movement);
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        base.BaseAwake(settings);
+        spriteRenderer = GetComponent<SpriteRenderer>();
         _rarity.Value = RarityEnum.Magic;
     }
     public void SetOutline()
     {
         var width = 0.007f;
         var color = Color.grey;
-        _spriteRenderer.material.SetFloat("_OutlineWidth", width);
-        _spriteRenderer.material.SetColor("_OutlineColor", color);
+        spriteRenderer.material.SetFloat("_OutlineWidth", width);
+        spriteRenderer.material.SetColor("_OutlineColor", color);
     }
 }

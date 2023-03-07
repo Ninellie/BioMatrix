@@ -60,6 +60,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Enemy\Rarity.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
+    <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementControllerAboveViewEnemy.cs" />
     <Compile Include="Assets\Scripts\Firearm\Magazine.cs" />
     <Compile Include="Assets\Scripts\Firearm\FirearmStatsSettings.cs" />
     <Compile Include="Assets\Scripts\UIScripts\TestJson.cs" />
@@ -69,12 +70,14 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\LevelUp\Deck\Card.cs" />
     <Compile Include="Assets\Scripts\Entity\Entity.cs" />
+    <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementControllerBullet.cs" />
     <Compile Include="Assets\Scripts\GameSession\Floor\Floor.cs" />
     <Compile Include="Assets\Scripts\Entity\Enclosure\Enclosure.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\Entity\EntityStatsSettings.cs" />
     <Compile Include="Assets\Scripts\TileManager\FloorManager.cs" />
+    <Compile Include="Assets\Scripts\Rotation.cs" />
     <Compile Include="Assets\Scripts\GameSession\View\ViewModelStateType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
@@ -115,6 +118,7 @@
     <Compile Include="Assets\Scripts\UIScripts\DamagePopup.cs" />
     <Compile Include="Assets\Scripts\Stat\OperationType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
+    <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementControllerSideViewEnemy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Camera\MainCameraPlayerSeek.cs" />
@@ -123,7 +127,7 @@
     <Compile Include="Assets\Scripts\GameSession\View\ActiveViewModelState.cs" />
     <Compile Include="Assets\Scripts\UIScripts\OptionsMenu.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Enemy\EnemyStatsSettings.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Player\HeroStatsSettings.cs" />
+    <Compile Include="Assets\Scripts\Entity\Unit\Player\PlayerStatsSettings.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\Entity\Enclosure\EnclosureStatsSettings.cs" />
     <Compile Include="Assets\Scripts\Stat\StatModifier.cs" />
@@ -140,6 +144,7 @@
     <Compile Include="Assets\Scripts\Entity\Unit\Projectile\Projectile.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
+    <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementControllerPlayer.cs" />
     <Compile Include="Assets\Scripts\Camera\Ortho2dCamera.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\Scripts\PeterAcklamInverseCDF.cs" />
@@ -155,7 +160,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\Scripts\UIScripts\ExpUI.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementState.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Movement\VelocityController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Projectile\ProjectileCreator.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPAction.cs" />
@@ -164,6 +168,7 @@
     <Compile Include="Assets\Scripts\Firearm\Firearm.cs" />
     <Compile Include="Assets\Scripts\UIScripts\GameTimer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
+    <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementControllerTurret.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

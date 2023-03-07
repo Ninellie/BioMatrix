@@ -10,9 +10,26 @@ public class Circle
     }
     public Vector2 GetPointOn(float radius, Vector2 circleCenter, float fi)
     {
-        var randomPointOnBaseCircle = new Vector2(Mathf.Cos(fi) * radius, Mathf.Sin(fi) * radius);
-        var randomPointOnActualCircle = circleCenter + randomPointOnBaseCircle;
-        return randomPointOnActualCircle;
+        var pointOnBaseCircle = new Vector2(Mathf.Cos(fi) * radius, Mathf.Sin(fi) * radius);
+        var pointOnActualCircle = circleCenter + pointOnBaseCircle;
+        return pointOnActualCircle;
+    }
+    /// <summary>
+    /// Moves position, along the circle, with center in circleCentre and radius radius, by angular speed and interval.
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="circleCentre"></param>
+    /// <param name="radius"></param>
+    /// <param name="angularSpeed">In radians</param>
+    /// <param name="timeInterval">In seconds</param>
+    /// <returns>Vector2</returns>
+    public Vector2 GetNextPointOn(Vector2 position, Vector2 circleCentre, float radius, float angularSpeed, float timeInterval)
+    {
+        var currentAngle = Vector2.SignedAngle(circleCentre, position);
+        var angleStep = angularSpeed * timeInterval;
+        var nextAngle = currentAngle + angleStep;
+        var nextPosition = this.GetPointOn(radius, circleCentre, nextAngle);
+        return nextPosition;
     }
     public float GetRandomAngle()
     {

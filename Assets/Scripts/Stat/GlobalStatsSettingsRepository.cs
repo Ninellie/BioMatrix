@@ -22,11 +22,11 @@ public class GlobalStatsSettingsRepository
         Size = 1,
         MaximumLife = 1,
         LifeRegenerationInSecond = 0,
-        Speed = 100,
+        Speed = 0,
         KnockbackPower = 0,
     };
 
-    public static readonly HeroStatsSettings PlayerStats = new HeroStatsSettings()
+    public static readonly PlayerStatsSettings PlayerStats = new PlayerStatsSettings()
     {
         Size = 1,
         MaximumLife = 30000,
@@ -45,6 +45,8 @@ public class GlobalStatsSettingsRepository
         Speed = 100,
         SpawnWeight = 1000,
         KnockbackPower = 700,
+        AccelerationSpeed = 50,
+        RotationSpeed = 150,
     };
 
     public static readonly UnitStatsSettings BoonStats = new UnitStatsSettings()
