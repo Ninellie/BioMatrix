@@ -45,8 +45,8 @@ public class GlobalStatsSettingsRepository
         Speed = 100,
         SpawnWeight = 1000,
         KnockbackPower = 700,
-        AccelerationSpeed = 50,
-        RotationSpeed = 150,
+        AccelerationSpeed = 200,
+        RotationSpeed = 5,
     };
 
     public static readonly UnitStatsSettings BoonStats = new UnitStatsSettings()

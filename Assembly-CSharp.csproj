@@ -70,6 +70,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\LevelUp\Deck\Card.cs" />
     <Compile Include="Assets\Scripts\Entity\Entity.cs" />
+    <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementControllerTurret.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementControllerBullet.cs" />
     <Compile Include="Assets\Scripts\GameSession\Floor\Floor.cs" />
     <Compile Include="Assets\Scripts\Entity\Enclosure\Enclosure.cs" />
@@ -168,7 +169,6 @@
     <Compile Include="Assets\Scripts\Firearm\Firearm.cs" />
     <Compile Include="Assets\Scripts\UIScripts\GameTimer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementControllerTurret.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

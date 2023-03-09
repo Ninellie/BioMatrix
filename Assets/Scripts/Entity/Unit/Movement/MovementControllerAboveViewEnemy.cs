@@ -85,31 +85,10 @@ public class MovementControllerAboveViewEnemy
     }
     private void TurnToTargetStep()
     {
-        var directionAngle = GetDirectionAngle(Direction);
-        var degreesBetweenDirectionAndMe = GetDegreesBetweenAngleAndMe(directionAngle);
-        if (degreesBetweenDirectionAndMe == 0) { return; }
-        var turnSide = GetRotationSide();
-        if (RotationStep < degreesBetweenDirectionAndMe)
-        {
-            _myUnit.rb2D.rotation += turnSide * RotationStep;
-            return;
-        }
-        _myUnit.rb2D.rotation = directionAngle;
-    }
-    private float GetDegreesBetweenAngleAndMe(float angle)
-    {
-        return Mathf.Abs(angle - _myUnit.rb2D.rotation);
-    }
-    private int GetRotationSide()
-    {
-        var rotationsDif = GetDirectionAngle(Direction) - _myUnit.rb2D.rotation;
-        return rotationsDif switch
-        {
-            //1 for right, 2 for left
-            > 0 => 1,
-            < 0 => -1,
-            _ => 0
-        };
+        var angle = GetDirectionAngle(Direction);
+        var speed = RotationStep;
+        var lerpAngle = Mathf.LerpAngle(_myUnit.rb2D.rotation, angle, speed);
+        _myUnit.rb2D.rotation = lerpAngle;
     }
     private float GetDirectionAngle(Vector2 direction)
     {

@@ -3,7 +3,22 @@ using UnityEngine;
 public class MovementControllerPlayer
 {
     private readonly Player _myUnit;
-    private float Speed => _myUnit.Speed.Value * SpeedScale;
+    private float Speed
+    {
+        get
+        {
+            if (_myUnit.isFireButtonPressed)
+            {
+                return _myUnit.Speed.Value * SpeedScale * SpeedDecreaseShooting;
+            }
+            else
+            {
+                return _myUnit.Speed.Value * SpeedScale;
+            }
+        }
+    }
+
+    private const float SpeedDecreaseShooting = 0.5f;
     private float SpeedScale
     {
         get => _speedScale;
