@@ -5611,6 +5611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865347cea50ea4b40aed84d653d506f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
 --- !u!66 &1026114784
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -10507,6 +10508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTypes:
+  - {fileID: 8954189743293124748, guid: 2d9dc3695c5d8ec42a9992ec3ed6fc76, type: 3}
   - {fileID: 8954189743293124748, guid: 31b0110467a1ce14e96a54e0a5736dfe, type: 3}
   enemyDefaultPadding: 1.5
   timerGameObject: {fileID: 2049719694}

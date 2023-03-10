@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 3572984765799172596}
   - component: {fileID: 3774024594271913881}
   - component: {fileID: 8165684587596004793}
-  - component: {fileID: 5590340840478446595}
-  - component: {fileID: 5218541398406255388}
   - component: {fileID: -2167475189181900128}
+  - component: {fileID: 8169940004370450274}
+  - component: {fileID: 1878492662911867408}
   m_Layer: 6
-  m_Name: Mite
+  m_Name: Dragon
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,10 +78,10 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 10297476, guid: 8e4e326f7afe325499841121c13d822f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4784a3e297868654998b6429cf5ae4e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 1
+  m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 128, y: 128}
   m_AdaptiveModeThreshold: 0.5
@@ -109,7 +109,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8165684587596004793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,43 +126,7 @@ MonoBehaviour:
   rb2D: {fileID: 0}
   _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
   _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
-  _enemyType: 1
---- !u!58 &5590340840478446595
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8954189743293124748}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 0ea7f16199c3b024ba52a173fdb86a2e, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 48
---- !u!95 &5218541398406255388
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8954189743293124748}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5787f8fa769be9b4aafa98a20517e323, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  _enemyType: 0
 --- !u!114 &-2167475189181900128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,3 +140,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!60 &8169940004370450274
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 512, y: 512}
+    newSize: {x: 128, y: 128}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 44, y: 124}
+      - {x: -16, y: 152}
+      - {x: -76, y: 156}
+      - {x: -124, y: 132}
+      - {x: -160, y: 72}
+      - {x: -152, y: -24}
+      - {x: -120, y: -24}
+      - {x: -104, y: 52}
+      - {x: -76, y: 96}
+      - {x: -20, y: 96}
+      - {x: -68, y: 56}
+      - {x: -84, y: 8}
+      - {x: -76, y: -32}
+      - {x: -48, y: -68}
+      - {x: -4, y: -92}
+      - {x: 36, y: -80}
+      - {x: 64, y: -60}
+      - {x: 92, y: 0}
+      - {x: 124, y: -40}
+      - {x: 60, y: -112}
+      - {x: 24, y: -184}
+      - {x: 96, y: -148}
+      - {x: 120, y: -132}
+      - {x: 160, y: -56}
+      - {x: 164, y: 4}
+      - {x: 140, y: 76}
+--- !u!58 &1878492662911867408
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 180

@@ -92,7 +92,10 @@ public class EnemySpawner : MonoBehaviour
         enemy.SetRarity(rarity);
         enemy.LevelUp(levelUpBonus);
         enemy.RestoreLifePoints();
-        enemy.LookAt2D(playerPosition);
+        if (enemy.GetEnemyType() == EnemyType.AboveView)
+        {
+            enemy.LookAt2D(playerPosition);
+        }
     }
     private GameObject[] GetEnemyList(int numberOfEnemies, IEnumerable<GameObject> _enemyTypes)
     {

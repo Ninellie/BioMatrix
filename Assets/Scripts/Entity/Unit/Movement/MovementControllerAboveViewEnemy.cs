@@ -1,94 +1,49 @@
 using UnityEngine;
 
 
-public class MovementControllerAboveViewEnemy
+public class MovementControllerAboveViewEnemy : MovementControllerEnemy
 {
-    private readonly GameObject _target;
-    private readonly Enemy _myUnit;
-    private Vector2 Velocity
-    {
-        get => _velocity;
-        set
-        {
-            if (value.magnitude > Speed)
-            {
-                _velocity = value.normalized * Speed;
-                return;
-            }
-            _velocity = value;
-        }
-    }
-    private Vector2 _velocity;
-    private float Speed => _myUnit.Speed.Value * SpeedScale;
-    private float SpeedScale
-    {
-        get => _speedScale;
-        set
-        {
-            switch (value)
-            {
-                case >= 1:
-                    _speedScale = 1f;
-                    return;
-                case <= 0:
-                    _speedScale = 0f;
-                    return;
-                default:
-                    _speedScale = value;
-                    break;
-            }
-        }
-    }
-    private float _speedScale = 1.0f;
-    private const float SpeedScaleRestoreSpeedPerSecond = 1f;
-    private float SpeedScaleStep => SpeedScaleRestoreSpeedPerSecond * Time.fixedDeltaTime;
-    //DIRECTION
-    private Vector2 ViewDirection => _myUnit.transform.up;
-    private Vector2 Direction => (TargetPosition - MyPosition).normalized;
-    private Vector2 TargetPosition => _target.transform.position;
-    private Vector2 MyPosition => _myUnit.transform.position;
+    private Vector2 ViewDirection => myUnit.transform.up;
     //ACCELERATION
-    private float AccelerationSpeed => _myUnit.AccelerationSpeed.Value;
     private Vector2 AccelerationStep => ViewDirection * AccelerationSpeed * Time.fixedDeltaTime;
     //ROTATION
-    private float RotationSpeed => _myUnit.RotationSpeed.Value;
+    private float RotationSpeed => myUnit.RotationSpeed.Value;
     private float RotationStep => RotationSpeed * Time.fixedDeltaTime;
-    public MovementControllerAboveViewEnemy(Enemy myUnit, GameObject target)
+    public MovementControllerAboveViewEnemy(Enemy myUnit, GameObject target) : base(myUnit, target)
     {
-        _myUnit = myUnit;
-        _target = target;
     }
-    public void FixedUpdateAccelerationStep()
+
+    public override void FixedUpdateAccelerationStep()
     {
         TurnToTargetStep();
         Velocity += AccelerationStep;
-        _myUnit.rb2D.velocity = Velocity;
-        if (SpeedScale < 1f) _speedScale += SpeedScaleStep;
+        myUnit.rb2D.velocity = Velocity;
+        if (SpeedScale < 1f) speedScale += SpeedScaleStep;
     }
-    public void Stag()
+    public override void Stag()
     {
-        _speedScale = 0;
+        speedScale = 0;
     }
-    public void KnockBackFromTarget(Entity collisionEntity)
+    public override void KnockBackFromTarget(Entity collisionEntity)
     {
         if (SpeedScale < 1f) { return; }
         Stag();
         float thrustPower = collisionEntity.KnockbackPower.Value;
         Vector2 difference = (MyPosition - TargetPosition).normalized;
-        Vector2 knockbackVelocity = difference * thrustPower * _myUnit.rb2D.mass;
-        _myUnit.rb2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
+        Vector2 knockbackVelocity = difference * thrustPower * myUnit.rb2D.mass;
+        myUnit.rb2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
     }
     public void TurnToTarget()
     {
         var directionAngle = GetDirectionAngle(Direction);
-        _myUnit.rb2D.rotation = directionAngle;
+        myUnit.rb2D.rotation = directionAngle;
     }
     private void TurnToTargetStep()
     {
         var angle = GetDirectionAngle(Direction);
         var speed = RotationStep;
-        var lerpAngle = Mathf.LerpAngle(_myUnit.rb2D.rotation, angle, speed);
-        _myUnit.rb2D.rotation = lerpAngle;
+        var lerpAngle = Mathf.LerpAngle(myUnit.rb2D.rotation, angle, speed);
+        myUnit.rb2D.rotation = lerpAngle;
     }
     private float GetDirectionAngle(Vector2 direction)
     {

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -5,9 +6,10 @@ public class Enemy : Unit
 {
     [SerializeField] private GameObject _onDeathDrop;
     [SerializeField] private GameObject _damagePopup;
+    [SerializeField] private EnemyType _enemyType = EnemyType.SideView;
     public Stat spawnWeight = new(GlobalStatsSettingsRepository.EnemyStats.SpawnWeight);
 
-    private MovementControllerAboveViewEnemy _movementController;
+    private MovementControllerEnemy _movementController;
     private readonly Rarity _rarity = new Rarity();
     private SpriteOutline _spriteOutline;
     private GameObject _collisionGameObject;
@@ -44,18 +46,17 @@ public class Enemy : Unit
         _collisionGameObject = collision.gameObject;
         switch (_collisionGameObject.tag)
         {
-            case "Player":
-                if (collision.collider is BoxCollider2D)
-                {
-                    var collisionPlayerEntity = _collisionGameObject.GetComponent<Entity>();
-                }
-                break;
             case "Projectile":
                 TakeDamage(MinimalDamageTaken);
                 DropDamagePopup(MinimalDamageTaken, _collisionGameObject.transform.position);
                 var collisionEntity = _collisionGameObject.GetComponent<Entity>();
                 _movementController.KnockBackFromTarget(collisionEntity);
-                spriteRenderer.color = Color.cyan;
+                spriteRenderer.color = _enemyType switch
+                {
+                    EnemyType.AboveView => Color.cyan,
+                    EnemyType.SideView => Color.red,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
                 break;
         }
     }
@@ -76,10 +77,26 @@ public class Enemy : Unit
         Level = MinInitialLevel;
         RestoreLifePoints();
         var player = FindObjectOfType<Player>().gameObject;
-        _movementController = new MovementControllerAboveViewEnemy(this, player);
+        if (_enemyType == EnemyType.SideView)
+        {
+            _movementController = new MovementControllerSideViewEnemy(this, player);
+        }   
+        else
+        {
+            _movementController = new MovementControllerAboveViewEnemy(this, player);
+        }
     }
     protected override void BaseUpdate()
     {
+        if (_enemyType == EnemyType.SideView)
+        {
+            spriteRenderer.flipX = _movementController.GetMovementDirection().x switch
+            {
+                < 0 => false,
+                > 0 => true,
+                _ => spriteRenderer.flipX
+            };
+        }
         base.BaseUpdate();
         BackToNormalColor();
     }
@@ -122,6 +139,11 @@ public class Enemy : Unit
     {
         if(value < 0) return;
         Level += value;
+    }
+
+    public EnemyType GetEnemyType()
+    {
+        return _enemyType;
     }
     protected override void Death()
     {

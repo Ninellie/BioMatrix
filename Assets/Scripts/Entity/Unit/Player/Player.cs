@@ -62,7 +62,7 @@ public class Player : Unit
     [SerializeField] private Transform _firePoint;
     private CircleCollider2D _circleCollider;
     private PointEffector2D _pointEffector;
-    private SpriteRenderer Sprite => GetComponent<SpriteRenderer>();
+    private SpriteRenderer SpriteRenderer => GetComponent<SpriteRenderer>();
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.PlayerStats);
     private void Start() => Time.timeScale = 1f;
     private void OnEnable() => BaseOnEnable();
@@ -182,11 +182,11 @@ public class Player : Unit
     {
         var inputVector2 = input.Get<Vector2>();
         _movementController.SetDirection(inputVector2);
-        Sprite.flipX = inputVector2.x switch
+        SpriteRenderer.flipX = inputVector2.x switch
         {
             < 0 => true,
             > 0 => false,
-            _ => Sprite.flipX
+            _ => SpriteRenderer.flipX
         };
     }
     public void OnFire()
