@@ -10509,6 +10509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTypes:
   - {fileID: 8954189743293124748, guid: 2d9dc3695c5d8ec42a9992ec3ed6fc76, type: 3}
+  - {fileID: 8954189743293124748, guid: 31b0110467a1ce14e96a54e0a5736dfe, type: 3}
   enemyDefaultPadding: 1.5
   timerGameObject: {fileID: 2049719694}
 --- !u!1 &1371623710

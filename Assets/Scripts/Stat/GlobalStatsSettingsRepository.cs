@@ -2,78 +2,90 @@ public class GlobalStatsSettingsRepository
 {
     public static readonly EntityStatsSettings EntityStats = new EntityStatsSettings
     {
-        Size = 1,
-        MaximumLife = 1,
-        LifeRegenerationInSecond = 0,
-        KnockbackPower = 0,
+        size = 1,
+        maximumLife = 1,
+        lifeRegenerationInSecond = 0,
+        knockbackPower = 0,
     };
 
     public static readonly EnclosureStatsSettings EnclosureStats = new EnclosureStatsSettings()
     {
-        Size = 1,
-        MaximumLife = 1000,
-        LifeRegenerationInSecond = 0,
-        KnockbackPower = 1100,
+        size = 1,
+        maximumLife = 1000,
+        lifeRegenerationInSecond = 0,
+        knockbackPower = 1100,
         ConstrictionRate = 0.00035f,
     };
 
     public static readonly UnitStatsSettings UnitStats = new UnitStatsSettings()
     {
-        Size = 1,
-        MaximumLife = 1,
-        LifeRegenerationInSecond = 0,
+        size = 1,
+        maximumLife = 1,
+        lifeRegenerationInSecond = 0,
         Speed = 0,
-        KnockbackPower = 0,
+        knockbackPower = 0,
     };
 
     public static readonly PlayerStatsSettings PlayerStats = new PlayerStatsSettings()
     {
-        Size = 1,
-        MaximumLife = 30000,
-        LifeRegenerationInSecond = 0,
+        size = 1,
+        maximumLife = 30000,
+        lifeRegenerationInSecond = 0,
         Speed = 220,
         MagnetismRadius = 150,
         MagnetismPower = 1000,
-        KnockbackPower = 200,
+        knockbackPower = 200,
     };
 
-    public static readonly EnemyStatsSettings EnemyStats = new EnemyStatsSettings()
+    public static readonly EnemyStatsSettings DragonStats = new EnemyStatsSettings()
     {
-        Size = 0.8f,
-        MaximumLife = 1,
-        LifeRegenerationInSecond = 0,
+        size = 0.8f,
+        maximumLife = 1,
+        lifeRegenerationInSecond = 0,
         Speed = 100,
-        SpawnWeight = 1000,
-        KnockbackPower = 700,
+        spawnWeight = 1000,
+        knockbackPower = 700,
         AccelerationSpeed = 200,
         RotationSpeed = 5,
     };
 
+    public static readonly EnemyStatsSettings MiteStats = new EnemyStatsSettings()
+    {
+        size = 0.3f,
+        maximumLife = 1,
+        lifeRegenerationInSecond = 0,
+        Speed = 300,
+        spawnWeight = 100,
+        knockbackPower = 300,
+        AccelerationSpeed = 2000,
+        RotationSpeed = 2,
+    };
+
     public static readonly UnitStatsSettings BoonStats = new UnitStatsSettings()
     {
-        Size = 1,
-        MaximumLife = 1,
-        LifeRegenerationInSecond = 0,
+        size = 1,
+        maximumLife = 1,
+        lifeRegenerationInSecond = 0,
         Speed = 0,
-        KnockbackPower = 0,
+        knockbackPower = 0,
     };
     public static readonly UnitStatsSettings ProjectileStats = new UnitStatsSettings()
     {
-        Size = 1,
-        MaximumLife = 1,
-        LifeRegenerationInSecond = 0,
+        size = 1,
+        maximumLife = 1,
+        lifeRegenerationInSecond = 0,
         Speed = 700,
-        KnockbackPower = 100,
+        knockbackPower = 100,
     };
 
     public static readonly FirearmStatsSettings ShotgunStats = new FirearmStatsSettings()
     {
-        Damage = 1,
-        ShootForce = 500,
-        ShootsPerSecond = 3,
-        MaxShootDeflectionAngle = 1,
-        MagazineSize = 6,
-        ReloadSpeed = 1,
-        SingleShootProjectile = 1,
+        damage = 1,
+        shootForce = 500,
+        shootsPerSecond = 3,
+        maxShootDeflectionAngle = 1,
+        magazineSize = 6,
+        reloadSpeed = 1,
+        singleShootProjectile = 1,
     };
 }

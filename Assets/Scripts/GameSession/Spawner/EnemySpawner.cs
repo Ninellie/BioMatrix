@@ -112,12 +112,12 @@ public class EnemySpawner : MonoBehaviour
     }
     private GameObject GetRandomEnemyFromList(List<GameObject> enemyList)
     {
-        var sum = enemyList.Sum(enemy => (int)enemy.GetComponent<Enemy>().spawnWeight.Value);
+        var sum = enemyList.Sum(enemy => (int)enemy.GetComponent<Enemy>().Settings.spawnWeight);
         var next = _random.Next(sum);
         var limit = 0;
         foreach (var enemy in enemyList)
         {
-            limit += (int)enemy.GetComponent<Enemy>().spawnWeight.Value;
+            limit += (int)enemy.GetComponent<Enemy>().Settings.spawnWeight;
             if (next < limit)
             {
                 return enemy;

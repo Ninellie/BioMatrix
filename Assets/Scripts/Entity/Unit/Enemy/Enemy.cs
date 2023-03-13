@@ -7,15 +7,15 @@ public class Enemy : Unit
     [SerializeField] private GameObject _onDeathDrop;
     [SerializeField] private GameObject _damagePopup;
     [SerializeField] private EnemyType _enemyType = EnemyType.SideView;
-    public Stat spawnWeight = new(GlobalStatsSettingsRepository.EnemyStats.SpawnWeight);
+    public EnemyStatsSettings Settings => GetComponent<EnemyStatsSettings>();
 
     private EnemyMoveController _enemyMoveController;
     private readonly Rarity _rarity = new Rarity();
     private SpriteOutline _spriteOutline;
     private GameObject _collisionGameObject;
     private Color _spriteColor;
-    private const float ReturnToDefaultColorSpeed = 5f;
     private float _deathTimer;
+    private const float ReturnToDefaultColorSpeed = 5f;
     private const int MinInitialLevel = 1;
     private const float MaxLifeIncreasePerLevel = 1;
     private const long OffscreenDieSeconds = 60;
@@ -38,7 +38,7 @@ public class Enemy : Unit
     }
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
-    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EnemyStats);
+    private void Awake() => BaseAwake(Settings);
     private void Update() => BaseUpdate();
     private void FixedUpdate() => BaseFixedUpdate();
     private void OnCollisionEnter2D(Collision2D collision)

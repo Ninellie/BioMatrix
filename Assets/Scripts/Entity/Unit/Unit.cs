@@ -8,7 +8,7 @@ public class Unit : Entity
     public Stat AccelerationSpeed { get; private set; }
     public Stat RotationSpeed { get; private set; }
     public Rigidbody2D Rb2D { get; private set; }
-    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.UnitStats);
+    //private void Awake() => BaseAwake(GlobalStatsSettingsRepository.UnitStats);
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();

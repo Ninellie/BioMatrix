@@ -16,6 +16,7 @@ public class Firearm : MonoBehaviour
     public Stat SingleShootProjectile { get; private set; }
     
     [SerializeField] private GameObject _ammo;
+    public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
     public bool CanShoot => _previousShootStopwatch.Elapsed >= MinShootInterval
                             && !Magazine.IsEmpty
                             && !Reload.IsInProcess;
@@ -26,16 +27,16 @@ public class Firearm : MonoBehaviour
     private ProjectileCreator ProjectileCreator => GetComponent<ProjectileCreator>();
     private readonly Stopwatch _previousShootStopwatch = new();
     private TimeSpan MinShootInterval => TimeSpan.FromSeconds(1d / ShootsPerSecond.Value);
-    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.ShotgunStats);
+    private void Awake() => BaseAwake(Settings);
     private void BaseAwake(FirearmStatsSettings settings)
     {
-        Damage = new Stat(settings.Damage);
-        ShootForce = new Stat(settings.ShootForce);
-        ShootsPerSecond = new Stat(settings.ShootsPerSecond);
-        MaxShootDeflectionAngle = new Stat(settings.MaxShootDeflectionAngle);
-        MagazineSize = new Stat(settings.MagazineSize);
-        ReloadSpeed = new Stat(settings.ReloadSpeed);
-        SingleShootProjectile = new Stat(settings.SingleShootProjectile);
+        Damage = new Stat(settings.damage);
+        ShootForce = new Stat(settings.shootForce);
+        ShootsPerSecond = new Stat(settings.shootsPerSecond);
+        MaxShootDeflectionAngle = new Stat(settings.maxShootDeflectionAngle);
+        MagazineSize = new Stat(settings.magazineSize);
+        ReloadSpeed = new Stat(settings.reloadSpeed);
+        SingleShootProjectile = new Stat(settings.singleShootProjectile);
         _previousShootStopwatch.Start();
         _player = FindObjectOfType<Player>();
     }

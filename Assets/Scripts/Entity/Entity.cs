@@ -50,7 +50,7 @@ public class Entity : MonoBehaviour
     private float _reservedLife = 0;
     private Camera _mCamera;
 
-    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EntityStats);
+    //private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EntityStats);
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();
@@ -61,10 +61,10 @@ public class Entity : MonoBehaviour
         _mCamera = FindObjectOfType<Camera>();
         spriteRenderer = this.GetComponent<SpriteRenderer>();
 
-        Size = new Stat(settings.Size);
-        MaximumLifePoints = new Stat(settings.MaximumLife);
-        LifeRegenerationPerSecond = new Stat(settings.LifeRegenerationInSecond);
-        KnockbackPower = new Stat(settings.KnockbackPower);
+        Size = new Stat(settings.size);
+        MaximumLifePoints = new Stat(settings.maximumLife);
+        LifeRegenerationPerSecond = new Stat(settings.lifeRegenerationInSecond);
+        KnockbackPower = new Stat(settings.knockbackPower);
 
         this.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
 
