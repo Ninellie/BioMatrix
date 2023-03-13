@@ -3,9 +3,10 @@ using Color = UnityEngine.Color;
 
 public class Boon : Unit
 {
+    public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
     //private SpriteRenderer _spriteRenderer;
     private readonly Rarity _rarity = new Rarity();
-    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.BoonStats);
+    private void Awake() => BaseAwake(Settings);
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();

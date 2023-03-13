@@ -4,6 +4,7 @@ using Debug = UnityEngine.Debug;
 
 public class Entity : MonoBehaviour
 {
+    //public EntityStatsSettings Settings { get; set; }
     public Action onCurrentLifePointsChanged;
     public bool IsOnScreen { get; private set; }
     public bool Alive => IsAlive();

@@ -4699,6 +4699,7 @@ GameObject:
   - component: {fileID: 1026114778}
   - component: {fileID: 1026114781}
   - component: {fileID: 1026114783}
+  - component: {fileID: 1026114786}
   - component: {fileID: 1026114785}
   - component: {fileID: 1026114784}
   m_Layer: 8
@@ -5619,7 +5620,7 @@ CompositeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026114776}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -5675,6 +5676,23 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &1026114786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026114776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbea2a8ae5289a64bbcaccfdf58b7861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 1
+  maximumLife: 1000
+  lifeRegenerationInSecond: 0
+  knockbackPower: 1100
+  constrictionRate: 0.00035
 --- !u!1 &1075986016
 GameObject:
   m_ObjectHideFlags: 0

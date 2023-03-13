@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5384938256212642916}
   - component: {fileID: 2316403284215167119}
   - component: {fileID: 5703302999806875184}
+  - component: {fileID: 1504994257502739578}
   - component: {fileID: 401081946869708339}
   - component: {fileID: 156745283301569288}
   m_Layer: 10
@@ -121,7 +122,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b57a2a00642ad84892aa8d396643e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody2D: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+--- !u!114 &1504994257502739578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741946790039367102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c591069fb714794e9d38198d773cdee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 1
+  maximumLife: 1
+  lifeRegenerationInSecond: 0
+  knockbackPower: 100
+  Speed: 700
+  AccelerationSpeed: 0
+  RotationSpeed: 0
 --- !u!58 &401081946869708339
 CircleCollider2D:
   m_ObjectHideFlags: 0

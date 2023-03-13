@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7452234380026767843}
   - component: {fileID: 4797799252330293022}
   - component: {fileID: 2975664437671385834}
+  - component: {fileID: 659999168091465563}
   - component: {fileID: 2449300099634026346}
   - component: {fileID: 396533927185237461}
   m_Layer: 7
@@ -186,9 +187,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
-  rb2D: {fileID: 0}
   isFireButtonPressed: 0
   _firePoint: {fileID: 766516748403551923}
+--- !u!114 &659999168091465563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671026415413744665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a1cf3573fe33342b0bb47bc2f0310e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 1
+  maximumLife: 300
+  lifeRegenerationInSecond: 0
+  knockbackPower: 200
+  Speed: 220
+  AccelerationSpeed: 0
+  RotationSpeed: 0
+  magnetismRadius: 150
+  magnetismPower: 1000
 --- !u!58 &2449300099634026346
 CircleCollider2D:
   m_ObjectHideFlags: 0

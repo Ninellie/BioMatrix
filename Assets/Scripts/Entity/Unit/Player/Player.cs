@@ -7,6 +7,7 @@ public class Player : Unit
     public Action onGamePaused;
     public Action onLevelUp;
     public Action onExperienceTaken;
+    public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
     protected Stat MagnetismRadius { get; private set; }
     protected Stat MagnetismPower { get; private set; }
 
@@ -63,7 +64,7 @@ public class Player : Unit
     private CircleCollider2D _circleCollider;
     private PointEffector2D _pointEffector;
     private SpriteRenderer SpriteRenderer => GetComponent<SpriteRenderer>();
-    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.PlayerStats);
+    private void Awake() => BaseAwake(Settings);
     private void Start() => Time.timeScale = 1f;
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
@@ -112,13 +113,13 @@ public class Player : Unit
         _experience = InitialExperience;
         _circleCollider = GetComponent<CircleCollider2D>();
         _pointEffector = GetComponent<PointEffector2D>();
-        MagnetismRadius = new Stat(settings.MagnetismRadius);
+        MagnetismRadius = new Stat(settings.magnetismRadius);
         _circleCollider.radius = MagnetismRadius.Value;
         if (MagnetismRadius.Value < 0)
         {
             _circleCollider.radius = 0;
         }
-        MagnetismPower = new Stat(settings.MagnetismPower);
+        MagnetismPower = new Stat(settings.magnetismPower);
         _pointEffector.forceMagnitude = MagnetismPower.Value * -1;
 
         base.BaseAwake(settings);

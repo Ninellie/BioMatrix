@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -6,8 +5,9 @@ public class Enclosure : Entity
 {
     private const float MaxLifeTime = 30f;
     private float _currentLifeTime;
+    public EnclosureStatsSettings Settings => GetComponent<EnclosureStatsSettings>();
     public Stat ConstrictionRate { get; private set; }
-    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EnclosureStats);
+    private void Awake() => BaseAwake(Settings);
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();
@@ -16,7 +16,7 @@ public class Enclosure : Entity
     {
         Debug.Log($"{gameObject.name} Enclosure Awake");
         base.BaseAwake(settings);
-        ConstrictionRate = new Stat(settings.ConstrictionRate);
+        ConstrictionRate = new Stat(settings.constrictionRate);
     }
     protected virtual void BaseFixedUpdate()
     {

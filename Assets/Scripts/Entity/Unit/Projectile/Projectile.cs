@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Projectile : Unit
 {
+    public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
     private MovementControllerBullet _movementController;
     private const float SpeedDecrease = 15f;
-    private void Awake() => BaseAwake(GlobalStatsSettingsRepository.ProjectileStats);
+    private void Awake() => BaseAwake(Settings);
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();

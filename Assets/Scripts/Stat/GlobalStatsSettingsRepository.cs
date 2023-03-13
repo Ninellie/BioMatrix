@@ -14,7 +14,7 @@ public class GlobalStatsSettingsRepository
         maximumLife = 1000,
         lifeRegenerationInSecond = 0,
         knockbackPower = 1100,
-        ConstrictionRate = 0.00035f,
+        constrictionRate = 0.00035f,
     };
 
     public static readonly UnitStatsSettings UnitStats = new UnitStatsSettings()
@@ -32,8 +32,8 @@ public class GlobalStatsSettingsRepository
         maximumLife = 30000,
         lifeRegenerationInSecond = 0,
         Speed = 220,
-        MagnetismRadius = 150,
-        MagnetismPower = 1000,
+        magnetismRadius = 150,
+        magnetismPower = 1000,
         knockbackPower = 200,
     };
 

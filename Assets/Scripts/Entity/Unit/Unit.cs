@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Unit : Entity
 {
+    //public new UnitStatsSettings Settings { get; set; }
     public Action onDeath;
     public Stat Speed { get; private set; }
     public Stat AccelerationSpeed { get; private set; }
