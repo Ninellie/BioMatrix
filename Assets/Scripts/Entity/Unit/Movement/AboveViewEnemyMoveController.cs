@@ -1,28 +1,27 @@
 using UnityEngine;
 
 
-public class MovementControllerAboveViewEnemy : MovementControllerEnemy
+public class AboveViewEnemyMoveController : EnemyMoveController
 {
-    private Vector2 ViewDirection => myUnit.transform.up;
+    private Vector2 ViewDirection => MyUnit.transform.up;
     //ACCELERATION
     private Vector2 AccelerationStep => ViewDirection * AccelerationSpeed * Time.fixedDeltaTime;
     //ROTATION
-    private float RotationSpeed => myUnit.RotationSpeed.Value;
+    private float RotationSpeed => MyUnit.RotationSpeed.Value;
     private float RotationStep => RotationSpeed * Time.fixedDeltaTime;
-    public MovementControllerAboveViewEnemy(Enemy myUnit, GameObject target) : base(myUnit, target)
+    public AboveViewEnemyMoveController(Enemy myUnit, GameObject target) : base(myUnit, target)
     {
     }
-
     public override void FixedUpdateAccelerationStep()
     {
         TurnToTargetStep();
         Velocity += AccelerationStep;
-        myUnit.rb2D.velocity = Velocity;
-        if (SpeedScale < 1f) speedScale += SpeedScaleStep;
+        MyUnit.Rb2D.velocity = Velocity;
+        if (SpeedScale < 1f) SpeedScale += SpeedScaleStep;
     }
     public override void Stag()
     {
-        speedScale = 0;
+        SpeedScale = 0;
     }
     public override void KnockBackFromTarget(Entity collisionEntity)
     {
@@ -30,20 +29,20 @@ public class MovementControllerAboveViewEnemy : MovementControllerEnemy
         Stag();
         float thrustPower = collisionEntity.KnockbackPower.Value;
         Vector2 difference = (MyPosition - TargetPosition).normalized;
-        Vector2 knockbackVelocity = difference * thrustPower * myUnit.rb2D.mass;
-        myUnit.rb2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
+        Vector2 knockbackVelocity = difference * thrustPower * MyUnit.Rb2D.mass;
+        MyUnit.Rb2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
     }
     public void TurnToTarget()
     {
         var directionAngle = GetDirectionAngle(Direction);
-        myUnit.rb2D.rotation = directionAngle;
+        MyUnit.Rb2D.rotation = directionAngle;
     }
     private void TurnToTargetStep()
     {
         var angle = GetDirectionAngle(Direction);
         var speed = RotationStep;
-        var lerpAngle = Mathf.LerpAngle(myUnit.rb2D.rotation, angle, speed);
-        myUnit.rb2D.rotation = lerpAngle;
+        var lerpAngle = Mathf.LerpAngle(MyUnit.Rb2D.rotation, angle, speed);
+        MyUnit.Rb2D.rotation = lerpAngle;
     }
     private float GetDirectionAngle(Vector2 direction)
     {

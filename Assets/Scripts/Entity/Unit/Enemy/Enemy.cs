@@ -9,7 +9,7 @@ public class Enemy : Unit
     [SerializeField] private EnemyType _enemyType = EnemyType.SideView;
     public Stat spawnWeight = new(GlobalStatsSettingsRepository.EnemyStats.SpawnWeight);
 
-    private MovementControllerEnemy _movementController;
+    private EnemyMoveController _enemyMoveController;
     private readonly Rarity _rarity = new Rarity();
     private SpriteOutline _spriteOutline;
     private GameObject _collisionGameObject;
@@ -50,7 +50,7 @@ public class Enemy : Unit
                 TakeDamage(MinimalDamageTaken);
                 DropDamagePopup(MinimalDamageTaken, _collisionGameObject.transform.position);
                 var collisionEntity = _collisionGameObject.GetComponent<Entity>();
-                _movementController.KnockBackFromTarget(collisionEntity);
+                _enemyMoveController.KnockBackFromTarget(collisionEntity);
                 spriteRenderer.color = _enemyType switch
                 {
                     EnemyType.AboveView => Color.cyan,
@@ -63,7 +63,7 @@ public class Enemy : Unit
     protected void BaseFixedUpdate()
     {
         DeathTimerFixedUpdate();
-        _movementController.FixedUpdateAccelerationStep();
+        _enemyMoveController.FixedUpdateAccelerationStep();
     }
     protected void BaseAwake(EnemyStatsSettings settings)
     {
@@ -79,18 +79,18 @@ public class Enemy : Unit
         var player = FindObjectOfType<Player>().gameObject;
         if (_enemyType == EnemyType.SideView)
         {
-            _movementController = new MovementControllerSideViewEnemy(this, player);
+            _enemyMoveController = new SideViewEnemyMoveController(this, player);
         }   
         else
         {
-            _movementController = new MovementControllerAboveViewEnemy(this, player);
+            _enemyMoveController = new AboveViewEnemyMoveController(this, player);
         }
     }
     protected override void BaseUpdate()
     {
-        if (_enemyType == EnemyType.SideView)
+        if (_enemyMoveController is SideViewEnemyMoveController)
         {
-            spriteRenderer.flipX = _movementController.GetMovementDirection().x switch
+            spriteRenderer.flipX = _enemyMoveController.GetMovementDirection().x switch
             {
                 < 0 => false,
                 > 0 => true,
@@ -140,7 +140,6 @@ public class Enemy : Unit
         if(value < 0) return;
         Level += value;
     }
-
     public EnemyType GetEnemyType()
     {
         return _enemyType;
@@ -155,7 +154,7 @@ public class Enemy : Unit
     private void DropBonus()
     {
         var rotation = new Quaternion(0, 0, 0, 0);
-        Instantiate(_onDeathDrop, rb2D.position, rotation);
+        Instantiate(_onDeathDrop, Rb2D.position, rotation);
     }
     private void DropDamagePopup(int damage, Vector2 positionVector2)
     {
@@ -172,9 +171,9 @@ public class Enemy : Unit
     }
     public void LookAt2D(Vector2 target)
     {
-        var direction = (Vector2)rb2D.transform.position - target;
+        var direction = (Vector2)Rb2D.transform.position - target;
         var angle = (Mathf.Atan2(direction.y, direction.x) + Mathf.PI / 2) * Mathf.Rad2Deg;
-        rb2D.rotation = angle;
-        rb2D.SetRotation(angle);
+        Rb2D.rotation = angle;
+        Rb2D.SetRotation(angle);
     }
 }

@@ -1,20 +1,20 @@
 using UnityEngine;
 
-public class MovementControllerSideViewEnemy : MovementControllerEnemy
+public class SideViewEnemyMoveController : EnemyMoveController
 {
     private Vector2 AccelerationStep => Direction * AccelerationSpeed * Time.fixedDeltaTime;
-    public MovementControllerSideViewEnemy(Enemy myUnit, GameObject target) : base(myUnit, target)
+    public SideViewEnemyMoveController(Enemy myUnit, GameObject target) : base(myUnit, target)
     {
     }
     public override void FixedUpdateAccelerationStep()
     {
         Velocity += AccelerationStep;
-        myUnit.rb2D.velocity = Velocity;
-        if (SpeedScale < 1f) speedScale += SpeedScaleStep;
+        MyUnit.Rb2D.velocity = Velocity;
+        if (SpeedScale < 1f) SpeedScale += SpeedScaleStep;
     }
     public override void Stag()
     {
-        speedScale = 0;
+        SpeedScale = 0;
     }
     public override void KnockBackFromTarget(Entity collisionEntity)
     {
@@ -22,7 +22,7 @@ public class MovementControllerSideViewEnemy : MovementControllerEnemy
         Stag();
         float thrustPower = collisionEntity.KnockbackPower.Value;
         Vector2 difference = (MyPosition - TargetPosition).normalized;
-        Vector2 knockbackVelocity = difference * thrustPower * myUnit.rb2D.mass;
-        myUnit.rb2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
+        Vector2 knockbackVelocity = difference * thrustPower * MyUnit.Rb2D.mass;
+        MyUnit.Rb2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
     }
 }

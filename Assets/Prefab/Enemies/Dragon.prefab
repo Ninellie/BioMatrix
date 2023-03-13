@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6042837996286799121}
   - component: {fileID: 3572984765799172596}
+  - component: {fileID: -2167475189181900128}
   - component: {fileID: 3774024594271913881}
   - component: {fileID: 8165684587596004793}
-  - component: {fileID: -2167475189181900128}
   - component: {fileID: 8169940004370450274}
   - component: {fileID: 1878492662911867408}
   m_Layer: 6
@@ -78,17 +78,30 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 4784a3e297868654998b6429cf5ae4e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b141692ef63beeb4cbfc028ec3192468, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 128, y: 128}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2167475189181900128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b7cba45c5ad02489e4178a669a3bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &3774024594271913881
 Rigidbody2D:
   serializedVersion: 4
@@ -127,21 +140,43 @@ MonoBehaviour:
   _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
   _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
   _enemyType: 0
---- !u!114 &-2167475189181900128
-MonoBehaviour:
+--- !u!60 &8169940004370450274
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8954189743293124748}
   m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24b7cba45c5ad02489e4178a669a3bcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 1, g: 1, b: 1, a: 1}
---- !u!60 &8169940004370450274
-PolygonCollider2D:
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 128, y: 128}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -28, y: 48}
+      - {x: -52, y: 28}
+      - {x: -52, y: 0}
+      - {x: -24, y: -12}
+      - {x: 0, y: -28}
+      - {x: 0, y: -60}
+      - {x: 28, y: -52}
+      - {x: 44, y: -36}
+      - {x: 52, y: 12}
+      - {x: 16, y: 44}
+--- !u!58 &1878492662911867408
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -154,56 +189,5 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 512, y: 512}
-    newSize: {x: 128, y: 128}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 44, y: 124}
-      - {x: -16, y: 152}
-      - {x: -76, y: 156}
-      - {x: -124, y: 132}
-      - {x: -160, y: 72}
-      - {x: -152, y: -24}
-      - {x: -120, y: -24}
-      - {x: -104, y: 52}
-      - {x: -76, y: 96}
-      - {x: -20, y: 96}
-      - {x: -68, y: 56}
-      - {x: -84, y: 8}
-      - {x: -76, y: -32}
-      - {x: -48, y: -68}
-      - {x: -4, y: -92}
-      - {x: 36, y: -80}
-      - {x: 64, y: -60}
-      - {x: 92, y: 0}
-      - {x: 124, y: -40}
-      - {x: 60, y: -112}
-      - {x: 24, y: -184}
-      - {x: 96, y: -148}
-      - {x: 120, y: -132}
-      - {x: 160, y: -56}
-      - {x: 164, y: 4}
-      - {x: 140, y: 76}
---- !u!58 &1878492662911867408
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8954189743293124748}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 180
+  m_Radius: 50

@@ -13,7 +13,7 @@ public class Projectile : Unit
         _movementController.FixedUpdateStep();
         var mod = new StatModifier(OperationType.Addition, SpeedDecrease * -1);
         Speed.AddModifier(mod);
-        if (rb2D.velocity != Vector2.zero) return;
+        if (Rb2D.velocity != Vector2.zero) return;
         Death();
     }
     private void OnCollisionEnter2D(Collision2D collision)

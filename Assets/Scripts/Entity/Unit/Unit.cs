@@ -7,7 +7,7 @@ public class Unit : Entity
     public Stat Speed { get; private set; }
     public Stat AccelerationSpeed { get; private set; }
     public Stat RotationSpeed { get; private set; }
-    public Rigidbody2D rb2D;
+    public Rigidbody2D Rb2D { get; private set; }
     private void Awake() => BaseAwake(GlobalStatsSettingsRepository.UnitStats);
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
@@ -16,7 +16,7 @@ public class Unit : Entity
     {
         Debug.Log($"{gameObject.name} Unit Awake");
         base.BaseAwake(settings);
-        rb2D = GetComponent<Rigidbody2D>();
+        Rb2D = GetComponent<Rigidbody2D>();
 
         Speed = new Stat(settings.Speed);
         AccelerationSpeed = new Stat(settings.AccelerationSpeed);

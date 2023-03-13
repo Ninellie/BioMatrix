@@ -1,63 +1,61 @@
 using UnityEngine;
 
-public abstract class MovementControllerEnemy
+public abstract class EnemyMoveController
 {
-    protected readonly GameObject target;
-    protected readonly Enemy myUnit;
+    protected GameObject Target { get; }
+    protected Enemy MyUnit { get; }
+
     protected Vector2 Velocity
     {
-        get => velocity;
+        get => _velocity;
         set
         {
             if (value.magnitude > Speed)
             {
-                velocity = value.normalized * Speed;
+                _velocity = value.normalized * Speed;
                 return;
             }
-            velocity = value;
+            _velocity = value;
         }
     }
-    protected Vector2 velocity;
-    protected float Speed => myUnit.Speed.Value * SpeedScale;
+    private Vector2 _velocity;
+    protected float Speed => MyUnit.Speed.Value * SpeedScale;
     protected float SpeedScale
     {
-        get => speedScale;
+        get => _speedScale;
         set
         {
             switch (value)
             {
                 case >= 1:
-                    speedScale = 1f;
+                    _speedScale = 1f;
                     return;
                 case <= 0:
-                    speedScale = 0f;
+                    _speedScale = 0f;
                     return;
                 default:
-                    speedScale = value;
+                    _speedScale = value;
                     break;
             }
         }
     }
-    protected float speedScale = 1.0f;
-    protected const float SpeedScaleRestoreSpeedPerSecond = 1f;
+    private float _speedScale = 1.0f;
+    private const float SpeedScaleRestoreSpeedPerSecond = 1f;
     protected float SpeedScaleStep => SpeedScaleRestoreSpeedPerSecond * Time.fixedDeltaTime;
     //DIRECTION
     protected Vector2 Direction => (TargetPosition - MyPosition).normalized;
-    protected Vector2 TargetPosition => target.transform.position;
-    protected Vector2 MyPosition => myUnit.transform.position;
+    protected Vector2 TargetPosition => Target.transform.position;
+    protected Vector2 MyPosition => MyUnit.transform.position;
     //ACCELERATION
-    protected float AccelerationSpeed => myUnit.AccelerationSpeed.Value;
-
-    protected MovementControllerEnemy(Enemy myUnit, GameObject target)
+    protected float AccelerationSpeed => MyUnit.AccelerationSpeed.Value;
+    protected EnemyMoveController(Enemy myUnit, GameObject target)
     {
-        this.myUnit = myUnit;
-        this.target = target;
+        this.MyUnit = myUnit;
+        this.Target = target;
     }
-
     public abstract void FixedUpdateAccelerationStep();
     public abstract void Stag();
     public abstract void KnockBackFromTarget(Entity collisionEntity);
-
     public Vector2 GetMovementDirection()
     {
         return Direction;

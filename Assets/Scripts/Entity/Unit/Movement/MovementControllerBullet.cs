@@ -17,7 +17,7 @@ public class MovementControllerBullet
     }
     public void FixedUpdateStep()
     {
-        _myUnit.rb2D.velocity = Velocity;
+        _myUnit.Rb2D.velocity = Velocity;
     }
     public void SetDirection(Vector2 direction)
     {
@@ -25,6 +25,6 @@ public class MovementControllerBullet
     }
     public void SetVelocity(Vector2 velocity)
     {
-        _myUnit.rb2D.velocity = velocity;
+        _myUnit.Rb2D.velocity = velocity;
     }
 }

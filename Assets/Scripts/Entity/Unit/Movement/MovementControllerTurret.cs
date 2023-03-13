@@ -36,6 +36,6 @@ public class MovementControllerTurret
         CurrentAngle += OrbitalSpeed * Time.fixedDeltaTime;
         float fi = _currentAngle * Mathf.Deg2Rad;
         Vector2 nextPosition = _circle.GetPointOn(_orbitRadius.Value, Center, fi);
-        _myUnit.rb2D.MovePosition(nextPosition);//set new position
+        _myUnit.Rb2D.MovePosition(nextPosition);//set new position
     }
 }

@@ -31,7 +31,7 @@ public class GlobalStatsSettingsRepository
         Size = 1,
         MaximumLife = 30000,
         LifeRegenerationInSecond = 0,
-        Speed = 170,
+        Speed = 220,
         MagnetismRadius = 150,
         MagnetismPower = 1000,
         KnockbackPower = 200,
@@ -40,7 +40,7 @@ public class GlobalStatsSettingsRepository
     public static readonly EnemyStatsSettings EnemyStats = new EnemyStatsSettings()
     {
         Size = 0.8f,
-        MaximumLife = 2,
+        MaximumLife = 1,
         LifeRegenerationInSecond = 0,
         Speed = 100,
         SpawnWeight = 1000,

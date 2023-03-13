@@ -18,7 +18,7 @@ public class MovementControllerPlayer
         }
     }
 
-    private const float SpeedDecreaseShooting = 0.5f;
+    private const float SpeedDecreaseShooting = 0.3f;
     private float SpeedScale
     {
         get => _speedScale;
@@ -55,7 +55,7 @@ public class MovementControllerPlayer
     public void FixedUpdateStep()
     {
         if (SpeedScale < 1f) _speedScale += SpeedScaleStep;
-        _myUnit.rb2D.velocity = Velocity;
+        _myUnit.Rb2D.velocity = Velocity;
     }
     public void SetDirection(Vector2 direction)
     {
@@ -71,7 +71,7 @@ public class MovementControllerPlayer
         //Stag();
         float thrustPower = collisionEntity.KnockbackPower.Value;
         Vector2 difference = (Vector2)_myUnit.transform.position - (Vector2)collisionEntity.transform.position;
-        Vector2 knockbackVelocity = difference.normalized * thrustPower * _myUnit.rb2D.mass;
-        _myUnit.rb2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
+        Vector2 knockbackVelocity = difference.normalized * thrustPower * _myUnit.Rb2D.mass;
+        _myUnit.Rb2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
     }
 }
