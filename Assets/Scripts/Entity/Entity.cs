@@ -46,6 +46,7 @@ public class Entity : MonoBehaviour
     public Stat MaximumLifePoints { get; private set; }
     public Stat LifeRegenerationPerSecond { get; private set; }
     public Stat KnockbackPower { get; private set; }
+    public Stat Damage { get; private set; }
     public SpriteRenderer spriteRenderer;
     private float _currentLifePoints;
     private float _reservedLife = 0;
@@ -66,6 +67,7 @@ public class Entity : MonoBehaviour
         MaximumLifePoints = new Stat(settings.maximumLife);
         LifeRegenerationPerSecond = new Stat(settings.lifeRegenerationInSecond);
         KnockbackPower = new Stat(settings.knockbackPower);
+        Damage = new Stat(settings.damage);
 
         this.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
 

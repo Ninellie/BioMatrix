@@ -77,8 +77,9 @@ public class Player : Unit
         {
             case "Enemy":
                 var collisionEnemyEntity = collisionGameObject.GetComponent<Entity>();
-                
-                TakeDamage(MinimalDamageTaken);
+
+                var enemyDamage = collisionEnemyEntity.Damage.Value;
+                TakeDamage(enemyDamage);
                 if (KnockbackTime == 0)
                 {
                     KnockBackFrom(collisionEnemyEntity);
@@ -87,7 +88,8 @@ public class Player : Unit
             case "Enclosure":
             {
                 var collisionEnclosureEntity = collisionGameObject.GetComponent<Entity>();
-                TakeDamage(MinimalDamageTaken);
+                var enclosureDamage = collisionEnclosureEntity.Damage.Value;
+                TakeDamage(enclosureDamage);
                 KnockBackFrom(collisionEnclosureEntity);
                 break;
             }

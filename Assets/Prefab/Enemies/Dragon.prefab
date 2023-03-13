@@ -207,7 +207,8 @@ MonoBehaviour:
   maximumLife: 2
   lifeRegenerationInSecond: 0
   knockbackPower: 700
-  Speed: 100
-  AccelerationSpeed: 200
-  RotationSpeed: 0
+  damage: 1
+  speed: 100
+  accelerationSpeed: 200
+  rotationSpeed: 0
   spawnWeight: 1000

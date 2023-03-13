@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class Projectile : Unit
 {
-    public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
+    public UnitStatsSettings Settings
+    {
+        get => GetComponent<UnitStatsSettings>();
+        set => throw new System.NotImplementedException();
+    }
+
     private MovementControllerBullet _movementController;
     private const float SpeedDecrease = 15f;
     private void Awake() => BaseAwake(Settings);
@@ -33,7 +38,6 @@ public class Projectile : Unit
 
     protected override void BaseAwake(UnitStatsSettings settings)
     {
-        Debug.LogWarning("1");
         base.BaseAwake(settings);
         _movementController = new MovementControllerBullet(this);
         _movementController.FixedUpdateStep();

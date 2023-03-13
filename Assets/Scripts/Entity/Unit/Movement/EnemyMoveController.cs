@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class EnemyMoveController
 {
-    protected GameObject Target { get; }
+    protected GameObject Target { get;}
     protected Enemy MyUnit { get; }
 
     protected Vector2 Velocity
@@ -55,7 +55,7 @@ public abstract class EnemyMoveController
     }
     public abstract void FixedUpdateAccelerationStep();
     public abstract void Stag();
-    public abstract void KnockBackFromTarget(Entity collisionEntity);
+    public abstract void KnockBackFromTarget(float thrustPower);
     public Vector2 GetMovementDirection()
     {
         return Direction;

@@ -1,6 +1,6 @@
 public class UnitStatsSettings : EntityStatsSettings
 {
-    public float Speed;
-    public float AccelerationSpeed;
-    public float RotationSpeed;
+    public float speed;
+    public float accelerationSpeed;
+    public float rotationSpeed;
 }

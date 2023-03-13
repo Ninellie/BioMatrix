@@ -6,4 +6,5 @@ public class EntityStatsSettings : MonoBehaviour
     public float maximumLife;
     public float lifeRegenerationInSecond;
     public float knockbackPower;
+    public float damage;
 }

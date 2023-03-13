@@ -139,9 +139,10 @@ MonoBehaviour:
   maximumLife: 1
   lifeRegenerationInSecond: 0
   knockbackPower: 100
-  Speed: 700
-  AccelerationSpeed: 0
-  RotationSpeed: 0
+  damage: 2
+  speed: 700
+  accelerationSpeed: 0
+  rotationSpeed: 0
 --- !u!58 &401081946869708339
 CircleCollider2D:
   m_ObjectHideFlags: 0

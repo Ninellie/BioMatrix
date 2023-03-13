@@ -19,9 +19,9 @@ public class Unit : Entity
         base.BaseAwake(settings);
         Rb2D = GetComponent<Rigidbody2D>();
 
-        Speed = new Stat(settings.Speed);
-        AccelerationSpeed = new Stat(settings.AccelerationSpeed);
-        RotationSpeed = new Stat(settings.RotationSpeed);
+        Speed = new Stat(settings.speed);
+        AccelerationSpeed = new Stat(settings.accelerationSpeed);
+        RotationSpeed = new Stat(settings.rotationSpeed);
     }
     protected override void Death()
     {

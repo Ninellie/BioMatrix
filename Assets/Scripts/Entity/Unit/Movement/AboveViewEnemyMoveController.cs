@@ -23,11 +23,10 @@ public class AboveViewEnemyMoveController : EnemyMoveController
     {
         SpeedScale = 0;
     }
-    public override void KnockBackFromTarget(Entity collisionEntity)
+    public override void KnockBackFromTarget(float thrustPower)
     {
         if (SpeedScale < 1f) { return; }
         Stag();
-        float thrustPower = collisionEntity.KnockbackPower.Value;
         Vector2 difference = (MyPosition - TargetPosition).normalized;
         Vector2 knockbackVelocity = difference * thrustPower * MyUnit.Rb2D.mass;
         MyUnit.Rb2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);

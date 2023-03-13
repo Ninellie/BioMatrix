@@ -22,7 +22,7 @@ public class GlobalStatsSettingsRepository
         size = 1,
         maximumLife = 1,
         lifeRegenerationInSecond = 0,
-        Speed = 0,
+        speed = 0,
         knockbackPower = 0,
     };
 
@@ -31,7 +31,7 @@ public class GlobalStatsSettingsRepository
         size = 1,
         maximumLife = 30000,
         lifeRegenerationInSecond = 0,
-        Speed = 220,
+        speed = 220,
         magnetismRadius = 150,
         magnetismPower = 1000,
         knockbackPower = 200,
@@ -42,11 +42,11 @@ public class GlobalStatsSettingsRepository
         size = 0.8f,
         maximumLife = 1,
         lifeRegenerationInSecond = 0,
-        Speed = 100,
+        speed = 100,
         spawnWeight = 1000,
         knockbackPower = 700,
-        AccelerationSpeed = 200,
-        RotationSpeed = 5,
+        accelerationSpeed = 200,
+        rotationSpeed = 0,
     };
 
     public static readonly EnemyStatsSettings MiteStats = new EnemyStatsSettings()
@@ -54,11 +54,11 @@ public class GlobalStatsSettingsRepository
         size = 0.3f,
         maximumLife = 1,
         lifeRegenerationInSecond = 0,
-        Speed = 300,
+        speed = 300,
         spawnWeight = 100,
         knockbackPower = 300,
-        AccelerationSpeed = 2000,
-        RotationSpeed = 2,
+        accelerationSpeed = 2000,
+        rotationSpeed = 2,
     };
 
     public static readonly UnitStatsSettings BoonStats = new UnitStatsSettings()
@@ -66,7 +66,7 @@ public class GlobalStatsSettingsRepository
         size = 1,
         maximumLife = 1,
         lifeRegenerationInSecond = 0,
-        Speed = 0,
+        speed = 0,
         knockbackPower = 0,
     };
     public static readonly UnitStatsSettings ProjectileStats = new UnitStatsSettings()
@@ -74,7 +74,7 @@ public class GlobalStatsSettingsRepository
         size = 1,
         maximumLife = 1,
         lifeRegenerationInSecond = 0,
-        Speed = 700,
+        speed = 700,
         knockbackPower = 100,
     };
 

@@ -47,10 +47,16 @@ public class Enemy : Unit
         switch (_collisionGameObject.tag)
         {
             case "Projectile":
-                TakeDamage(MinimalDamageTaken);
-                DropDamagePopup(MinimalDamageTaken, _collisionGameObject.transform.position);
                 var collisionEntity = _collisionGameObject.GetComponent<Entity>();
-                _enemyMoveController.KnockBackFromTarget(collisionEntity);
+
+                var projectileDamage = collisionEntity.Damage.Value;
+                TakeDamage(projectileDamage);
+
+                DropDamagePopup(MinimalDamageTaken, _collisionGameObject.transform.position);
+
+                var thrustPower = collisionEntity.KnockbackPower.Value;
+                _enemyMoveController.KnockBackFromTarget(thrustPower);
+
                 spriteRenderer.color = _enemyType switch
                 {
                     EnemyType.AboveView => Color.cyan,
