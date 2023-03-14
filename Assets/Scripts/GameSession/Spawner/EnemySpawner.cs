@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Set in Inspector")]
-    public GameObject[] enemyTypes;
+    public GameObject[] enemyPrefabs;
     public float enemyDefaultPadding = 1.5f;
     public GameObject timerGameObject;
 
@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
     {
         _gameTimer = timerGameObject.GetComponent<GameTimer>();
         _enemyWave = new EnemyWave(_gameTimer);
-        if (FindObjectOfType<Player>() == null)
+        if (FindObjectOfType<Player>() is null)
         {
             Debug.Log("Player script is null in scene");
         }
@@ -46,30 +46,30 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         SpawnFirstWave();
-        InvokeRepeating("SpawnWave", _secondsBetweenWaves, _secondsBetweenWaves);
+        InvokeRepeating("SpawnNormalWave", _secondsBetweenWaves, _secondsBetweenWaves);
     }
-    public void SpawnWave()
+    private void SpawnWave(WaveType waveType)
     {
         if(_player == null) return;
         var playerPosition = (Vector2)_player.transform.position;
-        var spawn = CreateSpawn(_enemyWave.GetSize(WaveType.Normal), playerPosition);
+        var waveSize = _enemyWave.GetSize(waveType);
+        var spawn = CreateWave(waveSize);
         var mode = _grouping.GetRandomMode();
         _enemyPlacer.PlaceEnemies(spawn, mode, playerPosition);
         PrepareEnemies(spawn, playerPosition);
     }
-    public void SpawnFirstWave()
+    private void SpawnFirstWave()
     {
-        if (_player == null) return;
-        var playerPosition = (Vector2)_player.transform.position;
-        var spawn = CreateSpawn(_enemyWave.GetSize(WaveType.First), playerPosition);
-        var mode = _grouping.GetRandomMode();
-        _enemyPlacer.PlaceEnemies(spawn, mode, playerPosition);
-        PrepareEnemies(spawn, playerPosition);
+        SpawnWave(WaveType.First);
     }
-    private GameObject[] CreateSpawn(int enemiesInSpawn, Vector2 playerPosition)
+    private void SpawnNormalWave()
     {
-        var spawn = GetEnemyList(enemiesInSpawn, enemyTypes);
-        var spawnedEnemies = new GameObject[enemiesInSpawn];
+        SpawnWave(WaveType.Normal);
+    }
+    private GameObject[] CreateWave(int waveSize)
+    {
+        var spawn = GetEnemyList(waveSize, enemyPrefabs);
+        var spawnedEnemies = new GameObject[waveSize];
 
         for (var i = 0; i < spawn.Length; i++)
         {
@@ -97,9 +97,9 @@ public class EnemySpawner : MonoBehaviour
             enemy.LookAt2D(playerPosition);
         }
     }
-    private GameObject[] GetEnemyList(int numberOfEnemies, IEnumerable<GameObject> _enemyTypes)
+    private GameObject[] GetEnemyList(int numberOfEnemies, IEnumerable<GameObject> enemyTypes)
     {
-        var enemyList = _enemyTypes.ToList();
+        var enemyList = enemyTypes.ToList();
 
         List<GameObject> selectedEnemies = new();
 
