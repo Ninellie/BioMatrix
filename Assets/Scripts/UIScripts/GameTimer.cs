@@ -6,7 +6,7 @@ public class GameTimer : MonoBehaviour
 {
     public TMP_Text textTimer;
     public Action onGameWinning;
-    private const float WinTime = 600;
+    private const float WinTime = 300;
     private Stopwatch _stopwatch;
 
     private void Awake()
@@ -17,7 +17,7 @@ public class GameTimer : MonoBehaviour
     private void Update()
     {
         TimerUIUpdate();
-        if (_stopwatch.Elapsed.TotalSeconds > WinTime)
+        if (IsTimeToWin())
         {
             onGameWinning?.Invoke();
         }
@@ -37,6 +37,6 @@ public class GameTimer : MonoBehaviour
     }
     private bool IsTimeToWin()
     {
-        return GetTotalSeconds() > WinTime;
+        return _stopwatch.Elapsed.TotalSeconds > WinTime;
     }
 }

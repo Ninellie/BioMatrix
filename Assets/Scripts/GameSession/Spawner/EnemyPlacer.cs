@@ -48,17 +48,15 @@ public class EnemyPlacer
         var enemiesArray = enemies as GameObject[] ?? enemies.ToArray();
         var padding = enemiesArray.Sum(enemy => enemy.GetComponent<CircleCollider2D>().radius) / 2;
         var packCentre = _circle.GetPointOn(radius + padding, playerPoint, _circle.GetRandomAngle());
+
         foreach (var enemy in enemiesArray)
         {
             var v2 = new Vector2(Random.value, Random.value);
-            if (Random.value > 0.5f)
+            enemy.transform.position = Random.value switch
             {
-                enemy.transform.position = packCentre - v2;
-            }
-            else
-            {
-                enemy.transform.position = packCentre + v2;
-            }
+                > 0.5f => packCentre - v2,
+                _ => packCentre + v2
+            };
         }
     }
 }

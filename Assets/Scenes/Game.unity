@@ -5620,7 +5620,7 @@ CompositeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026114776}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -5692,6 +5692,7 @@ MonoBehaviour:
   maximumLife: 1000
   lifeRegenerationInSecond: 0
   knockbackPower: 1100
+  damage: 0
   constrictionRate: 0.00035
 --- !u!1 &1075986016
 GameObject:
@@ -10525,7 +10526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f28df27bdbbdb4cb55f6538ec3d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTypes:
+  enemyPrefabs:
   - {fileID: 8954189743293124748, guid: 2d9dc3695c5d8ec42a9992ec3ed6fc76, type: 3}
   - {fileID: 8954189743293124748, guid: 31b0110467a1ce14e96a54e0a5736dfe, type: 3}
   enemyDefaultPadding: 1.5

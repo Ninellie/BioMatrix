@@ -7,6 +7,7 @@ public class Enemy : Unit
     [SerializeField] private GameObject _onDeathDrop;
     [SerializeField] private GameObject _damagePopup;
     [SerializeField] private EnemyType _enemyType = EnemyType.SideView;
+    [SerializeField] private bool _dieOnPlayerCollision;
     public EnemyStatsSettings Settings => GetComponent<EnemyStatsSettings>();
 
     private EnemyMoveController _enemyMoveController;
@@ -46,6 +47,12 @@ public class Enemy : Unit
         _collisionGameObject = collision.gameObject;
         switch (_collisionGameObject.tag)
         {
+            case "Player":
+                if (_dieOnPlayerCollision)
+                {
+                    Death();
+                }
+                break;
             case "Projectile":
                 var collisionEntity = _collisionGameObject.GetComponent<Entity>();
 

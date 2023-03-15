@@ -140,6 +140,7 @@ MonoBehaviour:
   _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
   _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
   _enemyType: 1
+  _dieOnPlayerCollision: 1
 --- !u!58 &5590340840478446595
 CircleCollider2D:
   m_ObjectHideFlags: 0

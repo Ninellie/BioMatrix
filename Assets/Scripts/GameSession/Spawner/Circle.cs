@@ -28,12 +28,60 @@ public class Circle
         var currentAngle = Vector2.SignedAngle(circleCentre, position);
         var angleStep = angularSpeed * timeInterval;
         var nextAngle = currentAngle + angleStep;
-        var nextPosition = this.GetPointOn(radius, circleCentre, nextAngle);
+        var nextPosition = GetPointOn(radius, circleCentre, nextAngle);
         return nextPosition;
     }
     public float GetRandomAngle()
     {
         return Random.Range(0, Mathf.PI * 2);
+    }
+    public Vector2[] GetPositions(int count, GroupingMode mode, Vector2 center, float padding)
+    {
+        var positions = new Vector2[count];
+        var radius = GetRadiusInscribedAroundTheCamera() + padding;
+        switch (mode)
+        {
+            case GroupingMode.Default:
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    var nextAngle = GetRandomAngle();
+                    var pos = GetPointOn(radius, center, nextAngle);
+                    positions[i] = pos;
+                }
+
+                break;
+            }
+            case GroupingMode.Surround:
+            {
+                var angleStep = Mathf.PI * 2f / count;
+                var nextAngle = GetRandomAngle();
+                for (int i = 0; i < count; i++)
+                {
+                    var pos = GetPointOn(radius, center, nextAngle);
+                    positions[i] = pos;
+                    nextAngle += angleStep;
+                }
+
+                break;
+            }
+            case GroupingMode.Group:
+            {
+                var nextAngle = GetRandomAngle();
+                var packCentre = GetPointOn(radius, center, nextAngle);
+
+                for (int i = 0; i < count; i++)
+                {
+                    var pos = new Vector2(Random.value, Random.value);
+                    pos = Random.value > 0.5f ? packCentre - pos : packCentre + pos;
+                    positions[i] = pos;
+                }
+
+                break;
+            }
+        }
+
+        return positions;
     }
     private float GetHypotenuseLength(float sideALength, float sideBLength)
     {

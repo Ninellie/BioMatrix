@@ -97,7 +97,7 @@
     <Compile Include="Assets\Scripts\Entity\Unit\Enemy\EnemyType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
-    <Compile Include="Assets\Scripts\GameSession\Spawner\EnemyWave.cs" />
+    <Compile Include="Assets\Scripts\GameSession\Spawner\EnemyWaveProperties.cs" />
     <Compile Include="Assets\Scripts\UIScripts\AmmoBar.cs" />
     <Compile Include="Assets\Scripts\LevelUp\LevelUp.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
