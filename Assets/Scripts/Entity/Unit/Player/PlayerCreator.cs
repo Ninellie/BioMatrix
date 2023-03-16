@@ -1,4 +1,4 @@
-using Assets.Scripts.Map;
+using Assets.Scripts.GameSession.View;
 using UnityEngine;
 
 public class PlayerCreator : MonoBehaviour
@@ -33,6 +33,7 @@ public class PlayerCreator : MonoBehaviour
     {
         Instantiate(playerPrefab, new Vector2(0, 0), Quaternion.identity);
         CurrentPlayer = FindObjectOfType<Player>();
+        
     }
     private void Subscription()
     {

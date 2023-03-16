@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Map
+namespace Assets.Scripts.GameSession.View
 {
     public enum ViewModelStateType
     {
@@ -7,5 +7,6 @@ namespace Assets.Scripts.Map
         Menu,
         GameEnd,
         LevelUp,
+        Start,
     }
 }

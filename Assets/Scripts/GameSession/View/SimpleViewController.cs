@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Map
+namespace Assets.Scripts.GameSession.View
 {
     public class SimpleViewController : IViewController
     {
@@ -15,8 +15,9 @@ namespace Assets.Scripts.Map
         private GameObject _levelUpUI;
         private GameObject _winScreenUI;
         private GameObject _loseScreenUI;
+        private GameObject _startScreenUI;
 
-        public SimpleViewController(PlayerInput playerInput, GameObject menuUI, GameObject optionsUI, GameObject levelUpUI, GameObject winScreenUI, GameObject loseScreenUI)
+        public SimpleViewController(PlayerInput playerInput, GameObject menuUI, GameObject optionsUI, GameObject levelUpUI, GameObject winScreenUI, GameObject loseScreenUI, GameObject startScreenUI)
         {
             _playerInput = playerInput ?? throw new ArgumentNullException(nameof(playerInput));
             _menuUI = menuUI ?? throw new ArgumentNullException(nameof(menuUI));
@@ -24,7 +25,7 @@ namespace Assets.Scripts.Map
             _levelUpUI = levelUpUI ?? throw new ArgumentNullException(nameof(levelUpUI));
             _winScreenUI = winScreenUI ?? throw new ArgumentNullException(nameof(winScreenUI));
             _loseScreenUI = loseScreenUI ?? throw new ArgumentNullException(nameof(loseScreenUI));
-
+            _startScreenUI = startScreenUI ?? throw new ArgumentNullException(nameof(loseScreenUI));
         }
         public void Freeze()
         {
@@ -45,6 +46,10 @@ namespace Assets.Scripts.Map
         public void CloseMenu()
         {
             _menuUI.SetActive(false);
+        }
+        public void CloseStartScreen()
+        {
+            _startScreenUI.SetActive(false);
         }
         public void OpenOptions()
         {

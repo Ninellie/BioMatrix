@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Map
+namespace Assets.Scripts.GameSession.View
 {
     public class GameEndViewModelState : IViewModelState
     {

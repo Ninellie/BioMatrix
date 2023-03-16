@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Map
+namespace Assets.Scripts.GameSession.View
 {
     public interface IViewController
     {
@@ -6,6 +6,7 @@ namespace Assets.Scripts.Map
         void Unfreeze();
         void OpenMenu();
         void CloseMenu();
+        void CloseStartScreen();
         void OpenOptions();
         void CloseOptions();
         void OpenWinScreen();

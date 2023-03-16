@@ -63,9 +63,22 @@ public class Player : Unit
     [SerializeField] private Transform _firePoint;
     private CircleCollider2D _circleCollider;
     private PointEffector2D _pointEffector;
+    private GameTimer _freezeTimer;
     private SpriteRenderer SpriteRenderer => GetComponent<SpriteRenderer>();
     private void Awake() => BaseAwake(Settings);
-    private void Start() => Time.timeScale = 1f;
+
+    private void Start()
+    {
+        _freezeTimer = new GameTimer(Freeze, 0.2f);
+    }
+
+    private void Freeze()
+    {
+        Time.timeScale = 0f;
+        this.GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
+        FindObjectOfType<GameSessionTimer>().Stop();
+    }
+
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();
@@ -127,6 +140,12 @@ public class Player : Unit
         base.BaseAwake(settings);
 
         _movementController = new MovementControllerPlayer(this);
+    }
+
+    protected override void BaseUpdate()
+    {
+        base.BaseUpdate();
+        _freezeTimer.Update();
     }
     protected override void BaseOnEnable()
     {

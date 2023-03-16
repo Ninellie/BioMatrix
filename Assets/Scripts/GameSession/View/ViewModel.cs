@@ -1,4 +1,6 @@
-namespace Assets.Scripts.Map
+using UnityEngine;
+
+namespace Assets.Scripts.GameSession.View
 {
     public class ViewModel
     {   
@@ -7,32 +9,31 @@ namespace Assets.Scripts.Map
         private readonly IViewModelState _menuState;
         private readonly IViewModelState _gameEnd;
         private readonly IViewModelState _levelUp;
+        private readonly IViewModelState _start;
 
         private IViewModelState _currentState;
         private IViewModelState _previousState;
-
-        private readonly IViewController _viewController;
         public ViewModel(IViewController viewController)
         {
-            _viewController = viewController;
             _active = new ActiveViewModelState(this, viewController);
             _options = new OptionsViewModelState(this, viewController);
             _menuState = new MenuViewModelState(this, viewController);
             _gameEnd = new GameEndViewModelState(this, viewController);
             _levelUp = new LevelUpViewModelState(this, viewController);
+            _start = new StartViewModelState(this, viewController);
             
-            _currentState = _active;
+            _currentState = _start;
             _previousState = _active;
         }
         public void ChangeState(ViewModelStateType stateType)
         {
             _previousState = _currentState;
-            var mapStates = new[] {_active, _options, _menuState, _gameEnd, _levelUp};
-            for (var i = 0; i < mapStates.Length; i++)
+            var mapStates = new[] {_active, _options, _menuState, _gameEnd, _levelUp, _start};
+            foreach (var t in mapStates)
             {
-                if (mapStates[i].Name == stateType)
+                if (t.Name == stateType)
                 {
-                    _currentState = mapStates[i];
+                    _currentState = t;
                 }
             }
         }

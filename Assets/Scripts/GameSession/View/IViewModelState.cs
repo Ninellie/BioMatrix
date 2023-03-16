@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Map
+namespace Assets.Scripts.GameSession.View
 {
     public interface IViewModelState
     {

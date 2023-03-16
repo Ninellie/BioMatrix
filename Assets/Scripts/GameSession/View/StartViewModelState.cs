@@ -2,26 +2,26 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameSession.View
 {
-    public class LevelUpViewModelState : IViewModelState
+    public class StartViewModelState : IViewModelState
     {
-        public ViewModelStateType Name => ViewModelStateType.LevelUp;
+        public ViewModelStateType Name => ViewModelStateType.Start;
         private readonly ViewModel _viewModel;
         private readonly IViewController _viewController;
-        public LevelUpViewModelState(ViewModel viewModel, IViewController viewController)
+        public StartViewModelState(ViewModel viewModel, IViewController viewController)
         {
             _viewModel = viewModel;
             _viewController = viewController;
         }
         public void Menu()
         {
-            _viewModel.ChangeState(ViewModelStateType.Menu);
-            _viewController.OpenMenu();
+            Resume();
         }
         public void Resume()
         {
-            _viewModel.ChangeState(ViewModelStateType.Active);
-            _viewController.CloseLevelUp();
+            var prevState = _viewModel.GetPreviousState().Name;
             _viewController.Unfreeze();
+            _viewModel.ChangeState(ViewModelStateType.Active);
+            _viewController.CloseStartScreen();
         }
         public void Options()
         {

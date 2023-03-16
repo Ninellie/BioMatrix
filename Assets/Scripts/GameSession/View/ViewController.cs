@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Map
+namespace Assets.Scripts.GameSession.View
 {
     public class ViewController : MonoBehaviour
     {
@@ -11,12 +10,15 @@ namespace Assets.Scripts.Map
         [SerializeField] private GameObject _levelUpUi;
         [SerializeField] private GameObject _winScreenUi;
         [SerializeField] private GameObject _loseScreenUi;
+        [SerializeField] private GameObject _startScreenUi;
         private ViewModel _viewModel;
 
         public void AwakeController()
         {
             var mapController = CreateMapController();
+            
             _viewModel = new ViewModel(mapController);
+            
         }
         public void Menu() { _viewModel.GetCurrentState().Menu(); }
         public void Resume() { _viewModel.GetCurrentState().Resume(); }
@@ -29,7 +31,7 @@ namespace Assets.Scripts.Map
         {
             var currentPlayer = FindObjectOfType<Player>();
             var playerInput = currentPlayer.GetComponent<PlayerInput>();
-            var mapController = new SimpleViewController(playerInput, _menuUi, _optionsUi, _levelUpUi, _winScreenUi, _loseScreenUi);
+            var mapController = new SimpleViewController(playerInput, _menuUi, _optionsUi, _levelUpUi, _winScreenUi, _loseScreenUi, _startScreenUi);
             return mapController;
         }
     }
