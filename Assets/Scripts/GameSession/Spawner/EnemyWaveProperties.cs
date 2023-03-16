@@ -10,25 +10,25 @@ public class EnemyWaveProperties
     private readonly int _minComplicationDivider;
     private readonly int _maxEnemiesInScene;
     private readonly int _maxEnemiesInSceneMultiplier;
-    private readonly GameTimer _gameTimer;
-    public EnemyWaveProperties(GameTimer gameTimer) : this(6, 3, 3, 60, 2, gameTimer)
+    private readonly GameSessionTimer _gameSessionTimer;
+    public EnemyWaveProperties(GameSessionTimer gameSessionTimer) : this(6, 3, 3, 60, 2, gameSessionTimer)
     {
     }
-    public EnemyWaveProperties(int maxSize, int minSize, int firstWaveMultiplier, int complicationValue, int minComplicationDivider, GameTimer gameTimer)
+    public EnemyWaveProperties(int maxSize, int minSize, int firstWaveMultiplier, int complicationValue, int minComplicationDivider, GameSessionTimer gameSessionTimer)
     {
         _maxSize = maxSize;
         _minSize = minSize;
         _firstWaveMultiplier = firstWaveMultiplier;
         _complicationValue = complicationValue;
         _minComplicationDivider = minComplicationDivider;
-        _gameTimer = gameTimer;
+        _gameSessionTimer = gameSessionTimer;
         _maxEnemiesInSceneMultiplier = 1;
-        _maxEnemiesInScene = 150;
+        _maxEnemiesInScene = 15;
     }
 
     public int GetMaxEnemiesInScene()
     {
-        var seconds = _gameTimer.GetTotalSeconds();
+        var seconds = _gameSessionTimer.GetTotalSeconds();
         var minute = seconds / 60;
         var multiplier = _maxEnemiesInSceneMultiplier * minute;
         if (multiplier < 1) { multiplier = 1; }
@@ -63,7 +63,7 @@ public class EnemyWaveProperties
     }
     private int GetMaxNormalSize()
     {
-        var seconds = _gameTimer.GetTotalSeconds();
+        var seconds = _gameSessionTimer.GetTotalSeconds();
         var complicationValue = seconds / _complicationValue;
         if (complicationValue >= 1f)
         {
@@ -73,7 +73,7 @@ public class EnemyWaveProperties
     }
     private int GetMinNormalSize()
     {
-        var seconds = _gameTimer.GetTotalSeconds();
+        var seconds = _gameSessionTimer.GetTotalSeconds();
         var complicationValue = seconds / (_complicationValue * _minComplicationDivider);
         if (complicationValue >= 1f)
         {

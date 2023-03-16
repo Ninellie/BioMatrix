@@ -1,4 +1,3 @@
-using System;
 using Assets.Scripts.Map;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ public class PlayerCreator : MonoBehaviour
     private ExpUI _experienceBar;
     private AmmoBar _ammoBar;
     private LifeBar _lifeBar;
-    private GameTimer _gameTimer;
+    private GameSessionTimer _gameSessionTimer;
     private OptionsMenu _optionsMenu;
     private ViewController _UIController;
 
@@ -18,7 +17,7 @@ public class PlayerCreator : MonoBehaviour
     public Player CurrentPlayer { get; private set; }
     private void Awake()
     {
-        _gameTimer = FindObjectOfType<GameTimer>();
+        _gameSessionTimer = FindObjectOfType<GameSessionTimer>();
         _UIController = FindObjectOfType<ViewController>();
         _experienceBar = FindObjectOfType<ExpUI>();
         _lifeBar = FindObjectOfType<LifeBar>();
@@ -44,9 +43,9 @@ public class PlayerCreator : MonoBehaviour
         CurrentPlayer.onGamePaused += _UIController.Menu;
         CurrentPlayer.onLevelUp += _UIController.LevelUp;
         CurrentPlayer.onDeath += _UIController.Lose;
-        _gameTimer.onGameWinning += _UIController.Win;
+        _gameSessionTimer.onGameWinning += _UIController.Win;
         CurrentPlayer.onDeath += Unsubscription;
-        _gameTimer.onGameWinning += Unsubscription;
+        _gameSessionTimer.onGameWinning += Unsubscription;
         _optionsMenu.onBackToMainMenu += Unsubscription;
     }
 
@@ -55,9 +54,9 @@ public class PlayerCreator : MonoBehaviour
         CurrentPlayer.onGamePaused -= _UIController.Menu;
         CurrentPlayer.onLevelUp -= _UIController.LevelUp;
         CurrentPlayer.onDeath -= _UIController.Lose;
-        _gameTimer.onGameWinning -= _UIController.Win;
+        _gameSessionTimer.onGameWinning -= _UIController.Win;
         CurrentPlayer.onDeath -= Unsubscription;
-        _gameTimer.onGameWinning -= Unsubscription;
+        _gameSessionTimer.onGameWinning -= Unsubscription;
         _optionsMenu.onBackToMainMenu -= Unsubscription;
     }
 }

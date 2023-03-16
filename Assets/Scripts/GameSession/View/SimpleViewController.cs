@@ -7,7 +7,7 @@ namespace Assets.Scripts.Map
     public class SimpleViewController : IViewController
     {
         private readonly PlayerInput _playerInput;
-        private GameTimer _gameTimer;
+        private GameSessionTimer _gameSessionTimer;
         private LevelUp _levelUp;
 
         private GameObject _menuUI;
@@ -74,13 +74,13 @@ namespace Assets.Scripts.Map
         }
         private void GameTimerStop()
         {
-            _gameTimer ??= GameObject.FindObjectOfType<GameTimer>();
-            _gameTimer.Stop();
+            _gameSessionTimer ??= GameObject.FindObjectOfType<GameSessionTimer>();
+            _gameSessionTimer.Stop();
         }
         private void GameTimerResume()
         {
-            _gameTimer ??= GameObject.FindObjectOfType<GameTimer>();
-            _gameTimer.Resume();
+            _gameSessionTimer ??= GameObject.FindObjectOfType<GameSessionTimer>();
+            _gameSessionTimer.Resume();
         }
     }
 }

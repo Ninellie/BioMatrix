@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Projectile : Unit
 {
+    [SerializeField] public float timeToStop = 15f;
     public UnitStatsSettings Settings
     {
         get => GetComponent<UnitStatsSettings>();
@@ -9,7 +10,6 @@ public class Projectile : Unit
     }
 
     private MovementControllerBullet _movementController;
-    private const float SpeedDecrease = 15f;
     private void Awake() => BaseAwake(Settings);
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
@@ -17,8 +17,8 @@ public class Projectile : Unit
     private void FixedUpdate()
     {
         _movementController.FixedUpdateStep();
-        var mod = new StatModifier(OperationType.Addition, SpeedDecrease * -1);
-        Speed.AddModifier(mod);
+        //var mod = new StatModifier(OperationType.Addition, _speedDecrease * -1);
+        //Speed.AddModifier(mod);
         if (Rb2D.velocity != Vector2.zero) return;
         Death();
     }

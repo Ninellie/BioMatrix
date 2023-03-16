@@ -25,18 +25,12 @@ public abstract class EnemyMoveController
         get => _speedScale;
         set
         {
-            switch (value)
+            _speedScale = value switch
             {
-                case >= 1:
-                    _speedScale = 1f;
-                    return;
-                case <= 0:
-                    _speedScale = 0f;
-                    return;
-                default:
-                    _speedScale = value;
-                    break;
-            }
+                < 0 => 0,
+                > 1 => 1,
+                _ => value
+            };
         }
     }
     private float _speedScale = 1.0f;

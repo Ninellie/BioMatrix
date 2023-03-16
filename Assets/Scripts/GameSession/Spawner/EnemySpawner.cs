@@ -7,10 +7,8 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Set in Inspector")]
     public GameObject[] enemyPrefabs;
-    public float enemyDefaultPadding = 1.5f;
-    
-    private readonly int _secondsBetweenWaves = 2;
-    private GameTimer _gameTimer;
+    [SerializeField] private int _secondsBetweenWaves = 2;
+    private GameSessionTimer _gameSessionTimer;
     private readonly System.Random _random = new();
     private readonly Grouping _grouping = new();
     private readonly Rarity _rarity = new();
@@ -23,29 +21,29 @@ public class EnemySpawner : MonoBehaviour
     {
         get
         {
-            var seconds = _gameTimer.GetTotalSeconds();
-            if (seconds < DefaultComplicationValue)
-            {
-                return 0;
-            }
+            var seconds = _gameSessionTimer.GetTotalSeconds();
+            if (seconds < DefaultComplicationValue) return 0;
             var remainder = seconds % DefaultComplicationValue;
             return (int)(seconds - remainder) / DefaultComplicationValue;
         }
     }
     private void Awake()
     {
-        _gameTimer = FindObjectOfType<GameTimer>();
-        _enemyWaveProperties = new EnemyWaveProperties(_gameTimer);
-        if (FindObjectOfType<Player>() is null)
-        {
-            Debug.Log("Player script is null in scene");
-        }
-        _player = FindObjectOfType<Player>();
+        _gameSessionTimer = FindObjectOfType<GameSessionTimer>();
+        _enemyWaveProperties = new EnemyWaveProperties(_gameSessionTimer);
+        
     }
     private void Start()
     {
+        if (FindObjectOfType<Player>() is null)
+        {
+            Debug.Log("Player script is null in scene");
+            return;
+        }
+        _player = FindObjectOfType<Player>();
         SpawnFirstWave();
         InvokeRepeating(nameof(SpawnNormalWave), _secondsBetweenWaves, _secondsBetweenWaves);
+
     }
     private void SpawnWave(WaveType waveType)
     {

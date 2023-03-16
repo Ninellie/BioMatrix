@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
+  timeToStop: 1
 --- !u!114 &1504994257502739578
 MonoBehaviour:
   m_ObjectHideFlags: 0

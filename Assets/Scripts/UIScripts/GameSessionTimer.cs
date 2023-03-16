@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.Diagnostics;
 using TMPro;
-public class GameTimer : MonoBehaviour
+public class GameSessionTimer : MonoBehaviour
 {
     public TMP_Text textTimer;
     public Action onGameWinning;
