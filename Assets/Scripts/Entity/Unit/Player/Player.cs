@@ -36,6 +36,9 @@ public class Player : Unit
         }
     }
 
+    public Firearm CurrentFirearm { get; private set; }
+
+    [SerializeField] private Transform _firePoint;
     private float KnockbackTime
     {
         get => _knockbackTime;
@@ -60,7 +63,6 @@ public class Player : Unit
     private MovementControllerPlayer _movementController;
     private int _level;
     private int _experience;
-    [SerializeField] private Transform _firePoint;
     private CircleCollider2D _circleCollider;
     private PointEffector2D _pointEffector;
     private GameTimer _freezeTimer;
@@ -171,13 +173,15 @@ public class Player : Unit
         }
         _circleCollider.radius = MagnetismRadius.Value;
     }
-    public void CreateWeapon(GameObject weapons)
+    public void CreateWeapon(GameObject weapon)
     {
-        var weapon = Instantiate(weapons);
+        var w = Instantiate(weapon);
 
-        weapon.transform.SetParent(_firePoint);
+        w.transform.SetParent(_firePoint);
 
-        weapon.transform.position = _firePoint.transform.position;
+        w.transform.position = _firePoint.transform.position;
+        var firearm = w.GetComponent<Firearm>();
+        CurrentFirearm = firearm;
     }
     public void AddStatModifier(string statName, StatModifier statModifier)
     {

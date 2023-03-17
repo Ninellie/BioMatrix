@@ -3,20 +3,10 @@ using UnityEngine;
 public class MovementControllerPlayer
 {
     private readonly Player _myUnit;
-    private float Speed
-    {
-        get
-        {
-            if (_myUnit.isFireButtonPressed)
-            {
-                return _myUnit.Speed.Value * SpeedScale * SpeedDecreaseShooting;
-            }
-            else
-            {
-                return _myUnit.Speed.Value * SpeedScale;
-            }
-        }
-    }
+    private float Speed =>
+        _myUnit.isFireButtonPressed && !_myUnit.CurrentFirearm.Magazine.IsEmpty
+            ? _myUnit.Speed.Value * SpeedScale * SpeedDecreaseShooting
+            : _myUnit.Speed.Value * SpeedScale;
 
     private const float SpeedDecreaseShooting = 0.3f;
     private float SpeedScale
