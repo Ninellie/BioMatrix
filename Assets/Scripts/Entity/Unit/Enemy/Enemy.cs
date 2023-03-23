@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -10,11 +11,11 @@ public class Enemy : Unit
     [SerializeField] private bool _dieOnPlayerCollision;
     public EnemyStatsSettings Settings => GetComponent<EnemyStatsSettings>();
 
-    private EnemyMoveController _enemyMoveController;
+    public EnemyMoveController _enemyMoveController;
     private readonly Rarity _rarity = new Rarity();
     private SpriteOutline _spriteOutline;
     private GameObject _collisionGameObject;
-    private Color _spriteColor;
+    //private Color spriteColor;
     private float _deathTimer;
     private const float ReturnToDefaultColorSpeed = 5f;
     private const int MinInitialLevel = 1;
@@ -45,9 +46,11 @@ public class Enemy : Unit
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _collisionGameObject = collision.gameObject;
+        
         switch (_collisionGameObject.tag)
         {
             case "Player":
+                
                 if (_dieOnPlayerCollision)
                 {
                     Death();
@@ -73,6 +76,20 @@ public class Enemy : Unit
                 break;
         }
     }
+
+    //private void OnTriggerEnter2D(Collider2D collider)
+    //{
+    //    _collisionGameObject = collider.gameObject;
+    //    switch (_collisionGameObject.tag)
+    //    {
+    //        case "Shield":
+    //            Debug.LogWarning($"Shield triggered an enemy named {this.name}");
+    //            //var knockback = _collisionGameObject.GetComponent<Shield>().knockbackPower;
+    //            _enemyMoveController.KnockBackFromTarget(200);
+    //            Debug.LogWarning($"Shield END triggered an enemy named {this.name}");
+    //            break;
+    //    }
+    //}
     protected void BaseFixedUpdate()
     {
         DeathTimerFixedUpdate();
@@ -83,9 +100,7 @@ public class Enemy : Unit
         Debug.Log($"{gameObject.name} Enemy Awake");
         base.BaseAwake(settings);
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteOutline = GetComponent<SpriteOutline>();
-        _spriteColor = spriteRenderer.color;
         _rarity.Value = RarityEnum.Normal;
         Level = MinInitialLevel;
         RestoreLifePoints();
@@ -116,11 +131,11 @@ public class Enemy : Unit
     private void BackToNormalColor()
     {
         if (spriteRenderer.color == Color.white) return;
-        _spriteColor = spriteRenderer.color;
-        _spriteColor.r += ReturnToDefaultColorSpeed * Time.deltaTime;
-        _spriteColor.g += ReturnToDefaultColorSpeed * Time.deltaTime;
-        _spriteColor.b += ReturnToDefaultColorSpeed * Time.deltaTime;
-        spriteRenderer.color = _spriteColor;
+        spriteColor = spriteRenderer.color;
+        spriteColor.r += ReturnToDefaultColorSpeed * Time.deltaTime;
+        spriteColor.g += ReturnToDefaultColorSpeed * Time.deltaTime;
+        spriteColor.b += ReturnToDefaultColorSpeed * Time.deltaTime;
+        spriteRenderer.color = spriteColor;
     }
     private void DeathTimerFixedUpdate()
     {

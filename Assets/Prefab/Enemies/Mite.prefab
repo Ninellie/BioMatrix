@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: -2167475189181900128}
   - component: {fileID: 3774024594271913881}
   - component: {fileID: 8165684587596004793}
+  - component: {fileID: 2960018115445600972}
   - component: {fileID: 5590340840478446595}
   - component: {fileID: 5218541398406255388}
-  - component: {fileID: 2960018115445600972}
   m_Layer: 6
   m_Name: Mite
   m_TagString: Enemy
@@ -136,11 +136,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2423b6cbbaa2b1d44a8b712cd8ecc5af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteColor: {r: 0, g: 0, b: 0, a: 0}
   spriteRenderer: {fileID: 0}
+  tilemapRenderer: {fileID: 0}
   _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
   _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
   _enemyType: 1
   _dieOnPlayerCollision: 1
+--- !u!114 &2960018115445600972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a850ce09077234ea53b4b6791f923b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0.4
+  maximumLife: 1
+  lifeRegenerationInSecond: 0
+  knockbackPower: 1000
+  damage: 1
+  speed: 300
+  accelerationSpeed: 2000
+  rotationSpeed: 2
+  spawnWeight: 100
 --- !u!58 &5590340840478446595
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -177,24 +200,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2960018115445600972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8954189743293124748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2a850ce09077234ea53b4b6791f923b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 0.3
-  maximumLife: 1
-  lifeRegenerationInSecond: 0
-  knockbackPower: 300
-  damage: 1
-  speed: 300
-  accelerationSpeed: 2000
-  rotationSpeed: 2
-  spawnWeight: 100

@@ -19,13 +19,11 @@ public class Boon : Unit
         Debug.Log("The exp crystal was taken");
         TakeDamage(CurrentLifePoints);
         collisionGameObject.GetComponent<Player>().Experience++;
-        Debug.Log("The exp crystal pursue player");
     }
     protected override void BaseAwake(UnitStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Boon Awake");
         base.BaseAwake(settings);
-        spriteRenderer = GetComponent<SpriteRenderer>();
         _rarity.Value = RarityEnum.Magic;
     }
 }

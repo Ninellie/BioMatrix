@@ -54,7 +54,9 @@ public class Player : Unit
     }
     private float _knockbackTime;
 
-
+    //public bool IsInvulnerable { get; private set; } = false;
+    //private GameTimer _invulnerableTimer;
+    private const float ReturnToDefaultColorSpeed = 5f;
     private const int ExperienceToSecondLevel = 2;
     private const int ExperienceAmountIncreasingPerLevel = 1;
     private const int InitialLevel = 1;
@@ -91,28 +93,33 @@ public class Player : Unit
         switch (collisionGameObject.tag)
         {
             case "Enemy":
-                var collisionEnemyEntity = collisionGameObject.GetComponent<Entity>();
-
-                var enemyDamage = collisionEnemyEntity.Damage.Value;
-                TakeDamage(enemyDamage);
                 if (KnockbackTime == 0)
                 {
+                    var collisionEnemyEntity = collisionGameObject.GetComponent<Entity>();
+                    var enemyDamage = collisionEnemyEntity.Damage.Value;
+                    TakeDamage(enemyDamage);
                     KnockBackFrom(collisionEnemyEntity);
+                    spriteRenderer.color = Color.red;
                 }
                 break;
+
             case "Enclosure":
             {
-                var collisionEnclosureEntity = collisionGameObject.GetComponent<Entity>();
-                var enclosureDamage = collisionEnclosureEntity.Damage.Value;
-                TakeDamage(enclosureDamage);
-                KnockBackFrom(collisionEnclosureEntity);
+                if (KnockbackTime == 0)
+                {
+                    var collisionEnclosureEntity = collisionGameObject.GetComponent<Entity>();
+                    var enclosureDamage = collisionEnclosureEntity.Damage.Value;
+                    TakeDamage(enclosureDamage);
+                    KnockBackFrom(collisionEnclosureEntity);
+                    spriteRenderer.color = Color.red;
+                }
                 break;
             }
         }
     }
     protected void KnockBackFrom(Entity collisionEntity)
     {
-        KnockbackTime += 0.2f;
+        KnockbackTime += 0.1f;
         _movementController.KnockBack(collisionEntity);
     }
     protected void BaseFixedUpdate()
@@ -148,6 +155,16 @@ public class Player : Unit
     {
         base.BaseUpdate();
         _freezeTimer.Update();
+        BackToNormalColor();
+    }
+    private void BackToNormalColor()
+    {
+        if (spriteRenderer.color == Color.white) return;
+        spriteColor = spriteRenderer.color;
+        spriteColor.r += ReturnToDefaultColorSpeed * Time.deltaTime;
+        spriteColor.g += ReturnToDefaultColorSpeed * Time.deltaTime;
+        spriteColor.b += ReturnToDefaultColorSpeed * Time.deltaTime;
+        spriteRenderer.color = spriteColor;
     }
     protected override void BaseOnEnable()
     {

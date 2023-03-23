@@ -13,6 +13,10 @@ public class Stat
     private float BaseMultiplierValue { get; }
     private float MultiplierValue => GetMultiplierValue();
     private readonly List<StatModifier> _modifiers = new List<StatModifier>();
+
+    //private float _multiplierModifier = 0;
+    //private float _addModifier = 0;
+
     private const float MultiplierDivisor = 100;
 
     //Without multiplierValue (with multiplierValue = 1)

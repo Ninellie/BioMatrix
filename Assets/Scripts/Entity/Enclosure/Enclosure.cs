@@ -10,13 +10,18 @@ public class Enclosure : Entity
     private void Awake() => BaseAwake(Settings);
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
-    private void Update() => BaseUpdate();
+    private void Update()
+    {
+        //BaseUpdate();
+    }
+
     private void FixedUpdate() => BaseFixedUpdate();
     protected void BaseAwake(EnclosureStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Enclosure Awake");
         base.BaseAwake(settings);
         ConstrictionRate = new Stat(settings.constrictionRate);
+        
     }
     protected virtual void BaseFixedUpdate()
     {
@@ -24,7 +29,7 @@ public class Enclosure : Entity
         if (ConstrictionRate == null) return;
         if (_currentLifeTime >= MaxLifeTime)
         {
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
             return;
         }
         var constrictionRate = ConstrictionRate.Value * -1;
@@ -35,8 +40,8 @@ public class Enclosure : Entity
     protected override void BaseOnEnable()
     {
         base.BaseOnEnable();
-        var playerPos = FindObjectOfType<Player>().transform.position;
-        this.transform.position = playerPos;
+        var playerPos = FindObjectOfType<Player>().gameObject.transform.position;
+        gameObject.transform.position = playerPos;
         _currentLifeTime = 0f;
     }
     protected override void BaseOnDisable()

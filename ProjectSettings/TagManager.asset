@@ -9,6 +9,7 @@ TagManager:
   - Boon
   - Canvas
   - Enclosure
+  - Shield
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Enclosure
   - Boon
   - Projectile
-  - 
+  - Shield
   - 
   - 
   - 

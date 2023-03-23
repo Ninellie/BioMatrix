@@ -1224,8 +1224,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1239585264}
-        m_TargetAssemblyTypeName: LVLUpManager, Assembly-CSharp
-        m_MethodName: Improve
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: AddUpgrade
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1921,8 +1921,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1239585264}
-        m_TargetAssemblyTypeName: LVLUpManager, Assembly-CSharp
-        m_MethodName: Improve
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: AddUpgrade
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4430,8 +4430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488e8a3f5928ebf46a0d1a400273b299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cageAppearTime: 10
-  _cageGameObject: {fileID: 1026114776}
+  _cageAppearTime1: 5
+  _cageAppearTime2: 60
+  _cageAppearTime3: 120
 --- !u!1 &906030228
 GameObject:
   m_ObjectHideFlags: 0
@@ -5838,7 +5839,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865347cea50ea4b40aed84d653d506f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteColor: {r: 0, g: 0, b: 0, a: 0}
   spriteRenderer: {fileID: 0}
+  tilemapRenderer: {fileID: 0}
 --- !u!66 &1026114784
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -5918,7 +5921,7 @@ MonoBehaviour:
   maximumLife: 1000
   lifeRegenerationInSecond: 0
   knockbackPower: 1100
-  damage: 0
+  damage: 1
   constrictionRate: 0.00035
 --- !u!1 &1075986016
 GameObject:
@@ -11315,8 +11318,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1239585264}
-        m_TargetAssemblyTypeName: LVLUpManager, Assembly-CSharp
-        m_MethodName: Improve
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: AddUpgrade
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
