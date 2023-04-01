@@ -15,9 +15,18 @@ public class AboveViewEnemyMoveController : EnemyMoveController
     public override void FixedUpdateAccelerationStep()
     {
         TurnToTargetStep();
-        Velocity += AccelerationStep;
-        MyUnit.Rb2D.velocity = Velocity;
-        if (SpeedScale < 1f) SpeedScale += SpeedScaleStep;
+        
+        if (SpeedScale == 0)
+        {
+            if (SpeedScale < 1f) SpeedScale += SpeedScaleStep;
+            return;
+        }
+        else
+        {
+            Velocity += AccelerationStep;
+            MyUnit.Rb2D.velocity = Velocity;
+            if (SpeedScale < 1f) SpeedScale += SpeedScaleStep;
+        }
     }
     public override void Stag()
     {

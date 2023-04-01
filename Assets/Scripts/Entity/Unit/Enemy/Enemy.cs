@@ -60,9 +60,10 @@ public class Enemy : Unit
                 {
                     Death();
                 }
+                _enemyMoveController.KnockBackFromTarget(7000);
                 if (collision.otherCollider is CapsuleCollider2D)
                 {
-                    _enemyMoveController.KnockBackFromTarget(thrustPower);
+                    _enemyMoveController.KnockBackFromTarget(7000);
                 }
                 break;
             case "Projectile":
