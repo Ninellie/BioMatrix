@@ -8,7 +8,8 @@ public class SideViewEnemyMoveController : EnemyMoveController
     }
     public override void FixedUpdateAccelerationStep()
     {
-        if (SpeedScale == 0)
+        //if (SpeedScale == 0)
+        if (SpeedScale < 0.1f)
         {
             if (SpeedScale < 1f) SpeedScale += SpeedScaleStep;
             return;

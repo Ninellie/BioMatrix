@@ -15,8 +15,8 @@ public class AboveViewEnemyMoveController : EnemyMoveController
     public override void FixedUpdateAccelerationStep()
     {
         TurnToTargetStep();
-        
-        if (SpeedScale == 0)
+        //if (SpeedScale == 0)
+        if (SpeedScale < 0.1f)
         {
             if (SpeedScale < 1f) SpeedScale += SpeedScaleStep;
             return;
