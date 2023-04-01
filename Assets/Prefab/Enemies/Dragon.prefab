@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6042837996286799121}
   - component: {fileID: 3572984765799172596}
-  - component: {fileID: -2167475189181900128}
-  - component: {fileID: 3774024594271913881}
   - component: {fileID: 8165684587596004793}
   - component: {fileID: -4503049236320595623}
+  - component: {fileID: -2167475189181900128}
+  - component: {fileID: 3774024594271913881}
   - component: {fileID: 8169940004370450274}
   - component: {fileID: 1878492662911867408}
   m_Layer: 6
@@ -90,6 +90,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8165684587596004793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2423b6cbbaa2b1d44a8b712cd8ecc5af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
+  _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
+  _enemyType: 0
+  _dieOnPlayerCollision: 0
+--- !u!114 &-4503049236320595623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a850ce09077234ea53b4b6791f923b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0.8
+  maximumLife: 2
+  lifeRegenerationInSecond: 0
+  knockbackPower: 700
+  damage: 1
+  speed: 100
+  accelerationSpeed: 200
+  rotationSpeed: 0
+  spawnWeight: 1000
 --- !u!114 &-2167475189181900128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,43 +162,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8165684587596004793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8954189743293124748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2423b6cbbaa2b1d44a8b712cd8ecc5af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
-  _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
-  _enemyType: 0
---- !u!114 &-4503049236320595623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8954189743293124748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2a850ce09077234ea53b4b6791f923b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 0.8
-  maximumLife: 2
-  lifeRegenerationInSecond: 0
-  knockbackPower: 700
-  damage: 1
-  speed: 100
-  accelerationSpeed: 200
-  rotationSpeed: 0
-  spawnWeight: 1000
 --- !u!60 &8169940004370450274
 PolygonCollider2D:
   m_ObjectHideFlags: 0

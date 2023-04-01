@@ -45,6 +45,14 @@ public class Enemy : Unit
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _collisionGameObject = collision.gameObject;
+        if (_collisionGameObject.tag == "Enemy")
+        {
+            return;
+        }
+
+        var collisionEntity = _collisionGameObject.GetComponent<Entity>();
+        var thrustPower = collisionEntity.KnockbackPower.Value;
+
         switch (_collisionGameObject.tag)
         {
             case "Player":
@@ -52,26 +60,32 @@ public class Enemy : Unit
                 {
                     Death();
                 }
+                if (collision.otherCollider is CapsuleCollider2D)
+                {
+                    _enemyMoveController.KnockBackFromTarget(thrustPower);
+                }
                 break;
             case "Projectile":
-                var collisionEntity = _collisionGameObject.GetComponent<Entity>();
-
                 var projectileDamage = collisionEntity.Damage.Value;
                 TakeDamage(projectileDamage);
 
                 DropDamagePopup(MinimalDamageTaken, _collisionGameObject.transform.position);
 
-                var thrustPower = collisionEntity.KnockbackPower.Value;
                 _enemyMoveController.KnockBackFromTarget(thrustPower);
 
-                spriteRenderer.color = _enemyType switch
-                {
-                    EnemyType.AboveView => Color.cyan,
-                    EnemyType.SideView => Color.red,
-                    _ => throw new ArgumentOutOfRangeException()
-                };
+                ChangeColorOnDamageTaken();
                 break;
         }
+    }
+
+    private void ChangeColorOnDamageTaken()
+    {
+        spriteRenderer.color = _enemyType switch
+        {
+            EnemyType.AboveView => Color.cyan,
+            EnemyType.SideView => Color.red,
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
     protected void BaseFixedUpdate()
     {

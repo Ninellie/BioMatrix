@@ -10,6 +10,8 @@ public class Player : Unit
     public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
     protected Stat MagnetismRadius { get; private set; }
     protected Stat MagnetismPower { get; private set; }
+    [SerializeField] private int _currentShieldLayer = 3;
+    [SerializeField] private int _maxShieldLayers = 3;
 
     public bool isFireButtonPressed = false;
     public int Level
@@ -39,6 +41,7 @@ public class Player : Unit
     public Firearm CurrentFirearm { get; private set; }
 
     [SerializeField] private Transform _firePoint;
+    [SerializeField] private GameObject _shield;
     private float KnockbackTime
     {
         get => _knockbackTime;
@@ -64,6 +67,7 @@ public class Player : Unit
     private int _level;
     private int _experience;
     private CircleCollider2D _circleCollider;
+    private CapsuleCollider2D _capsuleCollider;
     private PointEffector2D _pointEffector;
     private GameTimer _freezeTimer;
     private SpriteRenderer SpriteRenderer => GetComponent<SpriteRenderer>();
@@ -74,6 +78,24 @@ public class Player : Unit
         _freezeTimer = new GameTimer(Freeze, 0.2f);
     }
 
+    private void AddLayer()
+    {
+        if (_currentShieldLayer == 0)
+        {
+            _capsuleCollider.enabled = true;
+            _shield.SetActive(true);
+        }
+        _currentShieldLayer++;
+    }
+
+    private void RemoveLayer()
+    {
+        if (_currentShieldLayer == 0) return;
+        _currentShieldLayer--;
+        if (_currentShieldLayer != 0) return;
+        _capsuleCollider.enabled = false;
+        _shield.SetActive(false);
+    }
     private void Freeze()
     {
         Time.timeScale = 0f;
@@ -91,20 +113,29 @@ public class Player : Unit
         switch (collisionGameObject.tag)
         {
             case "Enemy":
-                var collisionEnemyEntity = collisionGameObject.GetComponent<Entity>();
-
-                var enemyDamage = collisionEnemyEntity.Damage.Value;
-                TakeDamage(enemyDamage);
-                if (KnockbackTime == 0)
+                if (_currentShieldLayer == 0)
                 {
-                    KnockBackFrom(collisionEnemyEntity);
+                    var collisionEnemyEntity = collisionGameObject.GetComponent<Entity>();
+                    var enemyDamage = collisionEnemyEntity.Damage.Value;
+                    TakeDamage(enemyDamage);
+                    if (KnockbackTime == 0)
+                    {
+                        KnockBackFrom(collisionEnemyEntity);
+                    }
+                }
+                else
+                {
+                    RemoveLayer();
                 }
                 break;
             case "Enclosure":
             {
                 var collisionEnclosureEntity = collisionGameObject.GetComponent<Entity>();
-                var enclosureDamage = collisionEnclosureEntity.Damage.Value;
-                TakeDamage(enclosureDamage);
+                if (_currentShieldLayer == 0) 
+                {
+                    var enclosureDamage = collisionEnclosureEntity.Damage.Value;
+                    TakeDamage(enclosureDamage);
+                }
                 KnockBackFrom(collisionEnclosureEntity);
                 break;
             }
@@ -129,6 +160,8 @@ public class Player : Unit
         _level = InitialLevel;
         _experience = InitialExperience;
         _circleCollider = GetComponent<CircleCollider2D>();
+        _capsuleCollider = GetComponent<CapsuleCollider2D>();
+        //_capsuleCollider.enabled = false;
         _pointEffector = GetComponent<PointEffector2D>();
         MagnetismRadius = new Stat(settings.magnetismRadius);
         _circleCollider.radius = MagnetismRadius.Value;
