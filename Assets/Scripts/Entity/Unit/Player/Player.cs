@@ -12,6 +12,9 @@ public class Player : Unit
     protected Stat MagnetismPower { get; private set; }
     [SerializeField] private int _currentShieldLayer = 3;
     [SerializeField] private int _maxShieldLayers = 3;
+    [SerializeField] private SpriteRenderer _shieldSprite;
+    private float _alphaPerLayer = 0.2f;
+    private Color _shieldColor = Color.cyan;
 
     public bool isFireButtonPressed = false;
     public int Level
@@ -76,6 +79,7 @@ public class Player : Unit
     private void Start()
     {
         _freezeTimer = new GameTimer(Freeze, 0.2f);
+        UpdateShieldAlpha();
     }
 
     private void AddLayer()
@@ -86,12 +90,21 @@ public class Player : Unit
             _shield.SetActive(true);
         }
         _currentShieldLayer++;
+        UpdateShieldAlpha();
+    }
+
+    private void UpdateShieldAlpha()
+    {
+        var a = _alphaPerLayer * _currentShieldLayer;
+        _shieldColor.a = a;
+        _shieldSprite.color = _shieldColor;
     }
 
     private void RemoveLayer()
     {
         if (_currentShieldLayer == 0) return;
         _currentShieldLayer--;
+        UpdateShieldAlpha();
         if (_currentShieldLayer != 0) return;
         _capsuleCollider.enabled = false;
         _shield.SetActive(false);
@@ -172,6 +185,7 @@ public class Player : Unit
         MagnetismPower = new Stat(settings.magnetismPower);
         _pointEffector.forceMagnitude = MagnetismPower.Value * -1;
 
+        _shieldSprite = _shield.GetComponent<SpriteRenderer>();
         base.BaseAwake(settings);
 
         _movementController = new MovementControllerPlayer(this);
