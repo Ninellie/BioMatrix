@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 885779190258261260}
-  - component: {fileID: 4973089185102610346}
   - component: {fileID: 2975664437671385834}
   - component: {fileID: 659999168091465563}
-  - component: {fileID: 1183143756002398565}
   - component: {fileID: 4797799252330293022}
+  - component: {fileID: 4973089185102610346}
+  - component: {fileID: 1183143756002398565}
   - component: {fileID: 7452234380026767843}
   - component: {fileID: 2449300099634026346}
   - component: {fileID: 396533927185237461}
@@ -47,6 +47,77 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2975664437671385834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671026415413744665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d608d0387591429429c4f44477dba9d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  _currentShieldLayer: 3
+  _maxShieldLayers: 3
+  _shieldSprite: {fileID: 0}
+  isFireButtonPressed: 0
+  _firePoint: {fileID: 766516748403551923}
+  _shield: {fileID: 7005012959266165756}
+--- !u!114 &659999168091465563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671026415413744665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a1cf3573fe33342b0bb47bc2f0310e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 1
+  maximumLife: 300
+  lifeRegenerationInSecond: 0
+  knockbackPower: 200
+  damage: 0
+  speed: 220
+  accelerationSpeed: 0
+  rotationSpeed: 0
+  magnetismRadius: 150
+  magnetismPower: 1000
+--- !u!114 &4797799252330293022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671026415413744665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 34f7bbd413b82da498db1dc8cb9b83cb, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: PC_Control_scheme
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!212 &4973089185102610346
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -99,46 +170,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2975664437671385834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671026415413744665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d608d0387591429429c4f44477dba9d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  _currentShieldLayer: 3
-  _maxShieldLayers: 3
-  isFireButtonPressed: 0
-  _firePoint: {fileID: 766516748403551923}
-  _shield: {fileID: 7005012959266165756}
---- !u!114 &659999168091465563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671026415413744665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4a1cf3573fe33342b0bb47bc2f0310e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 1
-  maximumLife: 300
-  lifeRegenerationInSecond: 0
-  knockbackPower: 200
-  damage: 0
-  speed: 220
-  accelerationSpeed: 0
-  rotationSpeed: 0
-  magnetismRadius: 150
-  magnetismPower: 1000
 --- !u!61 &1183143756002398565
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,36 +196,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 57, y: 94}
   m_EdgeRadius: 0
---- !u!114 &4797799252330293022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671026415413744665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 34f7bbd413b82da498db1dc8cb9b83cb, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: PC_Control_scheme
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!50 &7452234380026767843
 Rigidbody2D:
   serializedVersion: 4
