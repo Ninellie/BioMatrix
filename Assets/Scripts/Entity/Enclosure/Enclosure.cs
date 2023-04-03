@@ -10,7 +10,11 @@ public class Enclosure : Entity
     private void Awake() => BaseAwake(Settings);
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
-    private void Update() => BaseUpdate();
+
+    private void Update()
+    {
+
+    }
     private void FixedUpdate() => BaseFixedUpdate();
     protected void BaseAwake(EnclosureStatsSettings settings)
     {
