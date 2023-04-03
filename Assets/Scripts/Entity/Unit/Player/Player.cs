@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -139,6 +140,23 @@ public class Player : Unit
                 else
                 {
                     RemoveLayer();
+                    Enemy[] enemies = FindObjectsOfType<Enemy>();
+                    List<GameObject> enemiesGO = new List<GameObject>();
+                    List<Collider2D> enemiesColliders = new List<Collider2D>();
+                    foreach (var enemy in enemies)
+                    {
+                        enemiesGO.Add(enemy.gameObject);
+                        enemiesColliders.Add(enemy.GetComponent<Collider2D>());
+                    }
+
+                    for (int i = 0; i < enemies.Length; i++)
+                    {
+                        var isTouching = enemiesColliders[i].IsTouching(_circleCollider);
+                        if (isTouching)
+                        {
+                            enemies[i]._enemyMoveController.KnockBackFromTarget(Settings.knockbackPower);
+                        }
+                    }
                 }
                 break;
             case "Enclosure":

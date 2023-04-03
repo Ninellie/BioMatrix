@@ -10,7 +10,7 @@ public class Enemy : Unit
     [SerializeField] private bool _dieOnPlayerCollision;
     public EnemyStatsSettings Settings => GetComponent<EnemyStatsSettings>();
 
-    private EnemyMoveController _enemyMoveController;
+    public EnemyMoveController _enemyMoveController;
     private readonly Rarity _rarity = new Rarity();
     private SpriteOutline _spriteOutline;
     private GameObject _collisionGameObject;
