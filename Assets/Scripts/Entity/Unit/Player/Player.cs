@@ -141,11 +141,11 @@ public class Player : Unit
                 {
                     RemoveLayer();
                     Enemy[] enemies = FindObjectsOfType<Enemy>();
-                    List<GameObject> enemiesGO = new List<GameObject>();
+                    //List<GameObject> enemiesGO = new List<GameObject>();
                     List<Collider2D> enemiesColliders = new List<Collider2D>();
                     foreach (var enemy in enemies)
                     {
-                        enemiesGO.Add(enemy.gameObject);
+                        //enemiesGO.Add(enemy.gameObject);
                         enemiesColliders.Add(enemy.GetComponent<Collider2D>());
                     }
 
