@@ -14,9 +14,9 @@ public class Player : Unit
     [SerializeField] private int _currentShieldLayer = 3;
     //[SerializeField] private int _maxShieldLayers = 3;
     [SerializeField] private SpriteRenderer _shieldSprite;
-    private float _alphaPerLayer = 0.2f;
-    private Color _shieldColor = Color.cyan;
-    private float _shieldRepulseRadius = 500f;
+    [SerializeField] private float _alphaPerLayer = 0.2f;
+    [SerializeField] private Color _shieldColor = Color.cyan;
+    [SerializeField] private float _shieldRepulseRadius = 500f;
     [SerializeField] private LayerMask _enemyLayer;
 
     public bool isFireButtonPressed = false;
