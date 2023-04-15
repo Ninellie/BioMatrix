@@ -17,7 +17,6 @@ public class SideViewEnemyMoveController : EnemyMoveController
         {
             Vector2 difference = (MyPosition - TargetPosition).normalized;
             Vector2 addedPosition = difference * knockbackSpeed * Time.fixedDeltaTime;
-
             nextPosition += addedPosition;
             knockbackTime -= Time.fixedDeltaTime;
         }
@@ -31,23 +30,14 @@ public class SideViewEnemyMoveController : EnemyMoveController
         }
 
         MyUnit.Rb2D.MovePosition(nextPosition);
-
     }
     public override void KnockBackFromTarget(float thrustPower)
     {
-
         knockbackPower = thrustPower;
         knockbackTime = thrustPower / knockbackSpeed;
         Stag();
         Debug.Log("Knockback");
     }
-    //public override void KnockBackFromTarget(float thrustPower)
-    //{
-    //    Vector2 difference = (MyPosition - TargetPosition).normalized;
-    //    MyUnit.Rb2D.MovePosition(MyPosition + difference * thrustPower);
-    //    //MyUnit.transform.Translate(difference * thrustPower);
-    //    Debug.Log("Knockback");
-    //}
     public override void Stag()
     {
         SpeedScale = 0;
