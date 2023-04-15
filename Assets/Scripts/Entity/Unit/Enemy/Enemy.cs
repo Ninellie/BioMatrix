@@ -42,43 +42,43 @@ public class Enemy : Unit
     private void Awake() => BaseAwake(Settings);
     private void Update() => BaseUpdate();
     private void FixedUpdate() => BaseFixedUpdate();
-    private void OnCollisionEnter2D(Collision2D collision)
+
+
+    private void OnTriggerEnter2D(Collider2D otherCollider2D)
     {
-        _collisionGameObject = collision.gameObject;
-        if (_collisionGameObject.tag == "Enemy")
+        if (otherCollider2D.gameObject.CompareTag("Enemy"))
         {
             return;
         }
 
-        var collisionEntity = _collisionGameObject.GetComponent<Entity>();
+        if (!otherCollider2D.gameObject.TryGetComponent<Entity>(out Entity entity))
+        {
+            Debug.LogWarning("OnTriggerEnter2D with game object without Entity component");
+            return;
+        }
+        var collisionEntity = otherCollider2D.gameObject.GetComponent<Entity>();
         var thrustPower = collisionEntity.KnockbackPower.Value;
 
-        switch (_collisionGameObject.tag)
+        if (otherCollider2D.gameObject.CompareTag("Player"))
         {
-            case "Player":
-                if (_dieOnPlayerCollision)
-                {
-                    Death();
-                }
-                _enemyMoveController.KnockBackFromTarget(700);
-                if (collision.otherCollider is CapsuleCollider2D)
-                {
-                    _enemyMoveController.KnockBackFromTarget(700);
-                }
-                break;
-            case "Projectile":
-                var projectileDamage = collisionEntity.Damage.Value;
-                TakeDamage(projectileDamage);
+            if (_dieOnPlayerCollision)
+            {
+                Death();
+            }
+            _enemyMoveController.KnockBackFromTarget(thrustPower);
+        }
+        if (otherCollider2D.gameObject.CompareTag("Projectile"))
+        {
+            var projectileDamage = collisionEntity.Damage.Value;
+            TakeDamage(projectileDamage);
 
-                DropDamagePopup(MinimalDamageTaken, _collisionGameObject.transform.position);
+            DropDamagePopup(MinimalDamageTaken, otherCollider2D.transform.position);
 
-                _enemyMoveController.KnockBackFromTarget(thrustPower);
+            _enemyMoveController.KnockBackFromTarget(thrustPower);
 
-                ChangeColorOnDamageTaken();
-                break;
+            ChangeColorOnDamageTaken();
         }
     }
-
     private void ChangeColorOnDamageTaken()
     {
         spriteRenderer.color = _enemyType switch

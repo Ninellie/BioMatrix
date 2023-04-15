@@ -1,36 +1,55 @@
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class SideViewEnemyMoveController : EnemyMoveController
 {
+    public float knockbackPower;
+    public float knockbackSpeed = 700;
+    public float knockbackTime = 0;
     private Vector2 AccelerationStep => Direction * AccelerationSpeed * Time.fixedDeltaTime;
     public SideViewEnemyMoveController(Enemy myUnit, GameObject target) : base(myUnit, target)
     {
     }
     public override void FixedUpdateAccelerationStep()
     {
-        //if (SpeedScale == 0)
-        if (SpeedScale < 0.1f)
+        Vector2 nextPosition = MyPosition;
+        if (knockbackTime > 0)
         {
-            if (SpeedScale < 1f) SpeedScale += SpeedScaleStep;
-            return;
+            Vector2 difference = (MyPosition - TargetPosition).normalized;
+            Vector2 addedPosition = difference * knockbackSpeed * Time.fixedDeltaTime;
+
+            nextPosition += addedPosition;
+            knockbackTime -= Time.fixedDeltaTime;
         }
-        else
+
+        Vector2 movement = Direction * Speed * Time.fixedDeltaTime;
+
+        nextPosition += movement;
+        if (SpeedScale < 1)
         {
-            Velocity += AccelerationStep;
-            MyUnit.Rb2D.velocity = Velocity;
-            if (SpeedScale < 1f) SpeedScale += SpeedScaleStep;
+            SpeedScale += SpeedScaleStep;
         }
-    }
-    public override void Stag()
-    {
-        SpeedScale = 0;
+
+        MyUnit.Rb2D.MovePosition(nextPosition);
+
     }
     public override void KnockBackFromTarget(float thrustPower)
     {
-        if (SpeedScale < 1f) { return; }
+
+        knockbackPower = thrustPower;
+        knockbackTime = thrustPower / knockbackSpeed;
         Stag();
-        Vector2 difference = (MyPosition - TargetPosition).normalized;
-        Vector2 knockbackVelocity = difference * thrustPower * MyUnit.Rb2D.mass;
-        MyUnit.Rb2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
+        Debug.Log("Knockback");
+    }
+    //public override void KnockBackFromTarget(float thrustPower)
+    //{
+    //    Vector2 difference = (MyPosition - TargetPosition).normalized;
+    //    MyUnit.Rb2D.MovePosition(MyPosition + difference * thrustPower);
+    //    //MyUnit.transform.Translate(difference * thrustPower);
+    //    Debug.Log("Knockback");
+    //}
+    public override void Stag()
+    {
+        SpeedScale = 0;
     }
 }

@@ -15,18 +15,8 @@ public class AboveViewEnemyMoveController : EnemyMoveController
     public override void FixedUpdateAccelerationStep()
     {
         TurnToTargetStep();
-        //if (SpeedScale == 0)
-        if (SpeedScale < 0.1f)
-        {
-            if (SpeedScale < 1f) SpeedScale += SpeedScaleStep;
-            return;
-        }
-        else
-        {
-            Velocity += AccelerationStep;
-            MyUnit.Rb2D.velocity = Velocity;
-            if (SpeedScale < 1f) SpeedScale += SpeedScaleStep;
-        }
+        Vector2 movement = Direction * Speed * Time.fixedDeltaTime;
+        MyUnit.Rb2D.MovePosition(MyPosition + movement);
     }
     public override void Stag()
     {
@@ -34,11 +24,8 @@ public class AboveViewEnemyMoveController : EnemyMoveController
     }
     public override void KnockBackFromTarget(float thrustPower)
     {
-        if (SpeedScale < 1f) { return; }
-        Stag();
         Vector2 difference = (MyPosition - TargetPosition).normalized;
-        Vector2 knockbackVelocity = difference * thrustPower * MyUnit.Rb2D.mass;
-        MyUnit.Rb2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
+        MyUnit.transform.Translate(difference * thrustPower);
     }
     public void TurnToTarget()
     {
@@ -57,4 +44,5 @@ public class AboveViewEnemyMoveController : EnemyMoveController
         var angleInDegrees = (Mathf.Atan2(direction.y, direction.x) - Mathf.PI / 2) * Mathf.Rad2Deg;
         return angleInDegrees;
     }
+
 }
