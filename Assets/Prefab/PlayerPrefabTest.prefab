@@ -63,6 +63,9 @@ MonoBehaviour:
   _currentShieldLayer: 3
   _maxShieldLayers: 3
   _shieldSprite: {fileID: 0}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
   isFireButtonPressed: 0
   _firePoint: {fileID: 766516748403551923}
   _shield: {fileID: 7005012959266165756}

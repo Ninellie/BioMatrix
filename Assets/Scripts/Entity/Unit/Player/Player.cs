@@ -12,10 +12,12 @@ public class Player : Unit
     protected Stat MagnetismRadius { get; private set; }
     protected Stat MagnetismPower { get; private set; }
     [SerializeField] private int _currentShieldLayer = 3;
-    [SerializeField] private int _maxShieldLayers = 3;
+    //[SerializeField] private int _maxShieldLayers = 3;
     [SerializeField] private SpriteRenderer _shieldSprite;
     private float _alphaPerLayer = 0.2f;
     private Color _shieldColor = Color.cyan;
+    private float _shieldRepulseRadius = 500f;
+    [SerializeField] private LayerMask _enemyLayer;
 
     public bool isFireButtonPressed = false;
     public int Level
@@ -121,6 +123,35 @@ public class Player : Unit
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();
     private void FixedUpdate() => BaseFixedUpdate();
+
+    private void OnTriggerEnter2D(Collider2D otherCollider2D)
+    {
+        if (!otherCollider2D.gameObject.TryGetComponent<Entity>(out Entity entity))
+        {
+            Debug.LogWarning("OnTriggerEnter2D with game object without Entity component");
+            return;
+        }
+        if (otherCollider2D.gameObject.CompareTag("Enemy"))
+        {
+            //var collisionEntity = otherCollider2D.gameObject.GetComponent<Entity>();
+            //var thrustPower = collisionEntity.KnockbackPower.Value;
+
+            if (_currentShieldLayer > 0)
+            {
+                Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
+
+                foreach (Collider2D collider in hitColliders)
+                {
+                    collider.gameObject.GetComponent<Enemy>()._enemyMoveController.KnockBackFromTarget(KnockbackPower.Value);
+                }
+            }
+        }
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _shieldRepulseRadius);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var collisionGameObject = collision.gameObject;
