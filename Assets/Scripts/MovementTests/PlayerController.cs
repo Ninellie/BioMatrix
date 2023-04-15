@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float _moveSpeed = 5f;
 
     private SpriteRenderer _spriteRenderer;
     private Vector2 _direction;
@@ -19,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var movement = _direction.normalized * moveSpeed * Time.fixedDeltaTime;
+        var movement = _direction.normalized * _moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + movement);
     }
     public void OnMove(InputValue input)

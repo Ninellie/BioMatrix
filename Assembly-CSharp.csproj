@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Firearm\Magazine.cs" />
     <Compile Include="Assets\Scripts\Firearm\FirearmStatsSettings.cs" />
     <Compile Include="Assets\Scripts\UIScripts\TestJson.cs" />
+    <Compile Include="Assets\Scripts\MovementTests\EnemyUnit.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\Scripts\GameSession\Spawner\Circle.cs" />
     <Compile Include="Assets\Scripts\GameSession\View\GameEndViewModelState.cs" />
@@ -131,11 +132,13 @@
     <Compile Include="Assets\Scripts\GameSession\View\ActiveViewModelState.cs" />
     <Compile Include="Assets\Scripts\UIScripts\OptionsMenu.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Enemy\EnemyStatsSettings.cs" />
+    <Compile Include="Assets\Scripts\MovementTests\Repulse.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Player\PlayerStatsSettings.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\Entity\Enclosure\EnclosureStatsSettings.cs" />
     <Compile Include="Assets\Scripts\Stat\StatModifier.cs" />
     <Compile Include="Assets\Scripts\LevelUp\Deck\JsonCard\JsonCardSerializer.cs" />
+    <Compile Include="Assets\Scripts\MovementTests\PlayerController.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\UITexturePacker.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPActionType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -145,6 +148,7 @@
     <Compile Include="Assets\Scripts\GameSession\View\ViewController.cs" />
     <Compile Include="Assets\Scripts\GameSession\View\MenuViewModelState.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Player\PlayerCreator.cs" />
+    <Compile Include="Assets\Scripts\MovementTests\Knockback.cs" />
     <Compile Include="Assets\Scripts\GameSession\View\IViewModelState.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Projectile\Projectile.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
@@ -174,10 +178,6 @@
     <Compile Include="Assets\Scripts\Firearm\Firearm.cs" />
     <Compile Include="Assets\Scripts\UIScripts\GameSessionTimer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Scripts\MovementTests\EnemyUnit.cs" />
-    <Compile Include="Assets\Scripts\MovementTests\Repulse.cs" />
-    <Compile Include="Assets\Scripts\MovementTests\Knockback.cs" />
-    <Compile Include="Assets\Scripts\MovementTests\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

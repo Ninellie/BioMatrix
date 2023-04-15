@@ -3,18 +3,18 @@ using UnityEngine;
 public class Knockback : MonoBehaviour
 {
     [SerializeField] private float _knockbackForce;
-    private Rigidbody2D rb;
+    private Rigidbody2D _rigidbody2D;
 
-    void Start()
+    private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
     }
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D otherCollider2D) 
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (otherCollider2D.gameObject.CompareTag("Player"))
         {
             Debug.Log("g");
-            KnockbackFrom(other.gameObject, _knockbackForce);
+            KnockbackFrom(otherCollider2D.gameObject, _knockbackForce);
         }
     }
     private void KnockbackFrom(GameObject other, float force)
