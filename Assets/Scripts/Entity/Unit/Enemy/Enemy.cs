@@ -13,7 +13,7 @@ public class Enemy : Unit
     public EnemyMoveController _enemyMoveController;
     private readonly Rarity _rarity = new Rarity();
     private SpriteOutline _spriteOutline;
-    private GameObject _collisionGameObject;
+    private GameObject _lastCollidedGameObject;
     private Color _spriteColor;
     private float _deathTimer;
     private const float ReturnToDefaultColorSpeed = 5f;
@@ -46,6 +46,7 @@ public class Enemy : Unit
 
     private void OnTriggerEnter2D(Collider2D otherCollider2D)
     {
+        _lastCollidedGameObject = otherCollider2D.gameObject;
         if (otherCollider2D.gameObject.CompareTag("Enemy"))
         {
             return;
@@ -73,7 +74,7 @@ public class Enemy : Unit
 
             TakeDamage(projectileDamage);
 
-            DropDamagePopup(MinimalDamageTaken, otherCollider2D.transform.position);
+            DropDamagePopup(MinimalDamageTaken, otherCollider2D.transform.position - transform.position);
 
             ChangeColorOnDamageTaken();
 
@@ -176,8 +177,8 @@ public class Enemy : Unit
     protected override void Death()
     {
         base.Death();
-        if (_collisionGameObject == null) return;
-        if (_collisionGameObject.tag != "Projectile") return;
+        //if (_collisionGameObject == null) return;
+        if (_lastCollidedGameObject.tag != "Projectile") return;
         DropBonus();
     }
     private void DropBonus()
@@ -186,12 +187,12 @@ public class Enemy : Unit
         Instantiate(_onDeathDrop, Rb2D.position, rotation);
         Debug.LogWarning($"Bonus dropped at {Rb2D.position}");
     }
-    private void DropDamagePopup(int damage, Vector2 positionVector2)
+    private void DropDamagePopup(int damage, Vector2 position)
     {
         var droppedDamagePopup = Instantiate(_damagePopup);
-        droppedDamagePopup.transform.position = positionVector2;
+        droppedDamagePopup.transform.position = position;
         droppedDamagePopup.GetComponent<DamagePopup>().Setup(damage);
-        Debug.LogWarning($"DMG popup dropped at {positionVector2}");
+        Debug.LogWarning($"DMG popup dropped at {position}");
     }
     private void UpdateMaxLifeStat()
     {
