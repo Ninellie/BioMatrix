@@ -65,18 +65,18 @@ public class Enemy : Unit
             {
                 Death();
             }
-            _enemyMoveController.KnockBackFromTarget(thrustPower);
+            //_enemyMoveController.KnockBackFromTarget(thrustPower);
         }
         if (otherCollider2D.gameObject.CompareTag("Projectile"))
         {
             var projectileDamage = collisionEntity.Damage.Value;
-            TakeDamage(projectileDamage);
 
+            TakeDamage(projectileDamage);
+            ChangeColorOnDamageTaken();
             DropDamagePopup(MinimalDamageTaken, otherCollider2D.transform.position);
 
-            _enemyMoveController.KnockBackFromTarget(thrustPower);
 
-            ChangeColorOnDamageTaken();
+            _enemyMoveController.KnockBackFromTarget(thrustPower);
         }
     }
     private void ChangeColorOnDamageTaken()

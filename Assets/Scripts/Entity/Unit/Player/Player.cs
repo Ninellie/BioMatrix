@@ -16,7 +16,7 @@ public class Player : Unit
     [SerializeField] private SpriteRenderer _shieldSprite;
     [SerializeField] private float _alphaPerLayer = 0.2f;
     [SerializeField] private Color _shieldColor = Color.cyan;
-    [SerializeField] private float _shieldRepulseRadius = 500f;
+    [SerializeField] private float _shieldRepulseRadius = 250f;
     [SerializeField] private LayerMask _enemyLayer;
 
     public bool isFireButtonPressed = false;
@@ -48,20 +48,6 @@ public class Player : Unit
 
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject _shield;
-    private float KnockbackTime
-    {
-        get => _knockbackTime;
-        set
-        {
-            if (value < 0)
-            {
-                _knockbackTime = 0;
-                return;
-            }
-            _knockbackTime = value;
-        }
-    }
-    private float _knockbackTime;
 
 
     private const int ExperienceToSecondLevel = 2;
@@ -131,20 +117,24 @@ public class Player : Unit
             Debug.LogWarning("OnTriggerEnter2D with game object without Entity component");
             return;
         }
-        if (otherCollider2D.gameObject.CompareTag("Enemy"))
+
+        if (!otherCollider2D.gameObject.CompareTag("Enemy")) return;
+        if (_currentShieldLayer > 0)
         {
-            //var collisionEntity = otherCollider2D.gameObject.GetComponent<Entity>();
-            //var thrustPower = collisionEntity.KnockbackPower.Value;
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
 
-            if (_currentShieldLayer > 0)
+            foreach (Collider2D collider in hitColliders)
             {
-                Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
-
-                foreach (Collider2D collider in hitColliders)
-                {
-                    collider.gameObject.GetComponent<Enemy>()._enemyMoveController.KnockBackFromTarget(KnockbackPower.Value);
-                }
+                collider.gameObject.GetComponent<Enemy>()._enemyMoveController.KnockBackFromTarget(KnockbackPower.Value);
             }
+            RemoveLayer();
+        }
+        else
+        {
+            var collisionEnemy = otherCollider2D.gameObject.GetComponent<Entity>();
+            var enemyDamage = collisionEnemy.Damage.Value;
+            TakeDamage(enemyDamage);
+            KnockBackFrom(collisionEnemy);
         }
     }
     private void OnDrawGizmosSelected()
@@ -152,69 +142,63 @@ public class Player : Unit
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _shieldRepulseRadius);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        var collisionGameObject = collision.gameObject;
-        switch (collisionGameObject.tag)
-        {
-            case "Enemy":
-                if (_currentShieldLayer == 0)
-                {
-                    var collisionEnemyEntity = collisionGameObject.GetComponent<Entity>();
-                    var enemyDamage = collisionEnemyEntity.Damage.Value;
-                    TakeDamage(enemyDamage);
-                    if (KnockbackTime == 0)
-                    {
-                        KnockBackFrom(collisionEnemyEntity);
-                    }
-                }
-                else
-                {
-                    RemoveLayer();
-                    Enemy[] enemies = FindObjectsOfType<Enemy>();
-                    //List<GameObject> enemiesGO = new List<GameObject>();
-                    List<Collider2D> enemiesColliders = new List<Collider2D>();
-                    foreach (var enemy in enemies)
-                    {
-                        //enemiesGO.Add(enemy.gameObject);
-                        enemiesColliders.Add(enemy.GetComponent<Collider2D>());
-                    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    var collisionGameObject = collision.gameObject;
+    //    switch (collisionGameObject.tag)
+    //    {
+    //        case "Enemy":
+    //            if (_currentShieldLayer == 0)
+    //            {
+    //                var collisionEnemyEntity = collisionGameObject.GetComponent<Entity>();
+    //                var enemyDamage = collisionEnemyEntity.Damage.Value;
+    //                TakeDamage(enemyDamage);
+    //                if (KnockbackTime == 0)
+    //                {
+    //                    KnockBackFrom(collisionEnemyEntity);
+    //                }
+    //            }
+    //            else
+    //            {
+    //                RemoveLayer();
+    //                Enemy[] enemies = FindObjectsOfType<Enemy>();
+    //                List<Collider2D> enemiesColliders = new List<Collider2D>();
+    //                foreach (var enemy in enemies)
+    //                {
+    //                    //enemiesGO.Add(enemy.gameObject);
+    //                    enemiesColliders.Add(enemy.GetComponent<Collider2D>());
+    //                }
 
-                    for (int i = 0; i < enemies.Length; i++)
-                    {
-                        var isTouching = enemiesColliders[i].IsTouching(_circleCollider);
-                        if (isTouching)
-                        {
-                            enemies[i]._enemyMoveController.KnockBackFromTarget(Settings.knockbackPower);
-                        }
-                    }
-                }
-                break;
-            case "Enclosure":
-            {
-                var collisionEnclosureEntity = collisionGameObject.GetComponent<Entity>();
-                if (_currentShieldLayer == 0) 
-                {
-                    var enclosureDamage = collisionEnclosureEntity.Damage.Value;
-                    TakeDamage(enclosureDamage);
-                }
-                KnockBackFrom(collisionEnclosureEntity);
-                break;
-            }
-        }
-    }
+    //                for (int i = 0; i < enemies.Length; i++)
+    //                {
+    //                    var isTouching = enemiesColliders[i].IsTouching(_circleCollider);
+    //                    if (isTouching)
+    //                    {
+    //                        enemies[i]._enemyMoveController.KnockBackFromTarget(Settings.knockbackPower);
+    //                    }
+    //                }
+    //            }
+    //            break;
+    //        case "Enclosure":
+    //        {
+    //            var collisionEnclosureEntity = collisionGameObject.GetComponent<Entity>();
+    //            if (_currentShieldLayer == 0) 
+    //            {
+    //                var enclosureDamage = collisionEnclosureEntity.Damage.Value;
+    //                TakeDamage(enclosureDamage);
+    //            }
+    //            KnockBackFrom(collisionEnclosureEntity);
+    //            break;
+    //        }
+    //    }
+    //}
     protected void KnockBackFrom(Entity collisionEntity)
     {
-        KnockbackTime += 0.2f;
         _movementController.KnockBack(collisionEntity);
     }
     protected void BaseFixedUpdate()
     {
-        if (KnockbackTime == 0)
-        {
-            _movementController.FixedUpdateStep();
-        }
-        KnockbackTime -= Time.fixedDeltaTime;
+        _movementController.FixedUpdateStep();
     }
     protected void BaseAwake(PlayerStatsSettings settings)
     {

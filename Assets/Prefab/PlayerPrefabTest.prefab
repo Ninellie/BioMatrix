@@ -61,8 +61,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
   _currentShieldLayer: 3
-  _maxShieldLayers: 3
   _shieldSprite: {fileID: 0}
+  _alphaPerLayer: 0.2
+  _shieldColor: {r: 0, g: 1, b: 1, a: 1}
+  _shieldRepulseRadius: 250
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -207,7 +209,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6671026415413744665}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
