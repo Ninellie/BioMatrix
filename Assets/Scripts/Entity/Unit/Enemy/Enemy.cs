@@ -72,9 +72,10 @@ public class Enemy : Unit
             var projectileDamage = collisionEntity.Damage.Value;
 
             TakeDamage(projectileDamage);
-            ChangeColorOnDamageTaken();
+
             DropDamagePopup(MinimalDamageTaken, otherCollider2D.transform.position);
 
+            ChangeColorOnDamageTaken();
 
             _enemyMoveController.KnockBackFromTarget(thrustPower);
         }
@@ -183,12 +184,14 @@ public class Enemy : Unit
     {
         var rotation = new Quaternion(0, 0, 0, 0);
         Instantiate(_onDeathDrop, Rb2D.position, rotation);
+        Debug.LogWarning($"Bonus dropped at {Rb2D.position}");
     }
     private void DropDamagePopup(int damage, Vector2 positionVector2)
     {
         var droppedDamagePopup = Instantiate(_damagePopup);
         droppedDamagePopup.transform.position = positionVector2;
         droppedDamagePopup.GetComponent<DamagePopup>().Setup(damage);
+        Debug.LogWarning($"DMG popup dropped at {positionVector2}");
     }
     private void UpdateMaxLifeStat()
     {

@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MovementControllerBullet
 {
     private readonly Projectile _myUnit;
-    private Vector2 Velocity => Direction * Speed * SpeedScale;
+    //private Vector2 Velocity => Direction * Speed * SpeedScale;
     private float Speed => _myUnit.Speed.Value;
-
+    private Vector2 MyPosition => _myUnit.transform.position;
     private float SpeedScale
     {
         get => _speedScale;
@@ -35,11 +36,23 @@ public class MovementControllerBullet
     }
     public void FixedUpdateStep()
     {
-        _myUnit.Rb2D.velocity = Velocity;
+        Vector2 nextPosition = MyPosition;
+
+        Vector2 movementStep = Direction * Speed * SpeedScale * Time.fixedDeltaTime;
+
+        nextPosition += movementStep;
+
+        _myUnit.Rb2D.MovePosition(nextPosition);
+
         SpeedScale -= SpeedDecreaseStep;
     }
     public void SetDirection(Vector2 direction)
     {
         Direction = direction;
+    }
+
+    public bool IsStopped()
+    {
+        return SpeedScale <= 0f;
     }
 }

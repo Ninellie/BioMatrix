@@ -8,7 +8,7 @@ public class AboveViewEnemyMoveController : EnemyMoveController
     public float knockbackTime = 0;
     private Vector2 ViewDirection => MyUnit.transform.up;
     //ACCELERATION
-    private Vector2 AccelerationStep => ViewDirection * AccelerationSpeed * Time.fixedDeltaTime;
+    //private Vector2 AccelerationStep => ViewDirection * AccelerationSpeed * Time.fixedDeltaTime;
     //ROTATION
     private float RotationSpeed => MyUnit.RotationSpeed.Value;
     private float RotationStep => RotationSpeed * Time.fixedDeltaTime;

@@ -17,25 +17,16 @@ public class Projectile : Unit
     private void FixedUpdate()
     {
         _movementController.FixedUpdateStep();
-        //var mod = new StatModifier(OperationType.Addition, _speedDecrease * -1);
-        //Speed.AddModifier(mod);
-        if (Rb2D.velocity != Vector2.zero) return;
+        if (!_movementController.IsStopped()) return;
         Death();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        var collisionGameObject = collision.gameObject;
-        switch (collisionGameObject.tag)
-        {
-            case "Enemy":
-                if (collisionGameObject.GetComponent<Entity>().Alive)
-                {
-                    TakeDamage(MinimalDamageTaken);
-                }
-                break;
-        }
-    }
 
+    private void OnTriggerEnter2D(Collider2D otherCollider2D)
+    {
+        if (!otherCollider2D.gameObject.CompareTag("Enemy")) return;
+        if(!otherCollider2D.gameObject.GetComponent<Enemy>().Alive) return;
+        TakeDamage(MinimalDamageTaken);
+    }
     protected override void BaseAwake(UnitStatsSettings settings)
     {
         base.BaseAwake(settings);

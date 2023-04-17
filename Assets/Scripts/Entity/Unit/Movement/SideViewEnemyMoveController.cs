@@ -3,10 +3,9 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class SideViewEnemyMoveController : EnemyMoveController
 {
-    public float knockbackPower;
     public float knockbackSpeed = 700;
     public float knockbackTime = 0;
-    private Vector2 AccelerationStep => Direction * AccelerationSpeed * Time.fixedDeltaTime;
+    //private Vector2 AccelerationStep => Direction * AccelerationSpeed * Time.fixedDeltaTime;
     public SideViewEnemyMoveController(Enemy myUnit, GameObject target) : base(myUnit, target)
     {
     }
@@ -33,7 +32,6 @@ public class SideViewEnemyMoveController : EnemyMoveController
     }
     public override void KnockBackFromTarget(float thrustPower)
     {
-        knockbackPower = thrustPower;
         knockbackTime = thrustPower / knockbackSpeed;
         Stag();
         Debug.Log("Knockback");

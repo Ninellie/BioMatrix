@@ -6,7 +6,6 @@ public class MovementControllerPlayer
 {
     private readonly Player _myUnit;
     private readonly float _knockbackSpeed = 1500;
-    private float _knockbackPower = 0;
     private float _knockbackTime = 0;
     private Vector2 _knockbackPosition = Vector2.zero;
     private Vector2 MyPosition => _myUnit.transform.position;
@@ -88,7 +87,6 @@ public class MovementControllerPlayer
     {
         float thrustPower = collisionEntity.KnockbackPower.Value;
         _knockbackPosition = collisionEntity.transform.position;
-        _knockbackPower = thrustPower;
         _knockbackTime = thrustPower / _knockbackSpeed;
         Debug.Log("Knockback");
     }
