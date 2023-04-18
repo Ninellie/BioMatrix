@@ -14,6 +14,7 @@ public class Enemy : Unit
     private readonly Rarity _rarity = new Rarity();
     private SpriteOutline _spriteOutline;
     private GameObject _lastCollidedGameObject;
+    private CircleCollider2D _circleCollider;
     private Color _spriteColor;
     private float _deathTimer;
     private const float ReturnToDefaultColorSpeed = 5f;
@@ -42,8 +43,6 @@ public class Enemy : Unit
     private void Awake() => BaseAwake(Settings);
     private void Update() => BaseUpdate();
     private void FixedUpdate() => BaseFixedUpdate();
-
-
     private void OnTriggerEnter2D(Collider2D otherCollider2D)
     {
         _lastCollidedGameObject = otherCollider2D.gameObject;
@@ -74,7 +73,9 @@ public class Enemy : Unit
 
             TakeDamage(projectileDamage);
 
-            DropDamagePopup(MinimalDamageTaken, otherCollider2D.transform.position - transform.position);
+            var position = GetClosestPointOnCircle(otherCollider2D as CircleCollider2D);
+
+            DropDamagePopup(MinimalDamageTaken, position);
 
             ChangeColorOnDamageTaken();
 
@@ -102,6 +103,7 @@ public class Enemy : Unit
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteOutline = GetComponent<SpriteOutline>();
+        _circleCollider = GetComponent<CircleCollider2D>();
         _spriteColor = spriteRenderer.color;
         _rarity.Value = RarityEnum.Normal;
         Level = MinInitialLevel;
@@ -207,5 +209,15 @@ public class Enemy : Unit
         var angle = (Mathf.Atan2(direction.y, direction.x) + Mathf.PI / 2) * Mathf.Rad2Deg;
         Rb2D.rotation = angle;
         Rb2D.SetRotation(angle);
+    }
+    public Vector2 GetClosestPointOnCircle(CircleCollider2D otherCollider)
+    {
+        Vector2 center = _circleCollider.transform.position;
+        Vector2 otherCenter = otherCollider.transform.position;
+        Vector2 direction = otherCenter - center;
+        float distance = direction.magnitude;
+        float radius = _circleCollider.radius;
+
+        return center + direction.normalized * radius;
     }
 }
