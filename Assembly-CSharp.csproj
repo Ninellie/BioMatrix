@@ -119,6 +119,7 @@
     <Compile Include="Assets\Scripts\TileManager\RuleTileGenerator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Movement\Math2D.cs" />
+    <Compile Include="Assets\Scripts\MovementTests\TileBoxCreator.cs" />
     <Compile Include="Assets\Scripts\GameSession\Spawner\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\UIScripts\DamagePopup.cs" />
     <Compile Include="Assets\Scripts\Stat\OperationType.cs" />
