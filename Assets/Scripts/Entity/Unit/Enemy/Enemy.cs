@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -44,8 +45,11 @@ public class Enemy : Unit
     private void Awake() => BaseAwake(Settings);
     private void Update() => BaseUpdate();
     private void FixedUpdate() => BaseFixedUpdate();
-    private void OnTriggerEnter2D(Collider2D otherCollider2D)
+
+    private void OnCollisionEnter2D(Collision2D collision2D)
     {
+        Collider2D otherCollider2D = collision2D.collider;
+
         _lastCollidedGameObject = otherCollider2D.gameObject;
         if (otherCollider2D.gameObject.CompareTag("Enemy"))
         {
@@ -80,6 +84,42 @@ public class Enemy : Unit
 
         _enemyMoveController.KnockBackFromTarget(thrustPower);
     }
+    //private void OnTriggerEnter2D(Collider2D otherCollider2D)
+    //{
+    //    _lastCollidedGameObject = otherCollider2D.gameObject;
+    //    if (otherCollider2D.gameObject.CompareTag("Enemy"))
+    //    {
+    //        return;
+    //    }
+
+    //    if (!otherCollider2D.gameObject.TryGetComponent<Entity>(out Entity entity))
+    //    {
+    //        Debug.LogWarning("OnTriggerEnter2D with game object without Entity component");
+    //        return;
+    //    }
+    //    var collisionEntity = otherCollider2D.gameObject.GetComponent<Entity>();
+    //    var thrustPower = collisionEntity.KnockbackPower.Value;
+
+    //    if (otherCollider2D.gameObject.CompareTag("Player"))
+    //    {
+    //        if (_dieOnPlayerCollision)
+    //        {
+    //            Death();
+    //        }
+    //    }
+    //    if (!otherCollider2D.gameObject.CompareTag("Projectile")) return;
+    //    var projectileDamage = collisionEntity.Damage.Value;
+
+    //    TakeDamage(projectileDamage);
+
+    //    var position = GetClosestPointOnCircle(otherCollider2D as CircleCollider2D);
+
+    //    DropDamagePopup(MinimalDamageTaken, position);
+
+    //    ChangeColorOnDamageTaken();
+
+    //    _enemyMoveController.KnockBackFromTarget(thrustPower);
+    //}
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

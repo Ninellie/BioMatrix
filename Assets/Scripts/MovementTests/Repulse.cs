@@ -11,24 +11,45 @@ public class Repulse : MonoBehaviour
     {
         _circleCollider = GetComponent<CircleCollider2D>();
     }
-    void OnTriggerStay2D(Collider2D other)
+
+    void OnCollisionStay2D(Collision2D collision)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            var circleColliderOther = other.gameObject.GetComponent<CircleCollider2D>();
-            
-            Vector2 pushDirection = (transform.position - other.transform.position).normalized;
+        Collider2D otherCollider2D = collision.collider;
+        if (otherCollider2D.gameObject.layer != LayerMask.NameToLayer("Enemy")) return;
+        var circleColliderOther = otherCollider2D.gameObject.GetComponent<CircleCollider2D>();
 
-            float distance = Vector2.Distance(transform.position, other.transform.position);
-            float radiiSum = _circleCollider.radius + circleColliderOther.radius;
-            float multipliedRadiiSum = radiiSum * _penetrationDistanceMultiplier;
-            float penetrationDepth = multipliedRadiiSum - distance;
+        Vector2 pushDirection = (transform.position - otherCollider2D.transform.position).normalized;
 
-            penetrationDepth = Mathf.Clamp(penetrationDepth, 0f, Mathf.Infinity);
+        float distance = Vector2.Distance(transform.position, otherCollider2D.transform.position);
+        float radiiSum = _circleCollider.radius + circleColliderOther.radius;
+        float multipliedRadiiSum = radiiSum * _penetrationDistanceMultiplier;
+        float penetrationDepth = multipliedRadiiSum - distance;
 
-            float repulseForce = _baseRepulseForce * penetrationDepth;
+        penetrationDepth = Mathf.Clamp(penetrationDepth, 0f, Mathf.Infinity);
 
-            transform.Translate(pushDirection * repulseForce * Time.deltaTime);
-        }
+        float repulseForce = _baseRepulseForce * penetrationDepth;
+
+        transform.Translate(pushDirection * repulseForce * Time.deltaTime);
     }
+
+    //void OnTriggerStay2D(Collider2D otherCollider2D)
+    //{
+    //    if (otherCollider2D.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+    //    {
+    //        var circleColliderOther = otherCollider2D.gameObject.GetComponent<CircleCollider2D>();
+            
+    //        Vector2 pushDirection = (transform.position - otherCollider2D.transform.position).normalized;
+
+    //        float distance = Vector2.Distance(transform.position, otherCollider2D.transform.position);
+    //        float radiiSum = _circleCollider.radius + circleColliderOther.radius;
+    //        float multipliedRadiiSum = radiiSum * _penetrationDistanceMultiplier;
+    //        float penetrationDepth = multipliedRadiiSum - distance;
+
+    //        penetrationDepth = Mathf.Clamp(penetrationDepth, 0f, Mathf.Infinity);
+
+    //        float repulseForce = _baseRepulseForce * penetrationDepth;
+
+    //        transform.Translate(pushDirection * repulseForce * Time.deltaTime);
+    //    }
+    //}
 }

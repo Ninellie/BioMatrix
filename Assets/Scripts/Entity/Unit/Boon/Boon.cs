@@ -13,12 +13,11 @@ public class Boon : Unit
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();
-
     private void OnTriggerStay2D(Collider2D otherCollider2D)
     {
         if (!otherCollider2D.gameObject.CompareTag("Player")) return;
         Vector2 nextPosition = transform.position;
-        Vector2 direction = (transform.position - otherCollider2D.transform.position).normalized;
+        Vector2 direction = (otherCollider2D.transform.position - transform.position).normalized;
         Vector2 movementVelocity = direction * speed;
         nextPosition += movementVelocity * Time.fixedDeltaTime;
         

@@ -20,13 +20,19 @@ public class Projectile : Unit
         if (!_movementController.IsStopped()) return;
         Death();
     }
-
-    private void OnTriggerEnter2D(Collider2D otherCollider2D)
+    private void OnCollisionEnter2D(Collision2D collision2D)
     {
+        Collider2D otherCollider2D = collision2D.collider;
         if (!otherCollider2D.gameObject.CompareTag("Enemy")) return;
-        if(!otherCollider2D.gameObject.GetComponent<Enemy>().Alive) return;
+        if (!otherCollider2D.gameObject.GetComponent<Enemy>().Alive) return;
         TakeDamage(MinimalDamageTaken);
     }
+    //private void OnTriggerEnter2D(Collider2D otherCollider2D)
+    //{
+    //    if (!otherCollider2D.gameObject.CompareTag("Enemy")) return;
+    //    if(!otherCollider2D.gameObject.GetComponent<Enemy>().Alive) return;
+    //    TakeDamage(MinimalDamageTaken);
+    //}
     protected override void BaseAwake(UnitStatsSettings settings)
     {
         base.BaseAwake(settings);

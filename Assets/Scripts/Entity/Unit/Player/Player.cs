@@ -109,8 +109,9 @@ public class Player : Unit
     private void Update() => BaseUpdate();
     private void FixedUpdate() => BaseFixedUpdate();
 
-    private void OnTriggerEnter2D(Collider2D otherCollider2D)
+    private void OnCollisionEnter2D(Collision2D collision2D)
     {
+        Collider2D otherCollider2D = collision2D.collider;
         if (!otherCollider2D.gameObject.TryGetComponent<Entity>(out Entity entity))
         {
             Debug.LogWarning("OnTriggerEnter2D with game object without Entity component");
@@ -140,6 +141,38 @@ public class Player : Unit
             KnockBackFrom(collisionEnemy);
         }
     }
+
+    //private void OnTriggerEnter2D(Collider2D otherCollider2D)
+    //{
+    //    if (!otherCollider2D.gameObject.TryGetComponent<Entity>(out Entity entity))
+    //    {
+    //        Debug.LogWarning("OnTriggerEnter2D with game object without Entity component");
+    //        return;
+    //    }
+    //    if (!otherCollider2D.gameObject.CompareTag("Enemy") && !otherCollider2D.gameObject.CompareTag("Enclosure")) return;
+    //    if (_currentShieldLayer > 0)
+    //    {
+    //        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
+
+    //        foreach (Collider2D collider in hitColliders)
+    //        {
+    //            collider.gameObject.GetComponent<Enemy>()._enemyMoveController.KnockBackFromTarget(KnockbackPower.Value);
+    //        }
+    //        RemoveLayer();
+    //        if (!otherCollider2D.gameObject.CompareTag("Enclosure")) return;
+    //        var collisionEnemy = otherCollider2D.gameObject.GetComponent<Entity>();
+    //        var enemyDamage = collisionEnemy.Damage.Value;
+    //        TakeDamage(enemyDamage);
+    //        KnockBackFrom(collisionEnemy);
+    //    }
+    //    else
+    //    {
+    //        var collisionEnemy = otherCollider2D.gameObject.GetComponent<Entity>();
+    //        var enemyDamage = collisionEnemy.Damage.Value;
+    //        TakeDamage(enemyDamage);
+    //        KnockBackFrom(collisionEnemy);
+    //    }
+    //}
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
