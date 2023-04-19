@@ -5,6 +5,7 @@ using Debug = UnityEngine.Debug;
 public class Enemy : Unit
 {
     [SerializeField] private GameObject _onDeathDrop;
+    private int _dropCount = 1;
     [SerializeField] private GameObject _damagePopup;
     [SerializeField] private EnemyType _enemyType = EnemyType.SideView;
     [SerializeField] private bool _dieOnPlayerCollision;
@@ -187,6 +188,7 @@ public class Enemy : Unit
     }
     private void DropBonus()
     {
+        _dropCount--;
         var rotation = new Quaternion(0, 0, 0, 0);
         Instantiate(_onDeathDrop, Rb2D.position, rotation);
         Debug.LogWarning($"Bonus dropped at {Rb2D.position}");
