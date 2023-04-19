@@ -5105,7 +5105,7 @@ MonoBehaviour:
   size: 1
   maximumLife: 1000
   lifeRegenerationInSecond: 0
-  knockbackPower: 1100
+  knockbackPower: 150
   damage: 0
   constrictionRate: 0.00035
 --- !u!1 &1075986016
