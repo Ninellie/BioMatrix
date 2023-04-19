@@ -1,11 +1,7 @@
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class SideViewEnemyMoveController : EnemyMoveController
 {
-    public float knockbackSpeed = 700;
-    public float knockbackTime = 0;
-    //private Vector2 AccelerationStep => Direction * AccelerationSpeed * Time.fixedDeltaTime;
     public SideViewEnemyMoveController(Enemy myUnit, GameObject target) : base(myUnit, target)
     {
     }
@@ -14,30 +10,29 @@ public class SideViewEnemyMoveController : EnemyMoveController
         Vector2 nextPosition = MyPosition;
         if (knockbackTime > 0)
         {
-            Vector2 difference = (MyPosition - TargetPosition).normalized;
-            Vector2 addedPosition = difference * knockbackSpeed * Time.fixedDeltaTime;
-            nextPosition += addedPosition;
+            nextPosition += KnockbackVelocity * Time.fixedDeltaTime;
             knockbackTime -= Time.fixedDeltaTime;
+            if (knockbackTime <= 0)
+            {
+                KnockbackDirection = Vector2.zero;
+            }
         }
-
-        Vector2 movement = Direction * Speed * Time.fixedDeltaTime;
-
-        nextPosition += movement;
+        nextPosition += MovementVelocity * Time.fixedDeltaTime;
         if (SpeedScale < 1)
         {
             SpeedScale += SpeedScaleStep;
         }
-
         MyUnit.Rb2D.MovePosition(nextPosition);
-    }
-    public override void KnockBackFromTarget(float thrustPower)
-    {
-        knockbackTime = thrustPower / knockbackSpeed;
-        Stag();
-        Debug.Log("Knockback");
     }
     public override void Stag()
     {
         SpeedScale = 0;
+    }
+    public override void KnockBackFromTarget(float thrustPower)
+    {
+        knockbackTime = thrustPower / knockbackSpeed;
+        KnockbackDirection = (MyPosition - TargetPosition).normalized;
+        Stag();
+        Debug.Log("Knockback");
     }
 }

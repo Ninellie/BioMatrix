@@ -2,23 +2,19 @@ using UnityEngine;
 
 public abstract class EnemyMoveController
 {
+    protected float knockbackSpeed = 700;
+    protected float knockbackTime = 0;
+    public Vector2 KnockbackDirection
+    {
+        get => _knockbackDirection;
+        set => _knockbackDirection = value.normalized;
+    }
+    private Vector2 _knockbackDirection = Vector2.zero;
     protected GameObject Target { get;}
     protected Enemy MyUnit { get; }
-
-    protected Vector2 Velocity
-    {
-        get => _velocity;
-        set
-        {
-            if (value.magnitude > Speed)
-            {
-                _velocity = value.normalized * Speed;
-                return;
-            }
-            _velocity = value;
-        }
-    }
-    private Vector2 _velocity;
+    public Vector2 Velocity => MovementVelocity + KnockbackVelocity;
+    protected Vector2 MovementVelocity => MovementDirection * Speed;
+    protected Vector2 KnockbackVelocity => KnockbackDirection * knockbackSpeed;
     protected float Speed => MyUnit.Speed.Value * SpeedScale;
     protected float SpeedScale
     {
@@ -37,11 +33,9 @@ public abstract class EnemyMoveController
     private const float SpeedScaleRestoreSpeedPerSecond = 1f;
     protected float SpeedScaleStep => SpeedScaleRestoreSpeedPerSecond * Time.fixedDeltaTime;
     //DIRECTION
-    protected Vector2 Direction => (TargetPosition - MyPosition).normalized;
+    protected Vector2 MovementDirection => (TargetPosition - MyPosition).normalized;
     protected Vector2 TargetPosition => Target.transform.position;
     protected Vector2 MyPosition => MyUnit.transform.position;
-    //ACCELERATION
-    protected float AccelerationSpeed => MyUnit.AccelerationSpeed.Value;
     protected EnemyMoveController(Enemy myUnit, GameObject target)
     {
         this.MyUnit = myUnit;
@@ -52,6 +46,10 @@ public abstract class EnemyMoveController
     public abstract void KnockBackFromTarget(float thrustPower);
     public Vector2 GetMovementDirection()
     {
-        return Direction;
+        return MovementDirection;
+    }
+    public Vector2 GetVelocity()
+    {
+        return Velocity;
     }
 }

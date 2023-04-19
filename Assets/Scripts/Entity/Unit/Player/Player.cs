@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -149,7 +148,7 @@ public class Player : Unit
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(Rb2D.transform.position, _movementController.Velocity + (Vector2)Rb2D.transform.position);
+        Gizmos.DrawLine(Rb2D.transform.position, _movementController.GetVelocity() + (Vector2)Rb2D.transform.position);
     }
     protected void KnockBackFrom(Entity collisionEntity)
     {

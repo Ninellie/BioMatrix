@@ -5,19 +5,17 @@ public class MovementControllerPlayer
     private readonly Player _myUnit;
     private readonly float _knockbackSpeed = 1500;
     private float _knockbackTime = 0;
-    private Vector2 _knockbackPosition = Vector2.zero;
     public Vector2 KnockbackDirection
     {
         get => _knockbackDirection;
         set => _knockbackDirection = value.normalized;
     }
-    private Vector2 _knockbackDirection;
+    private Vector2 _knockbackDirection = Vector2.zero;
     private Vector2 MyPosition => _myUnit.transform.position;
     private float Speed =>
         _myUnit.isFireButtonPressed && !_myUnit.CurrentFirearm.Magazine.IsEmpty
             ? _myUnit.Speed.Value * SpeedScale * ShootingSpeedDecrease
             : _myUnit.Speed.Value * SpeedScale;
-
     private const float ShootingSpeedDecrease = 0.3f;
     private float SpeedScale
     {
@@ -47,9 +45,9 @@ public class MovementControllerPlayer
         set => _movementDirection = value.normalized;
     }
     private Vector2 _movementDirection;
-
-    private Vector2 TrueDirection => (MovementDirection + KnockbackDirection).normalized;
-    public Vector2 Velocity => TrueDirection * Speed;
+    private Vector2 Velocity => MovementVelocity + KnockbackVelocity;
+    private Vector2 MovementVelocity => MovementDirection * Speed;
+    private Vector2 KnockbackVelocity => KnockbackDirection * _knockbackSpeed;
     public MovementControllerPlayer(Player myUnit)
     {
         _myUnit = myUnit;
@@ -59,20 +57,14 @@ public class MovementControllerPlayer
         Vector2 nextPosition = MyPosition;
         if (_knockbackTime > 0)
         {
-            Vector2 difference = (MyPosition - _knockbackPosition).normalized;
-            Vector2 addedPosition = difference * _knockbackSpeed * Time.fixedDeltaTime;
-            nextPosition += addedPosition;
+            nextPosition += KnockbackVelocity * Time.fixedDeltaTime;
             _knockbackTime -= Time.fixedDeltaTime;
             if (_knockbackTime <= 0)
             {
                 KnockbackDirection = Vector2.zero;
             }
         }
-
-        Vector2 movementStep = MovementDirection * Speed * Time.fixedDeltaTime;
-
-        nextPosition += movementStep;
-
+        nextPosition += MovementVelocity * Time.fixedDeltaTime;
         if (SpeedScale < 1)
         {
             SpeedScale += SpeedScaleStep;
@@ -90,9 +82,12 @@ public class MovementControllerPlayer
     public void KnockBack(Entity collisionEntity)
     {
         float thrustPower = collisionEntity.KnockbackPower.Value;
-        _knockbackPosition = collisionEntity.transform.position;
-        KnockbackDirection = MyPosition - _knockbackPosition;
+        KnockbackDirection = (MyPosition - (Vector2)collisionEntity.transform.position).normalized;
         _knockbackTime = thrustPower / _knockbackSpeed;
         Debug.Log("Knockback");
+    }
+    public Vector2 GetVelocity()
+    {
+        return Velocity;
     }
 }

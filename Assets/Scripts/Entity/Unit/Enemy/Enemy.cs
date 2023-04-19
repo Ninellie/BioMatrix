@@ -65,22 +65,24 @@ public class Enemy : Unit
             {
                 Death();
             }
-            //_enemyMoveController.KnockBackFromTarget(thrustPower);
         }
-        if (otherCollider2D.gameObject.CompareTag("Projectile"))
-        {
-            var projectileDamage = collisionEntity.Damage.Value;
+        if (!otherCollider2D.gameObject.CompareTag("Projectile")) return;
+        var projectileDamage = collisionEntity.Damage.Value;
 
-            TakeDamage(projectileDamage);
+        TakeDamage(projectileDamage);
 
-            var position = GetClosestPointOnCircle(otherCollider2D as CircleCollider2D);
+        var position = GetClosestPointOnCircle(otherCollider2D as CircleCollider2D);
 
-            DropDamagePopup(MinimalDamageTaken, position);
+        DropDamagePopup(MinimalDamageTaken, position);
 
-            ChangeColorOnDamageTaken();
+        ChangeColorOnDamageTaken();
 
-            _enemyMoveController.KnockBackFromTarget(thrustPower);
-        }
+        _enemyMoveController.KnockBackFromTarget(thrustPower);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(Rb2D.transform.position, _enemyMoveController.GetVelocity() + (Vector2)Rb2D.transform.position);
     }
     private void ChangeColorOnDamageTaken()
     {
