@@ -59,7 +59,7 @@ public class Player : Unit
     private int _experience;
     private CircleCollider2D _circleCollider;
     private CapsuleCollider2D _capsuleCollider;
-    private PointEffector2D _pointEffector;
+    //private PointEffector2D _pointEffector;
     private GameTimer _freezeTimer;
     private SpriteRenderer SpriteRenderer => GetComponent<SpriteRenderer>();
     private void Awake() => BaseAwake(Settings);
@@ -147,6 +147,10 @@ public class Player : Unit
     }
     private void OnDrawGizmos()
     {
+        if (_movementController is null)
+        {
+            return;
+        }
         Gizmos.color = Color.red;
         Gizmos.DrawLine(Rb2D.transform.position, _movementController.GetVelocity() + (Vector2)Rb2D.transform.position);
     }
@@ -166,7 +170,7 @@ public class Player : Unit
         _circleCollider = GetComponent<CircleCollider2D>();
         _capsuleCollider = GetComponent<CapsuleCollider2D>();
         //_capsuleCollider.enabled = false;
-        _pointEffector = GetComponent<PointEffector2D>();
+        //_pointEffector = GetComponent<PointEffector2D>();
         MagnetismRadius = new Stat(settings.magnetismRadius);
         _circleCollider.radius = MagnetismRadius.Value;
         if (MagnetismRadius.Value < 0)
@@ -174,7 +178,7 @@ public class Player : Unit
             _circleCollider.radius = 0;
         }
         MagnetismPower = new Stat(settings.magnetismPower);
-        _pointEffector.forceMagnitude = MagnetismPower.Value * -1;
+        //_pointEffector.forceMagnitude = MagnetismPower.Value * -1;
 
         _shieldSprite = _shield.GetComponent<SpriteRenderer>();
         base.BaseAwake(settings);
@@ -201,7 +205,7 @@ public class Player : Unit
     }
     private void ChangeCurrentMagnetismPower()
     {
-        _pointEffector.forceMagnitude = MagnetismPower.Value * -1;
+        //_pointEffector.forceMagnitude = MagnetismPower.Value * -1;
     }
     private void ChangeCurrentMagnetismRadius()
     {
