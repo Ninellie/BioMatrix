@@ -120,7 +120,6 @@ public class Player : Unit
         if (!otherCollider2D.gameObject.CompareTag("Enemy") && !otherCollider2D.gameObject.CompareTag("Enclosure")) return;
         if (_currentShieldLayer > 0)
         {
-            
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
 
             foreach (Collider2D collider in hitColliders)
@@ -147,56 +146,11 @@ public class Player : Unit
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _shieldRepulseRadius);
     }
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    var collisionGameObject = collision.gameObject;
-    //    switch (collisionGameObject.tag)
-    //    {
-    //        case "Enemy":
-    //            if (_currentShieldLayer == 0)
-    //            {
-    //                var collisionEnemyEntity = collisionGameObject.GetComponent<Entity>();
-    //                var enemyDamage = collisionEnemyEntity.Damage.Value;
-    //                TakeDamage(enemyDamage);
-    //                if (KnockbackTime == 0)
-    //                {
-    //                    KnockBackFrom(collisionEnemyEntity);
-    //                }
-    //            }
-    //            else
-    //            {
-    //                RemoveLayer();
-    //                Enemy[] enemies = FindObjectsOfType<Enemy>();
-    //                List<Collider2D> enemiesColliders = new List<Collider2D>();
-    //                foreach (var enemy in enemies)
-    //                {
-    //                    //enemiesGO.Add(enemy.gameObject);
-    //                    enemiesColliders.Add(enemy.GetComponent<Collider2D>());
-    //                }
-
-    //                for (int i = 0; i < enemies.Length; i++)
-    //                {
-    //                    var isTouching = enemiesColliders[i].IsTouching(_circleCollider);
-    //                    if (isTouching)
-    //                    {
-    //                        enemies[i]._enemyMoveController.KnockBackFromTarget(Settings.knockbackPower);
-    //                    }
-    //                }
-    //            }
-    //            break;
-    //        case "Enclosure":
-    //        {
-    //            var collisionEnclosureEntity = collisionGameObject.GetComponent<Entity>();
-    //            if (_currentShieldLayer == 0) 
-    //            {
-    //                var enclosureDamage = collisionEnclosureEntity.Damage.Value;
-    //                TakeDamage(enclosureDamage);
-    //            }
-    //            KnockBackFrom(collisionEnclosureEntity);
-    //            break;
-    //        }
-    //    }
-    //}
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(Rb2D.transform.position, _movementController.Velocity + (Vector2)Rb2D.transform.position);
+    }
     protected void KnockBackFrom(Entity collisionEntity)
     {
         _movementController.KnockBack(collisionEntity);

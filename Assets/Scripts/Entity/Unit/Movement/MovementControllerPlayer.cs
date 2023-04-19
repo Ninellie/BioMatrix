@@ -1,6 +1,4 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class MovementControllerPlayer
 {
@@ -8,6 +6,12 @@ public class MovementControllerPlayer
     private readonly float _knockbackSpeed = 1500;
     private float _knockbackTime = 0;
     private Vector2 _knockbackPosition = Vector2.zero;
+    public Vector2 KnockbackDirection
+    {
+        get => _knockbackDirection;
+        set => _knockbackDirection = value.normalized;
+    }
+    private Vector2 _knockbackDirection;
     private Vector2 MyPosition => _myUnit.transform.position;
     private float Speed =>
         _myUnit.isFireButtonPressed && !_myUnit.CurrentFirearm.Magazine.IsEmpty
@@ -37,13 +41,15 @@ public class MovementControllerPlayer
     private float _speedScale = 1.0f;
     private const float SpeedScaleRestoreSpeedPerSecond = 1f;
     private float SpeedScaleStep => SpeedScaleRestoreSpeedPerSecond * Time.fixedDeltaTime;
-    private Vector2 Direction
+    private Vector2 MovementDirection
     {
-        get => _direction;
-        set => _direction = value.normalized;
+        get => _movementDirection;
+        set => _movementDirection = value.normalized;
     }
-    private Vector2 _direction;
-    //private Vector2 Velocity => Direction * Speed;
+    private Vector2 _movementDirection;
+
+    private Vector2 TrueDirection => (MovementDirection + KnockbackDirection).normalized;
+    public Vector2 Velocity => TrueDirection * Speed;
     public MovementControllerPlayer(Player myUnit)
     {
         _myUnit = myUnit;
@@ -57,9 +63,13 @@ public class MovementControllerPlayer
             Vector2 addedPosition = difference * _knockbackSpeed * Time.fixedDeltaTime;
             nextPosition += addedPosition;
             _knockbackTime -= Time.fixedDeltaTime;
+            if (_knockbackTime <= 0)
+            {
+                KnockbackDirection = Vector2.zero;
+            }
         }
 
-        Vector2 movementStep = Direction * Speed * Time.fixedDeltaTime;
+        Vector2 movementStep = MovementDirection * Speed * Time.fixedDeltaTime;
 
         nextPosition += movementStep;
 
@@ -67,17 +77,11 @@ public class MovementControllerPlayer
         {
             SpeedScale += SpeedScaleStep;
         }
-
         _myUnit.Rb2D.MovePosition(nextPosition);
     }
-    //public void FixedUpdateStep()
-    //{
-    //    if (SpeedScale < 1f) _speedScale += SpeedScaleStep;
-    //    _myUnit.Rb2D.velocity = Velocity;
-    //}
     public void SetDirection(Vector2 direction)
     {
-        Direction = direction;
+        MovementDirection = direction;
     }
     public void Stag()
     {
@@ -87,16 +91,8 @@ public class MovementControllerPlayer
     {
         float thrustPower = collisionEntity.KnockbackPower.Value;
         _knockbackPosition = collisionEntity.transform.position;
+        KnockbackDirection = MyPosition - _knockbackPosition;
         _knockbackTime = thrustPower / _knockbackSpeed;
         Debug.Log("Knockback");
     }
-    //public void KnockBack(Entity collisionEntity)
-    //{
-    //    if (SpeedScale < 1f) { return; }
-    //    //Stag();
-    //    float thrustPower = collisionEntity.KnockbackPower.Value;
-    //    Vector2 difference = (Vector2)_myUnit.transform.position - (Vector2)collisionEntity.transform.position;
-    //    Vector2 knockbackVelocity = difference.normalized * thrustPower * _myUnit.Rb2D.mass;
-    //    _myUnit.Rb2D.AddForce(knockbackVelocity, ForceMode2D.Impulse);
-    //}
 }
