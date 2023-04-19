@@ -10243,12 +10243,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1365173418, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: enemyPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1365173418, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: enemyPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 8954189743293124748, guid: fe0254fefd395d74da16cefc9cd96dd3, type: 3}
+    - target: {fileID: 1365173418, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
+      propertyPath: enemyPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 8954189743293124748, guid: 9719345d2ddcc4a4ea8ab441315bf454, type: 3}
     - target: {fileID: 381442720280931422, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: m_Name
       value: Camera
