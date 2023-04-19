@@ -61,7 +61,8 @@ public class Entity : MonoBehaviour
         Debug.Log($"{gameObject.name} Entity Awake");
 
         _mCamera = FindObjectOfType<Camera>();
-        spriteRenderer = this.GetComponent<SpriteRenderer>();
+        TryGetComponent<SpriteRenderer>(out SpriteRenderer sR);
+        spriteRenderer = sR;
 
         Size = new Stat(settings.size);
         MaximumLifePoints = new Stat(settings.maximumLife);
@@ -85,6 +86,7 @@ public class Entity : MonoBehaviour
     protected virtual void BaseUpdate()
     {
         if (Time.timeScale == 0) return;
+        if (spriteRenderer is null) return;
         IsOnScreen = CheckVisibilityOnCamera();
     }
     protected virtual void Regeneration()

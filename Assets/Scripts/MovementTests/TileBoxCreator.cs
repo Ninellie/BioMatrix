@@ -13,10 +13,8 @@ public class TileBoxCreator : MonoBehaviour
     {
         _grid = GetComponent<Grid>();
         _tilemap = GetComponentInChildren<Tilemap>();
-
-        Invoke(nameof(CreateBox), 1f);
     }
-    private void CreateBox()
+    public void CreateBox()
     {
         Camera mainCamera = Camera.main;
         Vector3 cameraPos = mainCamera.transform.position;
