@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6042837996286799121}
   - component: {fileID: 8165684587596004793}
   - component: {fileID: 2960018115445600972}
-  - component: {fileID: 6336525767787151516}
   - component: {fileID: 3572984765799172596}
   - component: {fileID: 5218541398406255388}
   - component: {fileID: -2167475189181900128}
@@ -77,21 +76,6 @@ MonoBehaviour:
   accelerationSpeed: 0
   rotationSpeed: 2
   spawnWeight: 100
---- !u!114 &6336525767787151516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8954189743293124748}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0390a211e5d5e0b4bb535708aa195495, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseRepulseForce: 0.5
-  _penetrationDistanceMultiplier: 0.7
-  _layerName: Enemy
 --- !u!212 &3572984765799172596
 SpriteRenderer:
   m_ObjectHideFlags: 0

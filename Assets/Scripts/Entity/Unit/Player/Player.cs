@@ -68,6 +68,7 @@ public class Player : Unit
     {
         _freezeTimer = new GameTimer(Freeze, 0.2f);
         UpdateShieldAlpha();
+        _capsuleCollider.enabled = _currentShieldLayer < 0;
     }
 
     private void AddLayer()
@@ -129,9 +130,10 @@ public class Player : Unit
             RemoveLayer();
 
             if (!otherCollider2D.gameObject.CompareTag("Enclosure")) return;
-            var collisionEnemy = otherCollider2D.gameObject.GetComponent<Entity>();
-            Vector2 collisionPoint = GetCollisionPoint(collision2D);
-            KnockBackFrom(collisionEnemy, collisionPoint);
+            var collisionEnclosure = otherCollider2D.gameObject.GetComponent<Entity>();
+            //Vector2 collisionPoint = GetCollisionPoint(collision2D);
+            //KnockBackFrom(collisionEnemy, collisionPoint);
+            KnockBackToEnclosureCenter(collisionEnclosure);
         }
         else
         {
@@ -144,11 +146,11 @@ public class Player : Unit
             }
             if (otherCollider2D.gameObject.CompareTag("Enclosure"))
             {
-                var collisionEnemy = otherCollider2D.gameObject.GetComponent<Entity>();
-                var enemyDamage = collisionEnemy.Damage.Value;
-                TakeDamage(enemyDamage);
-                Vector2 collisionPoint = GetCollisionPoint(collision2D);
-                KnockBackFrom(collisionEnemy, collisionPoint);
+                var collisionEnclosure = otherCollider2D.gameObject.GetComponent<Entity>();
+                var enclosureDamage = collisionEnclosure.Damage.Value;
+                TakeDamage(enclosureDamage);
+                //Vector2 collisionPoint = GetCollisionPoint(collision2D);
+                KnockBackToEnclosureCenter(collisionEnclosure);
             }
 
         }
@@ -216,6 +218,24 @@ public class Player : Unit
     protected void KnockBackFrom(Entity collisionEntity, Vector2 position)
     {
         _movementController.KnockBackFromPosition(collisionEntity, position);
+    }
+    protected void KnockBackToEnclosureCenter(Entity collisionEntity)
+    {
+        Vector2 entityPosition = collisionEntity.transform.position;
+
+        Camera mainCamera = Camera.main;
+        Vector3 cameraPos = mainCamera.transform.position;
+        Vector3 cameraTopRight = new Vector3(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize, 0f) + cameraPos;
+        Vector3 cameraBottomLeft = new Vector3(-mainCamera.aspect * mainCamera.orthographicSize, -mainCamera.orthographicSize, 0f) + cameraPos;
+
+        float width = cameraTopRight.x - cameraBottomLeft.x;
+        float height = cameraTopRight.y - cameraBottomLeft.y;
+
+        Vector2 addedPos = new Vector2(width / 2, height / 2);
+
+        entityPosition += addedPos;
+
+        _movementController.KnockBackTo(collisionEntity, entityPosition);
     }
     protected void BaseFixedUpdate()
     {
