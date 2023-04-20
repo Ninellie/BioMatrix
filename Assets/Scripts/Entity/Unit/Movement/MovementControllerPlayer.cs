@@ -79,10 +79,17 @@ public class MovementControllerPlayer
     {
         _speedScale = 0;
     }
-    public void KnockBack(Entity collisionEntity)
+    public void KnockBackFromEntity(Entity collisionEntity)
     {
         float thrustPower = collisionEntity.KnockbackPower.Value;
         KnockbackDirection = (MyPosition - (Vector2)collisionEntity.transform.position).normalized;
+        _knockbackTime = thrustPower / _knockbackSpeed;
+        Debug.Log("Knockback");
+    }
+    public void KnockBackFromPosition(Entity collisionEntity, Vector2 collisionPosition)
+    {
+        float thrustPower = collisionEntity.KnockbackPower.Value;
+        KnockbackDirection = (MyPosition - collisionPosition).normalized;
         _knockbackTime = thrustPower / _knockbackSpeed;
         Debug.Log("Knockback");
     }

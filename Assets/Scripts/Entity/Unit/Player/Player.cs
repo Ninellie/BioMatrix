@@ -127,19 +127,41 @@ public class Player : Unit
                 collider.gameObject.GetComponent<Enemy>()._enemyMoveController.KnockBackFromTarget(KnockbackPower.Value);
             }
             RemoveLayer();
+
             if (!otherCollider2D.gameObject.CompareTag("Enclosure")) return;
             var collisionEnemy = otherCollider2D.gameObject.GetComponent<Entity>();
-            var enemyDamage = collisionEnemy.Damage.Value;
-            TakeDamage(enemyDamage);
-            KnockBackFrom(collisionEnemy);
+            Vector2 collisionPoint = GetCollisionPoint(collision2D);
+            KnockBackFrom(collisionEnemy, collisionPoint);
         }
         else
         {
-            var collisionEnemy = otherCollider2D.gameObject.GetComponent<Entity>();
-            var enemyDamage = collisionEnemy.Damage.Value;
-            TakeDamage(enemyDamage);
-            KnockBackFrom(collisionEnemy);
+            if (otherCollider2D.gameObject.CompareTag("Enemy"))
+            {
+                var collisionEnemy = otherCollider2D.gameObject.GetComponent<Entity>();
+                var enemyDamage = collisionEnemy.Damage.Value;
+                TakeDamage(enemyDamage);
+                KnockBackFrom(collisionEnemy);
+            }
+            if (otherCollider2D.gameObject.CompareTag("Enclosure"))
+            {
+                var collisionEnemy = otherCollider2D.gameObject.GetComponent<Entity>();
+                var enemyDamage = collisionEnemy.Damage.Value;
+                TakeDamage(enemyDamage);
+                Vector2 collisionPoint = GetCollisionPoint(collision2D);
+                KnockBackFrom(collisionEnemy, collisionPoint);
+            }
+
         }
+    }
+    public Vector2 GetCollisionPoint(Collision2D collision)
+    {
+        if (collision.contacts.Length > 0)
+        {
+            return collision.contacts[0].point;
+        }
+
+        Debug.LogError("No contact points found in collision!");
+        return Vector2.zero;
     }
 
     //private void OnTriggerEnter2D(Collider2D otherCollider2D)
@@ -189,7 +211,11 @@ public class Player : Unit
     }
     protected void KnockBackFrom(Entity collisionEntity)
     {
-        _movementController.KnockBack(collisionEntity);
+        _movementController.KnockBackFromEntity(collisionEntity);
+    }
+    protected void KnockBackFrom(Entity collisionEntity, Vector2 position)
+    {
+        _movementController.KnockBackFromPosition(collisionEntity, position);
     }
     protected void BaseFixedUpdate()
     {
