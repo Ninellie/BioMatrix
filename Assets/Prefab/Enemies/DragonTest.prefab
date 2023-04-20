@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8165684587596004793}
   - component: {fileID: -4503049236320595623}
   - component: {fileID: 2673435760891721348}
-  - component: {fileID: -2167475189181900128}
   - component: {fileID: 3572984765799172596}
+  - component: {fileID: -2167475189181900128}
   - component: {fileID: 3774024594271913881}
   - component: {fileID: 1878492662911867408}
   m_Layer: 6
@@ -72,8 +72,8 @@ MonoBehaviour:
   lifeRegenerationInSecond: 0
   knockbackPower: 150
   damage: 1
-  speed: 100
-  accelerationSpeed: 200
+  speed: 400
+  accelerationSpeed: 0
   rotationSpeed: 0
   spawnWeight: 1000
 --- !u!114 &2673435760891721348
@@ -90,22 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseRepulseForce: 0.5
   _penetrationDistanceMultiplier: 1
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 64
---- !u!114 &-2167475189181900128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8954189743293124748}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24b7cba45c5ad02489e4178a669a3bcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: {r: 1, g: 1, b: 1, a: 1}
+  _layerName: Enemy
 --- !u!212 &3572984765799172596
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -158,6 +143,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2167475189181900128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b7cba45c5ad02489e4178a669a3bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &3774024594271913881
 Rigidbody2D:
   serializedVersion: 4

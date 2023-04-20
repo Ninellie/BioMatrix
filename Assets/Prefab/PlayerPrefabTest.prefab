@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
-  _currentShieldLayer: 3
+  _currentShieldLayer: 3333
   _shieldSprite: {fileID: 0}
   _alphaPerLayer: 0.2
   _shieldColor: {r: 0, g: 1, b: 1, a: 1}
