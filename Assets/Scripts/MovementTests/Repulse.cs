@@ -1,9 +1,11 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Repulse : MonoBehaviour
 {
     [SerializeField] private float _baseRepulseForce;
     [SerializeField] private float _penetrationDistanceMultiplier;
+    [SerializeField] private LayerMask _layerMask;
 
     private CircleCollider2D _circleCollider;
 
@@ -15,7 +17,8 @@ public class Repulse : MonoBehaviour
     void OnCollisionStay2D(Collision2D collision)
     {
         Collider2D otherCollider2D = collision.collider;
-        if (otherCollider2D.gameObject.layer != LayerMask.NameToLayer("Enemy")) return;
+        if (otherCollider2D.gameObject.layer != _layerMask) return;
+        //if (otherCollider2D.gameObject.layer != LayerMask.NameToLayer("Enemy")) return;
         var circleColliderOther = otherCollider2D.gameObject.GetComponent<CircleCollider2D>();
 
         Vector2 pushDirection = (transform.position - otherCollider2D.transform.position).normalized;
