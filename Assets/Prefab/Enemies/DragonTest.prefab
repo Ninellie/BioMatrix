@@ -90,6 +90,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseRepulseForce: 0.5
   _penetrationDistanceMultiplier: 1
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &-2167475189181900128
 MonoBehaviour:
   m_ObjectHideFlags: 0
