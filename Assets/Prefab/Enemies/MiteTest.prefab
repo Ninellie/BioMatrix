@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -2167475189181900128}
   - component: {fileID: 3774024594271913881}
   - component: {fileID: 5590340840478446595}
+  - component: {fileID: -3291230919162905398}
   m_Layer: 6
   m_Name: MiteTest
   m_TagString: Enemy
@@ -75,7 +76,7 @@ MonoBehaviour:
   speed: 300
   accelerationSpeed: 0
   rotationSpeed: 2
-  spawnWeight: 100
+  spawnWeight: 500
 --- !u!212 &3572984765799172596
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -198,3 +199,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 75
+--- !u!114 &-3291230919162905398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0390a211e5d5e0b4bb535708aa195495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseRepulseForce: 0.5
+  _penetrationDistanceMultiplier: 0.7
+  _layerName: Enemy

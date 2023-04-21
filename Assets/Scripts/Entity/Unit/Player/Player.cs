@@ -248,8 +248,6 @@ public class Player : Unit
         _experience = InitialExperience;
         _circleCollider = GetComponent<CircleCollider2D>();
         _capsuleCollider = GetComponent<CapsuleCollider2D>();
-        //_capsuleCollider.enabled = false;
-        //_pointEffector = GetComponent<PointEffector2D>();
         MagnetismRadius = new Stat(settings.magnetismRadius);
         _circleCollider.radius = MagnetismRadius.Value;
         if (MagnetismRadius.Value < 0)
