@@ -222,7 +222,7 @@ public class Enemy : Unit
     protected override void Death()
     {
         base.Death();
-        //if (_collisionGameObject == null) return;
+        if (_lastCollidedGameObject is null) return;
         if (_lastCollidedGameObject.tag != "Projectile") return;
         DropBonus();
     }

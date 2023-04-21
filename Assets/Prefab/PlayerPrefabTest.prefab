@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 885779190258261260}
   - component: {fileID: 2975664437671385834}
   - component: {fileID: 659999168091465563}
+  - component: {fileID: -1144305010475561183}
   - component: {fileID: 4797799252330293022}
   - component: {fileID: 4973089185102610346}
   - component: {fileID: 1183143756002398565}
   - component: {fileID: 7452234380026767843}
   - component: {fileID: 2449300099634026346}
   - component: {fileID: 1913487316564233940}
-  - component: {fileID: -1144305010475561183}
   m_Layer: 7
   m_Name: PlayerPrefabTest
   m_TagString: Player
@@ -93,6 +93,21 @@ MonoBehaviour:
   rotationSpeed: 0
   magnetismRadius: 150
   magnetismPower: 1000
+--- !u!114 &-1144305010475561183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671026415413744665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0390a211e5d5e0b4bb535708aa195495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseRepulseForce: 1
+  _penetrationDistanceMultiplier: 1
+  _layerName: Enclosure
 --- !u!114 &4797799252330293022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,21 +269,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 160, y: 160}
   m_Direction: 0
---- !u!114 &-1144305010475561183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671026415413744665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0390a211e5d5e0b4bb535708aa195495, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseRepulseForce: 1
-  _penetrationDistanceMultiplier: 1
-  _layerName: Enclosure
 --- !u!1 &7005012959266165756
 GameObject:
   m_ObjectHideFlags: 0
