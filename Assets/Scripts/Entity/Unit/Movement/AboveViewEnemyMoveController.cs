@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class AboveViewEnemyMoveController : EnemyMoveController
 {
     private Vector2 ViewDirection => MyUnit.transform.up;
@@ -10,9 +9,14 @@ public class AboveViewEnemyMoveController : EnemyMoveController
     public AboveViewEnemyMoveController(Enemy myUnit, GameObject target) : base(myUnit, target)
     {
     }
-    public override void FixedUpdateAccelerationStep()
+    public override void FixedUpdateMoveStep()
     {
         TurnToTargetStep();
+        var nextPosition = GetFixedUpdateMoveStep();
+        MyUnit.Rb2D.MovePosition(nextPosition);
+    }
+    public override Vector2 GetFixedUpdateMoveStep()
+    {
         Vector2 nextPosition = MyPosition;
         if (knockbackTime > 0)
         {
@@ -29,7 +33,7 @@ public class AboveViewEnemyMoveController : EnemyMoveController
         {
             SpeedScale += SpeedScaleStep;
         }
-        MyUnit.Rb2D.MovePosition(nextPosition);
+        return nextPosition;
     }
     public override void Stag()
     {

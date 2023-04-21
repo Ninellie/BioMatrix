@@ -5,7 +5,13 @@ public class SideViewEnemyMoveController : EnemyMoveController
     public SideViewEnemyMoveController(Enemy myUnit, GameObject target) : base(myUnit, target)
     {
     }
-    public override void FixedUpdateAccelerationStep()
+    public override void FixedUpdateMoveStep()
+    {
+        var nextPosition = GetFixedUpdateMoveStep();
+        MyUnit.Rb2D.MovePosition(nextPosition);
+    }
+
+    public override Vector2 GetFixedUpdateMoveStep()
     {
         Vector2 nextPosition = MyPosition;
         if (knockbackTime > 0)
@@ -22,8 +28,9 @@ public class SideViewEnemyMoveController : EnemyMoveController
         {
             SpeedScale += SpeedScaleStep;
         }
-        MyUnit.Rb2D.MovePosition(nextPosition);
+        return nextPosition;
     }
+
     public override void Stag()
     {
         SpeedScale = 0;

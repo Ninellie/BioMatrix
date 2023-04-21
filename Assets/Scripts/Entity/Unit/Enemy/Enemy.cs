@@ -137,7 +137,7 @@ public class Enemy : Unit
     protected void BaseFixedUpdate()
     {
         DeathTimerFixedUpdate();
-        _enemyMoveController.FixedUpdateAccelerationStep();
+        _enemyMoveController.FixedUpdateMoveStep();
     }
     protected void BaseAwake(EnemyStatsSettings settings)
     {

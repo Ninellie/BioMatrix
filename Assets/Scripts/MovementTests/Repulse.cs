@@ -39,7 +39,7 @@ public class Repulse : MonoBehaviour
 
             repulseVector *= repulseForce;
 
-            transform.Translate(repulseVector * Time.deltaTime);
+            transform.Translate(repulseVector * Time.fixedDeltaTime, Space.World);
         }
         else
         {
@@ -60,7 +60,7 @@ public class Repulse : MonoBehaviour
 
             Vector2 repulseVector = collision.contacts[0].normal * repulseForce;
 
-            transform.Translate(repulseVector * Time.deltaTime);
+            transform.Translate(repulseVector * Time.fixedDeltaTime, Space.World);
         }
     }
 }

@@ -41,7 +41,8 @@ public abstract class EnemyMoveController
         this.MyUnit = myUnit;
         this.Target = target;
     }
-    public abstract void FixedUpdateAccelerationStep();
+    public abstract void FixedUpdateMoveStep();
+    public abstract Vector2 GetFixedUpdateMoveStep();
     public abstract void Stag();
     public abstract void KnockBackFromTarget(float thrustPower);
     public Vector2 GetMovementDirection()

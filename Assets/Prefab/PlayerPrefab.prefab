@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 885779190258261260}
   - component: {fileID: 2975664437671385834}
   - component: {fileID: 659999168091465563}
+  - component: {fileID: -1144305010475561183}
   - component: {fileID: 4797799252330293022}
   - component: {fileID: 4973089185102610346}
   - component: {fileID: 1183143756002398565}
   - component: {fileID: 7452234380026767843}
   - component: {fileID: 2449300099634026346}
-  - component: {fileID: 396533927185237461}
   - component: {fileID: 1913487316564233940}
   m_Layer: 7
   m_Name: PlayerPrefab
@@ -60,9 +60,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
-  _currentShieldLayer: 3
-  _maxShieldLayers: 3
+  _currentShieldLayer: 0
   _shieldSprite: {fileID: 0}
+  _alphaPerLayer: 0.2
+  _shieldColor: {r: 0, g: 1, b: 1, a: 1}
+  _shieldRepulseRadius: 250
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
   isFireButtonPressed: 0
   _firePoint: {fileID: 766516748403551923}
   _shield: {fileID: 7005012959266165756}
@@ -81,13 +86,28 @@ MonoBehaviour:
   size: 1
   maximumLife: 300
   lifeRegenerationInSecond: 0
-  knockbackPower: 200
+  knockbackPower: 100
   damage: 0
   speed: 220
   accelerationSpeed: 0
   rotationSpeed: 0
   magnetismRadius: 150
   magnetismPower: 1000
+--- !u!114 &-1144305010475561183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671026415413744665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0390a211e5d5e0b4bb535708aa195495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseRepulseForce: 1
+  _penetrationDistanceMultiplier: 1
+  _layerName: Enclosure
 --- !u!114 &4797799252330293022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +224,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6671026415413744665}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -228,31 +248,11 @@ CircleCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 200
---- !u!250 &396533927185237461
-PointEffector2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671026415413744665}
-  m_Enabled: 1
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 512
-  m_ForceMagnitude: -100
-  m_ForceVariation: 0
-  m_DistanceScale: 1
-  m_ForceSource: 0
-  m_ForceTarget: 0
-  m_ForceMode: 0
-  m_Drag: 0
-  m_AngularDrag: 0
 --- !u!70 &1913487316564233940
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
