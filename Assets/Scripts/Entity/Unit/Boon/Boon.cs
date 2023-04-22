@@ -37,7 +37,6 @@ public class Boon : Unit
     {
         Debug.Log($"{gameObject.name} Boon Awake");
         base.BaseAwake(settings);
-        spriteRenderer = GetComponent<SpriteRenderer>();
         _rarity.Value = RarityEnum.Magic;
     }
 }

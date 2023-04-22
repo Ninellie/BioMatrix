@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameTimer
 {
-    private Action _action;
+    private readonly Action _action;
     private float _time;
     private bool _isDestroyed;
 

@@ -48,7 +48,9 @@ public class Player : Unit
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject _shield;
 
-
+    //public bool IsInvulnerable { get; private set; } = false;
+    //private GameTimer _invulnerableTimer;
+    private const float ReturnToDefaultColorSpeed = 5f;
     private const int ExperienceToSecondLevel = 2;
     private const int ExperienceAmountIncreasingPerLevel = 1;
     private const int InitialLevel = 1;
@@ -267,6 +269,16 @@ public class Player : Unit
     {
         base.BaseUpdate();
         _freezeTimer.Update();
+        BackToNormalColor();
+    }
+    private void BackToNormalColor()
+    {
+        if (spriteRenderer.color == Color.white) return;
+        spriteColor = spriteRenderer.color;
+        spriteColor.r += ReturnToDefaultColorSpeed * Time.deltaTime;
+        spriteColor.g += ReturnToDefaultColorSpeed * Time.deltaTime;
+        spriteColor.b += ReturnToDefaultColorSpeed * Time.deltaTime;
+        spriteRenderer.color = spriteColor;
     }
     protected override void BaseOnEnable()
     {

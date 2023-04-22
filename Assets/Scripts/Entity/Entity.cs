@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Debug = UnityEngine.Debug;
 
 public class Entity : MonoBehaviour
@@ -47,7 +48,11 @@ public class Entity : MonoBehaviour
     public Stat LifeRegenerationPerSecond { get; private set; }
     public Stat KnockbackPower { get; private set; }
     public Stat Damage { get; private set; }
+
+    public Color spriteColor;
+
     public SpriteRenderer spriteRenderer;
+    public TilemapRenderer tilemapRenderer;
     private float _currentLifePoints;
     private float _reservedLife = 0;
     private Camera _mCamera;
@@ -64,6 +69,17 @@ public class Entity : MonoBehaviour
         TryGetComponent<SpriteRenderer>(out SpriteRenderer sR);
         spriteRenderer = sR;
 
+        if (TryGetComponent<SpriteRenderer>(out SpriteRenderer sRenderer))
+        {
+            spriteRenderer = sRenderer;
+            spriteColor = spriteRenderer.color;
+        }
+        
+        if (TryGetComponent<TilemapRenderer>(out TilemapRenderer tmRenderer))
+        {
+            tilemapRenderer = tmRenderer;
+            spriteColor = Color.white;
+        }
         Size = new Stat(settings.size);
         MaximumLifePoints = new Stat(settings.maximumLife);
         LifeRegenerationPerSecond = new Stat(settings.lifeRegenerationInSecond);
@@ -150,7 +166,6 @@ public class Entity : MonoBehaviour
 
     private bool CheckVisibilityOnCamera()
     {
-        var onScreen = spriteRenderer.isVisible;
-        return onScreen;
+        return spriteRenderer.isVisible;
     }
 }

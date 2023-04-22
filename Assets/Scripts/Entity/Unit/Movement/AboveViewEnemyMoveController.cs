@@ -35,6 +35,17 @@ public class AboveViewEnemyMoveController : EnemyMoveController
         }
         return nextPosition;
     }
+    //public override void FixedUpdateAccelerationStep()
+    //{
+    //    TurnToTargetStep();
+    //    if (SpeedScale < 1f)
+    //    {
+    //        SpeedScale += SpeedScaleStep;
+    //        return;
+    //    }
+    //    Velocity += AccelerationStep;
+    //    MyUnit.Rb2D.velocity = Velocity;
+    //}
     public override void Stag()
     {
         SpeedScale = 0;

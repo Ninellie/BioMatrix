@@ -134,6 +134,20 @@ public class Enemy : Unit
             _ => throw new ArgumentOutOfRangeException()
         };
     }
+
+    //private void OnTriggerEnter2D(Collider2D collider)
+    //{
+    //    _collisionGameObject = collider.gameObject;
+    //    switch (_collisionGameObject.tag)
+    //    {
+    //        case "Shield":
+    //            Debug.LogWarning($"Shield triggered an enemy named {this.name}");
+    //            //var knockback = _collisionGameObject.GetComponent<Shield>().knockbackPower;
+    //            _enemyMoveController.KnockBackFromTarget(200);
+    //            Debug.LogWarning($"Shield END triggered an enemy named {this.name}");
+    //            break;
+    //    }
+    //}
     protected void BaseFixedUpdate()
     {
         DeathTimerFixedUpdate();
@@ -144,7 +158,6 @@ public class Enemy : Unit
         Debug.Log($"{gameObject.name} Enemy Awake");
         base.BaseAwake(settings);
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteOutline = GetComponent<SpriteOutline>();
         _circleCollider = GetComponent<CircleCollider2D>();
         _spriteColor = spriteRenderer.color;
@@ -178,11 +191,11 @@ public class Enemy : Unit
     private void BackToNormalColor()
     {
         if (spriteRenderer.color == Color.white) return;
-        _spriteColor = spriteRenderer.color;
-        _spriteColor.r += ReturnToDefaultColorSpeed * Time.deltaTime;
-        _spriteColor.g += ReturnToDefaultColorSpeed * Time.deltaTime;
-        _spriteColor.b += ReturnToDefaultColorSpeed * Time.deltaTime;
-        spriteRenderer.color = _spriteColor;
+        spriteColor = spriteRenderer.color;
+        spriteColor.r += ReturnToDefaultColorSpeed * Time.deltaTime;
+        spriteColor.g += ReturnToDefaultColorSpeed * Time.deltaTime;
+        spriteColor.b += ReturnToDefaultColorSpeed * Time.deltaTime;
+        spriteRenderer.color = spriteColor;
     }
     private void DeathTimerFixedUpdate()
     {

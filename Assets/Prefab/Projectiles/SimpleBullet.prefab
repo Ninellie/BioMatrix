@@ -122,7 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b57a2a00642ad84892aa8d396643e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteColor: {r: 0, g: 0, b: 0, a: 0}
   spriteRenderer: {fileID: 0}
+  tilemapRenderer: {fileID: 0}
   timeToStop: 1
 --- !u!114 &1504994257502739578
 MonoBehaviour:
