@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7452234380026767843}
   - component: {fileID: 2449300099634026346}
   - component: {fileID: 1913487316564233940}
+  - component: {fileID: 818376738777939163}
   m_Layer: 7
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -269,6 +270,25 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 160, y: 160}
   m_Direction: 0
+--- !u!114 &818376738777939163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671026415413744665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9939477c0dbd69a4f8941031ac446d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _invulnerabilityTime: 1
+  _layerMaskName: Enemy
+  _flashDuration: 0.1
+  _flashAlpha: 0.3
+  _isInvulnerable: 0
+  _invulnerableEndTime: 0
+  _invulnerabilityTimer: 0
 --- !u!1 &7005012959266165756
 GameObject:
   m_ObjectHideFlags: 0
