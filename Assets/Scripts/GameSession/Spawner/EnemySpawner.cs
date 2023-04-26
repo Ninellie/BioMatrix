@@ -8,7 +8,6 @@ public class EnemySpawner : MonoBehaviour
     [Header("Set in Inspector")]
     public GameObject[] enemyPrefabs;
     [SerializeField] private int _secondsBetweenWaves = 2;
-    private GameSessionTimer _gameSessionTimer;
     private readonly System.Random _random = new();
     private readonly Grouping _grouping = new();
     private readonly Rarity _rarity = new();
@@ -21,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     {
         get
         {
-            var seconds = _gameSessionTimer.GetTotalSeconds();
+            var seconds = Time.time;
             if (seconds < DefaultComplicationValue) return 0;
             var remainder = seconds % DefaultComplicationValue;
             return (int)(seconds - remainder) / DefaultComplicationValue;
@@ -29,8 +28,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Awake()
     {
-        _gameSessionTimer = FindObjectOfType<GameSessionTimer>();
-        _enemyWaveProperties = new EnemyWaveProperties(_gameSessionTimer);
+        _enemyWaveProperties = new EnemyWaveProperties();
         
     }
     private void Start()

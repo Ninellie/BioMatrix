@@ -30,13 +30,13 @@ namespace Assets.Scripts.GameSession.View
         public void Freeze()
         {
             Time.timeScale = 0f;
-            GameTimerStop();
+            //GameTimerStop();
             _playerInput.SwitchCurrentActionMap("Menu");
         }
         public void Unfreeze()
         {
             Time.timeScale = 1f;
-            GameTimerResume();
+            //GameTimerResume();
             _playerInput.SwitchCurrentActionMap("Player");
         }
         public void OpenMenu()
@@ -76,16 +76,6 @@ namespace Assets.Scripts.GameSession.View
             _levelUpUI.SetActive(true);
             _levelUp ??= GameObject.FindObjectOfType<LevelUp>();
             _levelUp.DisplayCards();
-        }
-        private void GameTimerStop()
-        {
-            _gameSessionTimer ??= GameObject.FindObjectOfType<GameSessionTimer>();
-            _gameSessionTimer.Stop();
-        }
-        private void GameTimerResume()
-        {
-            _gameSessionTimer ??= GameObject.FindObjectOfType<GameSessionTimer>();
-            _gameSessionTimer.Resume();
         }
     }
 }

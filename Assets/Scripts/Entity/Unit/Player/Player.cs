@@ -102,7 +102,6 @@ public class Player : Unit
     {
         Time.timeScale = 0f;
         this.GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
-        FindObjectOfType<GameSessionTimer>().Stop();
     }
 
     private void OnEnable() => BaseOnEnable();

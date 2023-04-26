@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\UIScripts\AmmoBar.cs" />
     <Compile Include="Assets\Scripts\LevelUp\LevelUp.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Entity\Unit\Movement\Invulnerability.cs" />
     <Compile Include="Assets\Scripts\GameSession\View\IViewController.cs" />
     <Compile Include="Assets\Scripts\Stat\Stat.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
@@ -179,7 +180,6 @@
     <Compile Include="Assets\Scripts\Firearm\Firearm.cs" />
     <Compile Include="Assets\Scripts\UIScripts\GameSessionTimer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Movement\Invulnerability.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

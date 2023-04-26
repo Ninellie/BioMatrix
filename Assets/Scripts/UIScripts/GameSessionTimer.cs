@@ -1,42 +1,35 @@
 using UnityEngine;
 using System;
-using System.Diagnostics;
 using TMPro;
 public class GameSessionTimer : MonoBehaviour
 {
     public TMP_Text textTimer;
     public Action onGameWinning;
-    private const float WinTime = 300;
-    private Stopwatch _stopwatch;
-
-    private void Awake()
-    {
-        _stopwatch = Stopwatch.StartNew();
-    }
+    
+    [SerializeField] private float _winTime = 300;
 
     private void Update()
     {
-        TimerUIUpdate();
-        if (IsTimeToWin())
+        var mins = (int)Time.time / 60;
+        var secs = (int)Time.time % 60;
+
+        textTimer.text = mins switch
+        {
+            < 60 => secs < 10 ? $"{mins}:0{secs}" : $"{mins}:{secs}",
+            _ => mins switch
+            {
+                < 10 => secs < 10 ? $"0{mins}:0{secs}" : $"0{mins}:{secs}",
+                _ => mins switch
+                {
+                    < 1 => secs < 10 ? $"00:0{secs}" : $"00:{secs}",
+                    _ => textTimer.text
+                }
+            }
+        };
+
+        if (Time.time >= _winTime)
         {
             onGameWinning?.Invoke();
         }
-    }
-    public void Stop() { _stopwatch.Stop(); }
-    public void Resume() { _stopwatch.Start(); }
-    public float GetTotalSeconds()
-    {
-        var ts = _stopwatch.Elapsed;
-        return (float)ts.TotalSeconds;
-    }
-    private void TimerUIUpdate()
-    {
-        var elapsed = _stopwatch.Elapsed;
-        var greatThenHour = elapsed >= TimeSpan.FromHours(1);
-        textTimer.text = elapsed.ToString(greatThenHour ? "hh\\:mm\\:ss" : "mm\\:ss");
-    }
-    private bool IsTimeToWin()
-    {
-        return _stopwatch.Elapsed.TotalSeconds > WinTime;
     }
 }
