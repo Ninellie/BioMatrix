@@ -104,20 +104,6 @@ public class ArrayCardRepository : ICardRepository
         },
         new Card
         {
-            Title = "Magnetism power",
-            Description = "+ 20% to attraction force for boons",
-            DropWeight = 1000,
-            InfluencedStats = new[]
-            {
-                "magnetismPower",
-            },
-            ModifierList = new StatModifier[]
-            {
-                new StatModifier(OperationType.Multiplication, 20)
-            },
-        },
-        new Card
-        {
             Title = "Magnetism radius",
             Description = "+ 50% to radius of boon attraction",
             DropWeight = 1000,

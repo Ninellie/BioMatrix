@@ -34,9 +34,6 @@ public class LevelUp : MonoBehaviour
                 case "maximumLifePoints":
                     FindObjectOfType<Player>().AddStatModifier(statName, modifier);
                     break;
-                case "magnetismPower":
-                    FindObjectOfType<Player>().AddStatModifier(statName, modifier);
-                    break;
                 case "magnetismRadius":
                     FindObjectOfType<Player>().AddStatModifier(statName, modifier);
                     break;
