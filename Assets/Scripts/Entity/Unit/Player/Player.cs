@@ -10,8 +10,15 @@ public class Player : Unit
     public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
     protected Stat MagnetismRadius { get; private set; }
     protected Stat MagnetismPower { get; private set; }
-    [SerializeField] private int _currentShieldLayer = 3;
-    //[SerializeField] private int _maxShieldLayers = 3;
+
+    public int CurrentShieldLayers
+    {
+        get => _currentShieldLayers;
+        private set => _currentShieldLayers = value > _maxShieldLayers ? _maxShieldLayers : value;
+    }
+    private int _currentShieldLayers;
+
+    [SerializeField] private int _maxShieldLayers = 3;
     [SerializeField] private SpriteRenderer _shieldSprite;
     [SerializeField] private float _alphaPerLayer = 0.2f;
     [SerializeField] private Color _shieldColor = Color.cyan;
@@ -48,18 +55,16 @@ public class Player : Unit
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject _shield;
 
-
     private const int ExperienceToSecondLevel = 2;
     private const int ExperienceAmountIncreasingPerLevel = 1;
     private const int InitialLevel = 1;
     private const int InitialExperience = 0;
-
-    private MovementControllerPlayer _movementController;
     private int _level;
     private int _experience;
+
+    private MovementControllerPlayer _movementController;
     private CircleCollider2D _circleCollider;
     private CapsuleCollider2D _capsuleCollider;
-    //private PointEffector2D _pointEffector;
     private GameTimer _freezeTimer;
     private SpriteRenderer SpriteRenderer => GetComponent<SpriteRenderer>();
     private void Awake() => BaseAwake(Settings);
@@ -68,33 +73,33 @@ public class Player : Unit
     {
         _freezeTimer = new GameTimer(Freeze, 0.2f);
         UpdateShieldAlpha();
-        _capsuleCollider.enabled = _currentShieldLayer < 0;
+        _capsuleCollider.enabled = CurrentShieldLayers < 0;
     }
 
     private void AddLayer()
     {
-        if (_currentShieldLayer == 0)
+        if (CurrentShieldLayers == 0)
         {
             _capsuleCollider.enabled = true;
             _shield.SetActive(true);
         }
-        _currentShieldLayer++;
+        CurrentShieldLayers++;
         UpdateShieldAlpha();
     }
 
     private void UpdateShieldAlpha()
     {
-        var a = _alphaPerLayer * _currentShieldLayer;
+        var a = _alphaPerLayer * CurrentShieldLayers;
         _shieldColor.a = a;
         _shieldSprite.color = _shieldColor;
     }
 
     private void RemoveLayer()
     {
-        if (_currentShieldLayer == 0) return;
-        _currentShieldLayer--;
+        if (CurrentShieldLayers == 0) return;
+        CurrentShieldLayers--;
         UpdateShieldAlpha();
-        if (_currentShieldLayer != 0) return;
+        if (CurrentShieldLayers != 0) return;
         _capsuleCollider.enabled = false;
         _shield.SetActive(false);
     }
@@ -118,20 +123,18 @@ public class Player : Unit
             return;
         }
         if (!otherCollider2D.gameObject.CompareTag("Enemy") && !otherCollider2D.gameObject.CompareTag("Enclosure")) return;
-        if (_currentShieldLayer > 0)
+        if (CurrentShieldLayers > 0)
         {
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
 
-            foreach (Collider2D collider in hitColliders)
+            foreach (Collider2D collider2d in hitColliders)
             {
-                collider.gameObject.GetComponent<Enemy>()._enemyMoveController.KnockBackFromTarget(KnockbackPower.Value);
+                collider2d.gameObject.GetComponent<Enemy>()._enemyMoveController.KnockBackFromTarget(KnockbackPower.Value);
             }
             RemoveLayer();
 
             if (!otherCollider2D.gameObject.CompareTag("Enclosure")) return;
             var collisionEnclosure = otherCollider2D.gameObject.GetComponent<Entity>();
-            //Vector2 collisionPoint = GetCollisionPoint(collision2D);
-            //KnockBackFrom(collisionEnemy, collisionPoint);
             KnockBackToEnclosureCenter(collisionEnclosure);
         }
         else
@@ -148,7 +151,6 @@ public class Player : Unit
                 var collisionEnclosure = otherCollider2D.gameObject.GetComponent<Entity>();
                 var enclosureDamage = collisionEnclosure.Damage.Value;
                 TakeDamage(enclosureDamage);
-                //Vector2 collisionPoint = GetCollisionPoint(collision2D);
                 KnockBackToEnclosureCenter(collisionEnclosure);
             }
 
@@ -164,38 +166,6 @@ public class Player : Unit
         Debug.LogError("No contact points found in collision!");
         return Vector2.zero;
     }
-
-    //private void OnTriggerEnter2D(Collider2D otherCollider2D)
-    //{
-    //    if (!otherCollider2D.gameObject.TryGetComponent<Entity>(out Entity entity))
-    //    {
-    //        Debug.LogWarning("OnTriggerEnter2D with game object without Entity component");
-    //        return;
-    //    }
-    //    if (!otherCollider2D.gameObject.CompareTag("Enemy") && !otherCollider2D.gameObject.CompareTag("Enclosure")) return;
-    //    if (_currentShieldLayer > 0)
-    //    {
-    //        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
-
-    //        foreach (Collider2D collider in hitColliders)
-    //        {
-    //            collider.gameObject.GetComponent<Enemy>()._enemyMoveController.KnockBackFromTarget(KnockbackPower.Value);
-    //        }
-    //        RemoveLayer();
-    //        if (!otherCollider2D.gameObject.CompareTag("Enclosure")) return;
-    //        var collisionEnemy = otherCollider2D.gameObject.GetComponent<Entity>();
-    //        var enemyDamage = collisionEnemy.Damage.Value;
-    //        TakeDamage(enemyDamage);
-    //        KnockBackFrom(collisionEnemy);
-    //    }
-    //    else
-    //    {
-    //        var collisionEnemy = otherCollider2D.gameObject.GetComponent<Entity>();
-    //        var enemyDamage = collisionEnemy.Damage.Value;
-    //        TakeDamage(enemyDamage);
-    //        KnockBackFrom(collisionEnemy);
-    //    }
-    //}
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

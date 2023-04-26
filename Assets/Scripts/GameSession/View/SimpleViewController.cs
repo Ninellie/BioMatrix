@@ -7,7 +7,6 @@ namespace Assets.Scripts.GameSession.View
     public class SimpleViewController : IViewController
     {
         private readonly PlayerInput _playerInput;
-        private GameSessionTimer _gameSessionTimer;
         private LevelUp _levelUp;
 
         private GameObject _menuUI;
@@ -30,13 +29,11 @@ namespace Assets.Scripts.GameSession.View
         public void Freeze()
         {
             Time.timeScale = 0f;
-            //GameTimerStop();
             _playerInput.SwitchCurrentActionMap("Menu");
         }
         public void Unfreeze()
         {
             Time.timeScale = 1f;
-            //GameTimerResume();
             _playerInput.SwitchCurrentActionMap("Player");
         }
         public void OpenMenu()

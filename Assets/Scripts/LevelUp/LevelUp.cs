@@ -3,29 +3,11 @@ using UnityEngine;
 
 public class LevelUp : MonoBehaviour
 {
-    //public GameObject lvlUpUI;
-    //public GameObject canvasUI;
     public TMPro.TMP_Text[] cardsText;
 
     private List<Card> _selectedCards = new();
     private static readonly ICardRepository CardRepository = new ArrayCardRepository();
     private readonly CardManager _cardManager = new(CardRepository);
-    //public void Subscription()
-    //{
-    //    FindObjectOfType<Player>().onLevelUp += InitiateLvlUp;
-    //    FindObjectOfType<Player>().onDeath += Unsubscription;
-    //}
-    //private void Unsubscription()
-    //{
-    //    FindObjectOfType<Player>().onLevelUp -= InitiateLvlUp;
-    //    FindObjectOfType<Player>().onDeath -= Unsubscription;
-    //}
-    //private void InitiateLvlUp()
-    //{
-    //    canvasUI.GetComponent<PauseMenu>().PauseGame();
-    //    DisplayThreeCards();
-    //    lvlUpUI.SetActive(true);
-    //}
     public void DisplayCards()
     {
         _selectedCards = _cardManager.GetDeck(cardsText.Length);
