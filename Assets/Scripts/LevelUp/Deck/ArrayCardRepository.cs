@@ -130,6 +130,20 @@ public class ArrayCardRepository : ICardRepository
                 new StatModifier(OperationType.Addition, 0.2f)
             },
         },
+        new Card
+        {
+            Title = "Max shield layers",
+            Description = "Adds +1 to max shield layers and recover one layer instantly",
+            DropWeight = 10000,
+            InfluencedStats = new[]
+            {
+                "maxApproachableShieldLayers",
+            },
+            ModifierList = new StatModifier[]
+            {
+                new StatModifier(OperationType.Addition, 1)
+            },
+        },
     };
     private readonly Card[] _cards;
 

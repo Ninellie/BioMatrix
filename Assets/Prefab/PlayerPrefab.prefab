@@ -61,7 +61,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
-  _currentShieldLayer: 0
   _shieldSprite: {fileID: 0}
   _alphaPerLayer: 0.2
   _shieldColor: {r: 0, g: 1, b: 1, a: 1}
@@ -93,7 +92,7 @@ MonoBehaviour:
   accelerationSpeed: 0
   rotationSpeed: 0
   magnetismRadius: 150
-  magnetismPower: 1000
+  maxShieldLayers: 0
 --- !u!114 &-1144305010475561183
 MonoBehaviour:
   m_ObjectHideFlags: 0

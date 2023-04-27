@@ -9,16 +9,15 @@ public class Player : Unit
     public Action onExperienceTaken;
     public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
     protected Stat MagnetismRadius { get; private set; }
-    protected Stat MagnetismPower { get; private set; }
+    protected Stat MaxApproachableShieldLayers { get; private set; }
 
-    public int CurrentShieldLayers
+    public int CurrentActiveShieldLayers
     {
-        get => _currentShieldLayers;
-        private set => _currentShieldLayers = value > _maxShieldLayers ? _maxShieldLayers : value;
+        get => _currentActiveShieldLayers;
+        private set => _currentActiveShieldLayers = (int)(value > MaxApproachableShieldLayers.Value ? MaxApproachableShieldLayers.Value : value);
     }
-    private int _currentShieldLayers;
+    private int _currentActiveShieldLayers;
 
-    [SerializeField] private int _maxShieldLayers = 3;
     [SerializeField] private SpriteRenderer _shieldSprite;
     [SerializeField] private float _alphaPerLayer = 0.2f;
     [SerializeField] private Color _shieldColor = Color.cyan;
@@ -73,33 +72,37 @@ public class Player : Unit
     {
         _freezeTimer = new GameTimer(Freeze, 0.2f);
         UpdateShieldAlpha();
-        _capsuleCollider.enabled = CurrentShieldLayers < 0;
+        _capsuleCollider.enabled = CurrentActiveShieldLayers < 0;
+        for (int i = 0; i < MaxApproachableShieldLayers.Value; i++)
+        {
+            AddLayer();
+        }
     }
 
     private void AddLayer()
     {
-        if (CurrentShieldLayers == 0)
+        if (CurrentActiveShieldLayers == 0)
         {
             _capsuleCollider.enabled = true;
             _shield.SetActive(true);
         }
-        CurrentShieldLayers++;
+        CurrentActiveShieldLayers++;
         UpdateShieldAlpha();
     }
 
     private void UpdateShieldAlpha()
     {
-        var a = _alphaPerLayer * CurrentShieldLayers;
+        var a = _alphaPerLayer * CurrentActiveShieldLayers;
         _shieldColor.a = a;
         _shieldSprite.color = _shieldColor;
     }
 
     private void RemoveLayer()
     {
-        if (CurrentShieldLayers == 0) return;
-        CurrentShieldLayers--;
+        if (CurrentActiveShieldLayers == 0) return;
+        CurrentActiveShieldLayers--;
         UpdateShieldAlpha();
-        if (CurrentShieldLayers != 0) return;
+        if (CurrentActiveShieldLayers != 0) return;
         _capsuleCollider.enabled = false;
         _shield.SetActive(false);
     }
@@ -113,7 +116,6 @@ public class Player : Unit
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();
     private void FixedUpdate() => BaseFixedUpdate();
-
     private void OnCollisionEnter2D(Collision2D collision2D)
     {
         Collider2D otherCollider2D = collision2D.collider;
@@ -123,7 +125,7 @@ public class Player : Unit
             return;
         }
         if (!otherCollider2D.gameObject.CompareTag("Enemy") && !otherCollider2D.gameObject.CompareTag("Enclosure")) return;
-        if (CurrentShieldLayers > 0)
+        if (CurrentActiveShieldLayers > 0)
         {
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
 
@@ -155,16 +157,6 @@ public class Player : Unit
             }
 
         }
-    }
-    public Vector2 GetCollisionPoint(Collision2D collision)
-    {
-        if (collision.contacts.Length > 0)
-        {
-            return collision.contacts[0].point;
-        }
-
-        Debug.LogError("No contact points found in collision!");
-        return Vector2.zero;
     }
     private void OnDrawGizmosSelected()
     {
@@ -223,8 +215,7 @@ public class Player : Unit
         {
             _circleCollider.radius = 0;
         }
-        MagnetismPower = new Stat(settings.magnetismPower);
-        //_pointEffector.forceMagnitude = MagnetismPower.Value * -1;
+        MaxApproachableShieldLayers = new Stat(settings.maxShieldLayers);
 
         _shieldSprite = _shield.GetComponent<SpriteRenderer>();
         base.BaseAwake(settings);
@@ -240,18 +231,14 @@ public class Player : Unit
     protected override void BaseOnEnable()
     {
         base.BaseOnEnable();
-        if (MagnetismPower != null) MagnetismPower.onValueChanged += ChangeCurrentMagnetismPower;
         if (MagnetismRadius != null) MagnetismRadius.onValueChanged += ChangeCurrentMagnetismRadius;
+        if (MaxApproachableShieldLayers != null) MaxApproachableShieldLayers.onValueChanged += AddLayer;
     }
     protected override void BaseOnDisable()
     {
         base.BaseOnDisable();
-        if (MagnetismPower != null) MagnetismPower.onValueChanged -= ChangeCurrentMagnetismPower;
         if (MagnetismRadius != null) MagnetismRadius.onValueChanged -= ChangeCurrentMagnetismRadius;
-    }
-    private void ChangeCurrentMagnetismPower()
-    {
-        //_pointEffector.forceMagnitude = MagnetismPower.Value * -1;
+        if (MaxApproachableShieldLayers != null) MaxApproachableShieldLayers.onValueChanged -= AddLayer;
     }
     private void ChangeCurrentMagnetismRadius()
     {
@@ -286,6 +273,9 @@ public class Player : Unit
                 break;
             case "lifeRegenerationPerSecond":
                 LifeRegenerationPerSecond.AddModifier(statModifier);
+                break;
+            case "maxApproachableShieldLayers":
+                MaxApproachableShieldLayers.AddModifier(statModifier);
                 break;
         }
     }
