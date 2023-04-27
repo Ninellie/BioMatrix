@@ -122,6 +122,10 @@ public class Enemy : Unit
     //}
     private void OnDrawGizmos()
     {
+        if (_enemyMoveController is null)
+        {
+            return;
+        }
         Gizmos.color = Color.red;
         Gizmos.DrawLine(Rb2D.transform.position, _enemyMoveController.GetVelocity() + (Vector2)Rb2D.transform.position);
     }
