@@ -88,6 +88,7 @@ public class Player : Unit
     private CapsuleCollider2D _capsuleCollider;
     private GameTimer _freezeTimer;
     private SpriteRenderer SpriteRenderer => GetComponent<SpriteRenderer>();
+    private Invulnerability _invulnerability;
     private void Awake() => BaseAwake(Settings);
 
     private void Start()
@@ -177,7 +178,7 @@ public class Player : Unit
                 TakeDamage(enclosureDamage);
                 KnockBackToEnclosureCenter(collisionEnclosure);
             }
-
+            _invulnerability.ApplyInvulnerable(collision2D);
         }
     }
     private void OnDrawGizmosSelected()
@@ -241,6 +242,7 @@ public class Player : Unit
         ShieldLayerRegenerationRatePerMinute = new Stat(settings.shieldLayerRegenerationRate);
 
         _shieldSprite = _shield.GetComponent<SpriteRenderer>();
+        _invulnerability = GetComponent<Invulnerability>();
         base.BaseAwake(settings);
 
         _movementController = new MovementControllerPlayer(this);
