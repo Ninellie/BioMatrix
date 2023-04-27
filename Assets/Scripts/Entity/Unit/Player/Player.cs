@@ -87,7 +87,7 @@ public class Player : Unit
     private CircleCollider2D _circleCollider;
     private CapsuleCollider2D _capsuleCollider;
     private GameTimer _freezeTimer;
-    private SpriteRenderer SpriteRenderer => GetComponent<SpriteRenderer>();
+    private SpriteRenderer _spriteRenderer;
     private Invulnerability _invulnerability;
     private void Awake() => BaseAwake(Settings);
 
@@ -232,6 +232,7 @@ public class Player : Unit
         _experience = InitialExperience;
         _circleCollider = GetComponent<CircleCollider2D>();
         _capsuleCollider = GetComponent<CapsuleCollider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         MagnetismRadius = new Stat(settings.magnetismRadius);
         _circleCollider.radius = MagnetismRadius.Value;
         if (MagnetismRadius.Value < 0)
@@ -312,11 +313,11 @@ public class Player : Unit
     {
         var inputVector2 = input.Get<Vector2>();
         _movementController.SetDirection(inputVector2);
-        SpriteRenderer.flipX = inputVector2.x switch
+        _spriteRenderer.flipX = inputVector2.x switch
         {
             < 0 => true,
             > 0 => false,
-            _ => SpriteRenderer.flipX
+            _ => _spriteRenderer.flipX
         };
     }
     public void OnFire()
