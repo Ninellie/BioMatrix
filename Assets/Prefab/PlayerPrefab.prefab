@@ -92,7 +92,8 @@ MonoBehaviour:
   accelerationSpeed: 0
   rotationSpeed: 0
   magnetismRadius: 150
-  maxShieldLayers: 0
+  maxShieldLayers: 1
+  shieldLayerRegenerationRate: 0.5
 --- !u!114 &-1144305010475561183
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,7 @@ public class Player : Unit
     public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
     protected Stat MagnetismRadius { get; private set; }
     protected Stat MaxApproachableShieldLayers { get; private set; }
+    protected Stat ShieldLayerRegenerationRatePerMinute { get; private set; }
 
     public int CurrentActiveShieldLayers
     {
@@ -17,6 +19,26 @@ public class Player : Unit
         private set => _currentActiveShieldLayers = (int)(value > MaxApproachableShieldLayers.Value ? MaxApproachableShieldLayers.Value : value);
     }
     private int _currentActiveShieldLayers;
+    private float ReservedShieldRegeneration
+    {
+        get => _reservedShieldRegeneration;
+        set
+        {
+            if (CurrentActiveShieldLayers >= MaxApproachableShieldLayers.Value)
+            {
+                return;
+            }
+            if (value < 1)
+            {
+                _reservedShieldRegeneration = value;
+                return;
+            }
+            AddLayer();
+            _reservedShieldRegeneration = 0;
+        }
+    }
+
+    private float _reservedShieldRegeneration = 0f;
 
     [SerializeField] private SpriteRenderer _shieldSprite;
     [SerializeField] private float _alphaPerLayer = 0.2f;
@@ -216,6 +238,7 @@ public class Player : Unit
             _circleCollider.radius = 0;
         }
         MaxApproachableShieldLayers = new Stat(settings.maxShieldLayers);
+        ShieldLayerRegenerationRatePerMinute = new Stat(settings.shieldLayerRegenerationRate);
 
         _shieldSprite = _shield.GetComponent<SpriteRenderer>();
         base.BaseAwake(settings);
@@ -227,6 +250,7 @@ public class Player : Unit
     {
         base.BaseUpdate();
         _freezeTimer.Update();
+        ReservedShieldRegeneration += ShieldLayerRegenerationRatePerMinute.Value / 60 * Time.deltaTime;
     }
     protected override void BaseOnEnable()
     {
@@ -276,6 +300,9 @@ public class Player : Unit
                 break;
             case "maxApproachableShieldLayers":
                 MaxApproachableShieldLayers.AddModifier(statModifier);
+                break;
+            case "shieldLayerRegenerationRate":
+                ShieldLayerRegenerationRatePerMinute.AddModifier(statModifier);
                 break;
         }
     }

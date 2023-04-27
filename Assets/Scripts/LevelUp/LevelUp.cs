@@ -34,13 +34,16 @@ public class LevelUp : MonoBehaviour
                 case "maximumLifePoints":
                     FindObjectOfType<Player>().AddStatModifier(statName, modifier);
                     break;
+                case "lifeRegenerationPerSecond":
+                    FindObjectOfType<Player>().AddStatModifier(statName, modifier);
+                    break;
                 case "magnetismRadius":
                     FindObjectOfType<Player>().AddStatModifier(statName, modifier);
                     break;
                 case "maxApproachableShieldLayers":
                     FindObjectOfType<Player>().AddStatModifier(statName, modifier);
                     break;
-                case "lifeRegenerationPerSecond":
+                case "shieldLayerRegenerationRate":
                     FindObjectOfType<Player>().AddStatModifier(statName, modifier);
                     break;
                 case "fireRate":
