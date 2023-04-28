@@ -1,6 +1,6 @@
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json;
+using System;
 
+[Serializable]
 public class StatModifier
 {
     public StatModifier(OperationType type, float value)
@@ -8,7 +8,6 @@ public class StatModifier
         Type = type;
         Value = value;
     }
-    [JsonConverter(typeof(StringEnumConverter))]
     public OperationType Type { get; }
     public float Value { get; }
 }

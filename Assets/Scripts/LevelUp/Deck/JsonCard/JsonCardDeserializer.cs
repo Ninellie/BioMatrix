@@ -1,12 +1,13 @@
 ﻿using System.IO;
-using Newtonsoft.Json;
+using UnityEngine;
 
 public class JsonCardDeserializer
 {
     public ICardRepository Deserialize(string fileName)
     {
         var json = File.ReadAllText(fileName);
-        var cardArray = JsonConvert.DeserializeObject<Card[]>(json);
+        var cardArray = JsonUtility.FromJson<Card[]>(json);
+        //var cardArray = JsonConvert.DeserializeObject<Card[]>(json);
         return new ArrayCardRepository(cardArray);
     }
 }

@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
-
+using UnityEngine;
+[Serializable]
 public class JsonCardSerializer
 {
     private readonly ICardRepository _cardRepository;
@@ -17,7 +18,8 @@ public class JsonCardSerializer
             var card = _cardRepository.Get(i);
             list.Add(card);
         }
-        var json = JsonConvert.SerializeObject(list.ToArray(), Formatting.Indented);
+        var json = JsonUtility.ToJson(list.ToArray());
+        //var json = JsonConvert.SerializeObject(list.ToArray(), Formatting.Indented);
         File.WriteAllText(fileName, json);
     }
 }

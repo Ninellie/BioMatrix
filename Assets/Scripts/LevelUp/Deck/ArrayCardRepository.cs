@@ -1,5 +1,6 @@
-﻿using System.Linq;
-
+﻿using System;
+using System.Linq;
+[Serializable]
 public class ArrayCardRepository : ICardRepository
 {
     private static readonly Card[] DefaultCards = new Card[]
