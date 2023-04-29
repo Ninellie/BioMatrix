@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +7,14 @@ public class Player : Unit
     public Action onGamePaused;
     public Action onLevelUp;
     public Action onExperienceTaken;
+    public Action onLayerLost;
+    public Action onShieldLost;
+    public Action onLayerRestore;
+    public Action onShieldRestore;
+
+    public bool isShieldOnRecharge => CurrentActiveShieldLayers != MaxApproachableShieldLayers.Value;
+    public bool isShieldFullyCharged => CurrentActiveShieldLayers == MaxApproachableShieldLayers.Value;
+
     public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
     protected Stat MagnetismRadius { get; private set; }
     protected Stat MaxApproachableShieldLayers { get; private set; }
@@ -19,9 +26,9 @@ public class Player : Unit
         private set => _currentActiveShieldLayers = (int)(value > MaxApproachableShieldLayers.Value ? MaxApproachableShieldLayers.Value : value);
     }
     private int _currentActiveShieldLayers;
-    private float ReservedShieldRegeneration
+    private float AccumulatedShieldRegeneration
     {
-        get => _reservedShieldRegeneration;
+        get => _accumulatedShieldRegeneration;
         set
         {
             if (CurrentActiveShieldLayers >= MaxApproachableShieldLayers.Value)
@@ -30,15 +37,15 @@ public class Player : Unit
             }
             if (value < 1)
             {
-                _reservedShieldRegeneration = value;
+                _accumulatedShieldRegeneration = value;
                 return;
             }
             AddLayer();
-            _reservedShieldRegeneration = 0;
+            _accumulatedShieldRegeneration = 0;
         }
     }
 
-    private float _reservedShieldRegeneration = 0f;
+    private float _accumulatedShieldRegeneration = 0f;
 
     [SerializeField] private SpriteRenderer _shieldSprite;
     [SerializeField] private float _alphaPerLayer = 0.2f;
@@ -109,8 +116,26 @@ public class Player : Unit
             _capsuleCollider.enabled = true;
             _shield.SetActive(true);
         }
+
         CurrentActiveShieldLayers++;
         UpdateShieldAlpha();
+
+        if (isShieldFullyCharged)
+        {
+            onShieldRestore?.Invoke();
+        }
+    }
+    private void RemoveLayer()
+    {
+        if (CurrentActiveShieldLayers == 0) return;
+        CurrentActiveShieldLayers--;
+        UpdateShieldAlpha();
+        onLayerLost?.Invoke();
+
+        if (CurrentActiveShieldLayers != 0) return;
+        _capsuleCollider.enabled = false;
+        _shield.SetActive(false);
+        onShieldLost?.Invoke();
     }
 
     private void UpdateShieldAlpha()
@@ -120,15 +145,6 @@ public class Player : Unit
         _shieldSprite.color = _shieldColor;
     }
 
-    private void RemoveLayer()
-    {
-        if (CurrentActiveShieldLayers == 0) return;
-        CurrentActiveShieldLayers--;
-        UpdateShieldAlpha();
-        if (CurrentActiveShieldLayers != 0) return;
-        _capsuleCollider.enabled = false;
-        _shield.SetActive(false);
-    }
     private void Freeze()
     {
         Time.timeScale = 0f;
@@ -253,7 +269,7 @@ public class Player : Unit
     {
         base.BaseUpdate();
         _freezeTimer.Update();
-        ReservedShieldRegeneration += ShieldLayerRegenerationRatePerMinute.Value / 60 * Time.deltaTime;
+        AccumulatedShieldRegeneration += ShieldLayerRegenerationRatePerMinute.Value / 60 * Time.deltaTime;
     }
     protected override void BaseOnEnable()
     {

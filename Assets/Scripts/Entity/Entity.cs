@@ -49,7 +49,7 @@ public class Entity : MonoBehaviour
     public Stat Damage { get; private set; }
     public SpriteRenderer spriteRenderer;
     private float _currentLifePoints;
-    private float _reservedLife = 0;
+    private float _accumulatedLife = 0;
     private Camera _mCamera;
 
     //private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EntityStats);
@@ -95,10 +95,10 @@ public class Entity : MonoBehaviour
         {
             return;
         }
-        _reservedLife += LifeRegenerationPerSecond.Value;
-        if (_reservedLife >= LifePointAmount)
+        _accumulatedLife += LifeRegenerationPerSecond.Value;
+        if (_accumulatedLife >= LifePointAmount)
         {
-            _reservedLife -= LifePointAmount;
+            _accumulatedLife -= LifePointAmount;
             RestoreLifePoints(LifePointAmount);
             Debug.Log($"Regeneration of {gameObject.name} completed");
         }
