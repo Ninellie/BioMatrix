@@ -1,0 +1,34 @@
+using UnityEngine;
+
+public class Turret : Unit
+{
+    [SerializeField] private Transform _firePoint;
+    [SerializeField] private GameObject _attractor;
+    private MovementControllerTurret _movementController;
+    public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
+
+    private void Awake() => BaseAwake(Settings);
+    private void FixedUpdate() => BaseFixedUpdate();
+    protected void BaseFixedUpdate()
+    {
+        if (_attractor == null) return;
+        _movementController?.OrbitalFixedUpdateStep();
+    }
+    protected override void BaseAwake(UnitStatsSettings settings)
+    {
+        Debug.Log($"{gameObject.name} Turret Awake");
+
+        base.BaseAwake(settings);
+
+        _movementController = new MovementControllerTurret(this, _attractor, this.AccelerationSpeed);
+    }
+
+    public void Destroy()
+    {
+        TakeDamage(MaximumLifePoints.Value);
+    }
+    private void SetAttractor(GameObject attractor)
+    {
+        _attractor = attractor;
+    }
+}

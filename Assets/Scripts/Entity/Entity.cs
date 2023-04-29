@@ -47,7 +47,7 @@ public class Entity : MonoBehaviour
     public Stat LifeRegenerationPerSecond { get; private set; }
     public Stat KnockbackPower { get; private set; }
     public Stat Damage { get; private set; }
-    public SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
     private float _currentLifePoints;
     private float _accumulatedLife = 0;
     private Camera _mCamera;

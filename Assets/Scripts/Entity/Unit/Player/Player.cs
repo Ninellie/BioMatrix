@@ -1,9 +1,16 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : Unit
 {
+    public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
+    protected Stat MagnetismRadius { get; private set; }
+    protected Stat MaxApproachableShieldLayersCount { get; private set; }
+    protected Stat ShieldLayerRegenerationRatePerMinute { get; private set; }
+    protected Stat TurretCount { get; private set; }
+
     public Action onGamePaused;
     public Action onLevelUp;
     public Action onExperienceTaken;
@@ -12,26 +19,33 @@ public class Player : Unit
     public Action onLayerRestore;
     public Action onShieldRestore;
 
-    public bool isShieldOnRecharge => CurrentActiveShieldLayers != MaxApproachableShieldLayers.Value;
-    public bool isShieldFullyCharged => CurrentActiveShieldLayers == MaxApproachableShieldLayers.Value;
+    [SerializeField] private SpriteRenderer _shieldSprite;
+    [SerializeField] private float _alphaPerLayer = 0.2f;
+    [SerializeField] private Color _shieldColor = Color.cyan;
+    [SerializeField] private float _shieldRepulseRadius = 250f;
+    [SerializeField] private LayerMask _enemyLayer;
+    [SerializeField] private Transform _firePoint;
+    [SerializeField] private GameObject _shield;
+    [SerializeField] private GameObject _turretPrefab;
 
-    public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
-    protected Stat MagnetismRadius { get; private set; }
-    protected Stat MaxApproachableShieldLayers { get; private set; }
-    protected Stat ShieldLayerRegenerationRatePerMinute { get; private set; }
+    private Stack<Turret> _currentTurrets = new Stack<Turret>();
+    
+    public Firearm CurrentFirearm { get; private set; }
 
-    public int CurrentActiveShieldLayers
+    public bool isShieldOnRecharge => CurrentActiveShieldLayersCount != MaxApproachableShieldLayersCount.Value;
+    public bool isShieldFullyCharged => CurrentActiveShieldLayersCount == MaxApproachableShieldLayersCount.Value;
+    public int CurrentActiveShieldLayersCount
     {
-        get => _currentActiveShieldLayers;
-        private set => _currentActiveShieldLayers = (int)(value > MaxApproachableShieldLayers.Value ? MaxApproachableShieldLayers.Value : value);
+        get => _currentActiveShieldLayersCount;
+        private set => _currentActiveShieldLayersCount = (int)(value > MaxApproachableShieldLayersCount.Value ? MaxApproachableShieldLayersCount.Value : value);
     }
-    private int _currentActiveShieldLayers;
+    private int _currentActiveShieldLayersCount;
     private float AccumulatedShieldRegeneration
     {
         get => _accumulatedShieldRegeneration;
         set
         {
-            if (CurrentActiveShieldLayers >= MaxApproachableShieldLayers.Value)
+            if (CurrentActiveShieldLayersCount >= MaxApproachableShieldLayersCount.Value)
             {
                 return;
             }
@@ -46,12 +60,6 @@ public class Player : Unit
     }
 
     private float _accumulatedShieldRegeneration = 0f;
-
-    [SerializeField] private SpriteRenderer _shieldSprite;
-    [SerializeField] private float _alphaPerLayer = 0.2f;
-    [SerializeField] private Color _shieldColor = Color.cyan;
-    [SerializeField] private float _shieldRepulseRadius = 250f;
-    [SerializeField] private LayerMask _enemyLayer;
 
     public bool isFireButtonPressed = false;
     public int Level
@@ -78,11 +86,6 @@ public class Player : Unit
         }
     }
 
-    public Firearm CurrentFirearm { get; private set; }
-
-    [SerializeField] private Transform _firePoint;
-    [SerializeField] private GameObject _shield;
-
     private const int ExperienceToSecondLevel = 2;
     private const int ExperienceAmountIncreasingPerLevel = 1;
     private const int InitialLevel = 1;
@@ -102,53 +105,11 @@ public class Player : Unit
     {
         _freezeTimer = new GameTimer(Freeze, 0.2f);
         UpdateShieldAlpha();
-        _capsuleCollider.enabled = CurrentActiveShieldLayers < 0;
-        for (int i = 0; i < MaxApproachableShieldLayers.Value; i++)
+        _capsuleCollider.enabled = CurrentActiveShieldLayersCount < 0;
+        for (int i = 0; i < MaxApproachableShieldLayersCount.Value; i++)
         {
             AddLayer();
         }
-    }
-
-    private void AddLayer()
-    {
-        if (CurrentActiveShieldLayers == 0)
-        {
-            _capsuleCollider.enabled = true;
-            _shield.SetActive(true);
-        }
-
-        CurrentActiveShieldLayers++;
-        UpdateShieldAlpha();
-
-        if (isShieldFullyCharged)
-        {
-            onShieldRestore?.Invoke();
-        }
-    }
-    private void RemoveLayer()
-    {
-        if (CurrentActiveShieldLayers == 0) return;
-        CurrentActiveShieldLayers--;
-        UpdateShieldAlpha();
-        onLayerLost?.Invoke();
-
-        if (CurrentActiveShieldLayers != 0) return;
-        _capsuleCollider.enabled = false;
-        _shield.SetActive(false);
-        onShieldLost?.Invoke();
-    }
-
-    private void UpdateShieldAlpha()
-    {
-        var a = _alphaPerLayer * CurrentActiveShieldLayers;
-        _shieldColor.a = a;
-        _shieldSprite.color = _shieldColor;
-    }
-
-    private void Freeze()
-    {
-        Time.timeScale = 0f;
-        this.GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
     }
 
     private void OnEnable() => BaseOnEnable();
@@ -164,7 +125,7 @@ public class Player : Unit
             return;
         }
         if (!otherCollider2D.gameObject.CompareTag("Enemy") && !otherCollider2D.gameObject.CompareTag("Enclosure")) return;
-        if (CurrentActiveShieldLayers > 0)
+        if (CurrentActiveShieldLayersCount > 0)
         {
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
 
@@ -211,6 +172,54 @@ public class Player : Unit
         Gizmos.color = Color.red;
         Gizmos.DrawLine(Rb2D.transform.position, _movementController.GetVelocity() + (Vector2)Rb2D.transform.position);
     }
+
+    protected void BaseFixedUpdate()
+    {
+        _movementController.FixedUpdateStep();
+    }
+    protected void BaseAwake(PlayerStatsSettings settings)
+    {
+        Debug.Log($"{gameObject.name} Player Awake");
+        _level = InitialLevel;
+        _experience = InitialExperience;
+        _circleCollider = GetComponent<CircleCollider2D>();
+        _capsuleCollider = GetComponent<CapsuleCollider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        MagnetismRadius = new Stat(settings.magnetismRadius);
+        _circleCollider.radius = MagnetismRadius.Value;
+        if (MagnetismRadius.Value < 0)
+        {
+            _circleCollider.radius = 0;
+        }
+        MaxApproachableShieldLayersCount = new Stat(settings.maxShieldLayers);
+        ShieldLayerRegenerationRatePerMinute = new Stat(settings.shieldLayerRegenerationRate);
+
+        _shieldSprite = _shield.GetComponent<SpriteRenderer>();
+        _invulnerability = GetComponent<Invulnerability>();
+        base.BaseAwake(settings);
+
+        _movementController = new MovementControllerPlayer(this);
+    }
+
+    protected override void BaseUpdate()
+    {
+        base.BaseUpdate();
+        _freezeTimer.Update();
+        AccumulatedShieldRegeneration += ShieldLayerRegenerationRatePerMinute.Value / 60 * Time.deltaTime;
+    }
+    protected override void BaseOnEnable()
+    {
+        base.BaseOnEnable();
+        if (MagnetismRadius != null) MagnetismRadius.onValueChanged += ChangeCurrentMagnetismRadius;
+        if (MaxApproachableShieldLayersCount != null) MaxApproachableShieldLayersCount.onValueChanged += AddLayer;
+    }
+    protected override void BaseOnDisable()
+    {
+        base.BaseOnDisable();
+        if (MagnetismRadius != null) MagnetismRadius.onValueChanged -= ChangeCurrentMagnetismRadius;
+        if (MaxApproachableShieldLayersCount != null) MaxApproachableShieldLayersCount.onValueChanged -= AddLayer;
+    }
+
     protected void KnockBackFrom(Entity collisionEntity)
     {
         _movementController.KnockBackFromEntity(collisionEntity);
@@ -237,52 +246,48 @@ public class Player : Unit
 
         _movementController.KnockBackTo(collisionEntity, entityPosition);
     }
-    protected void BaseFixedUpdate()
+    private void AddLayer()
     {
-        _movementController.FixedUpdateStep();
-    }
-    protected void BaseAwake(PlayerStatsSettings settings)
-    {
-        Debug.Log($"{gameObject.name} Player Awake");
-        _level = InitialLevel;
-        _experience = InitialExperience;
-        _circleCollider = GetComponent<CircleCollider2D>();
-        _capsuleCollider = GetComponent<CapsuleCollider2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        MagnetismRadius = new Stat(settings.magnetismRadius);
-        _circleCollider.radius = MagnetismRadius.Value;
-        if (MagnetismRadius.Value < 0)
+        if (CurrentActiveShieldLayersCount == 0)
         {
-            _circleCollider.radius = 0;
+            _capsuleCollider.enabled = true;
+            _shield.SetActive(true);
         }
-        MaxApproachableShieldLayers = new Stat(settings.maxShieldLayers);
-        ShieldLayerRegenerationRatePerMinute = new Stat(settings.shieldLayerRegenerationRate);
 
-        _shieldSprite = _shield.GetComponent<SpriteRenderer>();
-        _invulnerability = GetComponent<Invulnerability>();
-        base.BaseAwake(settings);
+        CurrentActiveShieldLayersCount++;
+        UpdateShieldAlpha();
 
-        _movementController = new MovementControllerPlayer(this);
+        if (isShieldFullyCharged)
+        {
+            onShieldRestore?.Invoke();
+        }
+    }
+    private void RemoveLayer()
+    {
+        if (CurrentActiveShieldLayersCount == 0) return;
+        CurrentActiveShieldLayersCount--;
+        UpdateShieldAlpha();
+        onLayerLost?.Invoke();
+
+        if (CurrentActiveShieldLayersCount != 0) return;
+        _capsuleCollider.enabled = false;
+        _shield.SetActive(false);
+        onShieldLost?.Invoke();
     }
 
-    protected override void BaseUpdate()
+    private void UpdateShieldAlpha()
     {
-        base.BaseUpdate();
-        _freezeTimer.Update();
-        AccumulatedShieldRegeneration += ShieldLayerRegenerationRatePerMinute.Value / 60 * Time.deltaTime;
+        var a = _alphaPerLayer * CurrentActiveShieldLayersCount;
+        _shieldColor.a = a;
+        _shieldSprite.color = _shieldColor;
     }
-    protected override void BaseOnEnable()
+
+    private void Freeze()
     {
-        base.BaseOnEnable();
-        if (MagnetismRadius != null) MagnetismRadius.onValueChanged += ChangeCurrentMagnetismRadius;
-        if (MaxApproachableShieldLayers != null) MaxApproachableShieldLayers.onValueChanged += AddLayer;
+        Time.timeScale = 0f;
+        this.GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
     }
-    protected override void BaseOnDisable()
-    {
-        base.BaseOnDisable();
-        if (MagnetismRadius != null) MagnetismRadius.onValueChanged -= ChangeCurrentMagnetismRadius;
-        if (MaxApproachableShieldLayers != null) MaxApproachableShieldLayers.onValueChanged -= AddLayer;
-    }
+
     private void ChangeCurrentMagnetismRadius()
     {
         if (MagnetismRadius.Value < 0)
@@ -301,6 +306,22 @@ public class Player : Unit
         var firearm = w.GetComponent<Firearm>();
         CurrentFirearm = firearm;
     }
+
+    public void CreateTurret(GameObject turret)
+    {
+        var turretGameObject = Instantiate(turret);
+
+        var createdTurret = turretGameObject.GetComponent<Turret>();
+
+        _currentTurrets.Push(createdTurret);
+    }
+
+    public void DestroyTurret()
+    {
+        var turret = _currentTurrets.Pop();
+        turret.Destroy();
+    }
+
     public void AddStatModifier(string statName, StatModifier statModifier)
     {
         switch (statName)
@@ -317,11 +338,14 @@ public class Player : Unit
             case "lifeRegenerationPerSecond":
                 LifeRegenerationPerSecond.AddModifier(statModifier);
                 break;
-            case "maxApproachableShieldLayers":
-                MaxApproachableShieldLayers.AddModifier(statModifier);
+            case "maxApproachableShieldLayersCount":
+                MaxApproachableShieldLayersCount.AddModifier(statModifier);
                 break;
             case "shieldLayerRegenerationRate":
                 ShieldLayerRegenerationRatePerMinute.AddModifier(statModifier);
+                break;
+            case "turretCount":
+                TurretCount.AddModifier(statModifier);
                 break;
         }
     }

@@ -138,7 +138,7 @@ public class ArrayCardRepository : ICardRepository
             DropWeight = 100,
             InfluencedStats = new[]
             {
-                "maxApproachableShieldLayers",
+                "maxApproachableShieldLayersCount",
             },
             ModifierList = new StatModifier[]
             {
