@@ -19,7 +19,7 @@ public class Turret : Unit
         Debug.Log($"{gameObject.name} Turret Awake");
 
         base.BaseAwake(settings);
-
+        //acceleration speed = orbit radius
         _movementController = new MovementControllerTurret(this, _attractor, this.AccelerationSpeed);
     }
 

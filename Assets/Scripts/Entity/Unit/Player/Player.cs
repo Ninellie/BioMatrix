@@ -214,13 +214,11 @@ public class Player : Unit
     {
         base.BaseOnEnable();
         if (MagnetismRadius != null) MagnetismRadius.onValueChanged += ChangeCurrentMagnetismRadius;
-        if (MaxRechargeableShieldLayersCount != null) MaxRechargeableShieldLayersCount.onValueChanged += AddLayer;
     }
     protected override void BaseOnDisable()
     {
         base.BaseOnDisable();
         if (MagnetismRadius != null) MagnetismRadius.onValueChanged -= ChangeCurrentMagnetismRadius;
-        if (MaxRechargeableShieldLayersCount != null) MaxRechargeableShieldLayersCount.onValueChanged -= AddLayer;
     }
 
     protected void KnockBackFrom(Entity collisionEntity)
@@ -249,7 +247,7 @@ public class Player : Unit
 
         _movementController.KnockBackTo(collisionEntity, entityPosition);
     }
-    private void AddLayer()
+    public void AddLayer()
     {
         if (_currentActiveShieldLayersCount >= MaxShieldLayersCount.Value) return;
 
@@ -269,7 +267,7 @@ public class Player : Unit
         }
     }
 
-    private void RemoveLayer()
+    public void RemoveLayer()
     {
         if (_currentActiveShieldLayersCount == 0) return;
         _currentActiveShieldLayersCount--;
@@ -344,6 +342,9 @@ public class Player : Unit
                 break;
             case "lifeRegenerationPerSecond":
                 LifeRegenerationPerSecond.AddModifier(statModifier);
+                break;
+            case "maxShieldLayersCount":
+                MaxShieldLayersCount.AddModifier(statModifier);
                 break;
             case "maxRechargeableShieldLayersCount":
                 MaxRechargeableShieldLayersCount.AddModifier(statModifier);

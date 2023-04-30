@@ -19,47 +19,53 @@ public class LevelUp : MonoBehaviour
     }
     public void Improve(int index)
     {
+        var player = FindObjectOfType<Player>();
+
         for (var i = 0; i < _selectedCards[index].InfluencedStats.Length; i++)
         {
             var statName = _selectedCards[index].InfluencedStats[i];
             var modifier = _selectedCards[index].ModifierList[i];
             Debug.Log(statName);
             Debug.Log(modifier);
-
             switch (statName)
             {
                 case "speed":
-                    FindObjectOfType<Player>().AddStatModifier(statName, modifier);
+                    player.AddStatModifier(statName, modifier);
                     break;
                 case "maximumLifePoints":
-                    FindObjectOfType<Player>().AddStatModifier(statName, modifier);
+                    player.AddStatModifier(statName, modifier);
                     break;
                 case "lifeRegenerationPerSecond":
-                    FindObjectOfType<Player>().AddStatModifier(statName, modifier);
+                    player.AddStatModifier(statName, modifier);
                     break;
                 case "magnetismRadius":
-                    FindObjectOfType<Player>().AddStatModifier(statName, modifier);
+                    player.AddStatModifier(statName, modifier);
+                    break;
+                case "maxShieldLayersCount":
+                    player.AddStatModifier(statName, modifier);
+                    player.AddLayer();
                     break;
                 case "maxRechargeableShieldLayersCount":
-                    FindObjectOfType<Player>().AddStatModifier(statName, modifier);
+                    player.AddStatModifier(statName, modifier);
+                    player.AddLayer();
                     break;
                 case "shieldLayerRechargeRate":
-                    FindObjectOfType<Player>().AddStatModifier(statName, modifier);
+                    player.AddStatModifier(statName, modifier);
                     break;
                 case "fireRate":
-                    FindObjectOfType<Firearm>().AddStatModifier(statName, modifier);
+                    player.CurrentFirearm.AddStatModifier(statName, modifier);
                     break;
                 case "projectileSpeed":
-                    FindObjectOfType<Firearm>().AddStatModifier(statName, modifier);
+                    player.CurrentFirearm.AddStatModifier(statName, modifier);
                     break;
                 case "pierceNumber":
-                    FindObjectOfType<Firearm>().AddStatModifier(statName, modifier);
+                    player.CurrentFirearm.AddStatModifier(statName, modifier);
                     break;
                 case "reloadSpeed":
-                    FindObjectOfType<Firearm>().AddStatModifier(statName, modifier);
+                    player.CurrentFirearm.AddStatModifier(statName, modifier);
                     break;
                 case "projectileNumber":
-                    FindObjectOfType<Firearm>().AddStatModifier(statName, modifier);
+                    player.CurrentFirearm.AddStatModifier(statName, modifier);
                     break;
             }
         }
