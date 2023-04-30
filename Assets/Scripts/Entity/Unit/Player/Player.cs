@@ -27,6 +27,7 @@ public class Player : Unit
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject _shield;
     [SerializeField] private GameObject _turretPrefab;
+    [SerializeField] private GameObject _turretWeaponPrefab;
 
     private Stack<Turret> _currentTurrets = new Stack<Turret>();
     
@@ -321,6 +322,8 @@ public class Player : Unit
         var createdTurret = turretGameObject.GetComponent<Turret>();
 
         createdTurret.SetAttractor(this.gameObject);
+
+        createdTurret.CreateWeapon(_turretWeaponPrefab);
 
         _currentTurrets.Push(createdTurret);
     }
