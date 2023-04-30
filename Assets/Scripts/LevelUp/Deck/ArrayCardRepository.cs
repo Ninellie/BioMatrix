@@ -161,8 +161,8 @@ public class ArrayCardRepository : ICardRepository
         },
         new Card
         {
-            Title = "Shield regeneration rate",
-            Description = "+50 to shield regeneration rate multiplier",
+            Title = "Shield recharge rate",
+            Description = "+50 to shield recharge rate multiplier",
             DropWeight = 1000,
             InfluencedStats = new[]
             {

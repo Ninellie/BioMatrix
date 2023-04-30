@@ -19,15 +19,15 @@ public class Turret : Unit
         Debug.Log($"{gameObject.name} Turret Awake");
 
         base.BaseAwake(settings);
-        //acceleration speed = orbit radius
-        _movementController = new MovementControllerTurret(this, _attractor, this.AccelerationSpeed);
+        // acceleration speed = orbit radius
+        _movementController = new MovementControllerTurret(this, _attractor);
     }
 
     public void Destroy()
     {
         TakeDamage(MaximumLifePoints.Value);
     }
-    private void SetAttractor(GameObject attractor)
+    public void SetAttractor(GameObject attractor)
     {
         _attractor = attractor;
     }

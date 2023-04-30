@@ -10,7 +10,6 @@ public class Player : Unit
     protected Stat MaxShieldLayersCount { get; private set; }
     protected Stat MaxRechargeableShieldLayersCount { get; private set; }
     protected Stat ShieldLayerRechargeRatePerMinute { get; private set; }
-    protected Stat TurretCount { get; private set; }
 
     public Action onGamePaused;
     public Action onLevelUp;
@@ -108,6 +107,7 @@ public class Player : Unit
         {
             AddLayer();
         }
+        CreateTurret(_turretPrefab);
     }
 
     private void OnEnable() => BaseOnEnable();
@@ -318,6 +318,9 @@ public class Player : Unit
 
         var createdTurret = turretGameObject.GetComponent<Turret>();
 
+
+        createdTurret.SetAttractor(this.gameObject);
+
         _currentTurrets.Push(createdTurret);
     }
 
@@ -353,7 +356,7 @@ public class Player : Unit
                 ShieldLayerRechargeRatePerMinute.AddModifier(statModifier);
                 break;
             case "turretCount":
-                TurretCount.AddModifier(statModifier);
+                //TurretCount.AddModifier(statModifier);
                 break;
         }
     }
