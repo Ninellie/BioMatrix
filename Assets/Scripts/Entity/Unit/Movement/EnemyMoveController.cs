@@ -34,7 +34,18 @@ public abstract class EnemyMoveController
     protected float SpeedScaleStep => SpeedScaleRestoreSpeedPerSecond * Time.fixedDeltaTime;
     //DIRECTION
     protected Vector2 MovementDirection => (TargetPosition - MyPosition).normalized;
-    protected Vector2 TargetPosition => Target.transform.position;
+    protected Vector2 TargetPosition
+    {
+        get
+        {
+            if (Target is null)
+            {
+                return MyPosition;
+            }
+            return Target.transform.position;
+        }
+    }
+
     protected Vector2 MyPosition => MyUnit.transform.position;
     protected EnemyMoveController(Enemy myUnit, GameObject target)
     {

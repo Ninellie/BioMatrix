@@ -15,7 +15,7 @@ public class Enemy : Unit
     public EnemyMoveController _enemyMoveController;
     private readonly Rarity _rarity = new Rarity();
     private SpriteOutline _spriteOutline;
-    private GameObject _lastCollidedGameObject;
+    private bool _deathFromPlayer = true;
     private CircleCollider2D _circleCollider;
     private Color _spriteColor;
     private float _deathTimer;
@@ -49,8 +49,7 @@ public class Enemy : Unit
     private void OnCollisionEnter2D(Collision2D collision2D)
     {
         Collider2D otherCollider2D = collision2D.collider;
-
-        _lastCollidedGameObject = otherCollider2D.gameObject;
+        
         if (otherCollider2D.gameObject.CompareTag("Enemy"))
         {
             return;
@@ -84,42 +83,6 @@ public class Enemy : Unit
 
         _enemyMoveController.KnockBackFromTarget(thrustPower);
     }
-    //private void OnTriggerEnter2D(Collider2D otherCollider2D)
-    //{
-    //    _lastCollidedGameObject = otherCollider2D.gameObject;
-    //    if (otherCollider2D.gameObject.CompareTag("Enemy"))
-    //    {
-    //        return;
-    //    }
-
-    //    if (!otherCollider2D.gameObject.TryGetComponent<Entity>(out Entity entity))
-    //    {
-    //        Debug.LogWarning("OnTriggerEnter2D with game object without Entity component");
-    //        return;
-    //    }
-    //    var collisionEntity = otherCollider2D.gameObject.GetComponent<Entity>();
-    //    var thrustPower = collisionEntity.KnockbackPower.Value;
-
-    //    if (otherCollider2D.gameObject.CompareTag("Player"))
-    //    {
-    //        if (_dieOnPlayerCollision)
-    //        {
-    //            Death();
-    //        }
-    //    }
-    //    if (!otherCollider2D.gameObject.CompareTag("Projectile")) return;
-    //    var projectileDamage = collisionEntity.Damage.Value;
-
-    //    TakeDamage(projectileDamage);
-
-    //    var position = GetClosestPointOnCircle(otherCollider2D as CircleCollider2D);
-
-    //    DropDamagePopup(MinimalDamageTaken, position);
-
-    //    ChangeColorOnDamageTaken();
-
-    //    _enemyMoveController.KnockBackFromTarget(thrustPower);
-    //}
     private void OnDrawGizmos()
     {
         if (_enemyMoveController is null)
@@ -198,6 +161,7 @@ public class Enemy : Unit
         if (Time.timeScale == 0) return;
         _deathTimer += Time.fixedDeltaTime;
         if (!(_deathTimer >= OffscreenDieSeconds)) return;
+        _deathFromPlayer = false;
         TakeDamage(CurrentLifePoints);
     }
     public void SetRarity(RarityEnum rarityEnum)
@@ -225,14 +189,12 @@ public class Enemy : Unit
     }
     protected override void Death()
     {
-        if (_lastCollidedGameObject is null || !_lastCollidedGameObject.CompareTag("Projectile"))
+        if (_deathFromPlayer)
         {
-            base.Death();
-            return;
+            DropBonus();
         }
 
         base.Death();
-        DropBonus();
     }
     private void DropBonus()
     {

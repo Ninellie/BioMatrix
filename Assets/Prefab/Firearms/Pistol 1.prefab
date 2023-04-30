@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7478297182190854537}
   - component: {fileID: -5820009616735749093}
   m_Layer: 7
-  m_Name: Pistol
+  m_Name: Pistol 1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: 62ab6d6883f51534595dccca64c6bacb, type: 3}
-  _isForPlayer: 1
+  _isForPlayer: 0
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 64

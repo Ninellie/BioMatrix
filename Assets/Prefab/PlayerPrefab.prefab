@@ -70,6 +70,7 @@ MonoBehaviour:
   _firePoint: {fileID: 766516748403551923}
   _shield: {fileID: 7005012959266165756}
   _turretPrefab: {fileID: 9206584794608382483, guid: e4b56dd8ab154984597f19cc0101b423, type: 3}
+  _turretWeaponPrefab: {fileID: 3233653779076600719, guid: fc06b7e8f38d50e48892e3fde399d532, type: 3}
   isFireButtonPressed: 0
 --- !u!114 &659999168091465563
 MonoBehaviour:

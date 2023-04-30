@@ -15,11 +15,11 @@ public class Magazine : MonoBehaviour
                 case < 0:
                     _currentAmount = MinMagazineAmount;
                     Debug.Log("Magazine of " + gameObject.name + " is empty");
-                    Magazine.onEmpty?.Invoke();
+                    onEmpty?.Invoke();
                     break;
                 case 0:
                     _currentAmount = value;
-                    Magazine.onEmpty?.Invoke();
+                    onEmpty?.Invoke();
                     Debug.Log("Magazine of " + gameObject.name + " is empty");
                     break;
                 case > 0:
@@ -33,7 +33,7 @@ public class Magazine : MonoBehaviour
     private const int MinMagazineAmount = 0;
     
     public bool IsEmpty => CurrentAmount == 0;
-    public static Action onEmpty;
+    public Action onEmpty;
     private int Size => (int)GetComponent<Firearm>().MagazineSize.Value;
     private void Start()
     {

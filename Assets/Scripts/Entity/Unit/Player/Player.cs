@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class Player : Unit
 {
@@ -108,7 +109,14 @@ public class Player : Unit
         {
             AddLayer();
         }
-        CreateTurret(_turretPrefab);
+
+        float timeDelay = Random.Range(0, 1);
+        float timeDelay2 = Random.Range(1, 2);
+        float timeDelay3 = Random.Range(2, 3);
+        Invoke("CreateTurret", timeDelay);
+        Invoke("CreateTurret", timeDelay2);
+        Invoke("CreateTurret", timeDelay3);
+
     }
 
     private void OnEnable() => BaseOnEnable();
@@ -313,9 +321,10 @@ public class Player : Unit
         CurrentFirearm = firearm;
     }
 
-    public void CreateTurret(GameObject turret)
+    public void CreateTurret()
     {
-        var turretGameObject = Instantiate(turret);
+        Debug.LogWarning("Turret creating");
+        var turretGameObject = Instantiate(_turretPrefab);
 
         turretGameObject.transform.SetParent(this.gameObject.transform);
 

@@ -1,7 +1,8 @@
-using System;
-using System.Diagnostics;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
+
 [RequireComponent(typeof(Reload))]
 [RequireComponent(typeof(Magazine))]
 [RequireComponent(typeof(ProjectileCreator))]
@@ -16,20 +17,27 @@ public class Firearm : MonoBehaviour
     public Stat SingleShootProjectile { get; private set; }
     
     [SerializeField] private GameObject _ammo;
-    public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
-    public bool CanShoot => _previousShootStopwatch.Elapsed >= MinShootInterval
-                            && !Magazine.IsEmpty
-                            && !Reload.IsInProcess;
-    public Magazine Magazine => GetComponent<Magazine>();
-    private bool IsFireButtonPressed => _player.isFireButtonPressed;
+    [SerializeField] private bool _isForPlayer;
+    [SerializeField] private LayerMask _enemyLayer;
+    public FirearmStatsSettings settings => GetComponent<FirearmStatsSettings>();
+    public Magazine magazine;
+    private Reload _reload;
+    private ProjectileCreator _projectileCreator;
+    public bool CanShoot => _previousShootTimer <= 0
+                            && !magazine.IsEmpty
+                            && !_reload.IsInProcess;
+    private bool IsFireButtonPressed => !_isForPlayer || _player.isFireButtonPressed;
+
+    private float _previousShootTimer = 0;
+    private float MinShootInterval => 1f / ShootsPerSecond.Value;
     private Player _player;
-    private Reload Reload => GetComponent<Reload>();
-    private ProjectileCreator ProjectileCreator => GetComponent<ProjectileCreator>();
-    private readonly Stopwatch _previousShootStopwatch = new();
-    private TimeSpan MinShootInterval => TimeSpan.FromSeconds(1d / ShootsPerSecond.Value);
-    private void Awake() => BaseAwake(Settings);
+    private void Awake() => BaseAwake(settings);
     private void BaseAwake(FirearmStatsSettings settings)
     {
+        magazine = GetComponent<Magazine>();
+        _reload = GetComponent<Reload>();
+        _projectileCreator = GetComponent<ProjectileCreator>();
+
         Damage = new Stat(settings.damage);
         ShootForce = new Stat(settings.shootForce);
         ShootsPerSecond = new Stat(settings.shootsPerSecond);
@@ -37,13 +45,18 @@ public class Firearm : MonoBehaviour
         MagazineSize = new Stat(settings.magazineSize);
         ReloadSpeed = new Stat(settings.reloadSpeed);
         SingleShootProjectile = new Stat(settings.singleShootProjectile);
-        _previousShootStopwatch.Start();
+        
         _player = FindObjectOfType<Player>();
     }
     private void Update()
     {
+        _previousShootTimer -= Time.deltaTime;
         if (!IsFireButtonPressed) return;
         if (CanShoot) Shoot();
+    }
+    public bool GetIsForPlayer()
+    {
+        return _isForPlayer;
     }
     public void AddStatModifier(string statName, StatModifier statModifier)
     {
@@ -74,19 +87,52 @@ public class Firearm : MonoBehaviour
     }
     private void Shoot()
     {
-        Magazine.Pop();
-        var projectiles = ProjectileCreator.CreateProjectiles((int)SingleShootProjectile.Value, _ammo, gameObject.transform);
+        magazine.Pop();
+        var projectiles = _projectileCreator.CreateProjectiles((int)SingleShootProjectile.Value, _ammo, gameObject.transform);
         var direction = GetShotDirection();
         foreach (var projectile in projectiles)
         {
             var actualShotDirection = GetActualShotDirection(direction, MaxShootDeflectionAngle.Value);
             projectile.GetComponent<Projectile>().Launch(actualShotDirection, ShootForce.Value);
         }
-        _previousShootStopwatch.Restart();
+        _previousShootTimer = MinShootInterval;
     }
+
     private Vector2 GetShotDirection()
     {
-        return Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - gameObject.transform.position;
+        if (_isForPlayer)
+        {
+            return Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - gameObject.transform.position;
+        }
+
+        Camera mainCamera = Camera.main;
+        Vector3 cameraPos = mainCamera.transform.position;
+        Vector3 cameraTopRight =
+            new Vector3(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize, 0f) + cameraPos;
+        Vector3 cameraBottomLeft =
+            new Vector3(-mainCamera.aspect * mainCamera.orthographicSize, -mainCamera.orthographicSize, 0f) + cameraPos;
+        Collider2D[] colliders = Physics2D.OverlapAreaAll(cameraBottomLeft, cameraTopRight, _enemyLayer);
+
+        if (colliders.Length == 0)
+        {
+            return Random.insideUnitCircle;
+        }
+
+        Vector2 nearestEnemyDirection = Vector2.zero;
+        float nearestDistance = Mathf.Infinity;
+
+        foreach (Collider2D collider in colliders)
+        {
+            Vector2 direction = (collider.transform.position - transform.position).normalized;
+            float distance = Vector2.Distance(transform.position, collider.transform.position);
+
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestEnemyDirection = direction;
+            }
+        }
+        return nearestEnemyDirection;
     }
 
     private Vector2 GetActualShotDirection(Vector2 direction, float maxShotDeflectionAngle)
