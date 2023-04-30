@@ -225,9 +225,13 @@ public class Enemy : Unit
     }
     protected override void Death()
     {
+        if (_lastCollidedGameObject is null || !_lastCollidedGameObject.CompareTag("Projectile"))
+        {
+            base.Death();
+            return;
+        }
+
         base.Death();
-        if (_lastCollidedGameObject is null) return;
-        if (_lastCollidedGameObject.tag != "Projectile") return;
         DropBonus();
     }
     private void DropBonus()
