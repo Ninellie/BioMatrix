@@ -40,10 +40,10 @@ public class LevelUp : MonoBehaviour
                 case "magnetismRadius":
                     FindObjectOfType<Player>().AddStatModifier(statName, modifier);
                     break;
-                case "maxApproachableShieldLayersCount":
+                case "maxRechargeableShieldLayersCount":
                     FindObjectOfType<Player>().AddStatModifier(statName, modifier);
                     break;
-                case "shieldLayerRegenerationRate":
+                case "shieldLayerRechargeRate":
                     FindObjectOfType<Player>().AddStatModifier(statName, modifier);
                     break;
                 case "fireRate":

@@ -33,7 +33,7 @@ public class GlobalStatsSettingsRepository
         lifeRegenerationInSecond = 0,
         speed = 220,
         magnetismRadius = 150,
-        maxShieldLayers = 1000,
+        maxRechargeableShieldLayersCount = 1000,
         knockbackPower = 200,
     };
 

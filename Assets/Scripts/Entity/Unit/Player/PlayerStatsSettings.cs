@@ -1,7 +1,8 @@
 public class PlayerStatsSettings : UnitStatsSettings
 {
     public float magnetismRadius;
-    public float maxShieldLayers;
-    public float shieldLayerRegenerationRate;
+    public float maxRechargeableShieldLayersCount;
+    public float maxShieldLayersCount;
+    public float shieldLayerRechargeRate;
     public float turretCount;
 }

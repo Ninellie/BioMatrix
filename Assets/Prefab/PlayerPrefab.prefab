@@ -93,8 +93,10 @@ MonoBehaviour:
   accelerationSpeed: 0
   rotationSpeed: 0
   magnetismRadius: 150
-  maxShieldLayers: 1
+  maxRechargeableShieldLayersCount: 0
   shieldLayerRegenerationRate: 0.5
+  maxShieldLayersCount: 3
+  turretCount: 0
 --- !u!114 &-1144305010475561183
 MonoBehaviour:
   m_ObjectHideFlags: 0
