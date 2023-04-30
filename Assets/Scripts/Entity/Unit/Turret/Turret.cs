@@ -20,7 +20,7 @@ public class Turret : Unit
 
         base.BaseAwake(settings);
         // acceleration speed = orbit radius
-        _movementController = new MovementControllerTurret(this, _attractor);
+        _movementController = new MovementControllerTurret(this);
     }
 
     public void Destroy()
@@ -30,5 +30,10 @@ public class Turret : Unit
     public void SetAttractor(GameObject attractor)
     {
         _attractor = attractor;
+    }
+
+    public GameObject GetAttractor()
+    {
+        return _attractor;
     }
 }
