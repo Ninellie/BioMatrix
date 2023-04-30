@@ -9,7 +9,10 @@ public class Enclosure : Entity
     [SerializeField] private bool _isShrinking = false;
 
     [SerializeField] private GameObject _grid;
+
     private Tilemap _tilemap;
+
+    private TilemapCollider2D _collider;
     public EnclosureStatsSettings Settings => GetComponent<EnclosureStatsSettings>();
     public Stat ConstrictionRate { get; private set; }
     private void Awake() => BaseAwake(Settings);
@@ -22,6 +25,7 @@ public class Enclosure : Entity
         base.BaseAwake(settings);
         ConstrictionRate = new Stat(settings.constrictionRate);
         _tilemap = GetComponent<Tilemap>();
+        _collider = GetComponent<TilemapCollider2D>();
     }
     protected virtual void BaseFixedUpdate()
     {

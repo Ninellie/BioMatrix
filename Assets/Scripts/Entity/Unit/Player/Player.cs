@@ -316,8 +316,9 @@ public class Player : Unit
     {
         var turretGameObject = Instantiate(turret);
 
-        var createdTurret = turretGameObject.GetComponent<Turret>();
+        turretGameObject.transform.SetParent(this.gameObject.transform);
 
+        var createdTurret = turretGameObject.GetComponent<Turret>();
 
         createdTurret.SetAttractor(this.gameObject);
 

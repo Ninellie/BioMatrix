@@ -4983,7 +4983,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865347cea50ea4b40aed84d653d506f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
   _currentLifeTime: 0
   _isShrinking: 0
   _grid: {fileID: 869256039}
@@ -5084,12 +5083,12 @@ TilemapCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
-  m_ExtrusionFactor: 0.00001
+  m_ExtrusionFactor: 0
 --- !u!114 &1026114789
 MonoBehaviour:
   m_ObjectHideFlags: 0
