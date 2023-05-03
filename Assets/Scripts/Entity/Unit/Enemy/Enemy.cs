@@ -201,14 +201,12 @@ public class Enemy : Unit
         _dropCount--;
         var rotation = new Quaternion(0, 0, 0, 0);
         Instantiate(_onDeathDrop, Rb2D.position, rotation);
-        Debug.LogWarning($"Bonus dropped at {Rb2D.position}");
     }
     private void DropDamagePopup(int damage, Vector2 position)
     {
         var droppedDamagePopup = Instantiate(_damagePopup);
         droppedDamagePopup.transform.position = position;
         droppedDamagePopup.GetComponent<DamagePopup>().Setup(damage);
-        Debug.LogWarning($"DMG popup dropped at {position}");
     }
     private void UpdateMaxLifeStat()
     {

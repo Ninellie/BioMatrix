@@ -52,6 +52,9 @@ public class LevelUp : MonoBehaviour
                 case "shieldLayerRechargeRate":
                     player.AddStatModifier(statName, modifier);
                     break;
+                case "turretCount":
+                    player.AddStatModifier(statName, modifier);
+                    break;
                 case "fireRate":
                     player.CurrentFirearm.AddStatModifier(statName, modifier);
                     break;

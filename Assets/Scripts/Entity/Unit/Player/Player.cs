@@ -7,7 +7,9 @@ using Random = UnityEngine.Random;
 public class Player : Unit
 {
     public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
+    private GameTimeScheduler _gameTimeScheduler;
     protected Stat MagnetismRadius { get; private set; }
+    protected Stat TurretCount { get; private set; }
     protected Stat MaxShieldLayersCount { get; private set; }
     protected Stat MaxRechargeableShieldLayersCount { get; private set; }
     protected Stat ShieldLayerRechargeRatePerMinute { get; private set; }
@@ -110,13 +112,7 @@ public class Player : Unit
             AddLayer();
         }
 
-        float timeDelay = Random.Range(0, 1);
-        float timeDelay2 = Random.Range(1, 2);
-        float timeDelay3 = Random.Range(2, 3);
-        Invoke("CreateTurret", timeDelay);
-        Invoke("CreateTurret", timeDelay2);
-        Invoke("CreateTurret", timeDelay3);
-
+        UpdateTurrets();
     }
 
     private void OnEnable() => BaseOnEnable();
@@ -188,6 +184,8 @@ public class Player : Unit
     {
         Debug.Log($"{gameObject.name} Player Awake");
 
+        _gameTimeScheduler = FindObjectOfType<GameTimeScheduler>();
+
         _level = InitialLevel;
         _experience = InitialExperience;
 
@@ -197,12 +195,15 @@ public class Player : Unit
         _invulnerability = GetComponent<Invulnerability>();
         _shieldSprite = _shield.GetComponent<SpriteRenderer>();
 
+
         MaxRechargeableShieldLayersCount = new Stat(settings.maxRechargeableShieldLayersCount);
         MaxShieldLayersCount = new Stat(settings.maxShieldLayersCount);
         ShieldLayerRechargeRatePerMinute = new Stat(settings.shieldLayerRechargeRate);
         MagnetismRadius = new Stat(settings.magnetismRadius);
+        TurretCount = new Stat(settings.turretCount);
         
         _circleCollider.radius = MagnetismRadius.Value;
+
         if (MagnetismRadius.Value < 0)
         {
             _circleCollider.radius = 0;
@@ -212,7 +213,7 @@ public class Player : Unit
 
         _movementController = new MovementControllerPlayer(this);
     }
-
+    
     protected override void BaseUpdate()
     {
         base.BaseUpdate();
@@ -223,13 +224,37 @@ public class Player : Unit
     {
         base.BaseOnEnable();
         if (MagnetismRadius != null) MagnetismRadius.onValueChanged += ChangeCurrentMagnetismRadius;
+        if (TurretCount != null) TurretCount.onValueChanged += UpdateTurrets;
     }
     protected override void BaseOnDisable()
     {
         base.BaseOnDisable();
         if (MagnetismRadius != null) MagnetismRadius.onValueChanged -= ChangeCurrentMagnetismRadius;
+        if (TurretCount != null) TurretCount.onValueChanged -= UpdateTurrets;
     }
 
+    private void UpdateTurrets()
+    {
+        int dif = (int)TurretCount.Value - _currentTurrets.Count;
+        bool isAboveZero = dif > 0;
+        float delay = 1;
+
+        while (dif != 0)
+        {
+            if (isAboveZero)
+            {
+                Invoke(nameof(CreateTurret), delay);
+                dif--;
+            }
+            else
+            {
+                Invoke(nameof(DestroyTurret), delay);
+                dif++;
+            }
+
+            delay++;
+        }
+    }
     protected void KnockBackFrom(Entity collisionEntity)
     {
         _movementController.KnockBackFromEntity(collisionEntity);
@@ -369,7 +394,7 @@ public class Player : Unit
                 ShieldLayerRechargeRatePerMinute.AddModifier(statModifier);
                 break;
             case "turretCount":
-                //TurretCount.AddModifier(statModifier);
+                TurretCount.AddModifier(statModifier);
                 break;
         }
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class Stat
 {
@@ -14,7 +15,7 @@ public class Stat
     private float MultiplierValue => GetMultiplierValue();
     private readonly List<StatModifier> _modifiers = new List<StatModifier>();
     private const float MultiplierDivisor = 100;
-
+    private GameTimeScheduler _gameTimeScheduler;
     //Without multiplierValue (with multiplierValue = 1)
     //public Stat(float baseValue, bool isModifiable) : this(baseValue, isModifiable, 1)
     //{
@@ -49,6 +50,8 @@ public class Stat
         var oldValue = Value;
         _modifiers.Add(modifier);
         OnValueChanged(oldValue);
+        var time = Time.time + modifier.time;
+        _gameTimeScheduler?.Schedule(() => RemoveModifier(modifier),time);
     }
     public bool RemoveModifier(StatModifier modifier)
     {

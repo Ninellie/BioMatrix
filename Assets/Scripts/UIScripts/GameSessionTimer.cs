@@ -13,19 +13,7 @@ public class GameSessionTimer : MonoBehaviour
         var mins = (int)Time.time / 60;
         var secs = (int)Time.time % 60;
 
-        textTimer.text = mins switch
-        {
-            < 60 => secs < 10 ? $"{mins}:0{secs}" : $"{mins}:{secs}",
-            _ => mins switch
-            {
-                < 10 => secs < 10 ? $"0{mins}:0{secs}" : $"0{mins}:{secs}",
-                _ => mins switch
-                {
-                    < 1 => secs < 10 ? $"00:0{secs}" : $"00:{secs}",
-                    _ => textTimer.text
-                }
-            }
-        };
+        textTimer.text = $"{mins:D2}:{secs:D2}";
 
         if (Time.time >= _winTime)
         {

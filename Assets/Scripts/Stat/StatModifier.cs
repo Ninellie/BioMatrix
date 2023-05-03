@@ -8,6 +8,9 @@ public class StatModifier
         Type = type;
         Value = value;
     }
+
+    public float time;
+    public bool isTemporary;
     public OperationType Type { get; }
     public float Value { get; }
 }

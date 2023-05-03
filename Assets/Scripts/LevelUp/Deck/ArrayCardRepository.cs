@@ -173,6 +173,20 @@ public class ArrayCardRepository : ICardRepository
                 new StatModifier(OperationType.Multiplication, 50)
             },
         },
+        new Card
+        {
+            Title = "Turret count",
+            Description = "+1 to turret count",
+            DropWeight = 100000,
+            InfluencedStats = new[]
+            {
+                "turretCount",
+            },
+            ModifierList = new StatModifier[]
+            {
+                new StatModifier(OperationType.Addition, 1)
+            },
+        },
     };
     private readonly Card[] _cards;
 
