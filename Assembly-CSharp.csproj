@@ -64,7 +64,6 @@
     <Compile Include="Assets\Scripts\Firearm\Magazine.cs" />
     <Compile Include="Assets\Scripts\Firearm\FirearmStatsSettings.cs" />
     <Compile Include="Assets\Scripts\UIScripts\TestJson.cs" />
-    <Compile Include="Assets\Scripts\Timer\GameTimeScheduler.cs" />
     <Compile Include="Assets\Scripts\MovementTests\EnemyUnit.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\Scripts\GameSession\Spawner\Circle.cs" />
@@ -182,7 +181,7 @@
     <Compile Include="Assets\Scripts\Firearm\Firearm.cs" />
     <Compile Include="Assets\Scripts\UIScripts\GameSessionTimer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Scripts\Stat\StatFactory.cs" />
+    <Compile Include="Assets\Scripts\Timer\GameTimeScheduler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
