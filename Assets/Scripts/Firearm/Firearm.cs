@@ -19,6 +19,7 @@ public class Firearm : MonoBehaviour
     [SerializeField] private GameObject _ammo;
     [SerializeField] private bool _isForPlayer;
     [SerializeField] private LayerMask _enemyLayer;
+    protected StatFactory statFactory;
     public FirearmStatsSettings settings => GetComponent<FirearmStatsSettings>();
     public Magazine magazine;
     private Reload _reload;
@@ -38,13 +39,15 @@ public class Firearm : MonoBehaviour
         _reload = GetComponent<Reload>();
         _projectileCreator = GetComponent<ProjectileCreator>();
 
-        Damage = new Stat(settings.damage);
-        ShootForce = new Stat(settings.shootForce);
-        ShootsPerSecond = new Stat(settings.shootsPerSecond);
-        MaxShootDeflectionAngle = new Stat(settings.maxShootDeflectionAngle);
-        MagazineSize = new Stat(settings.magazineSize);
-        ReloadSpeed = new Stat(settings.reloadSpeed);
-        SingleShootProjectile = new Stat(settings.singleShootProjectile);
+        statFactory = Camera.main.GetComponent<StatFactory>();
+
+        Damage = statFactory.GetStat(settings.damage);
+        ShootForce = statFactory.GetStat(settings.shootForce);
+        ShootsPerSecond = statFactory.GetStat(settings.shootsPerSecond);
+        MaxShootDeflectionAngle = statFactory.GetStat(settings.maxShootDeflectionAngle);
+        MagazineSize = statFactory.GetStat(settings.magazineSize);
+        ReloadSpeed = statFactory.GetStat(settings.reloadSpeed);
+        SingleShootProjectile = statFactory.GetStat(settings.singleShootProjectile);
         
         _player = FindObjectOfType<Player>();
     }

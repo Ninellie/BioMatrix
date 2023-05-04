@@ -2,12 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Random = UnityEngine.Random;
 
 public class Player : Unit
 {
     public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
-    private GameTimeScheduler _gameTimeScheduler;
+    
     protected Stat MagnetismRadius { get; private set; }
     protected Stat TurretCount { get; private set; }
     protected Stat MaxShieldLayersCount { get; private set; }
@@ -184,7 +183,12 @@ public class Player : Unit
     {
         Debug.Log($"{gameObject.name} Player Awake");
 
-        _gameTimeScheduler = FindObjectOfType<GameTimeScheduler>();
+        if (statFactory is null)
+        {
+            Debug.LogWarning("statFactory is null");
+        }
+
+        statFactory = Camera.main.GetComponent<StatFactory>();
 
         _level = InitialLevel;
         _experience = InitialExperience;
@@ -196,12 +200,12 @@ public class Player : Unit
         _shieldSprite = _shield.GetComponent<SpriteRenderer>();
 
 
-        MaxRechargeableShieldLayersCount = new Stat(settings.maxRechargeableShieldLayersCount);
-        MaxShieldLayersCount = new Stat(settings.maxShieldLayersCount);
-        ShieldLayerRechargeRatePerMinute = new Stat(settings.shieldLayerRechargeRate);
-        MagnetismRadius = new Stat(settings.magnetismRadius);
-        TurretCount = new Stat(settings.turretCount);
-        
+        MaxRechargeableShieldLayersCount = statFactory.GetStat(settings.maxRechargeableShieldLayersCount);
+        MaxShieldLayersCount = statFactory.GetStat(settings.maxShieldLayersCount);
+        ShieldLayerRechargeRatePerMinute = statFactory.GetStat(settings.shieldLayerRechargeRate);
+        MagnetismRadius = statFactory.GetStat(settings.magnetismRadius);
+        TurretCount = statFactory.GetStat(settings.turretCount);
+
         _circleCollider.radius = MagnetismRadius.Value;
 
         if (MagnetismRadius.Value < 0)

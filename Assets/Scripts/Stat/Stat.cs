@@ -15,7 +15,7 @@ public class Stat
     private float MultiplierValue => GetMultiplierValue();
     private readonly List<StatModifier> _modifiers = new List<StatModifier>();
     private const float MultiplierDivisor = 100;
-    private GameTimeScheduler _gameTimeScheduler;
+    private readonly GameTimeScheduler _gameTimeScheduler;
     //Without multiplierValue (with multiplierValue = 1)
     //public Stat(float baseValue, bool isModifiable) : this(baseValue, isModifiable, 1)
     //{
@@ -35,15 +35,16 @@ public class Stat
     //{
     //    _modifiers = modifiers;
     //}
-    public Stat(float baseValue) : this(baseValue, true, 100, 0)
+    public Stat(GameTimeScheduler gameTimeScheduler, float baseValue) : this(gameTimeScheduler, baseValue, true, 100, 0)
     {
     }
-    public Stat(float baseValue, bool isModifiable, float baseMultiplierValue, float baseAddedValue)
+    public Stat(GameTimeScheduler gameTimeScheduler, float baseValue, bool isModifiable, float baseMultiplierValue, float baseAddedValue)
     {
-        this.BaseValue = baseValue;
-        this.IsModifiable = isModifiable;
+        _gameTimeScheduler = gameTimeScheduler;
+        BaseValue = baseValue;
+        IsModifiable = isModifiable;
         BaseMultiplierValue = baseMultiplierValue;
-        this.BaseAddedValue = baseAddedValue;
+        BaseAddedValue = baseAddedValue;
     }
     public void AddModifier(StatModifier modifier)
     {

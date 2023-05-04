@@ -47,6 +47,7 @@ public class Entity : MonoBehaviour
     public Stat LifeRegenerationPerSecond { get; private set; }
     public Stat KnockbackPower { get; private set; }
     public Stat Damage { get; private set; }
+    protected StatFactory statFactory;
     protected SpriteRenderer spriteRenderer;
     private float _currentLifePoints;
     private float _accumulatedLife = 0;
@@ -64,11 +65,11 @@ public class Entity : MonoBehaviour
         TryGetComponent<SpriteRenderer>(out SpriteRenderer sR);
         spriteRenderer = sR;
 
-        Size = new Stat(settings.size);
-        MaximumLifePoints = new Stat(settings.maximumLife);
-        LifeRegenerationPerSecond = new Stat(settings.lifeRegenerationInSecond);
-        KnockbackPower = new Stat(settings.knockbackPower);
-        Damage = new Stat(settings.damage);
+        Size = statFactory.GetStat(settings.size);
+        MaximumLifePoints = statFactory.GetStat(settings.maximumLife);
+        LifeRegenerationPerSecond = statFactory.GetStat(settings.lifeRegenerationInSecond);
+        KnockbackPower = statFactory.GetStat(settings.knockbackPower);
+        Damage = statFactory.GetStat(settings.damage);
 
         this.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
 

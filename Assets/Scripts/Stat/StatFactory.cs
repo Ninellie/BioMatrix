@@ -9,6 +9,6 @@ public class StatFactory : MonoBehaviour
 
     public Stat GetStat(float baseValue)
     {
-        return new Stat(baseValue, _gameTimeScheduler);
+        return new Stat(_gameTimeScheduler, baseValue);
     }
 }
