@@ -1,10 +1,10 @@
 using UnityEngine;
 public class StatFactory : MonoBehaviour
 {
-    private GameTimeScheduler _gameTimeScheduler;
+    [SerializeField] private GameTimeScheduler _gameTimeScheduler;
     private void Awake()
     {
-        _gameTimeScheduler = GetComponent<GameTimeScheduler>();
+        //_gameTimeScheduler = GetComponent<GameTimeScheduler>();
     }
 
     public Stat GetStat(float baseValue)

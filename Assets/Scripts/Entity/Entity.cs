@@ -6,6 +6,8 @@ public class Entity : MonoBehaviour
 {
     //public EntityStatsSettings Settings { get; set; }
     public Action onCurrentLifePointsChanged;
+    public Action onLifePointLost;
+    public Action onLifePointRestore;
     public bool IsOnScreen { get; private set; }
     public bool Alive => IsAlive();
     public const int DeathLifePointsThreshold = 0;
@@ -17,6 +19,23 @@ public class Entity : MonoBehaviour
         protected set
         {
             Debug.Log($"Try to set life of {gameObject.name} to value: {value}");
+            var dif = (int)value - (int)_currentLifePoints;
+            if (dif > 0)
+            {
+                while (dif != 0)
+                {
+                    onLifePointRestore?.Invoke();
+                    dif--;
+                }
+            }
+            if (dif < 0)
+            {
+                while (dif != 0)
+                {
+                    onLifePointLost?.Invoke();
+                    dif++;
+                }
+            }
 
             var difValue = value - DeathLifePointsThreshold;
         

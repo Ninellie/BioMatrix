@@ -52,22 +52,17 @@ public class Stat
         var oldValue = Value;
         _modifiers.Add(modifier);
         OnValueChanged(oldValue);
+
+        Debug.Log($"Added mod {modifier.Type} : {modifier.Value}. Is mod temporary?: {modifier.IsTemporary}.");
+        Debug.Log($"New stat value: {Value}. Old value: {oldValue}.");
+
         if (modifier.IsTemporary)
         {
-            Debug.LogWarning($"{modifier.Time}");
-            Debug.LogWarning($"{modifier}");
-            Debug.LogWarning($"{modifier.IsTemporary}");
-            Debug.LogWarning($"{modifier.Type}");
-
-
             var time = Time.time + modifier.Time;
-            Debug.LogWarning($"{time}");
 
-            Debug.LogWarning($"{Time.time}");
+            Debug.Log($"Scheduled to remove modifier {modifier.Type} : {modifier.Value} at {time}. Will be removed after {modifier.Time} secs.");
 
-            Debug.LogWarning($"{_gameTimeScheduler.gameObject.name}");
-            
-
+            Debug.LogWarning($"{_gameTimeScheduler}");
             _gameTimeScheduler.Schedule(() => RemoveModifier(modifier), time);
         }
     }

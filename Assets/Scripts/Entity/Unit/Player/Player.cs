@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Player : Unit
 {
     public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
-    
+
     protected Stat MagnetismRadius { get; private set; }
     protected Stat TurretCount { get; private set; }
     protected Stat MaxShieldLayersCount { get; private set; }
@@ -20,6 +20,8 @@ public class Player : Unit
     public Action onShieldLost;
     public Action onLayerRestore;
     public Action onShieldRestore;
+    //This is list of cards
+    //private List<(Action, Action)> _triggeredActions;
 
     [SerializeField] private SpriteRenderer _shieldSprite;
     [SerializeField] private float _alphaPerLayer = 0.2f;
@@ -366,7 +368,7 @@ public class Player : Unit
         var turret = _currentTurrets.Pop();
         turret.Destroy();
     }
-
+    //public void SubscribeStatModifier()
     public void AddStatModifier(string statName, StatModifier statModifier)
     {
         switch (statName)

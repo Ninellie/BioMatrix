@@ -163,7 +163,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Shield recharge rate",
             Description = "+50 to shield recharge rate multiplier",
-            DropWeight = 1000,
+            DropWeight = 500,
             InfluencedStats = new[]
             {
                 "shieldLayerRechargeRate",
@@ -177,14 +177,28 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Turret count",
             Description = "+1 to turret count",
-            DropWeight = 100000,
+            DropWeight = 100,
             InfluencedStats = new[]
             {
                 "turretCount",
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Addition, 1, 5)
+                new StatModifier(OperationType.Addition, 1)
+            },
+        },
+        new Card
+        {
+            Title = "Turret count",
+            Description = "+1 to turret count",
+            DropWeight = 1,
+            InfluencedStats = new[]
+            {
+                "turretCount",
+            },
+            ModifierList = new StatModifier[]
+            {
+                new StatModifier(OperationType.Addition, 1, 5, "onHPLost")
             },
         },
     };
