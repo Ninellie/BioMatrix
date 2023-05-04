@@ -183,11 +183,6 @@ public class Player : Unit
     {
         Debug.Log($"{gameObject.name} Player Awake");
 
-        if (statFactory is null)
-        {
-            Debug.LogWarning("statFactory is null");
-        }
-
         statFactory = Camera.main.GetComponent<StatFactory>();
 
         _level = InitialLevel;

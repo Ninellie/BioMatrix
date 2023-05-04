@@ -22,6 +22,7 @@ public class Enclosure : Entity
     protected void BaseAwake(EnclosureStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Enclosure Awake");
+        statFactory = Camera.main.GetComponent<StatFactory>();
         base.BaseAwake(settings);
         ConstrictionRate = statFactory.GetStat(settings.constrictionRate);
         _tilemap = GetComponent<Tilemap>();
