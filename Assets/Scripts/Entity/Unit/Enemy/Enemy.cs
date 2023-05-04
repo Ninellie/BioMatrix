@@ -177,6 +177,7 @@ public class Enemy : Unit
         _spriteOutline.color = color;
         
         var statMod = new StatModifier(OperationType.Multiplication, multiplier);
+
         MaximumLifePoints.AddModifier(statMod);
     }
     public void LevelUp(int value)

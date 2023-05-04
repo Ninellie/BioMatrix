@@ -9,6 +9,7 @@ public class GameTimeScheduler : MonoBehaviour
     private readonly object _lock = new();
     public void Schedule(Action action, float time)
     {
+        Debug.LogWarning($"Scheduled");
         lock (_lock)
         {
             _tuples.Add((action, time));

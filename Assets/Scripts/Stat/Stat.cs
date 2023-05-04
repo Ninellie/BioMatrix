@@ -48,14 +48,32 @@ public class Stat
     }
     public void AddModifier(StatModifier modifier)
     {
+        
         var oldValue = Value;
         _modifiers.Add(modifier);
         OnValueChanged(oldValue);
-        var time = Time.time + modifier.time;
-        _gameTimeScheduler?.Schedule(() => RemoveModifier(modifier),time);
+        if (modifier.IsTemporary)
+        {
+            Debug.LogWarning($"{modifier.Time}");
+            Debug.LogWarning($"{modifier}");
+            Debug.LogWarning($"{modifier.IsTemporary}");
+            Debug.LogWarning($"{modifier.Type}");
+
+
+            var time = Time.time + modifier.Time;
+            Debug.LogWarning($"{time}");
+
+            Debug.LogWarning($"{Time.time}");
+
+            Debug.LogWarning($"{_gameTimeScheduler.gameObject.name}");
+            
+
+            _gameTimeScheduler.Schedule(() => RemoveModifier(modifier), time);
+        }
     }
     public bool RemoveModifier(StatModifier modifier)
     {
+        Debug.LogWarning("Try to remove");
         if (!_modifiers.Contains(modifier))
             return false;
         var oldValue = Value;

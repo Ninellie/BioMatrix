@@ -184,7 +184,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Addition, 1)
+                new StatModifier(OperationType.Addition, 1, 5)
             },
         },
     };
