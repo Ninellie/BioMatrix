@@ -10,26 +10,18 @@ public class StatModifier
         triggerName)
     {
     }
-    public StatModifier(OperationType type, float value, float time) : this(type, value, true, time, false, "")
+    public StatModifier(OperationType type, float value, float duration) : this(type, value, true, duration, false, "")
     {
     }
-    public StatModifier(OperationType type, float value, float time, string triggerName) : this(type, value, true, time, true, triggerName)
+    public StatModifier(OperationType type, float value, float duration, string triggerName) : this(type, value, true, duration, true, triggerName)
     {
     }
-    public StatModifier(OperationType type, float value, bool isTemporary, float time, bool isTriggered, string triggerName)
+    public StatModifier(OperationType type, float value, bool isTemporary, float duration, bool isTriggered, string triggerName)
     {
         Type = type;
         Value = value;
         IsTemporary = isTemporary;
-        if (time > 0)
-        {
-            Time = time;
-        }
-        else
-        {
-            Time = 0;
-        }
-
+        Duration = Math.Max(duration, 0);
         IsTriggered = isTriggered;
         TriggerName = triggerName;
     }
@@ -37,7 +29,7 @@ public class StatModifier
     public OperationType Type { get; }
     public float Value { get; }
     public bool IsTemporary { get; }
-    public float Time { get; }
+    public float Duration { get; }
     public bool IsTriggered { get; }
     public string TriggerName { get; }
 }

@@ -6,8 +6,15 @@ public class Entity : MonoBehaviour
 {
     //public EntityStatsSettings Settings { get; set; }
     public Action onCurrentLifePointsChanged;
-    public Action onLifePointLost;
-    public Action onLifePointRestore;
+
+    protected virtual void OnLifePointLost()
+    {
+    }
+
+    protected virtual void OnLifePointRestore()
+    {
+    }
+
     public bool IsOnScreen { get; private set; }
     public bool Alive => IsAlive();
     public const int DeathLifePointsThreshold = 0;
@@ -24,7 +31,7 @@ public class Entity : MonoBehaviour
             {
                 while (dif != 0)
                 {
-                    onLifePointRestore?.Invoke();
+                    OnLifePointRestore();
                     dif--;
                 }
             }
@@ -32,7 +39,7 @@ public class Entity : MonoBehaviour
             {
                 while (dif != 0)
                 {
-                    onLifePointLost?.Invoke();
+                    OnLifePointLost();
                     dif++;
                 }
             }

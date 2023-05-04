@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,8 +21,7 @@ public class Player : Unit
     public Action onShieldLost;
     public Action onLayerRestore;
     public Action onShieldRestore;
-    //This is list of cards
-    //private List<(Action, Action)> _triggeredActions;
+    
 
     [SerializeField] private SpriteRenderer _shieldSprite;
     [SerializeField] private float _alphaPerLayer = 0.2f;
@@ -34,7 +34,17 @@ public class Player : Unit
     [SerializeField] private GameObject _turretWeaponPrefab;
 
     private Stack<Turret> _currentTurrets = new Stack<Turret>();
-    
+
+    private List<StatModifier> _triggeredMods = new();
+    protected override void OnLifePointLost()
+    {
+        foreach (var mod in _triggeredMods
+            .Where(x => x.TriggerName == nameof(OnLifePointLost)))
+        {
+            TurretCount.AddModifier(mod);
+        }
+    }
+
     public Firearm CurrentFirearm { get; private set; }
 
     public bool isShieldOnRecharge => _currentActiveShieldLayersCount < MaxRechargeableShieldLayersCount.Value;

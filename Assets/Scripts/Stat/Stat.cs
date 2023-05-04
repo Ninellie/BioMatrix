@@ -58,11 +58,10 @@ public class Stat
 
         if (modifier.IsTemporary)
         {
-            var time = Time.time + modifier.Time;
+            var time = Time.time + modifier.Duration;
 
-            Debug.Log($"Scheduled to remove modifier {modifier.Type} : {modifier.Value} at {time}. Will be removed after {modifier.Time} secs.");
-
-            Debug.LogWarning($"{_gameTimeScheduler}");
+            Debug.Log($"Scheduled to remove modifier {modifier.Type} : {modifier.Value} at {time}. Will be removed after {modifier.Duration} secs.");
+            
             _gameTimeScheduler.Schedule(() => RemoveModifier(modifier), time);
         }
     }

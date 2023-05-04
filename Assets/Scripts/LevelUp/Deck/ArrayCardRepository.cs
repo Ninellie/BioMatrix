@@ -177,7 +177,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Turret count",
             Description = "+1 to turret count",
-            DropWeight = 100,
+            DropWeight = 10000,
             InfluencedStats = new[]
             {
                 "turretCount",
@@ -198,7 +198,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Addition, 1, 5, "onHPLost")
+                new StatModifier(OperationType.Addition, 1, 5, "OnLifePointLost")
             },
         },
     };
