@@ -39,7 +39,7 @@ public class Player : Unit
     protected override void OnLifePointLost()
     {
         foreach (var mod in _triggeredMods
-            .Where(x => x.TriggerName == nameof(OnLifePointLost)))
+                     .Where(x => x.TriggerName == nameof(OnLifePointLost)))
         {
             TurretCount.AddModifier(mod);
         }
@@ -381,6 +381,11 @@ public class Player : Unit
     //public void SubscribeStatModifier()
     public void AddStatModifier(string statName, StatModifier statModifier)
     {
+        if (statModifier.IsTriggered)
+        {
+            _triggeredMods.Add(statModifier);
+            return;
+        }
         switch (statName)
         {
             case "speed":
