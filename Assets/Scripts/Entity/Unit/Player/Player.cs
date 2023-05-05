@@ -41,7 +41,7 @@ public class Player : Unit
         foreach (var mod in _triggeredMods
                      .Where(x => x.TriggerName == nameof(OnLifePointLost)))
         {
-            TurretCount.AddModifier(mod);
+            AddStatModifier(mod);
         }
     }
 
@@ -50,7 +50,7 @@ public class Player : Unit
         foreach (var mod in _triggeredMods
                      .Where(x => x.TriggerName == nameof(OnRecharge)))
         {
-            TurretCount.AddModifier(mod);
+            AddStatModifier(mod);
         }
     }
     public void OnRechargeEnd()
@@ -58,7 +58,7 @@ public class Player : Unit
         foreach (var mod in _triggeredMods
                      .Where(x => x.TriggerName == nameof(OnRechargeEnd)))
         {
-            TurretCount.AddModifier(mod);
+            AddStatModifier(mod);
         }
     }
     public Firearm CurrentFirearm { get; private set; }
