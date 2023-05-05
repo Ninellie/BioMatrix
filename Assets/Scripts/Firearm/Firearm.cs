@@ -60,33 +60,33 @@ public class Firearm : MonoBehaviour
     {
         return _isForPlayer;
     }
-    public void AddStatModifier(string statName, StatModifier statModifier)
-    {
-        switch (statName)
-        {
-            case "firearmDamage":
-                Damage.AddModifier(statModifier);
-                break;
-            case "projectileSpeed":
-                ShootForce.AddModifier(statModifier);
-                break;
-            case "fireRate":
-                ShootsPerSecond.AddModifier(statModifier);
-                break;
-            case "bulletsSpread":
-                MaxShootDeflectionAngle.AddModifier(statModifier);
-                break;
-            case "magazineSize":
-                MagazineSize.AddModifier(statModifier);
-                break;
-            case "reloadSpeed":
-                ReloadSpeed.AddModifier(statModifier);
-                break;
-            case "projectileNumber":
-                SingleShootProjectile.AddModifier(statModifier);
-                break;
-        }
-    }
+    //public void AddStatModifier(string statName, StatModifier statModifier)
+    //{
+    //    switch (statName)
+    //    {
+    //        case "firearmDamage":
+    //            Damage.AddModifier(statModifier);
+    //            break;
+    //        case "projectileSpeed":
+    //            ShootForce.AddModifier(statModifier);
+    //            break;
+    //        case "fireRate":
+    //            ShootsPerSecond.AddModifier(statModifier);
+    //            break;
+    //        case "bulletsSpread":
+    //            MaxShootDeflectionAngle.AddModifier(statModifier);
+    //            break;
+    //        case "magazineSize":
+    //            MagazineSize.AddModifier(statModifier);
+    //            break;
+    //        case "reloadSpeed":
+    //            ReloadSpeed.AddModifier(statModifier);
+    //            break;
+    //        case "projectileNumber":
+    //            SingleShootProjectile.AddModifier(statModifier);
+    //            break;
+    //    }
+    //}
     private void Shoot()
     {
         magazine.Pop();
