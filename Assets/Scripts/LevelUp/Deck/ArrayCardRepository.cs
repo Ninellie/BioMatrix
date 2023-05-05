@@ -16,7 +16,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Multiplication, 50, "speed")
+                new StatModifier(OperationType.Multiplication, 50, "Speed")
             },
         },
         new Card
@@ -30,7 +30,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Addition, 1, "maximumLifePoints")
+                new StatModifier(OperationType.Addition, 1, "MaximumLifePoints")
             },
         },
         new Card
@@ -44,7 +44,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Multiplication, 25, "fireRate")
+                new StatModifier(OperationType.Multiplication, 25, "FireRate")
             },
         },
         new Card
@@ -58,7 +58,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Multiplication, 25, "projectileSpeed")
+                new StatModifier(OperationType.Multiplication, 25, "ProjectileSpeed")
             },
         },
         new Card
@@ -72,7 +72,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Addition, 1, "pierceNumber")
+                new StatModifier(OperationType.Addition, 1, "PierceNumber")
             },
         },
         new Card
@@ -86,7 +86,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Multiplication, 25, "reloadSpeed")
+                new StatModifier(OperationType.Multiplication, 25, "ReloadSpeed")
             },
         },
         new Card
@@ -100,7 +100,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Addition, 1, "projectileNumber")
+                new StatModifier(OperationType.Addition, 1, "ProjectileNumber")
             },
         },
         new Card
@@ -114,7 +114,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Multiplication, 50, "magnetismRadius")
+                new StatModifier(OperationType.Multiplication, 50, "MagnetismRadius")
             },
         },
         new Card
@@ -128,7 +128,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Addition, 0.2f, "lifeRegenerationPerSecond")
+                new StatModifier(OperationType.Addition, 0.2f, "LifeRegenerationPerSecond")
             },
         },
         new Card
@@ -142,7 +142,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Addition, 1, "maxShieldLayersCount")
+                new StatModifier(OperationType.Addition, 1, "MaxShieldLayersCount")
             },
         },
         new Card
@@ -156,7 +156,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Addition, 1, "maxRechargeableShieldLayersCount")
+                new StatModifier(OperationType.Addition, 1, "MaxRechargeableShieldLayersCount")
             },
         },
         new Card
@@ -170,7 +170,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Multiplication, 50, "shieldLayerRechargeRate")
+                new StatModifier(OperationType.Multiplication, 50, "ShieldLayerRechargeRate")
             },
         },
         new Card
@@ -184,7 +184,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Addition, 1, "turretCount")
+                new StatModifier(OperationType.Addition, 1, "TurretCount")
             },
         },
         new Card
@@ -198,7 +198,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Addition, 1, 5, "turretCount")
+                new StatModifier(OperationType.Addition, 1, 5, "TurretCount")
             },
         },
         new Card
@@ -212,7 +212,7 @@ public class ArrayCardRepository : ICardRepository
             },
             ModifierList = new StatModifier[]
             {
-                new StatModifier(OperationType.Addition, 1, 5, "OnLifePointLost", "turretCount")
+                new StatModifier(OperationType.Addition, 1, 5, "OnLifePointLost", "TurretCount")
             },
         },
     };

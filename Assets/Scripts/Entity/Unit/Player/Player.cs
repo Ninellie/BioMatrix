@@ -378,38 +378,38 @@ public class Player : Unit
         var turret = _currentTurrets.Pop();
         turret.Destroy();
     }
-    //public void SubscribeStatModifier()
-    public void AddStatModifier(string statName, StatModifier statModifier)
+    public void AddStatModifier(StatModifier statModifier)
     {
         if (statModifier.IsTriggered)
         {
             _triggeredMods.Add(statModifier);
             return;
         }
-        switch (statName)
+        switch (statModifier.StatName)
         {
-            case "speed":
+            case "Speed":
                 Speed.AddModifier(statModifier);
                 break;
-            case "maximumLifePoints":
+            case "MaximumLifePoints":
                 MaximumLifePoints.AddModifier(statModifier);
                 break;
-            case "magnetismRadius":
+            case "MagnetismRadius":
                 MagnetismRadius.AddModifier(statModifier);
                 break;
-            case "lifeRegenerationPerSecond":
+            case "LifeRegenerationPerSecond":
                 LifeRegenerationPerSecond.AddModifier(statModifier);
                 break;
-            case "maxShieldLayersCount":
+            case "MaxShieldLayersCount":
                 MaxShieldLayersCount.AddModifier(statModifier);
+                AddLayer();
                 break;
-            case "maxRechargeableShieldLayersCount":
+            case "MaxRechargeableShieldLayersCount":
                 MaxRechargeableShieldLayersCount.AddModifier(statModifier);
                 break;
-            case "shieldLayerRechargeRate":
+            case "ShieldLayerRechargeRate":
                 ShieldLayerRechargeRatePerMinute.AddModifier(statModifier);
                 break;
-            case "turretCount":
+            case "TurretCount":
                 TurretCount.AddModifier(statModifier);
                 break;
         }
