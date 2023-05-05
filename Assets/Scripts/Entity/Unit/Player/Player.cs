@@ -387,29 +387,29 @@ public class Player : Unit
         }
         switch (statModifier.StatName)
         {
-            case "Speed":
+            case nameof(Speed):
                 Speed.AddModifier(statModifier);
                 break;
-            case "MaximumLifePoints":
+            case nameof(MaximumLifePoints):
                 MaximumLifePoints.AddModifier(statModifier);
                 break;
-            case "MagnetismRadius":
+            case nameof(MagnetismRadius):
                 MagnetismRadius.AddModifier(statModifier);
                 break;
-            case "LifeRegenerationPerSecond":
+            case nameof(LifeRegenerationPerSecond):
                 LifeRegenerationPerSecond.AddModifier(statModifier);
                 break;
-            case "MaxShieldLayersCount":
+            case nameof(MaxShieldLayersCount):
                 MaxShieldLayersCount.AddModifier(statModifier);
                 AddLayer();
                 break;
-            case "MaxRechargeableShieldLayersCount":
+            case nameof(MaxRechargeableShieldLayersCount):
                 MaxRechargeableShieldLayersCount.AddModifier(statModifier);
                 break;
-            case "ShieldLayerRechargeRate":
+            case nameof(ShieldLayerRechargeRatePerMinute):
                 ShieldLayerRechargeRatePerMinute.AddModifier(statModifier);
                 break;
-            case "TurretCount":
+            case nameof(TurretCount):
                 TurretCount.AddModifier(statModifier);
                 break;
         }
