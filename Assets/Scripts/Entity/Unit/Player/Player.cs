@@ -35,7 +35,7 @@ public class Player : Unit
 
     private Stack<Turret> _currentTurrets = new Stack<Turret>();
 
-    private List<StatModifier> _triggeredMods = new();
+    private readonly List<StatModifier> _triggeredMods = new();
     protected override void OnLifePointLost()
     {
         foreach (var mod in _triggeredMods
@@ -45,6 +45,22 @@ public class Player : Unit
         }
     }
 
+    public void OnRecharge()
+    {
+        foreach (var mod in _triggeredMods
+                     .Where(x => x.TriggerName == nameof(OnRecharge)))
+        {
+            TurretCount.AddModifier(mod);
+        }
+    }
+    public void OnRechargeEnd()
+    {
+        foreach (var mod in _triggeredMods
+                     .Where(x => x.TriggerName == nameof(OnRechargeEnd)))
+        {
+            TurretCount.AddModifier(mod);
+        }
+    }
     public Firearm CurrentFirearm { get; private set; }
 
     public bool isShieldOnRecharge => _currentActiveShieldLayersCount < MaxRechargeableShieldLayersCount.Value;

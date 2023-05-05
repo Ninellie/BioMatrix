@@ -56,6 +56,22 @@ public class Firearm : MonoBehaviour
         if (!IsFireButtonPressed) return;
         if (CanShoot) Shoot();
     }
+
+    public void OnRecharge()
+    {
+        if (_isForPlayer)
+        {
+            _player.OnRecharge();
+        }
+    }
+
+    public void OnRechargeEnd()
+    {
+        if (_isForPlayer)
+        {
+            _player.OnRechargeEnd();
+        }
+    }
     public bool GetIsForPlayer()
     {
         return _isForPlayer;

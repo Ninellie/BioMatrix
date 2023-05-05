@@ -36,6 +36,8 @@ public class Reload : MonoBehaviour
         }
 
         Invoke(nameof(Complete), 1 / ReloadSpeed);
+
+        _firearm.OnRecharge();
     }
     private void Complete()
     {
@@ -47,6 +49,8 @@ public class Reload : MonoBehaviour
         }
         
         _magazine.FullFill();
+
+        _firearm.OnRechargeEnd();
     }
     private GameObject GetReloadPlate()
     {
