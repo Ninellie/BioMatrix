@@ -23,13 +23,13 @@ public class Player : Unit
     public Action onShieldRestore;
     
 
+    [SerializeField] private LayerMask _enemyLayer;
+    [SerializeField] private GameObject _shield;
     [SerializeField] private SpriteRenderer _shieldSprite;
     [SerializeField] private float _alphaPerLayer = 0.2f;
     [SerializeField] private Color _shieldColor = Color.cyan;
     [SerializeField] private float _shieldRepulseRadius = 250f;
-    [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private Transform _firePoint;
-    [SerializeField] private GameObject _shield;
     [SerializeField] private GameObject _turretPrefab;
     [SerializeField] private GameObject _turretWeaponPrefab;
 
