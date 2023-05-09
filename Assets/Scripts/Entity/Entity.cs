@@ -2,9 +2,13 @@ using System;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
+public class Resource
+{
+
+}
+
 public class Entity : MonoBehaviour
 {
-    //public EntityStatsSettings Settings { get; set; }
     public Action onCurrentLifePointsChanged;
     public Action onLifePointLost;
     public Action onLifePointRestore;
@@ -68,18 +72,9 @@ public class Entity : MonoBehaviour
     public Stat LifeRegenerationPerSecond { get; private set; }
     public Stat KnockbackPower { get; private set; }
     public Stat Damage { get; private set; }
-
-    //public object this[string propertyName]
-    //{
-    //    get => this.GetType().GetProperty(propertyName).GetValue(this, null);
-    //    set => this.GetType().GetProperty(propertyName).SetValue(this, value, null);
-    //}
     public Stat GetStatByName(string statName)
     {
         return (Stat)GetType().GetProperty(statName).GetValue(this, null);
-
-        //return this[statName] as Stat;
-
 /*
         return statName switch
         {
@@ -96,9 +91,6 @@ public class Entity : MonoBehaviour
     public Action GetActionByName(string actionName)
     {
         return (Action)GetType().GetProperty(actionName).GetValue(this, null);
-        
-        //return this[actionName] as Action;
-
 /*
         return actionName switch
         {
