@@ -6,15 +6,8 @@ public class Entity : MonoBehaviour
 {
     //public EntityStatsSettings Settings { get; set; }
     public Action onCurrentLifePointsChanged;
-
-    protected virtual void OnLifePointLost()
-    {
-    }
-
-    protected virtual void OnLifePointRestore()
-    {
-    }
-
+    public Action onLifePointLost;
+    public Action onLifePointRestore;
     public bool IsOnScreen { get; private set; }
     public bool Alive => IsAlive();
     public const int DeathLifePointsThreshold = 0;
@@ -31,7 +24,7 @@ public class Entity : MonoBehaviour
             {
                 while (dif != 0)
                 {
-                    OnLifePointRestore();
+                    onLifePointRestore?.Invoke();
                     dif--;
                 }
             }
@@ -39,7 +32,7 @@ public class Entity : MonoBehaviour
             {
                 while (dif != 0)
                 {
-                    OnLifePointLost();
+                    onLifePointLost?.Invoke();
                     dif++;
                 }
             }
@@ -68,16 +61,58 @@ public class Entity : MonoBehaviour
             onCurrentLifePointsChanged?.Invoke();
         }
     }
+
+
     public Stat Size { get; private set; }
     public Stat MaximumLifePoints { get; private set; }
     public Stat LifeRegenerationPerSecond { get; private set; }
     public Stat KnockbackPower { get; private set; }
     public Stat Damage { get; private set; }
+
+    //public object this[string propertyName]
+    //{
+    //    get => this.GetType().GetProperty(propertyName).GetValue(this, null);
+    //    set => this.GetType().GetProperty(propertyName).SetValue(this, value, null);
+    //}
+    public Stat GetStatByName(string statName)
+    {
+        return (Stat)GetType().GetProperty(statName).GetValue(this, null);
+
+        //return this[statName] as Stat;
+
+/*
+        return statName switch
+        {
+            nameof(Size) => Size,
+            nameof(MaximumLifePoints) => MaximumLifePoints,
+            nameof(LifeRegenerationPerSecond) => LifeRegenerationPerSecond,
+            nameof(KnockbackPower) => KnockbackPower,
+            nameof(Damage) => Damage,
+            _ => null
+        };
+*/
+    }
+
+    public Action GetActionByName(string actionName)
+    {
+        return (Action)GetType().GetProperty(actionName).GetValue(this, null);
+        
+        //return this[actionName] as Action;
+
+/*
+        return actionName switch
+        {
+            nameof(onCurrentLifePointsChanged) => onCurrentLifePointsChanged,
+            nameof(onLifePointLost) => onLifePointLost,
+            nameof(onLifePointRestore) => onLifePointRestore,
+            _ => null
+        };
+*/
+    }
     protected StatFactory statFactory;
     protected SpriteRenderer spriteRenderer;
     private float _currentLifePoints;
     private float _accumulatedLife = 0;
-    private Camera _mCamera;
 
     //private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EntityStats);
     private void OnEnable() => BaseOnEnable();
@@ -87,7 +122,6 @@ public class Entity : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} Entity Awake");
 
-        _mCamera = FindObjectOfType<Camera>();
         TryGetComponent<SpriteRenderer>(out SpriteRenderer sR);
         spriteRenderer = sR;
 
@@ -166,15 +200,6 @@ public class Entity : MonoBehaviour
     {
         this.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
     }
-    private bool CheckVisibilityOnCamera(Camera camera, GameObject gameObject)
-    {
-        var screenPos = camera.WorldToScreenPoint(gameObject.transform.position);
-        var onScreen =
-            screenPos.x > 0f && screenPos.x < Screen.width &&
-            screenPos.y > 0f && screenPos.y < Screen.height;
-        return onScreen;
-    }
-
     private bool CheckVisibilityOnCamera()
     {
         var onScreen = spriteRenderer.isVisible;

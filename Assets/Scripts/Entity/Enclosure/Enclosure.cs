@@ -40,7 +40,7 @@ public class Enclosure : Entity
             return;
         }
         var constrictionRate = ConstrictionRate.Value * -1;
-        var mod = new StatModifier(OperationType.Addition, constrictionRate, "Size");
+        var mod = new StatModifier(OperationType.Addition, constrictionRate);
         Size.AddModifier(mod);
         _currentLifeTime += Time.fixedDeltaTime;
         _grid.transform.localScale = new Vector3(Size.Value, Size.Value, 1);

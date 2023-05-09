@@ -16,13 +16,17 @@ public class Player : Unit
 
     public Action onGamePaused;
     public Action onLevelUp;
+
     public Action onExperienceTaken;
+
     public Action onLayerLost;
     public Action onShieldLost;
     public Action onLayerRestore;
     public Action onShieldRestore;
-    
 
+    public Action onRechargeEnd;
+    public Action onRecharge;
+    
     [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private GameObject _shield;
     [SerializeField] private SpriteRenderer _shieldSprite;
@@ -33,36 +37,27 @@ public class Player : Unit
     [SerializeField] private GameObject _turretPrefab;
     [SerializeField] private GameObject _turretWeaponPrefab;
 
-    private Stack<Turret> _currentTurrets = new Stack<Turret>();
+    private readonly Stack<Turret> _currentTurrets = new();
 
-    private readonly List<StatModifier> _triggeredMods = new();
-    protected override void OnLifePointLost()
+    private GameTimeScheduler _gameTimeScheduler;
+    public readonly List<IEffect> effects = new();
+    public void AddEffect(IEffect effect)
     {
-        foreach (var mod in _triggeredMods
-                     .Where(x => x.TriggerName == nameof(OnLifePointLost)))
-        {
-            AddStatModifier(mod);
-        }
+        effects.Add(effect);
+        effect.Attach(this);
+        effect.Subscribe();
     }
-
-    public void OnRecharge()
+    public void AddEffect(IEffect effect, float time)
     {
-        foreach (var mod in _triggeredMods
-                     .Where(x => x.TriggerName == nameof(OnRecharge)))
-        {
-            AddStatModifier(mod);
-        }
+        AddEffect(effect);
+        _gameTimeScheduler.Schedule(() => RemoveEffect(effect), time);
     }
-    public void OnRechargeEnd()
+    public void RemoveEffect(IEffect effect)
     {
-        foreach (var mod in _triggeredMods
-                     .Where(x => x.TriggerName == nameof(OnRechargeEnd)))
-        {
-            AddStatModifier(mod);
-        }
+        effect.Unsubscribe();
+        effects.Remove(effect);
     }
     public Firearm CurrentFirearm { get; private set; }
-
     public bool isShieldOnRecharge => _currentActiveShieldLayersCount < MaxRechargeableShieldLayersCount.Value;
     public bool isShieldFullyCharged => _currentActiveShieldLayersCount >= MaxRechargeableShieldLayersCount.Value;
     public bool isShieldOverCharged => _currentActiveShieldLayersCount > MaxRechargeableShieldLayersCount.Value;
@@ -211,7 +206,9 @@ public class Player : Unit
     {
         Debug.Log($"{gameObject.name} Player Awake");
 
+
         statFactory = Camera.main.GetComponent<StatFactory>();
+        _gameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
 
         _level = InitialLevel;
         _experience = InitialExperience;
@@ -250,12 +247,24 @@ public class Player : Unit
     protected override void BaseOnEnable()
     {
         base.BaseOnEnable();
+
+        foreach (var effect in effects)
+        {
+            effect.Subscribe();
+        }
+
         if (MagnetismRadius != null) MagnetismRadius.onValueChanged += ChangeCurrentMagnetismRadius;
         if (TurretCount != null) TurretCount.onValueChanged += UpdateTurrets;
     }
     protected override void BaseOnDisable()
     {
         base.BaseOnDisable();
+
+        foreach (var effect in effects)
+        {
+            effect.Unsubscribe();
+        }
+
         if (MagnetismRadius != null) MagnetismRadius.onValueChanged -= ChangeCurrentMagnetismRadius;
         if (TurretCount != null) TurretCount.onValueChanged -= UpdateTurrets;
     }
@@ -394,13 +403,13 @@ public class Player : Unit
         var turret = _currentTurrets.Pop();
         turret.Destroy();
     }
-    public void AddStatModifier(StatModifier statModifier)
+    public void AddStatModifier(StatModifier statModifier, string statName)
     {
-        if (statModifier.IsTriggered)
-        {
-            _triggeredMods.Add(statModifier);
-            return;
-        }
+        var stat = GetStatByName(statName);
+        stat?.AddModifier(statModifier);
+        return;
+
+/*
         switch (statModifier.StatName)
         {
             case nameof(Speed):
@@ -429,6 +438,7 @@ public class Player : Unit
                 TurretCount.AddModifier(statModifier);
                 break;
         }
+*/
     }
     public void OnMove(InputValue input)
     {

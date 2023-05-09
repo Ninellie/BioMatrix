@@ -48,7 +48,7 @@ public class Projectile : Unit
     public void Launch(Vector2 direction, float force)
     {
         _movementController.SetDirection(direction);
-        var speedMod = new StatModifier(OperationType.Addition, force, "Speed");
+        var speedMod = new StatModifier(OperationType.Addition, force);
         Speed.AddModifier(speedMod);
     }
 }

@@ -176,7 +176,7 @@ public class Enemy : Unit
         _spriteOutline.enabled = true;
         _spriteOutline.color = color;
         
-        var statMod = new StatModifier(OperationType.Multiplication, multiplier, "MaximumLifePoints");
+        var statMod = new StatModifier(OperationType.Multiplication, multiplier);
 
         MaximumLifePoints.AddModifier(statMod);
     }
@@ -214,7 +214,7 @@ public class Enemy : Unit
     {
         if (Level <= 1) return;
         var addingValue = (_level - 1) * MaxLifeIncreasePerLevel;
-        var mod = new StatModifier(OperationType.Addition, addingValue, "MaximumLifePoints");
+        var mod = new StatModifier(OperationType.Addition, addingValue);
         MaximumLifePoints.AddModifier(mod);
     }
     public void LookAt2D(Vector2 target)

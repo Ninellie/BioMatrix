@@ -61,7 +61,7 @@ public class Firearm : MonoBehaviour
     {
         if (_isForPlayer)
         {
-            _player.OnRecharge();
+            _player.onRecharge?.Invoke();
         }
     }
 
@@ -69,7 +69,7 @@ public class Firearm : MonoBehaviour
     {
         if (_isForPlayer)
         {
-            _player.OnRechargeEnd();
+            _player.onRechargeEnd?.Invoke();
         }
     }
     public bool GetIsForPlayer()
