@@ -4,7 +4,183 @@ using Debug = UnityEngine.Debug;
 
 public class Resource
 {
+    public Action onIncrease;
+    public Action onDecrease;
+    public Action onIncrement;
+    public Action onDecrement;
+    public Action onValueChanged;
+    public Action onFill;
+    public Action onEmpty;
+    public Action onEdge;
 
+    public bool IsFull => Value == (int)_maxValueStat.Value;
+
+    private readonly int _minValue;
+    private readonly Stat _maxValueStat;
+    private readonly Stat _restoreSpeedPerSecondStat;
+    private readonly float _restoreRate;
+    private readonly bool _isRestoring;
+    private readonly bool _isLimited;
+
+    public float TimeToRestore // Сюда записывается время до след. RestoreStep, просто добавь сюда Time.deltatime в апдейте
+    {
+        get => _timeToRestore;
+        set
+        {
+            if (!_isRestoring)
+            {
+                return;
+            }
+            if (value > _restoreRate)
+            {
+                _timeToRestore = value % _restoreRate;
+                ReserveValue += _restoreSpeedPerSecondStat.Value / _restoreRate;
+            }
+            else
+            {
+                _timeToRestore = value;
+            }
+        }
+    }
+    private float _timeToRestore;
+
+    private float ReserveValue
+    {
+        get => _reserveValue;
+        set
+        {
+            if (!_isRestoring)
+            {
+                return;
+            }
+            if (value > 0)
+            {
+                int intValue = (int)value;
+                _reserveValue = value % 1;
+                Value += intValue;
+            }
+            else
+            {
+                _reserveValue = value;
+            }
+        }
+    }
+    private float _reserveValue;
+
+    private int Value
+    {
+        get => _value;
+        set
+        {
+            var dif = value - _value;
+            if (dif != _minValue)
+            {
+                onValueChanged?.Invoke();
+            }
+            if (dif > _minValue)
+            {
+                onIncrease?.Invoke();
+                while (dif != _minValue)
+                {
+                    onIncrement?.Invoke();
+                    dif--;
+                }
+            }
+            if (dif < _minValue)
+            {
+                onDecrease?.Invoke();
+                while (dif != _minValue)
+                {
+                    onDecrement?.Invoke();
+                    dif++;
+                }
+            }
+            if (value == _minValue + 1)
+            {
+                onEdge?.Invoke();
+            }
+            if (value == _minValue)
+            {
+                onEmpty?.Invoke();
+            }
+
+            if (_isLimited)
+            {
+                if (value >= (int)_maxValueStat.Value)
+                {
+                    _value = (int)_maxValueStat.Value;
+                    onFill?.Invoke();
+                }
+                else
+                {
+                    _value = value;
+                }
+            }
+            else
+            {
+                _value = value;
+            }
+        }
+    }
+    private int _value;
+
+    public Resource(int minValue) : this(minValue, null, null, false, false)
+    {
+    }
+    public Resource(int minValue, Stat maxValueStat) : this(minValue, maxValueStat, null, false, true)
+    {
+    }
+    public Resource(int minValue, Stat maxValueStat, Stat restoreSpeedPerSecondStat) : this(minValue, maxValueStat, restoreSpeedPerSecondStat, true, true)
+    {
+    }
+    public Resource(int minValue, Stat maxValueStat, Stat restoreSpeedPerSecondStat, bool isRestoring, bool isLimited)
+    {
+        this._minValue = minValue;
+        this._maxValueStat = maxValueStat;
+        this._restoreSpeedPerSecondStat = restoreSpeedPerSecondStat;
+        this._isRestoring = isRestoring;
+        _restoreRate = 0.1f;
+        _isLimited = isLimited;
+    }
+
+    public void Fill()
+    {
+        Value = (int)_maxValueStat.Value;
+    }
+    public void Empty()
+    {
+        Value = _minValue;
+    }
+    public void Increase(int value)
+    {
+        Value += value;
+    }
+    public void Decrease(int value)
+    {
+        Value -= value;
+    }
+    public int GetMinValue()
+    {
+        return _minValue;
+    }
+    public int GetMaxValue()
+    {
+        return (int)_maxValueStat.Value;
+    }
+    public int GetLackValue()
+    {
+        return (int)(_maxValueStat.Value - Value);
+    }
+    public int GetValue()
+    {
+        return Value;
+    }
+    public float GetPercentValue()
+    {
+        var percent = _maxValueStat.Value / 100;
+        var currentPercent = Value / percent;
+        return currentPercent;
+    }
 }
 
 public class Entity : MonoBehaviour
