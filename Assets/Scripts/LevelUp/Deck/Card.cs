@@ -70,7 +70,7 @@ public class AddModOn : IEffect
     private Action _triggerAction; // Ссылка на событие, на которое сработает AddMod
     private Stat _stat;
 
-    public void Attach(Player player)
+    public void Attach(Player player) // поменять player на таргет
     {
         _stat = player.GetStatByName(StatName);
         _triggerAction = player.GetActionByName(TriggerName);

@@ -12,17 +12,14 @@ public class Player : Unit
     protected Stat TurretCount { get; private set; }
     protected Stat MaxShieldLayersCount { get; private set; }
     protected Stat MaxRechargeableShieldLayersCount { get; private set; }
-    protected Stat ShieldLayerRechargeRatePerMinute { get; private set; }
+    protected Stat ShieldLayerRechargeRatePerSecond { get; private set; }
 
     public Action onGamePaused;
     public Action onLevelUp;
 
     public Action onExperienceTaken;
 
-    public Action onLayerLost;
-    public Action onShieldLost;
-    public Action onLayerRestore;
-    public Action onShieldRestore;
+    public Resource shieldLayers;
 
     public Action onRechargeEnd;
     public Action onRecharge;
@@ -58,31 +55,6 @@ public class Player : Unit
         effects.Remove(effect);
     }
     public Firearm CurrentFirearm { get; private set; }
-    public bool isShieldOnRecharge => _currentActiveShieldLayersCount < MaxRechargeableShieldLayersCount.Value;
-    public bool isShieldFullyCharged => _currentActiveShieldLayersCount >= MaxRechargeableShieldLayersCount.Value;
-    public bool isShieldOverCharged => _currentActiveShieldLayersCount > MaxRechargeableShieldLayersCount.Value;
-    public bool isShieldMaxCharged => _currentActiveShieldLayersCount == MaxShieldLayersCount.Value;
-    private int _currentActiveShieldLayersCount;
-    private float AccumulatedShieldCharge
-    {
-        get => _accumulatedShieldCharge;
-        set
-        {
-            if (_currentActiveShieldLayersCount >= MaxRechargeableShieldLayersCount.Value)
-            {
-                return;
-            }
-            if (value < 1)
-            {
-                _accumulatedShieldCharge = value;
-                return;
-            }
-            AddLayer();
-            _accumulatedShieldCharge = 0;
-        }
-    }
-
-    private float _accumulatedShieldCharge = 0f;
 
     public bool isFireButtonPressed = false;
     public int Level
@@ -119,20 +91,18 @@ public class Player : Unit
     private MovementControllerPlayer _movementController;
     private CircleCollider2D _circleCollider;
     private CapsuleCollider2D _capsuleCollider;
-    private GameTimer _freezeTimer;
+    //private GameTimer _freezeTimer;
     private SpriteRenderer _spriteRenderer;
     private Invulnerability _invulnerability;
     private void Awake() => BaseAwake(Settings);
 
     private void Start()
     {
-        _freezeTimer = new GameTimer(Freeze, 0.2f);
+        //_freezeTimer = new GameTimer(Freeze, 0.2f);
+        _gameTimeScheduler.Schedule(Freeze, 0.2f);
+        shieldLayers.Increase((int)MaxRechargeableShieldLayersCount.Value);
         UpdateShieldAlpha();
-        _capsuleCollider.enabled = _currentActiveShieldLayersCount < 0;
-        for (int i = 0; i < MaxRechargeableShieldLayersCount.Value; i++)
-        {
-            AddLayer();
-        }
+        UpdateShield();
 
         UpdateTurrets();
     }
@@ -150,7 +120,7 @@ public class Player : Unit
             return;
         }
         if (!otherCollider2D.gameObject.CompareTag("Enemy") && !otherCollider2D.gameObject.CompareTag("Enclosure")) return;
-        if (_currentActiveShieldLayersCount > 0)
+        if (!shieldLayers.IsEmpty)
         {
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
 
@@ -158,7 +128,7 @@ public class Player : Unit
             {
                 collider2d.gameObject.GetComponent<Enemy>()._enemyMoveController.KnockBackFromTarget(KnockbackPower.Value);
             }
-            RemoveLayer();
+            shieldLayers.Decrease();
 
             if (!otherCollider2D.gameObject.CompareTag("Enclosure")) return;
             var collisionEnclosure = otherCollider2D.gameObject.GetComponent<Entity>();
@@ -205,7 +175,7 @@ public class Player : Unit
     protected void BaseAwake(PlayerStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Player Awake");
-
+        base.BaseAwake(settings);
 
         statFactory = Camera.main.GetComponent<StatFactory>();
         _gameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
@@ -219,10 +189,9 @@ public class Player : Unit
         _invulnerability = GetComponent<Invulnerability>();
         _shieldSprite = _shield.GetComponent<SpriteRenderer>();
 
-
         MaxRechargeableShieldLayersCount = statFactory.GetStat(settings.maxRechargeableShieldLayersCount);
         MaxShieldLayersCount = statFactory.GetStat(settings.maxShieldLayersCount);
-        ShieldLayerRechargeRatePerMinute = statFactory.GetStat(settings.shieldLayerRechargeRate);
+        ShieldLayerRechargeRatePerSecond = statFactory.GetStat(settings.shieldLayerRechargeRate / 60f);
         MagnetismRadius = statFactory.GetStat(settings.magnetismRadius);
         TurretCount = statFactory.GetStat(settings.turretCount);
 
@@ -233,7 +202,8 @@ public class Player : Unit
             _circleCollider.radius = 0;
         }
 
-        base.BaseAwake(settings);
+        shieldLayers = new Resource(0, MaxShieldLayersCount, ShieldLayerRechargeRatePerSecond,
+            MaxRechargeableShieldLayersCount);
 
         _movementController = new MovementControllerPlayer(this);
     }
@@ -241,8 +211,8 @@ public class Player : Unit
     protected override void BaseUpdate()
     {
         base.BaseUpdate();
-        _freezeTimer.Update();
-        AccumulatedShieldCharge += ShieldLayerRechargeRatePerMinute.Value / 60 * Time.deltaTime;
+        //_freezeTimer.Update();
+        shieldLayers.TimeToRecover += Time.deltaTime;
     }
     protected override void BaseOnEnable()
     {
@@ -253,20 +223,28 @@ public class Player : Unit
             effect.Subscribe();
         }
 
+        shieldLayers.onEmpty += UpdateShield;
+        shieldLayers.onNotEmpty += UpdateShield;
+        shieldLayers.onValueChanged += UpdateShieldAlpha;
+
         if (MagnetismRadius != null) MagnetismRadius.onValueChanged += ChangeCurrentMagnetismRadius;
         if (TurretCount != null) TurretCount.onValueChanged += UpdateTurrets;
     }
     protected override void BaseOnDisable()
     {
-        base.BaseOnDisable();
-
         foreach (var effect in effects)
         {
             effect.Unsubscribe();
         }
 
+        shieldLayers.onEmpty -= UpdateShield;
+        shieldLayers.onNotEmpty -= UpdateShield;
+        shieldLayers.onValueChanged -= UpdateShieldAlpha;
+
         if (MagnetismRadius != null) MagnetismRadius.onValueChanged -= ChangeCurrentMagnetismRadius;
         if (TurretCount != null) TurretCount.onValueChanged -= UpdateTurrets;
+
+        base.BaseOnDisable();
     }
 
     private void UpdateTurrets()
@@ -317,42 +295,15 @@ public class Player : Unit
 
         _movementController.KnockBackTo(collisionEntity, entityPosition);
     }
-    public void AddLayer()
+    private void UpdateShield()
     {
-        if (_currentActiveShieldLayersCount >= MaxShieldLayersCount.Value) return;
-
-        if (_currentActiveShieldLayersCount == 0)
-        {
-            _capsuleCollider.enabled = true;
-            _shield.SetActive(true);
-        }
-
-        _currentActiveShieldLayersCount++;
-
-        UpdateShieldAlpha();
-
-        if (isShieldFullyCharged)
-        {
-            onShieldRestore?.Invoke();
-        }
+        var isShieldExists = !shieldLayers.IsEmpty;
+        _capsuleCollider.enabled = isShieldExists;
+        _shield.SetActive(isShieldExists);
     }
-
-    public void RemoveLayer()
-    {
-        if (_currentActiveShieldLayersCount == 0) return;
-        _currentActiveShieldLayersCount--;
-        UpdateShieldAlpha();
-        onLayerLost?.Invoke();
-
-        if (_currentActiveShieldLayersCount != 0) return;
-        _capsuleCollider.enabled = false;
-        _shield.SetActive(false);
-        onShieldLost?.Invoke();
-    }
-
     private void UpdateShieldAlpha()
     {
-        var a = _alphaPerLayer * _currentActiveShieldLayersCount;
+        var a = _alphaPerLayer * shieldLayers.GetValue();
         _shieldColor.a = a;
         _shieldSprite.color = _shieldColor;
     }
