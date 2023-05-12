@@ -42,7 +42,7 @@ public class Player : Unit
     {
         effects.Add(effect);
         effect.Attach(this);
-        effect.Subscribe();
+        effect.Subscribe(this);
     }
     public void AddEffect(IEffect effect, float time)
     {
@@ -51,7 +51,7 @@ public class Player : Unit
     }
     public void RemoveEffect(IEffect effect)
     {
-        effect.Unsubscribe();
+        effect.Unsubscribe(this);
         effects.Remove(effect);
     }
     public Firearm CurrentFirearm { get; private set; }
@@ -220,7 +220,7 @@ public class Player : Unit
 
         foreach (var effect in effects)
         {
-            effect.Subscribe();
+            effect.Subscribe(this);
         }
 
         shieldLayers.onEmpty += UpdateShield;
@@ -234,7 +234,7 @@ public class Player : Unit
     {
         foreach (var effect in effects)
         {
-            effect.Unsubscribe();
+            effect.Unsubscribe(this);
         }
 
         shieldLayers.onEmpty -= UpdateShield;
@@ -361,7 +361,7 @@ public class Player : Unit
         return;
 
 /*
-        switch (statModifier.StatName)
+        switch (statModifier.ModifiedStatName)
         {
             case nameof(Speed):
                 Speed.AddModifier(statModifier);
