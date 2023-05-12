@@ -6,9 +6,7 @@ public class Entity : MonoBehaviour
 {
     public bool IsOnScreen { get; private set; }
     public bool Alive => LifePoints.IsEmpty;
-
     public const int DeathLifePointsThreshold = 0;
-
     public const int MinimalDamageTaken = 1;
     public Resource LifePoints { get; private set; }
     public Stat Size { get; private set; }
@@ -61,7 +59,7 @@ public class Entity : MonoBehaviour
 
         TryGetComponent<SpriteRenderer>(out SpriteRenderer sR);
         spriteRenderer = sR;
-
+        statFactory = Camera.main.GetComponent<StatFactory>();
         Size = statFactory.GetStat(settings.size);
         MaximumLifePoints = statFactory.GetStat(settings.maximumLife);
         LifeRegenerationPerSecond = statFactory.GetStat(settings.lifeRegenerationInSecond);
@@ -75,10 +73,12 @@ public class Entity : MonoBehaviour
     protected virtual void BaseOnEnable()
     {
         Size.onValueChanged += ChangeCurrentSize;
+        LifePoints.onEmpty += Death;
     }
     protected virtual void BaseOnDisable()
     {
         Size.onValueChanged -= ChangeCurrentSize;
+        LifePoints.onEmpty -= Death;
     }
     protected virtual void BaseUpdate()
     {

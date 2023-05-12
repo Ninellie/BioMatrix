@@ -4,7 +4,6 @@ public class Boon : Unit
 {
     public float speed = 1500;
     public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
-    //private SpriteRenderer _spriteRenderer;
     private readonly Rarity _rarity = new Rarity();
     private void Awake() => BaseAwake(Settings);
     private void OnEnable() => BaseOnEnable();
@@ -27,7 +26,7 @@ public class Boon : Unit
         if (!otherCollider2D.gameObject.CompareTag("Player")) return;
         if (otherCollider2D is not BoxCollider2D) return;
         Debug.Log("The exp crystal was taken");
-        TakeDamage(CurrentLifePoints);
+        TakeDamage(LifePoints.GetValue());
         collisionGameObject.GetComponent<Player>().Experience++;
     }
     protected override void BaseAwake(UnitStatsSettings settings)

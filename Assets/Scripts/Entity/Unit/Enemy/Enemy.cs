@@ -163,7 +163,7 @@ public class Enemy : Unit
         _deathTimer += Time.fixedDeltaTime;
         if (!(_deathTimer >= OffscreenDieSeconds)) return;
         _deathFromPlayer = false;
-        TakeDamage(CurrentLifePoints);
+        TakeDamage(LifePoints.GetValue());
     }
     public void SetRarity(RarityEnum rarityEnum)
     {

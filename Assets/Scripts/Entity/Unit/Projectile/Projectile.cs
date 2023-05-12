@@ -24,7 +24,7 @@ public class Projectile : Unit
     {
         Collider2D otherCollider2D = collision2D.collider;
         if (!otherCollider2D.gameObject.CompareTag("Enemy")) return;
-        if (!otherCollider2D.gameObject.GetComponent<Enemy>().Alive) return;
+        //if (!otherCollider2D.gameObject.GetComponent<Enemy>().Alive) return;
         TakeDamage(MinimalDamageTaken);
     }
     //private void OnTriggerEnter2D(Collider2D otherCollider2D)
@@ -43,7 +43,7 @@ public class Projectile : Unit
     protected override void BaseUpdate()
     {
         base.BaseUpdate();
-        if (IsOnScreen == false) { TakeDamage(CurrentLifePoints); }
+        if (IsOnScreen == false) { TakeDamage(LifePoints.GetValue()); }
     }
     public void Launch(Vector2 direction, float force)
     {

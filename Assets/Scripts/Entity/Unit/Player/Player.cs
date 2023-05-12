@@ -91,14 +91,12 @@ public class Player : Unit
     private MovementControllerPlayer _movementController;
     private CircleCollider2D _circleCollider;
     private CapsuleCollider2D _capsuleCollider;
-    //private GameTimer _freezeTimer;
     private SpriteRenderer _spriteRenderer;
     private Invulnerability _invulnerability;
     private void Awake() => BaseAwake(Settings);
 
     private void Start()
     {
-        //_freezeTimer = new GameTimer(Freeze, 0.2f);
         _gameTimeScheduler.Schedule(Freeze, 0.2f);
         shieldLayers.Increase((int)MaxRechargeableShieldLayersCount.Value);
         UpdateShieldAlpha();
@@ -177,7 +175,6 @@ public class Player : Unit
         Debug.Log($"{gameObject.name} Player Awake");
         base.BaseAwake(settings);
 
-        statFactory = Camera.main.GetComponent<StatFactory>();
         _gameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
 
         _level = InitialLevel;
@@ -211,7 +208,6 @@ public class Player : Unit
     protected override void BaseUpdate()
     {
         base.BaseUpdate();
-        //_freezeTimer.Update();
         shieldLayers.TimeToRecover += Time.deltaTime;
     }
     protected override void BaseOnEnable()
@@ -283,8 +279,10 @@ public class Player : Unit
 
         Camera mainCamera = Camera.main;
         Vector3 cameraPos = mainCamera.transform.position;
-        Vector3 cameraTopRight = new Vector3(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize, 0f) + cameraPos;
-        Vector3 cameraBottomLeft = new Vector3(-mainCamera.aspect * mainCamera.orthographicSize, -mainCamera.orthographicSize, 0f) + cameraPos;
+        Vector3 cameraTopRight =
+            new Vector3(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize, 0f) + cameraPos;
+        Vector3 cameraBottomLeft =
+            new Vector3(-mainCamera.aspect * mainCamera.orthographicSize, -mainCamera.orthographicSize, 0f) + cameraPos;
 
         float width = cameraTopRight.x - cameraBottomLeft.x;
         float height = cameraTopRight.y - cameraBottomLeft.y;

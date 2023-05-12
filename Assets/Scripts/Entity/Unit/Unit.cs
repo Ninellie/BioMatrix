@@ -7,7 +7,6 @@ public class Unit : Entity
     public Stat Speed { get; private set; }
     public Stat AccelerationSpeed { get; private set; }
     public Stat RotationSpeed { get; private set; }
-
     public Rigidbody2D Rb2D { get; private set; }
 
     private void OnEnable() => BaseOnEnable();
