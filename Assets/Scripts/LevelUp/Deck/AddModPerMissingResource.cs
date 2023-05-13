@@ -24,6 +24,11 @@ public class AddModPerMissingResource : IEffect
         _triggerCurrentAction = target.GetResourceByName(TriggerCurrentResourceName).onValueChanged;
         _triggerMaxAction = target.GetStatByName(TriggerMaxStatName).onValueChanged;
     }
+
+    public void Detach(Entity target)
+    {
+
+    }
     public void Subscribe(Entity target)
     {
         _triggerCurrentAction += UpdateMod;
@@ -37,8 +42,8 @@ public class AddModPerMissingResource : IEffect
     private void UpdateMod()
     {
         //var difValue = _maxValueStat.Value - _currentValue;
-        //var newValue = Modifier.Value * difValue;
-        //StatModifier mod = new StatModifier(Modifier.Type, difValue, Modifier.IsTemporary, Modifier.Duration);
+        //var newValue = Modifiers.Value * difValue;
+        //StatModifier mod = new StatModifier(Modifiers.Type, difValue, Modifiers.IsTemporary, Modifiers.Duration);
         //_stat.AddModifier(mod);
     }
 }

@@ -38,24 +38,28 @@ public class Player : Unit
 
     private GameTimeScheduler _gameTimeScheduler;
     public readonly List<IEffect> effects = new();
+
     public void AddEffect(IEffect effect)
     {
         effects.Add(effect);
         effect.Attach(this);
         effect.Subscribe(this);
     }
+
     public void AddEffect(IEffect effect, float time)
     {
         AddEffect(effect);
         _gameTimeScheduler.Schedule(() => RemoveEffect(effect), time);
     }
+
     public void RemoveEffect(IEffect effect)
     {
         effect.Unsubscribe(this);
+        effect.Detach(this);
         effects.Remove(effect);
     }
-    public Firearm CurrentFirearm { get; private set; }
 
+    public Firearm CurrentFirearm { get; private set; }
     public bool isFireButtonPressed = false;
     public int Level
     {

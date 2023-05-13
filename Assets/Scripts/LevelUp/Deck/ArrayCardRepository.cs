@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+
 [Serializable]
 public class ArrayCardRepository : ICardRepository
 {
@@ -9,14 +11,21 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Movement speed",
             Description = "+ 50% to movement speed multiplier",
-            DropWeight = 1000,
-            InfluencedStats = new[]
+            DropWeight = 10000,
+            Effects = new IEffect[]
             {
-                "speed",
-            },
-            ModifierList = new StatModifier[]
-            {
-                new StatModifier(OperationType.Multiplication, 50)
+                new AddModOn
+                {
+                    Name = "Movement speed card",
+                    Description = "+ 50% to movement speed multiplier",
+                    Modifiers = new List<(StatModifier mod, string statName)>()
+                    {
+                        (new StatModifier(OperationType.Multiplication, 200, 2), "Speed"),
+                    },
+                    TriggerName = "onRecharge",
+                    TriggerPropName = "",
+                    TriggerTypeName = "Entity",
+                }
             },
         },
         new Card

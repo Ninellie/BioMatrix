@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Reload))]
-[RequireComponent(typeof(Magazine))]
+//[RequireComponent(typeof(Magazine))]
 [RequireComponent(typeof(ProjectileCreator))]
 public class Firearm : MonoBehaviour
 {
@@ -19,8 +19,9 @@ public class Firearm : MonoBehaviour
     [SerializeField] private bool _isForPlayer;
     [SerializeField] private LayerMask _enemyLayer;
     protected StatFactory statFactory;
+    public Resource magazine;
     public FirearmStatsSettings settings => GetComponent<FirearmStatsSettings>();
-    public Magazine magazine;
+    //public Magazine magazine;
     private Reload _reload;
     private ProjectileCreator _projectileCreator;
     public bool CanShoot => _previousShootTimer <= 0
@@ -34,7 +35,8 @@ public class Firearm : MonoBehaviour
     private void Awake() => BaseAwake(settings);
     private void BaseAwake(FirearmStatsSettings settings)
     {
-        magazine = GetComponent<Magazine>();
+        //magazine = GetComponent<Magazine>();
+        magazine = new Resource(0, MagazineSize);
         _reload = GetComponent<Reload>();
         _projectileCreator = GetComponent<ProjectileCreator>();
 
@@ -105,7 +107,7 @@ public class Firearm : MonoBehaviour
     //}
     private void Shoot()
     {
-        magazine.Pop();
+        magazine.Decrease();
         var projectiles = _projectileCreator.CreateProjectiles((int)SingleShootProjectile.Value, _ammo, gameObject.transform);
         var direction = GetShotDirection();
         foreach (var projectile in projectiles)

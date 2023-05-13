@@ -175,7 +175,7 @@ public class Resource
     public Resource(int minValue, Stat maxValueStat, Stat recoverySpeedPerSecondStat) : this(minValue, minValue + 1, maxValueStat, recoverySpeedPerSecondStat, maxValueStat, true, true)
     {
     }
-    public Resource(int minValue, Stat maxValueStat, Stat recoverySpeedPerSecondStat, Stat maxRestorableValueStat) : this(minValue, minValue + 1, maxValueStat, recoverySpeedPerSecondStat, maxRestorableValueStat, true, true)
+    public Resource(int minValue, Stat maxValueStat, Stat recoverySpeedPerSecondStat, Stat maxRecoverableValueStat) : this(minValue, minValue + 1, maxValueStat, recoverySpeedPerSecondStat, maxRecoverableValueStat, true, true)
     {
     }
     public Resource(int minValue, int edgeValue, Stat maxValueStat, Stat recoverySpeedPerSecondStat, Stat maxRecoverableValueStat) : this(minValue, edgeValue, maxValueStat, recoverySpeedPerSecondStat, maxRecoverableValueStat, true, true)

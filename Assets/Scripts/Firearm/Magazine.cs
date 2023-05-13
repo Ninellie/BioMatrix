@@ -3,6 +3,8 @@ using System;
 
 public class Magazine : MonoBehaviour
 {
+
+
     public Action onCurrentAmountChanged;
     public float CurrentAmount
     {
