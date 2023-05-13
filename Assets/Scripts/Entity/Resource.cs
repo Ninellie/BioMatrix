@@ -2,19 +2,19 @@ using System;
 
 public class Resource
 {
-    public Action onValueChanged;
-    public Action onIncrease;
-    public Action onDecrease;
-    public Action onIncrement;
-    public Action onDecrement;
-    public Action onFill;
-    public Action onRecover; 
-    public Action onRecoveryStart;
-    public Action onFullRecovery;
-    public Action onEmpty;
-    public Action onEdge;
-    public Action onNotOnEdge;
-    public Action onNotEmpty;
+    public event Action onValueChanged;
+    public event Action onIncrease;
+    public event Action onDecrease;
+    public event Action onIncrement;
+    public event Action onDecrement;
+    public event Action onFill;
+    public event Action onRecover; 
+    public event Action onRecoveryStart;
+    public event Action onFullRecovery;
+    public event Action onEmpty;
+    public event Action onEdge;
+    public event Action onNotOnEdge;
+    public event Action onNotEmpty;
 
     public bool IsFull => Value == (int)_maxValueStat.Value;
     public bool IsEmpty => Value == _minValue;
@@ -218,7 +218,7 @@ public class Resource
     }
     public void Decrease()
     {
-        Value++;
+        Value--;
     }
     public int GetMinValue()
     {

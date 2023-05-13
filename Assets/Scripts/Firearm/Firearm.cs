@@ -19,13 +19,14 @@ public class Firearm : MonoBehaviour
     [SerializeField] private bool _isForPlayer;
     [SerializeField] private LayerMask _enemyLayer;
     protected StatFactory statFactory;
-    public Resource magazine;
+    public Resource Magazine { get; set; }
+
     public FirearmStatsSettings settings => GetComponent<FirearmStatsSettings>();
     //public Magazine magazine;
     private Reload _reload;
     private ProjectileCreator _projectileCreator;
     public bool CanShoot => _previousShootTimer <= 0
-                            && !magazine.IsEmpty
+                            && !Magazine.IsEmpty
                             && !_reload.IsInProcess;
     private bool IsFireButtonPressed => !_isForPlayer || _player.isFireButtonPressed;
 
@@ -36,7 +37,6 @@ public class Firearm : MonoBehaviour
     private void BaseAwake(FirearmStatsSettings settings)
     {
         //magazine = GetComponent<Magazine>();
-        magazine = new Resource(0, MagazineSize);
         _reload = GetComponent<Reload>();
         _projectileCreator = GetComponent<ProjectileCreator>();
 
@@ -50,6 +50,8 @@ public class Firearm : MonoBehaviour
         ReloadSpeed = statFactory.GetStat(settings.reloadSpeed);
         SingleShootProjectile = statFactory.GetStat(settings.singleShootProjectile);
         
+        Magazine = new Resource(0, MagazineSize);
+        Magazine.Fill();
         _player = FindObjectOfType<Player>();
     }
     private void Update()
@@ -59,15 +61,16 @@ public class Firearm : MonoBehaviour
         if (CanShoot) Shoot();
     }
 
-    public void OnRecharge()
+    public void OnReload()
     {
         if (_isForPlayer)
         {
-            _player.onRecharge?.Invoke();
+            _player.OnOnReload();
+            //_player.ReloadEvent?.Invoke();
         }
     }
 
-    public void OnRechargeEnd()
+    public void OnReloadEnd()
     {
         if (_isForPlayer)
         {
@@ -107,7 +110,7 @@ public class Firearm : MonoBehaviour
     //}
     private void Shoot()
     {
-        magazine.Decrease();
+        Magazine.Decrease();
         var projectiles = _projectileCreator.CreateProjectiles((int)SingleShootProjectile.Value, _ammo, gameObject.transform);
         var direction = GetShotDirection();
         foreach (var projectile in projectiles)

@@ -3,29 +3,33 @@ using UnityEngine;
 
 public class Reload : MonoBehaviour
 {
-    private float ReloadSpeed => _firearm.ReloadSpeed.Value;
-    private Firearm _firearm;
-    private Magazine _magazine;
+    public bool IsInProcess { get; private set; }
 
     [SerializeField] private GameObject _plateUi;
-    public bool IsInProcess { get; private set; }
+    private Firearm _firearm;
+    [SerializeField] private GameTimeScheduler _gameTimeScheduler;
+
     private void Awake()
     {
         _firearm = GetComponent<Firearm>();
-        _magazine = GetComponent<Magazine>();
+        _gameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
+
         if (_firearm.GetIsForPlayer())
         {
-            _plateUi = GetReloadPlate();
+            _plateUi = FindObjectOfType<ReloadPlate>().reloadPlate;
         }
     }
+    
     private void OnEnable()
     {
-        _magazine.onEmpty += Initiate;
+        _firearm.Magazine.onEmpty += Initiate;
     }
+
     private void OnDisable()
     {
-        _magazine.onEmpty -= Initiate;
+        _firearm.Magazine.onEmpty -= Initiate;
     }
+
     private void Initiate()
     {
         IsInProcess = true;
@@ -34,11 +38,12 @@ public class Reload : MonoBehaviour
         {
             _plateUi.SetActive(true);
         }
+        
+        _gameTimeScheduler.Schedule(Complete, 1f / _firearm.ReloadSpeed.Value);
 
-        Invoke(nameof(Complete), 1 / ReloadSpeed);
-
-        _firearm.OnRecharge();
+        //_firearm.OnReload();
     }
+
     private void Complete()
     {
         IsInProcess = false;
@@ -48,13 +53,8 @@ public class Reload : MonoBehaviour
             _plateUi.SetActive(false);
         }
         
-        _magazine.FullFill();
+        _firearm.Magazine.Fill();
 
-        _firearm.OnRechargeEnd();
-    }
-    private GameObject GetReloadPlate()
-    {
-        if (GameObject.FindWithTag("Canvas").GetComponent<ReloadPlate>().reloadPlate is null) throw new NotImplementedException();
-        return GameObject.FindWithTag("Canvas").GetComponent<ReloadPlate>().reloadPlate;
+        _firearm.OnReloadEnd();
     }
 }

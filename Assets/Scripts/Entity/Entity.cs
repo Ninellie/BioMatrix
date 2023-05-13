@@ -2,6 +2,35 @@ using System;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
+public static class EventHelper
+{
+    public static void AddActionByName(object target, string actionName, Action method)
+    {
+        var eventInfo = target.GetType().GetEvent(actionName);
+        eventInfo.AddEventHandler(target, method);
+    }
+    public static void RemoveActionByName(object target, string actionName, Action method)
+    {
+        var eventInfo = target.GetType().GetEvent(actionName);
+        eventInfo.RemoveEventHandler(target, method);
+    }
+    public static object GetPropByName(object target, string propName)
+    {
+        if (string.IsNullOrEmpty(propName))
+        {
+            return target;
+        }
+
+        var names = propName.Split('.');
+
+        foreach (var name in names)
+        {
+            target = target.GetType().GetProperty(name).GetValue(target, null);
+        }
+
+        return target;
+    }
+}
 public class Entity : MonoBehaviour
 {
     public bool IsOnScreen { get; private set; }
@@ -14,38 +43,22 @@ public class Entity : MonoBehaviour
     public Stat LifeRegenerationPerSecond { get; private set; }
     public Stat KnockbackPower { get; private set; }
     public Stat Damage { get; private set; }
+
     public Stat GetStatByName(string statName)
     {
         return (Stat)GetType().GetProperty(statName).GetValue(this, null);
-/*
-        return statName switch
-        {
-            nameof(Size) => Size,
-            nameof(MaximumLifePoints) => MaximumLifePoints,
-            nameof(LifeRegenerationPerSecond) => LifeRegenerationPerSecond,
-            nameof(KnockbackPower) => KnockbackPower,
-            nameof(Damage) => Damage,
-            _ => null
-        };
-*/
     }
+
     public Resource GetResourceByName(string resourceName)
     {
         return (Resource)GetType().GetProperty(resourceName).GetValue(this, null);
     }
-    public Action GetActionByName(string actionName)
+
+    public Firearm GetFirearmByName(string propName)
     {
-        return (Action)GetType().GetField(actionName).GetValue(this);
-/*
-        return actionName switch
-        {
-            nameof(onCurrentLifePointsChanged) => onCurrentLifePointsChanged,
-            nameof(onLifePointLost) => onLifePointLost,
-            nameof(onLifePointRestore) => onLifePointRestore,
-            _ => null
-        };
-*/
+        return (Firearm)GetType().GetProperty(propName).GetValue(this, null);
     }
+
     protected StatFactory statFactory;
     protected SpriteRenderer spriteRenderer;
 

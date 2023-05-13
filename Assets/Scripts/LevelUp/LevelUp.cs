@@ -26,6 +26,6 @@ public class LevelUp : MonoBehaviour
     public void Improve(int index) // Get bonus
     {
         _storage.AddCard(_selectedCards[index]);
-        Debug.Log("Improve");
+        Debug.LogWarning("Improve");
     }
 }

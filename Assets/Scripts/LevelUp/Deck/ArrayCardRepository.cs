@@ -11,20 +11,21 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Movement speed",
             Description = "+ 50% to movement speed multiplier",
-            DropWeight = 10000,
+            DropWeight = 100000,
             Effects = new IEffect[]
             {
                 new AddModOn
                 {
                     Name = "Movement speed card",
                     Description = "+ 50% to movement speed multiplier",
-                    Modifiers = new List<(StatModifier mod, string statName)>()
+                    Modifiers = new List<(StatModifier mod, string statName)>
                     {
                         (new StatModifier(OperationType.Multiplication, 200, 2), "Speed"),
                     },
-                    TriggerName = "onRecharge",
-                    TriggerPropName = "",
-                    TriggerTypeName = "Entity",
+                    TargetName = nameof(Player),
+                    TriggerPropName = nameof(Player.CurrentFirearm) + "." + nameof(Player.CurrentFirearm.Magazine),
+                    TriggerTypeName = nameof(Firearm),
+                    TriggerName = nameof(Magazine.onEmpty),
                 }
             },
         },

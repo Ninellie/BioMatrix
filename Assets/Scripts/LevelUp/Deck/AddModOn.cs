@@ -6,6 +6,7 @@ public class AddModOn : IEffect
     public string Name { get; set;  }
     public string Description { get; set; }
     public List<(StatModifier mod, string statName)> Modifiers { get; set; }
+    public string TargetName { get; set; } // Player
     public string TriggerName { get; set; } // onValueChanged for example
     public string TriggerTypeName { get; set; } // Resource, Stat or Entity
     public string TriggerPropName { get; set; } // If TypeName == Resource or Stat
@@ -49,22 +50,21 @@ public class AddModOn : IEffect
 
     public void Subscribe(Entity target)
     {
-        Action trigger;
+        //EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerPropName), TriggerName, AddMod);
+
         switch (TriggerTypeName)
         {
             case nameof(Resource):
-                trigger = target.GetResourceByName(TriggerPropName).GetActionByName(TriggerName);
-                trigger += AddMod;
+                EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerPropName), TriggerName, AddMod);
                 break;
             case nameof(Stat):
-                trigger = target.GetStatByName(TriggerPropName).onValueChanged;
-                trigger += AddMod;
+                EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerPropName), TriggerName, AddMod);
                 break;
             case nameof(Entity):
-                trigger = target.GetActionByName(TriggerName);
-                trigger += AddMod;
+                EventHelper.AddActionByName(EventHelper.GetPropByName(target, null), TriggerName, AddMod);
                 break;
-            case nameof(IEffect):
+            case nameof(Firearm):
+                EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerPropName), TriggerName, AddMod);
                 break;
         }
     }
@@ -83,8 +83,7 @@ public class AddModOn : IEffect
                 trigger -= AddMod;
                 break;
             case nameof(Entity):
-                trigger = target.GetActionByName(TriggerName);
-                trigger -= AddMod;
+                EventHelper.RemoveActionByName(target, TriggerName, AddMod);
                 break;
             case nameof(IEffect):
                 break;

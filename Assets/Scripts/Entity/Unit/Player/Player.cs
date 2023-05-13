@@ -22,7 +22,8 @@ public class Player : Unit
     public Resource shieldLayers;
 
     public Action onRechargeEnd;
-    public Action onRecharge;
+    
+    public event Action ReloadEvent;
     
     [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private GameObject _shield;
@@ -35,8 +36,9 @@ public class Player : Unit
     [SerializeField] private GameObject _turretWeaponPrefab;
 
     private readonly Stack<Turret> _currentTurrets = new();
-
     private GameTimeScheduler _gameTimeScheduler;
+
+
     public readonly List<IEffect> effects = new();
 
     public void AddEffect(IEffect effect)
@@ -44,6 +46,7 @@ public class Player : Unit
         effects.Add(effect);
         effect.Attach(this);
         effect.Subscribe(this);
+        Debug.LogWarning($"Effect {effect.Name} added to player and subscribed");
     }
 
     public void AddEffect(IEffect effect, float time)
@@ -421,5 +424,10 @@ public class Player : Unit
     {
         onGamePaused?.Invoke();
         Debug.Log("Game is active");
+    }
+
+    public virtual void OnOnReload()
+    {
+        ReloadEvent?.Invoke();
     }
 }

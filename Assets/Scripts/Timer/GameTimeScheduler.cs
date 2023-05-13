@@ -10,10 +10,11 @@ public class GameTimeScheduler : MonoBehaviour
     private readonly object _lock = new();
     public void Schedule(Action action, float time)
     {
-        Debug.LogWarning($"Scheduled");
+        var absoluteTime = Time.time + time;
+        Debug.Log($"Scheduled {action} on {absoluteTime}");
         lock (_lock)
         {
-            _tuples.Add((action, time, name));
+            _tuples.Add((action, absoluteTime, name));
         }
     }
 
@@ -89,9 +90,9 @@ public class GameTimeScheduler : MonoBehaviour
             }
         }
 
-        foreach (var i in _indexesToRemove)
+        for (var i = _indexesToRemove.Count - 1; i >= 0; i--)
         {
-            _tuples.RemoveAt(i);
+            _tuples.RemoveAt(_indexesToRemove[i]);
         }
     }
 }

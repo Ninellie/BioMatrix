@@ -9,6 +9,7 @@ public class AddModPerMissingResource : IEffect
     public string Name { get; }
     public StatModifier Modifier { get; }
     public string ModifiedStatName { get; } // Например Damage
+    public string TargetName { get; set; } 
     //public string TriggerCurrentName { get; } // Например onCurrentLifePointsChanged
     public string TriggerMaxStatName { get; } // Например MaxLifePoints
     public string TriggerCurrentResourceName { get; } // Например MaxLifePoints
@@ -21,8 +22,8 @@ public class AddModPerMissingResource : IEffect
     public void Attach(Entity target)
     {
         _stat = target.GetStatByName(ModifiedStatName);
-        _triggerCurrentAction = target.GetResourceByName(TriggerCurrentResourceName).onValueChanged;
-        _triggerMaxAction = target.GetStatByName(TriggerMaxStatName).onValueChanged;
+        //_triggerCurrentAction = target.GetResourceByName(TriggerCurrentResourceName).onValueChanged;
+        //_triggerMaxAction = target.GetStatByName(TriggerMaxStatName).onValueChanged;
     }
 
     public void Detach(Entity target)
