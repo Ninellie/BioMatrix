@@ -8,9 +8,6 @@ public class AddModOn : IEffect
     public List<(StatModifier mod, string statName)> Modifiers { get; set; }
     public string TargetName { get; set; } // Player
     public Trigger Trigger { get; set; }
-    //public string TriggerName { get; set; } // ValueChangedEvent for example
-    //public string TriggerTypeName { get; set; } // Resource, Stat or Entity
-    //public string TriggerPropName { get; set; } // If TypeName == Resource or Stat
 
     private Stat[] _stats;
     private int[] _addedModsCounts;

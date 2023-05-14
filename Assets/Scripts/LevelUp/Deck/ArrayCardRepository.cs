@@ -9,7 +9,7 @@ public class ArrayCardRepository : ICardRepository
     {
         new Card
         {
-            Title = "Movement speed",
+            Title = "Movement speed per",
             Description = "+ 50% to movement speed multiplier per lost hp",
             DropWeight = 1000,
             Effects = new IEffect[]
@@ -20,18 +20,18 @@ public class ArrayCardRepository : ICardRepository
                     Description = "+ 50% to movement speed multiplier per lost hp",
                     Modifiers = new List<(StatModifier mod, string statName)>
                     {
-                        (new StatModifier(OperationType.Multiplication, 100), "Speed"),
+                        (new StatModifier(OperationType.Multiplication, 30), "Speed"),
                     },
                     TargetName = nameof(Player),
                     TriggerStat = new Trigger
                     {
-                        Name = nameof(Player.MaximumLifePoints.ValueChangedEvent),
-                        PropName = nameof(Player.MaximumLifePoints),
+                        Name = nameof(Entity.MaximumLifePoints.ValueChangedEvent),
+                        PropName = nameof(Entity.MaximumLifePoints),
                     },
-                    TriggersResource = new Trigger
+                    TriggerResource = new Trigger
                     {
-                        Name = nameof(Player.LifePoints.ValueChangedEvent),
-                        PropName = nameof(Player.LifePoints),
+                        Name = nameof(Entity.LifePoints.ValueChangedEvent),
+                        PropName = nameof(Entity.LifePoints),
                     },
                 }
             },

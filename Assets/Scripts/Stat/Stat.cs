@@ -65,7 +65,7 @@ public class Stat
     }
     public bool RemoveModifier(StatModifier modifier)
     {
-        Debug.LogWarning("Try to remove");
+        Debug.LogWarning($"Try to remove {modifier.Value} {modifier.Type}");
         if (!_modifiers.Contains(modifier))
             return false;
         var oldValue = Value;

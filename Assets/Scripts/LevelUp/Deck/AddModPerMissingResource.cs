@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public class AddModPerMissingResource : IEffect
 {
@@ -12,15 +11,17 @@ public class AddModPerMissingResource : IEffect
     public List<(StatModifier mod, string statName)> Modifiers { get; set; } 
     public string TargetName { get; set; } // Player
     public Trigger TriggerStat { get; set; } // maxLife
-    public Trigger TriggersResource { get; set; } // currentLife
+    public Trigger TriggerResource { get; set; } // currentLife
 
     private Resource _resource;
     private Stat[] _stats;
+    private StatModifier[] _mods;
 
     public void Attach(Entity target)
     {
         _stats = new Stat[Modifiers.Count];
-        _resource = target.GetResourceByName(TriggersResource.Name);
+        _mods = new StatModifier[Modifiers.Count];
+        _resource = target.GetResourceByName(TriggerResource.PropName);
 
         int i = 0;
         foreach (var tuple in Modifiers)
@@ -36,34 +37,42 @@ public class AddModPerMissingResource : IEffect
     {
         RemoveMods();
     }
+
     public void Subscribe(Entity target)
     {
-        EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerStat.PropName), TriggerStat.Name, AddMods);
-        EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggersResource.PropName), TriggersResource.Name, AddMods);
+        EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerStat.PropName), TriggerStat.Name, UpdateMods);
+        EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerResource.PropName), TriggerResource.Name, UpdateMods);
     }
 
     public void Unsubscribe(Entity target)
     {
-        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, TriggersResource.PropName), TriggersResource.Name, AddMods);
-        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, TriggerStat.PropName), TriggerStat.Name, AddMods);
+        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, TriggerResource.PropName), TriggerResource.Name, UpdateMods);
+        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, TriggerStat.PropName), TriggerStat.Name, UpdateMods);
+    }
+
+    private void UpdateMods()
+    {
+        RemoveMods();
+        AddMods();
     }
 
     private void AddMods()
     {
-        RemoveMods();
-
         int i = 0;
         foreach (var tuple in Modifiers)
         {
             var newValue = tuple.mod.Value * _resource.GetLackValue();
-
-            var newMod = tuple.mod.IsTemporary switch
+            var isTemp = tuple.mod.IsTemporary;
+            var newMod = isTemp switch
             {
                 false => new StatModifier(tuple.mod.Type, newValue),
                 _ => new StatModifier(tuple.mod.Type, newValue, tuple.mod.Duration)
             };
 
             _stats[i].AddModifier(newMod);
+
+            if (!isTemp) _mods[i] = newMod;
+
             i++;
         }
     }
@@ -75,7 +84,7 @@ public class AddModPerMissingResource : IEffect
         {
             if (!tuple.mod.IsTemporary)
             {
-                _stats[i].RemoveModifier(tuple.mod);
+                _stats[i].RemoveModifier(_mods[i]);
             }
 
             i++;
