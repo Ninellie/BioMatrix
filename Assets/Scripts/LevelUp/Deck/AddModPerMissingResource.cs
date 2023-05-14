@@ -2,16 +2,12 @@
 
 public class AddModPerMissingResource : IEffect
 {
-    /* Следит сразу за двумя событиями: изменение текущего значения и изменение максимального значения,
-     * После чего обновляет модификатор к стату, умножая его на разница между максимальным и текущим
-     *
-     */
     public string Name { get; set; }
     public string Description { get; set; }
     public List<(StatModifier mod, string statName)> Modifiers { get; set; } 
-    public string TargetName { get; set; } // Player
-    public Trigger TriggerStat { get; set; } // maxLife
-    public Trigger TriggerResource { get; set; } // currentLife
+    public string TargetName { get; set; }
+    public Trigger TriggerStat { get; set; }
+    public Trigger TriggerResource { get; set; }
 
     private Resource _resource;
     private Stat[] _stats;
