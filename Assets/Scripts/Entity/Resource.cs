@@ -2,19 +2,19 @@ using System;
 
 public class Resource
 {
-    public event Action onValueChanged;
-    public event Action onIncrease;
-    public event Action onDecrease;
-    public event Action onIncrement;
-    public event Action onDecrement;
-    public event Action onFill;
-    public event Action onRecover; 
-    public event Action onRecoveryStart;
-    public event Action onFullRecovery;
-    public event Action onEmpty;
-    public event Action onEdge;
-    public event Action onNotOnEdge;
-    public event Action onNotEmpty;
+    public event Action ValueChangedEvent;
+    public event Action IncreaseEvent;
+    public event Action DecreaseEvent;
+    public event Action IncrementEvent;
+    public event Action DecrementEvent;
+    public event Action FillEvent;
+    public event Action RecoverEvent; 
+    public event Action RecoveryStartEvent;
+    public event Action FullRecoveryEvent;
+    public event Action EmptyEvent;
+    public event Action EdgeEvent;
+    public event Action NotOnEdgeEvent;
+    public event Action NotEmptyEvent;
 
     public bool IsFull => Value == (int)_maxValueStat.Value;
     public bool IsEmpty => Value == _minValue;
@@ -76,7 +76,7 @@ public class Resource
                 var intValue = (int)value;
                 _reserveValue = value % 1;
                 Value += intValue;
-                onRecover?.Invoke();
+                RecoverEvent?.Invoke();
             }
             else
             {
@@ -104,63 +104,63 @@ public class Resource
                 if (value >= (int)_maxValueStat.Value)
                 {
                     _value = (int)_maxValueStat.Value;
-                    onFill?.Invoke();
+                    FillEvent?.Invoke();
                 }
             }
             if (value <= _minValue)
             {
                 _value = _minValue;
-                onEmpty?.Invoke();
+                EmptyEvent?.Invoke();
             }
             else
             {
                 _value = value;
             }
 
-            onValueChanged?.Invoke();
+            ValueChangedEvent?.Invoke();
 
             if (_isRecovering)
             {
                 if (oldValue < (int)_maxRecoverableValueStat.Value && IsFullyRecovered)
                 {
-                    onFullRecovery?.Invoke();
+                    FullRecoveryEvent?.Invoke();
                 }
                 if (oldValue >= (int)_maxRecoverableValueStat.Value && IsOnRecovery)
                 {
-                    onRecoveryStart?.Invoke();
+                    RecoveryStartEvent?.Invoke();
                 }
             }
 
             if (dif > 0)
             {
-                onIncrease?.Invoke();
+                IncreaseEvent?.Invoke();
                 while (dif != 0)
                 {
-                    onIncrement?.Invoke();
+                    IncrementEvent?.Invoke();
                     dif--;
                 }
             }
             if (dif < 0)
             {
-                onDecrease?.Invoke();
+                DecreaseEvent?.Invoke();
                 while (dif != 0)
                 {
-                    onDecrement?.Invoke();
+                    DecrementEvent?.Invoke();
                     dif++;
                 }
             }
 
             if (oldValue == _minValue && !IsEmpty)
             {
-                onNotEmpty?.Invoke();
+                NotEmptyEvent?.Invoke();
             }
             if (oldValue == _edgeValue && _value > _edgeValue)
             {
-                onNotOnEdge?.Invoke();
+                NotOnEdgeEvent?.Invoke();
             }
             if (IsOnEdge)
             {
-                onEdge?.Invoke();
+                EdgeEvent?.Invoke();
             }
         }
     }

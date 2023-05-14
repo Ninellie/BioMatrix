@@ -226,12 +226,12 @@ public class Player : Unit
             effect.Subscribe(this);
         }
 
-        shieldLayers.onEmpty += UpdateShield;
-        shieldLayers.onNotEmpty += UpdateShield;
-        shieldLayers.onValueChanged += UpdateShieldAlpha;
+        shieldLayers.EmptyEvent += UpdateShield;
+        shieldLayers.NotEmptyEvent += UpdateShield;
+        shieldLayers.ValueChangedEvent += UpdateShieldAlpha;
 
-        if (MagnetismRadius != null) MagnetismRadius.onValueChanged += ChangeCurrentMagnetismRadius;
-        if (TurretCount != null) TurretCount.onValueChanged += UpdateTurrets;
+        if (MagnetismRadius != null) MagnetismRadius.ValueChangedEvent += ChangeCurrentMagnetismRadius;
+        if (TurretCount != null) TurretCount.ValueChangedEvent += UpdateTurrets;
     }
     protected override void BaseOnDisable()
     {
@@ -240,12 +240,12 @@ public class Player : Unit
             effect.Unsubscribe(this);
         }
 
-        shieldLayers.onEmpty -= UpdateShield;
-        shieldLayers.onNotEmpty -= UpdateShield;
-        shieldLayers.onValueChanged -= UpdateShieldAlpha;
+        shieldLayers.EmptyEvent -= UpdateShield;
+        shieldLayers.NotEmptyEvent -= UpdateShield;
+        shieldLayers.ValueChangedEvent -= UpdateShieldAlpha;
 
-        if (MagnetismRadius != null) MagnetismRadius.onValueChanged -= ChangeCurrentMagnetismRadius;
-        if (TurretCount != null) TurretCount.onValueChanged -= UpdateTurrets;
+        if (MagnetismRadius != null) MagnetismRadius.ValueChangedEvent -= ChangeCurrentMagnetismRadius;
+        if (TurretCount != null) TurretCount.ValueChangedEvent -= UpdateTurrets;
 
         base.BaseOnDisable();
     }

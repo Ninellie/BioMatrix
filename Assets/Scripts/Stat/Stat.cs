@@ -6,7 +6,7 @@ using UnityEngine;
 public class Stat
 {
     public float Value => GetActualValue();
-    public Action onValueChanged;
+    public event Action ValueChangedEvent;
     private float BaseValue { get; }
     private bool IsModifiable { get; }
     private float BaseAddedValue { get; }
@@ -105,6 +105,6 @@ public class Stat
     private void OnValueChanged(float oldValue)
     {
         if (Value.Equals(oldValue)) return;
-        onValueChanged?.Invoke();
+        ValueChangedEvent?.Invoke();
     }
 }

@@ -24,10 +24,10 @@ public class GameTimeScheduler : MonoBehaviour
         List<(Action action, float time, string name)> tuplesToAdd = new();
         foreach (var tuple in _tuples.Where(x => x.name == name))
         {
-            var overwritedTuple = tuple;
-            overwritedTuple.time = time;
+            var overwrittenTuple = tuple;
+            overwrittenTuple.time = time;
             tuplesToRemove.Add(tuple);
-            tuplesToAdd.Add(overwritedTuple);
+            tuplesToAdd.Add(overwrittenTuple);
         }
 
         foreach (var tuple in tuplesToRemove)

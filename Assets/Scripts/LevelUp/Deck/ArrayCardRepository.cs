@@ -10,8 +10,37 @@ public class ArrayCardRepository : ICardRepository
         new Card
         {
             Title = "Movement speed",
+            Description = "+ 50% to movement speed multiplier per lost hp",
+            DropWeight = 1000,
+            Effects = new IEffect[]
+            {
+                new AddModPerMissingResource
+                {
+                    Name = "Movement speed per lost hp card",
+                    Description = "+ 50% to movement speed multiplier per lost hp",
+                    Modifiers = new List<(StatModifier mod, string statName)>
+                    {
+                        (new StatModifier(OperationType.Multiplication, 100), "Speed"),
+                    },
+                    TargetName = nameof(Player),
+                    TriggerStat = new Trigger
+                    {
+                        Name = nameof(Player.MaximumLifePoints.ValueChangedEvent),
+                        PropName = nameof(Player.MaximumLifePoints),
+                    },
+                    TriggersResource = new Trigger
+                    {
+                        Name = nameof(Player.LifePoints.ValueChangedEvent),
+                        PropName = nameof(Player.LifePoints),
+                    },
+                }
+            },
+        },
+        new Card
+        {
+            Title = "Movement speed",
             Description = "+ 50% to movement speed multiplier",
-            DropWeight = 100000,
+            DropWeight = 1,
             Effects = new IEffect[]
             {
                 new AddModOn
@@ -23,9 +52,11 @@ public class ArrayCardRepository : ICardRepository
                         (new StatModifier(OperationType.Multiplication, 200, 2), "Speed"),
                     },
                     TargetName = nameof(Player),
-                    TriggerPropName = nameof(Player.CurrentFirearm) + "." + nameof(Player.CurrentFirearm.Magazine),
-                    TriggerTypeName = nameof(Firearm),
-                    TriggerName = nameof(Magazine.onEmpty),
+                    Trigger = new Trigger
+                    {
+                        Name = nameof(Magazine.onEmpty),
+                        PropName = nameof(Player.CurrentFirearm) + "." + nameof(Player.CurrentFirearm.Magazine),
+                    },
                 }
             },
         },
@@ -33,7 +64,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Maximum life points",
             Description = "+ 1 to maximum HP",
-            DropWeight = 1000,
+            DropWeight = 1,
             InfluencedStats = new[]
             {
                 "maximumLifePoints",
@@ -47,7 +78,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Fire rate",
             Description = "+ 25% to fire rate multiplier",
-            DropWeight = 1000,
+            DropWeight = 1,
             InfluencedStats = new[]
             {
                 "fireRate",
@@ -61,7 +92,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Projectile speed",
             Description = "+ 25% to projectile speed multiplier",
-            DropWeight = 1000,
+            DropWeight = 1,
             InfluencedStats = new[]
             {
                 "projectileSpeed",
@@ -75,7 +106,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Piercing projectiles",
             Description = "Projectiles pierce + 1 enemy",
-            DropWeight = 10,
+            DropWeight = 1,
             InfluencedStats = new[]
             {
                 "pierceNumber",
@@ -89,7 +120,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Reload speed",
             Description = "+25% to reload speed",
-            DropWeight = 1000,
+            DropWeight = 1,
             InfluencedStats = new[]
             {
                 "reloadSpeed",
@@ -103,7 +134,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Additional projectile",
             Description = "The weapon fires an additional secondary projectile",
-            DropWeight = 100,
+            DropWeight = 1,
             InfluencedStats = new[]
             {
                 "projectileNumber",
@@ -117,7 +148,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Magnetism radius",
             Description = "+ 50% to radius of boon attraction",
-            DropWeight = 1000,
+            DropWeight = 1,
             InfluencedStats = new[]
             {
                 "magnetismRadius",
@@ -131,7 +162,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Life regeneration",
             Description = "Recover one life point per five seconds",
-            DropWeight = 500,
+            DropWeight = 5,
             InfluencedStats = new[]
             {
                 "lifeRegenerationPerSecond",
@@ -145,7 +176,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Max shield layers",
             Description = "Adds +1 to max shield layers and recover one layer instantly",
-            DropWeight = 100,
+            DropWeight = 1,
             InfluencedStats = new[]
             {
                 "maxShieldLayersCount",
@@ -159,7 +190,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Max rechargeable shield layers",
             Description = "Adds +1 to max rechargeable shield layers and recover one layer instantly",
-            DropWeight = 100,
+            DropWeight = 1,
             InfluencedStats = new[]
             {
                 "maxRechargeableShieldLayersCount",
@@ -173,7 +204,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Shield recharge rate",
             Description = "+50 to shield recharge rate multiplier",
-            DropWeight = 500,
+            DropWeight = 5,
             InfluencedStats = new[]
             {
                 "shieldLayerRechargeRate",
@@ -187,7 +218,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Turret count",
             Description = "+1 to turret count",
-            DropWeight = 5000,
+            DropWeight = 5,
             InfluencedStats = new[]
             {
                 "turretCount",
@@ -201,7 +232,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Turret count for 5 sec",
             Description = "+1 to turret count for 5 sec",
-            DropWeight = 5000,
+            DropWeight = 1,
             InfluencedStats = new[]
             {
                 "turretCount",

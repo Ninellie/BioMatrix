@@ -1,50 +1,84 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class AddModPerMissingResource : IEffect
 {
-    /* Следит сразу за двумя событиями: изменение текущего значения и изменение максимального значение,
+    /* Следит сразу за двумя событиями: изменение текущего значения и изменение максимального значения,
      * После чего обновляет модификатор к стату, умножая его на разница между максимальным и текущим
      *
      */
-    public string Name { get; }
-    public StatModifier Modifier { get; }
-    public string ModifiedStatName { get; } // Например Damage
-    public string TargetName { get; set; } 
-    //public string TriggerCurrentName { get; } // Например onCurrentLifePointsChanged
-    public string TriggerMaxStatName { get; } // Например MaxLifePoints
-    public string TriggerCurrentResourceName { get; } // Например MaxLifePoints
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public List<(StatModifier mod, string statName)> Modifiers { get; set; } 
+    public string TargetName { get; set; } // Player
+    public Trigger TriggerStat { get; set; } // maxLife
+    public Trigger TriggersResource { get; set; } // currentLife
 
-    private Action _triggerCurrentAction;
-    private Action _triggerMaxAction;
-    private Stat _stat;
-    private Resource _currentResource;
+    private Resource _resource;
+    private Stat[] _stats;
 
     public void Attach(Entity target)
     {
-        _stat = target.GetStatByName(ModifiedStatName);
-        //_triggerCurrentAction = target.GetResourceByName(TriggerCurrentResourceName).onValueChanged;
-        //_triggerMaxAction = target.GetStatByName(TriggerMaxStatName).onValueChanged;
+        _stats = new Stat[Modifiers.Count];
+        _resource = target.GetResourceByName(TriggersResource.Name);
+
+        int i = 0;
+        foreach (var tuple in Modifiers)
+        {
+            _stats[i] = target.GetStatByName(tuple.statName);
+            i++;
+        }
+
+        AddMods();
     }
 
     public void Detach(Entity target)
     {
-
+        RemoveMods();
     }
     public void Subscribe(Entity target)
     {
-        _triggerCurrentAction += UpdateMod;
-        _triggerMaxAction += UpdateMod;
+        EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerStat.PropName), TriggerStat.Name, AddMods);
+        EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggersResource.PropName), TriggersResource.Name, AddMods);
     }
+
     public void Unsubscribe(Entity target)
     {
-        _triggerCurrentAction -= UpdateMod;
-        _triggerMaxAction -= UpdateMod;
+        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, TriggersResource.PropName), TriggersResource.Name, AddMods);
+        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, TriggerStat.PropName), TriggerStat.Name, AddMods);
     }
-    private void UpdateMod()
+
+    private void AddMods()
     {
-        //var difValue = _maxValueStat.Value - _currentValue;
-        //var newValue = Modifiers.Value * difValue;
-        //StatModifier mod = new StatModifier(Modifiers.Type, difValue, Modifiers.IsTemporary, Modifiers.Duration);
-        //_stat.AddModifier(mod);
+        RemoveMods();
+
+        int i = 0;
+        foreach (var tuple in Modifiers)
+        {
+            var newValue = tuple.mod.Value * _resource.GetLackValue();
+
+            var newMod = tuple.mod.IsTemporary switch
+            {
+                false => new StatModifier(tuple.mod.Type, newValue),
+                _ => new StatModifier(tuple.mod.Type, newValue, tuple.mod.Duration)
+            };
+
+            _stats[i].AddModifier(newMod);
+            i++;
+        }
+    }
+
+    private void RemoveMods()
+    {
+        int i = 0;
+        foreach (var tuple in Modifiers)
+        {
+            if (!tuple.mod.IsTemporary)
+            {
+                _stats[i].RemoveModifier(tuple.mod);
+            }
+
+            i++;
+        }
     }
 }

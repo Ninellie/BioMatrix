@@ -1,36 +1,6 @@
-using System;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-public static class EventHelper
-{
-    public static void AddActionByName(object target, string actionName, Action method)
-    {
-        var eventInfo = target.GetType().GetEvent(actionName);
-        eventInfo.AddEventHandler(target, method);
-    }
-    public static void RemoveActionByName(object target, string actionName, Action method)
-    {
-        var eventInfo = target.GetType().GetEvent(actionName);
-        eventInfo.RemoveEventHandler(target, method);
-    }
-    public static object GetPropByName(object target, string propName)
-    {
-        if (string.IsNullOrEmpty(propName))
-        {
-            return target;
-        }
-
-        var names = propName.Split('.');
-
-        foreach (var name in names)
-        {
-            target = target.GetType().GetProperty(name).GetValue(target, null);
-        }
-
-        return target;
-    }
-}
 public class Entity : MonoBehaviour
 {
     public bool IsOnScreen { get; private set; }
@@ -61,8 +31,7 @@ public class Entity : MonoBehaviour
 
     protected StatFactory statFactory;
     protected SpriteRenderer spriteRenderer;
-
-    //private void Awake() => BaseAwake(GlobalStatsSettingsRepository.EntityStats);
+    
     private void OnEnable() => BaseOnEnable();
     private void OnDisable() => BaseOnDisable();
     private void Update() => BaseUpdate();
@@ -85,13 +54,13 @@ public class Entity : MonoBehaviour
     }
     protected virtual void BaseOnEnable()
     {
-        Size.onValueChanged += ChangeCurrentSize;
-        LifePoints.onEmpty += Death;
+        Size.ValueChangedEvent += ChangeCurrentSize;
+        LifePoints.EmptyEvent += Death;
     }
     protected virtual void BaseOnDisable()
     {
-        Size.onValueChanged -= ChangeCurrentSize;
-        LifePoints.onEmpty -= Death;
+        Size.ValueChangedEvent -= ChangeCurrentSize;
+        LifePoints.EmptyEvent -= Death;
     }
     protected virtual void BaseUpdate()
     {
