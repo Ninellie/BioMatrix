@@ -242,17 +242,4 @@ public class Resource
         var currentPercent = Value / percent;
         return currentPercent;
     }
-    public Action GetActionByName(string actionName)
-    {
-        return (Action)GetType().GetField(actionName).GetValue(this);
-        /*
-                return actionName switch
-                {
-                    nameof(onCurrentLifePointsChanged) => onCurrentLifePointsChanged,
-                    nameof(onLifePointLost) => onLifePointLost,
-                    nameof(onLifePointRestore) => onLifePointRestore,
-                    _ => null
-                };
-        */
-    }
 }
