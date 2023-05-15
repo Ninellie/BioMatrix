@@ -1,50 +1,89 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 public class AddModPerMissingResource : IEffect
 {
-    /* Следит сразу за двумя событиями: изменение текущего значения и изменение максимального значение,
-     * После чего обновляет модификатор к стату, умножая его на разница между максимальным и текущим
-     *
-     */
-    public string Name { get; }
-    public StatModifier Modifier { get; }
-    public string ModifiedStatName { get; } // Например Damage
-    public string TargetName { get; set; } 
-    //public string TriggerCurrentName { get; } // Например onCurrentLifePointsChanged
-    public string TriggerMaxStatName { get; } // Например MaxLifePoints
-    public string TriggerCurrentResourceName { get; } // Например MaxLifePoints
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public List<(StatModifier mod, string statName)> Modifiers { get; set; } 
+    public string TargetName { get; set; }
+    public Trigger TriggerStat { get; set; }
+    public Trigger TriggerResource { get; set; }
 
-    private Action _triggerCurrentAction;
-    private Action _triggerMaxAction;
-    private Stat _stat;
-    private Resource _currentResource;
+    private Resource _resource;
+    private Stat[] _stats;
+    private StatModifier[] _mods;
 
     public void Attach(Entity target)
     {
-        _stat = target.GetStatByName(ModifiedStatName);
-        //_triggerCurrentAction = target.GetResourceByName(TriggerCurrentResourceName).onValueChanged;
-        //_triggerMaxAction = target.GetStatByName(TriggerMaxStatName).onValueChanged;
+        _stats = new Stat[Modifiers.Count];
+        _mods = new StatModifier[Modifiers.Count];
+        _resource = target.GetResourceByName(TriggerResource.PropName);
+
+        int i = 0;
+        foreach (var tuple in Modifiers)
+        {
+            _stats[i] = target.GetStatByName(tuple.statName);
+            i++;
+        }
+
+        AddMods();
     }
 
     public void Detach(Entity target)
     {
-
+        RemoveMods();
     }
+
     public void Subscribe(Entity target)
     {
-        _triggerCurrentAction += UpdateMod;
-        _triggerMaxAction += UpdateMod;
+        EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerStat.PropName), TriggerStat.Name, UpdateMods);
+        EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerResource.PropName), TriggerResource.Name, UpdateMods);
     }
+
     public void Unsubscribe(Entity target)
     {
-        _triggerCurrentAction -= UpdateMod;
-        _triggerMaxAction -= UpdateMod;
+        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, TriggerResource.PropName), TriggerResource.Name, UpdateMods);
+        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, TriggerStat.PropName), TriggerStat.Name, UpdateMods);
     }
-    private void UpdateMod()
+
+    private void UpdateMods()
     {
-        //var difValue = _maxValueStat.Value - _currentValue;
-        //var newValue = Modifiers.Value * difValue;
-        //StatModifier mod = new StatModifier(Modifiers.Type, difValue, Modifiers.IsTemporary, Modifiers.Duration);
-        //_stat.AddModifier(mod);
+        RemoveMods();
+        AddMods();
+    }
+
+    private void AddMods()
+    {
+        int i = 0;
+        foreach (var tuple in Modifiers)
+        {
+            var newValue = tuple.mod.Value * _resource.GetLackValue();
+            var isTemp = tuple.mod.IsTemporary;
+            var newMod = isTemp switch
+            {
+                false => new StatModifier(tuple.mod.Type, newValue),
+                _ => new StatModifier(tuple.mod.Type, newValue, tuple.mod.Duration)
+            };
+
+            _stats[i].AddModifier(newMod);
+
+            if (!isTemp) _mods[i] = newMod;
+
+            i++;
+        }
+    }
+
+    private void RemoveMods()
+    {
+        int i = 0;
+        foreach (var tuple in Modifiers)
+        {
+            if (!tuple.mod.IsTemporary)
+            {
+                _stats[i].RemoveModifier(_mods[i]);
+            }
+
+            i++;
+        }
     }
 }

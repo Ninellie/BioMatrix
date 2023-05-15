@@ -22,12 +22,12 @@ public class Reload : MonoBehaviour
     
     private void OnEnable()
     {
-        _firearm.Magazine.onEmpty += Initiate;
+        _firearm.Magazine.EmptyEvent += Initiate;
     }
 
     private void OnDisable()
     {
-        _firearm.Magazine.onEmpty -= Initiate;
+        _firearm.Magazine.EmptyEvent -= Initiate;
     }
 
     private void Initiate()
