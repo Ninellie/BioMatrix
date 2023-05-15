@@ -190,6 +190,7 @@
     <Compile Include="Assets\Scripts\Stat\StatFactory.cs" />
     <Compile Include="Assets\Scripts\LevelUp\Deck\Trigger.cs" />
     <Compile Include="Assets\Scripts\Entity\EventHelper.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\AddModWhileResource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

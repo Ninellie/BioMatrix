@@ -9,9 +9,43 @@ public class ArrayCardRepository : ICardRepository
     {
         new Card
         {
+            Title = "Movement speed while on full life",
+            Description = "+ 100% to movement speed multiplier while on full life",
+            DropWeight = 1000,
+            Effects = new IEffect[]
+            {
+                new AddModWhileResource()
+                {
+                    Name = "Movement speed while full life card",
+                    Description = "+ 100% to movement speed multiplier while on full life",
+                    Modifiers = new List<(StatModifier mod, string statName)>
+                    {
+                        (new StatModifier(OperationType.Multiplication, 100), "Speed"),
+                    },
+                    TargetName = nameof(Player),
+                    AddTrigger = new Trigger
+                    {
+                        Name = nameof(Entity.LifePoints.FillEvent),
+                        PropName = nameof(Entity.LifePoints),
+                    },
+                    RemoveTrigger = new Trigger
+                    {
+                        Name = nameof(Entity.LifePoints.DecreaseEvent),
+                        PropName = nameof(Entity.LifePoints),
+                    },
+                    TriggerCondition = new Trigger
+                    {
+                        Name = nameof(Entity.LifePoints) + "." + nameof(Entity.LifePoints.IsFull),
+                        PropName = nameof(Entity.LifePoints) + "." + nameof(Entity.LifePoints.IsFull),
+                    }
+                }
+            },
+        },
+        new Card
+        {
             Title = "Movement speed per",
             Description = "+ 50% to movement speed multiplier per lost hp",
-            DropWeight = 1000,
+            DropWeight = 1,
             Effects = new IEffect[]
             {
                 new AddModPerMissingResource
