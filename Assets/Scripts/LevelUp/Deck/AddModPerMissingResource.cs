@@ -17,7 +17,7 @@ public class AddModPerMissingResource : IEffect
     {
         _stats = new Stat[Modifiers.Count];
         _mods = new StatModifier[Modifiers.Count];
-        _resource = target.GetResourceByName(TriggerResource.PropName);
+        _resource = target.GetResourceByName(TriggerResource.Path);
 
         int i = 0;
         foreach (var tuple in Modifiers)
@@ -36,14 +36,14 @@ public class AddModPerMissingResource : IEffect
 
     public void Subscribe(Entity target)
     {
-        EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerStat.PropName), TriggerStat.Name, UpdateMods);
-        EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerResource.PropName), TriggerResource.Name, UpdateMods);
+        EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerStat.Path), TriggerStat.Name, UpdateMods);
+        EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerResource.Path), TriggerResource.Name, UpdateMods);
     }
 
     public void Unsubscribe(Entity target)
     {
-        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, TriggerResource.PropName), TriggerResource.Name, UpdateMods);
-        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, TriggerStat.PropName), TriggerStat.Name, UpdateMods);
+        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, TriggerResource.Path), TriggerResource.Name, UpdateMods);
+        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, TriggerStat.Path), TriggerStat.Name, UpdateMods);
     }
 
     private void UpdateMods()

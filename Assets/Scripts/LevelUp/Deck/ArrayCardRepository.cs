@@ -26,18 +26,14 @@ public class ArrayCardRepository : ICardRepository
                     AddTrigger = new Trigger
                     {
                         Name = nameof(Entity.LifePoints.FillEvent),
-                        PropName = nameof(Entity.LifePoints),
+                        Path = nameof(Entity.LifePoints),
                     },
                     RemoveTrigger = new Trigger
                     {
                         Name = nameof(Entity.LifePoints.DecreaseEvent),
-                        PropName = nameof(Entity.LifePoints),
+                        Path = nameof(Entity.LifePoints),
                     },
-                    TriggerCondition = new Trigger
-                    {
-                        Name = nameof(Entity.LifePoints) + "." + nameof(Entity.LifePoints.IsFull),
-                        PropName = nameof(Entity.LifePoints) + "." + nameof(Entity.LifePoints.IsFull),
-                    }
+                    ResourceConditionName = nameof(Entity.LifePoints) + "." + nameof(Entity.LifePoints.IsFull),
                 }
             },
         },
@@ -60,12 +56,12 @@ public class ArrayCardRepository : ICardRepository
                     TriggerStat = new Trigger
                     {
                         Name = nameof(Entity.MaximumLifePoints.ValueChangedEvent),
-                        PropName = nameof(Entity.MaximumLifePoints),
+                        Path = nameof(Entity.MaximumLifePoints),
                     },
                     TriggerResource = new Trigger
                     {
                         Name = nameof(Entity.LifePoints.ValueChangedEvent),
-                        PropName = nameof(Entity.LifePoints),
+                        Path = nameof(Entity.LifePoints),
                     },
                 }
             },
@@ -89,7 +85,7 @@ public class ArrayCardRepository : ICardRepository
                     Trigger = new Trigger
                     {
                         Name = nameof(Magazine.onEmpty),
-                        PropName = nameof(Player.CurrentFirearm) + "." + nameof(Player.CurrentFirearm.Magazine),
+                        Path = nameof(Player.CurrentFirearm) + "." + nameof(Player.CurrentFirearm.Magazine),
                     },
                 }
             },

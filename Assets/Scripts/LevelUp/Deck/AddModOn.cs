@@ -51,12 +51,12 @@ public class AddModOn : IEffect
 
     public void Subscribe(Entity target)
     {
-        EventHelper.AddActionByName(EventHelper.GetPropByName(target, Trigger.PropName), Trigger.Name, AddMod);
+        EventHelper.AddActionByName(EventHelper.GetPropByName(target, Trigger.Path), Trigger.Name, AddMod);
     }
 
     public void Unsubscribe(Entity target)
     {
-        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, Trigger.PropName), Trigger.Name, AddMod);
+        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, Trigger.Path), Trigger.Name, AddMod);
     }
 
     private void AddMod()

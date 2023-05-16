@@ -13,14 +13,14 @@ public static class EventHelper
         var eventInfo = target.GetType().GetEvent(actionName);
         eventInfo.RemoveEventHandler(target, method);
     }
-    public static object GetPropByName(object target, string propName)
+    public static object GetPropByName(object target, string path)
     {
-        if (string.IsNullOrEmpty(propName))
+        if (string.IsNullOrEmpty(path))
         {
             return target;
         }
 
-        var names = propName.Split('.');
+        var names = path.Split('.');
 
         foreach (var name in names)
         {

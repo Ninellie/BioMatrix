@@ -9,7 +9,7 @@ public class AddModWhileResource : IEffect
     public string TargetName { get; set; }
     public Trigger AddTrigger { get; set; }
     public Trigger RemoveTrigger { get; set; }
-    public Trigger TriggerCondition { get; set; }
+    public string ResourceConditionName { get; set; }
 
     private Stat[] _modifiedStats;
     private StatModifier[] _addedMods;
@@ -26,7 +26,7 @@ public class AddModWhileResource : IEffect
             i++;
         }
 
-        bool isAddCondition = (bool)EventHelper.GetPropByName(target, TriggerCondition.Name);
+        bool isAddCondition = (bool)EventHelper.GetPropByName(target, ResourceConditionName);
         if (isAddCondition)
         {
             AddMods();
@@ -40,14 +40,14 @@ public class AddModWhileResource : IEffect
 
     public void Subscribe(Entity target)
     {
-        EventHelper.AddActionByName(EventHelper.GetPropByName(target, AddTrigger.PropName), AddTrigger.Name, AddMods);
-        EventHelper.AddActionByName(EventHelper.GetPropByName(target, RemoveTrigger.PropName), RemoveTrigger.Name, RemoveMods);
+        EventHelper.AddActionByName(EventHelper.GetPropByName(target, AddTrigger.Path), AddTrigger.Name, AddMods);
+        EventHelper.AddActionByName(EventHelper.GetPropByName(target, RemoveTrigger.Path), RemoveTrigger.Name, RemoveMods);
     }
 
     public void Unsubscribe(Entity target)
     {
-        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, RemoveTrigger.PropName), RemoveTrigger.Name, RemoveMods);
-        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, AddTrigger.PropName), AddTrigger.Name, AddMods);
+        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, RemoveTrigger.Path), RemoveTrigger.Name, RemoveMods);
+        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, AddTrigger.Path), AddTrigger.Name, AddMods);
     }
     
     private void AddMods()
