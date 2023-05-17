@@ -4,7 +4,6 @@ public static class EventHelper
 {
     public static void AddActionByName(object target, string actionName, Action method)
     {
-        if (actionName is nameof(IEffect.Attach) or nameof(IEffect.Detach)) return;
         var eventInfo = target.GetType().GetEvent(actionName);
         eventInfo.AddEventHandler(target, method);
     }

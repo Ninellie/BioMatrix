@@ -22,11 +22,6 @@ public class AddModOn : IEffect
             _stats[i] = (Stat)EventHelper.GetPropByName(target, tuple.statName);
             i++;
         }
-
-        if (Trigger.Name == nameof(Attach))
-        {
-            AddMod();
-        }
     }
 
     public void Detach()
@@ -45,11 +40,6 @@ public class AddModOn : IEffect
             }
 
             i++;
-        }
-
-        if (Trigger.Name == nameof(Detach))
-        {
-            AddMod();
         }
     }
 
