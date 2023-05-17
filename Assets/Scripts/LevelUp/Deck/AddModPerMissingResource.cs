@@ -29,7 +29,7 @@ public class AddModPerMissingResource : IEffect
         AddMods();
     }
 
-    public void Detach(Entity target)
+    public void Detach()
     {
         RemoveMods();
     }

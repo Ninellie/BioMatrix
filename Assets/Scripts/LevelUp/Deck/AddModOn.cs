@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public class AddModOn : IEffect
 {
@@ -30,7 +29,7 @@ public class AddModOn : IEffect
         }
     }
 
-    public void Detach(Entity target)
+    public void Detach()
     {
         int i = 0;
         foreach (var tuple in Modifiers)
@@ -46,6 +45,11 @@ public class AddModOn : IEffect
             }
 
             i++;
+        }
+
+        if (Trigger.Name == nameof(Detach))
+        {
+            AddMod();
         }
     }
 

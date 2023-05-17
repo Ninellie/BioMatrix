@@ -13,7 +13,7 @@
         _resource = (Resource)EventHelper.GetPropByName(target, PathToResource);
     }
 
-    public void Detach(Entity target)
+    public void Detach()
     {
     }
 

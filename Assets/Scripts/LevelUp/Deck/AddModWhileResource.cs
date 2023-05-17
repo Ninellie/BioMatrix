@@ -32,7 +32,7 @@ public class AddModWhileResource : IEffect
         }
     }
 
-    public void Detach(Entity target)
+    public void Detach()
     {
         RemoveMods();
     }

@@ -4,17 +4,17 @@
     public string TargetName { get; set; }
     public string PathToToggleProp { get; set; }
     public bool Value { get; set; }
+    private bool ToggleProp { get; set; }
 
     public void Attach(Entity target)
     {
-        bool toggleProp = (bool)EventHelper.GetPropByName(target, PathToToggleProp);
-        toggleProp = Value;
+        ToggleProp = (bool)EventHelper.GetPropByName(target, PathToToggleProp);
+        ToggleProp = Value;
     }
 
-    public void Detach(Entity target)
+    public void Detach()
     {
-        bool toggleProp = (bool)EventHelper.GetPropByName(target, PathToToggleProp);
-        toggleProp = !Value;
+        ToggleProp = !Value;
     }
 
     public void Subscribe(Entity target)

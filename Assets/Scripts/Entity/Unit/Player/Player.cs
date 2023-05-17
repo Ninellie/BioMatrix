@@ -58,7 +58,7 @@ public class Player : Unit
     public void RemoveEffect(IEffect effect)
     {
         effect.Unsubscribe(this);
-        effect.Detach(this);
+        effect.Detach();
         effects.Remove(effect);
     }
 
