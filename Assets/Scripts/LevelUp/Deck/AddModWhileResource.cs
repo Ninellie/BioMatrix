@@ -21,7 +21,7 @@ public class AddModWhileResource : IEffect
         int i = 0;
         foreach (var tuple in Modifiers)
         {
-            _modifiedStats[i] = target.GetStatByName(tuple.statName);
+            _modifiedStats[i] = (Stat)EventHelper.GetPropByName(target, tuple.statName);
             i++;
         }
 

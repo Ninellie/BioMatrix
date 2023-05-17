@@ -22,7 +22,7 @@ public class AddModPerMissingResource : IEffect
         int i = 0;
         foreach (var tuple in Modifiers)
         {
-            _stats[i] = target.GetStatByName(tuple.statName);
+            _stats[i] = (Stat)EventHelper.GetPropByName(target, tuple.statName);
             i++;
         }
 

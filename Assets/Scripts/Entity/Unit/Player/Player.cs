@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 
 public class Player : Unit
 {
@@ -358,43 +359,6 @@ public class Player : Unit
     {
         var turret = _currentTurrets.Pop();
         turret.Destroy();
-    }
-    public void AddStatModifier(StatModifier statModifier, string statName)
-    {
-        var stat = GetStatByName(statName);
-        stat?.AddModifier(statModifier);
-        return;
-
-/*
-        switch (statModifier.ModifiedStatName)
-        {
-            case nameof(Speed):
-                Speed.AddModifier(statModifier);
-                break;
-            case nameof(MaximumLifePoints):
-                MaximumLifePoints.AddModifier(statModifier);
-                break;
-            case nameof(MagnetismRadius):
-                MagnetismRadius.AddModifier(statModifier);
-                break;
-            case nameof(LifeRegenerationPerSecond):
-                LifeRegenerationPerSecond.AddModifier(statModifier);
-                break;
-            case nameof(MaxShieldLayersCount):
-                MaxShieldLayersCount.AddModifier(statModifier);
-                AddLayer();
-                break;
-            case nameof(MaxRechargeableShieldLayersCount):
-                MaxRechargeableShieldLayersCount.AddModifier(statModifier);
-                break;
-            case nameof(ShieldLayerRechargeRatePerMinute):
-                ShieldLayerRechargeRatePerMinute.AddModifier(statModifier);
-                break;
-            case nameof(TurretCount):
-                TurretCount.AddModifier(statModifier);
-                break;
-        }
-*/
     }
     public void OnMove(InputValue input)
     {

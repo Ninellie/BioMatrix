@@ -14,27 +14,15 @@ public class Entity : MonoBehaviour
     public Stat KnockbackPower { get; private set; }
     public Stat Damage { get; private set; }
 
-    public Stat GetStatByName(string statName)
-    {
-        return (Stat)GetType().GetProperty(statName).GetValue(this, null);
-    }
-
-    public Resource GetResourceByName(string resourceName)
-    {
-        return (Resource)GetType().GetProperty(resourceName).GetValue(this, null);
-    }
-
-    public Firearm GetFirearmByName(string propName)
-    {
-        return (Firearm)GetType().GetProperty(propName).GetValue(this, null);
-    }
-
     protected StatFactory statFactory;
     protected SpriteRenderer spriteRenderer;
     
     private void OnEnable() => BaseOnEnable();
+    
     private void OnDisable() => BaseOnDisable();
+    
     private void Update() => BaseUpdate();
+    
     protected void BaseAwake(EntityStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Entity Awake");
@@ -52,16 +40,19 @@ public class Entity : MonoBehaviour
         LifePoints = new Resource(DeathLifePointsThreshold, MaximumLifePoints, LifeRegenerationPerSecond);
         LifePoints.Fill();
     }
+    
     protected virtual void BaseOnEnable()
     {
         Size.ValueChangedEvent += ChangeCurrentSize;
         LifePoints.EmptyEvent += Death;
     }
+    
     protected virtual void BaseOnDisable()
     {
         Size.ValueChangedEvent -= ChangeCurrentSize;
         LifePoints.EmptyEvent -= Death;
     }
+    
     protected virtual void BaseUpdate()
     {
         if (Time.timeScale == 0) return;
@@ -69,24 +60,39 @@ public class Entity : MonoBehaviour
         if (spriteRenderer is null) return;
         IsOnScreen = CheckVisibilityOnCamera();
     }
+    
     public virtual void TakeDamage(float amount)
     {
         LifePoints.Decrease((int)amount);
         Debug.Log("Damage is taken " + gameObject.name);
     }
+
     public virtual void RestoreLifePoints()
     {
         LifePoints.Fill();
+    }
+
+    public void AddStatModifier(StatModifier statModifier, string statName)
+    {
+        var stat = (Stat)EventHelper.GetPropByName(this, statName);
+        stat?.AddModifier(statModifier);
+    }
+    public void RemoveStatModifier(StatModifier statModifier, string statName)
+    {
+        var stat = (Stat)EventHelper.GetPropByName(this, statName);
+        stat?.RemoveModifier(statModifier);
     }
     protected virtual void Death()
     {
         gameObject.SetActive(false);
         Destroy(gameObject);
     }
+
     protected virtual void ChangeCurrentSize()
     {
         this.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
     }
+
     private bool CheckVisibilityOnCamera()
     {
         var onScreen = spriteRenderer.isVisible;
