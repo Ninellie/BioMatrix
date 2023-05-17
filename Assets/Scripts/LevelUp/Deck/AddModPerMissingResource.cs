@@ -17,7 +17,7 @@ public class AddModPerMissingResource : IEffect
     {
         _stats = new Stat[Modifiers.Count];
         _mods = new StatModifier[Modifiers.Count];
-        _resource = target.GetResourceByName(TriggerResource.Path);
+        _resource = (Resource)EventHelper.GetPropByName(target, TriggerResource.Path);
 
         int i = 0;
         foreach (var tuple in Modifiers)
