@@ -2,10 +2,10 @@
 
 public class AddModOnAttach : IEffect
 {
-    public string Name { get; }
+    public string Name { get; set; }
     public string Description { get; set; }
     public List<(StatModifier mod, string statName)> Modifiers { get; set; }
-    public string TargetName { get; }
+    public string TargetName { get; set; }
 
     private Entity _target;
     public void Attach(Entity target)

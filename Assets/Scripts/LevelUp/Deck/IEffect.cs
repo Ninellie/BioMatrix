@@ -1,7 +1,7 @@
 ﻿public interface IEffect
 {
-    string Name { get; }
-    string TargetName { get; }
+    string Name { get; set; }
+    string TargetName { get; set; }
     void Attach(Entity target);
     void Detach();
     void Subscribe(Entity target);

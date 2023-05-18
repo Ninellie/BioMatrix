@@ -165,6 +165,7 @@
     <Compile Include="Assets\Scripts\GameSession\View\IViewModelState.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Projectile\Projectile.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\AddModOnAttach.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementControllerPlayer.cs" />
     <Compile Include="Assets\Scripts\Camera\Ortho2dCamera.cs" />
@@ -193,7 +194,6 @@
     <Compile Include="Assets\Scripts\UIScripts\GameSessionTimer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\Scripts\Stat\StatFactory.cs" />
-    <Compile Include="Assets\Scripts\LevelUp\Deck\AddModOnAttach.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

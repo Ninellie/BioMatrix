@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 
 [Serializable]
 public class ArrayCardRepository : ICardRepository
@@ -249,13 +250,18 @@ public class ArrayCardRepository : ICardRepository
             Title = "Turret count",
             Description = "+1 to turret count",
             DropWeight = 5,
-            InfluencedStats = new[]
+            Effects = new IEffect[]
             {
-                "turretCount",
-            },
-            ModifierList = new StatModifier[]
-            {
-                new StatModifier(OperationType.Addition, 1)
+                new AddModOnAttach
+                {
+                    Name = "+1 Turret count card effect",
+                    Description = "Effect from added +1 Turret count card",
+                    Modifiers = new List<(StatModifier mod, string statName)>
+                    {
+                        (new StatModifier(OperationType.Addition, 1), "TurretCount"),
+                    },
+                    TargetName = nameof(Player),
+                },
             },
         },
         new Card
