@@ -12,7 +12,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Movement speed while on full life",
             Description = "+ 100% to movement speed multiplier while on full life",
-            DropWeight = 1000,
+            DropWeight = 1,
             Effects = new IEffect[]
             {
                 new AddModWhileResource()
@@ -71,7 +71,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Movement speed",
             Description = "+ 50% to movement speed multiplier",
-            DropWeight = 1,
+            DropWeight = 1000,
             Effects = new IEffect[]
             {
                 new AddModOn
@@ -85,7 +85,7 @@ public class ArrayCardRepository : ICardRepository
                     TargetName = nameof(Player),
                     Trigger = new Trigger
                     {
-                        Name = nameof(Magazine.onEmpty),
+                        Name = nameof(Player.CurrentFirearm.Magazine.EmptyEvent),
                         Path = nameof(Player.CurrentFirearm) + "." + nameof(Player.CurrentFirearm.Magazine),
                     },
                 }
