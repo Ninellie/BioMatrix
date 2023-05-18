@@ -6,7 +6,7 @@ using UnityEngine;
 public class Stat
 {
     public float Value => GetActualValue();
-    public Action onValueChanged;
+    public event Action ValueChangedEvent;
     private float BaseValue { get; }
     private bool IsModifiable { get; }
     private float BaseAddedValue { get; }
@@ -48,33 +48,32 @@ public class Stat
     }
     public void AddModifier(StatModifier modifier)
     {
-        
+        Debug.Log($"Try to add modifier {modifier.Value} {modifier.Type}");
         var oldValue = Value;
         _modifiers.Add(modifier);
         OnValueChanged(oldValue);
-
         Debug.Log($"Added mod {modifier.Type} : {modifier.Value}. Is mod temporary?: {modifier.IsTemporary}.");
         Debug.Log($"New stat value: {Value}. Old value: {oldValue}.");
-
         if (modifier.IsTemporary)
         {
-            var time = Time.time + modifier.Duration;
-
-            Debug.Log($"Scheduled to remove modifier {modifier.Type} : {modifier.Value} at {time}. Will be removed after {modifier.Duration} secs.");
-            
-            _gameTimeScheduler.Schedule(() => RemoveModifier(modifier), time);
+            Debug.Log($"Scheduled to remove modifier {modifier.Type} : {modifier.Value}. Will be removed after {modifier.Duration} secs.");
+            _gameTimeScheduler.Schedule(() => RemoveModifier(modifier), modifier.Duration);
         }
     }
+
     public bool RemoveModifier(StatModifier modifier)
     {
-        Debug.LogWarning("Try to remove");
+        Debug.LogWarning($"Try to remove {modifier.Value} {modifier.Type}");
         if (!_modifiers.Contains(modifier))
             return false;
         var oldValue = Value;
         _modifiers.Remove(modifier);
         OnValueChanged(oldValue);
+        Debug.Log($"Removed mod {modifier.Type} : {modifier.Value}. Is mod temporary?: {modifier.IsTemporary}.");
+        Debug.Log($"New stat value: {Value}. Old value: {oldValue}.");
         return true;
     }
+
     public bool IsModifierListEmpty()
     {
         return _modifiers.Count == 0;
@@ -107,6 +106,6 @@ public class Stat
     private void OnValueChanged(float oldValue)
     {
         if (Value.Equals(oldValue)) return;
-        onValueChanged?.Invoke();
+        ValueChangedEvent?.Invoke();
     }
 }

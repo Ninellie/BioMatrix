@@ -31,8 +31,8 @@ public class PlayerCreator : MonoBehaviour
     }
     private void CreatePlayer(GameObject playerPrefab)
     {
-        Instantiate(playerPrefab, new Vector2(0, 0), Quaternion.identity);
-        CurrentPlayer = FindObjectOfType<Player>();
+        var player = Instantiate(playerPrefab, new Vector2(0, 0), Quaternion.identity);
+        CurrentPlayer = player.GetComponent<Player>();
         
     }
     private void Subscription()

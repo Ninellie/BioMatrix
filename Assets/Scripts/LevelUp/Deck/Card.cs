@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 [Serializable]
 public class Card
 {
@@ -8,4 +9,5 @@ public class Card
     public int DropWeight { get; set; }
     public string[] InfluencedStats { get; set; }
     public StatModifier[] ModifierList { get; set; }
+    public IEffect[] Effects { get; set; }
 }

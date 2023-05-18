@@ -8,11 +8,11 @@ public class LevelUp : MonoBehaviour
     private List<Card> _selectedCards = new();
     private static readonly ICardRepository CardRepository = new ArrayCardRepository();
     private readonly CardManager _cardManager = new(CardRepository);
-    private Player _player;
+    private CardStorage _storage;
 
     private void Start()
     {
-        _player = FindObjectOfType<Player>();
+        _storage = Camera.main.GetComponent<CardStorage>();
     }
     public void DisplayCards()
     {
@@ -23,13 +23,9 @@ public class LevelUp : MonoBehaviour
             cardsText[i].text = _selectedCards[i].Title;
         }
     }
-    public void Improve(int index)
+    public void Improve(int index) // Get bonus
     {
-        foreach (var modifier in _selectedCards[index].ModifierList)
-        {
-            Debug.Log("Improve");
-            _player.AddStatModifier(modifier);
-        }
+        _storage.AddCard(_selectedCards[index]);
+        Debug.LogWarning("Improve");
     }
-    
 }

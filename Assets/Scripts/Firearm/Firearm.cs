@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Reload))]
-[RequireComponent(typeof(Magazine))]
+//[RequireComponent(typeof(Magazine))]
 [RequireComponent(typeof(ProjectileCreator))]
 public class Firearm : MonoBehaviour
 {
@@ -19,12 +19,14 @@ public class Firearm : MonoBehaviour
     [SerializeField] private bool _isForPlayer;
     [SerializeField] private LayerMask _enemyLayer;
     protected StatFactory statFactory;
+    public Resource Magazine { get; set; }
+
     public FirearmStatsSettings settings => GetComponent<FirearmStatsSettings>();
-    public Magazine magazine;
+    //public Magazine magazine;
     private Reload _reload;
     private ProjectileCreator _projectileCreator;
     public bool CanShoot => _previousShootTimer <= 0
-                            && !magazine.IsEmpty
+                            && !Magazine.IsEmpty
                             && !_reload.IsInProcess;
     private bool IsFireButtonPressed => !_isForPlayer || _player.isFireButtonPressed;
 
@@ -34,7 +36,7 @@ public class Firearm : MonoBehaviour
     private void Awake() => BaseAwake(settings);
     private void BaseAwake(FirearmStatsSettings settings)
     {
-        magazine = GetComponent<Magazine>();
+        //magazine = GetComponent<Magazine>();
         _reload = GetComponent<Reload>();
         _projectileCreator = GetComponent<ProjectileCreator>();
 
@@ -48,6 +50,8 @@ public class Firearm : MonoBehaviour
         ReloadSpeed = statFactory.GetStat(settings.reloadSpeed);
         SingleShootProjectile = statFactory.GetStat(settings.singleShootProjectile);
         
+        Magazine = new Resource(0, MagazineSize);
+        Magazine.Fill();
         _player = FindObjectOfType<Player>();
     }
     private void Update()
@@ -57,19 +61,20 @@ public class Firearm : MonoBehaviour
         if (CanShoot) Shoot();
     }
 
-    public void OnRecharge()
+    public void OnReload()
     {
         if (_isForPlayer)
         {
-            _player.OnRecharge();
+            _player.OnOnReload();
+            //_player.ReloadEvent?.Invoke();
         }
     }
 
-    public void OnRechargeEnd()
+    public void OnReloadEnd()
     {
         if (_isForPlayer)
         {
-            _player.OnRechargeEnd();
+            _player.onRechargeEnd?.Invoke();
         }
     }
     public bool GetIsForPlayer()
@@ -105,7 +110,7 @@ public class Firearm : MonoBehaviour
     //}
     private void Shoot()
     {
-        magazine.Pop();
+        Magazine.Decrease();
         var projectiles = _projectileCreator.CreateProjectiles((int)SingleShootProjectile.Value, _ammo, gameObject.transform);
         var direction = GetShotDirection();
         foreach (var projectile in projectiles)

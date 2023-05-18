@@ -20,3 +20,14 @@ When adding new features, I am guided by the following principles:
 - Add a small piece of code.
 - Make sure it didn't break anything
 - Add it to the game.
+
+
+About code
+
+All game entities are based on two classes: **Entity** and **Unit**. Unit Differs from Entity in that it can move and, accordingly, has a motion controller.
+
+To describe these entities, I made two important classes: **Stat** and **Resource**.
+
+- **Stat** describes some characteristic of an entity. For example, maximum speed or damage.
+
+- **Resouce** describes some resource accumulated by the entity. For example health points, experience, level or ammo of weapons.

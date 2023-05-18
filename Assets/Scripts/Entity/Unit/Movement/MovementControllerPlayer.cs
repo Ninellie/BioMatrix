@@ -13,7 +13,7 @@ public class MovementControllerPlayer
     private Vector2 _knockbackDirection = Vector2.zero;
     private Vector2 MyPosition => _myUnit.transform.position;
     private float Speed =>
-        _myUnit.isFireButtonPressed && !_myUnit.CurrentFirearm.magazine.IsEmpty
+        _myUnit.isFireButtonPressed && !_myUnit.CurrentFirearm.Magazine.IsEmpty
             ? _myUnit.Speed.Value * SpeedScale * ShootingSpeedDecrease
             : _myUnit.Speed.Value * SpeedScale;
     private const float ShootingSpeedDecrease = 0.3f;

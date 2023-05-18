@@ -20,7 +20,7 @@ public class GameTimer
         if (_isDestroyed) return;
         _time -= Time.deltaTime;
         if (!(_time < 0)) return;
-        //Trigger the action
+        //TriggerMax the action
         _action();
         DestroySelf();
     }

@@ -61,9 +61,12 @@
     <Compile Include="Assets\Scripts\Entity\Unit\Enemy\Rarity.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Movement\EnemyMoveController.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\CardStorage.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\AddModPerMissingResource.cs" />
     <Compile Include="Assets\Scripts\Firearm\Magazine.cs" />
     <Compile Include="Assets\Scripts\Firearm\FirearmStatsSettings.cs" />
     <Compile Include="Assets\Scripts\UIScripts\TestJson.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\AddModOn.cs" />
     <Compile Include="Assets\Scripts\Timer\GameTimeScheduler.cs" />
     <Compile Include="Assets\Scripts\MovementTests\EnemyUnit.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="Assets\Scripts\GameSession\Floor\Floor.cs" />
     <Compile Include="Assets\Scripts\Entity\Enclosure\Enclosure.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\Toggle.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\Entity\EntityStatsSettings.cs" />
     <Compile Include="Assets\Scripts\TileManager\FloorManager.cs" />
@@ -108,6 +112,7 @@
     <Compile Include="Assets\Scripts\GameSession\View\IViewController.cs" />
     <Compile Include="Assets\Scripts\Stat\Stat.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
+    <Compile Include="Assets\Scripts\Entity\Resource.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
@@ -119,6 +124,7 @@
     <Compile Include="Assets\Scripts\Entity\Unit\Boon\Boon.cs" />
     <Compile Include="Assets\Scripts\Timer\GameTimer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\IEffect.cs" />
     <Compile Include="Assets\Scripts\TileManager\RuleTileGenerator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Movement\Math2D.cs" />
@@ -126,7 +132,9 @@
     <Compile Include="Assets\Scripts\GameSession\Spawner\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\UIScripts\DamagePopup.cs" />
     <Compile Include="Assets\Scripts\Stat\OperationType.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\Trigger.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\IncreaseResourceOn.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Movement\SideViewEnemyMoveController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Player\Player.cs" />
@@ -137,6 +145,7 @@
     <Compile Include="Assets\Scripts\UIScripts\OptionsMenu.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Enemy\EnemyStatsSettings.cs" />
     <Compile Include="Assets\Scripts\MovementTests\Repulse.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\AddModWhileResource.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Player\PlayerStatsSettings.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\Entity\Enclosure\EnclosureStatsSettings.cs" />
@@ -156,12 +165,14 @@
     <Compile Include="Assets\Scripts\GameSession\View\IViewModelState.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Projectile\Projectile.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\AddModOnAttach.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementControllerPlayer.cs" />
     <Compile Include="Assets\Scripts\Camera\Ortho2dCamera.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\Scripts\PeterAcklamInverseCDF.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Unit.cs" />
+    <Compile Include="Assets\Scripts\Entity\EventHelper.cs" />
     <Compile Include="Assets\Scripts\LevelUp\Deck\ICardRepository.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\GameSession\View\LevelUpViewModelState.cs" />
