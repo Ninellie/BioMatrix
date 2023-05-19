@@ -264,34 +264,6 @@ public class ArrayCardRepository : ICardRepository
                 },
             },
         },
-        new Card
-        {
-            Title = "Turret count for 5 sec",
-            Description = "+1 to turret count for 5 sec",
-            DropWeight = 1,
-            InfluencedStats = new[]
-            {
-                "turretCount",
-            },
-            ModifierList = new StatModifier[]
-            {
-                new StatModifier(OperationType.Addition, 1, 5)
-            },
-        },
-        new Card
-        {
-            Title = "Turret count",
-            Description = "+1 to turret count",
-            DropWeight = 1,
-            InfluencedStats = new[]
-            {
-                "turretCount",
-            },
-            ModifierList = new StatModifier[]
-            {
-                //new StatModifier(OperationType.Addition, 1, 5, "OnLifePointLost", "TurretCount")
-            },
-        },
     };
     private readonly Card[] _cards;
 

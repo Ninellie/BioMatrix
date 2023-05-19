@@ -9,11 +9,11 @@ public class Player : Unit
 {
     public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
 
-    protected Stat MagnetismRadius { get; private set; }
-    protected Stat TurretCount { get; private set; }
-    protected Stat MaxShieldLayersCount { get; private set; }
-    protected Stat MaxRechargeableShieldLayersCount { get; private set; }
-    protected Stat ShieldLayerRechargeRatePerSecond { get; private set; }
+    public Stat MagnetismRadius { get; private set; }
+    public Stat TurretCount { get; private set; }
+    public Stat MaxShieldLayersCount { get; private set; }
+    public Stat MaxRechargeableShieldLayersCount { get; private set; }
+    public Stat ShieldLayerRechargeRatePerSecond { get; private set; }
 
     public Action onGamePaused;
     public Action onLevelUp;

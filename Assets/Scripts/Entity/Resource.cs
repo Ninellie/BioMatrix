@@ -32,7 +32,7 @@ public class Resource
     private readonly bool _isRecovering;
     private readonly bool _isLimited;
 
-    public float TimeToRecover // Сюда записывается время до след. RestoreStep, просто добавь сюда Time.deltatime в апдейте
+    public float TimeToRecover // Сюда записывается время до след. RestoreStep, просто добавь сюда AbsoluteTime.deltatime в апдейте
     {
         get => _timeToRecover;
         set
