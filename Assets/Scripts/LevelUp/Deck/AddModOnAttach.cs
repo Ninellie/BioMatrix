@@ -6,6 +6,10 @@ public class AddModOnAttach : IEffect
     public string Description { get; set; }
     public List<(StatModifier mod, string statName)> Modifiers { get; set; }
     public string TargetName { get; set; }
+    public bool IsTemporal { get; }
+    public bool IsProlongable { get; }
+    public bool IsStackable { get; }
+    public bool IsUpdatable { get; }
 
     private Entity _target;
     public void Attach(Entity target)

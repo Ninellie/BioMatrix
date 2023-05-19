@@ -1,7 +1,11 @@
-﻿public class Toggle : IEffect 
+﻿public class Toggle : IEffect
 {
     public string Name { get; set; }
     public string TargetName { get; set; }
+    public bool IsTemporal { get; }
+    public bool IsProlongable { get; }
+    public bool IsStackable { get; }
+    public bool IsUpdatable { get; }
     public string PathToToggleProp { get; set; }
     public bool Value { get; set; }
 
