@@ -67,12 +67,5 @@ public class GameTimeScheduler : MonoBehaviour
         GetItem(name).AbsoluteTime += time;
     }
 
-    private ScheduleItem GetItem(string name)
-    {
-        foreach (var scheduledItem in _scheduledItems.Where(scheduledItem => scheduledItem.Name == name))
-        {
-            return scheduledItem;
-        }
-        return null;
-    }
+    private ScheduleItem GetItem(string name) => _scheduledItems.FirstOrDefault(scheduledItem => scheduledItem.Name == name);
 }

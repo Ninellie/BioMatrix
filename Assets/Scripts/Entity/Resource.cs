@@ -16,12 +16,12 @@ public class Resource
     public event Action NotOnEdgeEvent;
     public event Action NotEmptyEvent;
 
-    public bool IsFull => Value == (int)_maxValueStat.Value;
+    public bool IsFull => _isLimited && Value == (int)_maxValueStat.Value;
     public bool IsEmpty => Value == _minValue;
     public bool IsOnEdge => Value == _minValue;
-    public bool IsFullyRecovered => Value >= (int)_maxRecoverableValueStat.Value && _isRecovering;
-    public bool IsOverRecovered => Value > (int)_maxRecoverableValueStat.Value && _isRecovering;
-    public bool IsOnRecovery => Value < (int)_maxRecoverableValueStat.Value && _isRecovering;
+    public bool IsFullyRecovered => _isRecovering && Value >= (int)_maxRecoverableValueStat.Value;
+    public bool IsOverRecovered => _isRecovering && Value > (int)_maxRecoverableValueStat.Value;
+    public bool IsOnRecovery => _isRecovering && Value < (int)_maxRecoverableValueStat.Value;
 
     private readonly int _minValue;
     private readonly int _edgeValue;
@@ -32,7 +32,7 @@ public class Resource
     private readonly bool _isRecovering;
     private readonly bool _isLimited;
 
-    public float TimeToRecover // Сюда записывается время до след. RestoreStep, просто добавь сюда Time.deltatime в апдейте
+    public float TimeToRecover // Add Time.deltatime in Update
     {
         get => _timeToRecover;
         set
@@ -166,7 +166,7 @@ public class Resource
     }
     private int _value;
 
-    public Resource(int minValue) : this(minValue, minValue + 1, null, null, null, false, false)
+    public Resource(int minValue) : this(minValue, minValue + 1, new Stat(new GameTimeScheduler(), Single.PositiveInfinity), null, null, false, false)
     {
     }
     public Resource(int minValue, Stat maxValueStat) : this(minValue, minValue + 1, maxValueStat, null, null, false, true)

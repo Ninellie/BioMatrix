@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -16,7 +17,31 @@ public class Entity : MonoBehaviour
 
     protected StatFactory statFactory;
     protected SpriteRenderer spriteRenderer;
-    
+
+    public readonly List<IEffect> effects = new();
+    public GameTimeScheduler GameTimeScheduler { get; private set; }
+
+    public void AddEffect(IEffect effect)
+    {
+        effects.Add(effect);
+        effect.Attach(this);
+        effect.Subscribe(this);
+        Debug.LogWarning($"Effect {effect.Name} added to player and subscribed");
+    }
+
+    public string AddEffect(IEffect effect, float time)
+    {
+        AddEffect(effect);
+        return GameTimeScheduler.Schedule(() => RemoveEffect(effect), time);
+    }
+
+    public void RemoveEffect(IEffect effect)
+    {
+        effect.Unsubscribe(this);
+        effect.Detach();
+        effects.Remove(effect);
+    }
+
     private void OnEnable() => BaseOnEnable();
     
     private void OnDisable() => BaseOnDisable();
@@ -26,7 +51,7 @@ public class Entity : MonoBehaviour
     protected void BaseAwake(EntityStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Entity Awake");
-
+        GameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
         TryGetComponent<SpriteRenderer>(out SpriteRenderer sR);
         spriteRenderer = sR;
         statFactory = Camera.main.GetComponent<StatFactory>();

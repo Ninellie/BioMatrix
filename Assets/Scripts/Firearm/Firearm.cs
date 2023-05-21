@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Reload))]
-//[RequireComponent(typeof(Magazine))]
+[RequireComponent(typeof(FirearmStatsSettings))]
 [RequireComponent(typeof(ProjectileCreator))]
 public class Firearm : MonoBehaviour
 {
@@ -20,20 +20,18 @@ public class Firearm : MonoBehaviour
     [SerializeField] private LayerMask _enemyLayer;
     protected StatFactory statFactory;
     public Resource Magazine { get; set; }
-
-    public FirearmStatsSettings settings => GetComponent<FirearmStatsSettings>();
-    //public Magazine magazine;
+    public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
     private Reload _reload;
     private ProjectileCreator _projectileCreator;
     public bool CanShoot => _previousShootTimer <= 0
                             && !Magazine.IsEmpty
                             && !_reload.IsInProcess;
-    private bool IsFireButtonPressed => !_isForPlayer || _player.isFireButtonPressed;
+    private bool IsFireButtonPressed => !_isForPlayer || _player.IsFireButtonPressed;
 
     private float _previousShootTimer = 0;
     private float MinShootInterval => 1f / ShootsPerSecond.Value;
     private Player _player;
-    private void Awake() => BaseAwake(settings);
+    private void Awake() => BaseAwake(Settings);
     private void BaseAwake(FirearmStatsSettings settings)
     {
         //magazine = GetComponent<Magazine>();
