@@ -166,22 +166,69 @@ public class Resource
     }
     private int _value;
 
-    public Resource(int minValue) : this(minValue, minValue + 1, new Stat(new GameTimeScheduler(), Single.PositiveInfinity), null, null, false, false)
+    public Resource(int minValue) : this(minValue,
+        minValue + 1,
+        new Stat(Single.PositiveInfinity),
+        new Stat(0, false, 0, 0),
+        new Stat(0, false, 0, 0),
+        false,
+        false)
     {
     }
-    public Resource(int minValue, Stat maxValueStat) : this(minValue, minValue + 1, maxValueStat, null, null, false, true)
+
+    public Resource(int minValue,
+        Stat maxValueStat) : this(minValue,
+        minValue + 1,
+        maxValueStat,
+        new Stat(0, false, 0, 0),
+        new Stat(0, false, 0, 0),
+        false,
+        true)
     {
     }
-    public Resource(int minValue, Stat maxValueStat, Stat recoverySpeedPerSecondStat) : this(minValue, minValue + 1, maxValueStat, recoverySpeedPerSecondStat, maxValueStat, true, true)
+    public Resource(int minValue,
+        Stat maxValueStat,
+        Stat recoverySpeedPerSecondStat) : this(minValue,
+        minValue + 1,
+        maxValueStat,
+        recoverySpeedPerSecondStat,
+        maxValueStat,
+        true,
+        true)
     {
     }
-    public Resource(int minValue, Stat maxValueStat, Stat recoverySpeedPerSecondStat, Stat maxRecoverableValueStat) : this(minValue, minValue + 1, maxValueStat, recoverySpeedPerSecondStat, maxRecoverableValueStat, true, true)
+    public Resource(int minValue,
+        Stat maxValueStat,
+        Stat recoverySpeedPerSecondStat,
+        Stat maxRecoverableValueStat) : this(minValue,
+        minValue + 1,
+        maxValueStat,
+        recoverySpeedPerSecondStat,
+        maxRecoverableValueStat,
+        true,
+        true)
     {
     }
-    public Resource(int minValue, int edgeValue, Stat maxValueStat, Stat recoverySpeedPerSecondStat, Stat maxRecoverableValueStat) : this(minValue, edgeValue, maxValueStat, recoverySpeedPerSecondStat, maxRecoverableValueStat, true, true)
+    public Resource(int minValue,
+        int edgeValue,
+        Stat maxValueStat,
+        Stat recoverySpeedPerSecondStat,
+        Stat maxRecoverableValueStat) : this(minValue,
+        edgeValue,
+        maxValueStat,
+        recoverySpeedPerSecondStat,
+        maxRecoverableValueStat,
+        true,
+        true)
     {
     }
-    public Resource(int minValue, int edgeValue, Stat maxValueStat, Stat recoverySpeedPerSecondStat, Stat maxRecoverableValueStat, bool isRecovering, bool isLimited)
+    public Resource(int minValue,
+        int edgeValue,
+        Stat maxValueStat,
+        Stat recoverySpeedPerSecondStat,
+        Stat maxRecoverableValueStat,
+        bool isRecovering,
+        bool isLimited)
     {
         this._minValue = minValue;
         this._edgeValue = edgeValue;
@@ -192,50 +239,62 @@ public class Resource
         _isLimited = isLimited;
         _maxRecoverableValueStat = maxRecoverableValueStat;
     }
+
     public void Set(int value)
     {
         Value = value;
     }
+
     public void Fill()
     {
         Value = (int)_maxValueStat.Value;
     }
+
     public void Empty()
     {
         Value = _minValue;
     }
+
     public void Increase(int value)
     {
         Value += value;
     }
+
     public void Increase()
     {
         Value++;
     }
+
     public void Decrease(int value)
     {
         Value -= value;
     }
+    
     public void Decrease()
     {
         Value--;
     }
+    
     public int GetMinValue()
     {
         return _minValue;
     }
+    
     public int GetMaxValue()
     {
         return (int)_maxValueStat.Value;
     }
+    
     public int GetLackValue()
     {
         return (int)(_maxValueStat.Value - Value);
     }
+    
     public int GetValue()
     {
         return Value;
     }
+    
     public float GetPercentValue()
     {
         var percent = _maxValueStat.Value / 100;

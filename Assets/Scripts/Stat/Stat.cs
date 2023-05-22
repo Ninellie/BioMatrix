@@ -15,7 +15,7 @@ public class Stat
     private float MultiplierValue => GetMultiplierValue();
     private readonly List<StatModifier> _modifiers = new List<StatModifier>();
     private const float MultiplierDivisor = 100;
-    private readonly GameTimeScheduler _gameTimeScheduler;
+    //private readonly GameTimeScheduler _gameTimeScheduler;
     //Without multiplierValue (with multiplierValue = 1)
     //public Stat(float baseValue, bool isModifiable) : this(baseValue, isModifiable, 1)
     //{
@@ -35,12 +35,12 @@ public class Stat
     //{
     //    _modifiers = modifiers;
     //}
-    public Stat(GameTimeScheduler gameTimeScheduler, float baseValue) : this(gameTimeScheduler, baseValue, true, 100, 0)
+    public Stat(float baseValue) : this(baseValue, true, 100, 0)
     {
     }
-    public Stat(GameTimeScheduler gameTimeScheduler, float baseValue, bool isModifiable, float baseMultiplierValue, float baseAddedValue)
+    public Stat(float baseValue, bool isModifiable, float baseMultiplierValue, float baseAddedValue)
     {
-        _gameTimeScheduler = gameTimeScheduler;
+        //_gameTimeScheduler = gameTimeScheduler;
         BaseValue = baseValue;
         IsModifiable = isModifiable;
         BaseMultiplierValue = baseMultiplierValue;
@@ -54,11 +54,11 @@ public class Stat
         OnValueChanged(oldValue);
         Debug.Log($"Added mod {modifier.Type} : {modifier.Value}. Is mod temporary?: {modifier.IsTemporary}.");
         Debug.Log($"New stat value: {Value}. Old value: {oldValue}.");
-        if (modifier.IsTemporary)
-        {
-            Debug.Log($"Scheduled to remove modifier {modifier.Type} : {modifier.Value}. Will be removed after {modifier.Duration} secs.");
-            _gameTimeScheduler.Schedule(() => RemoveModifier(modifier), modifier.Duration);
-        }
+        //if (modifier.IsTemporary)
+        //{
+        //    Debug.Log($"Scheduled to remove modifier {modifier.Type} : {modifier.Value}. Will be removed after {modifier.Duration} secs.");
+        //    _gameTimeScheduler.Schedule(() => RemoveModifier(modifier), modifier.Duration);
+        //}
     }
 
     public bool RemoveModifier(StatModifier modifier)
