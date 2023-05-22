@@ -23,7 +23,7 @@ public class CardStorage : MonoBehaviour
             if (cardEffect.TargetName == nameof(Player))
             {
                 Debug.LogWarning($"Add effect to player {cardEffect.Name}");
-                _player.AddEffect(cardEffect);
+                _player.AddEffectStack(cardEffect);
             }
         }
     }
@@ -33,7 +33,7 @@ public class CardStorage : MonoBehaviour
         _cards.Remove(card);
         foreach (var cardEffect in card.Effects)
         {
-            _player.RemoveEffect(cardEffect);
+            _player.RemoveEffectStack(cardEffect);
         }
     }
 }

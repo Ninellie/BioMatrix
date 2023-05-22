@@ -108,7 +108,7 @@ public class Enemy : Unit
     protected void BaseAwake(EnemyStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Enemy Awake");
-        statFactory = Camera.main.GetComponent<StatFactory>();
+        StatFactory = Camera.main.GetComponent<StatFactory>();
 
         base.BaseAwake(settings);
 

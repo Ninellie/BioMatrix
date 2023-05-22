@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -16,28 +17,71 @@ public class Entity : MonoBehaviour
     public Stat Damage { get; private set; }
 
     public SpriteRenderer SpriteRenderer { get; private set; }
-
-    protected StatFactory statFactory;
+    public GameTimeScheduler GameTimeScheduler { get; private set; }
+    public StatFactory StatFactory { get; private set; }
 
     public readonly List<IEffect> effects = new();
-    public GameTimeScheduler GameTimeScheduler { get; private set; }
+
+    public void AddEffectStack(IEffect effect)
+    {
+        foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effect.Name))
+        {
+            if (myEffect.IsStacking)
+            {
+                myEffect.StacksCount.Increase();
+
+                if (myEffect.IsStackSeparateDuration)
+                {
+                    GameTimeScheduler.Schedule(() => RemoveEffectStack(effect), effect.Duration.Value);
+                    return; 
+                }
+            }
+            
+            if (myEffect.IsUpdatable)
+            {
+                var newTime = Time.time + myEffect.Duration.Value;
+                GameTimeScheduler.UpdateTime(myEffect.Identifier, newTime);
+            }
+
+            if (myEffect.IsProlongable)
+            {
+                GameTimeScheduler.Prolong(myEffect.Identifier, myEffect.Duration.Value);
+            }
+            return;
+        }
+        AddEffect(effect);
+    }
 
     public void AddEffect(IEffect effect)
     {
+        if (effect.IsTemporal)
+        {
+            effect.Identifier = GameTimeScheduler.Schedule(() => RemoveEffectStack(effect), effect.Duration.Value);
+        }
         effects.Add(effect);
         effect.Attach(this);
         effect.Subscribe(this);
-        Debug.LogWarning($"Effect {effect.Name} added to player and subscribed");
     }
 
-    public string AddEffect(IEffect effect, float time)
+    public void RemoveEffectStack(IEffect effect)
     {
-        AddEffect(effect);
-        return GameTimeScheduler.Schedule(() => RemoveEffect(effect), time);
+        foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effect.Name))
+        {
+            myEffect.StacksCount.Decrease();
+            if (!myEffect.StacksCount.IsEmpty) return;
+            RemoveEffect(effect);
+        }
     }
 
     public void RemoveEffect(IEffect effect)
     {
+        if (!effects.Contains(effect)) return;
+
+        foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effect.Name))
+        {
+            myEffect.StacksCount.Empty();
+        }
+
         effect.Unsubscribe(this);
         effect.Detach();
         effects.Remove(effect);
@@ -55,12 +99,12 @@ public class Entity : MonoBehaviour
         GameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
         TryGetComponent<SpriteRenderer>(out SpriteRenderer sR);
         SpriteRenderer = sR;
-        statFactory = Camera.main.GetComponent<StatFactory>();
-        Size = statFactory.GetStat(settings.size);
-        MaximumLifePoints = statFactory.GetStat(settings.maximumLife);
-        LifeRegenerationPerSecond = statFactory.GetStat(settings.lifeRegenerationInSecond);
-        KnockbackPower = statFactory.GetStat(settings.knockbackPower);
-        Damage = statFactory.GetStat(settings.damage);
+        StatFactory = Camera.main.GetComponent<StatFactory>();
+        Size = StatFactory.GetStat(settings.size);
+        MaximumLifePoints = StatFactory.GetStat(settings.maximumLife);
+        LifeRegenerationPerSecond = StatFactory.GetStat(settings.lifeRegenerationInSecond);
+        KnockbackPower = StatFactory.GetStat(settings.knockbackPower);
+        Damage = StatFactory.GetStat(settings.damage);
 
         this.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
         LifePoints = new Resource(DeathLifePointsThreshold, MaximumLifePoints, LifeRegenerationPerSecond);

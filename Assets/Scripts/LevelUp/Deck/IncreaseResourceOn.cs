@@ -5,7 +5,7 @@
     public string TargetName { get; set; }
     public bool IsTemporal { get; }
     public bool IsProlongable { get; }
-    public bool IsStackable { get; }
+    public bool IsStacking { get; }
     public bool IsUpdatable { get; }
     public string PathToResource { get; set; }
     public int Value { get; set; }

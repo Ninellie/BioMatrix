@@ -9,9 +9,9 @@ public class Stat
     public event Action ValueChangedEvent;
     private float BaseValue { get; }
     private bool IsModifiable { get; }
-    private float BaseAddedValue { get; }
+    private float BaseAddedValue = 0;
     private float AddedValue => GetAddedValue();
-    private float BaseMultiplierValue { get; }
+    private float BaseMultiplierValue = 100;
     private float MultiplierValue => GetMultiplierValue();
     private readonly List<StatModifier> _modifiers = new List<StatModifier>();
     private const float MultiplierDivisor = 100;
@@ -35,16 +35,16 @@ public class Stat
     //{
     //    _modifiers = modifiers;
     //}
-    public Stat(float baseValue) : this(baseValue, true, 100, 0)
+    public Stat() : this(0, true)
     {
     }
-    public Stat(float baseValue, bool isModifiable, float baseMultiplierValue, float baseAddedValue)
+    public Stat(float baseValue) : this(baseValue, true)
     {
-        //_gameTimeScheduler = gameTimeScheduler;
+    }
+    public Stat(float baseValue, bool isModifiable)
+    {
         BaseValue = baseValue;
         IsModifiable = isModifiable;
-        BaseMultiplierValue = baseMultiplierValue;
-        BaseAddedValue = baseAddedValue;
     }
     public void AddModifier(StatModifier modifier)
     {

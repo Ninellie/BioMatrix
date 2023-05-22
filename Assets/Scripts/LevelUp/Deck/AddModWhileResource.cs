@@ -8,7 +8,7 @@ public class AddModWhileResource : IEffect
     public string TargetName { get; set; }
     public bool IsTemporal { get; }
     public bool IsProlongable { get; }
-    public bool IsStackable { get; }
+    public bool IsStacking { get; }
     public bool IsUpdatable { get; }
     public Trigger AddTrigger { get; set; }
     public Trigger RemoveTrigger { get; set; }

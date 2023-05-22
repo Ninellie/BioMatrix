@@ -1,59 +1,53 @@
-﻿using System.Collections.Generic;
-
-public class AddModOnAttach : IEffect
+﻿public class AddEffectOn : IEffect
 {
     public string Name { get; set; }
     public string Description { get; set; }
-    public List<(StatModifier mod, string statName)> Modifiers { get; set; }
+    public IEffect Effect { get; set; }
     public string TargetName { get; set; }
     public bool IsTemporal { get; set; }
     public bool IsProlongable { get; set; }
     public bool IsStacking { get; set; }
     public bool IsUpdatable { get; set; }
+    public Trigger Trigger { get; set; }
     public Resource StacksCount { get; set; }
     public Stat MaxStackCount { get; set; }
     public Stat Duration { get; set; }
 
     private Entity _target;
+    private string _identifier;
 
     public void Attach(Entity target)
     {
         _target = target;
-        AddMods();
+        AddEffect();
     }
 
     public void Detach()
     {
         while (StacksCount.IsEmpty)
         {
-            RemoveMods();
+            RemoveEffect();
             StacksCount.Decrease();
         }
     }
 
     public void Subscribe(Entity target)
     {
-        StacksCount.IncrementEvent += AddMods;
+        EventHelper.AddActionByName(EventHelper.GetPropByName(target, Trigger.Path), Trigger.Name, AddEffect);
     }
 
     public void Unsubscribe(Entity target)
     {
-        StacksCount.DecrementEvent += RemoveMods;
+        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, Trigger.Path), Trigger.Name, AddEffect);
     }
 
-    private void AddMods()
+    private void AddEffect()
     {
-        foreach (var tuple in Modifiers)
-        {
-            _target.AddStatModifier(tuple.mod, tuple.statName);
-        }
+        _target.AddEffectStack(Effect);
     }
 
-    private void RemoveMods()
+    private void RemoveEffect()
     {
-        foreach (var tuple in Modifiers)
-        {
-            _target.RemoveStatModifier(tuple.mod, tuple.statName);
-        }
+        _target.RemoveEffectStack(Effect);
     }
 }

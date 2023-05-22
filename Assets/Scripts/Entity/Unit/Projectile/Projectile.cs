@@ -35,7 +35,7 @@ public class Projectile : Unit
     //}
     protected override void BaseAwake(UnitStatsSettings settings)
     {
-        statFactory = Camera.main.GetComponent<StatFactory>();
+        StatFactory = Camera.main.GetComponent<StatFactory>();
         base.BaseAwake(settings);
         _movementController = new MovementControllerBullet(this);
         _movementController.FixedUpdateStep();

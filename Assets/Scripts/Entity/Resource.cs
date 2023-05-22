@@ -57,7 +57,6 @@ public class Resource
         }
     }
     private float _timeToRecover;
-
     private float ReserveValue
     {
         get => _reserveValue;
@@ -169,8 +168,8 @@ public class Resource
     public Resource(int minValue) : this(minValue,
         minValue + 1,
         new Stat(Single.PositiveInfinity),
-        new Stat(0, false, 0, 0),
-        new Stat(0, false, 0, 0),
+        new Stat(0, false),
+        new Stat(0, false),
         false,
         false)
     {
@@ -180,8 +179,8 @@ public class Resource
         Stat maxValueStat) : this(minValue,
         minValue + 1,
         maxValueStat,
-        new Stat(0, false, 0, 0),
-        new Stat(0, false, 0, 0),
+        new Stat(0, false),
+        new Stat(0, false),
         false,
         true)
     {

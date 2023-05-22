@@ -67,5 +67,14 @@ public class GameTimeScheduler : MonoBehaviour
         GetItem(identifier).AbsoluteTime += time;
     }
 
+    public void UpdateTime(string identifier, float time)
+    {
+        var item = GetItem(identifier);
+        if (item.AbsoluteTime < time)
+        {
+            item.AbsoluteTime = time;
+        }
+    }
+
     private ScheduleItem GetItem(string name) => _scheduledItems.FirstOrDefault(scheduledItem => scheduledItem.Identifier == name);
 }

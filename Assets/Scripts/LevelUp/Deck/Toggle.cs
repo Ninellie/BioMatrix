@@ -4,7 +4,7 @@
     public string TargetName { get; set; }
     public bool IsTemporal { get; }
     public bool IsProlongable { get; }
-    public bool IsStackable { get; }
+    public bool IsStacking { get; }
     public bool IsUpdatable { get; }
     public string PathToToggleProp { get; set; }
     public bool Value { get; set; }

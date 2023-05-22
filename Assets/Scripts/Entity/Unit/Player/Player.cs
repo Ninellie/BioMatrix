@@ -171,11 +171,11 @@ public class Player : Unit
         _invulnerability = GetComponent<Invulnerability>();
         _shieldSprite = _shield.GetComponent<SpriteRenderer>();
 
-        MaxRechargeableShieldLayersCount = statFactory.GetStat(settings.maxRechargeableShieldLayersCount);
-        MaxShieldLayersCount = statFactory.GetStat(settings.maxShieldLayersCount);
-        ShieldLayerRechargeRatePerSecond = statFactory.GetStat(settings.shieldLayerRechargeRate / 60f);
-        MagnetismRadius = statFactory.GetStat(settings.magnetismRadius);
-        TurretCount = statFactory.GetStat(settings.turretCount);
+        MaxRechargeableShieldLayersCount = StatFactory.GetStat(settings.maxRechargeableShieldLayersCount);
+        MaxShieldLayersCount = StatFactory.GetStat(settings.maxShieldLayersCount);
+        ShieldLayerRechargeRatePerSecond = StatFactory.GetStat(settings.shieldLayerRechargeRate / 60f);
+        MagnetismRadius = StatFactory.GetStat(settings.magnetismRadius);
+        TurretCount = StatFactory.GetStat(settings.turretCount);
 
         _circleCollider.radius = MagnetismRadius.Value;
 

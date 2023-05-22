@@ -29,7 +29,7 @@ public class Enclosure : Entity
     {
         Debug.Log($"{gameObject.name} Enclosure Awake");
         base.BaseAwake(settings);
-        ConstrictionRate = statFactory.GetStat(settings.constrictionRate);
+        ConstrictionRate = StatFactory.GetStat(settings.constrictionRate);
         _tilemap = GetComponent<Tilemap>();
     }
 

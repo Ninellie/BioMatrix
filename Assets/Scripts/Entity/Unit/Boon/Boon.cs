@@ -32,7 +32,7 @@ public class Boon : Unit
     protected override void BaseAwake(UnitStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Boon Awake");
-        statFactory = Camera.main.GetComponent<StatFactory>();
+        StatFactory = Camera.main.GetComponent<StatFactory>();
         base.BaseAwake(settings);
         _rarity.Value = RarityEnum.Magic;
     }

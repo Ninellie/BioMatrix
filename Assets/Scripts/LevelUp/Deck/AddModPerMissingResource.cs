@@ -8,7 +8,7 @@ public class AddModPerMissingResource : IEffect
     public string TargetName { get; set; }
     public bool IsTemporal { get; set; }
     public bool IsProlongable { get; set; }
-    public bool IsStackable { get; set; }
+    public bool IsStacking { get; set; }
     public bool IsUpdatable { get; set; }
     public Trigger TriggerStat { get; set; }
     public Trigger TriggerResource { get; set; }
