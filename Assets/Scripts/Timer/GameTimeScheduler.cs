@@ -7,7 +7,7 @@ public class ScheduleItem
 {
     public Action Action { get; set; }
     public float AbsoluteTime { get; set; }
-    public string Name { get; set; }
+    public string Identifier { get; set; }
     public bool IsBeforehand { get; set; }
 }
 
@@ -23,7 +23,7 @@ public class GameTimeScheduler : MonoBehaviour
         
         lock (_lock)
         {
-            var name = Guid.NewGuid().ToString();
+            var identifier = Guid.NewGuid().ToString();
 
             Debug.Log($"Scheduled {action.Method.Name} on {absoluteTime}");
 
@@ -31,10 +31,10 @@ public class GameTimeScheduler : MonoBehaviour
             {
                 Action = action,
                 AbsoluteTime = absoluteTime,
-                Name = name,
+                Identifier = identifier,
             };
             _scheduledItems.Add(item);
-            return item.Name;
+            return item.Identifier;
         }
     }
     private void Update()
@@ -57,15 +57,15 @@ public class GameTimeScheduler : MonoBehaviour
         }
     }
 
-    public void CallInstantly(string name)
+    public void CallInstantly(string identifier)
     {
-        GetItem(name).IsBeforehand = true;
+        GetItem(identifier).IsBeforehand = true;
     }
 
-    public void Prolong(string name, float time)
+    public void Prolong(string identifier, float time)
     {
-        GetItem(name).AbsoluteTime += time;
+        GetItem(identifier).AbsoluteTime += time;
     }
 
-    private ScheduleItem GetItem(string name) => _scheduledItems.FirstOrDefault(scheduledItem => scheduledItem.Name == name);
+    private ScheduleItem GetItem(string name) => _scheduledItems.FirstOrDefault(scheduledItem => scheduledItem.Identifier == name);
 }

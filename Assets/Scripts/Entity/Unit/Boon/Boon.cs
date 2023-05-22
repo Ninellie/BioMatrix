@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Boon : Unit
 {
-    public float speed = 1500;
+    private const float Speed = 1500;
     public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
     private readonly Rarity _rarity = new Rarity();
     private void Awake() => BaseAwake(Settings);
@@ -14,7 +14,7 @@ public class Boon : Unit
         if (!otherCollider2D.gameObject.CompareTag("Player")) return;
         Vector2 nextPosition = transform.position;
         Vector2 direction = (otherCollider2D.transform.position - transform.position).normalized;
-        Vector2 movementVelocity = direction * speed;
+        Vector2 movementVelocity = direction * Speed;
         nextPosition += movementVelocity * Time.fixedDeltaTime;
         
         Rb2D.MovePosition(nextPosition);
@@ -34,7 +34,6 @@ public class Boon : Unit
         Debug.Log($"{gameObject.name} Boon Awake");
         statFactory = Camera.main.GetComponent<StatFactory>();
         base.BaseAwake(settings);
-        spriteRenderer = GetComponent<SpriteRenderer>();
         _rarity.Value = RarityEnum.Magic;
     }
 }

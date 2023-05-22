@@ -15,8 +15,9 @@ public class Entity : MonoBehaviour
     public Stat KnockbackPower { get; private set; }
     public Stat Damage { get; private set; }
 
+    public SpriteRenderer SpriteRenderer { get; private set; }
+
     protected StatFactory statFactory;
-    protected SpriteRenderer spriteRenderer;
 
     public readonly List<IEffect> effects = new();
     public GameTimeScheduler GameTimeScheduler { get; private set; }
@@ -53,7 +54,7 @@ public class Entity : MonoBehaviour
         Debug.Log($"{gameObject.name} Entity Awake");
         GameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
         TryGetComponent<SpriteRenderer>(out SpriteRenderer sR);
-        spriteRenderer = sR;
+        SpriteRenderer = sR;
         statFactory = Camera.main.GetComponent<StatFactory>();
         Size = statFactory.GetStat(settings.size);
         MaximumLifePoints = statFactory.GetStat(settings.maximumLife);
@@ -82,7 +83,7 @@ public class Entity : MonoBehaviour
     {
         if (Time.timeScale == 0) return;
         LifePoints.TimeToRecover += Time.deltaTime;
-        if (spriteRenderer is null) return;
+        if (SpriteRenderer is null) return;
         IsOnScreen = CheckVisibilityOnCamera();
     }
     
@@ -120,7 +121,7 @@ public class Entity : MonoBehaviour
 
     private bool CheckVisibilityOnCamera()
     {
-        var onScreen = spriteRenderer.isVisible;
+        var onScreen = SpriteRenderer.isVisible;
         return onScreen;
     }
 }
