@@ -7,9 +7,9 @@ public class AddModWhileResource : IEffect
     public List<(StatModifier mod, string statName)> Modifiers { get; set; }
     public string TargetName { get; set; }
     public bool IsTemporal { get; }
-    public bool IsProlongable { get; }
+    public bool IsDurationStacks { get; }
     public bool IsStacking { get; }
-    public bool IsUpdatable { get; }
+    public bool IsDurationUpdates { get; }
     public Trigger AddTrigger { get; set; }
     public Trigger RemoveTrigger { get; set; }
     public string ResourceConditionName { get; set; }

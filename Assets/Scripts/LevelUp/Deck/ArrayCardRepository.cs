@@ -2,6 +2,44 @@
 using System.Collections.Generic;
 using System.Linq;
 
+
+
+[Serializable]
+public static class EffectRepository
+{
+    public static readonly Dictionary<string, IEffect> CardEffects = new()
+    {
+        {
+            "Gun card effect 1",
+            new AddModOnAttach(
+                "Card effect gun 1",
+                "+50% projectile damage multiplier, +2 magazine amount",
+                "Player",
+                new List<(StatModifier mod, string statName)>
+                {
+                    (new StatModifier(OperationType.Multiplication, 50f), "ProjectileDamage"),
+                    (new StatModifier(OperationType.Addition, 2f), "MagazineAmount"),
+                })
+        },
+        {
+            "Gun card effect 1",
+            new AddEffectOn(
+                "Card effect gun 2",
+                "+50% firerate for 2 sec on reload",
+                "Player",
+                trigger = new Trigger
+                {
+                    Name = nameof(Player.OnReloadEnd),
+                    Path = ""
+                }
+
+            )
+        }
+
+    };
+}
+
+
 [Serializable]
 public class ArrayCardRepository : ICardRepository
 {
@@ -44,7 +82,7 @@ public class ArrayCardRepository : ICardRepository
             DropWeight = 1,
             Effects = new IEffect[]
             {
-                new AddModPerMissingResource
+                new AddEffectPerMissingResource
                 {
                     Name = "Movement speed per lost hp card",
                     Description = "+ 50% to movement speed multiplier per lost hp",
@@ -251,16 +289,12 @@ public class ArrayCardRepository : ICardRepository
             DropWeight = 5,
             Effects = new IEffect[]
             {
-                new AddModOnAttach
-                {
-                    Name = "+1 Turret count card effect",
-                    Description = "Effect from added +1 Turret count card",
-                    Modifiers = new List<(StatModifier mod, string statName)>
+                new AddModOnAttach(name: "+1 Turret count card effect",
+                    description: "Effect from added +1 Turret count card",
+                    modifiers: new List<(StatModifier mod, string statName)>
                     {
                         (new StatModifier(OperationType.Addition, 1), "TurretCount"),
-                    },
-                    TargetName = nameof(Player),
-                },
+                    }, targetName: nameof(Player)),
             },
         },
         new Card

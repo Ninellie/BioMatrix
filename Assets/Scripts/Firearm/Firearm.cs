@@ -63,7 +63,7 @@ public class Firearm : MonoBehaviour
     {
         if (_isForPlayer)
         {
-            _player.OnOnReload();
+            _player.OnReload();
             //_player.ReloadEvent?.Invoke();
         }
     }
@@ -72,7 +72,8 @@ public class Firearm : MonoBehaviour
     {
         if (_isForPlayer)
         {
-            _player.onRechargeEnd?.Invoke();
+            _player.OnReloadEnd();
+            //_player.reloadEndEvent?.Invoke();
         }
     }
     public bool GetIsForPlayer()

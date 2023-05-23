@@ -4,9 +4,9 @@
     public string Description { get; set; }
     public string TargetName { get; set; }
     public bool IsTemporal { get; }
-    public bool IsProlongable { get; }
+    public bool IsDurationStacks { get; }
     public bool IsStacking { get; }
-    public bool IsUpdatable { get; }
+    public bool IsDurationUpdates { get; }
     public string PathToResource { get; set; }
     public int Value { get; set; }
     public Trigger Trigger { get; set; }

@@ -64,7 +64,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Movement\EnemyMoveController.cs" />
     <Compile Include="Assets\Scripts\LevelUp\CardStorage.cs" />
-    <Compile Include="Assets\Scripts\LevelUp\Deck\AddModPerMissingResource.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\AddEffectPerMissingResource.cs" />
     <Compile Include="Assets\Scripts\Firearm\Magazine.cs" />
     <Compile Include="Assets\Scripts\Firearm\FirearmStatsSettings.cs" />
     <Compile Include="Assets\Scripts\UIScripts\TestJson.cs" />

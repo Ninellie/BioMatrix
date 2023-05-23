@@ -164,6 +164,26 @@ public class Resource
         }
     }
     private int _value;
+    
+    public Resource() : this(0,
+        1,
+        new Stat(Single.PositiveInfinity),
+        new Stat(0, false),
+        new Stat(0, false),
+        false,
+        false)
+    {
+    }
+
+    public Resource(Stat maxValueStat) : this(0,
+        1,
+        maxValueStat,
+        new Stat(0, false),
+        new Stat(0, false),
+        false,
+        false)
+    {
+    }
 
     public Resource(int minValue) : this(minValue,
         minValue + 1,

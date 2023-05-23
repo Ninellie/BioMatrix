@@ -9,7 +9,7 @@
 //    public bool IsTemporal { get; set; }
 //    public bool IsProlongable { get; set; }
 //    public bool IsStackable { get; set; }
-//    public bool IsUpdatable { get; set; }
+//    public bool IsDurationUpdates { get; set; }
 //    public Trigger Trigger { get; set; }
 //    public Resource StacksCount { get; set; }
 //    public Stat MaxStackCount { get; set; }

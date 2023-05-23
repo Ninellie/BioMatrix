@@ -36,14 +36,16 @@ public class Entity : MonoBehaviour
                     return; 
                 }
             }
-            
-            if (myEffect.IsUpdatable)
+
+            if (!myEffect.IsTemporal) return;
+
+            if (myEffect.IsDurationUpdates)
             {
                 var newTime = Time.time + myEffect.Duration.Value;
                 GameTimeScheduler.UpdateTime(myEffect.Identifier, newTime);
             }
 
-            if (myEffect.IsProlongable)
+            if (myEffect.IsDurationStacks)
             {
                 GameTimeScheduler.Prolong(myEffect.Identifier, myEffect.Duration.Value);
             }
@@ -58,6 +60,7 @@ public class Entity : MonoBehaviour
         {
             effect.Identifier = GameTimeScheduler.Schedule(() => RemoveEffectStack(effect), effect.Duration.Value);
         }
+        effect.StacksCount.Set(1);
         effects.Add(effect);
         effect.Attach(this);
         effect.Subscribe(this);

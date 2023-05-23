@@ -17,10 +17,10 @@ public class Player : Unit
 
     public Resource ShieldLayers { get; private set; }
 
-    public event Action onGamePaused;
-    public event Action onLevelUp;
-    public event Action onExperienceTaken;
-    public event Action onRechargeEnd;
+    public event Action GamePausedEvent;
+    public event Action LevelUpEvent;
+    public event Action ExperienceTakenEvent;
+    public event Action ReloadEndEvent;
     public event Action ReloadEvent;
     
     [SerializeField] private LayerMask _enemyLayer;
@@ -44,7 +44,7 @@ public class Player : Unit
         {
             if (value < InitialLevel) throw new ArgumentOutOfRangeException(nameof(value));
             _level = value;
-            onLevelUp?.Invoke();
+            LevelUpEvent?.Invoke();
         }
     }
     private int _level;
@@ -54,7 +54,7 @@ public class Player : Unit
         set
         {
             _experience = value;
-            onExperienceTaken?.Invoke();
+            ExperienceTakenEvent?.Invoke();
             if (ExpToLvlup != 0) return;
             _experience = 0;
             Level++;
@@ -370,18 +370,22 @@ public class Player : Unit
 
     public void OnPause(InputValue input)
     {
-        onGamePaused?.Invoke();
+        GamePausedEvent?.Invoke();
         Debug.Log("Game on pause");
     }
 
     public void OnUnpause(InputValue input)
     {
-        onGamePaused?.Invoke();
+        GamePausedEvent?.Invoke();
         Debug.Log("Game is active");
     }
 
-    public virtual void OnOnReload()
+    public virtual void OnReload()
     {
         ReloadEvent?.Invoke();
+    }
+    public virtual void OnReloadEnd()
+    {
+        ReloadEndEvent?.Invoke();
     }
 }

@@ -23,7 +23,7 @@ namespace Assets.Scripts.GameSession.View
         public void Menu() { _viewModel.GetCurrentState().Menu(); }
         public void Resume() { _viewModel.GetCurrentState().Resume(); }
         public void Options() { _viewModel.GetCurrentState().Options(); }
-        public void LevelUp() { _viewModel.GetCurrentState().LevelUp(); }
+        public void LevelUpEvent() { _viewModel.GetCurrentState().LevelUp(); }
         public void Win() { _viewModel.GetCurrentState().Win(); }
         public void Lose() { _viewModel.GetCurrentState().Lose(); }
 
