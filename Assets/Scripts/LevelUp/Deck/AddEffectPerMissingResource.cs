@@ -3,17 +3,18 @@
     public string Name { get; set; }
     public string Description { get; set; }
     public string TargetName { get; set; }
-    public Trigger TriggerResource { get; set; }
-    public Trigger TriggerStat { get; set; }
-
-    public string Identifier { get; set; }
 
     public IEffect Effect { get; set; }
+    public PropTrigger TriggerResource { get; set; }
+    public PropTrigger TriggerStat { get; set; }
+
+    public string Identifier { get; set; }
 
     public bool IsTemporal { get; set; }
     public Stat Duration { get; set; }
     public bool IsDurationStacks { get; set; }
     public bool IsDurationUpdates { get; set; }
+
     public bool IsStacking { get; set; }
     public bool IsStackSeparateDuration { get; set; }
     public Resource StacksCount { get; set; }
@@ -26,7 +27,7 @@
     public void Attach(Entity target)
     {
         _target = target;
-        _triggerResource = (Resource)EventHelper.GetPropByName(target, TriggerResource.Path);
+        _triggerResource = (Resource)EventHelper.GetPropByPath(target, TriggerResource.Path);
         _lackValue = _triggerResource.GetLackValue();
         UpdateMods();
     }
@@ -42,9 +43,9 @@
 
     public void Subscribe(Entity target)
     {
-        EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerStat.Path), 
+        EventHelper.AddActionByName(EventHelper.GetPropByPath(target, TriggerStat.Path), 
             TriggerStat.Name, UpdateMods);
-        EventHelper.AddActionByName(EventHelper.GetPropByName(target, TriggerResource.Path),
+        EventHelper.AddActionByName(EventHelper.GetPropByPath(target, TriggerResource.Path),
             TriggerResource.Name, UpdateMods);
         StacksCount.IncrementEvent += AddStack;
         StacksCount.DecrementEvent += RemoveStack;
@@ -52,9 +53,9 @@
 
     public void Unsubscribe(Entity target)
     {
-        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, TriggerResource.Path),
+        EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, TriggerResource.Path),
             TriggerResource.Name, UpdateMods);
-        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, TriggerStat.Path),
+        EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, TriggerStat.Path),
             TriggerStat.Name, UpdateMods);
         StacksCount.IncrementEvent -= AddStack;
         StacksCount.DecrementEvent -= RemoveStack;
@@ -105,16 +106,16 @@
         string name,
         string description,
         string targetName,
-        Trigger triggerResource,
-        Trigger triggerStat,
-        IEffect effect
+        IEffect effect,
+        PropTrigger triggerResource,
+        PropTrigger triggerStat
         ) : this(
         name,
         description,
         targetName,
+        effect,
         triggerResource,
         triggerStat,
-        effect,
         false,
         new Stat(0, false),
         false,
@@ -130,9 +131,9 @@
         string name,
         string description,
         string targetName,
-        Trigger triggerResource,
-        Trigger triggerStat,
         IEffect effect,
+        PropTrigger triggerResource,
+        PropTrigger triggerStat,
         bool isTemporal,
         Stat duration,
         bool isDurationStacks,
@@ -145,9 +146,9 @@
         Name = name;
         Description = description;
         TargetName = targetName;
+        Effect = effect;
         TriggerResource = triggerResource;
         TriggerStat = triggerStat;
-        Effect = effect;
         IsTemporal = isTemporal;
         Duration = duration;
         IsDurationStacks = isDurationStacks;

@@ -102,14 +102,17 @@ public class Entity : MonoBehaviour
         GameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
         TryGetComponent<SpriteRenderer>(out SpriteRenderer sR);
         SpriteRenderer = sR;
+
         StatFactory = Camera.main.GetComponent<StatFactory>();
+
         Size = StatFactory.GetStat(settings.size);
         MaximumLifePoints = StatFactory.GetStat(settings.maximumLife);
         LifeRegenerationPerSecond = StatFactory.GetStat(settings.lifeRegenerationInSecond);
         KnockbackPower = StatFactory.GetStat(settings.knockbackPower);
         Damage = StatFactory.GetStat(settings.damage);
+        
+        transform.localScale = new Vector3(Size.Value, Size.Value, 1);
 
-        this.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
         LifePoints = new Resource(DeathLifePointsThreshold, MaximumLifePoints, LifeRegenerationPerSecond);
         LifePoints.Fill();
     }
@@ -147,12 +150,12 @@ public class Entity : MonoBehaviour
 
     public void AddStatModifier(StatModifier statModifier, string statName)
     {
-        var stat = (Stat)EventHelper.GetPropByName(this, statName);
+        var stat = (Stat)EventHelper.GetPropByPath(this, statName);
         stat?.AddModifier(statModifier);
     }
     public void RemoveStatModifier(StatModifier statModifier, string statName)
     {
-        var stat = (Stat)EventHelper.GetPropByName(this, statName);
+        var stat = (Stat)EventHelper.GetPropByPath(this, statName);
         stat?.RemoveModifier(statModifier);
     }
     protected virtual void Death()

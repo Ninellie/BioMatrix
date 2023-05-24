@@ -108,17 +108,17 @@ public class Enemy : Unit
     protected void BaseAwake(EnemyStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Enemy Awake");
-        StatFactory = Camera.main.GetComponent<StatFactory>();
-
         base.BaseAwake(settings);
 
         _spriteOutline = GetComponent<SpriteOutline>();
         _circleCollider = GetComponent<CircleCollider2D>();
+
         _spriteColor = SpriteRenderer.color;
         _rarity.Value = RarityEnum.Normal;
         Level = MinInitialLevel;
         RestoreLifePoints();
-        var player = FindObjectOfType<Player>().gameObject;
+
+        var player = FindObjectOfType<Player>().gameObject; //!!
         if (_enemyType == EnemyType.SideView)
         {
             _enemyMoveController = new SideViewEnemyMoveController(this, player);

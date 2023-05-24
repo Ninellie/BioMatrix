@@ -1,12 +1,15 @@
-﻿public class ToggleOnAttach : IEffect
+﻿using static UnityEngine.GraphicsBuffer;
+
+public class ToggleOnAttach : IEffect
 {
     public string Name { get; set; }
     public string Description { get; }
     public string TargetName { get; set; }
-    public string Identifier { get; set; }
 
-    public string PathToToggleProp { get; set; }
+    public string TogglePropPath { get; set; }
     public bool Value { get; set; }
+
+    public string Identifier { get; set; }
 
     public bool IsTemporal { get; }
     public Stat Duration { get; }
@@ -22,7 +25,7 @@
 
     public void Attach(Entity target)
     {
-        _toggleProp = (bool)EventHelper.GetPropByName(target, PathToToggleProp);
+        _toggleProp = (bool)EventHelper.GetPropByPath(target, TogglePropPath);
         _toggleProp = Value;
     }
 
@@ -44,13 +47,13 @@
         string name,
         string description,
         string targetName,
-        string pathToToggleProp,
+        string togglePropPath,
         bool value
         ) : this(
         name,
         description,
         targetName, 
-        pathToToggleProp, 
+        togglePropPath, 
         value, 
         false,
         new Stat(0, false),
@@ -64,7 +67,7 @@
         string name,
         string description,
         string targetName,
-        string pathToToggleProp,
+        string togglePropPath,
         bool value,
         bool isTemporal,
         Stat duration,
@@ -75,7 +78,7 @@
         Name = name;
         Description = description;
         TargetName = targetName;
-        PathToToggleProp = pathToToggleProp;
+        TogglePropPath = togglePropPath;
         Value = value;
         IsTemporal = isTemporal;
         Duration = duration;

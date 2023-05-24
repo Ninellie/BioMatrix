@@ -2,40 +2,63 @@
 using System.Collections.Generic;
 using System.Linq;
 
-
-
 [Serializable]
 public static class EffectRepository
 {
-    public static readonly Dictionary<string, IEffect> CardEffects = new()
+    public static readonly Dictionary<string, IEffect> StatModEffects = new()
     {
         {
             "Gun card effect 1",
             new AddModOnAttach(
-                "Card effect gun 1",
+                "Gun card effect 1",
                 "+50% projectile damage multiplier, +2 magazine amount",
                 "Player",
                 new List<(StatModifier mod, string statName)>
                 {
                     (new StatModifier(OperationType.Multiplication, 50f), "ProjectileDamage"),
                     (new StatModifier(OperationType.Addition, 2f), "MagazineAmount"),
-                })
+                }
+                )
         },
         {
-            "Gun card effect 1",
+            "Secondary Gun card effect 2",
+            new AddModOnAttach(
+                "Secondary Gun card effect 2",
+                "+50% firerate multiplier for 2 sec",
+                "Player",
+                new List<(StatModifier mod, string statName)>
+                {
+                    (new StatModifier(OperationType.Multiplication, 50f), "Firerate"),
+                },
+                true,
+                new Stat(2),
+                false,
+                true,
+                false,
+                false,
+                new Stat(1, false)
+                )
+        },
+
+    };
+
+    public static readonly Dictionary<string, IEffect> ChainEffects = new()
+    {
+
+        {
+            "Gun card effect 2",
             new AddEffectOn(
-                "Card effect gun 2",
+                "Gun card effect 2",
                 "+50% firerate for 2 sec on reload",
                 "Player",
-                trigger = new Trigger
+                new PropTrigger
                 {
-                    Name = nameof(Player.OnReloadEnd),
+                    Name = nameof(Player.ReloadEndEvent),
                     Path = ""
-                }
-
-            )
+                },
+                EffectRepository.StatModEffects["Secondary Gun card effect 2"]
+                )
         }
-
     };
 }
 
@@ -52,27 +75,6 @@ public class ArrayCardRepository : ICardRepository
             DropWeight = 1,
             Effects = new IEffect[]
             {
-                new AddModWhileResource()
-                {
-                    Name = "Movement speed while full life card",
-                    Description = "+ 100% to movement speed multiplier while on full life",
-                    Modifiers = new List<(StatModifier mod, string statName)>
-                    {
-                        (new StatModifier(OperationType.Multiplication, 100), "Speed"),
-                    },
-                    TargetName = nameof(Player),
-                    AddTrigger = new Trigger
-                    {
-                        Name = nameof(Entity.LifePoints.FillEvent),
-                        Path = nameof(Entity.LifePoints),
-                    },
-                    RemoveTrigger = new Trigger
-                    {
-                        Name = nameof(Entity.LifePoints.DecreaseEvent),
-                        Path = nameof(Entity.LifePoints),
-                    },
-                    ResourceConditionName = nameof(Entity.LifePoints) + "." + nameof(Entity.LifePoints.IsFull),
-                }
             },
         },
         new Card
@@ -82,26 +84,6 @@ public class ArrayCardRepository : ICardRepository
             DropWeight = 1,
             Effects = new IEffect[]
             {
-                new AddEffectPerMissingResource
-                {
-                    Name = "Movement speed per lost hp card",
-                    Description = "+ 50% to movement speed multiplier per lost hp",
-                    Modifiers = new List<(StatModifier mod, string statName)>
-                    {
-                        (new StatModifier(OperationType.Multiplication, 30), "Speed"),
-                    },
-                    TargetName = nameof(Player),
-                    TriggerStat = new Trigger
-                    {
-                        Name = nameof(Entity.MaximumLifePoints.ValueChangedEvent),
-                        Path = nameof(Entity.MaximumLifePoints),
-                    },
-                    TriggerResource = new Trigger
-                    {
-                        Name = nameof(Entity.LifePoints.ValueChangedEvent),
-                        Path = nameof(Entity.LifePoints),
-                    },
-                }
             },
         },
         new Card
@@ -111,21 +93,6 @@ public class ArrayCardRepository : ICardRepository
             DropWeight = 1000,
             Effects = new IEffect[]
             {
-                new AddModOn
-                {
-                    Name = "Movement speed card",
-                    Description = "+ 50% to movement speed multiplier",
-                    Modifiers = new List<(StatModifier mod, string statName)>
-                    {
-                        (new StatModifier(OperationType.Multiplication, 200, 2), "Speed"),
-                    },
-                    TargetName = nameof(Player),
-                    Trigger = new Trigger
-                    {
-                        Name = nameof(Player.CurrentFirearm.Magazine.EmptyEvent),
-                        Path = nameof(Player.CurrentFirearm) + "." + nameof(Player.CurrentFirearm.Magazine),
-                    },
-                }
             },
         },
         new Card

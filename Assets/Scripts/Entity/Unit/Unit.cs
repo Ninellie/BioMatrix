@@ -16,6 +16,7 @@ public class Unit : Entity
     {
         Debug.Log($"{gameObject.name} Unit Awake");
         base.BaseAwake(settings);
+
         Rb2D = GetComponent<Rigidbody2D>();
 
         Speed = StatFactory.GetStat(settings.speed);

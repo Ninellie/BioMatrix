@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{6777F9E4-8265-838B-7969-121F26B91C33}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -57,14 +56,12 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\LevelUp\Deck\AddEffectOn.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPSpriteInfo.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Enemy\Rarity.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Movement\EnemyMoveController.cs" />
     <Compile Include="Assets\Scripts\LevelUp\CardStorage.cs" />
-    <Compile Include="Assets\Scripts\LevelUp\Deck\AddEffectPerMissingResource.cs" />
     <Compile Include="Assets\Scripts\Firearm\Magazine.cs" />
     <Compile Include="Assets\Scripts\Firearm\FirearmStatsSettings.cs" />
     <Compile Include="Assets\Scripts\UIScripts\TestJson.cs" />
@@ -84,7 +81,6 @@
     <Compile Include="Assets\Scripts\GameSession\Floor\Floor.cs" />
     <Compile Include="Assets\Scripts\Entity\Enclosure\Enclosure.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
-    <Compile Include="Assets\Scripts\LevelUp\Deck\Toggle.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\Entity\EntityStatsSettings.cs" />
     <Compile Include="Assets\Scripts\TileManager\FloorManager.cs" />
@@ -122,6 +118,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\GameSession\Spawner\EnemyPlacer.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\AddEffectOn.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Boon\Boon.cs" />
     <Compile Include="Assets\Scripts\Timer\GameTimer.cs" />
@@ -129,12 +126,12 @@
     <Compile Include="Assets\Scripts\LevelUp\Deck\IEffect.cs" />
     <Compile Include="Assets\Scripts\TileManager\RuleTileGenerator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\AddEffectPerMissingResource.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Movement\Math2D.cs" />
     <Compile Include="Assets\Scripts\MovementTests\TileBoxCreator.cs" />
     <Compile Include="Assets\Scripts\GameSession\Spawner\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\UIScripts\DamagePopup.cs" />
     <Compile Include="Assets\Scripts\Stat\OperationType.cs" />
-    <Compile Include="Assets\Scripts\LevelUp\Deck\Trigger.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\LevelUp\Deck\IncreaseResourceOn.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Movement\SideViewEnemyMoveController.cs" />
@@ -147,7 +144,6 @@
     <Compile Include="Assets\Scripts\UIScripts\OptionsMenu.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Enemy\EnemyStatsSettings.cs" />
     <Compile Include="Assets\Scripts\MovementTests\Repulse.cs" />
-    <Compile Include="Assets\Scripts\LevelUp\Deck\AddModWhileResource.cs" />
     <Compile Include="Assets\Scripts\Entity\Unit\Player\PlayerStatsSettings.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\Entity\Enclosure\EnclosureStatsSettings.cs" />
@@ -196,6 +192,9 @@
     <Compile Include="Assets\Scripts\UIScripts\GameSessionTimer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\Scripts\Stat\StatFactory.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\PropTrigger.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\AddEffectWhileTrue.cs" />
+    <Compile Include="Assets\Scripts\LevelUp\Deck\ToggleOnAttach.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

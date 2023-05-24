@@ -179,7 +179,7 @@ namespace SimpleSpritePacker
 		/// <summary>
 		/// Queues add sprite action.
 		/// </summary>
-		/// <param name="resource">Resource.</param>
+		/// <param name="resource">IncrementalResource.</param>
 		public void QueueAction_AddSprite(Object resource)
 		{
 			if (resource is Texture2D || resource is Sprite)

@@ -10,8 +10,8 @@
 //    public bool IsProlongable { get; set; }
 //    public bool IsStackable { get; set; }
 //    public bool IsDurationUpdates { get; set; }
-//    public Trigger Trigger { get; set; }
-//    public Resource StacksCount { get; set; }
+//    public propTrigger propTrigger { get; set; }
+//    public IncrementalResource StacksCount { get; set; }
 //    public Stat MaxStackCount { get; set; }
 
 //    private Stat[] _stats;
@@ -25,7 +25,7 @@
 
 //        foreach (var tuple in Modifiers)
 //        {
-//            _stats[i] = (Stat)EventHelper.GetPropByName(target, tuple.statName);
+//            _stats[i] = (Stat)EventHelper.GetPropByPath(target, tuple.statName);
 //            i++;
 //        }
 //    }
@@ -51,12 +51,12 @@
 
 //    public void Subscribe(Entity target)
 //    {
-//        EventHelper.AddActionByName(EventHelper.GetPropByName(target, Trigger.Path), Trigger.Name, AddMod);
+//        EventHelper.AddActionByName(EventHelper.GetPropByPath(target, propTrigger.Path), propTrigger.Name, AddMod);
 //    }
 
 //    public void Unsubscribe(Entity target)
 //    {
-//        EventHelper.RemoveActionByName(EventHelper.GetPropByName(target, Trigger.Path), Trigger.Name, AddMod);
+//        EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, propTrigger.Path), propTrigger.Name, AddMod);
 //    }
 
 //    private void AddMod()
