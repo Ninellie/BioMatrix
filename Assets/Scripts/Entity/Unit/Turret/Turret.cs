@@ -18,9 +18,9 @@ public class Turret : Unit
     protected override void BaseAwake(UnitStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Turret Awake");
-        statFactory = Camera.main.GetComponent<StatFactory>();
         base.BaseAwake(settings);
-        // acceleration speed = orbit radius
+
+        // acceleration speed = orbit radius, ONLY FOR TURRETS
         _movementController = new MovementControllerTurret(this);
     }
     public void CreateWeapon(GameObject weapon)

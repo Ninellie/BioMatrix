@@ -13,9 +13,9 @@ public class ExpUI : MonoBehaviour
     public void Subscription()
     {
         Debug.Log("Experience and level started subscribing on current exp and level of Player");
-        FindObjectOfType<Player>().onLevelUp += UpdateLevelBar;
+        FindObjectOfType<Player>().LevelUpEvent += UpdateLevelBar;
 
-        FindObjectOfType<Player>().onExperienceTaken += UpdateExperienceBar;
+        FindObjectOfType<Player>().ExperienceTakenEvent += UpdateExperienceBar;
 
         FindObjectOfType<Player>().onDeath += Unsubscription;
     }
@@ -23,9 +23,9 @@ public class ExpUI : MonoBehaviour
     {
         Debug.Log("Experience and level started unsubscribing on current exp and level of Player");
 
-        FindObjectOfType<Player>().onLevelUp -= UpdateLevelBar;
+        FindObjectOfType<Player>().LevelUpEvent -= UpdateLevelBar;
 
-        FindObjectOfType<Player>().onExperienceTaken -= UpdateExperienceBar;
+        FindObjectOfType<Player>().ExperienceTakenEvent -= UpdateExperienceBar;
 
         FindObjectOfType<Player>().onDeath -= Unsubscription;
     }

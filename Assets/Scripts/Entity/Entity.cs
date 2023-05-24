@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -14,9 +16,80 @@ public class Entity : MonoBehaviour
     public Stat KnockbackPower { get; private set; }
     public Stat Damage { get; private set; }
 
-    protected StatFactory statFactory;
-    protected SpriteRenderer spriteRenderer;
-    
+    public SpriteRenderer SpriteRenderer { get; private set; }
+    public GameTimeScheduler GameTimeScheduler { get; private set; }
+    public StatFactory StatFactory { get; private set; }
+
+    public readonly List<IEffect> effects = new();
+
+    public void AddEffectStack(IEffect effect)
+    {
+        foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effect.Name))
+        {
+            if (myEffect.IsStacking)
+            {
+                myEffect.StacksCount.Increase();
+
+                if (myEffect.IsStackSeparateDuration)
+                {
+                    GameTimeScheduler.Schedule(() => RemoveEffectStack(effect), effect.Duration.Value);
+                    return; 
+                }
+            }
+
+            if (!myEffect.IsTemporal) return;
+
+            if (myEffect.IsDurationUpdates)
+            {
+                var newTime = Time.time + myEffect.Duration.Value;
+                GameTimeScheduler.UpdateTime(myEffect.Identifier, newTime);
+            }
+
+            if (myEffect.IsDurationStacks)
+            {
+                GameTimeScheduler.Prolong(myEffect.Identifier, myEffect.Duration.Value);
+            }
+            return;
+        }
+        AddEffect(effect);
+    }
+
+    public void AddEffect(IEffect effect)
+    {
+        if (effect.IsTemporal)
+        {
+            effect.Identifier = GameTimeScheduler.Schedule(() => RemoveEffectStack(effect), effect.Duration.Value);
+        }
+        effect.StacksCount.Set(1);
+        effects.Add(effect);
+        effect.Attach(this);
+        effect.Subscribe(this);
+    }
+
+    public void RemoveEffectStack(IEffect effect)
+    {
+        foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effect.Name))
+        {
+            myEffect.StacksCount.Decrease();
+            if (!myEffect.StacksCount.IsEmpty) return;
+            RemoveEffect(effect);
+        }
+    }
+
+    public void RemoveEffect(IEffect effect)
+    {
+        if (!effects.Contains(effect)) return;
+
+        foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effect.Name))
+        {
+            myEffect.StacksCount.Empty();
+        }
+
+        effect.Unsubscribe(this);
+        effect.Detach();
+        effects.Remove(effect);
+    }
+
     private void OnEnable() => BaseOnEnable();
     
     private void OnDisable() => BaseOnDisable();
@@ -26,17 +99,20 @@ public class Entity : MonoBehaviour
     protected void BaseAwake(EntityStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Entity Awake");
-
+        GameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
         TryGetComponent<SpriteRenderer>(out SpriteRenderer sR);
-        spriteRenderer = sR;
-        statFactory = Camera.main.GetComponent<StatFactory>();
-        Size = statFactory.GetStat(settings.size);
-        MaximumLifePoints = statFactory.GetStat(settings.maximumLife);
-        LifeRegenerationPerSecond = statFactory.GetStat(settings.lifeRegenerationInSecond);
-        KnockbackPower = statFactory.GetStat(settings.knockbackPower);
-        Damage = statFactory.GetStat(settings.damage);
+        SpriteRenderer = sR;
 
-        this.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
+        StatFactory = Camera.main.GetComponent<StatFactory>();
+
+        Size = StatFactory.GetStat(settings.size);
+        MaximumLifePoints = StatFactory.GetStat(settings.maximumLife);
+        LifeRegenerationPerSecond = StatFactory.GetStat(settings.lifeRegenerationInSecond);
+        KnockbackPower = StatFactory.GetStat(settings.knockbackPower);
+        Damage = StatFactory.GetStat(settings.damage);
+        
+        transform.localScale = new Vector3(Size.Value, Size.Value, 1);
+
         LifePoints = new Resource(DeathLifePointsThreshold, MaximumLifePoints, LifeRegenerationPerSecond);
         LifePoints.Fill();
     }
@@ -57,7 +133,7 @@ public class Entity : MonoBehaviour
     {
         if (Time.timeScale == 0) return;
         LifePoints.TimeToRecover += Time.deltaTime;
-        if (spriteRenderer is null) return;
+        if (SpriteRenderer is null) return;
         IsOnScreen = CheckVisibilityOnCamera();
     }
     
@@ -74,12 +150,12 @@ public class Entity : MonoBehaviour
 
     public void AddStatModifier(StatModifier statModifier, string statName)
     {
-        var stat = (Stat)EventHelper.GetPropByName(this, statName);
+        var stat = (Stat)EventHelper.GetPropByPath(this, statName);
         stat?.AddModifier(statModifier);
     }
     public void RemoveStatModifier(StatModifier statModifier, string statName)
     {
-        var stat = (Stat)EventHelper.GetPropByName(this, statName);
+        var stat = (Stat)EventHelper.GetPropByPath(this, statName);
         stat?.RemoveModifier(statModifier);
     }
     protected virtual void Death()
@@ -95,7 +171,7 @@ public class Entity : MonoBehaviour
 
     private bool CheckVisibilityOnCamera()
     {
-        var onScreen = spriteRenderer.isVisible;
+        var onScreen = SpriteRenderer.isVisible;
         return onScreen;
     }
 }

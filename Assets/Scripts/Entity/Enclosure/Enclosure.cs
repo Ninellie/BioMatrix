@@ -2,14 +2,19 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Debug = UnityEngine.Debug;
 
+[RequireComponent(typeof(EnclosureStatsSettings))]
+[RequireComponent(typeof(Tilemap))]
 public class Enclosure : Entity
 {
     public EnclosureStatsSettings Settings => GetComponent<EnclosureStatsSettings>();
+
     public Stat ConstrictionRate { get; private set; }
+
     [SerializeField] private const float MaxLifeTime = 30f;
     [SerializeField] private float _currentLifeTime;
     [SerializeField] private bool _isShrinking;
     [SerializeField] private GameObject _grid;
+
     private Tilemap _tilemap;
 
     private void Awake() => BaseAwake(Settings);
@@ -24,7 +29,7 @@ public class Enclosure : Entity
     {
         Debug.Log($"{gameObject.name} Enclosure Awake");
         base.BaseAwake(settings);
-        ConstrictionRate = statFactory.GetStat(settings.constrictionRate);
+        ConstrictionRate = StatFactory.GetStat(settings.constrictionRate);
         _tilemap = GetComponent<Tilemap>();
     }
 

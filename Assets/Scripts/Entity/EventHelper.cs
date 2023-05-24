@@ -12,7 +12,7 @@ public static class EventHelper
         var eventInfo = target.GetType().GetEvent(actionName);
         eventInfo.RemoveEventHandler(target, method);
     }
-    public static object GetPropByName(object target, string path)
+    public static object GetPropByPath(object target, string path)
     {
         if (string.IsNullOrEmpty(path))
         {

@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-
-public class AddModOnAttach : IEffect
+﻿public class AddEffectOn : IEffect
 {
     public string Name { get; set; }
     public string Description { get; set; }
     public string TargetName { get; set; }
+    public PropTrigger Trigger { get; set; }
     public string Identifier { get; set; }
 
-    public List<(StatModifier mod, string statName)> Modifiers { get; set; }
+    public IEffect Effect { get; set; }
 
     public bool IsTemporal { get; set; }
     public Stat Duration { get; set; }
@@ -16,64 +15,62 @@ public class AddModOnAttach : IEffect
 
     public bool IsStacking { get; set; }
     public bool IsStackSeparateDuration { get; set; }
-    public Stat MaxStackCount { get; set; }
     public Resource StacksCount { get; set; }
+    public Stat MaxStackCount { get; set; }
 
     private Entity _target;
 
     public void Attach(Entity target)
     {
         _target = target;
-        AddMods();
+        AddEffect();
     }
 
     public void Detach()
     {
         while (StacksCount.IsEmpty)
         {
-            RemoveMods();
+            RemoveEffect();
             StacksCount.Decrease();
         }
     }
 
     public void Subscribe(Entity target)
     {
-        StacksCount.IncrementEvent += AddMods;
-        StacksCount.DecrementEvent += RemoveMods;
+        EventHelper.AddActionByName(EventHelper.GetPropByPath(target, Trigger.Path), Trigger.Name, AddEffect);
+        StacksCount.IncrementEvent += AddEffect;
+        StacksCount.DecrementEvent += RemoveEffect;
     }
 
     public void Unsubscribe(Entity target)
     {
-        StacksCount.IncrementEvent -= AddMods;
-        StacksCount.DecrementEvent -= RemoveMods;
+        EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, Trigger.Path), Trigger.Name, AddEffect);
+        StacksCount.IncrementEvent -= AddEffect;
+        StacksCount.DecrementEvent -= RemoveEffect;
     }
 
-    private void AddMods()
+    private void AddEffect()
     {
-        foreach (var tuple in Modifiers)
-        {
-            _target.AddStatModifier(tuple.mod, tuple.statName);
-        }
+        _target.AddEffectStack(Effect);
     }
 
-    private void RemoveMods()
+    private void RemoveEffect()
     {
-        foreach (var tuple in Modifiers)
-        {
-            _target.RemoveStatModifier(tuple.mod, tuple.statName);
-        }
+        _target.RemoveEffectStack(Effect);
     }
 
-    public AddModOnAttach(
+    public AddEffectOn(
         string name,
         string description,
         string targetName,
-        List<(StatModifier mod, string statName)> modifiers
+        PropTrigger trigger,
+        IEffect effect
         ) : this(
         name,
         description,
         targetName,
-        modifiers,
+        trigger,
+        effect,
         false,
         new Stat(0, false),
         false,
@@ -81,15 +78,15 @@ public class AddModOnAttach : IEffect
         false,
         false,
         new Stat(1, false)
-    )
+    ) 
     {
     }
-
-    public AddModOnAttach(
+    public AddEffectOn(
         string name,
         string description,
         string targetName,
-        List<(StatModifier mod, string statName)> modifiers,
+        PropTrigger trigger,
+        IEffect effect,
         bool isTemporal,
         Stat duration,
         bool isDurationStacks,
@@ -97,12 +94,13 @@ public class AddModOnAttach : IEffect
         bool isStacking,
         bool isStackSeparateDuration,
         Stat maxStackCount
-        )
+    )
     {
         Name = name;
         Description = description;
         TargetName = targetName;
-        Modifiers = modifiers;
+        this.Trigger = trigger;
+        this.Effect = effect;
         IsTemporal = isTemporal;
         Duration = duration;
         IsDurationStacks = isDurationStacks;

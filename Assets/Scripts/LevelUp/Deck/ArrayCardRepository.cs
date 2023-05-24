@@ -1,7 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
+
+[Serializable]
+public static class EffectRepository
+{
+    public static readonly Dictionary<string, IEffect> StatModEffects = new()
+    {
+        {
+            "Gun card effect 1",
+            new AddModOnAttach(
+                "Gun card effect 1",
+                "+50% projectile damage multiplier, +2 magazine amount",
+                "Player",
+                new List<(StatModifier mod, string statName)>
+                {
+                    (new StatModifier(OperationType.Multiplication, 50f), "ProjectileDamage"),
+                    (new StatModifier(OperationType.Addition, 2f), "MagazineAmount"),
+                }
+                )
+        },
+        {
+            "Secondary Gun card effect 2",
+            new AddModOnAttach(
+                "Secondary Gun card effect 2",
+                "+50% firerate multiplier for 2 sec",
+                "Player",
+                new List<(StatModifier mod, string statName)>
+                {
+                    (new StatModifier(OperationType.Multiplication, 50f), "Firerate"),
+                },
+                true,
+                new Stat(2),
+                false,
+                true,
+                false,
+                false,
+                new Stat(1, false)
+                )
+        },
+
+    };
+
+    public static readonly Dictionary<string, IEffect> ChainEffects = new()
+    {
+
+        {
+            "Gun card effect 2",
+            new AddEffectOn(
+                "Gun card effect 2",
+                "+50% firerate for 2 sec on reload",
+                "Player",
+                new PropTrigger
+                {
+                    Name = nameof(Player.ReloadEndEvent),
+                    Path = ""
+                },
+                EffectRepository.StatModEffects["Secondary Gun card effect 2"]
+                )
+        }
+    };
+}
+
 
 [Serializable]
 public class ArrayCardRepository : ICardRepository
@@ -15,27 +75,6 @@ public class ArrayCardRepository : ICardRepository
             DropWeight = 1,
             Effects = new IEffect[]
             {
-                new AddModWhileResource()
-                {
-                    Name = "Movement speed while full life card",
-                    Description = "+ 100% to movement speed multiplier while on full life",
-                    Modifiers = new List<(StatModifier mod, string statName)>
-                    {
-                        (new StatModifier(OperationType.Multiplication, 100), "Speed"),
-                    },
-                    TargetName = nameof(Player),
-                    AddTrigger = new Trigger
-                    {
-                        Name = nameof(Entity.LifePoints.FillEvent),
-                        Path = nameof(Entity.LifePoints),
-                    },
-                    RemoveTrigger = new Trigger
-                    {
-                        Name = nameof(Entity.LifePoints.DecreaseEvent),
-                        Path = nameof(Entity.LifePoints),
-                    },
-                    ResourceConditionName = nameof(Entity.LifePoints) + "." + nameof(Entity.LifePoints.IsFull),
-                }
             },
         },
         new Card
@@ -45,26 +84,6 @@ public class ArrayCardRepository : ICardRepository
             DropWeight = 1,
             Effects = new IEffect[]
             {
-                new AddModPerMissingResource
-                {
-                    Name = "Movement speed per lost hp card",
-                    Description = "+ 50% to movement speed multiplier per lost hp",
-                    Modifiers = new List<(StatModifier mod, string statName)>
-                    {
-                        (new StatModifier(OperationType.Multiplication, 30), "Speed"),
-                    },
-                    TargetName = nameof(Player),
-                    TriggerStat = new Trigger
-                    {
-                        Name = nameof(Entity.MaximumLifePoints.ValueChangedEvent),
-                        Path = nameof(Entity.MaximumLifePoints),
-                    },
-                    TriggerResource = new Trigger
-                    {
-                        Name = nameof(Entity.LifePoints.ValueChangedEvent),
-                        Path = nameof(Entity.LifePoints),
-                    },
-                }
             },
         },
         new Card
@@ -74,21 +93,6 @@ public class ArrayCardRepository : ICardRepository
             DropWeight = 1000,
             Effects = new IEffect[]
             {
-                new AddModOn
-                {
-                    Name = "Movement speed card",
-                    Description = "+ 50% to movement speed multiplier",
-                    Modifiers = new List<(StatModifier mod, string statName)>
-                    {
-                        (new StatModifier(OperationType.Multiplication, 200, 2), "Speed"),
-                    },
-                    TargetName = nameof(Player),
-                    Trigger = new Trigger
-                    {
-                        Name = nameof(Player.CurrentFirearm.Magazine.EmptyEvent),
-                        Path = nameof(Player.CurrentFirearm) + "." + nameof(Player.CurrentFirearm.Magazine),
-                    },
-                }
             },
         },
         new Card
@@ -252,16 +256,12 @@ public class ArrayCardRepository : ICardRepository
             DropWeight = 5,
             Effects = new IEffect[]
             {
-                new AddModOnAttach
-                {
-                    Name = "+1 Turret count card effect",
-                    Description = "Effect from added +1 Turret count card",
-                    Modifiers = new List<(StatModifier mod, string statName)>
+                new AddModOnAttach(name: "+1 Turret count card effect",
+                    description: "Effect from added +1 Turret count card",
+                    modifiers: new List<(StatModifier mod, string statName)>
                     {
                         (new StatModifier(OperationType.Addition, 1), "TurretCount"),
-                    },
-                    TargetName = nameof(Player),
-                },
+                    }, targetName: nameof(Player)),
             },
         },
     };

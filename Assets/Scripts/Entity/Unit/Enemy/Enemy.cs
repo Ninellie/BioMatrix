@@ -93,7 +93,7 @@ public class Enemy : Unit
     }
     private void ChangeColorOnDamageTaken()
     {
-        spriteRenderer.color = _enemyType switch
+        SpriteRenderer.color = _enemyType switch
         {
             EnemyType.AboveView => Color.cyan,
             EnemyType.SideView => Color.red,
@@ -108,18 +108,17 @@ public class Enemy : Unit
     protected void BaseAwake(EnemyStatsSettings settings)
     {
         Debug.Log($"{gameObject.name} Enemy Awake");
-        statFactory = Camera.main.GetComponent<StatFactory>();
-
         base.BaseAwake(settings);
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteOutline = GetComponent<SpriteOutline>();
         _circleCollider = GetComponent<CircleCollider2D>();
-        _spriteColor = spriteRenderer.color;
+
+        _spriteColor = SpriteRenderer.color;
         _rarity.Value = RarityEnum.Normal;
         Level = MinInitialLevel;
         RestoreLifePoints();
-        var player = FindObjectOfType<Player>().gameObject;
+
+        var player = FindObjectOfType<Player>().gameObject; //!!
         if (_enemyType == EnemyType.SideView)
         {
             _enemyMoveController = new SideViewEnemyMoveController(this, player);
@@ -133,11 +132,11 @@ public class Enemy : Unit
     {
         if (_enemyMoveController is SideViewEnemyMoveController)
         {
-            spriteRenderer.flipX = _enemyMoveController.GetMovementDirection().x switch
+            SpriteRenderer.flipX = _enemyMoveController.GetMovementDirection().x switch
             {
                 < 0 => false,
                 > 0 => true,
-                _ => spriteRenderer.flipX
+                _ => SpriteRenderer.flipX
             };
         }
         base.BaseUpdate();
@@ -145,12 +144,12 @@ public class Enemy : Unit
     }
     private void BackToNormalColor()
     {
-        if (spriteRenderer.color == Color.white) return;
-        _spriteColor = spriteRenderer.color;
+        if (SpriteRenderer.color == Color.white) return;
+        _spriteColor = SpriteRenderer.color;
         _spriteColor.r += ReturnToDefaultColorSpeed * Time.deltaTime;
         _spriteColor.g += ReturnToDefaultColorSpeed * Time.deltaTime;
         _spriteColor.b += ReturnToDefaultColorSpeed * Time.deltaTime;
-        spriteRenderer.color = _spriteColor;
+        SpriteRenderer.color = _spriteColor;
     }
     private void DeathTimerFixedUpdate()
     {

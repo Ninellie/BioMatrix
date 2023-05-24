@@ -41,8 +41,8 @@ public class PlayerCreator : MonoBehaviour
         _ammoBar.Subscription();
         _lifeBar.Subscription();
 
-        CurrentPlayer.onGamePaused += _UIController.Menu;
-        CurrentPlayer.onLevelUp += _UIController.LevelUp;
+        CurrentPlayer.GamePausedEvent += _UIController.Menu;
+        CurrentPlayer.LevelUpEvent += _UIController.LevelUpEvent;
         CurrentPlayer.onDeath += _UIController.Lose;
         _gameSessionTimer.onGameWinning += _UIController.Win;
         CurrentPlayer.onDeath += Unsubscription;
@@ -52,8 +52,8 @@ public class PlayerCreator : MonoBehaviour
 
     public void Unsubscription()
     {
-        CurrentPlayer.onGamePaused -= _UIController.Menu;
-        CurrentPlayer.onLevelUp -= _UIController.LevelUp;
+        CurrentPlayer.GamePausedEvent -= _UIController.Menu;
+        CurrentPlayer.LevelUpEvent -= _UIController.LevelUpEvent;
         CurrentPlayer.onDeath -= _UIController.Lose;
         _gameSessionTimer.onGameWinning -= _UIController.Win;
         CurrentPlayer.onDeath -= Unsubscription;

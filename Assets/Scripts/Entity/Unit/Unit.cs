@@ -16,11 +16,12 @@ public class Unit : Entity
     {
         Debug.Log($"{gameObject.name} Unit Awake");
         base.BaseAwake(settings);
+
         Rb2D = GetComponent<Rigidbody2D>();
 
-        Speed = statFactory.GetStat(settings.speed);
-        AccelerationSpeed = statFactory.GetStat(settings.accelerationSpeed);
-        RotationSpeed = statFactory.GetStat(settings.rotationSpeed);
+        Speed = StatFactory.GetStat(settings.speed);
+        AccelerationSpeed = StatFactory.GetStat(settings.accelerationSpeed);
+        RotationSpeed = StatFactory.GetStat(settings.rotationSpeed);
     }
     protected override void Death()
     {
