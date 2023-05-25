@@ -14,14 +14,14 @@ public class LifeBar : MonoBehaviour
         _player = FindObjectOfType<Player>();
         _player.MaximumLifePoints.ValueChangedEvent += UpdateBar;
         _player.LifePoints.ValueChangedEvent += UpdateBar;
-        _player.onDeath += Unsubscription;
+        _player.OnDeath += Unsubscription;
     }
     private void Unsubscription()
     {
         Debug.Log("Life bar started unsubscribing from current life points of Player");
         _player.MaximumLifePoints.ValueChangedEvent -= UpdateBar;
         _player.LifePoints.ValueChangedEvent -= UpdateBar;
-        _player.onDeath -= Unsubscription;
+        _player.OnDeath -= Unsubscription;
     }
     private void UpdateBar()
     {

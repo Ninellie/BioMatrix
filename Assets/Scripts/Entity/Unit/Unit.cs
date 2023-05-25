@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Unit : Entity
 {
-    public Action onDeath;
+    public event Action OnDeath;
     public Stat Speed { get; private set; }
     public Stat AccelerationSpeed { get; private set; }
     public Stat RotationSpeed { get; private set; }
@@ -25,7 +25,7 @@ public class Unit : Entity
     }
     protected override void Death()
     {
-        onDeath?.Invoke();
+        OnDeath?.Invoke();
         base.Death();
     }
 }

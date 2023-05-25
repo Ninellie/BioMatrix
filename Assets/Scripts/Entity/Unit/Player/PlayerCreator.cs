@@ -43,9 +43,9 @@ public class PlayerCreator : MonoBehaviour
 
         CurrentPlayer.GamePausedEvent += _UIController.Menu;
         CurrentPlayer.LevelUpEvent += _UIController.LevelUpEvent;
-        CurrentPlayer.onDeath += _UIController.Lose;
+        CurrentPlayer.OnDeath += _UIController.Lose;
         _gameSessionTimer.onGameWinning += _UIController.Win;
-        CurrentPlayer.onDeath += Unsubscription;
+        CurrentPlayer.OnDeath += Unsubscription;
         _gameSessionTimer.onGameWinning += Unsubscription;
         _optionsMenu.onBackToMainMenu += Unsubscription;
     }
@@ -54,9 +54,9 @@ public class PlayerCreator : MonoBehaviour
     {
         CurrentPlayer.GamePausedEvent -= _UIController.Menu;
         CurrentPlayer.LevelUpEvent -= _UIController.LevelUpEvent;
-        CurrentPlayer.onDeath -= _UIController.Lose;
+        CurrentPlayer.OnDeath -= _UIController.Lose;
         _gameSessionTimer.onGameWinning -= _UIController.Win;
-        CurrentPlayer.onDeath -= Unsubscription;
+        CurrentPlayer.OnDeath -= Unsubscription;
         _gameSessionTimer.onGameWinning -= Unsubscription;
         _optionsMenu.onBackToMainMenu -= Unsubscription;
     }
