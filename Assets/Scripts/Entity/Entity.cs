@@ -78,12 +78,15 @@ public class Entity : MonoBehaviour
 
     public void RemoveEffect(IEffect effect)
     {
-        if (!effects.Contains(effect)) return;
+        var i = 0;
 
         foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effect.Name))
         {
             myEffect.StacksCount.Empty();
+            i++;
         }
+
+        if (i == 0) return;
 
         effect.Unsubscribe(this);
         effect.Detach();

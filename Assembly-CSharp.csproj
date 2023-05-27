@@ -8,7 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>BioMatrix</RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{6777F9E4-8265-838B-7969-121F26B91C33}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -58,141 +58,43 @@
   <ItemGroup>
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPSpriteInfo.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Enemy\Rarity.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Movement\EnemyMoveController.cs" />
-    <Compile Include="Assets\Scripts\Upgrades\Deck\CardStorage.cs" />
-    <Compile Include="Assets\Scripts\Firearm\Magazine.cs" />
-    <Compile Include="Assets\Scripts\Firearm\FirearmStatsSettings.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\View\TestJson.cs" />
-    <Compile Include="Assets\Scripts\Entity\Effects\AddModOn.cs" />
-    <Compile Include="Assets\Scripts\GameSession\Events\GameTimeScheduler.cs" />
-    <Compile Include="Assets\Scripts\Tentative\EnemyUnit.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
-    <Compile Include="Assets\Scripts\GameSession\Spawner\Circle.cs" />
-    <Compile Include="Assets\Scripts\Entity\Effects\PropTrigger.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\SessionModel\GameEndViewModelState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Turret\Turret.cs" />
-    <Compile Include="Assets\Scripts\Upgrades\Deck\Card.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Movement\AboveViewEnemyMoveController.cs" />
-    <Compile Include="Assets\Scripts\Entity\Entity.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementControllerTurret.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementControllerBullet.cs" />
-    <Compile Include="Assets\Scripts\GameSession\PlayingField\Floor.cs" />
-    <Compile Include="Assets\Scripts\Entity\Enclosure\Enclosure.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
-    <Compile Include="Assets\Scripts\Entity\EntityStatsSettings.cs" />
-    <Compile Include="Assets\Scripts\Entity\Effects\ToggleOnAttach.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\SessionModel\ViewModelStateType.cs" />
-    <Compile Include="Assets\Scripts\Tentative\Rotation.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
-    <Compile Include="Assets\Scripts\GameSession\Spawner\GroupingMode.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\SessionModel\OptionsViewModelState.cs" />
-    <Compile Include="Assets\Scripts\Firearm\Reload.cs" />
-    <Compile Include="Assets\Scripts\Upgrades\Deck\JsonCard\JsonCardDeserializer.cs" />
-    <Compile Include="Assets\Scripts\Upgrades\Deck\CardManager.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\View\ReloadPlate.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\SessionModel\SimpleViewController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Movement\Movement.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\SessionModel\ViewModel.cs" />
-    <Compile Include="Assets\Shaders\SpriteOutline.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Enemy\EnemyType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
-    <Compile Include="Assets\Scripts\GameSession\Spawner\EnemyWaveProperties.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\View\AmmoBar.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\View\LevelUp.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\Entity\Invulnerability.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\SessionModel\IViewController.cs" />
-    <Compile Include="Assets\Scripts\Entity\Stat\Stat.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
-    <Compile Include="Assets\Scripts\Entity\Resource.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\UnitStatsSettings.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-    <Compile Include="Assets\Scripts\GameSession\Spawner\EnemyPlacer.cs" />
-    <Compile Include="Assets\Scripts\Entity\Effects\AddEffectOn.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Boon\Boon.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
-    <Compile Include="Assets\Scripts\Entity\Effects\IEffect.cs" />
-    <Compile Include="Assets\Scripts\Core\TileManager\RuleTileGenerator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
-    <Compile Include="Assets\Scripts\Entity\Effects\AddEffectPerMissingResource.cs" />
-    <Compile Include="Assets\Scripts\GameSession\Events\TileBoxCreator.cs" />
-    <Compile Include="Assets\Scripts\GameSession\Spawner\EnemySpawner.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\View\DamagePopup.cs" />
-    <Compile Include="Assets\Scripts\Entity\Stat\OperationType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
-    <Compile Include="Assets\Scripts\Entity\Effects\IncreaseResourceOn.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Movement\SideViewEnemyMoveController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Player\Player.cs" />
-    <Compile Include="Assets\Scripts\GameSession\Camera\MainCameraPlayerSeek.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\View\LifeBar.cs" />
-    <Compile Include="Assets\Scripts\Upgrades\Deck\ArrayCardRepository.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\SessionModel\ActiveViewModelState.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\View\OptionsMenu.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Enemy\EnemyStatsSettings.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Movement\Repulse.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Player\PlayerStatsSettings.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
-    <Compile Include="Assets\Scripts\Entity\Enclosure\EnclosureStatsSettings.cs" />
-    <Compile Include="Assets\Scripts\Entity\Stat\StatModifier.cs" />
-    <Compile Include="Assets\Scripts\Upgrades\Deck\JsonCard\JsonCardSerializer.cs" />
-    <Compile Include="Assets\Scripts\Tentative\PlayerController.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\UITexturePacker.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPActionType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
-    <Compile Include="Assets\Scripts\GameSession\Events\EventCntroller.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPInstance.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Enemy\RarityEnum.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\SessionModel\ViewController.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\SessionModel\MenuViewModelState.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Player\PlayerCreator.cs" />
-    <Compile Include="Assets\Scripts\Tentative\Knockback.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\SessionModel\IViewModelState.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Projectile\Projectile.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
-    <Compile Include="Assets\Scripts\Entity\Effects\AddModOnAttach.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementControllerPlayer.cs" />
-    <Compile Include="Assets\Scripts\GameSession\Camera\Ortho2dCamera.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
-    <Compile Include="Assets\Scripts\Core\PeterAcklamInverseCDF.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Unit.cs" />
-    <Compile Include="Assets\Scripts\Core\EventHelper.cs" />
-    <Compile Include="Assets\Scripts\Upgrades\Deck\ICardRepository.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Enemy\Enemy.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\SessionModel\LevelUpViewModelState.cs" />
-    <Compile Include="Assets\Scripts\Entity\Stat\GlobalStatsSettingsRepository.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\View\MainMenu.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
-    <Compile Include="Assets\Scripts\GameSession\Spawner\Grouping.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\View\ExpUI.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Movement\MovementState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
-    <Compile Include="Assets\Scripts\Entity\Unit\Projectile\ProjectileCreator.cs" />
     <Compile Include="Assets\Simple Sprite Packer\Scripts\SPAction.cs" />
-    <Compile Include="Assets\Scripts\GameSession\Spawner\WaveType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
-    <Compile Include="Assets\Scripts\Entity\Effects\AddEffectWhileTrue.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\SessionModel\StartViewModelState.cs" />
-    <Compile Include="Assets\Scripts\Firearm\Firearm.cs" />
-    <Compile Include="Assets\Scripts\GameSession\UIScripts\View\GameSessionTimer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Scripts\Entity\Stat\StatFactory.cs" />
-    <Compile Include="Assets\Scripts\Entity\Effects\EffectRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -1024,6 +926,10 @@
     <ProjectReference Include="Unity.VisualScripting.State.csproj">
       <Project>{D768B12D-5833-B4EE-499D-1651A0FEE91F}</Project>
       <Name>Unity.VisualScripting.State</Name>
+    </ProjectReference>
+    <ProjectReference Include="Scripts.csproj">
+      <Project>{1ADCA4D5-9DAC-E64E-F8F8-AB1D59520C6D}</Project>
+      <Name>Scripts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -22,6 +22,8 @@ public class Player : Unit
     public event Action ExperienceTakenEvent;
     public event Action ReloadEndEvent;
     public event Action ReloadEvent;
+    public event Action FireEvent;
+    public event Action FireOffEvent;
     
     [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private GameObject _shield;
@@ -34,6 +36,8 @@ public class Player : Unit
     [SerializeField] private GameObject _turretWeaponPrefab;
 
     private readonly Stack<Turret> _currentTurrets = new();
+    public bool IsSameTurretTarget { get; set; } = false;
+
     public Firearm CurrentFirearm { get; private set; }
     public bool IsFireButtonPressed { get; private set; } = false;
 
@@ -361,11 +365,13 @@ public class Player : Unit
     public void OnFire()
     {
         IsFireButtonPressed = true;
+        FireEvent?.Invoke();
     }
 
     public void OnFireOff()
     {
         IsFireButtonPressed = false;
+        FireOffEvent?.Invoke();
     }
 
     public void OnPause(InputValue input)
