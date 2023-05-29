@@ -34,7 +34,7 @@
     
 //    public bool IsEmpty => CurrentAmount == 0;
 //    public Action onEmpty;
-//    private int Size => (int)GetComponent<Firearm>().MagazineSize.Value;
+//    private int Size => (int)GetComponent<Firearm>().MagazineCapacity.Value;
 //    private void Start()
 //    {
 //        FullFill();

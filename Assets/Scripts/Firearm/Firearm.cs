@@ -7,20 +7,23 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(ProjectileCreator))]
 public class Firearm : MonoBehaviour
 {
+    public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
+
     public Stat Damage { get; private set; }
     public Stat ShootForce { get; private set; }
     public Stat ShootsPerSecond { get; private set; }
     public Stat MaxShootDeflectionAngle { get; private set; }
-    public Stat MagazineSize { get; private set; }
+    public Stat MagazineCapacity { get; private set; }
     public Stat ReloadSpeed { get; private set; }
     public Stat SingleShootProjectile { get; private set; }
+    public Stat ProjectileSize { get; private set; }
+    public Stat ProjectilePierce { get; private set; }
     
     [SerializeField] private GameObject _ammo;
     [SerializeField] private bool _isForPlayer;
     [SerializeField] private LayerMask _enemyLayer;
     protected StatFactory statFactory;
     public Resource Magazine { get; set; }
-    public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
     private Reload _reload;
     private ProjectileCreator _projectileCreator;
     public bool CanShoot => _previousShootTimer <= 0
@@ -44,11 +47,13 @@ public class Firearm : MonoBehaviour
         ShootForce = statFactory.GetStat(settings.shootForce);
         ShootsPerSecond = statFactory.GetStat(settings.shootsPerSecond);
         MaxShootDeflectionAngle = statFactory.GetStat(settings.maxShootDeflectionAngle);
-        MagazineSize = statFactory.GetStat(settings.magazineSize);
+        MagazineCapacity = statFactory.GetStat(settings.magazineCapacity);
         ReloadSpeed = statFactory.GetStat(settings.reloadSpeed);
         SingleShootProjectile = statFactory.GetStat(settings.singleShootProjectile);
+        ProjectileSize = statFactory.GetStat(settings.projectileSize);
+        ProjectilePierce = statFactory.GetStat(settings.projectilePierce);
         
-        Magazine = new Resource(0, MagazineSize);
+        Magazine = new Resource(0, MagazineCapacity);
         Magazine.Fill();
         _player = FindObjectOfType<Player>();
     }
@@ -64,7 +69,6 @@ public class Firearm : MonoBehaviour
         if (_isForPlayer)
         {
             _player.OnReload();
-            //_player.ReloadEvent?.Invoke();
         }
     }
 
@@ -73,50 +77,35 @@ public class Firearm : MonoBehaviour
         if (_isForPlayer)
         {
             _player.OnReloadEnd();
-            //_player.reloadEndEvent?.Invoke();
         }
     }
+    
     public bool GetIsForPlayer()
     {
         return _isForPlayer;
     }
-    //public void AddStatModifier(string statName, StatModifier statModifier)
-    //{
-    //    switch (statName)
-    //    {
-    //        case "firearmDamage":
-    //            Damage.AddModifier(statModifier);
-    //            break;
-    //        case "projectileSpeed":
-    //            ShootForce.AddModifier(statModifier);
-    //            break;
-    //        case "fireRate":
-    //            ShootsPerSecond.AddModifier(statModifier);
-    //            break;
-    //        case "bulletsSpread":
-    //            MaxShootDeflectionAngle.AddModifier(statModifier);
-    //            break;
-    //        case "magazineSize":
-    //            MagazineSize.AddModifier(statModifier);
-    //            break;
-    //        case "reloadSpeed":
-    //            ReloadSpeed.AddModifier(statModifier);
-    //            break;
-    //        case "projectileNumber":
-    //            SingleShootProjectile.AddModifier(statModifier);
-    //            break;
-    //    }
-    //}
+    
     private void Shoot()
     {
         Magazine.Decrease();
+        
         var projectiles = _projectileCreator.CreateProjectiles((int)SingleShootProjectile.Value, _ammo, gameObject.transform);
+        
         var direction = GetShotDirection();
+        
         foreach (var projectile in projectiles)
         {
+            var proj = projectile.GetComponent<Projectile>();
+
+            var sizeMod = new StatModifier(OperationType.Addition, ProjectileSize.Value);
+            proj.Size.AddModifier(sizeMod);
+            var pierceMod = new StatModifier(OperationType.Addition, ProjectilePierce.Value);
+            proj.MaximumLifePoints.AddModifier(pierceMod);
+
             var actualShotDirection = GetActualShotDirection(direction, MaxShootDeflectionAngle.Value);
-            projectile.GetComponent<Projectile>().Launch(actualShotDirection, ShootForce.Value);
+            proj.Launch(actualShotDirection, ShootForce.Value);
         }
+
         _previousShootTimer = MinShootInterval;
     }
 
@@ -163,11 +152,13 @@ public class Firearm : MonoBehaviour
         var shotDeflectionAngle = Range(-angleInRad, angleInRad);
         return Rotate(direction, shotDeflectionAngle);
     }
+    
     private float Range(float minInclusive, float maxInclusive)
     {
         var std = PeterAcklamInverseCDF.NormInv(UnityEngine.Random.value);
         return PeterAcklamInverseCDF.RandomGaussian(std, minInclusive, maxInclusive);
     }
+    
     private Vector2 Rotate(Vector2 point, float angle)
     {
         Vector2 rotatedPoint;

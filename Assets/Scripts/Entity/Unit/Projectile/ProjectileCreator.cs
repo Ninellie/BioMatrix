@@ -11,4 +11,18 @@ public class ProjectileCreator : MonoBehaviour
         }
         return projectiles;
     }
+    //public GameObject[] CreateProjectiles(int singleShotProjectiles, GameObject ammo, Transform firingPoint, StatModifier sizeMod, StatModifier pierceMod)
+    //{
+    //    var projectiles = new GameObject[singleShotProjectiles];
+    //    int i = 0;
+    //    foreach (var projectile in projectiles)
+    //    {
+    //        var proj = projectile.GetComponent<Projectile>();
+    //        proj.Size.AddModifier(sizeMod);
+    //        proj.MaximumLifePoints.AddModifier(pierceMod);
+    //        projectiles[i] = Instantiate(ammo, firingPoint.position, firingPoint.rotation);
+    //        i++;
+    //    }
+    //    return projectiles;
+    //}
 }
