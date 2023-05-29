@@ -58,7 +58,7 @@ public static class EffectRepository
             new List<(IEffect effect, int stackCount)>
             {
                 (effect: ToggleEffects["PlayerFireEventFireOffEventIsFireButtonPressedPlayerIsSameTurretTargetTrue"], stackCount: 1),
-                (effect: AttachModAdderEffects["PlayerTurretShootsPerSecondMulti50"], stackCount: 1)
+                (effect: AttachModAdderEffects["PlayerCurrentTurretFirearmShootsPerSecondMulti50"], stackCount: 1)
             }
         ),
         [nameof(CardTag.Gun) + nameof(CardTag.Turret) + 3] = new AttachEffectAdderEffect
@@ -68,7 +68,7 @@ public static class EffectRepository
             nameof(Player),
             new List<(IEffect effect, int stackCount)>
             {
-                (effect: EffectAdderWhileTrueEffects["PlayerCurrentFirearmMagazineIsFullPlayerTurretSingleShootProjectileAdd2"], stackCount: 1)
+                (effect: EffectAdderWhileTrueEffects["PlayerCurrentFirearmMagazineIsFullPlayerCurrentTurretFirearmSingleShootProjectileAdd2"], stackCount: 1)
             }
         ),
 
@@ -148,25 +148,25 @@ public static class EffectRepository
             }
         ),
         //Gun Turret 2
-        ["PlayerTurretShootsPerSecondMulti50"] = new AttachModAdderEffect
+        ["PlayerCurrentTurretFirearmShootsPerSecondMulti50"] = new AttachModAdderEffect
         (
-            "PlayerTurretShootsPerSecondMulti50",
+            "PlayerCurrentTurretFirearmShootsPerSecondMulti50",
             "",
             nameof(Player),
             new List<(StatModifier mod, string statPath)>
             {
-                (new StatModifier(OperationType.Multiplication, 50f), nameof(Player.TurretShootsPerSecond)),
+                (new StatModifier(OperationType.Multiplication, 50f), nameof(Player.CurrentTurretFirearm) + "." + nameof(Firearm.ShootsPerSecond)),
             }
         ),
         //Gun Turret 3
-        ["PlayerTurretSingleShootProjectileAdd2"] = new AttachModAdderEffect
+        ["PlayerCurrentTurretFirearmSingleShootProjectileAdd2"] = new AttachModAdderEffect
         (
-            "PlayerTurretSingleShootProjectileAdd2",
+            "PlayerCurrentTurretFirearmSingleShootProjectileAdd2",
             "",
             nameof(Player),
             new List<(StatModifier mod, string statPath)>
             {
-                (new StatModifier(OperationType.Addition, 2f), nameof(Player.TurretSingleShootProjectile)),
+                (new StatModifier(OperationType.Addition, 2f), nameof(Player.CurrentTurretFirearm) + "." + nameof(Firearm.SingleShootProjectile)),
             }
         ),
         //Gun Vitality 1
@@ -246,7 +246,7 @@ public static class EffectRepository
             EffectRepository.ToggleEffects["PlayerIsSameTurretTargetTrue"]
         ),
         //Gun Turret 3
-        ["PlayerCurrentFirearmMagazineIsFullPlayerTurretSingleShootProjectileAdd2"] = new EffectAdderWhileTrueEffect
+        ["PlayerCurrentFirearmMagazineIsFullPlayerCurrentTurretFirearmSingleShootProjectileAdd2"] = new EffectAdderWhileTrueEffect
         (
             "",
             "While magazine full all turrets get +2 projectiles",
@@ -264,7 +264,7 @@ public static class EffectRepository
             nameof(Player.CurrentFirearm) + "." +
             nameof(Player.CurrentFirearm.Magazine) + "." +
             nameof(Player.CurrentFirearm.Magazine.IsFull),
-            EffectRepository.AttachModAdderEffects["PlayerTurretSingleShootProjectileAdd2"]
+            EffectRepository.AttachModAdderEffects["PlayerCurrentTurretFirearmSingleShootProjectileAdd2"]
         ),
     };
 }
