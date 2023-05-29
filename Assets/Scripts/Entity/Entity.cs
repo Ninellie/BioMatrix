@@ -151,9 +151,9 @@ public class Entity : MonoBehaviour
         LifePoints.Fill();
     }
 
-    public void AddStatModifier(StatModifier statModifier, string statName)
+    public void AddStatModifier(StatModifier statModifier, string statPath)
     {
-        var stat = (Stat)EventHelper.GetPropByPath(this, statName);
+        var stat = (Stat)EventHelper.GetPropByPath(this, statPath);
         stat?.AddModifier(statModifier);
     }
     public void RemoveStatModifier(StatModifier statModifier, string statName)
