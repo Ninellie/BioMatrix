@@ -24,11 +24,13 @@ public class Firearm : MonoBehaviour
     [SerializeField] private LayerMask _enemyLayer;
     protected StatFactory statFactory;
     public Resource Magazine { get; set; }
-    private Reload _reload;
-    private ProjectileCreator _projectileCreator;
+    public bool IsEnable { get; set; } = true;
+
     public bool CanShoot => _previousShootTimer <= 0
                             && !Magazine.IsEmpty
                             && !_reload.IsInProcess;
+    private Reload _reload;
+    private ProjectileCreator _projectileCreator;
     private bool IsFireButtonPressed => !_isForPlayer || _player.IsFireButtonPressed;
 
     private float _previousShootTimer = 0;
@@ -60,6 +62,7 @@ public class Firearm : MonoBehaviour
 
     private void Update()
     {
+        if (!IsEnable) return;
         _previousShootTimer -= Time.deltaTime;
         if (!IsFireButtonPressed) return;
         if (CanShoot) Shoot();

@@ -38,7 +38,6 @@ public class Player : Unit
     public Firearm CurrentTurretFirearm { get; private set; }
     private readonly Stack<Turret> _currentTurrets = new();
     public bool IsSameTurretTarget { get; set; } = false;
-
     public Firearm CurrentFirearm { get; private set; }
     public bool IsFireButtonPressed { get; private set; } = false;
 
@@ -167,8 +166,8 @@ public class Player : Unit
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _invulnerability = GetComponent<Invulnerability>();
         _shieldSprite = _shield.GetComponent<SpriteRenderer>();
-        CurrentTurretFirearm = _turretWeaponPrefab.GetComponent<Firearm>();
 
+        CurrentTurretFirearm = Instantiate(_turretWeaponPrefab).GetComponent<Firearm>();
 
         MaxRechargeableShieldLayersCount = StatFactory.GetStat(settings.maxRechargeableShieldLayersCount);
         MaxShieldLayersCount = StatFactory.GetStat(settings.maxShieldLayersCount);
