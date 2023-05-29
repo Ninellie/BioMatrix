@@ -9,13 +9,13 @@ public enum CardTag
     Shield,
     Movement,
     Magnetism,
-    Experience,
+    Experience
 }
 
 [Serializable]
 public class ArrayCardRepository : ICardRepository
 {
-    private static readonly Card[] DefaultCards = new Card[]
+    private static readonly Card[] DefaultCards = 
     {
         new Card
         {
@@ -32,7 +32,7 @@ public class ArrayCardRepository : ICardRepository
             Title = "Gun 2",
             Description = "",
             DropWeight = 1,
-            Effects = new IEffect[]
+            Effects = new[]
             {
                 EffectRepository.CardEffects["Gun2"]
             },
@@ -42,9 +42,39 @@ public class ArrayCardRepository : ICardRepository
             Title = "Gun 3",
             Description = "",
             DropWeight = 1,
-            Effects = new IEffect[]
+            Effects = new[]
             {
                 EffectRepository.CardEffects["Gun3"]
+            },
+        },
+        new Card
+        {
+            Title = "Gun Turret 1",
+            Description = "",
+            DropWeight = 1,
+            Effects = new[]
+            {
+                EffectRepository.CardEffects["GunTurret1"]
+            }
+        },
+        new Card
+        {
+            Title = "Gun Turret 2",
+            Description = "",
+            DropWeight = 1,
+            Effects = new[]
+            {
+                EffectRepository.CardEffects["GunTurret2"]
+            },
+        },
+        new Card
+        {
+            Title = "Gun Turret 3",
+            Description = "",
+            DropWeight = 1,
+            Effects = new[]
+            {
+                EffectRepository.CardEffects["GunTurret3"]
             },
         },
     };
