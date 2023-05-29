@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-
-public class AddEffectOnAttach : IEffect
+﻿public class EffectAdderOnEventEffect : IEffect
 {
     public string Name { get; set; }
     public string Description { get; set; }
     public string TargetName { get; set; }
+    public PropTrigger Trigger { get; set; }
     public string Identifier { get; set; }
 
-    public List<(IEffect effect, int stackCount)> Effects { get; set; }
+    public IEffect Effect { get; set; }
 
     public bool IsTemporal { get; set; }
     public Stat Duration { get; set; }
@@ -16,71 +15,62 @@ public class AddEffectOnAttach : IEffect
 
     public bool IsStacking { get; set; }
     public bool IsStackSeparateDuration { get; set; }
-    public Stat MaxStackCount { get; set; }
     public Resource StacksCount { get; set; }
+    public Stat MaxStackCount { get; set; }
 
     private Entity _target;
 
     public void Attach(Entity target)
     {
         _target = target;
-        AddEffects();
+        AddEffect();
     }
 
     public void Detach()
     {
         while (StacksCount.IsEmpty)
         {
-            RemoveEffects();
+            RemoveEffect();
             StacksCount.Decrease();
         }
     }
 
     public void Subscribe(Entity target)
     {
-        StacksCount.IncrementEvent += AddEffects;
-        StacksCount.DecrementEvent += RemoveEffects;
+        EventHelper.AddActionByName(EventHelper.GetPropByPath(target, Trigger.Path), Trigger.Name, AddEffect);
+        StacksCount.IncrementEvent += AddEffect;
+        StacksCount.DecrementEvent += RemoveEffect;
     }
 
     public void Unsubscribe(Entity target)
     {
-        StacksCount.IncrementEvent -= AddEffects;
-        StacksCount.DecrementEvent -= RemoveEffects;
+        EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, Trigger.Path), Trigger.Name, AddEffect);
+        StacksCount.IncrementEvent -= AddEffect;
+        StacksCount.DecrementEvent -= RemoveEffect;
     }
 
-    private void AddEffects()
+    private void AddEffect()
     {
-        foreach (var tuple in Effects)
-        {
-            for (int i = 0; i < tuple.stackCount; i++)
-            {
-                _target.AddEffectStack(tuple.effect);
-            }
-            
-        }
+        _target.AddEffectStack(Effect);
     }
 
-    private void RemoveEffects()
+    private void RemoveEffect()
     {
-        foreach (var tuple in Effects)
-        {
-            for (int i = 0; i < tuple.stackCount; i++)
-            {
-                _target.RemoveEffectStack(tuple.effect);
-            }
-        }
+        _target.RemoveEffectStack(Effect);
     }
 
-    public AddEffectOnAttach(
+    public EffectAdderOnEventEffect(
         string name,
         string description,
         string targetName,
-        List<(IEffect effect, int stackCount)> effects
-    ) : this(
+        PropTrigger trigger,
+        IEffect effect
+        ) : this(
         name,
         description,
         targetName,
-        effects,
+        trigger,
+        effect,
         false,
         new Stat(0, false),
         false,
@@ -88,15 +78,15 @@ public class AddEffectOnAttach : IEffect
         false,
         false,
         new Stat(1, false)
-    )
+    ) 
     {
     }
-
-    public AddEffectOnAttach(
+    public EffectAdderOnEventEffect(
         string name,
         string description,
         string targetName,
-        List<(IEffect effect, int stackCount)> effects,
+        PropTrigger trigger,
+        IEffect effect,
         bool isTemporal,
         Stat duration,
         bool isDurationStacks,
@@ -109,7 +99,8 @@ public class AddEffectOnAttach : IEffect
         Name = name;
         Description = description;
         TargetName = targetName;
-        Effects = effects;
+        this.Trigger = trigger;
+        this.Effect = effect;
         IsTemporal = isTemporal;
         Duration = duration;
         IsDurationStacks = isDurationStacks;

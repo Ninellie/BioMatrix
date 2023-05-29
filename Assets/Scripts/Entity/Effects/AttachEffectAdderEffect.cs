@@ -1,15 +1,13 @@
-﻿public class AddEffectWhileTrue : IEffect
+﻿using System.Collections.Generic;
+
+public class AttachEffectAdderEffect : IEffect
 {
     public string Name { get; set; }
     public string Description { get; set; }
     public string TargetName { get; set; }
-
-    public IEffect Effect { get; set; }
-    public PropTrigger AddTrigger { get; set; }
-    public PropTrigger RemoveTrigger { get; set; }
-    public string ResourceConditionPath { get; set; }
-
     public string Identifier { get; set; }
+
+    public List<(IEffect effect, int stackCount)> Effects { get; set; }
 
     public bool IsTemporal { get; set; }
     public Stat Duration { get; set; }
@@ -18,70 +16,71 @@
 
     public bool IsStacking { get; set; }
     public bool IsStackSeparateDuration { get; set; }
-    public Resource StacksCount { get; set; }
     public Stat MaxStackCount { get; set; }
+    public Resource StacksCount { get; set; }
 
     private Entity _target;
 
     public void Attach(Entity target)
     {
         _target = target;
-        var isAddCondition = (bool)EventHelper.GetPropByPath(target, ResourceConditionPath);
-        if (isAddCondition)
-        {
-            AddEffect();
-        }
+        AddEffects();
     }
 
     public void Detach()
     {
-        RemoveEffect();
+        while (StacksCount.IsEmpty)
+        {
+            RemoveEffects();
+            StacksCount.Decrease();
+        }
     }
 
     public void Subscribe(Entity target)
     {
-        EventHelper.AddActionByName(EventHelper.GetPropByPath(target, AddTrigger.Path), AddTrigger.Name, AddEffect);
-        EventHelper.AddActionByName(EventHelper.GetPropByPath(target, RemoveTrigger.Path), RemoveTrigger.Name, RemoveEffect);
+        StacksCount.IncrementEvent += AddEffects;
+        StacksCount.DecrementEvent += RemoveEffects;
     }
 
     public void Unsubscribe(Entity target)
     {
-        EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, RemoveTrigger.Path), RemoveTrigger.Name, RemoveEffect);
-        EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, AddTrigger.Path), AddTrigger.Name, AddEffect);
+        StacksCount.IncrementEvent -= AddEffects;
+        StacksCount.DecrementEvent -= RemoveEffects;
     }
-    
-    private void AddEffect()
+
+    private void AddEffects()
     {
-        for (int i = 0; i < StacksCount.GetValue(); i++)
+        foreach (var tuple in Effects)
         {
-            _target.AddEffectStack(Effect);
+            for (int i = 0; i < tuple.stackCount; i++)
+            {
+                _target.AddEffectStack(tuple.effect);
+            }
+            
         }
     }
 
-    private void RemoveEffect()
+    private void RemoveEffects()
     {
-        for (int i = 0; i < StacksCount.GetValue(); i++)
+        foreach (var tuple in Effects)
         {
-            _target.RemoveEffectStack(Effect);
+            for (int i = 0; i < tuple.stackCount; i++)
+            {
+                _target.RemoveEffectStack(tuple.effect);
+            }
         }
     }
 
-    public AddEffectWhileTrue(
+    public AttachEffectAdderEffect(
         string name,
         string description,
         string targetName,
-        IEffect effect,
-        PropTrigger addTrigger,
-        PropTrigger removeTrigger,
-        string resourceConditionPath
+        List<(IEffect effect, int stackCount)> effects
     ) : this(
         name,
         description,
         targetName,
-        effect,
-        addTrigger,
-        removeTrigger,
-        resourceConditionPath,
+        effects,
         false,
         new Stat(0, false),
         false,
@@ -93,14 +92,11 @@
     {
     }
 
-    public AddEffectWhileTrue(
+    public AttachEffectAdderEffect(
         string name,
         string description,
         string targetName,
-        IEffect effect,
-        PropTrigger addTrigger,
-        PropTrigger removeTrigger,
-        string resourceConditionPath,
+        List<(IEffect effect, int stackCount)> effects,
         bool isTemporal,
         Stat duration,
         bool isDurationStacks,
@@ -113,10 +109,7 @@
         Name = name;
         Description = description;
         TargetName = targetName;
-        Effect = effect;
-        AddTrigger = addTrigger;
-        RemoveTrigger = removeTrigger;
-        ResourceConditionPath = resourceConditionPath;
+        Effects = effects;
         IsTemporal = isTemporal;
         Duration = duration;
         IsDurationStacks = isDurationStacks;

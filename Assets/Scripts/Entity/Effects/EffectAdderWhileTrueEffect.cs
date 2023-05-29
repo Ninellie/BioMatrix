@@ -1,12 +1,16 @@
-﻿public class AddEffectOn : IEffect
+﻿public class EffectAdderWhileTrueEffect : IEffect
 {
     public string Name { get; set; }
     public string Description { get; set; }
     public string TargetName { get; set; }
-    public PropTrigger Trigger { get; set; }
-    public string Identifier { get; set; }
+
+    public PropTrigger AddTrigger { get; set; }
+    public PropTrigger RemoveTrigger { get; set; }
+    public string ResourceConditionPath { get; set; }
 
     public IEffect Effect { get; set; }
+
+    public string Identifier { get; set; }
 
     public bool IsTemporal { get; set; }
     public Stat Duration { get; set; }
@@ -23,53 +27,61 @@
     public void Attach(Entity target)
     {
         _target = target;
-        AddEffect();
+        var isAddCondition = (bool)EventHelper.GetPropByPath(target, ResourceConditionPath);
+        if (isAddCondition)
+        {
+            AddEffect();
+        }
     }
 
     public void Detach()
     {
-        while (StacksCount.IsEmpty)
-        {
-            RemoveEffect();
-            StacksCount.Decrease();
-        }
+        RemoveEffect();
     }
 
     public void Subscribe(Entity target)
     {
-        EventHelper.AddActionByName(EventHelper.GetPropByPath(target, Trigger.Path), Trigger.Name, AddEffect);
-        StacksCount.IncrementEvent += AddEffect;
-        StacksCount.DecrementEvent += RemoveEffect;
+        EventHelper.AddActionByName(EventHelper.GetPropByPath(target, AddTrigger.Path), AddTrigger.Name, AddEffect);
+        EventHelper.AddActionByName(EventHelper.GetPropByPath(target, RemoveTrigger.Path), RemoveTrigger.Name, RemoveEffect);
     }
 
     public void Unsubscribe(Entity target)
     {
-        EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, Trigger.Path), Trigger.Name, AddEffect);
-        StacksCount.IncrementEvent -= AddEffect;
-        StacksCount.DecrementEvent -= RemoveEffect;
+        EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, RemoveTrigger.Path), RemoveTrigger.Name, RemoveEffect);
+        EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, AddTrigger.Path), AddTrigger.Name, AddEffect);
     }
-
+    
     private void AddEffect()
     {
-        _target.AddEffectStack(Effect);
+        for (int i = 0; i < StacksCount.GetValue(); i++)
+        {
+            _target.AddEffectStack(Effect);
+        }
     }
 
     private void RemoveEffect()
     {
-        _target.RemoveEffectStack(Effect);
+        for (int i = 0; i < StacksCount.GetValue(); i++)
+        {
+            _target.RemoveEffectStack(Effect);
+        }
     }
 
-    public AddEffectOn(
+    public EffectAdderWhileTrueEffect(
         string name,
         string description,
         string targetName,
-        PropTrigger trigger,
+        PropTrigger addTrigger,
+        PropTrigger removeTrigger,
+        string resourceConditionPath,
         IEffect effect
-        ) : this(
+    ) : this(
         name,
         description,
         targetName,
-        trigger,
+        addTrigger,
+        removeTrigger,
+        resourceConditionPath,
         effect,
         false,
         new Stat(0, false),
@@ -78,14 +90,17 @@
         false,
         false,
         new Stat(1, false)
-    ) 
+    )
     {
     }
-    public AddEffectOn(
+
+    public EffectAdderWhileTrueEffect(
         string name,
         string description,
         string targetName,
-        PropTrigger trigger,
+        PropTrigger addTrigger,
+        PropTrigger removeTrigger,
+        string resourceConditionPath,
         IEffect effect,
         bool isTemporal,
         Stat duration,
@@ -99,8 +114,10 @@
         Name = name;
         Description = description;
         TargetName = targetName;
-        this.Trigger = trigger;
-        this.Effect = effect;
+        AddTrigger = addTrigger;
+        RemoveTrigger = removeTrigger;
+        ResourceConditionPath = resourceConditionPath;
+        Effect = effect;
         IsTemporal = isTemporal;
         Duration = duration;
         IsDurationStacks = isDurationStacks;

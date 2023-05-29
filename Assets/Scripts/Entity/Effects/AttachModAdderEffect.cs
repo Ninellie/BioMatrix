@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-public class AddModOnAttach : IEffect
+public class AttachModAdderEffect : IEffect
 {
     public string Name { get; set; }
     public string Description { get; set; }
     public string TargetName { get; set; }
     public string Identifier { get; set; }
 
-    public List<(StatModifier mod, string statName)> Modifiers { get; set; }
+    public List<(StatModifier mod, string statPath)> Modifiers { get; set; }
 
     public bool IsTemporal { get; set; }
     public Stat Duration { get; set; }
@@ -52,7 +52,7 @@ public class AddModOnAttach : IEffect
     {
         foreach (var tuple in Modifiers)
         {
-            _target.AddStatModifier(tuple.mod, tuple.statName);
+            _target.AddStatModifier(tuple.mod, tuple.statPath);
         }
     }
 
@@ -60,15 +60,15 @@ public class AddModOnAttach : IEffect
     {
         foreach (var tuple in Modifiers)
         {
-            _target.RemoveStatModifier(tuple.mod, tuple.statName);
+            _target.RemoveStatModifier(tuple.mod, tuple.statPath);
         }
     }
 
-    public AddModOnAttach(
+    public AttachModAdderEffect(
         string name,
         string description,
         string targetName,
-        List<(StatModifier mod, string statName)> modifiers
+        List<(StatModifier mod, string statPath)> modifiers
         ) : this(
         name,
         description,
@@ -85,11 +85,11 @@ public class AddModOnAttach : IEffect
     {
     }
 
-    public AddModOnAttach(
+    public AttachModAdderEffect(
         string name,
         string description,
         string targetName,
-        List<(StatModifier mod, string statName)> modifiers,
+        List<(StatModifier mod, string statPath)> modifiers,
         bool isTemporal,
         Stat duration,
         bool isDurationStacks,
