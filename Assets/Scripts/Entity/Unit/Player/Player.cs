@@ -35,6 +35,7 @@ public class Player : Unit
     [SerializeField] private GameObject _turretPrefab;
     [SerializeField] private GameObject _turretWeaponPrefab;
 
+    private Firearm CurrentTurretFirearm { get; private set; }
     private readonly Stack<Turret> _currentTurrets = new();
     public bool IsSameTurretTarget { get; set; } = false;
 
@@ -79,15 +80,7 @@ public class Player : Unit
 
     private void Awake() => BaseAwake(Settings);
 
-    private void Start()
-    {
-        GameTimeScheduler.Schedule(Freeze, 0.2f);
-        ShieldLayers.Increase((int)MaxRechargeableShieldLayersCount.Value);
-        UpdateShieldAlpha();
-        UpdateShield();
-
-        UpdateTurrets();
-    }
+    private void Start() => BaseStart();
 
     private void OnEnable() => BaseOnEnable();
     
@@ -194,6 +187,17 @@ public class Player : Unit
         _movementController = new MovementControllerPlayer(this);
     }
 
+    protected void BaseStart()
+    {
+        GameTimeScheduler.Schedule(Freeze, 0.2f);
+
+        ShieldLayers.Increase((int)MaxRechargeableShieldLayersCount.Value);
+        UpdateShieldAlpha();
+        UpdateShield();
+
+        UpdateTurrets();
+    }
+
     protected override void BaseUpdate()
     {
         base.BaseUpdate();
@@ -233,11 +237,11 @@ public class Player : Unit
 
         base.BaseOnDisable();
     }
-
+    
     private void UpdateTurrets()
     {
-        int dif = (int)TurretCount.Value - _currentTurrets.Count;
-        bool isAboveZero = dif > 0;
+        var dif = (int)TurretCount.Value - _currentTurrets.Count;
+        var isAboveZero = dif > 0;
         float delay = 1;
 
         while (dif != 0)
@@ -262,10 +266,10 @@ public class Player : Unit
         _movementController.KnockBackFromEntity(collisionEntity);
     }
 
-    protected void KnockBackFrom(Entity collisionEntity, Vector2 position)
-    {
-        _movementController.KnockBackFromPosition(collisionEntity, position);
-    }
+    //protected void KnockBackFrom(Entity collisionEntity, Vector2 position)
+    //{
+    //    _movementController.KnockBackFromPosition(collisionEntity, position);
+    //}
 
     protected void KnockBackToEnclosureCenter(Entity collisionEntity)
     {
@@ -330,7 +334,6 @@ public class Player : Unit
 
     public void CreateTurret()
     {
-        Debug.LogWarning("Turret creating");
         var turretGameObject = Instantiate(_turretPrefab);
 
         turretGameObject.transform.SetParent(this.gameObject.transform);
@@ -340,7 +343,7 @@ public class Player : Unit
         createdTurret.SetAttractor(this.gameObject);
 
         createdTurret.CreateWeapon(_turretWeaponPrefab);
-
+        createdTurret.CurrentFirearm.SetStats(CurrentTurretFirearm);
         _currentTurrets.Push(createdTurret);
     }
 

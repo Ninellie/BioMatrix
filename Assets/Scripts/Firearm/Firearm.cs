@@ -57,11 +57,25 @@ public class Firearm : MonoBehaviour
         Magazine.Fill();
         _player = FindObjectOfType<Player>();
     }
+
     private void Update()
     {
         _previousShootTimer -= Time.deltaTime;
         if (!IsFireButtonPressed) return;
         if (CanShoot) Shoot();
+    }
+
+    public void SetStats(Firearm firearm)
+    {
+        Damage = firearm.Damage;
+        ShootForce = firearm.ShootForce;
+        ShootsPerSecond = firearm.ShootsPerSecond;
+        MaxShootDeflectionAngle = firearm.MaxShootDeflectionAngle;
+        MagazineCapacity = firearm.MagazineCapacity;
+        ReloadSpeed = firearm.ReloadSpeed;
+        SingleShootProjectile = firearm.SingleShootProjectile;
+        ProjectileSize = firearm.ProjectileSize;
+        ProjectilePierce = firearm.ProjectilePierce;
     }
 
     public void OnReload()
