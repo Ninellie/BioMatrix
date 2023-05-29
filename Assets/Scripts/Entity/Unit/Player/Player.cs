@@ -35,7 +35,7 @@ public class Player : Unit
     [SerializeField] private GameObject _turretPrefab;
     [SerializeField] private GameObject _turretWeaponPrefab;
 
-    private Firearm CurrentTurretFirearm { get; private set; }
+    public Firearm CurrentTurretFirearm { get; private set; }
     private readonly Stack<Turret> _currentTurrets = new();
     public bool IsSameTurretTarget { get; set; } = false;
 
@@ -167,6 +167,8 @@ public class Player : Unit
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _invulnerability = GetComponent<Invulnerability>();
         _shieldSprite = _shield.GetComponent<SpriteRenderer>();
+        CurrentTurretFirearm = _turretWeaponPrefab.GetComponent<Firearm>();
+
 
         MaxRechargeableShieldLayersCount = StatFactory.GetStat(settings.maxRechargeableShieldLayersCount);
         MaxShieldLayersCount = StatFactory.GetStat(settings.maxShieldLayersCount);
@@ -344,6 +346,7 @@ public class Player : Unit
 
         createdTurret.CreateWeapon(_turretWeaponPrefab);
         createdTurret.CurrentFirearm.SetStats(CurrentTurretFirearm);
+
         _currentTurrets.Push(createdTurret);
     }
 
