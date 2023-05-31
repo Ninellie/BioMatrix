@@ -90,10 +90,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc11a82609b91584a93b9ccb67ca2afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 5
   shootForce: 500
   shootsPerSecond: 1
-  maxShootDeflectionAngle: 1
+  maxShootDeflectionAngle: 15
   magazineCapacity: 1
   reloadSpeed: 1000
   singleShootProjectile: 1

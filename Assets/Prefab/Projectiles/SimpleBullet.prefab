@@ -122,7 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b57a2a00642ad84892aa8d396643e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
   timeToStop: 1
 --- !u!114 &1504994257502739578
 MonoBehaviour:
@@ -140,7 +139,7 @@ MonoBehaviour:
   maximumLife: 1
   lifeRegenerationInSecond: 0
   knockbackPower: 10
-  damage: 2
+  damage: 0
   speed: 700
   accelerationSpeed: 0
   rotationSpeed: 0

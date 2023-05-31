@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 9206584794608382483}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3307108730159776810}
@@ -152,12 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5d5ad2b00e3614ba992d85a8b84906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 0
-  maximumLife: 0
+  size: 1
+  maximumLife: 1
   lifeRegenerationInSecond: 0
   knockbackPower: 0
   damage: 0
-  turretCount: 0
+  turretCount: 1
 --- !u!114 &-9047308907296507604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,3 +172,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turretPrefab: {fileID: 9206584794608382483, guid: e4b56dd8ab154984597f19cc0101b423, type: 3}
   _turretWeaponPrefab: {fileID: 3233653779076600719, guid: fc06b7e8f38d50e48892e3fde399d532, type: 3}
+  _isSameTurretTarget: 0

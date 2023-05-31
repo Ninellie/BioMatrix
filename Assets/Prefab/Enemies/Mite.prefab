@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2423b6cbbaa2b1d44a8b712cd8ecc5af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
   _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
   _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
   _enemyType: 1
@@ -69,14 +68,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 0.3
-  maximumLife: 1
+  maximumLife: 5
   lifeRegenerationInSecond: 0
   knockbackPower: 150
   damage: 1
   speed: 300
   accelerationSpeed: 0
   rotationSpeed: 2
-  spawnWeight: 1
+  spawnWeight: 0
 --- !u!114 &-3291230919162905398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +145,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &5218541398406255388
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -163,7 +162,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-2167475189181900128
 MonoBehaviour:
   m_ObjectHideFlags: 0
