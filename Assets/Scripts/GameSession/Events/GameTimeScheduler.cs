@@ -47,7 +47,7 @@ public class GameTimeScheduler : MonoBehaviour
             
             if (currentTime > item.AbsoluteTime || item.IsBeforehand)
             {
-                item.Action?.Invoke();
+                item.Action?.Invoke(); //?
                 _indexesToRemove.Add(i);
             }
         }

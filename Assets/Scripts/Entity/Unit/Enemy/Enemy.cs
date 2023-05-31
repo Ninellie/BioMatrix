@@ -59,6 +59,7 @@ public class Enemy : Unit
             Debug.LogWarning("OnTriggerEnter2D with game object without Entity component");
             return;
         }
+
         var collisionEntity = otherCollider2D.gameObject.GetComponent<Entity>();
         var thrustPower = collisionEntity.KnockbackPower.Value;
 

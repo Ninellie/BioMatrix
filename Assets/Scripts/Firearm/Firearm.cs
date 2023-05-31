@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -7,7 +8,12 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(ProjectileCreator))]
 public class Firearm : MonoBehaviour
 {
+    [SerializeField] private GameObject _ammo;
+    [SerializeField] private bool _isForPlayer;
+    [SerializeField] private LayerMask _enemyLayer;
+
     public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
+    public Resource Magazine { get; set; }
 
     public Stat Damage { get; private set; }
     public Stat ShootForce { get; private set; }
@@ -18,24 +24,23 @@ public class Firearm : MonoBehaviour
     public Stat SingleShootProjectile { get; private set; }
     public Stat ProjectileSize { get; private set; }
     public Stat ProjectilePierce { get; private set; }
-    
-    [SerializeField] private GameObject _ammo;
-    [SerializeField] private bool _isForPlayer;
-    [SerializeField] private LayerMask _enemyLayer;
-    protected StatFactory statFactory;
-    public Resource Magazine { get; set; }
-    public bool IsEnable { get; set; } = true;
 
+    public event Action ReloadEndEvent;
+    public event Action ReloadEvent;
+
+    public bool IsEnable { get; set; } = true;
     public bool CanShoot => _previousShootTimer <= 0
                             && !Magazine.IsEmpty
                             && !_reload.IsInProcess;
-    private Reload _reload;
+
+    private StatFactory _statFactory;
     private ProjectileCreator _projectileCreator;
-    private bool IsFireButtonPressed => !_isForPlayer || _player.IsFireButtonPressed;
+    private Reload _reload;
+    private Player _player;
+    private bool IsFireButtonPressed => IsEnable && !_isForPlayer || _player.IsFireButtonPressed;
 
     private float _previousShootTimer = 0;
     private float MinShootInterval => 1f / ShootsPerSecond.Value;
-    private Player _player;
     private void Awake() => BaseAwake(Settings);
     private void BaseAwake(FirearmStatsSettings settings)
     {
@@ -43,17 +48,17 @@ public class Firearm : MonoBehaviour
         _reload = GetComponent<Reload>();
         _projectileCreator = GetComponent<ProjectileCreator>();
 
-        statFactory = Camera.main.GetComponent<StatFactory>();
+        _statFactory = Camera.main.GetComponent<StatFactory>();
 
-        Damage = statFactory.GetStat(settings.damage);
-        ShootForce = statFactory.GetStat(settings.shootForce);
-        ShootsPerSecond = statFactory.GetStat(settings.shootsPerSecond);
-        MaxShootDeflectionAngle = statFactory.GetStat(settings.maxShootDeflectionAngle);
-        MagazineCapacity = statFactory.GetStat(settings.magazineCapacity);
-        ReloadSpeed = statFactory.GetStat(settings.reloadSpeed);
-        SingleShootProjectile = statFactory.GetStat(settings.singleShootProjectile);
-        ProjectileSize = statFactory.GetStat(settings.projectileSize);
-        ProjectilePierce = statFactory.GetStat(settings.projectilePierce);
+        Damage = _statFactory.GetStat(settings.damage);
+        ShootForce = _statFactory.GetStat(settings.shootForce);
+        ShootsPerSecond = _statFactory.GetStat(settings.shootsPerSecond);
+        MaxShootDeflectionAngle = _statFactory.GetStat(settings.maxShootDeflectionAngle);
+        MagazineCapacity = _statFactory.GetStat(settings.magazineCapacity);
+        ReloadSpeed = _statFactory.GetStat(settings.reloadSpeed);
+        SingleShootProjectile = _statFactory.GetStat(settings.singleShootProjectile);
+        ProjectileSize = _statFactory.GetStat(settings.projectileSize);
+        ProjectilePierce = _statFactory.GetStat(settings.projectilePierce);
         
         Magazine = new Resource(0, MagazineCapacity);
         Magazine.Fill();
@@ -80,23 +85,15 @@ public class Firearm : MonoBehaviour
         ProjectileSize = firearm.ProjectileSize;
         ProjectilePierce = firearm.ProjectilePierce;
     }
-
     public void OnReload()
     {
-        if (_isForPlayer)
-        {
-            _player.OnReload();
-        }
+        ReloadEvent?.Invoke();
     }
-
     public void OnReloadEnd()
     {
-        if (_isForPlayer)
-        {
-            _player.OnReloadEnd();
-        }
+        ReloadEndEvent?.Invoke();
     }
-    
+
     public bool GetIsForPlayer()
     {
         return _isForPlayer;
@@ -116,8 +113,12 @@ public class Firearm : MonoBehaviour
 
             var sizeMod = new StatModifier(OperationType.Addition, ProjectileSize.Value);
             proj.Size.AddModifier(sizeMod);
+
             var pierceMod = new StatModifier(OperationType.Addition, ProjectilePierce.Value);
             proj.MaximumLifePoints.AddModifier(pierceMod);
+
+            var damageMod = new StatModifier(OperationType.Addition, Damage.Value);
+            proj.Damage.AddModifier(pierceMod);
 
             var actualShotDirection = GetActualShotDirection(direction, MaxShootDeflectionAngle.Value);
             proj.Launch(actualShotDirection, ShootForce.Value);

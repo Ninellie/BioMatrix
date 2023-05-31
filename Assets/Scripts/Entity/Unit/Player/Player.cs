@@ -7,10 +7,17 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerStatsSettings))]
 public class Player : Unit
 {
+    [SerializeField] private LayerMask _enemyLayer;
+    [SerializeField] private GameObject _shield;
+    [SerializeField] private SpriteRenderer _shieldSprite;
+    [SerializeField] private float _alphaPerLayer = 0.2f;
+    [SerializeField] private Color _shieldColor = Color.cyan;
+    [SerializeField] private float _shieldRepulseRadius = 250f;
+    [SerializeField] private Transform _firePoint;
+    
     public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
 
     public Stat MagnetismRadius { get; private set; }
-    public Stat TurretCount { get; private set; }
     public Stat MaxShieldLayersCount { get; private set; }
     public Stat MaxRechargeableShieldLayersCount { get; private set; }
     public Stat ShieldLayerRechargeRatePerSecond { get; private set; }
@@ -20,25 +27,12 @@ public class Player : Unit
     public event Action GamePausedEvent;
     public event Action LevelUpEvent;
     public event Action ExperienceTakenEvent;
-    public event Action ReloadEndEvent;
-    public event Action ReloadEvent;
     public event Action FireEvent;
     public event Action FireOffEvent;
     
-    [SerializeField] private LayerMask _enemyLayer;
-    [SerializeField] private GameObject _shield;
-    [SerializeField] private SpriteRenderer _shieldSprite;
-    [SerializeField] private float _alphaPerLayer = 0.2f;
-    [SerializeField] private Color _shieldColor = Color.cyan;
-    [SerializeField] private float _shieldRepulseRadius = 250f;
-    [SerializeField] private Transform _firePoint;
-    [SerializeField] private GameObject _turretPrefab;
-    [SerializeField] private GameObject _turretWeaponPrefab;
 
-    public Firearm CurrentTurretFirearm { get; private set; }
-    private readonly Stack<Turret> _currentTurrets = new();
-    public bool IsSameTurretTarget { get; set; } = false;
-    public Firearm CurrentFirearm { get; private set; }
+    public TurretHub TurretHub { get; set; }
+    public Firearm Firearm { get; private set; }
     public bool IsFireButtonPressed { get; private set; } = false;
 
     public int Level
@@ -84,12 +78,99 @@ public class Player : Unit
     private void OnEnable() => BaseOnEnable();
     
     private void OnDisable() => BaseOnDisable();
-    
-    private void Update() => BaseUpdate();
-    
+
     private void FixedUpdate() => BaseFixedUpdate();
 
-    private void OnCollisionEnter2D(Collision2D collision2D)
+    private void OnCollisionEnter2D(Collision2D collision2D) => BaseOnCollisionEnter2D(collision2D);
+    
+    private void Update() => BaseUpdate();
+
+    private void OnDrawGizmosSelected() => BaseOnDrawGizmosSelected();
+
+    private void OnDrawGizmos() => BaseOnDrawGizmos();
+
+    protected void BaseAwake(PlayerStatsSettings settings)
+    {
+        Debug.Log($"{gameObject.name} {nameof(Player)} Awake");
+        base.BaseAwake(settings);
+
+        _level = InitialLevel;
+        _experience = InitialExperience;
+
+        _circleCollider = GetComponent<CircleCollider2D>();
+        _capsuleCollider = GetComponent<CapsuleCollider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _invulnerability = GetComponent<Invulnerability>();
+        _shieldSprite = _shield.GetComponent<SpriteRenderer>();
+
+        MaxRechargeableShieldLayersCount = StatFactory.GetStat(settings.maxRechargeableShieldLayersCount);
+        MaxShieldLayersCount = StatFactory.GetStat(settings.maxShieldLayersCount);
+        ShieldLayerRechargeRatePerSecond = StatFactory.GetStat(settings.shieldLayerRechargeRate / 60f);
+        MagnetismRadius = StatFactory.GetStat(settings.magnetismRadius);
+        
+
+        _circleCollider.radius = MagnetismRadius.Value;
+
+        if (MagnetismRadius.Value < 0)
+        {
+            _circleCollider.radius = 0;
+        }
+
+        ShieldLayers = new Resource(0, MaxShieldLayersCount, ShieldLayerRechargeRatePerSecond,
+            MaxRechargeableShieldLayersCount);
+
+        _movementController = new MovementControllerPlayer(this);
+    }
+
+    protected override void BaseOnEnable()
+    {
+        base.BaseOnEnable();
+
+        foreach (var effect in effects)
+        {
+            effect.Subscribe(this);
+        }
+
+        ShieldLayers.EmptyEvent += UpdateShield;
+        ShieldLayers.NotEmptyEvent += UpdateShield;
+        ShieldLayers.ValueChangedEvent += UpdateShieldAlpha;
+
+        if (MagnetismRadius != null) MagnetismRadius.ValueChangedEvent += ChangeCurrentMagnetismRadius;
+
+    }
+
+    protected override void BaseOnDisable()
+    {
+        foreach (var effect in effects)
+        {
+            effect.Unsubscribe(this);
+        }
+
+        ShieldLayers.EmptyEvent -= UpdateShield;
+        ShieldLayers.NotEmptyEvent -= UpdateShield;
+        ShieldLayers.ValueChangedEvent -= UpdateShieldAlpha;
+
+        if (MagnetismRadius != null) MagnetismRadius.ValueChangedEvent -= ChangeCurrentMagnetismRadius;
+
+
+        base.BaseOnDisable();
+    }
+
+    protected void BaseStart()
+    {
+        GameTimeScheduler.Schedule(Freeze, 0.2f);
+
+        ShieldLayers.Increase((int)MaxRechargeableShieldLayersCount.Value);
+        UpdateShieldAlpha();
+        UpdateShield();
+    }
+
+    protected void BaseFixedUpdate()
+    {
+        _movementController.FixedUpdateStep();
+    }
+
+    private void BaseOnCollisionEnter2D(Collision2D collision2D)
     {
         Collider2D otherCollider2D = collision2D.collider;
         if (!otherCollider2D.gameObject.TryGetComponent<Entity>(out Entity entity))
@@ -132,13 +213,13 @@ public class Player : Unit
         }
     }
 
-    private void OnDrawGizmosSelected()
+    protected override void BaseUpdate()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _shieldRepulseRadius);
+        base.BaseUpdate();
+        ShieldLayers.TimeToRecover += Time.deltaTime;
     }
 
-    private void OnDrawGizmos()
+    private void BaseOnDrawGizmos()
     {
         if (_movementController is null)
         {
@@ -148,129 +229,16 @@ public class Player : Unit
         Gizmos.DrawLine(Rb2D.transform.position, _movementController.GetVelocity() + (Vector2)Rb2D.transform.position);
     }
 
-    protected void BaseFixedUpdate()
+    private void BaseOnDrawGizmosSelected()
     {
-        _movementController.FixedUpdateStep();
-    }
-
-    protected void BaseAwake(PlayerStatsSettings settings)
-    {
-        Debug.Log($"{gameObject.name} Player Awake");
-        base.BaseAwake(settings);
-
-        _level = InitialLevel;
-        _experience = InitialExperience;
-
-        _circleCollider = GetComponent<CircleCollider2D>();
-        _capsuleCollider = GetComponent<CapsuleCollider2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _invulnerability = GetComponent<Invulnerability>();
-        _shieldSprite = _shield.GetComponent<SpriteRenderer>();
-
-        CurrentTurretFirearm = Instantiate(_turretWeaponPrefab).GetComponent<Firearm>();
-
-        MaxRechargeableShieldLayersCount = StatFactory.GetStat(settings.maxRechargeableShieldLayersCount);
-        MaxShieldLayersCount = StatFactory.GetStat(settings.maxShieldLayersCount);
-        ShieldLayerRechargeRatePerSecond = StatFactory.GetStat(settings.shieldLayerRechargeRate / 60f);
-        MagnetismRadius = StatFactory.GetStat(settings.magnetismRadius);
-        TurretCount = StatFactory.GetStat(settings.turretCount);
-
-        _circleCollider.radius = MagnetismRadius.Value;
-
-        if (MagnetismRadius.Value < 0)
-        {
-            _circleCollider.radius = 0;
-        }
-
-        ShieldLayers = new Resource(0, MaxShieldLayersCount, ShieldLayerRechargeRatePerSecond,
-            MaxRechargeableShieldLayersCount);
-
-        _movementController = new MovementControllerPlayer(this);
-    }
-
-    protected void BaseStart()
-    {
-        GameTimeScheduler.Schedule(Freeze, 0.2f);
-
-        ShieldLayers.Increase((int)MaxRechargeableShieldLayersCount.Value);
-        UpdateShieldAlpha();
-        UpdateShield();
-
-        UpdateTurrets();
-    }
-
-    protected override void BaseUpdate()
-    {
-        base.BaseUpdate();
-        ShieldLayers.TimeToRecover += Time.deltaTime;
-    }
-
-    protected override void BaseOnEnable()
-    {
-        base.BaseOnEnable();
-
-        foreach (var effect in effects)
-        {
-            effect.Subscribe(this);
-        }
-
-        ShieldLayers.EmptyEvent += UpdateShield;
-        ShieldLayers.NotEmptyEvent += UpdateShield;
-        ShieldLayers.ValueChangedEvent += UpdateShieldAlpha;
-
-        if (MagnetismRadius != null) MagnetismRadius.ValueChangedEvent += ChangeCurrentMagnetismRadius;
-        if (TurretCount != null) TurretCount.ValueChangedEvent += UpdateTurrets;
-    }
-
-    protected override void BaseOnDisable()
-    {
-        foreach (var effect in effects)
-        {
-            effect.Unsubscribe(this);
-        }
-
-        ShieldLayers.EmptyEvent -= UpdateShield;
-        ShieldLayers.NotEmptyEvent -= UpdateShield;
-        ShieldLayers.ValueChangedEvent -= UpdateShieldAlpha;
-
-        if (MagnetismRadius != null) MagnetismRadius.ValueChangedEvent -= ChangeCurrentMagnetismRadius;
-        if (TurretCount != null) TurretCount.ValueChangedEvent -= UpdateTurrets;
-
-        base.BaseOnDisable();
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _shieldRepulseRadius);
     }
     
-    private void UpdateTurrets()
-    {
-        var dif = (int)TurretCount.Value - _currentTurrets.Count;
-        var isAboveZero = dif > 0;
-        float delay = 1;
-
-        while (dif != 0)
-        {
-            if (isAboveZero)
-            {
-                Invoke(nameof(CreateTurret), delay);
-                dif--;
-            }
-            else
-            {
-                Invoke(nameof(DestroyTurret), delay);
-                dif++;
-            }
-
-            delay++;
-        }
-    }
-
     protected void KnockBackFrom(Entity collisionEntity)
     {
         _movementController.KnockBackFromEntity(collisionEntity);
     }
-
-    //protected void KnockBackFrom(Entity collisionEntity, Vector2 position)
-    //{
-    //    _movementController.KnockBackFromPosition(collisionEntity, position);
-    //}
 
     protected void KnockBackToEnclosureCenter(Entity collisionEntity)
     {
@@ -330,29 +298,7 @@ public class Player : Unit
 
         w.transform.position = _firePoint.transform.position;
         var firearm = w.GetComponent<Firearm>();
-        CurrentFirearm = firearm;
-    }
-
-    public void CreateTurret()
-    {
-        var turretGameObject = Instantiate(_turretPrefab);
-
-        turretGameObject.transform.SetParent(this.gameObject.transform);
-
-        var createdTurret = turretGameObject.GetComponent<Turret>();
-
-        createdTurret.SetAttractor(this.gameObject);
-
-        createdTurret.CreateWeapon(_turretWeaponPrefab);
-        createdTurret.CurrentFirearm.SetStats(CurrentTurretFirearm);
-
-        _currentTurrets.Push(createdTurret);
-    }
-
-    public void DestroyTurret()
-    {
-        var turret = _currentTurrets.Pop();
-        turret.Destroy();
+        Firearm = firearm;
     }
 
     public void OnMove(InputValue input)
@@ -389,14 +335,5 @@ public class Player : Unit
     {
         GamePausedEvent?.Invoke();
         Debug.Log("Game is active");
-    }
-
-    public virtual void OnReload()
-    {
-        ReloadEvent?.Invoke();
-    }
-    public virtual void OnReloadEnd()
-    {
-        ReloadEndEvent?.Invoke();
     }
 }

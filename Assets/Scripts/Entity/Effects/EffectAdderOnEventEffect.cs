@@ -23,7 +23,6 @@
     public void Attach(Entity target)
     {
         _target = target;
-        AddEffect();
     }
 
     public void Detach()

@@ -6,7 +6,11 @@
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:613783dc1674e844b87788ea74ede0f6"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor",
+        "WSA",
+        "WindowsStandalone64"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

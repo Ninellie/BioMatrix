@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Turret : Unit
 {
+    [SerializeField] private Transform _firePoint;
+    [SerializeField] private TurretHub _attractor;
+
     public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
     public Firearm CurrentFirearm { get; private set; }
 
-    [SerializeField] private Transform _firePoint;
-    [SerializeField] private GameObject _attractor;
-    
     private MovementControllerTurret _movementController;
 
     private void Awake() => BaseAwake(Settings);
@@ -47,11 +47,11 @@ public class Turret : Unit
     
     public void SetAttractor(GameObject attractor)
     {
-        _attractor = attractor;
+        _attractor = attractor.GetComponent<TurretHub>();
     }
 
     public GameObject GetAttractor()
     {
-        return _attractor;
+        return _attractor.gameObject;
     }
 }

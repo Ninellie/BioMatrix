@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class LevelUp : MonoBehaviour
 {
-    public TMPro.TMP_Text[] cardsText;
+    public TMPro.TMP_Text[] cardsNameText;
+    public TMPro.TMP_Text[] cardsDescriptionText;
 
     private List<Card> _selectedCards = new();
     private static readonly ICardRepository CardRepository = new ArrayCardRepository();
@@ -16,11 +17,12 @@ public class LevelUp : MonoBehaviour
     }
     public void DisplayCards()
     {
-        _selectedCards = _cardManager.GetDeck(cardsText.Length);
+        _selectedCards = _cardManager.GetDeck(cardsNameText.Length);
 
-        for (var i = 0; i < cardsText.Length; i++)
+        for (var i = 0; i < cardsNameText.Length; i++)
         {
-            cardsText[i].text = _selectedCards[i].Title;
+            cardsNameText[i].text = _selectedCards[i].Title;
+            cardsDescriptionText[i].text = _selectedCards[i].Description;
         }
     }
     public void Improve(int index) // Get bonus

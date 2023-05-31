@@ -767,9 +767,9 @@
       <Project>{5478FC5A-4B28-9DB6-956B-98954C6CE66D}</Project>
       <Name>Unity.2D.Tilemap.Extras</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.2D.Animation.Editor.csproj">
-      <Project>{C9C13860-B1AF-A04F-9C71-9C8ED9415EED}</Project>
-      <Name>Unity.2D.Animation.Editor</Name>
+    <ProjectReference Include="Scripts.csproj">
+      <Project>{1ADCA4D5-9DAC-E64E-F8F8-AB1D59520C6D}</Project>
+      <Name>Scripts</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.InternalAPIEngineBridge.001.csproj">
       <Project>{BFFABA5F-0BCF-4865-7CBF-3A7E513A8880}</Project>
@@ -786,6 +786,10 @@
     <ProjectReference Include="Unity.2D.Tilemap.Editor.csproj">
       <Project>{F611679F-DABA-1D1A-553D-42F23129B645}</Project>
       <Name>Unity.2D.Tilemap.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Animation.Editor.csproj">
+      <Project>{C9C13860-B1AF-A04F-9C71-9C8ED9415EED}</Project>
+      <Name>Unity.2D.Animation.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="PsdPlugin.csproj">
       <Project>{0D02DCFC-A543-FFF8-FBAB-DC7E1B79FD1F}</Project>
@@ -926,10 +930,6 @@
     <ProjectReference Include="Unity.VisualScripting.State.csproj">
       <Project>{D768B12D-5833-B4EE-499D-1651A0FEE91F}</Project>
       <Name>Unity.VisualScripting.State</Name>
-    </ProjectReference>
-    <ProjectReference Include="Scripts.csproj">
-      <Project>{1ADCA4D5-9DAC-E64E-F8F8-AB1D59520C6D}</Project>
-      <Name>Scripts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

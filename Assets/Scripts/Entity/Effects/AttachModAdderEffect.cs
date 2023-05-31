@@ -29,7 +29,7 @@ public class AttachModAdderEffect : IEffect
 
     public void Detach()
     {
-        while (StacksCount.IsEmpty)
+        while (!StacksCount.IsEmpty)
         {
             RemoveMods();
             StacksCount.Decrease();

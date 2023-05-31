@@ -20,11 +20,10 @@ public class CardStorage : MonoBehaviour
         }
         foreach (var cardEffect in card.Effects)
         {
-            if (cardEffect.TargetName == nameof(Player))
-            {
-                Debug.LogWarning($"Add effect to player {cardEffect.Name}");
-                _player.AddEffectStack(cardEffect);
-            }
+            if (cardEffect.TargetName != nameof(Player)) continue;
+
+            Debug.LogWarning($"Add effect to player {cardEffect.Name}");
+            _player.AddEffectStack(cardEffect);
         }
     }
 

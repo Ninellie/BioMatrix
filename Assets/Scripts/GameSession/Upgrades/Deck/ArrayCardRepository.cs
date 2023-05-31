@@ -1,83 +1,76 @@
 ﻿using System;
 using System.Linq;
 
-public enum CardTag
-{
-    Gun,
-    Turret,
-    Vitality,
-    Shield,
-    Movement,
-    Magnetism,
-    Experience
-}
-
 [Serializable]
 public class ArrayCardRepository : ICardRepository
 {
-    private static readonly Card[] DefaultCards = 
+    private static readonly IEffectRepository EffectRepository = new EffectRepository();
+
+    private static readonly Card[] DefaultCards = new[]
     {
         new Card
         {
             Title = "Gun 1",
-            Description = "",
+            Description = "+50% proj dmg, +2 magazine capacity",
             DropWeight = 1,
-            Effects = new[]
+            Effects = new []
             {
-                EffectRepository.CardEffects["Gun1"]
-            }
+                EffectRepository.Get("Gun1")
+            },
         },
         new Card
         {
             Title = "Gun 2",
-            Description = "",
+            Description = "+50% firerate for 2 sec after reloading",
             DropWeight = 1,
             Effects = new[]
             {
-                EffectRepository.CardEffects["Gun2"]
+                EffectRepository.Get("Gun2")
             },
         },
         new Card
         {
             Title = "Gun 3",
-            Description = "",
+            Description = "+2 proj pierce, +100% proj speed",
             DropWeight = 1,
             Effects = new[]
             {
-                EffectRepository.CardEffects["Gun3"]
+                EffectRepository.Get("Gun3")
+
             },
         },
         new Card
         {
             Title = "Gun Turret 1",
-            Description = "",
+            Description = "+ 1 turret",
             DropWeight = 1,
             Effects = new[]
             {
-                EffectRepository.CardEffects["GunTurret1"]
+                EffectRepository.Get("GunTurret1")
             }
         },
         new Card
         {
             Title = "Gun Turret 2",
-            Description = "",
+            Description = "Turret shoots where the player shoots, +50 turret firerate",
             DropWeight = 1,
             Effects = new[]
             {
-                EffectRepository.CardEffects["GunTurret2"]
+                EffectRepository.Get("GunTurret2")
             },
         },
         new Card
         {
             Title = "Gun Turret 3",
-            Description = "",
+            Description = "While magazine full, turrets get +2 proj",
             DropWeight = 1,
             Effects = new[]
             {
-                EffectRepository.CardEffects["GunTurret3"]
+                EffectRepository.Get("GunTurret3")
             },
         },
     };
+
     private readonly Card[] _cards;
 
     public ArrayCardRepository() : this(DefaultCards)

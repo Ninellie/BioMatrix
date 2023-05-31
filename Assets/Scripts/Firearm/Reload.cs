@@ -41,7 +41,7 @@ public class Reload : MonoBehaviour
         
         _gameTimeScheduler.Schedule(Complete, 1f / _firearm.ReloadSpeed.Value);
 
-        //_firearm.OnReload();
+        _firearm.OnReload();
     }
 
     private void Complete()
