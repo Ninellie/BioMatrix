@@ -116,9 +116,10 @@ public class Firearm : MonoBehaviour
 
             var pierceMod = new StatModifier(OperationType.Addition, ProjectilePierce.Value);
             proj.MaximumLifePoints.AddModifier(pierceMod);
+            proj.LifePoints.Fill();
 
             var damageMod = new StatModifier(OperationType.Addition, Damage.Value);
-            proj.Damage.AddModifier(pierceMod);
+            proj.Damage.AddModifier(damageMod);
 
             var actualShotDirection = GetActualShotDirection(direction, MaxShootDeflectionAngle.Value);
             proj.Launch(actualShotDirection, ShootForce.Value);
