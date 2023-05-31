@@ -185,7 +185,7 @@ public class Player : Unit
 
             foreach (Collider2D collider2d in hitColliders)
             {
-                collider2d.gameObject.GetComponent<Enemy>()._enemyMoveController.KnockBackFromTarget(KnockbackPower.Value);
+                collider2d.gameObject.GetComponent<Enemy>().enemyMoveController.KnockBackFromTarget(KnockbackPower.Value);
             }
             ShieldLayers.Decrease();
 

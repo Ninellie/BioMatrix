@@ -6,7 +6,7 @@ using Debug = UnityEngine.Debug;
 public class Entity : MonoBehaviour
 {
     public bool IsOnScreen { get; private set; }
-    public bool Alive => LifePoints.IsEmpty;
+    public bool Alive => !LifePoints.IsEmpty;
     public const int DeathLifePointsThreshold = 0;
     public const int MinimalDamageTaken = 1;
     public Resource LifePoints { get; private set; }
@@ -78,16 +78,16 @@ public class Entity : MonoBehaviour
 
     public void RemoveEffect(IEffect effect)
     {
-        var i = 0;
+        bool isContain = false;
 
         foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effect.Name))
         {
             myEffect.StacksCount.Empty();
-            i++;
+            isContain = true;
         }
 
-        if (i == 0) return;
-
+        if (!isContain) return;
+        
         effect.Unsubscribe(this);
         effect.Detach();
         effects.Remove(effect);
