@@ -6,11 +6,17 @@ public class TurretHub : Entity
 {
     [SerializeField] private GameObject _turretPrefab;
     [SerializeField] private GameObject _turretWeaponPrefab;
+    [SerializeField] private bool _isSameTurretTarget;
 
     public TurretHubStatsSettings Settings => GetComponent<TurretHubStatsSettings>();
     public Stat TurretCount { get; private set; }
     public readonly Stack<Turret> currentTurrets = new();
-    public bool IsSameTurretTarget { get; set; } = false;
+    public bool IsSameTurretTarget
+    {
+        get => _isSameTurretTarget;
+        set => _isSameTurretTarget = value;
+    }
+
     public Firearm Firearm { get; set; }
 
     private void Awake() => BaseAwake(Settings);
@@ -97,10 +103,8 @@ public class TurretHub : Entity
         var createdTurret = turretGameObject.GetComponent<Turret>();
 
         createdTurret.SetAttractor(gameObject);
-
         createdTurret.CreateWeapon(_turretWeaponPrefab);
         createdTurret.CurrentFirearm.SetStats(Firearm);
-
         currentTurrets.Push(createdTurret);
     }
 

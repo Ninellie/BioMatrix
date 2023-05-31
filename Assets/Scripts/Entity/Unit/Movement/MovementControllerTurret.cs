@@ -4,7 +4,7 @@ public class MovementControllerTurret
 {
     private readonly Turret _myTurret;
     private float OrbitRadius => _myTurret.AccelerationSpeed.Value;
-    private readonly Circle _circle = new Circle();
+    private readonly Circle _circle = new();
     private float _currentAngle;
     private float CurrentAngle
     {
@@ -18,7 +18,7 @@ public class MovementControllerTurret
             };
         }
     }
-    private float OrbitalSpeed => _myTurret.Speed.Value;//in degrees per second
+    private float OrbitalSpeed => _myTurret.Speed.Value; //in degrees per second
     private Vector2 Center => _myTurret.GetAttractor().transform.position;
     public MovementControllerTurret(Turret myTurret)
     {
@@ -29,8 +29,8 @@ public class MovementControllerTurret
     public void OrbitalFixedUpdateStep()
     {
         CurrentAngle += OrbitalSpeed * Time.fixedDeltaTime;
-        float fi = CurrentAngle * Mathf.Deg2Rad;
-        Vector2 nextPosition = _circle.GetPointOn(OrbitRadius, Center, fi);
-        _myTurret.Rb2D.MovePosition(nextPosition);//set new position
+        var fi = CurrentAngle * Mathf.Deg2Rad;
+        var nextPosition = _circle.GetPointOn(OrbitRadius, Center, fi);
+        _myTurret.Rb2D.MovePosition(nextPosition); //set new position
     }
 }

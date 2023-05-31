@@ -30,7 +30,6 @@ public class Player : Unit
     public event Action FireEvent;
     public event Action FireOffEvent;
     
-
     public TurretHub TurretHub { get; set; }
     public Firearm Firearm { get; private set; }
     public bool IsFireButtonPressed { get; private set; } = false;

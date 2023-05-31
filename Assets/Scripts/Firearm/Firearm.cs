@@ -41,7 +41,9 @@ public class Firearm : MonoBehaviour
 
     private float _previousShootTimer = 0;
     private float MinShootInterval => 1f / ShootsPerSecond.Value;
+    
     private void Awake() => BaseAwake(Settings);
+
     private void BaseAwake(FirearmStatsSettings settings)
     {
         //magazine = GetComponent<Magazine>();
@@ -85,10 +87,12 @@ public class Firearm : MonoBehaviour
         ProjectileSize = firearm.ProjectileSize;
         ProjectilePierce = firearm.ProjectilePierce;
     }
+    
     public void OnReload()
     {
         ReloadEvent?.Invoke();
     }
+
     public void OnReloadEnd()
     {
         ReloadEndEvent?.Invoke();
@@ -130,7 +134,7 @@ public class Firearm : MonoBehaviour
 
     private Vector2 GetShotDirection()
     {
-        if (_isForPlayer)
+        if (_isForPlayer || _player.TurretHub.IsSameTurretTarget)
         {
             return Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - gameObject.transform.position;
         }

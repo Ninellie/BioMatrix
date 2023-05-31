@@ -1,6 +1,4 @@
-﻿using static UnityEngine.GraphicsBuffer;
-
-public class ToggleOnAttach : IEffect
+﻿public class ToggleOnAttach : IEffect
 {
     public string Name { get; set; }
     public string Description { get; }
@@ -21,17 +19,17 @@ public class ToggleOnAttach : IEffect
     public Resource StacksCount { get; }
     public Stat MaxStackCount { get; }
 
-    private bool _toggleProp;
+    private TurretHub _toggleProp;
 
     public void Attach(Entity target)
     {
-        _toggleProp = (bool)EventHelper.GetPropByPath(target, TogglePropPath);
-        _toggleProp = Value;
+        _toggleProp = (TurretHub)EventHelper.GetPropByPath(target, TogglePropPath);
+        _toggleProp.IsSameTurretTarget = Value;
     }
 
     public void Detach()
     {
-        _toggleProp = !Value;
+        _toggleProp.IsSameTurretTarget = !Value;
     }
 
     public void Subscribe(Entity target)
