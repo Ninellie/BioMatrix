@@ -130,7 +130,7 @@ public class EffectRepository : IEffectRepository
             "PlayerIsSameTurretTargetTrue",
             "",
             nameof(Player),
-            nameof(Player.TurretHub),
+            nameof(Player.TurretHub) + "." + nameof(TurretHub.IsSameTurretTarget),
             true
         ),
     };

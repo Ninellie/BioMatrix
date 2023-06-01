@@ -53,7 +53,7 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Gun Turret 2",
             Description = "Turret shoots where the player shoots, +50 turret firerate",
-            DropWeight = 1,
+            DropWeight = 100,
             Effects = new[]
             {
                 EffectRepository.Get("GunTurret2")

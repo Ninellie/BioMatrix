@@ -19,17 +19,17 @@
     public Resource StacksCount { get; }
     public Stat MaxStackCount { get; }
 
-    private TurretHub _toggleProp;
+    private Entity _target;
 
     public void Attach(Entity target)
     {
-        _toggleProp = (TurretHub)EventHelper.GetPropByPath(target, TogglePropPath);
-        _toggleProp.IsSameTurretTarget = Value;
+        _target = target;
+        EventHelper.SetPropValueByPath(target, TogglePropPath, Value);
     }
 
     public void Detach()
     {
-        _toggleProp.IsSameTurretTarget = !Value;
+        EventHelper.SetPropValueByPath(_target, TogglePropPath, !Value);
     }
 
     public void Subscribe(Entity target)
