@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 [Serializable]
@@ -13,6 +14,9 @@ public class ArrayCardRepository : ICardRepository
             Title = "Gun 1",
             Description = "+50% proj dmg, +2 magazine capacity",
             DropWeight = 1,
+            Id = 1,
+            DeckId = 1,
+            OrderInDeck = 1,
             Effects = new []
             {
                 EffectRepository.Get("Gun1")
@@ -22,6 +26,9 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Gun 2",
             Description = "+50% firerate for 2 sec after reloading",
+            Id = 2,
+            DeckId = 1,
+            OrderInDeck = 2,
             DropWeight = 1,
             Effects = new[]
             {
@@ -32,6 +39,9 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Gun 3",
             Description = "+2 proj pierce, +100% proj speed",
+            Id = 3,
+            DeckId = 1,
+            OrderInDeck = 3,
             DropWeight = 1,
             Effects = new[]
             {
@@ -43,6 +53,9 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Gun Turret 1",
             Description = "+ 1 turret",
+            Id = 4,
+            DeckId = 2,
+            OrderInDeck = 1,
             DropWeight = 1,
             Effects = new[]
             {
@@ -53,7 +66,10 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Gun Turret 2",
             Description = "Turret shoots where the player shoots, +50 turret firerate",
-            DropWeight = 100,
+            Id = 5,
+            DeckId = 2,
+            OrderInDeck = 2,
+            DropWeight = 1,
             Effects = new[]
             {
                 EffectRepository.Get("GunTurret2")
@@ -63,6 +79,9 @@ public class ArrayCardRepository : ICardRepository
         {
             Title = "Gun Turret 3",
             Description = "While magazine full, turrets get +2 proj",
+            Id = 6,
+            DeckId = 2,
+            OrderInDeck = 3,
             DropWeight = 1,
             Effects = new[]
             {
@@ -83,20 +102,41 @@ public class ArrayCardRepository : ICardRepository
     }
 
     /// <summary>
-    /// Returns a card by its index in the deck
+    /// Returns a cards by its deck identifier
     /// </summary>
-    /// <param name="i">Index of card</param>
+    /// <param name="i">Id of card</param>
+    /// <param name="deckId">Deck id</param>
     /// <returns>Card</returns>
-    public Card Get(int i) => _cards[i];
+    public List<Card> GetCardsByDeckId(int deckId)
+    {
+        return _cards.Where(card => card.DeckId == deckId).ToList();
+    }
 
     /// <summary>
-    /// Returns the sum of the drop weights of all cards in the deck
+    /// Returns a card by its identifier
+    /// </summary>
+    /// <param name="id">Card id</param>
+    /// <returns>Card</returns>
+    public Card GetCardById(int id)
+    {
+        return _cards.First(card => card.Id == id);
+    }
+
+    /// <summary>
+    /// Returns a card by its index in the repository
+    /// </summary>
+    /// <param name="i">Card index</param>
+    /// <returns>Card</returns>
+    public Card GetCardByIndex(int i) => _cards[i];
+
+    /// <summary>
+    /// Returns the sum of the drop weights of all cards in the repository
     /// </summary>
     /// <returns>Int</returns>
     public int GetDropWeightSum() => _cards.Sum(x => x.DropWeight);
 
     /// <summary>
-    /// Returns the length of the deck array
+    /// Returns the length of the main repository array
     /// </summary>
     public int CardCount => _cards.Length;
 }

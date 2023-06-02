@@ -1,8 +1,14 @@
-﻿public interface ICardRepository
+﻿using System.Collections.Generic;
+
+public interface ICardRepository
 {
     int CardCount { get; }
 
-    Card Get(int i);
+    List<Card> GetCardsByDeckId(int deckId); // True Interface, want to change
+
+    Card GetCardByIndex(int i);
+
+    Card GetCardById(int id);
 
     int GetDropWeightSum();
 }

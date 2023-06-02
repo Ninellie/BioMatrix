@@ -15,7 +15,7 @@ public class JsonCardSerializer
         var list = new List<Card>();
         for (var i = 0; i < _cardRepository.CardCount; i++)
         {
-            var card = _cardRepository.Get(i);
+            var card = _cardRepository.GetCardByIndex(i);
             list.Add(card);
         }
         var json = JsonUtility.ToJson(list.ToArray());

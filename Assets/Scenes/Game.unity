@@ -9111,14 +9111,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe3166802797954ea2a58ab2091f4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardsNameText:
+  _player: {fileID: 0}
+  _cardsView:
+  - {fileID: 223641915}
+  - {fileID: 1587581910}
+  - {fileID: 301307345}
+  _cardsNameText:
   - {fileID: 808632819}
   - {fileID: 915594265}
   - {fileID: 1582699864}
-  cardsDescriptionText:
+  _cardsDescriptionText:
   - {fileID: 1874783175}
   - {fileID: 2043662796}
   - {fileID: 1948743741}
+  _viewController: {fileID: 1239585266}
 --- !u!114 &1239585265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9920,19 +9926,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09673194e55aae14bb696eeff6eff87b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1365173415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159749642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 550cc8f7b29152a44851e3d24060c43b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 0}
 --- !u!1 &1371623710
 GameObject:
   m_ObjectHideFlags: 0
