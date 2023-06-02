@@ -9,14 +9,14 @@ namespace Assets.Scripts.Entity.Enclosure
     [RequireComponent(typeof(Tilemap))]
     public class Enclosure : Entity
     {
-        public EnclosureStatsSettings Settings => GetComponent<EnclosureStatsSettings>();
-
-        public Stat.Stat ConstrictionRate { get; private set; }
-
-        [SerializeField] private const float MaxLifeTime = 30f;
+        [SerializeField] private float _maxLifeTime = 30f;
         [SerializeField] private float _currentLifeTime;
         [SerializeField] private bool _isShrinking;
         [SerializeField] private GameObject _grid;
+
+        public EnclosureStatsSettings Settings => GetComponent<EnclosureStatsSettings>();
+
+        public Stat.Stat ConstrictionRate { get; private set; }
 
         private Tilemap _tilemap;
 
@@ -36,12 +36,22 @@ namespace Assets.Scripts.Entity.Enclosure
             _tilemap = GetComponent<Tilemap>();
         }
 
+        protected override void BaseOnEnable()
+        {
+            _currentLifeTime = 0f;
+        }
+
+        protected override void BaseOnDisable()
+        {
+            Size.ClearModifiersList();
+        }
+
         protected virtual void BaseFixedUpdate()
         {
             if (Time.timeScale == 0f) return;
             if (!_isShrinking) return;
             if (ConstrictionRate == null) return;
-            if (_currentLifeTime >= MaxLifeTime)
+            if (_currentLifeTime >= _maxLifeTime)
             {
                 _tilemap.ClearAllTiles();
                 StopShrinking();
@@ -52,16 +62,6 @@ namespace Assets.Scripts.Entity.Enclosure
             Size.AddModifier(mod);
             _currentLifeTime += Time.fixedDeltaTime;
             _grid.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
-        }
-
-        protected override void BaseOnEnable()
-        {
-            _currentLifeTime = 0f;
-        }
-
-        protected override void BaseOnDisable()
-        {
-            Size.ClearModifiersList();
         }
 
         public void StartShrinking()

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameSession.Events
 {
-    public class EventCntroller : MonoBehaviour
+    public class EventController : MonoBehaviour
     {
         [SerializeField] private float _cageAppearTime;
         [SerializeField] private Enclosure _enclosure;
