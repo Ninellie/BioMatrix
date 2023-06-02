@@ -1,6 +1,7 @@
+using Assets.Scripts.GameSession.View;
 using UnityEngine;
 
-namespace Assets.Scripts.GameSession.View
+namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 {
     public class StartViewModelState : IViewModelState
     {

@@ -1,4 +1,4 @@
-using Assets.Scripts.GameSession.View;
+using Assets.Scripts.GameSession.UIScripts.SessionModel;
 using UnityEngine;
 
 public class PlayerCreator : MonoBehaviour

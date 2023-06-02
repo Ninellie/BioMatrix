@@ -1,7 +1,8 @@
+using Assets.Scripts.GameSession.View;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.GameSession.View
+namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 {
     public class ViewController : MonoBehaviour
     {
