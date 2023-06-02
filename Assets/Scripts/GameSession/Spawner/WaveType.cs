@@ -1,5 +1,8 @@
-public enum WaveType
+namespace Assets.Scripts.GameSession.Spawner
 {
-    First,
-    Normal,
+    public enum WaveType
+    {
+        First,
+        Normal,
+    }
 }

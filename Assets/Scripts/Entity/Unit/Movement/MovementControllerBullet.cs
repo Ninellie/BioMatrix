@@ -1,58 +1,60 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class MovementControllerBullet
+namespace Assets.Scripts.Entity.Unit.Movement
 {
-    private readonly Projectile _myUnit;
-    //private Vector2 Velocity => Direction * Speed * SpeedScale;
-    private float Speed => _myUnit.Speed.Value;
-    private Vector2 MyPosition => _myUnit.transform.position;
-    private float SpeedScale
+    public class MovementControllerBullet
     {
-        get => _speedScale;
-        set
+        private readonly Projectile.Projectile _myUnit;
+        //private Vector2 Velocity => Direction * Speed * SpeedScale;
+        private float Speed => _myUnit.Speed.Value;
+        private Vector2 MyPosition => _myUnit.transform.position;
+        private float SpeedScale
         {
-            _speedScale = value switch
+            get => _speedScale;
+            set
             {
-                < 0 => 0,
-                > 1 => 1,
-                _ => value
-            };
+                _speedScale = value switch
+                {
+                    < 0 => 0,
+                    > 1 => 1,
+                    _ => value
+                };
+            }
         }
-    }
-    private float _speedScale = 1f;
-    private float SpeedDecreaseStep => SpeedDecreasePerSecond * Time.fixedDeltaTime;
-    private float SpeedDecreasePerSecond => 1 / TimeToStop;
-    private float TimeToStop => _myUnit.timeToStop;
-    private Vector2 Direction
-    {
-        get => _direction;
-        set => _direction = value.normalized;
-    }
-    private Vector2 _direction;
-    public MovementControllerBullet(Projectile myUnit)
-    {
-        _myUnit = myUnit;
-    }
-    public void FixedUpdateStep()
-    {
-        Vector2 nextPosition = MyPosition;
+        private float _speedScale = 1f;
+        private float SpeedDecreaseStep => SpeedDecreasePerSecond * Time.fixedDeltaTime;
+        private float SpeedDecreasePerSecond => 1 / TimeToStop;
+        private float TimeToStop => _myUnit.timeToStop;
+        private Vector2 Direction
+        {
+            get => _direction;
+            set => _direction = value.normalized;
+        }
+        private Vector2 _direction;
+        public MovementControllerBullet(Projectile.Projectile myUnit)
+        {
+            _myUnit = myUnit;
+        }
+        public void FixedUpdateStep()
+        {
+            Vector2 nextPosition = MyPosition;
 
-        Vector2 movementStep = Direction * Speed * SpeedScale * Time.fixedDeltaTime;
+            Vector2 movementStep = Direction * Speed * SpeedScale * Time.fixedDeltaTime;
 
-        nextPosition += movementStep;
+            nextPosition += movementStep;
 
-        _myUnit.Rb2D.MovePosition(nextPosition);
+            _myUnit.Rb2D.MovePosition(nextPosition);
 
-        SpeedScale -= SpeedDecreaseStep;
-    }
-    public void SetDirection(Vector2 direction)
-    {
-        Direction = direction;
-    }
+            SpeedScale -= SpeedDecreaseStep;
+        }
+        public void SetDirection(Vector2 direction)
+        {
+            Direction = direction;
+        }
 
-    public bool IsStopped()
-    {
-        return SpeedScale <= 0f;
+        public bool IsStopped()
+        {
+            return SpeedScale <= 0f;
+        }
     }
 }

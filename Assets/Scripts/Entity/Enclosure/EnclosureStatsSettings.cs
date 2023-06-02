@@ -1,4 +1,7 @@
-public class EnclosureStatsSettings : EntityStatsSettings
+namespace Assets.Scripts.Entity.Enclosure
 {
-    public float constrictionRate;
+    public class EnclosureStatsSettings : EntityStatsSettings
+    {
+        public float constrictionRate;
+    }
 }

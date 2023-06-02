@@ -1,5 +1,8 @@
-public enum EnemyType
+namespace Assets.Scripts.Entity.Unit.Enemy
 {
-    SideView,
-    AboveView,
+    public enum EnemyType
+    {
+        SideView,
+        AboveView,
+    }
 }

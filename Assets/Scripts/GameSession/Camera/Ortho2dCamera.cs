@@ -1,26 +1,30 @@
 using UnityEngine;
-[ExecuteInEditMode]
-[RequireComponent(typeof(Camera))]
-internal class Ortho2dCamera : MonoBehaviour
-{
-    [SerializeField] private bool _uniform = true;
-    [SerializeField] private bool _autoSetUniform = false;
 
-    private void Awake()
+namespace Assets.Scripts.GameSession.Camera
+{
+    [ExecuteInEditMode]
+    [RequireComponent(typeof(UnityEngine.Camera))]
+    internal class Ortho2dCamera : MonoBehaviour
     {
-        GetComponent<Camera>().orthographic = true;
-        if (_uniform)
-            SetUniform();
-    }
-    private void LateUpdate()
-    {
-        if (_autoSetUniform && _uniform)
-            SetUniform();
-    }
-    private void SetUniform()
-    {
-        var orthographicSize = GetComponent<Camera>().pixelHeight / 2;
-        if (orthographicSize != GetComponent<Camera>().orthographicSize)
-            GetComponent<Camera>().orthographicSize = orthographicSize;
+        [SerializeField] private bool _uniform = true;
+        [SerializeField] private bool _autoSetUniform = false;
+
+        private void Awake()
+        {
+            GetComponent<UnityEngine.Camera>().orthographic = true;
+            if (_uniform)
+                SetUniform();
+        }
+        private void LateUpdate()
+        {
+            if (_autoSetUniform && _uniform)
+                SetUniform();
+        }
+        private void SetUniform()
+        {
+            var orthographicSize = GetComponent<UnityEngine.Camera>().pixelHeight / 2;
+            if (orthographicSize != GetComponent<UnityEngine.Camera>().orthographicSize)
+                GetComponent<UnityEngine.Camera>().orthographicSize = orthographicSize;
+        }
     }
 }

@@ -1,7 +1,10 @@
-public enum MovementState
+namespace Assets.Scripts.Entity.Unit.Movement
 {
-    Idle,
-    Rectilinear,
-    Pursue,
-    Seek,
+    public enum MovementState
+    {
+        Idle,
+        Rectilinear,
+        Pursue,
+        Seek,
+    }
 }

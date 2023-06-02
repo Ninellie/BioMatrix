@@ -1,4 +1,4 @@
-using Assets.Scripts.GameSession.View;
+using Assets.Scripts.Entity.Unit.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

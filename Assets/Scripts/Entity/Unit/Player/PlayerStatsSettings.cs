@@ -1,8 +1,11 @@
-public class PlayerStatsSettings : UnitStatsSettings
+namespace Assets.Scripts.Entity.Unit.Player
 {
-    public float magnetismRadius;
-    public float maxShieldLayersCount;
-    public float maxRechargeableShieldLayersCount;
-    public float shieldLayerRechargeRate;
-    public float turretCount;
+    public class PlayerStatsSettings : UnitStatsSettings
+    {
+        public float magnetismRadius;
+        public float maxShieldLayersCount;
+        public float maxRechargeableShieldLayersCount;
+        public float shieldLayerRechargeRate;
+        public float turretCount;
+    }
 }

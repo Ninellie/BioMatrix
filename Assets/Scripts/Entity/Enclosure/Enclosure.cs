@@ -1,73 +1,77 @@
+using Assets.Scripts.Entity.Stat;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Debug = UnityEngine.Debug;
 
-[RequireComponent(typeof(EnclosureStatsSettings))]
-[RequireComponent(typeof(Tilemap))]
-public class Enclosure : Entity
+namespace Assets.Scripts.Entity.Enclosure
 {
-    public EnclosureStatsSettings Settings => GetComponent<EnclosureStatsSettings>();
-
-    public Stat ConstrictionRate { get; private set; }
-
-    [SerializeField] private const float MaxLifeTime = 30f;
-    [SerializeField] private float _currentLifeTime;
-    [SerializeField] private bool _isShrinking;
-    [SerializeField] private GameObject _grid;
-
-    private Tilemap _tilemap;
-
-    private void Awake() => BaseAwake(Settings);
-
-    private void OnEnable() => BaseOnEnable();
-
-    private void OnDisable() => BaseOnDisable();
-
-    private void FixedUpdate() => BaseFixedUpdate();
-
-    protected void BaseAwake(EnclosureStatsSettings settings)
+    [RequireComponent(typeof(EnclosureStatsSettings))]
+    [RequireComponent(typeof(Tilemap))]
+    public class Enclosure : Entity
     {
-        Debug.Log($"{gameObject.name} Enclosure Awake");
-        base.BaseAwake(settings);
-        ConstrictionRate = StatFactory.GetStat(settings.constrictionRate);
-        _tilemap = GetComponent<Tilemap>();
-    }
+        public EnclosureStatsSettings Settings => GetComponent<EnclosureStatsSettings>();
 
-    protected virtual void BaseFixedUpdate()
-    {
-        if (Time.timeScale == 0f) return;
-        if (!_isShrinking) return;
-        if (ConstrictionRate == null) return;
-        if (_currentLifeTime >= MaxLifeTime)
+        public Stat.Stat ConstrictionRate { get; private set; }
+
+        [SerializeField] private const float MaxLifeTime = 30f;
+        [SerializeField] private float _currentLifeTime;
+        [SerializeField] private bool _isShrinking;
+        [SerializeField] private GameObject _grid;
+
+        private Tilemap _tilemap;
+
+        private void Awake() => BaseAwake(Settings);
+
+        private void OnEnable() => BaseOnEnable();
+
+        private void OnDisable() => BaseOnDisable();
+
+        private void FixedUpdate() => BaseFixedUpdate();
+
+        protected void BaseAwake(EnclosureStatsSettings settings)
         {
-            _tilemap.ClearAllTiles();
-            StopShrinking();
-            return;
+            Debug.Log($"{gameObject.name} Enclosure Awake");
+            base.BaseAwake(settings);
+            ConstrictionRate = StatFactory.GetStat(settings.constrictionRate);
+            _tilemap = GetComponent<Tilemap>();
         }
-        var constrictionRate = ConstrictionRate.Value * -1;
-        var mod = new StatModifier(OperationType.Addition, constrictionRate);
-        Size.AddModifier(mod);
-        _currentLifeTime += Time.fixedDeltaTime;
-        _grid.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
-    }
 
-    protected override void BaseOnEnable()
-    {
-        _currentLifeTime = 0f;
-    }
+        protected virtual void BaseFixedUpdate()
+        {
+            if (Time.timeScale == 0f) return;
+            if (!_isShrinking) return;
+            if (ConstrictionRate == null) return;
+            if (_currentLifeTime >= MaxLifeTime)
+            {
+                _tilemap.ClearAllTiles();
+                StopShrinking();
+                return;
+            }
+            var constrictionRate = ConstrictionRate.Value * -1;
+            var mod = new StatModifier(OperationType.Addition, constrictionRate);
+            Size.AddModifier(mod);
+            _currentLifeTime += Time.fixedDeltaTime;
+            _grid.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
+        }
 
-    protected override void BaseOnDisable()
-    {
-        Size.ClearModifiersList();
-    }
+        protected override void BaseOnEnable()
+        {
+            _currentLifeTime = 0f;
+        }
 
-    public void StartShrinking()
-    {
-        _isShrinking = true;
-    }
+        protected override void BaseOnDisable()
+        {
+            Size.ClearModifiersList();
+        }
 
-    public void StopShrinking()
-    {
-        _isShrinking = false;
+        public void StartShrinking()
+        {
+            _isShrinking = true;
+        }
+
+        public void StopShrinking()
+        {
+            _isShrinking = false;
+        }
     }
 }

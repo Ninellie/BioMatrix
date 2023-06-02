@@ -1,4 +1,7 @@
-public class EnemyStatsSettings : UnitStatsSettings
+namespace Assets.Scripts.Entity.Unit.Enemy
 {
-    public float spawnWeight;
+    public class EnemyStatsSettings : UnitStatsSettings
+    {
+        public float spawnWeight;
+    }
 }

@@ -1,7 +1,10 @@
-public enum RarityEnum
+namespace Assets.Scripts.Entity.Unit.Enemy
 {
-    Normal,
-    Magic,
-    Rare,
-    Unique,
+    public enum RarityEnum
+    {
+        Normal,
+        Magic,
+        Rare,
+        Unique,
+    }
 }

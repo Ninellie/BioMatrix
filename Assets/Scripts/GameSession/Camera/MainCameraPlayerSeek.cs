@@ -1,19 +1,24 @@
+using Assets.Scripts.Entity.Unit.Player;
 using UnityEngine;
-public class MainCameraPlayerSeek : MonoBehaviour
+
+namespace Assets.Scripts.GameSession.Camera
 {
-    public Vector2 PlayerPosition
+    public class MainCameraPlayerSeek : MonoBehaviour
     {
-        get
+        public Vector2 PlayerPosition
         {
-            if (!IsPlayerExists) return Vector2.zero;
-            Vector2 playerPos = GameObject.FindObjectOfType<Player>().transform.position;
-            return playerPos;
+            get
+            {
+                if (!IsPlayerExists) return Vector2.zero;
+                Vector2 playerPos = GameObject.FindObjectOfType<Player>().transform.position;
+                return playerPos;
+            }
         }
-    }
-    private bool IsPlayerExists => GameObject.FindObjectOfType<Player>() != null;
-    private void Update()
-    {
-        if (IsPlayerExists)
-            transform.position = new Vector3(PlayerPosition.x, PlayerPosition.y, -100.0f);
+        private bool IsPlayerExists => GameObject.FindObjectOfType<Player>() != null;
+        private void Update()
+        {
+            if (IsPlayerExists)
+                transform.position = new Vector3(PlayerPosition.x, PlayerPosition.y, -100.0f);
+        }
     }
 }

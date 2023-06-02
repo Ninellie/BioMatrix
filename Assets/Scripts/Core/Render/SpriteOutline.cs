@@ -1,35 +1,38 @@
 using UnityEngine;
 
-[ExecuteInEditMode]
-public class SpriteOutline : MonoBehaviour
+namespace Assets.Scripts.Core.Render
 {
-    public Color color = Color.white;
-
-    private SpriteRenderer spriteRenderer;
-
-    void OnEnable()
+    [ExecuteInEditMode]
+    public class SpriteOutline : MonoBehaviour
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        public Color color = Color.white;
 
-        UpdateOutline(true);
-    }
+        private SpriteRenderer spriteRenderer;
 
-    void OnDisable()
-    {
-        UpdateOutline(false);
-    }
+        void OnEnable()
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
 
-    void Update()
-    {
-        UpdateOutline(true);
-    }
+            UpdateOutline(true);
+        }
 
-    void UpdateOutline(bool outline)
-    {
-        MaterialPropertyBlock mpb = new MaterialPropertyBlock();
-        spriteRenderer.GetPropertyBlock(mpb);
-        mpb.SetFloat("_Outline", outline ? 1f : 0);
-        mpb.SetColor("_OutlineColor", color);
-        spriteRenderer.SetPropertyBlock(mpb);
+        void OnDisable()
+        {
+            UpdateOutline(false);
+        }
+
+        void Update()
+        {
+            UpdateOutline(true);
+        }
+
+        void UpdateOutline(bool outline)
+        {
+            MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+            spriteRenderer.GetPropertyBlock(mpb);
+            mpb.SetFloat("_Outline", outline ? 1f : 0);
+            mpb.SetColor("_OutlineColor", color);
+            spriteRenderer.SetPropertyBlock(mpb);
+        }
     }
 }

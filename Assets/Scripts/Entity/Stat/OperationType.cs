@@ -1,8 +1,11 @@
 using System;
 
-[Serializable]
-public enum OperationType
+namespace Assets.Scripts.Entity.Stat
 {
-    Addition,
-    Multiplication,
+    [Serializable]
+    public enum OperationType
+    {
+        Addition,
+        Multiplication,
+    }
 }

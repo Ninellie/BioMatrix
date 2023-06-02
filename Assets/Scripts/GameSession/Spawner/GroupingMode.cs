@@ -1,6 +1,9 @@
-public enum GroupingMode
+namespace Assets.Scripts.GameSession.Spawner
 {
-    Default,
-    Surround,
-    Group,
+    public enum GroupingMode
+    {
+        Default,
+        Surround,
+        Group,
+    }
 }

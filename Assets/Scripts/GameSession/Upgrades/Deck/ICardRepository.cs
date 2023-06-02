@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
 
-public interface ICardRepository
+namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
-    int CardCount { get; }
+    public interface ICardRepository
+    {
+        int CardCount { get; }
 
-    List<Card> GetCardsByDeckId(int deckId); // True Interface, want to change
+        List<Card> GetCardsByDeckId(int deckId); // True Interface, want to change
 
-    Card GetCardByIndex(int i);
+        Card GetCardByIndex(int i);
 
-    Card GetCardById(int id);
+        Card GetCardById(int id);
 
-    int GetDropWeightSum();
+        int GetDropWeightSum();
+    }
 }

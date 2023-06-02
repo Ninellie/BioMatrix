@@ -1,45 +1,48 @@
 using UnityEngine;
 
-public class SideViewEnemyMoveController : EnemyMoveController
+namespace Assets.Scripts.Entity.Unit.Movement
 {
-    public SideViewEnemyMoveController(Enemy myUnit, GameObject target) : base(myUnit, target)
+    public class SideViewEnemyMoveController : EnemyMoveController
     {
-    }
-    public override void FixedUpdateMoveStep()
-    {
-        var nextPosition = GetFixedUpdateMoveStep();
-        MyUnit.Rb2D.MovePosition(nextPosition);
-    }
-
-    public override Vector2 GetFixedUpdateMoveStep()
-    {
-        Vector2 nextPosition = MyPosition;
-        if (knockbackTime > 0)
+        public SideViewEnemyMoveController(Enemy.Enemy myUnit, GameObject target) : base(myUnit, target)
         {
-            nextPosition += KnockbackVelocity * Time.fixedDeltaTime;
-            knockbackTime -= Time.fixedDeltaTime;
-            if (knockbackTime <= 0)
+        }
+        public override void FixedUpdateMoveStep()
+        {
+            var nextPosition = GetFixedUpdateMoveStep();
+            MyUnit.Rb2D.MovePosition(nextPosition);
+        }
+
+        public override Vector2 GetFixedUpdateMoveStep()
+        {
+            Vector2 nextPosition = MyPosition;
+            if (knockbackTime > 0)
             {
-                KnockbackDirection = Vector2.zero;
+                nextPosition += KnockbackVelocity * Time.fixedDeltaTime;
+                knockbackTime -= Time.fixedDeltaTime;
+                if (knockbackTime <= 0)
+                {
+                    KnockbackDirection = Vector2.zero;
+                }
             }
+            nextPosition += MovementVelocity * Time.fixedDeltaTime;
+            if (SpeedScale < 1)
+            {
+                SpeedScale += SpeedScaleStep;
+            }
+            return nextPosition;
         }
-        nextPosition += MovementVelocity * Time.fixedDeltaTime;
-        if (SpeedScale < 1)
-        {
-            SpeedScale += SpeedScaleStep;
-        }
-        return nextPosition;
-    }
 
-    public override void Stag()
-    {
-        SpeedScale = 0;
-    }
-    public override void KnockBackFromTarget(float thrustPower)
-    {
-        knockbackTime = thrustPower / knockbackSpeed;
-        KnockbackDirection = (MyPosition - TargetPosition).normalized;
-        Stag();
-        Debug.Log("Knockback");
+        public override void Stag()
+        {
+            SpeedScale = 0;
+        }
+        public override void KnockBackFromTarget(float thrustPower)
+        {
+            knockbackTime = thrustPower / knockbackSpeed;
+            KnockbackDirection = (MyPosition - TargetPosition).normalized;
+            Stag();
+            Debug.Log("Knockback");
+        }
     }
 }

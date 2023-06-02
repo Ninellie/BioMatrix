@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 
-public class Deck
+namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
-    public string Name { get; set; }
-    public int Id { get; set; }
-    public string Description { get; set; }
-    public CardTag Tags { get; set; }
-    public Stack<int> CardsId { get; set; }
+    public class Deck
+    {
+        public string Name { get; set; }
+        public int Id { get; set; }
+        public string Description { get; set; }
+        public CardTag Tags { get; set; }
+        public Stack<int> CardsId { get; set; }
+    }
 }

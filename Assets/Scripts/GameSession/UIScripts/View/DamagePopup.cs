@@ -1,40 +1,43 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
-public class DamagePopup : MonoBehaviour
+namespace Assets.Scripts.GameSession.UIScripts.View
 {
-    [SerializeField] private TextMeshPro _textMeshPro;
+    public class DamagePopup : MonoBehaviour
+    {
+        [SerializeField] private TextMeshPro _textMeshPro;
 
-    private float _disappearTimer;
-    private readonly float _moveYSpeed = 20f;
-    private readonly float _moveXSpeed = 10f;
-    private Color _textColor;
-    private void Awake()
-    {
-        _textMeshPro = gameObject.GetComponent<TextMeshPro>();
-    }
-    private void Update()
-    {
-        Disappear();
-    }
-
-    private void Disappear()
-    {
-        transform.position += new Vector3(_moveXSpeed, _moveYSpeed) * Time.deltaTime;
-        _disappearTimer -= Time.deltaTime;
-        if (!(_disappearTimer < 0)) return;
-        var disappearingSpeed = 3f;
-        _textColor.a -= disappearingSpeed * Time.deltaTime;
-        _textMeshPro.color = _textColor;
-        if (_textColor.a < 0)
+        private float _disappearTimer;
+        private readonly float _moveYSpeed = 20f;
+        private readonly float _moveXSpeed = 10f;
+        private Color _textColor;
+        private void Awake()
         {
-            Destroy(gameObject);
+            _textMeshPro = gameObject.GetComponent<TextMeshPro>();
         }
-    }
-    public void Setup(int damageAmount)
-    {
-        _textMeshPro.SetText(damageAmount.ToString());
-        _textColor = _textMeshPro.color;
-        _disappearTimer = 1f;
+        private void Update()
+        {
+            Disappear();
+        }
+
+        private void Disappear()
+        {
+            transform.position += new Vector3(_moveXSpeed, _moveYSpeed) * Time.deltaTime;
+            _disappearTimer -= Time.deltaTime;
+            if (!(_disappearTimer < 0)) return;
+            var disappearingSpeed = 3f;
+            _textColor.a -= disappearingSpeed * Time.deltaTime;
+            _textMeshPro.color = _textColor;
+            if (_textColor.a < 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+        public void Setup(int damageAmount)
+        {
+            _textMeshPro.SetText(damageAmount.ToString());
+            _textColor = _textMeshPro.color;
+            _disappearTimer = 1f;
+        }
     }
 }

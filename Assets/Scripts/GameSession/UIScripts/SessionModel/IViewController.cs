@@ -1,4 +1,4 @@
-namespace Assets.Scripts.GameSession.View
+namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 {
     public interface IViewController
     {

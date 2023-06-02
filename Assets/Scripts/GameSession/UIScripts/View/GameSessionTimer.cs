@@ -1,23 +1,27 @@
-using UnityEngine;
 using System;
 using TMPro;
-public class GameSessionTimer : MonoBehaviour
+using UnityEngine;
+
+namespace Assets.Scripts.GameSession.UIScripts.View
 {
-    public TMP_Text textTimer;
-    public Action onGameWinning;
-    
-    [SerializeField] private float _winTime = 300;
-
-    private void Update()
+    public class GameSessionTimer : MonoBehaviour
     {
-        var mins = (int)Time.time / 60;
-        var secs = (int)Time.time % 60;
+        public TMP_Text textTimer;
+        public Action onGameWinning;
+    
+        [SerializeField] private float _winTime = 300;
 
-        textTimer.text = $"{mins:D2}:{secs:D2}";
-
-        if (Time.time >= _winTime)
+        private void Update()
         {
-            onGameWinning?.Invoke();
+            var mins = (int)Time.time / 60;
+            var secs = (int)Time.time % 60;
+
+            textTimer.text = $"{mins:D2}:{secs:D2}";
+
+            if (Time.time >= _winTime)
+            {
+                onGameWinning?.Invoke();
+            }
         }
     }
 }

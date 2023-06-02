@@ -1,10 +1,15 @@
+using Assets.Scripts.GameSession.Upgrades.Deck;
+using Assets.Scripts.GameSession.Upgrades.Deck.JsonCard;
 using UnityEngine;
 
-public class TestJson : MonoBehaviour
+namespace Assets.Scripts.GameSession.UIScripts.View
 {
-    public void SerializeTest()
+    public class TestJson : MonoBehaviour
     {
-        var serializer = new JsonCardSerializer(new ArrayCardRepository());
-        serializer.Serialize("C:\\Users\\apawl\\source\\repos\\2d_game_prototype\\Assets\\Prefab\\Cards1.json");
+        public void SerializeTest()
+        {
+            var serializer = new JsonCardSerializer(new ArrayCardRepository());
+            serializer.Serialize("C:\\Users\\apawl\\source\\repos\\2d_game_prototype\\Assets\\Prefab\\Cards1.json");
+        }
     }
 }

@@ -1,66 +1,69 @@
 using UnityEngine;
 
-public class Repulse : MonoBehaviour
+namespace Assets.Scripts.Entity.Unit.Movement
 {
-    [SerializeField] private float _baseRepulseForce;
-    [SerializeField] private float _penetrationDistanceMultiplier;
-    [SerializeField] private string _layerName;
-
-    private CircleCollider2D _circleCollider;
-    private Collider2D _collider;
-
-    void Start()
+    public class Repulse : MonoBehaviour
     {
-        _collider = GetComponent<Collider2D>();
-        if (TryGetComponent<CircleCollider2D>(out _circleCollider))
+        [SerializeField] private float _baseRepulseForce;
+        [SerializeField] private float _penetrationDistanceMultiplier;
+        [SerializeField] private string _layerName;
+
+        private CircleCollider2D _circleCollider;
+        private Collider2D _collider;
+
+        void Start()
         {
-            _circleCollider = GetComponent<CircleCollider2D>();
-        }
-    }
-    void OnCollisionStay2D(Collision2D collision)
-    {
-        Collider2D otherCollider2D = collision.collider;
-
-        if (otherCollider2D.gameObject.layer != LayerMask.NameToLayer(_layerName)) return;
-
-        if (otherCollider2D is CircleCollider2D)
-        {
-            var circleColliderOther = otherCollider2D.gameObject.GetComponent<CircleCollider2D>();
-            float distance = Vector2.Distance(transform.position, otherCollider2D.transform.position);
-            float radiiSum = _circleCollider.radius + circleColliderOther.radius;
-            float multipliedRadiiSum = radiiSum * _penetrationDistanceMultiplier;
-            float penetrationDepth = multipliedRadiiSum - distance;
-
-            penetrationDepth = Mathf.Clamp(penetrationDepth, 0f, Mathf.Infinity);
-
-            float repulseForce = _baseRepulseForce * penetrationDepth;
-
-            Vector2 repulseVector = (transform.position - otherCollider2D.transform.position).normalized;
-
-            repulseVector *= repulseForce;
-
-            transform.Translate(repulseVector * Time.fixedDeltaTime, Space.World);
-        }
-        else
-        {
-            Debug.LogWarning("else");
-            float penetrationDepth = 0f;
-
-            foreach (ContactPoint2D contact in collision.contacts)
+            _collider = GetComponent<Collider2D>();
+            if (TryGetComponent<CircleCollider2D>(out _circleCollider))
             {
-                float distance = Vector2.Distance(transform.position, contact.point);
-                float radiiSum = _collider.bounds.extents.magnitude + otherCollider2D.bounds.extents.magnitude;
-                float multipliedRadiiSum = radiiSum * _penetrationDistanceMultiplier;
-                float depth = multipliedRadiiSum - distance;
-
-                penetrationDepth = Mathf.Max(penetrationDepth, depth);
+                _circleCollider = GetComponent<CircleCollider2D>();
             }
+        }
+        void OnCollisionStay2D(Collision2D collision)
+        {
+            Collider2D otherCollider2D = collision.collider;
 
-            float repulseForce = _baseRepulseForce * penetrationDepth;
+            if (otherCollider2D.gameObject.layer != LayerMask.NameToLayer(_layerName)) return;
 
-            Vector2 repulseVector = collision.contacts[0].normal * repulseForce;
+            if (otherCollider2D is CircleCollider2D)
+            {
+                var circleColliderOther = otherCollider2D.gameObject.GetComponent<CircleCollider2D>();
+                float distance = Vector2.Distance(transform.position, otherCollider2D.transform.position);
+                float radiiSum = _circleCollider.radius + circleColliderOther.radius;
+                float multipliedRadiiSum = radiiSum * _penetrationDistanceMultiplier;
+                float penetrationDepth = multipliedRadiiSum - distance;
 
-            transform.Translate(repulseVector * Time.fixedDeltaTime, Space.World);
+                penetrationDepth = Mathf.Clamp(penetrationDepth, 0f, Mathf.Infinity);
+
+                float repulseForce = _baseRepulseForce * penetrationDepth;
+
+                Vector2 repulseVector = (transform.position - otherCollider2D.transform.position).normalized;
+
+                repulseVector *= repulseForce;
+
+                transform.Translate(repulseVector * Time.fixedDeltaTime, Space.World);
+            }
+            else
+            {
+                Debug.LogWarning("else");
+                float penetrationDepth = 0f;
+
+                foreach (ContactPoint2D contact in collision.contacts)
+                {
+                    float distance = Vector2.Distance(transform.position, contact.point);
+                    float radiiSum = _collider.bounds.extents.magnitude + otherCollider2D.bounds.extents.magnitude;
+                    float multipliedRadiiSum = radiiSum * _penetrationDistanceMultiplier;
+                    float depth = multipliedRadiiSum - distance;
+
+                    penetrationDepth = Mathf.Max(penetrationDepth, depth);
+                }
+
+                float repulseForce = _baseRepulseForce * penetrationDepth;
+
+                Vector2 repulseVector = collision.contacts[0].normal * repulseForce;
+
+                transform.Translate(repulseVector * Time.fixedDeltaTime, Space.World);
+            }
         }
     }
 }

@@ -1,4 +1,3 @@
-using Assets.Scripts.GameSession.View;
 using UnityEngine;
 
 namespace Assets.Scripts.GameSession.UIScripts.SessionModel

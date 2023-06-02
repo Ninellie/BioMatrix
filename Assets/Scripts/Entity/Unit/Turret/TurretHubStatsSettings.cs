@@ -1,4 +1,7 @@
-public class TurretHubStatsSettings : EntityStatsSettings
+namespace Assets.Scripts.Entity.Unit.Turret
 {
-    public float turretCount;
+    public class TurretHubStatsSettings : EntityStatsSettings
+    {
+        public float turretCount;
+    }
 }

@@ -1,9 +1,13 @@
 using UnityEngine;
-public class StatFactory : MonoBehaviour
+
+namespace Assets.Scripts.Entity.Stat
 {
-    //[SerializeField] private GameTimeScheduler _gameTimeScheduler;
-    public Stat GetStat(float baseValue)
+    public class StatFactory : MonoBehaviour
     {
-        return new Stat(baseValue);
+        //[SerializeField] private GameTimeScheduler _gameTimeScheduler;
+        public Stat GetStat(float baseValue)
+        {
+            return new Stat(baseValue);
+        }
     }
 }

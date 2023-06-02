@@ -1,6 +1,9 @@
-public class UnitStatsSettings : EntityStatsSettings
+namespace Assets.Scripts.Entity.Unit
 {
-    public float speed;
-    public float accelerationSpeed;
-    public float rotationSpeed;
+    public class UnitStatsSettings : EntityStatsSettings
+    {
+        public float speed;
+        public float accelerationSpeed;
+        public float rotationSpeed;
+    }
 }

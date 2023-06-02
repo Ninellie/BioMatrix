@@ -1,5 +1,3 @@
-using Assets.Scripts.GameSession.View;
-
 namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 {
     public class ViewModel

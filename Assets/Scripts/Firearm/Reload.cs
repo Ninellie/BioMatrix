@@ -1,60 +1,64 @@
-using System;
+using Assets.Scripts.GameSession.Events;
+using Assets.Scripts.GameSession.UIScripts.View;
 using UnityEngine;
 
-public class Reload : MonoBehaviour
+namespace Assets.Scripts.Firearm
 {
-    public bool IsInProcess { get; private set; }
-
-    [SerializeField] private GameObject _plateUi;
-    private Firearm _firearm;
-    [SerializeField] private GameTimeScheduler _gameTimeScheduler;
-
-    private void Awake()
+    public class Reload : MonoBehaviour
     {
-        _firearm = GetComponent<Firearm>();
-        _gameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
+        public bool IsInProcess { get; private set; }
 
-        if (_firearm.GetIsForPlayer())
+        [SerializeField] private GameObject _plateUi;
+        private Firearm _firearm;
+        [SerializeField] private GameTimeScheduler _gameTimeScheduler;
+
+        private void Awake()
         {
-            _plateUi = FindObjectOfType<ReloadPlate>().reloadPlate;
+            _firearm = GetComponent<Firearm>();
+            _gameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
+
+            if (_firearm.GetIsForPlayer())
+            {
+                _plateUi = FindObjectOfType<ReloadPlate>().reloadPlate;
+            }
         }
-    }
     
-    private void OnEnable()
-    {
-        _firearm.Magazine.EmptyEvent += Initiate;
-    }
-
-    private void OnDisable()
-    {
-        _firearm.Magazine.EmptyEvent -= Initiate;
-    }
-
-    private void Initiate()
-    {
-        IsInProcess = true;
-
-        if (_firearm.GetIsForPlayer())
+        private void OnEnable()
         {
-            _plateUi.SetActive(true);
+            _firearm.Magazine.EmptyEvent += Initiate;
         }
-        
-        _gameTimeScheduler.Schedule(Complete, 1f / _firearm.ReloadSpeed.Value);
 
-        _firearm.OnReload();
-    }
-
-    private void Complete()
-    {
-        IsInProcess = false;
-
-        if (_firearm.GetIsForPlayer())
+        private void OnDisable()
         {
-            _plateUi.SetActive(false);
+            _firearm.Magazine.EmptyEvent -= Initiate;
         }
-        
-        _firearm.Magazine.Fill();
 
-        _firearm.OnReloadEnd();
+        private void Initiate()
+        {
+            IsInProcess = true;
+
+            if (_firearm.GetIsForPlayer())
+            {
+                _plateUi.SetActive(true);
+            }
+        
+            _gameTimeScheduler.Schedule(Complete, 1f / _firearm.ReloadSpeed.Value);
+
+            _firearm.OnReload();
+        }
+
+        private void Complete()
+        {
+            IsInProcess = false;
+
+            if (_firearm.GetIsForPlayer())
+            {
+                _plateUi.SetActive(false);
+            }
+        
+            _firearm.Magazine.Fill();
+
+            _firearm.OnReloadEnd();
+        }
     }
 }

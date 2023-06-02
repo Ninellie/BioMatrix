@@ -1,4 +1,7 @@
-﻿public interface IEffectRepository
+﻿namespace Assets.Scripts.Entity.Effects
 {
-    IEffect Get(string effectName);
+    public interface IEffectRepository
+    {
+        IEffect Get(string effectName);
+    }
 }

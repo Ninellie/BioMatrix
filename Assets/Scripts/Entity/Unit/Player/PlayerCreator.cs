@@ -1,70 +1,75 @@
+using Assets.Scripts.Entity.Unit.Turret;
 using Assets.Scripts.GameSession.UIScripts.SessionModel;
+using Assets.Scripts.GameSession.UIScripts.View;
 using UnityEngine;
 
-public class PlayerCreator : MonoBehaviour
+namespace Assets.Scripts.Entity.Unit.Player
 {
-    [SerializeField] private GameObject _playerPrefab;
-    [SerializeField] private GameObject _playerWeapon;
-    [SerializeField] private GameObject _turretHub;
-
-    private ExpUI _experienceBar;
-    private AmmoBar _ammoBar;
-    private LifeBar _lifeBar;
-    private GameSessionTimer _gameSessionTimer;
-    private OptionsMenu _optionsMenu;
-    private ViewController _viewController;
-
-    public Player CurrentPlayer { get; private set; }
-    private void Awake()
+    public class PlayerCreator : MonoBehaviour
     {
-        _gameSessionTimer = FindObjectOfType<GameSessionTimer>();
-        _viewController = FindObjectOfType<ViewController>();
-        _experienceBar = FindObjectOfType<ExpUI>();
-        _lifeBar = FindObjectOfType<LifeBar>();
-        _ammoBar = FindObjectOfType<AmmoBar>();
-        _optionsMenu = FindObjectOfType<OptionsMenu>();
+        [SerializeField] private GameObject _playerPrefab;
+        [SerializeField] private GameObject _playerWeapon;
+        [SerializeField] private GameObject _turretHub;
 
-        if (_playerPrefab == null) return;
+        private ExpUI _experienceBar;
+        private AmmoBar _ammoBar;
+        private LifeBar _lifeBar;
+        private GameSessionTimer _gameSessionTimer;
+        private OptionsMenu _optionsMenu;
+        private ViewController _viewController;
 
-        CreatePlayer(_playerPrefab);
-        CurrentPlayer.GetComponent<Player>().CreateWeapon(_playerWeapon);
-        var turretHub = Instantiate(_turretHub);
-        CurrentPlayer.TurretHub = turretHub.GetComponent<TurretHub>();
-        turretHub.transform.SetParent(CurrentPlayer.transform);
+        public Player CurrentPlayer { get; private set; }
+        private void Awake()
+        {
+            _gameSessionTimer = FindObjectOfType<GameSessionTimer>();
+            _viewController = FindObjectOfType<ViewController>();
+            _experienceBar = FindObjectOfType<ExpUI>();
+            _lifeBar = FindObjectOfType<LifeBar>();
+            _ammoBar = FindObjectOfType<AmmoBar>();
+            _optionsMenu = FindObjectOfType<OptionsMenu>();
 
-        _viewController.AwakeController();
-        Subscription();
-    }
+            if (_playerPrefab == null) return;
 
-    private void CreatePlayer(GameObject playerPrefab)
-    {
-        var player = Instantiate(playerPrefab, new Vector2(0, 0), Quaternion.identity);
-        CurrentPlayer = player.GetComponent<Player>();
-    }
+            CreatePlayer(_playerPrefab);
+            CurrentPlayer.GetComponent<Player>().CreateWeapon(_playerWeapon);
+            var turretHub = Instantiate(_turretHub);
+            CurrentPlayer.TurretHub = turretHub.GetComponent<TurretHub>();
+            turretHub.transform.SetParent(CurrentPlayer.transform);
 
-    private void Subscription()
-    {
-        _experienceBar.Subscription();
-        _ammoBar.Subscription();
-        _lifeBar.Subscription();
+            _viewController.AwakeController();
+            Subscription();
+        }
 
-        CurrentPlayer.GamePausedEvent += _viewController.Menu;
-        CurrentPlayer.LevelUpEvent += _viewController.LevelUpEvent;
-        CurrentPlayer.OnDeath += _viewController.Lose;
-        _gameSessionTimer.onGameWinning += _viewController.Win;
-        CurrentPlayer.OnDeath += Unsubscription;
-        _gameSessionTimer.onGameWinning += Unsubscription;
-        _optionsMenu.onBackToMainMenu += Unsubscription;
-    }
+        private void CreatePlayer(GameObject playerPrefab)
+        {
+            var player = Instantiate(playerPrefab, new Vector2(0, 0), Quaternion.identity);
+            CurrentPlayer = player.GetComponent<Player>();
+        }
 
-    public void Unsubscription()
-    {
-        CurrentPlayer.GamePausedEvent -= _viewController.Menu;
-        CurrentPlayer.LevelUpEvent -= _viewController.LevelUpEvent;
-        CurrentPlayer.OnDeath -= _viewController.Lose;
-        _gameSessionTimer.onGameWinning -= _viewController.Win;
-        CurrentPlayer.OnDeath -= Unsubscription;
-        _gameSessionTimer.onGameWinning -= Unsubscription;
-        _optionsMenu.onBackToMainMenu -= Unsubscription;
+        private void Subscription()
+        {
+            _experienceBar.Subscription();
+            _ammoBar.Subscription();
+            _lifeBar.Subscription();
+
+            CurrentPlayer.GamePausedEvent += _viewController.Menu;
+            CurrentPlayer.LevelUpEvent += _viewController.LevelUpEvent;
+            CurrentPlayer.OnDeath += _viewController.Lose;
+            _gameSessionTimer.onGameWinning += _viewController.Win;
+            CurrentPlayer.OnDeath += Unsubscription;
+            _gameSessionTimer.onGameWinning += Unsubscription;
+            _optionsMenu.onBackToMainMenu += Unsubscription;
+        }
+
+        public void Unsubscription()
+        {
+            CurrentPlayer.GamePausedEvent -= _viewController.Menu;
+            CurrentPlayer.LevelUpEvent -= _viewController.LevelUpEvent;
+            CurrentPlayer.OnDeath -= _viewController.Lose;
+            _gameSessionTimer.onGameWinning -= _viewController.Win;
+            CurrentPlayer.OnDeath -= Unsubscription;
+            _gameSessionTimer.onGameWinning -= Unsubscription;
+            _optionsMenu.onBackToMainMenu -= Unsubscription;
+        }
     }
 }

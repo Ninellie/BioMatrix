@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ReloadPlate : MonoBehaviour
+namespace Assets.Scripts.GameSession.UIScripts.View
 {
-    [SerializeField] public GameObject reloadPlate;
+    public class ReloadPlate : MonoBehaviour
+    {
+        [SerializeField] public GameObject reloadPlate;
+    }
 }

@@ -1,5 +1,8 @@
-﻿public class PropTrigger
+﻿namespace Assets.Scripts.Entity.Effects
 {
-    public string Name { get; set; }
-    public string Path { get; set; }
+    public class PropTrigger
+    {
+        public string Name { get; set; }
+        public string Path { get; set; }
+    }
 }

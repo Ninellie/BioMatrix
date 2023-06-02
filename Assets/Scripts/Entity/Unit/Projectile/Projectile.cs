@@ -1,57 +1,62 @@
+using Assets.Scripts.Entity.Stat;
+using Assets.Scripts.Entity.Unit.Movement;
 using UnityEngine;
 
-public class Projectile : Unit
+namespace Assets.Scripts.Entity.Unit.Projectile
 {
-    public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
-
-    [SerializeField] public float timeToStop = 15f;
-
-    private MovementControllerBullet _movementController;
-
-    private void Awake() => BaseAwake(Settings);
-    
-    private void OnEnable() => BaseOnEnable();
-    
-    private void OnDisable() => BaseOnDisable();
-    
-    private void Update() => BaseUpdate();
-    
-    private void FixedUpdate()
+    public class Projectile : Unit
     {
-        _movementController.FixedUpdateStep();
-        if (!_movementController.IsStopped()) return;
-        Death();
-    }
+        public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
 
-    private void OnCollisionEnter2D(Collision2D collision2D)
-    {
-        Collider2D otherCollider2D = collision2D.collider;
-        if (!otherCollider2D.gameObject.CompareTag("Enemy")) return;
-        if (!otherCollider2D.gameObject.GetComponent<Enemy>().Alive) return;
-        TakeDamage(MinimalDamageTaken);
-    }
+        [SerializeField] public float timeToStop = 15f;
 
-    protected override void BaseAwake(UnitStatsSettings settings)
-    {
-        base.BaseAwake(settings);
+        private MovementControllerBullet _movementController;
 
-        _movementController = new MovementControllerBullet(this);
-        _movementController.FixedUpdateStep();
-    }
+        private void Awake() => BaseAwake(Settings);
     
-    protected override void BaseUpdate()
-    {
-        base.BaseUpdate();
-        if (IsOnScreen == false)
+        private void OnEnable() => BaseOnEnable();
+    
+        private void OnDisable() => BaseOnDisable();
+    
+        private void Update() => BaseUpdate();
+    
+        private void FixedUpdate()
         {
-            TakeDamage(LifePoints.GetValue());
+            _movementController.FixedUpdateStep();
+            if (!_movementController.IsStopped()) return;
+            Death();
         }
-    }
+
+        private void OnCollisionEnter2D(Collision2D collision2D)
+        {
+            Collider2D otherCollider2D = collision2D.collider;
+            if (!otherCollider2D.gameObject.CompareTag("Enemy")) return;
+            if (!otherCollider2D.gameObject.GetComponent<Enemy.Enemy>().Alive) return;
+            TakeDamage(MinimalDamageTaken);
+        }
+
+        protected override void BaseAwake(UnitStatsSettings settings)
+        {
+            base.BaseAwake(settings);
+
+            _movementController = new MovementControllerBullet(this);
+            _movementController.FixedUpdateStep();
+        }
     
-    public void Launch(Vector2 direction, float force)
-    {
-        _movementController.SetDirection(direction);
-        var speedMod = new StatModifier(OperationType.Addition, force);
-        Speed.AddModifier(speedMod);
+        protected override void BaseUpdate()
+        {
+            base.BaseUpdate();
+            if (IsOnScreen == false)
+            {
+                TakeDamage(LifePoints.GetValue());
+            }
+        }
+    
+        public void Launch(Vector2 direction, float force)
+        {
+            _movementController.SetDirection(direction);
+            var speedMod = new StatModifier(OperationType.Addition, force);
+            Speed.AddModifier(speedMod);
+        }
     }
 }
