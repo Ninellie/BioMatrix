@@ -15,31 +15,42 @@ public static class EventHelper
         eventInfo.RemoveEventHandler(target, method);
     }
     
-    public static object SetPropValueByPath(object target, string path, object value)
+    public static void SetPropValueByPath(object target, string path, object value)
     {
+        if (target == null)
+        {
+            throw new ArgumentNullException(nameof(target));
+        }
         if (string.IsNullOrEmpty(path))
         {
-            return target;
+            throw new ArgumentNullException(nameof(path));
         }
 
         var names = path.Split('.');
 
         var i = names.Length;
 
+        string propName = null;
+
         foreach (var name in names)
         {
             i--;
             if (i == 0)
             {
-                PropertyInfo prop = target.GetType().GetProperty(name);
-                prop.SetValue(target, value);
+                propName = name;
+                break;
             }
             target = target.GetType().GetProperty(name)?.GetValue(target, null);
+            if (target == null)
+            {
+                throw new ArgumentException("Invalid path", nameof(path));
+            }
         }
 
-        return target;
+        PropertyInfo prop = target.GetType().GetProperty(propName);
+        prop.SetValue(target, value);
     }
-    
+
     public static object GetPropByPath(object target, string path)
     {
         if (string.IsNullOrEmpty(path))
