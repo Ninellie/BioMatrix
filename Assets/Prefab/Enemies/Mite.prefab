@@ -75,7 +75,7 @@ MonoBehaviour:
   speed: 300
   accelerationSpeed: 0
   rotationSpeed: 2
-  spawnWeight: 0
+  spawnWeight: 1
 --- !u!114 &-3291230919162905398
 MonoBehaviour:
   m_ObjectHideFlags: 0

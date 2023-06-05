@@ -4399,7 +4399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488e8a3f5928ebf46a0d1a400273b299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cageAppearTime: 555
+  _cageAppearTime: 120
   _enclosure: {fileID: 1026114785}
 --- !u!114 &869256045
 MonoBehaviour:
