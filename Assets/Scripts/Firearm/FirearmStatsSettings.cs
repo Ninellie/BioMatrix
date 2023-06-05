@@ -11,7 +11,7 @@ namespace Assets.Scripts.Firearm
         public float magazineCapacity;
         public float reloadSpeed;
         public float singleShootProjectile;
-        public float projectileSize;
-        public float projectilePierce;
+        public float addedProjectileSize;
+        public float addedProjectilePierce;
     }
 }

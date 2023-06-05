@@ -84,7 +84,7 @@ namespace Assets.Scripts.Entity
 
         public void RemoveEffect(IEffect effect)
         {
-            bool isContain = false;
+            var isContain = false;
 
             foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effect.Name))
             {
@@ -162,6 +162,7 @@ namespace Assets.Scripts.Entity
             var stat = (Stat.Stat)EventHelper.GetPropByPath(this, statPath);
             stat?.AddModifier(statModifier);
         }
+
         public void RemoveStatModifier(StatModifier statModifier, string statName)
         {
             var stat = (Stat.Stat)EventHelper.GetPropByPath(this, statName);

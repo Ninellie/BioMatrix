@@ -6,9 +6,9 @@ namespace Assets.Scripts.Entity.Unit.Projectile
 {
     public class Projectile : Unit
     {
-        public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
-
         [SerializeField] public float timeToStop = 15f;
+
+        public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
 
         private MovementControllerBullet _movementController;
 

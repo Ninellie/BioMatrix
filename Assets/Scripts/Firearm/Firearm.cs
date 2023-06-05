@@ -29,8 +29,8 @@ namespace Assets.Scripts.Firearm
         public Stat MagazineCapacity { get; private set; }
         public Stat ReloadSpeed { get; private set; }
         public Stat SingleShootProjectile { get; private set; }
-        public Stat ProjectileSize { get; private set; }
-        public Stat ProjectilePierce { get; private set; }
+        public Stat AddedProjectileSize { get; private set; }
+        public Stat AddedProjectilePierce { get; private set; }
 
         public event Action ReloadEndEvent;
         public event Action ReloadEvent;
@@ -45,7 +45,6 @@ namespace Assets.Scripts.Firearm
         private Reload _reload;
         private Player _player;
         private bool IsFireButtonPressed => IsEnable && !_isForPlayer || _player.IsFireButtonPressed;
-
         private float _previousShootTimer = 0;
         private float MinShootInterval => 1f / ShootsPerSecond.Value;
     
@@ -53,7 +52,6 @@ namespace Assets.Scripts.Firearm
 
         private void BaseAwake(FirearmStatsSettings settings)
         {
-            //magazine = GetComponent<Magazine>();
             _reload = GetComponent<Reload>();
             _projectileCreator = GetComponent<ProjectileCreator>();
 
@@ -66,8 +64,8 @@ namespace Assets.Scripts.Firearm
             MagazineCapacity = _statFactory.GetStat(settings.magazineCapacity);
             ReloadSpeed = _statFactory.GetStat(settings.reloadSpeed);
             SingleShootProjectile = _statFactory.GetStat(settings.singleShootProjectile);
-            ProjectileSize = _statFactory.GetStat(settings.projectileSize);
-            ProjectilePierce = _statFactory.GetStat(settings.projectilePierce);
+            AddedProjectileSize = _statFactory.GetStat(settings.addedProjectileSize);
+            AddedProjectilePierce = _statFactory.GetStat(settings.addedProjectilePierce);
         
             Magazine = new Resource(0, MagazineCapacity);
             Magazine.Fill();
@@ -91,8 +89,8 @@ namespace Assets.Scripts.Firearm
             MagazineCapacity = firearm.MagazineCapacity;
             ReloadSpeed = firearm.ReloadSpeed;
             SingleShootProjectile = firearm.SingleShootProjectile;
-            ProjectileSize = firearm.ProjectileSize;
-            ProjectilePierce = firearm.ProjectilePierce;
+            AddedProjectileSize = firearm.AddedProjectileSize;
+            AddedProjectilePierce = firearm.AddedProjectilePierce;
         }
     
         public void OnReload()
@@ -122,10 +120,18 @@ namespace Assets.Scripts.Firearm
             {
                 var proj = projectile.GetComponent<Projectile>();
 
-                var sizeMod = new StatModifier(OperationType.Addition, ProjectileSize.Value);
+                var sizeMod = new StatModifier(OperationType.Addition, AddedProjectileSize.Value);
+                if (AddedProjectileSize.IsModifierListEmpty())
+                {
+                    
+                }
+                else
+                {
+                    Debug.LogWarning("Proj size of firearm have mods");
+                }
                 proj.Size.AddModifier(sizeMod);
 
-                var pierceMod = new StatModifier(OperationType.Addition, ProjectilePierce.Value);
+                var pierceMod = new StatModifier(OperationType.Addition, AddedProjectilePierce.Value);
                 proj.MaximumLifePoints.AddModifier(pierceMod);
                 proj.LifePoints.Fill();
 

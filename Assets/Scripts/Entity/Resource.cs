@@ -15,7 +15,7 @@ namespace Assets.Scripts.Entity
         public event Action FullRecoveryEvent;
         public event Action EmptyEvent;
         public event Action EdgeEvent;
-        public event Action NotOnEdgeEvent;
+        public event Action NotEdgeEvent;
         public event Action NotEmptyEvent;
 
         public bool IsFull => _isLimited && Value == (int)_maxValueStat.Value;
@@ -157,7 +157,7 @@ namespace Assets.Scripts.Entity
                 }
                 if (oldValue == _edgeValue && _value > _edgeValue)
                 {
-                    NotOnEdgeEvent?.Invoke();
+                    NotEdgeEvent?.Invoke();
                 }
                 if (IsOnEdge)
                 {
