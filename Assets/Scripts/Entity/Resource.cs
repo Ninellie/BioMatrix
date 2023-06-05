@@ -50,7 +50,7 @@ namespace Assets.Scripts.Entity
                 if (value > _restoreRate)
                 {
                     _timeToRecover = value % _restoreRate;
-                    ReserveValue += _recoverySpeedPerSecondStat.Value / _restoreRate;
+                    ReserveValue += _recoverySpeedPerSecondStat.Value * _restoreRate;
                 }
                 else
                 {
@@ -251,11 +251,11 @@ namespace Assets.Scripts.Entity
             bool isRecovering,
             bool isLimited)
         {
-            this._minValue = minValue;
-            this._edgeValue = edgeValue;
-            this._maxValueStat = maxValueStat;
-            this._recoverySpeedPerSecondStat = recoverySpeedPerSecondStat;
-            this._isRecovering = isRecovering;
+            _minValue = minValue;
+            _edgeValue = edgeValue;
+            _maxValueStat = maxValueStat;
+            _recoverySpeedPerSecondStat = recoverySpeedPerSecondStat;
+            _isRecovering = isRecovering;
             _restoreRate = 0.1f;
             _isLimited = isLimited;
             _maxRecoverableValueStat = maxRecoverableValueStat;
