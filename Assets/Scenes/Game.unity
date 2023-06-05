@@ -4399,7 +4399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488e8a3f5928ebf46a0d1a400273b299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cageAppearTime: 5
+  _cageAppearTime: 555
   _enclosure: {fileID: 1026114785}
 --- !u!114 &869256045
 MonoBehaviour:
@@ -4965,6 +4965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865347cea50ea4b40aed84d653d506f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxLifeTime: 30
   _currentLifeTime: 0
   _isShrinking: 0
   _grid: {fileID: 869256039}

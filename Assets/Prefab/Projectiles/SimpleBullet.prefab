@@ -138,9 +138,9 @@ MonoBehaviour:
   size: 1
   maximumLife: 1
   lifeRegenerationInSecond: 0
-  knockbackPower: 10
+  knockbackPower: 0
   damage: 0
-  speed: 700
+  speed: 0
   accelerationSpeed: 0
   rotationSpeed: 0
 --- !u!58 &401081946869708339

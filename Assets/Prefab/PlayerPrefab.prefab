@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
-  maximumLife: 300
+  maximumLife: 2
   lifeRegenerationInSecond: 0
   knockbackPower: 100
   damage: 0
