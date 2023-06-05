@@ -20,7 +20,7 @@ namespace Assets.Scripts.Entity
 
         public bool IsFull => _isLimited && Value == (int)_maxValueStat.Value;
         public bool IsEmpty => Value == _minValue;
-        public bool IsOnEdge => Value == _minValue;
+        public bool IsOnEdge => Value == _edgeValue;
         public bool IsFullyRecovered => _isRecovering && Value >= (int)_maxRecoverableValueStat.Value;
         public bool IsOverRecovered => _isRecovering && Value > (int)_maxRecoverableValueStat.Value;
         public bool IsOnRecovery => _isRecovering && Value < (int)_maxRecoverableValueStat.Value;
