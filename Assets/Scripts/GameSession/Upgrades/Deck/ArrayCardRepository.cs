@@ -12,6 +12,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
 
         private static readonly Card[] DefaultCards = new[]
         {
+            // Gun deck
             new Card
             {
                 Title = "Gun 1",
@@ -41,7 +42,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun 3",
-                Description = "+2 proj pierce, +100% proj speed",
+                Description = "+2 proj pierce, +50% proj speed",
                 Id = 3,
                 DeckId = 1,
                 OrderInDeck = 3,
@@ -52,6 +53,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
 
                 },
             },
+            // Gun Turret deck
             new Card
             {
                 Title = "Gun Turret 1",
@@ -89,6 +91,46 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Effects = new[]
                 {
                     EffectRepository.Get("GunTurret3")
+                },
+            },
+            // Gun Vitality deck
+            new Card
+            {
+                Title = "Gun Vitality 1",
+                Description = "+ 1 max hp, +50% projectile size",
+                Id = 7,
+                DeckId = 3,
+                OrderInDeck = 1,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("GunVitality1")
+                }
+            },
+            new Card
+            {
+                Title = "Gun Vitality 2",
+                Description = "+ 1 hp regeneration per minute",
+                Id = 8,
+                DeckId = 3,
+                OrderInDeck = 2,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("GunVitality2")
+                },
+            },
+            new Card
+            {
+                Title = "Gun Vitality 3",
+                Description = "+100% firerate, +50% Dmg while you have only 1 hp",
+                Id = 9,
+                DeckId = 3,
+                OrderInDeck = 3,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("GunVitality3")
                 },
             },
         };
