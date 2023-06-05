@@ -13,5 +13,6 @@ namespace Assets.Scripts.Firearm
         public float singleShootProjectile;
         public float addedProjectileSize;
         public float addedProjectilePierce;
+        public float addedProjectileKnockback;
     }
 }

@@ -31,6 +31,7 @@ namespace Assets.Scripts.Firearm
         public Stat SingleShootProjectile { get; private set; }
         public Stat AddedProjectileSize { get; private set; }
         public Stat AddedProjectilePierce { get; private set; }
+        public Stat AddedProjectileKnockback { get; private set; }
 
         public event Action ReloadEndEvent;
         public event Action ReloadEvent;
@@ -66,6 +67,7 @@ namespace Assets.Scripts.Firearm
             SingleShootProjectile = _statFactory.GetStat(settings.singleShootProjectile);
             AddedProjectileSize = _statFactory.GetStat(settings.addedProjectileSize);
             AddedProjectilePierce = _statFactory.GetStat(settings.addedProjectilePierce);
+            AddedProjectileKnockback = _statFactory.GetStat(settings.addedProjectileKnockback);
         
             Magazine = new Resource(0, MagazineCapacity);
             Magazine.Fill();
@@ -120,29 +122,29 @@ namespace Assets.Scripts.Firearm
             {
                 var proj = projectile.GetComponent<Projectile>();
 
-                var sizeMod = new StatModifier(OperationType.Addition, AddedProjectileSize.Value);
-                if (AddedProjectileSize.IsModifierListEmpty())
-                {
-                    
-                }
-                else
-                {
-                    Debug.LogWarning("Proj size of firearm have mods");
-                }
-                proj.Size.AddModifier(sizeMod);
-
-                var pierceMod = new StatModifier(OperationType.Addition, AddedProjectilePierce.Value);
-                proj.MaximumLifePoints.AddModifier(pierceMod);
-                proj.LifePoints.Fill();
-
-                var damageMod = new StatModifier(OperationType.Addition, Damage.Value);
-                proj.Damage.AddModifier(damageMod);
+                ImproveProjectile(proj);
 
                 var actualShotDirection = GetActualShotDirection(direction, MaxShootDeflectionAngle.Value);
                 proj.Launch(actualShotDirection, ShootForce.Value);
             }
 
             _previousShootTimer = MinShootInterval;
+        }
+
+        private void ImproveProjectile(Projectile projectile)
+        {
+            var sizeMod = new StatModifier(OperationType.Addition, AddedProjectileSize.Value);
+            if (sizeMod.Value > 1) projectile.Size.AddModifier(sizeMod);
+            
+            var pierceMod = new StatModifier(OperationType.Addition, AddedProjectilePierce.Value);
+            if (pierceMod.Value > 1) projectile.MaximumLifePoints.AddModifier(pierceMod);
+            projectile.LifePoints.Fill();
+
+            var damageMod = new StatModifier(OperationType.Addition, Damage.Value);
+            if (damageMod.Value > 0) projectile.Damage.AddModifier(damageMod);
+
+            var knockbackMod = new StatModifier(OperationType.Addition, AddedProjectileSize.Value);
+            if (knockbackMod.Value > 0) projectile.KnockbackPower.AddModifier(knockbackMod);
         }
 
         private Vector2 GetShotDirection()
