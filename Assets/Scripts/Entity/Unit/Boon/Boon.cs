@@ -1,14 +1,16 @@
 using Assets.Scripts.Entity.Unit.Enemy;
+using Assets.Scripts.Entity.Unit.Player;
 using UnityEngine;
 
 namespace Assets.Scripts.Entity.Unit.Boon
 {
+    [RequireComponent(typeof(UnitStatsSettings))]
     public class Boon : Unit
     {
         public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
 
         private const float SpeedConst = 1500;
-        private readonly Rarity _rarity = new Rarity();
+        private readonly Rarity _rarity = new();
 
         private void Awake() => BaseAwake(Settings);
 
@@ -16,36 +18,42 @@ namespace Assets.Scripts.Entity.Unit.Boon
 
         private void OnDisable() => BaseOnDisable();
 
+        private void OnTriggerStay2D(Collider2D otherCollider2D) => BaseOnTriggerStay2D(otherCollider2D);
+
+        private void OnTriggerEnter2D(Collider2D otherCollider2D) => BaseOnTriggerEnter2D(otherCollider2D);
+
         private void Update() => BaseUpdate();
-
-        private void OnTriggerStay2D(Collider2D otherCollider2D)
-        {
-            if (!otherCollider2D.gameObject.CompareTag("Player")) return;
-            Vector2 nextPosition = transform.position;
-            Vector2 direction = (otherCollider2D.transform.position - transform.position).normalized;
-            Vector2 movementVelocity = direction * SpeedConst;
-            nextPosition += movementVelocity * Time.fixedDeltaTime;
         
-            Rb2D.MovePosition(nextPosition);
-        }
-
-        private void OnTriggerEnter2D(Collider2D otherCollider2D)
-        {
-            var collisionGameObject = otherCollider2D.gameObject;
-
-            if (!otherCollider2D.gameObject.CompareTag("Player")) return;
-            if (otherCollider2D is not BoxCollider2D) return;
-            Debug.Log("The exp crystal was taken");
-            TakeDamage(LifePoints.GetValue());
-            collisionGameObject.GetComponent<Player.Player>().Experience++;
-        }
-
         protected override void BaseAwake(UnitStatsSettings settings)
         {
             Debug.Log($"{gameObject.name} Boon Awake");
             base.BaseAwake(settings);
 
-            _rarity.Value = RarityEnum.Magic;
+            _rarity.Value = RarityEnum.Normal;
+        }
+
+        private void BaseOnTriggerEnter2D(Collider2D collider2D)
+        {
+            var collisionGameObject = collider2D.gameObject;
+
+            if (!collider2D.gameObject.CompareTag("Player")) return;
+            if (collider2D is not BoxCollider2D) return;
+            Debug.Log("The exp crystal was taken");
+            TakeDamage(LifePoints.GetValue());
+            var player = collisionGameObject.GetComponent<Player.Player>();
+            var expGiven = 1;
+            player.GetExperience(expGiven);
+        }
+
+        private void BaseOnTriggerStay2D(Collider2D collider2D)
+        {
+            if (!collider2D.gameObject.CompareTag("Player")) return;
+            Vector2 nextPosition = transform.position;
+            Vector2 direction = (collider2D.transform.position - transform.position).normalized;
+            var movementVelocity = direction * SpeedConst;
+            nextPosition += movementVelocity * Time.fixedDeltaTime;
+
+            Rb2D.MovePosition(nextPosition);
         }
     }
 }
