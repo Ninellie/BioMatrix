@@ -16,7 +16,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun 1",
-                Description = "+50% proj dmg, +2 magazine capacity",
+                Description = "+50% Firearm Damage, +2 magazine capacity",
                 DropWeight = 1,
                 Id = 1,
                 DeckId = 1,
@@ -29,7 +29,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun 2",
-                Description = "+50% firerate for 2 sec after reloading",
+                Description = "+50% Firerate for 2 sec after reloading",
                 Id = 2,
                 DeckId = 1,
                 OrderInDeck = 2,
@@ -42,7 +42,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun 3",
-                Description = "+2 proj pierce, +50% proj speed",
+                Description = "+2 Projectile pierce, +50% Projectile speed",
                 Id = 3,
                 DeckId = 1,
                 OrderInDeck = 3,
@@ -57,7 +57,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun Turret 1",
-                Description = "+ 1 turret",
+                Description = "+ 1 Turret",
                 Id = 4,
                 DeckId = 2,
                 OrderInDeck = 1,
@@ -70,7 +70,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun Turret 2",
-                Description = "Turret shoots where the player shoots, +50 turret firerate",
+                Description = "Turret shoots where the player shoots, +50 turret Firerate",
                 Id = 5,
                 DeckId = 2,
                 OrderInDeck = 2,
@@ -83,7 +83,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun Turret 3",
-                Description = "While magazine full, turrets get +2 proj",
+                Description = "While magazine full, turrets get +2 projectiles",
                 Id = 6,
                 DeckId = 2,
                 OrderInDeck = 3,
@@ -97,7 +97,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun Vitality 1",
-                Description = "+ 1 max hp, +50% projectile size",
+                Description = "+ 1 Max HP, +50% Projectile size",
                 Id = 7,
                 DeckId = 3,
                 OrderInDeck = 1,
@@ -110,7 +110,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun Vitality 2",
-                Description = "+ 1 hp regeneration per minute",
+                Description = "+ 1 HP Regeneration per minute",
                 Id = 8,
                 DeckId = 3,
                 OrderInDeck = 2,
@@ -123,7 +123,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun Vitality 3",
-                Description = "+100% firerate, +50% Dmg while you have only 1 hp",
+                Description = "+100% Firerate, +50% Firearm Damage while you have only 1 hp",
                 Id = 9,
                 DeckId = 3,
                 OrderInDeck = 3,
@@ -131,6 +131,46 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Effects = new[]
                 {
                     EffectRepository.Get("GunVitality3")
+                },
+            },
+            // Gun Movement Experience deck
+            new Card
+            {
+                Title = "Gun Movement Experience 1",
+                Description = "Gain stack of Adrenalin per exp taken. Adrenalin is the effect, that gives you +1% Movement speed and +1% Firerate per stack. Maximum 50 stacks. Duration is updated when a new stack is received.",
+                Id = 10,
+                DeckId = 4,
+                OrderInDeck = 1,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("GunMovementExperience1")
+                }
+            },
+            new Card
+            {
+                Title = "Gun Movement Experience 2",
+                Description = "+25% Movement speed multiplier, +25% Projectile speed multiplier",
+                Id = 11,
+                DeckId = 4,
+                OrderInDeck = 2,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("GunMovementExperience2")
+                },
+            },
+            new Card
+            {
+                Title = "Gun Movement Experience 3",
+                Description = "+100% Experience gain multiplier",
+                Id = 12,
+                DeckId = 4,
+                OrderInDeck = 3,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("GunMovementExperience3")
                 },
             },
         };
