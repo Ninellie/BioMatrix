@@ -19,6 +19,7 @@ namespace Assets.Scripts.Firearm
         [SerializeField] private bool _isForPlayer;
         [SerializeField] private LayerMask _enemyLayer;
 
+        public Entity.Entity Holder { get; private set; }
         public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
         public Resource Magazine { get; set; }
 
@@ -124,6 +125,8 @@ namespace Assets.Scripts.Firearm
 
                 ImproveProjectile(proj);
 
+                proj.SetSource(Holder);
+
                 var actualShotDirection = GetActualShotDirection(direction, MaxShootDeflectionAngle.Value);
                 proj.Launch(actualShotDirection, ShootForce.Value);
             }
@@ -185,6 +188,11 @@ namespace Assets.Scripts.Firearm
                 }
             }
             return nearestEnemyDirection;
+        }
+
+        public void SetHolder(Entity.Entity entity)
+        {
+            Holder = entity;
         }
 
         private Vector2 GetActualShotDirection(Vector2 direction, float maxShotDeflectionAngle)

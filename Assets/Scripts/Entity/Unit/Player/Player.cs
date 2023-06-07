@@ -293,6 +293,7 @@ namespace Assets.Scripts.Entity.Unit.Player
 
             w.transform.position = _firePoint.transform.position;
             var firearm = w.GetComponent<Firearm.Firearm>();
+            firearm.SetHolder(this);
             Firearm = firearm;
         }
 

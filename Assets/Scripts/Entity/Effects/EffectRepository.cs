@@ -209,6 +209,11 @@ namespace Assets.Scripts.Entity.Effects
                     (new StatModifier(OperationType.Multiplication, 100), nameof(Player.ExpMultiplier)),
                 }
             ),
+            //Turret 1
+
+            //Turret 2
+
+            //Turret 3
         };
 
         private static readonly Dictionary<string, ToggleOnAttach> ToggleEffects = new()

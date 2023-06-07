@@ -16,6 +16,7 @@ namespace Assets.Scripts.Entity
         public const int DeathLifePointsThreshold = 0;
         public const int MinimalDamageTaken = 1;
         public Resource LifePoints { get; private set; }
+        public Resource KillsCount { get; private set; }
         public Stat.Stat Size { get; private set; }
         public Stat.Stat MaximumLifePoints { get; private set; }
         public Stat.Stat LifeRegenerationPerSecond { get; private set; }
@@ -131,6 +132,7 @@ namespace Assets.Scripts.Entity
 
             LifePoints = new Resource(DeathLifePointsThreshold, MaximumLifePoints, LifeRegenerationPerSecond);
             LifePoints.Fill();
+            KillsCount = new Resource();
         }
     
         protected virtual void BaseOnEnable()

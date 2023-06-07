@@ -1,4 +1,5 @@
 using System;
+using Assets.Scripts.Core;
 using Assets.Scripts.Core.Render;
 using Assets.Scripts.Entity.Stat;
 using Assets.Scripts.Entity.Unit.Movement;
@@ -21,7 +22,7 @@ namespace Assets.Scripts.Entity.Unit.Enemy
         private int _dropCount = 1;
         private readonly Rarity _rarity = new Rarity();
         private SpriteOutline _spriteOutline;
-        private bool _deathFromPlayer = true;
+        private bool _deathFromProjectile = false;
         private CircleCollider2D _circleCollider;
         private Color _spriteColor;
         private float _deathTimer;
@@ -29,6 +30,9 @@ namespace Assets.Scripts.Entity.Unit.Enemy
         private const int MinInitialLevel = 1;
         private const float MaxLifeIncreasePerLevel = 1;
         private const long OffscreenDieSeconds = 60;
+
+        private Entity _lastDamageSource;
+        private Player.Player _player;
 
         private int _level;
         private int Level
@@ -55,7 +59,7 @@ namespace Assets.Scripts.Entity.Unit.Enemy
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
             if (!Alive) return;
-
+            _lastDamageSource = this;
             Collider2D otherCollider2D = collision2D.collider;
         
             if (otherCollider2D.gameObject.CompareTag("Enemy"))
@@ -76,16 +80,23 @@ namespace Assets.Scripts.Entity.Unit.Enemy
             {
                 if (_dieOnPlayerCollision)
                 {
+                    _deathFromProjectile = false;
                     Death();
                 }
             }
             if (!otherCollider2D.gameObject.CompareTag("Projectile")) return;
-            var projectileDamage = collisionEntity.Damage.Value;
 
+            var projectileDamage = collisionEntity.Damage.Value;
             TakeDamage(projectileDamage);
+            if(projectileDamage > 0) _lastDamageSource = collisionEntity;
+            _deathFromProjectile = true;
+
+            if (LifePoints.IsEmpty)
+            {
+                _lastDamageSource.KillsCount.Increase();
+            }
 
             var position = GetClosestPointOnCircle(otherCollider2D as CircleCollider2D);
-
             DropDamagePopup((int)projectileDamage, position);
 
             ChangeColorOnDamageTaken();
@@ -128,14 +139,15 @@ namespace Assets.Scripts.Entity.Unit.Enemy
             Level = MinInitialLevel;
             RestoreLifePoints();
 
-            var player = FindObjectOfType<Player.Player>().gameObject; //!!
+            _player = FindObjectOfType<Player.Player>(); //!!
+
             if (_enemyType == EnemyType.SideView)
             {
-                enemyMoveController = new SideViewEnemyMoveController(this, player);
+                enemyMoveController = new SideViewEnemyMoveController(this, _player.gameObject);
             }   
             else
             {
-                enemyMoveController = new AboveViewEnemyMoveController(this, player);
+                enemyMoveController = new AboveViewEnemyMoveController(this, _player.gameObject);
             }
         }
         protected override void BaseUpdate()
@@ -171,7 +183,7 @@ namespace Assets.Scripts.Entity.Unit.Enemy
             if (Time.timeScale == 0) return;
             _deathTimer += Time.fixedDeltaTime;
             if (!(_deathTimer >= OffscreenDieSeconds)) return;
-            _deathFromPlayer = false;
+            _deathFromProjectile = false;
             TakeDamage(LifePoints.GetValue());
         }
         public void SetRarity(RarityEnum rarityEnum)
@@ -200,7 +212,7 @@ namespace Assets.Scripts.Entity.Unit.Enemy
         }
         protected override void Death()
         {
-            if (_deathFromPlayer)
+            if (_deathFromProjectile)
             {
                 DropBonus();
             }

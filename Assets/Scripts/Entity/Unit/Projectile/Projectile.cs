@@ -8,7 +8,7 @@ namespace Assets.Scripts.Entity.Unit.Projectile
     public class Projectile : Unit
     {
         [SerializeField] public float timeToStop = 15f;
-
+        public Entity Source { get; private set; }
         public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
 
         private MovementControllerBullet _movementController;
@@ -16,9 +16,21 @@ namespace Assets.Scripts.Entity.Unit.Projectile
         private void Awake() => BaseAwake(Settings);
     
         private void OnEnable() => BaseOnEnable();
-    
+
+        protected override void BaseOnEnable()
+        {
+            base.BaseOnEnable();
+            KillsCount.IncrementEvent += () => Source.KillsCount.Increase();
+        }
+        
         private void OnDisable() => BaseOnDisable();
-    
+
+        protected override void BaseOnDisable()
+        {
+            base.BaseOnDisable();
+            KillsCount.IncrementEvent -= () => Source.KillsCount.Increase();
+        }
+
         private void Update() => BaseUpdate();
     
         private void FixedUpdate()
@@ -58,6 +70,11 @@ namespace Assets.Scripts.Entity.Unit.Projectile
             _movementController.SetDirection(direction);
             var speedMod = new StatModifier(OperationType.Addition, force);
             Speed.AddModifier(speedMod);
+        }
+
+        public void SetSource(Entity source)
+        {
+            Source = source;
         }
     }
 }

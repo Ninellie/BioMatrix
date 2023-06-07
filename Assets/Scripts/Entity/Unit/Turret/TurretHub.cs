@@ -11,6 +11,8 @@ namespace Assets.Scripts.Entity.Unit.Turret
         [SerializeField] private bool _isSameTurretTarget;
 
         public TurretHubStatsSettings Settings => GetComponent<TurretHubStatsSettings>();
+        public Entity Holder { get; private set; }
+        public Firearm.Firearm Firearm { get; set; }
         public Stat.Stat TurretCount { get; private set; }
         public readonly Stack<Turret> currentTurrets = new();
         public bool IsSameTurretTarget
@@ -18,8 +20,6 @@ namespace Assets.Scripts.Entity.Unit.Turret
             get => _isSameTurretTarget;
             set => _isSameTurretTarget = value;
         }
-
-        public Firearm.Firearm Firearm { get; set; }
 
         private void Awake() => BaseAwake(Settings);
 
@@ -49,11 +49,19 @@ namespace Assets.Scripts.Entity.Unit.Turret
         protected override void BaseOnEnable()
         {
             if (TurretCount != null) TurretCount.ValueChangedEvent += UpdateTurrets;
+            KillsCount.IncrementEvent += () => Holder.KillsCount.Increase();
         }
-    
+
         protected override void BaseOnDisable()
         {
             if (TurretCount != null) TurretCount.ValueChangedEvent -= UpdateTurrets;
+            KillsCount.IncrementEvent -= () => Holder.KillsCount.Increase();
+        }
+
+
+        private void BaseFixedUpdate()
+        {
+            // Turret movement logic
         }
 
         public void CreateTurretWeapon(GameObject weapon)
@@ -68,9 +76,29 @@ namespace Assets.Scripts.Entity.Unit.Turret
             Firearm = firearm;
         }
 
-        private void BaseFixedUpdate()
+        public void SetHolder(Entity entity)
         {
-            // Turret movement logic
+            Holder = entity;
+        }
+
+        public void CreateTurret()
+        {
+            var turretGameObject = Instantiate(_turretPrefab);
+
+            turretGameObject.transform.SetParent(gameObject.transform);
+
+            var createdTurret = turretGameObject.GetComponent<Turret>();
+
+            createdTurret.SetAttractor(gameObject);
+            createdTurret.CreateWeapon(_turretWeaponPrefab);
+            createdTurret.Firearm.SetStats(Firearm);
+            currentTurrets.Push(createdTurret);
+        }
+
+        public void DestroyTurret()
+        {
+            var turret = currentTurrets.Pop();
+            turret.Destroy();
         }
 
         private void UpdateTurrets()
@@ -94,26 +122,6 @@ namespace Assets.Scripts.Entity.Unit.Turret
 
                 delay++;
             }
-        }
-
-        public void CreateTurret()
-        {
-            var turretGameObject = Instantiate(_turretPrefab);
-
-            turretGameObject.transform.SetParent(gameObject.transform);
-
-            var createdTurret = turretGameObject.GetComponent<Turret>();
-
-            createdTurret.SetAttractor(gameObject);
-            createdTurret.CreateWeapon(_turretWeaponPrefab);
-            createdTurret.CurrentFirearm.SetStats(Firearm);
-            currentTurrets.Push(createdTurret);
-        }
-
-        public void DestroyTurret()
-        {
-            var turret = currentTurrets.Pop();
-            turret.Destroy();
         }
     }
 }

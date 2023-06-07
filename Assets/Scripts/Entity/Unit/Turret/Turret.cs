@@ -9,13 +9,28 @@ namespace Assets.Scripts.Entity.Unit.Turret
         [SerializeField] private GameObject _attractor;
 
         public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
-        public Firearm.Firearm CurrentFirearm { get; private set; }
+        public Firearm.Firearm Firearm { get; private set; }
 
         private TurretHub _hub;
         private MovementControllerTurret _movementController;
 
         private void Awake() => BaseAwake(Settings);
-    
+
+        private void OnEnable() => BaseOnEnable();
+
+        protected override void BaseOnEnable()
+        {
+            base.BaseOnEnable();
+            KillsCount.IncrementEvent += () => _hub.KillsCount.Increase();
+        }
+
+        private void OnDisable() => BaseOnDisable();
+
+        protected override void BaseOnDisable()
+        {
+            base.BaseOnDisable();
+            KillsCount.IncrementEvent -= () => _hub.KillsCount.Increase();
+        }
         private void FixedUpdate() => BaseFixedUpdate();
     
         protected void BaseFixedUpdate()
@@ -41,7 +56,8 @@ namespace Assets.Scripts.Entity.Unit.Turret
 
             w.transform.position = _firePoint.transform.position;
             var firearm = w.GetComponent<Firearm.Firearm>();
-            CurrentFirearm = firearm;
+            firearm.SetHolder(this);
+            Firearm = firearm;
         }
 
         public void Destroy()

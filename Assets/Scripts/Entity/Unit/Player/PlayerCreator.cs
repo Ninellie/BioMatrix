@@ -39,9 +39,11 @@ namespace Assets.Scripts.Entity.Unit.Player
 
             CurrentPlayer.CreateWeapon(_playerWeapon);
 
-            var turretHub = Instantiate(_turretHub);
-            CurrentPlayer.TurretHub = turretHub.GetComponent<TurretHub>();
-            turretHub.transform.SetParent(CurrentPlayer.transform);
+            var turretHubPrefab = Instantiate(_turretHub);
+            var turretHub = turretHubPrefab.GetComponent<TurretHub>();
+            turretHub.SetHolder(CurrentPlayer);
+            CurrentPlayer.TurretHub = turretHub;
+            turretHubPrefab.transform.SetParent(CurrentPlayer.transform);
 
             _viewController.AwakeController(CurrentPlayer.GetComponent<PlayerInput>());
             Subscription();
