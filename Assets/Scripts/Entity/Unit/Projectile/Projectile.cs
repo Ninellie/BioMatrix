@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Entity.Unit.Projectile
 {
+    [RequireComponent(typeof(UnitStatsSettings))]
     public class Projectile : Unit
     {
         [SerializeField] public float timeToStop = 15f;

@@ -10,8 +10,8 @@ using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Firearm
 {
-    [RequireComponent(typeof(Reload))]
     [RequireComponent(typeof(FirearmStatsSettings))]
+    [RequireComponent(typeof(Reload))]
     [RequireComponent(typeof(ProjectileCreator))]
     public class Firearm : MonoBehaviour
     {
@@ -29,8 +29,8 @@ namespace Assets.Scripts.Firearm
         public Stat MagazineCapacity { get; private set; }
         public Stat ReloadSpeed { get; private set; }
         public Stat SingleShootProjectile { get; private set; }
-        public Stat AddedProjectileSize { get; private set; }
-        public Stat AddedProjectilePierce { get; private set; }
+        public Stat ProjectileSizeMultiplier { get; private set; }
+        public Stat ProjectilePierceCount { get; private set; }
         public Stat AddedProjectileKnockback { get; private set; }
 
         public event Action ReloadEndEvent;
@@ -65,8 +65,8 @@ namespace Assets.Scripts.Firearm
             MagazineCapacity = _statFactory.GetStat(settings.magazineCapacity);
             ReloadSpeed = _statFactory.GetStat(settings.reloadSpeed);
             SingleShootProjectile = _statFactory.GetStat(settings.singleShootProjectile);
-            AddedProjectileSize = _statFactory.GetStat(settings.addedProjectileSize);
-            AddedProjectilePierce = _statFactory.GetStat(settings.addedProjectilePierce);
+            ProjectileSizeMultiplier = _statFactory.GetStat(settings.projectileSizeMultiplier);
+            ProjectilePierceCount = _statFactory.GetStat(settings.projectilePierceCount);
             AddedProjectileKnockback = _statFactory.GetStat(settings.addedProjectileKnockback);
         
             Magazine = new Resource(0, MagazineCapacity);
@@ -91,8 +91,8 @@ namespace Assets.Scripts.Firearm
             MagazineCapacity = firearm.MagazineCapacity;
             ReloadSpeed = firearm.ReloadSpeed;
             SingleShootProjectile = firearm.SingleShootProjectile;
-            AddedProjectileSize = firearm.AddedProjectileSize;
-            AddedProjectilePierce = firearm.AddedProjectilePierce;
+            ProjectileSizeMultiplier = firearm.ProjectileSizeMultiplier;
+            ProjectilePierceCount = firearm.ProjectilePierceCount;
         }
     
         public void OnReload()
@@ -133,18 +133,21 @@ namespace Assets.Scripts.Firearm
 
         private void ImproveProjectile(Projectile projectile)
         {
-            var sizeMod = new StatModifier(OperationType.Addition, AddedProjectileSize.Value);
-            if (sizeMod.Value > 1) projectile.Size.AddModifier(sizeMod);
-            
-            var pierceMod = new StatModifier(OperationType.Addition, AddedProjectilePierce.Value);
-            if (pierceMod.Value > 1) projectile.MaximumLifePoints.AddModifier(pierceMod);
+            var sizeMod = new StatModifier(OperationType.Multiplication, ProjectileSizeMultiplier.Value);
+            projectile.Size.AddModifier(sizeMod);
+
+            var pierceMod = new StatModifier(OperationType.Addition, ProjectilePierceCount.Value);
+            if (pierceMod.Value > 0) projectile.MaximumLifePoints.AddModifier(pierceMod);
             projectile.LifePoints.Fill();
 
             var damageMod = new StatModifier(OperationType.Addition, Damage.Value);
             if (damageMod.Value > 0) projectile.Damage.AddModifier(damageMod);
 
-            var knockbackMod = new StatModifier(OperationType.Addition, AddedProjectileSize.Value);
+            var knockbackMod = new StatModifier(OperationType.Addition, ProjectileSizeMultiplier.Value);
             if (knockbackMod.Value > 0) projectile.KnockbackPower.AddModifier(knockbackMod);
+
+            var trail = projectile.gameObject.GetComponent<TrailRenderer>();
+            trail.startWidth = projectile.GetComponent<CircleCollider2D>().radius * 2 * projectile.Size.Value;
         }
 
         private Vector2 GetShotDirection()
