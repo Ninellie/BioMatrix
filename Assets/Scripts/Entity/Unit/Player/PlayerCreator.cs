@@ -39,8 +39,6 @@ namespace Assets.Scripts.Entity.Unit.Player
 
             CurrentPlayer.CreateWeapon(_playerWeapon);
 
-            //CurrentPlayer.GetComponent<Invulnerability>();
-
             var turretHub = Instantiate(_turretHub);
             CurrentPlayer.TurretHub = turretHub.GetComponent<TurretHub>();
             turretHub.transform.SetParent(CurrentPlayer.transform);
