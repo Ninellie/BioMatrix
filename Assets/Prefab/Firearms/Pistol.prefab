@@ -95,7 +95,7 @@ MonoBehaviour:
   shootsPerSecond: 3
   maxShootDeflectionAngle: 10
   magazineCapacity: 6
-  reloadSpeed: 1
+  reloadTime: 2
   singleShootProjectile: 1
   projectileSizeMultiplier: 0
   projectilePierceCount: 0

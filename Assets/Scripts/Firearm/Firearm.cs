@@ -27,7 +27,7 @@ namespace Assets.Scripts.Firearm
         public Stat ShootsPerSecond { get; private set; }
         public Stat MaxShootDeflectionAngle { get; private set; }
         public Stat MagazineCapacity { get; private set; }
-        public Stat ReloadSpeed { get; private set; }
+        public Stat ReloadTime { get; private set; }
         public Stat SingleShootProjectile { get; private set; }
         public Stat ProjectileSizeMultiplier { get; private set; }
         public Stat ProjectilePierceCount { get; private set; }
@@ -63,7 +63,7 @@ namespace Assets.Scripts.Firearm
             ShootsPerSecond = _statFactory.GetStat(settings.shootsPerSecond);
             MaxShootDeflectionAngle = _statFactory.GetStat(settings.maxShootDeflectionAngle);
             MagazineCapacity = _statFactory.GetStat(settings.magazineCapacity);
-            ReloadSpeed = _statFactory.GetStat(settings.reloadSpeed);
+            ReloadTime = _statFactory.GetStat(settings.reloadTime);
             SingleShootProjectile = _statFactory.GetStat(settings.singleShootProjectile);
             ProjectileSizeMultiplier = _statFactory.GetStat(settings.projectileSizeMultiplier);
             ProjectilePierceCount = _statFactory.GetStat(settings.projectilePierceCount);
@@ -89,7 +89,7 @@ namespace Assets.Scripts.Firearm
             ShootsPerSecond = firearm.ShootsPerSecond;
             MaxShootDeflectionAngle = firearm.MaxShootDeflectionAngle;
             MagazineCapacity = firearm.MagazineCapacity;
-            ReloadSpeed = firearm.ReloadSpeed;
+            ReloadTime = firearm.ReloadTime;
             SingleShootProjectile = firearm.SingleShootProjectile;
             ProjectileSizeMultiplier = firearm.ProjectileSizeMultiplier;
             ProjectilePierceCount = firearm.ProjectilePierceCount;
@@ -143,7 +143,7 @@ namespace Assets.Scripts.Firearm
             var damageMod = new StatModifier(OperationType.Addition, Damage.Value);
             if (damageMod.Value > 0) projectile.Damage.AddModifier(damageMod);
 
-            var knockbackMod = new StatModifier(OperationType.Addition, ProjectileSizeMultiplier.Value);
+            var knockbackMod = new StatModifier(OperationType.Addition, AddedProjectileKnockback.Value);
             if (knockbackMod.Value > 0) projectile.KnockbackPower.AddModifier(knockbackMod);
 
             var trail = projectile.gameObject.GetComponent<TrailRenderer>();

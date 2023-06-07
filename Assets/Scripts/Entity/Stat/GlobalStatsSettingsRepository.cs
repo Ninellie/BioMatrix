@@ -93,7 +93,7 @@ namespace Assets.Scripts.Entity.Stat
             shootsPerSecond = 3,
             maxShootDeflectionAngle = 1,
             magazineCapacity = 6,
-            reloadSpeed = 1,
+            reloadTime = 1,
             singleShootProjectile = 1,
         };
     }

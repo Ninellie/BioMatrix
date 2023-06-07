@@ -36,15 +36,25 @@ namespace Assets.Scripts.Firearm
         private void Initiate()
         {
             IsInProcess = true;
+            _firearm.OnReload();
 
             if (_firearm.GetIsForPlayer())
             {
                 _plateUi.SetActive(true);
             }
-        
-            _gameTimeScheduler.Schedule(Complete, 1f / _firearm.ReloadSpeed.Value);
 
-            _firearm.OnReload();
+            var reloadTime = _firearm.ReloadTime.Value;
+            var isInstant = !(reloadTime > 0);
+
+            switch (isInstant)
+            {
+                case false:
+                    _gameTimeScheduler.Schedule(Complete, _firearm.ReloadTime.Value);
+                    break;
+                case true:
+                    Complete();
+                    break;
+            }
         }
 
         private void Complete()
