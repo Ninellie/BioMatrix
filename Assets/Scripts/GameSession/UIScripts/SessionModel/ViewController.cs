@@ -14,12 +14,14 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         [SerializeField] private GameObject _startScreenUi;
         private ViewModel _viewModel;
 
-        public void AwakeController()
+        public void AwakeController(PlayerInput playerInput)
         {
-            var mapController = CreateMapController();
+            var mapController = CreateMapController(playerInput);
             
             _viewModel = new ViewModel(mapController);
-            
+
+            Time.timeScale = 0f;
+            playerInput.SwitchCurrentActionMap("Menu");
         }
         public void Menu() { _viewModel.GetCurrentState().Menu(); }
         public void Resume() { _viewModel.GetCurrentState().Resume(); }
@@ -28,10 +30,10 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         public void Win() { _viewModel.GetCurrentState().Win(); }
         public void Lose() { _viewModel.GetCurrentState().Lose(); }
 
-        private IViewController CreateMapController()
+        private IViewController CreateMapController(PlayerInput playerInput)
         {
-            var currentPlayer = FindObjectOfType<Player>();
-            var playerInput = currentPlayer.GetComponent<PlayerInput>();
+            //var currentPlayer = FindObjectOfType<Player>();
+            //var playerInput = currentPlayer.GetComponent<PlayerInput>();
             var mapController = new SimpleViewController(playerInput, _menuUi, _optionsUi, _levelUpUi, _winScreenUi, _loseScreenUi, _startScreenUi);
             return mapController;
         }

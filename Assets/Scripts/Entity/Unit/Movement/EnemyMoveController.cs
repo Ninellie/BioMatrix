@@ -40,19 +40,19 @@ namespace Assets.Scripts.Entity.Unit.Movement
         {
             get
             {
-                if (Target is null)
+                if (Time.timeScale > 0)
                 {
-                    return MyPosition;
+                    return Target.transform.position;
                 }
-                return Target.transform.position;
+                return MyPosition;
             }
         }
 
         protected Vector2 MyPosition => MyUnit.transform.position;
         protected EnemyMoveController(Enemy.Enemy myUnit, GameObject target)
         {
-            this.MyUnit = myUnit;
-            this.Target = target;
+            MyUnit = myUnit;
+            Target = target;
         }
         public abstract void FixedUpdateMoveStep();
         public abstract Vector2 GetFixedUpdateMoveStep();

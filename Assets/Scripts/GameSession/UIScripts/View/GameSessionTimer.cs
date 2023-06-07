@@ -13,12 +13,12 @@ namespace Assets.Scripts.GameSession.UIScripts.View
 
         private void Update()
         {
-            var mins = (int)Time.time / 60;
-            var secs = (int)Time.time % 60;
+            var mins = (int)Time.timeSinceLevelLoad / 60;
+            var secs = (int)Time.timeSinceLevelLoad % 60;
 
             textTimer.text = $"{mins:D2}:{secs:D2}";
 
-            if (Time.time >= _winTime)
+            if (Time.timeSinceLevelLoad >= _winTime)
             {
                 onGameWinning?.Invoke();
             }

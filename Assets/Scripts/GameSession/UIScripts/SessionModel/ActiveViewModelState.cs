@@ -20,11 +20,11 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         }
         public void Resume()
         {
-            Debug.LogWarning("Massage");
+            Debug.LogWarning("Message");
         }
         public void Options()
         {
-            Debug.LogWarning("Massage");
+            Debug.LogWarning("Message");
         }
         public void LevelUp()
         {

@@ -2,6 +2,7 @@ using Assets.Scripts.Entity.Unit.Turret;
 using Assets.Scripts.GameSession.UIScripts.SessionModel;
 using Assets.Scripts.GameSession.UIScripts.View;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Entity.Unit.Player
 {
@@ -28,15 +29,23 @@ namespace Assets.Scripts.Entity.Unit.Player
             _ammoBar = FindObjectOfType<AmmoBar>();
             _optionsMenu = FindObjectOfType<OptionsMenu>();
 
-            if (_playerPrefab == null) return;
+            if (_playerPrefab == null)
+            {
+                Debug.LogWarning("PlayerPrefab is null");
+                return;
+            }
 
             CreatePlayer(_playerPrefab);
-            CurrentPlayer.GetComponent<Player>().CreateWeapon(_playerWeapon);
+
+            CurrentPlayer.CreateWeapon(_playerWeapon);
+
+            //CurrentPlayer.GetComponent<Invulnerability>();
+
             var turretHub = Instantiate(_turretHub);
             CurrentPlayer.TurretHub = turretHub.GetComponent<TurretHub>();
             turretHub.transform.SetParent(CurrentPlayer.transform);
 
-            _viewController.AwakeController();
+            _viewController.AwakeController(CurrentPlayer.GetComponent<PlayerInput>());
             Subscription();
         }
 

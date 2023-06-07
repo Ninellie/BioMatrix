@@ -29,7 +29,7 @@ namespace Assets.Scripts.GameSession.Spawner
 
         public int GetMaxEnemiesInScene()
         {
-            var seconds = Time.time;
+            var seconds = Time.timeSinceLevelLoad;
             var minute = seconds / 60;
             var multiplier = _maxEnemiesInSceneMultiplier * minute;
             if (multiplier < 1) { multiplier = 1; }
@@ -64,7 +64,7 @@ namespace Assets.Scripts.GameSession.Spawner
         }
         private int GetMaxNormalSize()
         {
-            var seconds = Time.time;
+            var seconds = Time.timeSinceLevelLoad;
             var complicationValue = seconds / _complicationValue;
             if (complicationValue >= 1f)
             {
@@ -74,7 +74,7 @@ namespace Assets.Scripts.GameSession.Spawner
         }
         private int GetMinNormalSize()
         {
-            var seconds = Time.time;
+            var seconds = Time.timeSinceLevelLoad;
             var complicationValue = seconds / (_complicationValue * _minComplicationDivider);
             if (complicationValue >= 1f)
             {

@@ -18,26 +18,26 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         }
         public void Resume()
         {
-            var prevState = _viewModel.GetPreviousState().Name;
+            //var prevState = _viewModel.GetPreviousState().Name;
             _viewController.Unfreeze();
             _viewModel.ChangeState(ViewModelStateType.Active);
             _viewController.CloseStartScreen();
         }
         public void Options()
         {
-            Debug.LogWarning("Massage");
+            Debug.LogWarning("Message");
         }
         public void LevelUp()
         {
-            Debug.LogWarning("Massage");
+            Debug.LogWarning("Message");
         }
         public void Win()
         {
-            Debug.LogWarning("Massage");
+            Debug.LogWarning("Message");
         }
         public void Lose()
         {
-            Debug.LogWarning("Massage");
+            Debug.LogWarning("Message");
         }
     }
 }

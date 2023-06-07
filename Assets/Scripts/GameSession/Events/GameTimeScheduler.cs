@@ -21,7 +21,7 @@ namespace Assets.Scripts.GameSession.Events
     
         public string Schedule(Action action, float time)
         {
-            var absoluteTime = Time.time + time;
+            var absoluteTime = Time.timeSinceLevelLoad + time;
         
             lock (_lock)
             {
@@ -42,7 +42,7 @@ namespace Assets.Scripts.GameSession.Events
         private void Update()
         {
             _indexesToRemove.Clear();
-            float currentTime = Time.time;
+            float currentTime = Time.timeSinceLevelLoad;
             for (var i = 0; i < _scheduledItems.Count; i++)
             {
                 var item = _scheduledItems[i];

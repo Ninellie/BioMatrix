@@ -24,7 +24,7 @@ namespace Assets.Scripts.GameSession.Spawner
         {
             get
             {
-                var seconds = Time.time;
+                var seconds = Time.timeSinceLevelLoad;
                 if (seconds < DefaultComplicationValue) return 0;
                 var remainder = seconds % DefaultComplicationValue;
                 return (int)(seconds - remainder) / DefaultComplicationValue;

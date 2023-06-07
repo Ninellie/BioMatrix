@@ -280,8 +280,8 @@ namespace Assets.Scripts.Entity.Unit.Player
 
         private void Freeze()
         {
-            Time.timeScale = 0f;
-            this.GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
+            //Time.timeScale = 0f;
+            //GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
         }
 
         private void ChangeCurrentMagnetismRadius()
@@ -302,6 +302,11 @@ namespace Assets.Scripts.Entity.Unit.Player
             w.transform.position = _firePoint.transform.position;
             var firearm = w.GetComponent<Firearm.Firearm>();
             Firearm = firearm;
+        }
+
+        public void GetExperience(int value)
+        {
+            Experience += value * (int)ExpMultiplier.Value;
         }
 
         public void OnMove(InputValue input)
@@ -338,11 +343,6 @@ namespace Assets.Scripts.Entity.Unit.Player
         {
             GamePausedEvent?.Invoke();
             Debug.Log("Game is active");
-        }
-
-        public void GetExperience(int value)
-        {
-            Experience += value * (int)ExpMultiplier.Value;
         }
     }
 }

@@ -47,7 +47,7 @@ namespace Assets.Scripts.Entity
 
                 if (myEffect.IsDurationUpdates)
                 {
-                    var newTime = Time.time + myEffect.Duration.Value;
+                    var newTime = Time.timeSinceLevelLoad + myEffect.Duration.Value;
                     GameTimeScheduler.UpdateTime(myEffect.Identifier, newTime);
                 }
 
