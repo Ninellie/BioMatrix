@@ -81,7 +81,8 @@ namespace Assets.Scripts.Entity.Effects
                 new List<(StatModifier mod, string statPath)>
                 {
                     (new StatModifier(OperationType.Addition, 1), nameof(Player.TurretHub) + "." + nameof(TurretHub.TurretCount)),
-                }
+                },
+                true
             ),
             //Gun Turret 2
             ["PlayerCurrentTurretFirearmShootsPerSecondMulti50"] = new AttachModAdderEffect
@@ -212,8 +213,44 @@ namespace Assets.Scripts.Entity.Effects
             //Turret 1
 
             //Turret 2
-
+            [nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.SingleShootProjectile) + nameof(OperationType.Addition) + 2 + "Temp" + 2] = new AttachModAdderEffect
+            (
+                nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.SingleShootProjectile) + nameof(OperationType.Addition) + 2 + "Temp" + 2,
+                "",
+                nameof(Player),
+                new List<(StatModifier mod, string statPath)>
+                {
+                    (new StatModifier(OperationType.Addition, 2f), nameof(Player.TurretHub) + "." + nameof(TurretHub.Firearm) + "." + nameof(Firearm.Firearm.SingleShootProjectile)),
+                },
+                true,
+                new Stat.Stat(2, true),
+                false,
+                true,
+                false,
+                false,
+                new Stat.Stat(1, false)
+            ),
             //Turret 3
+            [nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.ProjectilePierceCount) + nameof(OperationType.Addition) + 1] = new AttachModAdderEffect
+            (
+                nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.ProjectilePierceCount) + nameof(OperationType.Addition) + 1,
+                "",
+                nameof(Player),
+                new List<(StatModifier mod, string statPath)>
+                {
+                    (new StatModifier(OperationType.Addition, 1), nameof(Player.TurretHub) + "." + nameof(TurretHub.Firearm) + "." + nameof(Firearm.Firearm.ProjectilePierceCount)),
+                }
+            ),
+            [nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.ShootsPerSecond) + nameof(OperationType.Multiplication) + 50] = new AttachModAdderEffect
+            (
+                nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.ShootsPerSecond) + nameof(OperationType.Multiplication) + 50,
+                "",
+                nameof(Player),
+                new List<(StatModifier mod, string statPath)>
+                {
+                    (new StatModifier(OperationType.Multiplication, 50), nameof(Player.TurretHub) + "." + nameof(TurretHub.Firearm) + "." + nameof(Firearm.Firearm.ShootsPerSecond)),
+                }
+            ),
         };
 
         private static readonly Dictionary<string, ToggleOnAttach> ToggleEffects = new()
@@ -231,7 +268,7 @@ namespace Assets.Scripts.Entity.Effects
 
         private static readonly Dictionary<string, EffectAdderOnEventEffect> EffectAdderOnEventEffects = new()
         {
-            //Gun 2
+            // Gun 2
             ["PlayerFirearmReloadEndEventPlayerFirearmShootsPerSecondMulti50Temp2"] = new EffectAdderOnEventEffect
             (
                 "PlayerFirearmReloadEndEventPlayerFirearmShootsPerSecondMulti50Temp2",
@@ -244,7 +281,7 @@ namespace Assets.Scripts.Entity.Effects
                 },
                 AttachModAdderEffects["PlayerFirearmShootsPerSecondMulti50Temp2"]
             ),
-            //Gun Movement Experience 1
+            // Gun Movement Experience 1
             [nameof(Player) + nameof(Player.ExperienceTakenEvent) + "Adrenalin"] = new EffectAdderOnEventEffect
             (
                 nameof(Player) + nameof(Player.ExperienceTakenEvent) + "Adrenalin",
@@ -256,6 +293,19 @@ namespace Assets.Scripts.Entity.Effects
                     Path = ""
                 },
                 AttachModAdderEffects["Adrenalin"]
+            ),
+            // Turret 2
+            [nameof(Player) + nameof(TurretHub.KillsCount.IncrementEvent) + nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.SingleShootProjectile) + nameof(OperationType.Addition) + 2 + "Temp" + 2] = new EffectAdderOnEventEffect
+            (
+                nameof(Player) + nameof(TurretHub.KillsCount.IncrementEvent) + nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.SingleShootProjectile) + nameof(OperationType.Addition) + 2 + "Temp" + 2,
+                "",
+                nameof(Player),
+                new PropTrigger
+                {
+                    Name = nameof(TurretHub.KillsCount.IncrementEvent),
+                    Path = nameof(Player.TurretHub) + "." + nameof(TurretHub.KillsCount)
+                },
+                AttachModAdderEffects[nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.SingleShootProjectile) + nameof(OperationType.Addition) + 2 + "Temp" + 2]
             ),
         };
 
@@ -471,6 +521,38 @@ namespace Assets.Scripts.Entity.Effects
                 new List<(IEffect effect, int stackCount)>
                 {
                     (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.ExpMultiplier) + nameof(OperationType.Multiplication) + 100], stackCount: 1),
+                }
+            ),
+            // Turret
+            [nameof(CardTag.Turret) + 1] = new AttachEffectAdderEffect
+            (
+                nameof(CardTag.Turret) + 1,
+                "",
+                nameof(Player),
+                new List<(IEffect effect, int stackCount)>
+                {
+                    (effect: AttachModAdderEffects["PlayerTurretHubTurretCountAdd1"], stackCount: 1),
+                }
+            ),
+            [nameof(CardTag.Turret) + 2] = new AttachEffectAdderEffect
+            (
+                nameof(CardTag.Turret) + 2,
+                "",
+                nameof(Player),
+                new List<(IEffect effect, int stackCount)>
+                {
+                    (effect: EffectAdderOnEventEffects[nameof(Player) + nameof(TurretHub.KillsCount.IncrementEvent) + nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.SingleShootProjectile) + nameof(OperationType.Addition) + 2 + "Temp" + 2], stackCount: 1),
+                }
+            ),
+            [nameof(CardTag.Turret) + 3] = new AttachEffectAdderEffect
+            (
+                nameof(CardTag.Turret) + 3,
+                "",
+                nameof(Player),
+                new List<(IEffect effect, int stackCount)>
+                {
+                    (effect: AttachModAdderEffects[nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.ProjectilePierceCount) + nameof(OperationType.Addition) + 1], stackCount: 1),
+                    (effect: AttachModAdderEffects[nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.ShootsPerSecond) + nameof(OperationType.Multiplication) + 50], stackCount: 1),
                 }
             ),
         };

@@ -43,6 +43,14 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Tags = CardTag.Gun | CardTag.Movement | CardTag.Experience,
                 CardsId = new Stack<int>()
             },
+            new Deck
+            {
+                Name = string.Empty,
+                Id = 5,
+                Description = string.Empty,
+                Tags = CardTag.Turret,
+                CardsId = new Stack<int>()
+            },
 
         };
 

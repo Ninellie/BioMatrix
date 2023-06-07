@@ -174,45 +174,45 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 },
             },
             // Turret deck
-            //new Card
-            //{
-            //    Title = "Turret 1",
-            //    Description = "",
-            //    Id = 13,
-            //    DeckId = 5,
-            //    OrderInDeck = 1,
-            //    DropWeight = 1,
-            //    Effects = new[]
-            //    {
-            //        EffectRepository.Get("Turret1")
-            //    }
-            //},
-            //new Card
-            //{
-            //    Title = "Turret 2",
-            //    Description = "",
-            //    Id = 14,
-            //    DeckId = 5,
-            //    OrderInDeck = 2,
-            //    DropWeight = 1,
-            //    Effects = new[]
-            //    {
-            //        EffectRepository.Get("Turret2")
-            //    },
-            //},
-            //new Card
-            //{
-            //    Title = "Turret 3",
-            //    Description = "",
-            //    Id = 15,
-            //    DeckId = 5,
-            //    OrderInDeck = 3,
-            //    DropWeight = 1,
-            //    Effects = new[]
-            //    {
-            //        EffectRepository.Get("Turret3")
-            //    },
-            //},
+            new Card
+            {
+                Title = "Turret 1",
+                Description = "+1 turret",
+                Id = 13,
+                DeckId = 5,
+                OrderInDeck = 1,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("Turret1")
+                }
+            },
+            new Card
+            {
+                Title = "Turret 2",
+                Description = "Turrets gets + 2 projectiles on kill for 2 sec",
+                Id = 14,
+                DeckId = 5,
+                OrderInDeck = 2,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("Turret2")
+                },
+            },
+            new Card
+            {
+                Title = "Turret 3",
+                Description = "+1 turret proj pierce\r\n+ 50% turret firerate",
+                Id = 15,
+                DeckId = 5,
+                OrderInDeck = 3,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("Turret3")
+                },
+            },
         };
 
         private readonly Card[] _cards;
