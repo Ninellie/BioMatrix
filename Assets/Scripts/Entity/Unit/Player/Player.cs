@@ -161,8 +161,6 @@ namespace Assets.Scripts.Entity.Unit.Player
 
         protected void BaseStart()
         {
-            GameTimeScheduler.Schedule(Freeze, 0.2f);
-
             ShieldLayers.Increase((int)MaxRechargeableShieldLayersCount.Value);
             UpdateShieldAlpha();
             UpdateShield();
@@ -276,12 +274,6 @@ namespace Assets.Scripts.Entity.Unit.Player
             var a = _alphaPerLayer * ShieldLayers.GetValue();
             _shieldColor.a = a;
             _shieldSprite.color = _shieldColor;
-        }
-
-        private void Freeze()
-        {
-            //Time.timeScale = 0f;
-            //GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
         }
 
         private void ChangeCurrentMagnetismRadius()
