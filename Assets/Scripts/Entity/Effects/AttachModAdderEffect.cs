@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts.Entity.Stat;
 
 namespace Assets.Scripts.Entity.Effects
@@ -67,6 +68,27 @@ namespace Assets.Scripts.Entity.Effects
             }
         }
 
+        public AttachModAdderEffect(
+            string name,
+            string description,
+            string targetName,
+            List<(StatModifier mod, string statPath)> modifiers,
+            bool isStacking
+        ) : this(
+            name,
+            description,
+            targetName,
+            modifiers,
+            false,
+            new Stat.Stat(0, false),
+            false,
+            false,
+            isStacking,
+            false,
+            new Stat.Stat(Single.PositiveInfinity, false)
+        )
+        {
+        }
         public AttachModAdderEffect(
             string name,
             string description,

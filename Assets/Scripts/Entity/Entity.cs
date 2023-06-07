@@ -35,6 +35,10 @@ namespace Assets.Scripts.Entity
             {
                 if (myEffect.IsStacking)
                 {
+
+                    var isCannotIncreaseStack = myEffect.StacksCount.IsFull;
+                    if (isCannotIncreaseStack) return;
+
                     myEffect.StacksCount.Increase();
 
                     if (myEffect.IsStackSeparateDuration)
