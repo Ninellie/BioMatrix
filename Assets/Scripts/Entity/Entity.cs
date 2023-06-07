@@ -64,7 +64,14 @@ namespace Assets.Scripts.Entity
         {
             if (effect.IsTemporal)
             {
-                effect.Identifier = GameTimeScheduler.Schedule(() => RemoveEffectStack(effect), effect.Duration.Value);
+                if (!effect.IsStackSeparateDuration)
+                {
+                    effect.Identifier = GameTimeScheduler.Schedule(() => RemoveEffect(effect), effect.Duration.Value);
+                }
+                else
+                {
+                    effect.Identifier = GameTimeScheduler.Schedule(() => RemoveEffectStack(effect), effect.Duration.Value);
+                }
             }
             effect.StacksCount.Set(1);
             effects.Add(effect);
@@ -145,7 +152,7 @@ namespace Assets.Scripts.Entity
             if (SpriteRenderer is null) return;
             IsOnScreen = CheckVisibilityOnCamera();
         }
-    
+        
         public virtual void TakeDamage(float amount)
         {
             LifePoints.Decrease((int)amount);
@@ -176,7 +183,7 @@ namespace Assets.Scripts.Entity
 
         protected virtual void ChangeCurrentSize()
         {
-            this.transform.localScale = new Vector3(Size.Value, Size.Value, 1);
+            transform.localScale = new Vector3(Size.Value, Size.Value, 1);
         }
 
         private bool CheckVisibilityOnCamera()
