@@ -97,6 +97,6 @@ MonoBehaviour:
   magazineCapacity: 1
   reloadSpeed: 1000
   singleShootProjectile: 1
-  addedProjectileSize: 1
-  addedProjectilePierce: 1
+  projectileSizeMultiplier: 0
+  projectilePierceCount: 0
   addedProjectileKnockback: 10
