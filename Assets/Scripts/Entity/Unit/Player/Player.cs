@@ -23,6 +23,7 @@ namespace Assets.Scripts.Entity.Unit.Player
         public Stat.Stat MaxShieldLayersCount { get; private set; }
         public Stat.Stat MaxRechargeableShieldLayersCount { get; private set; }
         public Stat.Stat ShieldLayerRechargeRatePerSecond { get; private set; }
+        public Stat.Stat ExpMultiplier { get; private set; }
 
         public Resource ShieldLayers { get; private set; }
 
@@ -54,7 +55,7 @@ namespace Assets.Scripts.Entity.Unit.Player
             {
                 _experience = value;
                 ExperienceTakenEvent?.Invoke();
-                if (ExpToLvlup != 0) return;
+                if (ExpToLvlup > 0) return;
                 _experience = 0;
                 Level++;
             }
@@ -108,6 +109,7 @@ namespace Assets.Scripts.Entity.Unit.Player
             MaxShieldLayersCount = StatFactory.GetStat(settings.maxShieldLayersCount);
             ShieldLayerRechargeRatePerSecond = StatFactory.GetStat(settings.shieldLayerRechargeRate / 60f);
             MagnetismRadius = StatFactory.GetStat(settings.magnetismRadius);
+            ExpMultiplier = StatFactory.GetStat(settings.expMultiplier);
         
 
             _circleCollider.radius = MagnetismRadius.Value;
@@ -336,6 +338,11 @@ namespace Assets.Scripts.Entity.Unit.Player
         {
             GamePausedEvent?.Invoke();
             Debug.Log("Game is active");
+        }
+
+        public void GetExperience(int value)
+        {
+            Experience += value * (int)ExpMultiplier.Value;
         }
     }
 }

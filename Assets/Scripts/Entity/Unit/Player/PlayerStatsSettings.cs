@@ -6,5 +6,6 @@ namespace Assets.Scripts.Entity.Unit.Player
         public float maxShieldLayersCount;
         public float maxRechargeableShieldLayersCount;
         public float shieldLayerRechargeRate;
+        public float expMultiplier;
     }
 }
