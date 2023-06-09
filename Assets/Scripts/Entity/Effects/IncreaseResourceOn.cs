@@ -24,7 +24,6 @@ namespace Assets.Scripts.Entity.Effects
         public Resource StacksCount { get; set; }
         public Stat.Stat MaxStackCount { get; set; }
 
-    
         private Resource _resource;
         private int _triggerCount;
 
