@@ -251,6 +251,40 @@ namespace Assets.Scripts.Entity.Effects
                     (new StatModifier(OperationType.Multiplication, 50), nameof(Player.TurretHub) + "." + nameof(TurretHub.Firearm) + "." + nameof(Firearm.Firearm.ShootsPerSecond)),
                 }
             ),
+            // Turret Shield 1
+            [nameof(Player) + nameof(Player.MaxRechargeableShieldLayersCount) + nameof(OperationType.Addition) + 1] = new AttachModAdderEffect
+            (
+                nameof(Player) + nameof(Player.MaxRechargeableShieldLayersCount) + nameof(OperationType.Addition) + 1,
+                "",
+                nameof(Player),
+                new List<(StatModifier mod, string statPath)>
+                {
+                    (new StatModifier(OperationType.Addition, 1), nameof(Player.MaxRechargeableShieldLayersCount)),
+                }
+            ),
+            // Turret Shield 2
+            [nameof(Player) + nameof(Player.ShieldLayerRechargeRatePerSecond) + nameof(OperationType.Multiplication) + 100] = new AttachModAdderEffect
+            (
+                nameof(Player) + nameof(Player.ShieldLayerRechargeRatePerSecond) + nameof(OperationType.Multiplication) + 100,
+                "",
+                nameof(Player),
+                new List<(StatModifier mod, string statPath)>
+                {
+                    (new StatModifier(OperationType.Multiplication, 100), nameof(Player.ShieldLayerRechargeRatePerSecond)),
+                }
+            ),
+            // Turret Shield 3
+            [nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.Damage) + nameof(OperationType.Multiplication) + 50] = new AttachModAdderEffect
+            (
+                nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.Damage) + nameof(OperationType.Multiplication) + 50,
+                "",
+                nameof(Player),
+                new List<(StatModifier mod, string statPath)>
+                {
+                    (new StatModifier(OperationType.Multiplication, 50), nameof(Player.TurretHub) + "." + nameof(TurretHub.Firearm) + "." +nameof(Firearm.Firearm.Damage)),
+                }
+            ),
+
         };
 
         private static readonly Dictionary<string, ToggleOnAttach> ToggleEffects = new()
@@ -311,10 +345,10 @@ namespace Assets.Scripts.Entity.Effects
 
         private static readonly Dictionary<string, EffectAdderWhileTrueEffect> EffectAdderWhileTrueEffects = new()
         {
-            //Gun Turret 2
-            ["PlayerFireEventFireOffEventIsFireButtonPressedPlayerIsSameTurretTargetTrue"] = new EffectAdderWhileTrueEffect
+            // Gun Turret 2
+            ["GunTurret2_While"] = new EffectAdderWhileTrueEffect
             (
-                "PlayerFireEventFireOffEventIsFireButtonPressedPlayerIsSameTurretTargetTrue",
+                "GunTurret2_While",
                 "",
                 nameof(Player),
                 new PropTrigger
@@ -331,10 +365,10 @@ namespace Assets.Scripts.Entity.Effects
                 nameof(Player.IsFireButtonPressed),
                 ToggleEffects["PlayerIsSameTurretTargetTrue"]
             ),
-            //Gun Turret 3
-            ["PlayerCurrentFirearmMagazineIsFullPlayerCurrentTurretFirearmSingleShootProjectileAdd2"] = new EffectAdderWhileTrueEffect
+            // Gun Turret 3
+            ["GunTurret3_While"] = new EffectAdderWhileTrueEffect
             (
-                "PlayerCurrentFirearmMagazineIsFullPlayerCurrentTurretFirearmSingleShootProjectileAdd2",
+                "GunTurret3_While",
                 "While magazine full all turrets get +2 projectiles",
                 nameof(Player),
                 new PropTrigger
@@ -352,7 +386,7 @@ namespace Assets.Scripts.Entity.Effects
                 nameof(Resource.IsFull),
                 AttachModAdderEffects["PlayerCurrentTurretFirearmSingleShootProjectileAdd2"]
             ),
-            //Gun Vitality 3
+            // Gun Vitality 3
             ["GunVitality3_While_1"] = new EffectAdderWhileTrueEffect
             (
                 "GunVitality3_While_1",
@@ -388,6 +422,44 @@ namespace Assets.Scripts.Entity.Effects
                 },
                 nameof(Player.LifePoints) + "." + nameof(Resource.IsOnEdge),
                 AttachModAdderEffects[nameof(Player) + nameof(Firearm.Firearm) + nameof(Firearm.Firearm.Damage) + nameof(OperationType.Multiplication) + 50]
+            ),
+            // Turret Shield 3
+            ["TurretShield3_While_1"] = new EffectAdderWhileTrueEffect
+            (
+                "TurretShield3_While_1",
+                "+ 1 turret while has no shield",
+                nameof(Player),
+                new PropTrigger
+                {
+                    Name = nameof(Resource.EmptyEvent),
+                    Path = nameof(Player.ShieldLayers)
+                },
+                new PropTrigger
+                {
+                    Name = nameof(Resource.ValueChangedEvent),
+                    Path = nameof(Player.ShieldLayers)
+                },
+                nameof(Player.ShieldLayers) + "." + nameof(Resource.IsEmpty),
+                AttachModAdderEffects["PlayerTurretHubTurretCountAdd1"]
+            ),
+            // Turret Shield 3
+            ["TurretShield3_While_2"] = new EffectAdderWhileTrueEffect
+            (
+                "TurretShield3_While_2",
+                "+ 50 turret damage multi while has shield",
+                nameof(Player),
+                new PropTrigger
+                {
+                    Name = nameof(Resource.NotEmptyEvent),
+                    Path = nameof(Player.ShieldLayers)
+                },
+                new PropTrigger
+                {
+                    Name = nameof(Resource.EmptyEvent),
+                    Path = nameof(Player.ShieldLayers)
+                },
+                nameof(Player.ShieldLayers) + "." + nameof(Resource.IsNotEmpty),
+                AttachModAdderEffects[nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.Damage) + nameof(OperationType.Multiplication) + 50]
             ),
         };
 
@@ -444,7 +516,7 @@ namespace Assets.Scripts.Entity.Effects
                 nameof(Player),
                 new List<(IEffect effect, int stackCount)>
                 {
-                    (effect: EffectAdderWhileTrueEffects["PlayerFireEventFireOffEventIsFireButtonPressedPlayerIsSameTurretTargetTrue"], stackCount: 1),
+                    (effect: EffectAdderWhileTrueEffects["GunTurret2_While"], stackCount: 1),
                     (effect: AttachModAdderEffects["PlayerCurrentTurretFirearmShootsPerSecondMulti50"], stackCount: 1)
                 }
             ),
@@ -455,7 +527,7 @@ namespace Assets.Scripts.Entity.Effects
                 nameof(Player),
                 new List<(IEffect effect, int stackCount)>
                 {
-                    (effect: EffectAdderWhileTrueEffects["PlayerCurrentFirearmMagazineIsFullPlayerCurrentTurretFirearmSingleShootProjectileAdd2"], stackCount: 1)
+                    (effect: EffectAdderWhileTrueEffects["GunTurret3_While"], stackCount: 1)
                 }
             ),
             // Gun Vitality
@@ -553,6 +625,38 @@ namespace Assets.Scripts.Entity.Effects
                 {
                     (effect: AttachModAdderEffects[nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.ProjectilePierceCount) + nameof(OperationType.Addition) + 1], stackCount: 1),
                     (effect: AttachModAdderEffects[nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.ShootsPerSecond) + nameof(OperationType.Multiplication) + 50], stackCount: 1),
+                }
+            ),
+            // Turret Shield
+            [nameof(CardTag.Turret) + nameof(CardTag.Shield) + 1] = new AttachEffectAdderEffect
+            (
+                nameof(CardTag.Turret) + nameof(CardTag.Shield) + 1,
+                "",
+                nameof(Player),
+                new List<(IEffect effect, int stackCount)>
+                {
+                    (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.MaxRechargeableShieldLayersCount) + nameof(OperationType.Addition) + 1], stackCount: 1),
+                }
+            ),
+            [nameof(CardTag.Turret) + nameof(CardTag.Shield) + 2] = new AttachEffectAdderEffect
+            (
+                nameof(CardTag.Turret) + nameof(CardTag.Shield) + 2,
+                "",
+                nameof(Player),
+                new List<(IEffect effect, int stackCount)>
+                {
+                    (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.ShieldLayerRechargeRatePerSecond) + nameof(OperationType.Multiplication) + 100], stackCount: 1),
+                }
+            ),
+            [nameof(CardTag.Turret) + nameof(CardTag.Shield) + 3] = new AttachEffectAdderEffect
+            (
+                nameof(CardTag.Turret) + nameof(CardTag.Shield) + 3,
+                "",
+                nameof(Player),
+                new List<(IEffect effect, int stackCount)>
+                {
+                    (effect: EffectAdderWhileTrueEffects["TurretShield3_While_1"], stackCount: 1),
+                    (effect: EffectAdderWhileTrueEffects["TurretShield3_While_2"], stackCount: 1),
                 }
             ),
         };

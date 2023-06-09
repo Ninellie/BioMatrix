@@ -213,6 +213,46 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("Turret3")
                 },
             },
+            // Turret Shield deck
+            new Card
+            {
+                Title = "Turret Shield 1",
+                Description = "+1 rechargeable shield layer",
+                Id = 16,
+                DeckId = 6,
+                OrderInDeck = 1,
+                DropWeight = 100,
+                Effects = new[]
+                {
+                    EffectRepository.Get("TurretShield1")
+                }
+            },
+            new Card
+            {
+                Title = "Turret Shield 2",
+                Description = "+ 100% shield regeneration rate",
+                Id = 17,
+                DeckId = 6,
+                OrderInDeck = 2,
+                DropWeight = 100,
+                Effects = new[]
+                {
+                    EffectRepository.Get("TurretShield2")
+                },
+            },
+            new Card
+            {
+                Title = "Turret Shield 3",
+                Description = "+50% turret damage while has shield\r\n+1 turret while has no shield",
+                Id = 18,
+                DeckId = 6,
+                OrderInDeck = 3,
+                DropWeight = 100,
+                Effects = new[]
+                {
+                    EffectRepository.Get("TurretShield3")
+                },
+            },
         };
 
         private readonly Card[] _cards;
