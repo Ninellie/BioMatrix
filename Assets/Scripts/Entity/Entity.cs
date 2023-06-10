@@ -181,6 +181,19 @@ namespace Assets.Scripts.Entity
             var stat = (Stat.Stat)EventHelper.GetPropByPath(this, statName);
             stat?.RemoveModifier(statModifier);
         }
+        
+        public void AddResourceValue(int value, string resourcePath)
+        {
+            var stat = (Resource)EventHelper.GetPropByPath(this, resourcePath);
+            stat?.Increase(value);
+        }
+
+        public void RemoveResourceValue(int value, string resourcePath)
+        {
+            var stat = (Resource)EventHelper.GetPropByPath(this, resourcePath);
+            stat?.Decrease(value);
+        }
+
         protected virtual void Death()
         {
             gameObject.SetActive(false);
