@@ -9,6 +9,7 @@ namespace Assets.Scripts.Entity.Unit.Movement
         [SerializeField] private float _repulseForce;
         [SerializeField] private float _penetrationDistanceMultiplier;
         [SerializeField] private string _layerName;
+
         private CircleCollider2D _circleCollider;
         private Collider2D _collider;
         private Transform _transform;
@@ -23,6 +24,7 @@ namespace Assets.Scripts.Entity.Unit.Movement
                 _circleCollider = GetComponent<CircleCollider2D>();
             }
         }
+
         private void OnCollisionStay2D(Collision2D collision)
         {
             var otherCollider2D = collision.collider;
