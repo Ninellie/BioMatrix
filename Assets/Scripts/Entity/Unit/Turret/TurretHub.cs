@@ -13,7 +13,7 @@ namespace Assets.Scripts.Entity.Unit.Turret
         public TurretHubStatsSettings Settings => GetComponent<TurretHubStatsSettings>();
         public Entity Holder { get; private set; }
         public Firearm.Firearm Firearm { get; set; }
-        public Stat.Stat TurretCount { get; private set; }
+        public Resource Turrets { get; private set; }
         public readonly Stack<Turret> currentTurrets = new();
         public bool IsSameTurretTarget
         {
@@ -37,7 +37,7 @@ namespace Assets.Scripts.Entity.Unit.Turret
         {
             Debug.Log($"{gameObject.name} {nameof(TurretHub)} Awake");
             base.BaseAwake(settings);
-            TurretCount = StatFactory.GetStat(settings.turretCount);
+            Turrets = new Resource(0);
         }
 
         protected void BaseStart()
@@ -48,13 +48,13 @@ namespace Assets.Scripts.Entity.Unit.Turret
 
         protected override void BaseOnEnable()
         {
-            if (TurretCount != null) TurretCount.ValueChangedEvent += UpdateTurrets;
+            Turrets.ValueChangedEvent += UpdateTurrets;
             KillsCount.IncrementEvent += () => Holder.KillsCount.Increase();
         }
 
         protected override void BaseOnDisable()
         {
-            if (TurretCount != null) TurretCount.ValueChangedEvent -= UpdateTurrets;
+            Turrets.ValueChangedEvent -= UpdateTurrets;
             KillsCount.IncrementEvent -= () => Holder.KillsCount.Increase();
         }
 
@@ -103,7 +103,8 @@ namespace Assets.Scripts.Entity.Unit.Turret
 
         private void UpdateTurrets()
         {
-            var dif = (int)TurretCount.Value - currentTurrets.Count;
+            //var dif = (int)TurretCount.Value - currentTurrets.Count;
+            var dif = (int)Turrets.GetValue() - currentTurrets.Count;
             var isAboveZero = dif > 0;
             float delay = 1;
 

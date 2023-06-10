@@ -3,8 +3,6 @@ using Assets.Scripts.Entity.Unit.Movement;
 using Assets.Scripts.Entity.Unit.Turret;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Assets.Scripts.Entity.Unit.Player
 {
@@ -121,7 +119,9 @@ namespace Assets.Scripts.Entity.Unit.Player
                 _circleCollider.radius = 0;
             }
 
-            ShieldLayers = new Resource(0, MaxShieldLayersCount, ShieldLayerRechargeRatePerSecond,
+            ShieldLayers = new Resource(0, 
+                MaxShieldLayersCount,
+                ShieldLayerRechargeRatePerSecond,
                 MaxRechargeableShieldLayersCount);
 
             _movementController = new MovementControllerPlayer(this);
@@ -140,7 +140,7 @@ namespace Assets.Scripts.Entity.Unit.Player
             ShieldLayers.NotEmptyEvent += UpdateShield;
             ShieldLayers.ValueChangedEvent += UpdateShieldAlpha;
 
-            if (MagnetismRadius != null) MagnetismRadius.ValueChangedEvent += ChangeCurrentMagnetismRadius;
+            MagnetismRadius.ValueChangedEvent += ChangeCurrentMagnetismRadius;
 
         }
 
@@ -241,7 +241,7 @@ namespace Assets.Scripts.Entity.Unit.Player
         protected void KnockBackFromEntity(Entity entity)
         {
             var magnitude = entity.KnockbackPower.Value;
-            var direction = (Vector2)transform.position - (Vector2)entity.transform.position;
+            var direction = ((Vector2)transform.position - (Vector2)entity.transform.position).normalized;
             var force = direction * magnitude;
 
             _movementController.KnockBack(force);

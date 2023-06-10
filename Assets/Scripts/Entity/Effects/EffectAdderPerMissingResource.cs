@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Entity.Effects
 {
-    public class AddEffectPerMissingResource : IEffect
+    public class EffectAdderPerMissingResource : IEffect
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -106,7 +106,7 @@ namespace Assets.Scripts.Entity.Effects
         }
 
 
-        public AddEffectPerMissingResource(
+        public EffectAdderPerMissingResource(
             string name,
             string description,
             string targetName,
@@ -131,7 +131,7 @@ namespace Assets.Scripts.Entity.Effects
         {
         }
 
-        public AddEffectPerMissingResource(
+        public EffectAdderPerMissingResource(
             string name,
             string description,
             string targetName,

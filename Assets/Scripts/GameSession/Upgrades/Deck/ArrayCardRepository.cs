@@ -221,7 +221,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Id = 16,
                 DeckId = 6,
                 OrderInDeck = 1,
-                DropWeight = 100,
+                DropWeight = 111,
                 Effects = new[]
                 {
                     EffectRepository.Get("TurretShield1")
@@ -234,7 +234,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Id = 17,
                 DeckId = 6,
                 OrderInDeck = 2,
-                DropWeight = 100,
+                DropWeight = 111,
                 Effects = new[]
                 {
                     EffectRepository.Get("TurretShield2")
@@ -247,10 +247,50 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Id = 18,
                 DeckId = 6,
                 OrderInDeck = 3,
-                DropWeight = 100,
+                DropWeight = 111,
                 Effects = new[]
                 {
                     EffectRepository.Get("TurretShield3")
+                },
+            },
+            // Turret Movement Magnetism deck
+            new Card
+            {
+                Title = "Turret Movement Magnetism 1",
+                Description = "+25% magnetism radius, \r\n+10% movement speed per active turret",
+                Id = 19,
+                DeckId = 7,
+                OrderInDeck = 1,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("TurretMovementMagnetism1")
+                }
+            },
+            new Card
+            {
+                Title = "Turret Movement Magnetism 2",
+                Description = "+ 25% movement speed,\r\n+25% magnetism radius",
+                Id = 20,
+                DeckId = 7,
+                OrderInDeck = 2,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("TurretMovementMagnetism2")
+                },
+            },
+            new Card
+            {
+                Title = "Turret Movement Magnetism 3",
+                Description = "+1 turret\r\n+ 50% magnetism radius",
+                Id = 21,
+                DeckId = 7,
+                OrderInDeck = 3,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("TurretMovementMagnetism3")
                 },
             },
         };

@@ -59,7 +59,14 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Tags = CardTag.Turret | CardTag.Shield,
                 CardsId = new Stack<int>()
             },
-
+            new Deck
+            {
+                Name = string.Empty,
+                Id = 7,
+                Description = string.Empty,
+                Tags = CardTag.Turret | CardTag.Movement | CardTag.Magnetism,
+                CardsId = new Stack<int>()
+            },
         };
 
         public CardManager(ICardRepository cardRepository)

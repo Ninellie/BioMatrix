@@ -56,7 +56,5 @@ namespace Assets.Scripts.Entity.Effects
             }
             _triggerCount = 0;
         }
-
-
     }
 }
