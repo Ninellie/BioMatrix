@@ -91,12 +91,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  shootForce: 1200
+  shootForce: 1600
   shootsPerSecond: 3
   maxShootDeflectionAngle: 10
   magazineCapacity: 6
   reloadTime: 2
   singleShootProjectile: 1
   projectileSizeMultiplier: 0
-  projectilePierceCount: 0
+  projectilePierceCount: 10
   addedProjectileKnockback: 10
