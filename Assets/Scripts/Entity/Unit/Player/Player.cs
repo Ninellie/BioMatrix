@@ -3,6 +3,8 @@ using Assets.Scripts.Entity.Unit.Movement;
 using Assets.Scripts.Entity.Unit.Turret;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Assets.Scripts.Entity.Unit.Player
 {
@@ -201,7 +203,7 @@ namespace Assets.Scripts.Entity.Unit.Player
                     var collisionEnemy = otherCollider2D.gameObject.GetComponent<Entity>();
                     var enemyDamage = collisionEnemy.Damage.Value;
                     TakeDamage(enemyDamage);
-                    KnockBackFrom(collisionEnemy);
+                    KnockBackFromEntity(collisionEnemy);
                 }
                 if (otherCollider2D.gameObject.CompareTag("Enclosure"))
                 {
@@ -236,14 +238,18 @@ namespace Assets.Scripts.Entity.Unit.Player
             Gizmos.DrawWireSphere(transform.position, _shieldRepulseRadius);
         }
     
-        protected void KnockBackFrom(Entity collisionEntity)
+        protected void KnockBackFromEntity(Entity entity)
         {
-            _movementController.KnockBackFromEntity(collisionEntity);
+            var magnitude = entity.KnockbackPower.Value;
+            var direction = (Vector2)transform.position - (Vector2)entity.transform.position;
+            var force = direction * magnitude;
+
+            _movementController.KnockBack(force);
         }
 
-        protected void KnockBackToEnclosureCenter(Entity collisionEntity)
+        protected void KnockBackToEnclosureCenter(Entity entity)
         {
-            Vector2 entityPosition = collisionEntity.transform.position;
+            Vector2 entityPosition = entity.transform.position;
 
             Camera mainCamera = Camera.main;
             Vector3 cameraPos = mainCamera.transform.position;
@@ -256,10 +262,13 @@ namespace Assets.Scripts.Entity.Unit.Player
             float height = cameraTopRight.y - cameraBottomLeft.y;
 
             Vector2 addedPos = new Vector2(width / 2, height / 2);
-
             entityPosition += addedPos;
 
-            _movementController.KnockBackTo(collisionEntity, entityPosition);
+            var magnitude = entity.KnockbackPower.Value;
+            var direction = (entityPosition - (Vector2)transform.position).normalized;
+            var force = direction * magnitude;
+
+            _movementController.KnockBack(force);
         }
 
         private void UpdateShield()

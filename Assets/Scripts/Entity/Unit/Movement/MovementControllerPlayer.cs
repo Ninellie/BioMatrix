@@ -50,13 +50,15 @@ namespace Assets.Scripts.Entity.Unit.Movement
         private Vector2 Velocity => MovementVelocity + KnockbackVelocity;
         private Vector2 MovementVelocity => MovementDirection * Speed;
         private Vector2 KnockbackVelocity => KnockbackDirection * KnockbackSpeed;
+        
         public MovementControllerPlayer(Player.Player myUnit)
         {
             _myUnit = myUnit;
         }
+        
         public void FixedUpdateStep()
         {
-            Vector2 nextPosition = MyPosition;
+            var nextPosition = MyPosition;
             if (_knockbackTime > 0)
             {
                 nextPosition += KnockbackVelocity * Time.fixedDeltaTime;
@@ -73,35 +75,18 @@ namespace Assets.Scripts.Entity.Unit.Movement
             }
             _myUnit.Rb2D.MovePosition(nextPosition);
         }
+        
         public void SetDirection(Vector2 direction)
         {
             MovementDirection = direction;
         }
-        public void Stag()
+
+        public void KnockBack(Vector2 force)
         {
-            _speedScale = 0;
+            KnockbackDirection = force.normalized;
+            _knockbackTime = force.magnitude / KnockbackSpeed;
         }
-        public void KnockBackFromEntity(Entity collisionEntity)
-        {
-            float thrustPower = collisionEntity.KnockbackPower.Value;
-            KnockbackDirection = (MyPosition - (Vector2)collisionEntity.transform.position).normalized;
-            _knockbackTime = thrustPower / KnockbackSpeed;
-            Debug.Log("Knockback");
-        }
-        public void KnockBackFromPosition(Entity collisionEntity, Vector2 collisionPosition)
-        {
-            float thrustPower = collisionEntity.KnockbackPower.Value;
-            KnockbackDirection = (MyPosition - collisionPosition).normalized;
-            _knockbackTime = thrustPower / KnockbackSpeed;
-            Debug.Log($"Knockback from {collisionPosition}");
-        }
-        public void KnockBackTo(Entity collisionEntity, Vector2 collisionPosition)
-        {
-            float thrustPower = collisionEntity.KnockbackPower.Value;
-            KnockbackDirection = (collisionPosition - MyPosition).normalized;
-            _knockbackTime = thrustPower / KnockbackSpeed;
-            Debug.Log($"Knockback to {collisionPosition}");
-        }
+
         public Vector2 GetVelocity()
         {
             return Velocity;
