@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0390a211e5d5e0b4bb535708aa195495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRepulseForce: 0.3
+  _repulseForce: 0.3
   _penetrationDistanceMultiplier: 0.8
   _layerName: Enemy
 --- !u!212 &3572984765799172596

@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0390a211e5d5e0b4bb535708aa195495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseRepulseForce: 1
+  _repulseForce: 1
   _penetrationDistanceMultiplier: 1
   _layerName: Enclosure
 --- !u!114 &4797799252330293022
