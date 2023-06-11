@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Assets.Scripts.Entity.Effects
 {
-    public class AttachResourceAdderEffect : IEffect
+    public class AttachResourceIncreaserEffect : IEffect
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -67,7 +67,7 @@ namespace Assets.Scripts.Entity.Effects
             }
         }
 
-        public AttachResourceAdderEffect(
+        public AttachResourceIncreaserEffect(
             string name,
             string description,
             string targetName,
@@ -88,7 +88,7 @@ namespace Assets.Scripts.Entity.Effects
         )
         {
         }
-        public AttachResourceAdderEffect(
+        public AttachResourceIncreaserEffect(
             string name,
             string description,
             string targetName,
@@ -109,7 +109,7 @@ namespace Assets.Scripts.Entity.Effects
         {
         }
 
-        public AttachResourceAdderEffect(
+        public AttachResourceIncreaserEffect(
             string name,
             string description,
             string targetName,

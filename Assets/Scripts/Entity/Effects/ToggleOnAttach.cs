@@ -65,7 +65,8 @@ namespace Assets.Scripts.Entity.Effects
         {
         }
 
-        public ToggleOnAttach(
+        public ToggleOnAttach
+        (
             string name,
             string description,
             string targetName,
