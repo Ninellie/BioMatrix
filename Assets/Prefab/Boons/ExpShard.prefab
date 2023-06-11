@@ -123,8 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a67adaac0812b6d46be2ba92177ef62f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
-  speed: 1500
 --- !u!114 &-573732983498185955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
-  maximumLife: 1
+  maximumLife: 4
   lifeRegenerationInSecond: 0
   knockbackPower: 0
   damage: 0
@@ -147,7 +145,7 @@ MonoBehaviour:
   rotationSpeed: 0
 --- !u!95 &5263664002500415589
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -164,7 +162,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!58 &1651944178443729954
 CircleCollider2D:
   m_ObjectHideFlags: 0

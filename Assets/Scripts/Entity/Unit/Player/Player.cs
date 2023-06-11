@@ -62,7 +62,7 @@ namespace Assets.Scripts.Entity.Unit.Player
         }
         private int _experience;
         public int ExpToLvlup => ExperienceToSecondLevel + (Level * ExperienceAmountIncreasingPerLevel) - Experience;
-        private const int ExperienceToSecondLevel = 2;
+        private const int ExperienceToSecondLevel = 20;
         private const int ExperienceAmountIncreasingPerLevel = 1;
         private const int InitialLevel = 1;
         private const int InitialExperience = 0;

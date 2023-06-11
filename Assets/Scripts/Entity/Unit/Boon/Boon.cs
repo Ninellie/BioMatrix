@@ -39,10 +39,10 @@ namespace Assets.Scripts.Entity.Unit.Boon
             if (!collider2D.gameObject.CompareTag("Player")) return;
             if (collider2D is not BoxCollider2D) return;
             Debug.Log("The exp crystal was taken");
-            TakeDamage(LifePoints.GetValue());
             var player = collisionGameObject.GetComponent<Player.Player>();
-            var expGiven = 1;
+            var expGiven = LifePoints.GetMaxValue();
             player.GetExperience(expGiven);
+            TakeDamage(LifePoints.GetValue());
         }
 
         private void BaseOnTriggerStay2D(Collider2D collider2D)
