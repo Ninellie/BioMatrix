@@ -221,7 +221,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Id = 16,
                 DeckId = 6,
                 OrderInDeck = 1,
-                DropWeight = 111,
+                DropWeight = 1,
                 Effects = new[]
                 {
                     EffectRepository.Get("TurretShield1")
@@ -234,7 +234,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Id = 17,
                 DeckId = 6,
                 OrderInDeck = 2,
-                DropWeight = 111,
+                DropWeight = 1,
                 Effects = new[]
                 {
                     EffectRepository.Get("TurretShield2")
@@ -247,7 +247,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Id = 18,
                 DeckId = 6,
                 OrderInDeck = 3,
-                DropWeight = 111,
+                DropWeight = 1,
                 Effects = new[]
                 {
                     EffectRepository.Get("TurretShield3")
@@ -291,6 +291,46 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Effects = new[]
                 {
                     EffectRepository.Get("TurretMovementMagnetism3")
+                },
+            },
+            // Vitality Experience deck
+            new Card
+            {
+                Title = "Vitality Experience 1",
+                Description = "+1 max hp\r\n+25% exp gained",
+                Id = 22,
+                DeckId = 8,
+                OrderInDeck = 1,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("VitalityExperience1")
+                }
+            },
+            new Card
+            {
+                Title = "Vitality Experience 2",
+                Description = "Restore 1 hp per 20 exp taken",
+                Id = 23,
+                DeckId = 8,
+                OrderInDeck = 2,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("VitalityExperience2")
+                },
+            },
+            new Card
+            {
+                Title = "Vitality Experience 3",
+                Description = "+100% exp gained while on 1 hp",
+                Id = 24,
+                DeckId = 8,
+                OrderInDeck = 3,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("VitalityExperience3")
                 },
             },
         };

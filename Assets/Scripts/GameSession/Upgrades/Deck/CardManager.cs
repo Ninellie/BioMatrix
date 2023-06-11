@@ -67,6 +67,14 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Tags = CardTag.Turret | CardTag.Movement | CardTag.Magnetism,
                 CardsId = new Stack<int>()
             },
+            new Deck
+            {
+                Name = string.Empty,
+                Id = 8,
+                Description = string.Empty,
+                Tags = CardTag.Vitality | CardTag.Experience,
+                CardsId = new Stack<int>()
+            },
         };
 
         public CardManager(ICardRepository cardRepository)

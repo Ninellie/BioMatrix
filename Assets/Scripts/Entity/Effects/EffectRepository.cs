@@ -11,10 +11,32 @@ namespace Assets.Scripts.Entity.Effects
     [Serializable]
     public class EffectRepository : IEffectRepository
     {
-        private static readonly Dictionary<string, AttachResourceAdderEffect> AttachResourceAdderEffects = new()
+        private static readonly Dictionary<string, IncreaserResourceOnEventEffect> IncreaseResourceOnEffects = new()
+        {
+            // Vitality Experience 2
+            [nameof(Player) + "Increase" + nameof(Player.LifePoints) + 1 + nameof(Player.ExperienceTakenEvent) + 20] = new IncreaserResourceOnEventEffect
+            (
+                nameof(Player) + "Increase" + nameof(Player.LifePoints) + 1 + nameof(Player.ExperienceTakenEvent) + 20,
+                "",
+                nameof(Player),
+                new PropTrigger
+                {
+                    Name = nameof(Player.ExperienceTakenEvent),
+                    Path = ""
+                },
+                new List<(int value, string resourcePath)>
+                {
+                    (1, nameof(Player.LifePoints)),
+                },
+                20,
+                false
+            ),
+        };
+        
+        private static readonly Dictionary<string, AttachResourceIncreaserEffect> AttachResourceAdderEffects = new()
         {
             // Turret
-            ["PlayerTurretHubTurretsAdd1"] = new AttachResourceAdderEffect
+            ["PlayerTurretHubTurretsAdd1"] = new AttachResourceIncreaserEffect
             (
                 "PlayerTurretHubTurretsAdd1",
                 "",
@@ -130,7 +152,8 @@ namespace Assets.Scripts.Entity.Effects
                     new List<(StatModifier mod, string statPath)>
                     {
                         (new StatModifier(OperationType.Addition, 1f), nameof(Player.MaximumLifePoints)),
-                    }
+                    },
+                    true
                 ),
             [nameof(Player) + nameof(Firearm.Firearm) + nameof(Firearm.Firearm.ProjectileSizeMultiplier) + nameof(OperationType.Addition) + 100] =
                 new AttachModAdderEffect
@@ -231,16 +254,17 @@ namespace Assets.Scripts.Entity.Effects
                     }
                 ),
             // Gun Movement Experience 3
-            [nameof(Player) + nameof(Player.ExpMultiplier) + nameof(OperationType.Multiplication) + 100] =
+            [nameof(Player) + nameof(Player.ExpMultiplier) + nameof(OperationType.Multiplication) + 25] =
                 new AttachModAdderEffect
                 (
-                    nameof(Player) + nameof(Player.ExpMultiplier) + nameof(OperationType.Multiplication) + 100,
+                    nameof(Player) + nameof(Player.ExpMultiplier) + nameof(OperationType.Multiplication) + 25,
                     "",
                     nameof(Player),
                     new List<(StatModifier mod, string statPath)>
                     {
-                        (new StatModifier(OperationType.Multiplication, 100), nameof(Player.ExpMultiplier)),
-                    }
+                        (new StatModifier(OperationType.Multiplication, 25), nameof(Player.ExpMultiplier)),
+                    },
+                    true
                 ),
             //Turret 1
 
@@ -350,19 +374,22 @@ namespace Assets.Scripts.Entity.Effects
                     },
                     true
                 ),
-            // Turret Movement Magnetism 1
-            [nameof(Player) + nameof(Player.Speed) + nameof(OperationType.Multiplication) + 25] =
+            // Vitality Experience 1
+
+            // Vitality Experience 3
+            [nameof(Player) + nameof(Player.ExpMultiplier) + nameof(OperationType.Multiplication) + 100] =
                 new AttachModAdderEffect
                 (
-                    nameof(Player) + nameof(Player.Speed) + nameof(OperationType.Multiplication) + 25,
+                    nameof(Player) + nameof(Player.ExpMultiplier) + nameof(OperationType.Multiplication) + 100,
                     "",
                     nameof(Player),
                     new List<(StatModifier mod, string statPath)>
                     {
-                        (new StatModifier(OperationType.Multiplication, 25), nameof(Player.Speed)),
+                        (new StatModifier(OperationType.Multiplication, 100), nameof(Player.ExpMultiplier)),
                     },
-                    true
+                    false
                 ),
+
         };
 
         private static readonly Dictionary<string, ToggleOnAttach> ToggleEffects = new()
@@ -547,6 +574,25 @@ namespace Assets.Scripts.Entity.Effects
                 nameof(Player.ShieldLayers) + "." + nameof(Resource.IsNotEmpty),
                 AttachModAdderEffects[nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.Damage) + nameof(OperationType.Multiplication) + 50]
             ),
+            // Vitality Experience 3
+            ["VitalityExperience3_While_1"] = new EffectAdderWhileTrueEffect
+            (
+                "VitalityExperience3_While_1",
+                "While life points is on edge add +100% experience gain multi",
+                nameof(Player),
+                new PropTrigger
+                {
+                    Name = nameof(Resource.EdgeEvent),
+                    Path = nameof(Player.LifePoints)
+                },
+                new PropTrigger
+                {
+                    Name = nameof(Resource.NotEdgeEvent),
+                    Path = nameof(Player.LifePoints)
+                },
+                nameof(Player.LifePoints) + "." + nameof(Resource.IsOnEdge),
+                AttachModAdderEffects[nameof(Player) + nameof(Player.ExpMultiplier) + nameof(OperationType.Multiplication) + 100]
+            ),
         };
 
         private static readonly Dictionary<string, EffectAdderPerResource> EffectAdderPerResourceEffects = new()
@@ -695,7 +741,7 @@ namespace Assets.Scripts.Entity.Effects
                 nameof(Player),
                 new List<(IEffect effect, int stackCount)>
                 {
-                    (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.ExpMultiplier) + nameof(OperationType.Multiplication) + 100], stackCount: 1),
+                    (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.ExpMultiplier) + nameof(OperationType.Multiplication) + 25], stackCount: 4),
                 }
             ),
             // Turret
@@ -796,6 +842,39 @@ namespace Assets.Scripts.Entity.Effects
                     (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.MagnetismRadius) + nameof(OperationType.Multiplication) + 25], stackCount: 2),
                 }
             ),
+            // Vitality Experience
+            [nameof(CardTag.Vitality) + nameof(CardTag.Experience) + 1] = new AttachEffectAdderEffect
+            (
+                nameof(CardTag.Vitality) + nameof(CardTag.Experience) + 1,
+                "",
+                nameof(Player),
+                new List<(IEffect effect, int stackCount)>
+                {
+                    (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.MaximumLifePoints) + nameof(OperationType.Addition) + 1], stackCount: 1),
+                    (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.ExpMultiplier) + nameof(OperationType.Multiplication) + 25], stackCount: 1),
+                }
+            ),
+            [nameof(CardTag.Vitality) + nameof(CardTag.Experience) + 2] = new AttachEffectAdderEffect
+            (
+                nameof(CardTag.Vitality) + nameof(CardTag.Experience) + 2,
+                "",
+                nameof(Player),
+                new List<(IEffect effect, int stackCount)>
+                {
+                    (effect: IncreaseResourceOnEffects[nameof(Player) + "Increase" + nameof(Player.LifePoints) + 1 + nameof(Player.ExperienceTakenEvent) + 20], stackCount: 1),
+                }
+            ),
+            [nameof(CardTag.Vitality) + nameof(CardTag.Experience) + 3] = new AttachEffectAdderEffect
+            (
+                nameof(CardTag.Vitality) + nameof(CardTag.Experience) + 3,
+                "",
+                nameof(Player),
+                new List<(IEffect effect, int stackCount)>
+                {
+                    (effect: EffectAdderWhileTrueEffects["VitalityExperience3_While_1"], stackCount: 1),
+                }
+            ),
+
         };
 
         public IEffect Get(string effectName)
