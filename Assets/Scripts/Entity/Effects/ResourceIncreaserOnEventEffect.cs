@@ -1,11 +1,10 @@
 ﻿using Assets.Scripts.Core;
 using System.Collections.Generic;
-using Codice.CM.Client.Gui;
 using System;
 
 namespace Assets.Scripts.Entity.Effects
 {
-    public class IncreaserResourceOnEventEffect : IEffect
+    public class ResourceIncreaserOnEventEffect : IEffect
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -70,7 +69,7 @@ namespace Assets.Scripts.Entity.Effects
             TriggerCountForIncreasing.Increase();
         }
 
-        public IncreaserResourceOnEventEffect
+        public ResourceIncreaserOnEventEffect
         (
             string name,
             string description,
@@ -98,7 +97,7 @@ namespace Assets.Scripts.Entity.Effects
         {
         }
 
-        public IncreaserResourceOnEventEffect
+        public ResourceIncreaserOnEventEffect
         (
             string name,
             string description,

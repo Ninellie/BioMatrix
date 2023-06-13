@@ -11,10 +11,10 @@ namespace Assets.Scripts.Entity.Effects
     [Serializable]
     public class EffectRepository : IEffectRepository
     {
-        private static readonly Dictionary<string, IncreaserResourceOnEventEffect> IncreaseResourceOnEffects = new()
+        private static readonly Dictionary<string, ResourceIncreaserOnEventEffect> IncreaseResourceOnEffects = new()
         {
             // Vitality Experience 2
-            [nameof(Player) + "Increase" + nameof(Player.LifePoints) + 1 + nameof(Player.ExperienceTakenEvent) + 20] = new IncreaserResourceOnEventEffect
+            [nameof(Player) + "Increase" + nameof(Player.LifePoints) + 1 + nameof(Player.ExperienceTakenEvent) + 20] = new ResourceIncreaserOnEventEffect
             (
                 nameof(Player) + "Increase" + nameof(Player.LifePoints) + 1 + nameof(Player.ExperienceTakenEvent) + 20,
                 "",
