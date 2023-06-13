@@ -75,6 +75,14 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Tags = CardTag.Vitality | CardTag.Experience,
                 CardsId = new Stack<int>()
             },
+            new Deck
+            {
+                Name = string.Empty,
+                Id = 9,
+                Description = string.Empty,
+                Tags = CardTag.Shield | CardTag.Magnetism,
+                CardsId = new Stack<int>()
+            },
         };
 
         public CardManager(ICardRepository cardRepository)
@@ -86,7 +94,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
 
                 for (int i = deckCards.Count - 1; i >= 0; i--)
                 {
-                    int biggestOrder = deckCards.Select(deckCard => deckCard.OrderInDeck).Prepend(0).Max();
+                    var biggestOrder = deckCards.Select(deckCard => deckCard.OrderInDeck).Prepend(0).Max();
                     var bottomCard = deckCards.First(deckCard => deckCard.OrderInDeck == biggestOrder);
                     deck.CardsId.Push(bottomCard.Id);
                     deckCards.Remove(bottomCard);
