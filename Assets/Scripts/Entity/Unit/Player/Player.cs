@@ -175,15 +175,16 @@ namespace Assets.Scripts.Entity.Unit.Player
 
         private void BaseOnCollisionEnter2D(Collision2D collision2D)
         {
-            Collider2D otherCollider2D = collision2D.collider;
-            if (!otherCollider2D.gameObject.TryGetComponent<Entity>(out Entity entity))
+            var otherCollider2D = collision2D.collider;
+            if (!otherCollider2D.gameObject.TryGetComponent<Entity>(out var entity))
             {
-                Debug.LogWarning("OnTriggerEnter2D with game object without Entity component");
+                Debug.LogWarning("OnTriggerEnter2D with game object without Entity component", this);
                 return;
             }
 
             var isEnemy = otherCollider2D.gameObject.CompareTag("Enemy");
             var isEnclosure = otherCollider2D.gameObject.CompareTag("Enclosure");
+
             if (!isEnemy && !isEnclosure) return;
 
             if (ShieldLayers.IsEmpty)
@@ -198,16 +199,7 @@ namespace Assets.Scripts.Entity.Unit.Player
             }
             else
             {
-                Collider2D[] hitColliders =
-                    Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
-
-                foreach (Collider2D collider2d in hitColliders)
-                {
-                    collider2d.gameObject.GetComponent<Enemy.Enemy>().enemyMoveController
-                        .KnockBackFromTarget(KnockbackPower.Value);
-                }
-
-                ShieldLayers.Decrease();
+                ShieldRepulse();
             }
 
             if (isEnclosure)
@@ -215,6 +207,20 @@ namespace Assets.Scripts.Entity.Unit.Player
                 KnockBackToEnclosureCenter(entity);
             }
         }
+
+        private void ShieldRepulse()
+        {
+            var colliders2D = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
+
+            foreach (var collider2d in colliders2D)
+            {
+                collider2d.gameObject.GetComponent<Enemy.Enemy>().enemyMoveController
+                    .KnockBackFromTarget(KnockbackPower.Value);
+            }
+
+            ShieldLayers.Decrease();
+        }
+
 
         protected override void BaseUpdate()
         {
