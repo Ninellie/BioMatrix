@@ -185,25 +185,16 @@ namespace Assets.Scripts.Entity.Unit.Player
             var isEnemy = otherCollider2D.gameObject.CompareTag("Enemy");
             var isEnclosure = otherCollider2D.gameObject.CompareTag("Enclosure");
             if (!isEnemy && !isEnclosure) return;
+
             if (ShieldLayers.IsEmpty)
             {
+                TakeDamage(entity.Damage.Value);
+                _invulnerability.ApplyInvulnerable(collision2D);
+
                 if (isEnemy)
                 {
-                    var collisionEnemy = otherCollider2D.gameObject.GetComponent<Entity>();
-                    var enemyDamage = collisionEnemy.Damage.Value;
-                    TakeDamage(enemyDamage);
-                    KnockBackFromEntity(collisionEnemy);
+                    KnockBackFromEntity(entity);
                 }
-
-                if (isEnclosure)
-                {
-                    var collisionEnclosure = otherCollider2D.gameObject.GetComponent<Entity>();
-                    var enclosureDamage = collisionEnclosure.Damage.Value;
-                    TakeDamage(enclosureDamage);
-                    KnockBackToEnclosureCenter(collisionEnclosure);
-                }
-
-                _invulnerability.ApplyInvulnerable(collision2D);
             }
             else
             {
@@ -217,10 +208,11 @@ namespace Assets.Scripts.Entity.Unit.Player
                 }
 
                 ShieldLayers.Decrease();
+            }
 
-                if (!isEnclosure) return;
-                var collisionEnclosure = otherCollider2D.gameObject.GetComponent<Entity>();
-                KnockBackToEnclosureCenter(collisionEnclosure);
+            if (isEnclosure)
+            {
+                KnockBackToEnclosureCenter(entity);
             }
         }
 
