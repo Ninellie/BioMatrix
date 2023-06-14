@@ -181,38 +181,46 @@ namespace Assets.Scripts.Entity.Unit.Player
                 Debug.LogWarning("OnTriggerEnter2D with game object without Entity component");
                 return;
             }
-            if (!otherCollider2D.gameObject.CompareTag("Enemy") && !otherCollider2D.gameObject.CompareTag("Enclosure")) return;
-            if (!ShieldLayers.IsEmpty)
-            {
-                Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
 
-                foreach (Collider2D collider2d in hitColliders)
-                {
-                    collider2d.gameObject.GetComponent<Enemy.Enemy>().enemyMoveController.KnockBackFromTarget(KnockbackPower.Value);
-                }
-                ShieldLayers.Decrease();
-
-                if (!otherCollider2D.gameObject.CompareTag("Enclosure")) return;
-                var collisionEnclosure = otherCollider2D.gameObject.GetComponent<Entity>();
-                KnockBackToEnclosureCenter(collisionEnclosure);
-            }
-            else
+            var isEnemy = otherCollider2D.gameObject.CompareTag("Enemy");
+            var isEnclosure = otherCollider2D.gameObject.CompareTag("Enclosure");
+            if (!isEnemy && !isEnclosure) return;
+            if (ShieldLayers.IsEmpty)
             {
-                if (otherCollider2D.gameObject.CompareTag("Enemy"))
+                if (isEnemy)
                 {
                     var collisionEnemy = otherCollider2D.gameObject.GetComponent<Entity>();
                     var enemyDamage = collisionEnemy.Damage.Value;
                     TakeDamage(enemyDamage);
                     KnockBackFromEntity(collisionEnemy);
                 }
-                if (otherCollider2D.gameObject.CompareTag("Enclosure"))
+
+                if (isEnclosure)
                 {
                     var collisionEnclosure = otherCollider2D.gameObject.GetComponent<Entity>();
                     var enclosureDamage = collisionEnclosure.Damage.Value;
                     TakeDamage(enclosureDamage);
                     KnockBackToEnclosureCenter(collisionEnclosure);
                 }
+
                 _invulnerability.ApplyInvulnerable(collision2D);
+            }
+            else
+            {
+                Collider2D[] hitColliders =
+                    Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
+
+                foreach (Collider2D collider2d in hitColliders)
+                {
+                    collider2d.gameObject.GetComponent<Enemy.Enemy>().enemyMoveController
+                        .KnockBackFromTarget(KnockbackPower.Value);
+                }
+
+                ShieldLayers.Decrease();
+
+                if (!isEnclosure) return;
+                var collisionEnclosure = otherCollider2D.gameObject.GetComponent<Entity>();
+                KnockBackToEnclosureCenter(collisionEnclosure);
             }
         }
 
