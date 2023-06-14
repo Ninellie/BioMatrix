@@ -35,19 +35,21 @@ namespace Assets.Scripts.Entity.Unit.Boon
         private void BaseOnTriggerEnter2D(Collider2D collider2D)
         {
             var collisionGameObject = collider2D.gameObject;
-
-            if (!collider2D.gameObject.CompareTag("Player")) return;
-            if (collider2D is not BoxCollider2D) return;
+            var isPlayer = collider2D.gameObject.CompareTag("Player");
+            var isBoxCollider = collider2D is BoxCollider2D;
+            if (!isPlayer) return;
+            if (!isBoxCollider) return;
             Debug.Log("The exp crystal was taken");
             var player = collisionGameObject.GetComponent<Player.Player>();
             var expGiven = LifePoints.GetMaxValue();
             player.GetExperience(expGiven);
-            TakeDamage(LifePoints.GetValue());
+            Death();
         }
 
         private void BaseOnTriggerStay2D(Collider2D collider2D)
         {
-            if (!collider2D.gameObject.CompareTag("Player")) return;
+            var isPlayer = collider2D.gameObject.CompareTag("Player");
+            if (!isPlayer) return;
             Vector2 nextPosition = transform.position;
             Vector2 direction = (collider2D.transform.position - transform.position).normalized;
             var movementVelocity = direction * SpeedConst;

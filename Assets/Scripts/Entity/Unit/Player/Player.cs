@@ -110,7 +110,6 @@ namespace Assets.Scripts.Entity.Unit.Player
             ShieldLayerRechargeRatePerSecond = StatFactory.GetStat(settings.shieldLayerRechargeRate / 60f);
             MagnetismRadius = StatFactory.GetStat(settings.magnetismRadius);
             ExpMultiplier = StatFactory.GetStat(settings.expMultiplier);
-        
 
             _circleCollider.radius = MagnetismRadius.Value;
 
@@ -208,20 +207,6 @@ namespace Assets.Scripts.Entity.Unit.Player
             }
         }
 
-        private void ShieldRepulse()
-        {
-            var colliders2D = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
-
-            foreach (var collider2d in colliders2D)
-            {
-                collider2d.gameObject.GetComponent<Enemy.Enemy>().enemyMoveController
-                    .KnockBackFromTarget(KnockbackPower.Value);
-            }
-
-            ShieldLayers.Decrease();
-        }
-
-
         protected override void BaseUpdate()
         {
             base.BaseUpdate();
@@ -277,6 +262,19 @@ namespace Assets.Scripts.Entity.Unit.Player
             _movementController.KnockBack(force);
         }
 
+        private void ShieldRepulse()
+        {
+            var colliders2D = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
+
+            foreach (var collider2d in colliders2D)
+            {
+                collider2d.gameObject.GetComponent<Enemy.Enemy>().enemyMoveController
+                    .KnockBackFromTarget(KnockbackPower.Value);
+            }
+
+            ShieldLayers.Decrease();
+        }
+
         private void UpdateShield()
         {
             var isShieldExists = !ShieldLayers.IsEmpty;
@@ -293,11 +291,7 @@ namespace Assets.Scripts.Entity.Unit.Player
 
         private void ChangeCurrentMagnetismRadius()
         {
-            if (MagnetismRadius.Value < 0)
-            {
-                _circleCollider.radius = 0;
-            }
-            _circleCollider.radius = MagnetismRadius.Value;
+            _circleCollider.radius = Math.Max(MagnetismRadius.Value, 0);
         }
 
         public void CreateWeapon(GameObject weapon)
