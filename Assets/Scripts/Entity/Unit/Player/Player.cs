@@ -37,6 +37,9 @@ namespace Assets.Scripts.Entity.Unit.Player
         public Firearm.Firearm Firearm { get; private set; }
         public bool IsFireButtonPressed { get; private set; } = false;
 
+        public Resource Lvl { get; set; }
+        public Resource Exp { get; set; }
+        public Stat.Stat ExpToNextLvl { get; set; }
         public int Level
         {
             get => _level;
@@ -68,10 +71,11 @@ namespace Assets.Scripts.Entity.Unit.Player
         private const int InitialExperience = 0;
 
         private MovementControllerPlayer _movementController;
+        private Invulnerability _invulnerability;
+
         private CircleCollider2D _circleCollider;
         private CapsuleCollider2D _capsuleCollider;
         private SpriteRenderer _spriteRenderer;
-        private Invulnerability _invulnerability;
 
         private void Awake() => BaseAwake(Settings);
 
@@ -96,8 +100,8 @@ namespace Assets.Scripts.Entity.Unit.Player
             Debug.Log($"{gameObject.name} {nameof(Player)} Awake");
             base.BaseAwake(settings);
 
-            _level = InitialLevel;
-            _experience = InitialExperience;
+            //_level = InitialLevel;
+            //_experience = InitialExperience;
 
             _circleCollider = GetComponent<CircleCollider2D>();
             _capsuleCollider = GetComponent<CapsuleCollider2D>();
@@ -110,13 +114,12 @@ namespace Assets.Scripts.Entity.Unit.Player
             ShieldLayerRechargeRatePerSecond = StatFactory.GetStat(settings.shieldLayerRechargeRate / 60f);
             MagnetismRadius = StatFactory.GetStat(settings.magnetismRadius);
             ExpMultiplier = StatFactory.GetStat(settings.expMultiplier);
+            ExpToNextLvl = StatFactory.GetStat(ExperienceToSecondLevel);
 
-            _circleCollider.radius = MagnetismRadius.Value;
+            _circleCollider.radius = Math.Max(MagnetismRadius.Value, 0);
 
-            if (MagnetismRadius.Value < 0)
-            {
-                _circleCollider.radius = 0;
-            }
+            Lvl = new Resource(InitialLevel);
+            Exp = new Resource(0, ExpToNextLvl);
 
             ShieldLayers = new Resource(0, 
                 MaxShieldLayersCount,
@@ -124,6 +127,11 @@ namespace Assets.Scripts.Entity.Unit.Player
                 MaxRechargeableShieldLayersCount);
 
             _movementController = new MovementControllerPlayer(this);
+        }
+
+        private void LevelUp()
+        {
+
         }
 
         protected override void BaseOnEnable()
@@ -140,7 +148,6 @@ namespace Assets.Scripts.Entity.Unit.Player
             ShieldLayers.ValueChangedEvent += UpdateShieldAlpha;
 
             MagnetismRadius.ValueChangedEvent += ChangeCurrentMagnetismRadius;
-
         }
 
         protected override void BaseOnDisable()
@@ -189,7 +196,7 @@ namespace Assets.Scripts.Entity.Unit.Player
             if (ShieldLayers.IsEmpty)
             {
                 TakeDamage(entity.Damage.Value);
-                _invulnerability.ApplyInvulnerable(collision2D);
+                _invulnerability.ApplyInvulnerable();
 
                 if (isEnemy)
                 {
@@ -308,7 +315,9 @@ namespace Assets.Scripts.Entity.Unit.Player
 
         public void GetExperience(int value)
         {
-            Experience += value * (int)ExpMultiplier.Value;
+            var expTaken = value * (int)ExpMultiplier.Value;
+            Exp.Increase(expTaken);
+            //Experience += value * (int)ExpMultiplier.Value;
         }
 
         public void OnMove(InputValue input)
