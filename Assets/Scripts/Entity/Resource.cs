@@ -100,13 +100,13 @@ namespace Assets.Scripts.Entity
                 }
 
                 var oldValue = _value;
-
+                var fillEventRequired = false;
                 if (_isLimited)
                 {
                     if (value >= (int)_maxValueStat.Value)
                     {
                         _value = (int)_maxValueStat.Value;
-                        FillEvent?.Invoke();
+                        fillEventRequired = true;
                     }
                 }
                 if (value <= _minValue)
@@ -117,6 +117,11 @@ namespace Assets.Scripts.Entity
                 else
                 {
                     _value = value;
+                }
+
+                if (fillEventRequired)
+                {
+                    FillEvent?.Invoke();
                 }
 
                 ValueChangedEvent?.Invoke();

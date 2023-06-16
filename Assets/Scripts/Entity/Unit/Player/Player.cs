@@ -106,14 +106,6 @@ namespace Assets.Scripts.Entity.Unit.Player
             _movementController = new MovementControllerPlayer(this);
         }
 
-        private void LevelUp()
-        {
-            Lvl.Increase();
-            var mod = new StatModifier(OperationType.Addition, ExperienceAmountIncreasingPerLevel);
-            ExpToNextLvl.AddModifier(mod);
-            Exp.Empty();
-        }
-
         protected override void BaseOnEnable()
         {
             base.BaseOnEnable();
@@ -218,8 +210,35 @@ namespace Assets.Scripts.Entity.Unit.Player
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, _shieldRepulseRadius);
         }
-    
-        protected void KnockBackFromEntity(Entity entity)
+
+        public void CreateWeapon(GameObject weapon)
+        {
+            var w = Instantiate(weapon);
+
+            w.transform.SetParent(_firePoint);
+
+            w.transform.position = _firePoint.transform.position;
+            var firearm = w.GetComponent<Firearm.Firearm>();
+            firearm.SetHolder(this);
+            Firearm = firearm;
+        }
+
+        public void GetExperience(int value)
+        {
+            var expTakenAmount = value * (int)ExpMultiplier.Value;
+            Exp.Increase(expTakenAmount);
+            ExperienceTakenEvent?.Invoke();
+        }
+
+        private void LevelUp()
+        {
+            Lvl.Increase();
+            var mod = new StatModifier(OperationType.Addition, ExperienceAmountIncreasingPerLevel);
+            ExpToNextLvl.AddModifier(mod);
+            Exp.Empty();
+        }
+
+        private void KnockBackFromEntity(Entity entity)
         {
             var magnitude = entity.KnockbackPower.Value;
             var direction = ((Vector2)transform.position - (Vector2)entity.transform.position).normalized;
@@ -228,21 +247,21 @@ namespace Assets.Scripts.Entity.Unit.Player
             _movementController.KnockBack(force);
         }
 
-        protected void KnockBackToEnclosureCenter(Entity entity)
+        private void KnockBackToEnclosureCenter(Entity entity)
         {
             Vector2 entityPosition = entity.transform.position;
 
-            Camera mainCamera = Camera.main;
-            Vector3 cameraPos = mainCamera.transform.position;
-            Vector3 cameraTopRight =
+            var mainCamera = Camera.main;
+            var cameraPos = mainCamera.transform.position;
+            var cameraTopRight =
                 new Vector3(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize, 0f) + cameraPos;
-            Vector3 cameraBottomLeft =
+            var cameraBottomLeft =
                 new Vector3(-mainCamera.aspect * mainCamera.orthographicSize, -mainCamera.orthographicSize, 0f) + cameraPos;
 
-            float width = cameraTopRight.x - cameraBottomLeft.x;
-            float height = cameraTopRight.y - cameraBottomLeft.y;
+            var width = cameraTopRight.x - cameraBottomLeft.x;
+            var height = cameraTopRight.y - cameraBottomLeft.y;
 
-            Vector2 addedPos = new Vector2(width / 2, height / 2);
+            var addedPos = new Vector2(width / 2, height / 2);
             entityPosition += addedPos;
 
             var magnitude = entity.KnockbackPower.Value;
@@ -250,6 +269,11 @@ namespace Assets.Scripts.Entity.Unit.Player
             var force = direction * magnitude;
 
             _movementController.KnockBack(force);
+        }
+
+        private void ChangeCurrentMagnetismRadius()
+        {
+            _circleCollider.radius = Math.Max(MagnetismRadius.Value, 0);
         }
 
         private void ShieldRepulse()
@@ -277,30 +301,6 @@ namespace Assets.Scripts.Entity.Unit.Player
             var a = _alphaPerLayer * ShieldLayers.GetValue();
             _shieldColor.a = a;
             _shieldSprite.color = _shieldColor;
-        }
-
-        private void ChangeCurrentMagnetismRadius()
-        {
-            _circleCollider.radius = Math.Max(MagnetismRadius.Value, 0);
-        }
-
-        public void CreateWeapon(GameObject weapon)
-        {
-            var w = Instantiate(weapon);
-
-            w.transform.SetParent(_firePoint);
-
-            w.transform.position = _firePoint.transform.position;
-            var firearm = w.GetComponent<Firearm.Firearm>();
-            firearm.SetHolder(this);
-            Firearm = firearm;
-        }
-
-        public void GetExperience(int value)
-        {
-            var expTaken = value * (int)ExpMultiplier.Value;
-            Exp.Increase(expTaken);
-            ExperienceTakenEvent?.Invoke();
         }
 
         public void OnMove(InputValue input)
