@@ -1,4 +1,5 @@
 using System;
+using Assets.Scripts.Entity.Stat;
 using Assets.Scripts.Entity.Unit.Movement;
 using Assets.Scripts.Entity.Unit.Turret;
 using UnityEngine;
@@ -28,8 +29,9 @@ namespace Assets.Scripts.Entity.Unit.Player
         public Resource ShieldLayers { get; private set; }
 
         public event Action GamePausedEvent;
-        public event Action LevelUpEvent;
+
         public event Action ExperienceTakenEvent;
+
         public event Action FireEvent;
         public event Action FireOffEvent;
     
@@ -40,35 +42,10 @@ namespace Assets.Scripts.Entity.Unit.Player
         public Resource Lvl { get; set; }
         public Resource Exp { get; set; }
         public Stat.Stat ExpToNextLvl { get; set; }
-        public int Level
-        {
-            get => _level;
-            set
-            {
-                if (value < InitialLevel) throw new ArgumentOutOfRangeException(nameof(value));
-                _level = value;
-                LevelUpEvent?.Invoke();
-            }
-        }
-        private int _level;
-        public int Experience
-        {
-            get => _experience;
-            set
-            {
-                _experience = value;
-                ExperienceTakenEvent?.Invoke();
-                if (ExpToLvlup > 0) return;
-                _experience = 0;
-                Level++;
-            }
-        }
-        private int _experience;
-        public int ExpToLvlup => ExperienceToSecondLevel + (Level * ExperienceAmountIncreasingPerLevel) - Experience;
+
         private const int ExperienceToSecondLevel = 20;
-        private const int ExperienceAmountIncreasingPerLevel = 1;
+        private const int ExperienceAmountIncreasingPerLevel = 5;
         private const int InitialLevel = 1;
-        private const int InitialExperience = 0;
 
         private MovementControllerPlayer _movementController;
         private Invulnerability _invulnerability;
@@ -131,7 +108,10 @@ namespace Assets.Scripts.Entity.Unit.Player
 
         private void LevelUp()
         {
-
+            Lvl.Increase();
+            var mod = new StatModifier(OperationType.Addition, ExperienceAmountIncreasingPerLevel);
+            ExpToNextLvl.AddModifier(mod);
+            Exp.Empty();
         }
 
         protected override void BaseOnEnable()
@@ -148,6 +128,8 @@ namespace Assets.Scripts.Entity.Unit.Player
             ShieldLayers.ValueChangedEvent += UpdateShieldAlpha;
 
             MagnetismRadius.ValueChangedEvent += ChangeCurrentMagnetismRadius;
+
+            Exp.FillEvent += LevelUp;
         }
 
         protected override void BaseOnDisable()
@@ -161,8 +143,9 @@ namespace Assets.Scripts.Entity.Unit.Player
             ShieldLayers.NotEmptyEvent -= UpdateShield;
             ShieldLayers.ValueChangedEvent -= UpdateShieldAlpha;
 
-            if (MagnetismRadius != null) MagnetismRadius.ValueChangedEvent -= ChangeCurrentMagnetismRadius;
+            MagnetismRadius.ValueChangedEvent -= ChangeCurrentMagnetismRadius;
 
+            Exp.FillEvent -= LevelUp;
 
             base.BaseOnDisable();
         }
@@ -317,7 +300,7 @@ namespace Assets.Scripts.Entity.Unit.Player
         {
             var expTaken = value * (int)ExpMultiplier.Value;
             Exp.Increase(expTaken);
-            //Experience += value * (int)ExpMultiplier.Value;
+            ExperienceTakenEvent?.Invoke();
         }
 
         public void OnMove(InputValue input)

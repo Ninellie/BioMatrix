@@ -11,6 +11,7 @@ namespace Assets.Scripts.Entity.Unit.Player
         [SerializeField] private GameObject _playerPrefab;
         [SerializeField] private GameObject _playerWeapon;
         [SerializeField] private GameObject _turretHub;
+        public Player CurrentPlayer { get; private set; }
 
         private ExpUI _experienceBar;
         private AmmoBar _ammoBar;
@@ -19,7 +20,7 @@ namespace Assets.Scripts.Entity.Unit.Player
         private OptionsMenu _optionsMenu;
         private ViewController _viewController;
 
-        public Player CurrentPlayer { get; private set; }
+
         private void Awake()
         {
             _gameSessionTimer = FindObjectOfType<GameSessionTimer>();
@@ -62,7 +63,7 @@ namespace Assets.Scripts.Entity.Unit.Player
             _lifeBar.Subscription();
 
             CurrentPlayer.GamePausedEvent += _viewController.Menu;
-            CurrentPlayer.LevelUpEvent += _viewController.LevelUpEvent;
+            CurrentPlayer.Lvl.IncrementEvent += _viewController.LevelUpEvent;
             CurrentPlayer.OnDeath += _viewController.Lose;
             _gameSessionTimer.onGameWinning += _viewController.Win;
             CurrentPlayer.OnDeath += Unsubscription;
@@ -73,7 +74,7 @@ namespace Assets.Scripts.Entity.Unit.Player
         public void Unsubscription()
         {
             CurrentPlayer.GamePausedEvent -= _viewController.Menu;
-            CurrentPlayer.LevelUpEvent -= _viewController.LevelUpEvent;
+            CurrentPlayer.Lvl.IncrementEvent -= _viewController.LevelUpEvent;
             CurrentPlayer.OnDeath -= _viewController.Lose;
             _gameSessionTimer.onGameWinning -= _viewController.Win;
             CurrentPlayer.OnDeath -= Unsubscription;

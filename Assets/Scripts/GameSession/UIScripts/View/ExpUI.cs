@@ -8,7 +8,9 @@ namespace Assets.Scripts.GameSession.UIScripts.View
         public TMPro.TMP_Text experienceToNextLevelBar;
         public TMPro.TMP_Text levelBar;
         public TMPro.TMP_Text killsBar;
+
         private Player _player;
+
         private void Start()
         {
             UpdateExperienceBar();
@@ -17,19 +19,17 @@ namespace Assets.Scripts.GameSession.UIScripts.View
         
         public void Subscription()
         {
-            Debug.Log("Experience and level started subscribing on current exp and level of Player");
             _player = FindObjectOfType<Player>();
-            _player.LevelUpEvent += UpdateLevelBar;
-            _player.ExperienceTakenEvent += UpdateExperienceBar;
+            _player.Lvl.IncrementEvent += UpdateLevelBar;
+            _player.Exp.ValueChangedEvent += UpdateExperienceBar;
             _player.KillsCount.ValueChangedEvent += UpdateKillsBar;
             _player.OnDeath += Unsubscription;
         }
         
         private void Unsubscription()
         {
-            Debug.Log("Experience and level started unsubscribing on current exp and level of Player");
-            _player.LevelUpEvent -= UpdateLevelBar;
-            _player.ExperienceTakenEvent -= UpdateExperienceBar;
+            _player.Lvl.IncrementEvent -= UpdateLevelBar;
+            _player.Exp.ValueChangedEvent -= UpdateExperienceBar;
             _player.KillsCount.ValueChangedEvent -= UpdateKillsBar;
             _player.OnDeath -= Unsubscription;
         }
