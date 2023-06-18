@@ -333,6 +333,46 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("VitalityExperience3")
                 },
             },
+            // Shield Magnetism deck
+            new Card
+            {
+                Title = "Shield Magnetism 1",
+                Description = "+1 max rechargeable shield layer\r\n+100% shield recharge rate",
+                Id = 25,
+                DeckId = 9,
+                OrderInDeck = 1,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("ShieldMagnetism1")
+                }
+            },
+            new Card
+            {
+                Title = "Shield Magnetism 2",
+                Description = "+ 50% magnetism radius",
+                Id = 26,
+                DeckId = 9,
+                OrderInDeck = 2,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("ShieldMagnetism2")
+                },
+            },
+            new Card
+            {
+                Title = "Shield Magnetism 3",
+                Description = "+100% magnetism radius while shield is fully charged",
+                Id = 27,
+                DeckId = 9,
+                OrderInDeck = 3,
+                DropWeight = 1,
+                Effects = new[]
+                {
+                    EffectRepository.Get("ShieldMagnetism3")
+                },
+            },
         };
 
         private readonly Card[] _cards;
