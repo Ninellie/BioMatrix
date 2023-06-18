@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
-  maximumLife: 2
+  maximumLife: 222
   lifeRegenerationInSecond: 0
   knockbackPower: 100
   damage: 0
@@ -282,13 +282,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9939477c0dbd69a4f8941031ac446d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _invulnerabilityTime: 1
   _layerMaskName: Enemy
+  _invulnerabilityTime: 1
   _flashDuration: 0.1
   _flashAlpha: 0.3
-  _isInvulnerable: 0
-  _invulnerableEndTime: 0
-  _invulnerabilityTimer: 0
 --- !u!1 &7005012959266165756
 GameObject:
   m_ObjectHideFlags: 0

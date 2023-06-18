@@ -10262,7 +10262,7 @@ PrefabInstance:
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _playerWeapon
       value: 
-      objectReference: {fileID: 3233653779076600719, guid: e80d20992e84f8648b471177b9347472, type: 3}
+      objectReference: {fileID: 3233653779076600719, guid: 400bbca3e72469743b7a4f3b0a127e50, type: 3}
     - target: {fileID: 1365173418, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _secondsBetweenWaves
       value: 1
