@@ -29,9 +29,7 @@ namespace Assets.Scripts.Entity.Unit.Player
         public Resource ShieldLayers { get; private set; }
 
         public event Action GamePausedEvent;
-
         public event Action ExperienceTakenEvent;
-
         public event Action FireEvent;
         public event Action FireOffEvent;
     
