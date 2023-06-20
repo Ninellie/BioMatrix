@@ -319,13 +319,13 @@ namespace Assets.Scripts.Entity
     
         public int GetValue()
         {
-            return Value;
+            return _value;
         }
     
         public float GetPercentValue()
         {
             var percent = _maxValueStat.Value / 100;
-            var currentPercent = Value / percent;
+            var currentPercent = _value / percent;
             return currentPercent;
         }
     }
