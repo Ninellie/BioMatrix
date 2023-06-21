@@ -4,7 +4,7 @@ using Assets.Scripts.Entity.Unit.Enemy;
 using Assets.Scripts.Entity.Unit.Player;
 using Assets.Scripts.Firearm;
 
-namespace Assets.Scripts.Entity.Stat
+namespace Assets.Scripts.Entity.Stats
 {
     public class GlobalStatsSettingsRepository
     {

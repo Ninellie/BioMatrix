@@ -8,14 +8,14 @@
         string Identifier { get; set; }
 
         bool IsTemporal { get; }
-        Stat.Stat Duration { get; }
+        Stats.Stat Duration { get; }
         bool IsDurationStacks { get; } // Can be true only if IsTemporal and not IsStackSeparateDuration
         bool IsDurationUpdates { get; } // Can be true only if IsTemporal and not IsStackSeparateDuration
 
         bool IsStacking { get; }
         bool IsStackSeparateDuration { get; } // Can be true only if IsTemporal and IsStacking
         Resource StacksCount { get; }
-        Stat.Stat MaxStackCount { get; }
+        Stats.Stat MaxStackCount { get; }
 
         void Attach(Entity target);
         void Detach();

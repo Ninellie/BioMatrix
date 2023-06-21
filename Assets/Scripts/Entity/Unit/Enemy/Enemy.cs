@@ -1,7 +1,7 @@
 using System;
 using Assets.Scripts.Core;
 using Assets.Scripts.Core.Render;
-using Assets.Scripts.Entity.Stat;
+using Assets.Scripts.Entity.Stats;
 using Assets.Scripts.Entity.Unit.Movement;
 using Assets.Scripts.GameSession.UIScripts.View;
 using UnityEngine;

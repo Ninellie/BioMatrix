@@ -1,7 +1,7 @@
 using System;
 using Assets.Scripts.Core;
 using Assets.Scripts.Entity;
-using Assets.Scripts.Entity.Stat;
+using Assets.Scripts.Entity.Stats;
 using Assets.Scripts.Entity.Unit.Player;
 using Assets.Scripts.Entity.Unit.Projectile;
 using UnityEngine;

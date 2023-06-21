@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Scripts.Entity.Stat;
+using Assets.Scripts.Entity.Stats;
 using Assets.Scripts.Entity.Unit.Player;
 using Assets.Scripts.Entity.Unit.Turret;
 using Assets.Scripts.GameSession.Upgrades.Deck;
@@ -86,12 +86,12 @@ namespace Assets.Scripts.Entity.Effects
                             nameof(Player.Firearm) + "." + nameof(Firearm.Firearm.ShootsPerSecond)),
                     },
                     true,
-                    new Stat.Stat(2),
+                    new Stats.Stat(2),
                     false,
                     true,
                     false,
                     false,
-                    new Stat.Stat(1, false)
+                    new Stats.Stat(1, false)
                 ),
                 //Gun3
                 ["PlayerFirearmProjectilePierceAdd2"] = new AttachModAdderEffect
@@ -220,12 +220,12 @@ namespace Assets.Scripts.Entity.Effects
                             nameof(Player.Firearm) + "." + nameof(Firearm.Firearm.ShootsPerSecond)),
                     },
                     true,
-                    new Stat.Stat(5, true),
+                    new Stats.Stat(5, true),
                     false,
                     true,
                     true,
                     false,
-                    new Stat.Stat(50, true)
+                    new Stats.Stat(50, true)
                 ),
                 // Gun Movement Experience 2
                 [nameof(Player) + nameof(Player.Speed) + nameof(OperationType.Multiplication) + 25] =
@@ -283,12 +283,12 @@ namespace Assets.Scripts.Entity.Effects
                                 nameof(Firearm.Firearm.SingleShootProjectile)),
                         },
                         true,
-                        new Stat.Stat(2, true),
+                        new Stats.Stat(2, true),
                         false,
                         true,
                         false,
                         false,
-                        new Stat.Stat(1, false)
+                        new Stats.Stat(1, false)
                     ),
                 //Turret 3
                 [nameof(Player) + nameof(TurretHub) + nameof(Firearm.Firearm.ProjectilePierceCount) + nameof(OperationType.Addition) + 1] =

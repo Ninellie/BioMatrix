@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Entity.Stat
+namespace Assets.Scripts.Entity.Stats
 {
     public class StatFactory : MonoBehaviour
     {

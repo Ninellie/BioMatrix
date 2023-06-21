@@ -1,4 +1,5 @@
 using System;
+using Assets.Scripts.Entity.Stats;
 
 namespace Assets.Scripts.Entity
 {
@@ -28,9 +29,9 @@ namespace Assets.Scripts.Entity
 
         private readonly int _minValue;
         private readonly int _edgeValue;
-        private readonly Stat.Stat _maxValueStat;
-        private readonly Stat.Stat _maxRecoverableValueStat;
-        private readonly Stat.Stat _recoverySpeedPerSecondStat;
+        private readonly Stat _maxValueStat;
+        private readonly Stat _maxRecoverableValueStat;
+        private readonly Stat _recoverySpeedPerSecondStat;
         private readonly float _restoreRate;
         private readonly bool _isRecovering;
         private readonly bool _isLimited;
@@ -174,20 +175,20 @@ namespace Assets.Scripts.Entity
         private int _value;
     
         public Resource() : this(0,
-            1,
-            new Stat.Stat(Single.PositiveInfinity),
-            new Stat.Stat(0, false),
-            new Stat.Stat(0, false),
-            false,
-            false)
+        1,
+        new Stat(Single.PositiveInfinity),
+        new Stat(0, false),
+        new Stat(0, false),
+        false,
+        false)
         {
         }
 
-        public Resource(Stat.Stat maxValueStat) : this(0,
+        public Resource(Stat maxValueStat) : this(0,
             1,
             maxValueStat,
-            new Stat.Stat(0, false),
-            new Stat.Stat(0, false),
+            new Stat(0, false),
+            new Stat(0, false),
             false,
             false)
         {
@@ -195,27 +196,27 @@ namespace Assets.Scripts.Entity
 
         public Resource(int minValue) : this(minValue,
             minValue + 1,
-            new Stat.Stat(Single.PositiveInfinity),
-            new Stat.Stat(0, false),
-            new Stat.Stat(0, false),
+            new Stat(Single.PositiveInfinity),
+            new Stat(0, false),
+            new Stat(0, false),
             false,
             false)
         {
         }
 
         public Resource(int minValue,
-            Stat.Stat maxValueStat) : this(minValue,
+            Stat maxValueStat) : this(minValue,
             minValue + 1,
             maxValueStat,
-            new Stat.Stat(0, false),
-            new Stat.Stat(0, false),
+            new Stat(0, false),
+            new Stat(0, false),
             false,
             true)
         {
         }
         public Resource(int minValue,
-            Stat.Stat maxValueStat,
-            Stat.Stat recoverySpeedPerSecondStat) : this(minValue,
+            Stat maxValueStat,
+            Stat recoverySpeedPerSecondStat) : this(minValue,
             minValue + 1,
             maxValueStat,
             recoverySpeedPerSecondStat,
@@ -225,9 +226,9 @@ namespace Assets.Scripts.Entity
         {
         }
         public Resource(int minValue,
-            Stat.Stat maxValueStat,
-            Stat.Stat recoverySpeedPerSecondStat,
-            Stat.Stat maxRecoverableValueStat) : this(minValue,
+            Stat maxValueStat,
+            Stat recoverySpeedPerSecondStat,
+            Stat maxRecoverableValueStat) : this(minValue,
             minValue + 1,
             maxValueStat,
             recoverySpeedPerSecondStat,
@@ -238,9 +239,9 @@ namespace Assets.Scripts.Entity
         }
         public Resource(int minValue,
             int edgeValue,
-            Stat.Stat maxValueStat,
-            Stat.Stat recoverySpeedPerSecondStat,
-            Stat.Stat maxRecoverableValueStat) : this(minValue,
+            Stat maxValueStat,
+            Stat recoverySpeedPerSecondStat,
+            Stat maxRecoverableValueStat) : this(minValue,
             edgeValue,
             maxValueStat,
             recoverySpeedPerSecondStat,
@@ -251,9 +252,9 @@ namespace Assets.Scripts.Entity
         }
         public Resource(int minValue,
             int edgeValue,
-            Stat.Stat maxValueStat,
-            Stat.Stat recoverySpeedPerSecondStat,
-            Stat.Stat maxRecoverableValueStat,
+            Stat maxValueStat,
+            Stat recoverySpeedPerSecondStat,
+            Stat maxRecoverableValueStat,
             bool isRecovering,
             bool isLimited)
         {

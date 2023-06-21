@@ -1,5 +1,5 @@
 using System;
-using Assets.Scripts.Entity.Stat;
+using Assets.Scripts.Entity.Stats;
 using Assets.Scripts.Entity.Unit.Movement;
 using Assets.Scripts.Entity.Unit.Turret;
 using UnityEngine;
@@ -20,11 +20,11 @@ namespace Assets.Scripts.Entity.Unit.Player
     
         public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
 
-        public Stat.Stat MagnetismRadius { get; private set; }
-        public Stat.Stat MaxShieldLayersCount { get; private set; }
-        public Stat.Stat MaxRechargeableShieldLayersCount { get; private set; }
-        public Stat.Stat ShieldLayerRechargeRatePerSecond { get; private set; }
-        public Stat.Stat ExpMultiplier { get; private set; }
+        public Stats.Stat MagnetismRadius { get; private set; }
+        public Stats.Stat MaxShieldLayersCount { get; private set; }
+        public Stats.Stat MaxRechargeableShieldLayersCount { get; private set; }
+        public Stats.Stat ShieldLayerRechargeRatePerSecond { get; private set; }
+        public Stats.Stat ExpMultiplier { get; private set; }
 
         public Resource ShieldLayers { get; private set; }
 
@@ -39,7 +39,7 @@ namespace Assets.Scripts.Entity.Unit.Player
 
         public Resource Lvl { get; set; }
         public Resource Exp { get; set; }
-        public Stat.Stat ExpToNextLvl { get; set; }
+        public Stats.Stat ExpToNextLvl { get; set; }
 
         private const int ExperienceToSecondLevel = 20;
         private const int ExperienceAmountIncreasingPerLevel = 5;

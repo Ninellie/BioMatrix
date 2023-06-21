@@ -1,4 +1,4 @@
-using Assets.Scripts.Entity.Stat;
+using Assets.Scripts.Entity.Stats;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Debug = UnityEngine.Debug;
@@ -16,7 +16,7 @@ namespace Assets.Scripts.Entity.Enclosure
 
         public EnclosureStatsSettings Settings => GetComponent<EnclosureStatsSettings>();
 
-        public Stat.Stat ConstrictionRate { get; private set; }
+        public Stats.Stat ConstrictionRate { get; private set; }
 
         private Tilemap _tilemap;
 

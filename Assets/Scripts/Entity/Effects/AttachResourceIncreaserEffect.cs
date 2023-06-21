@@ -13,13 +13,13 @@ namespace Assets.Scripts.Entity.Effects
         public List<(int value, string resourcePath)> ResourceValues { get; set; }
 
         public bool IsTemporal { get; set; }
-        public Stat.Stat Duration { get; set; }
+        public Stats.Stat Duration { get; set; }
         public bool IsDurationStacks { get; set; }
         public bool IsDurationUpdates { get; set; }
 
         public bool IsStacking { get; set; }
         public bool IsStackSeparateDuration { get; set; }
-        public Stat.Stat MaxStackCount { get; set; }
+        public Stats.Stat MaxStackCount { get; set; }
         public Resource StacksCount { get; set; }
 
         private Entity _target;
@@ -79,12 +79,12 @@ namespace Assets.Scripts.Entity.Effects
             targetName,
             resourceValues,
             false,
-            new Stat.Stat(0, false),
+            new Stats.Stat(0, false),
             false,
             false,
             isStacking,
             false,
-            new Stat.Stat(Single.PositiveInfinity, false)
+            new Stats.Stat(Single.PositiveInfinity, false)
         )
         {
         }
@@ -99,12 +99,12 @@ namespace Assets.Scripts.Entity.Effects
             targetName,
             resourceValues,
             false,
-            new Stat.Stat(0, false),
+            new Stats.Stat(0, false),
             false,
             false,
             false,
             false,
-            new Stat.Stat(1, false)
+            new Stats.Stat(1, false)
         )
         {
         }
@@ -115,12 +115,12 @@ namespace Assets.Scripts.Entity.Effects
             string targetName,
             List<(int value, string resourcePath)> resourceValues,
             bool isTemporal,
-            Stat.Stat duration,
+            Stats.Stat duration,
             bool isDurationStacks,
             bool isDurationUpdates,
             bool isStacking,
             bool isStackSeparateDuration,
-            Stat.Stat maxStackCount
+            Stats.Stat maxStackCount
         )
         {
             Name = name;

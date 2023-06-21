@@ -1,4 +1,4 @@
-using Assets.Scripts.Entity.Stat;
+using Assets.Scripts.Entity.Stats;
 using Assets.Scripts.Entity.Unit.Movement;
 using UnityEngine;
 

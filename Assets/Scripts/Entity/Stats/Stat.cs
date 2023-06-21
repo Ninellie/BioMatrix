@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.Entity.Stat
+namespace Assets.Scripts.Entity.Stats
 {
     public class Stat
     {
@@ -11,11 +11,11 @@ namespace Assets.Scripts.Entity.Stat
         public event Action ValueChangedEvent;
         private float BaseValue { get; }
         private bool IsModifiable { get; }
-        private float BaseAddedValue = 0;
+        private readonly float _baseAddedValue = 0;
         private float AddedValue => GetAddedValue();
-        private float BaseMultiplierValue = 100;
+        private readonly float _baseMultiplierValue = 100;
         private float MultiplierValue => GetMultiplierValue();
-        private readonly List<StatModifier> _modifiers = new List<StatModifier>();
+        private readonly List<StatModifier> _modifiers = new();
         private const float MultiplierDivisor = 100;
         //private readonly GameTimeScheduler _gameTimeScheduler;
         //Without multiplierValue (with multiplierValue = 1)
@@ -53,7 +53,7 @@ namespace Assets.Scripts.Entity.Stat
             Debug.Log($"Try to add modifier {modifier.Value} {modifier.Type}");
             var oldValue = Value;
             _modifiers.Add(modifier);
-            OnValueChanged(oldValue);
+            TryInvokeOnValueChangedEvent(oldValue);
             Debug.Log($"Added mod {modifier.Type} : {modifier.Value}. Is mod temporary?: {modifier.IsTemporary}.");
             Debug.Log($"New stat value: {Value}. Old value: {oldValue}.");
             //if (modifier.IsTemporary)
@@ -70,7 +70,7 @@ namespace Assets.Scripts.Entity.Stat
                 return false;
             var oldValue = Value;
             _modifiers.Remove(modifier);
-            OnValueChanged(oldValue);
+            TryInvokeOnValueChangedEvent(oldValue);
             Debug.Log($"Removed mod {modifier.Type} : {modifier.Value}. Is mod temporary?: {modifier.IsTemporary}.");
             Debug.Log($"New stat value: {Value}. Old value: {oldValue}.");
             return true;
@@ -85,27 +85,27 @@ namespace Assets.Scripts.Entity.Stat
             if (IsModifierListEmpty()) return;
             var oldValue = Value;
             _modifiers.Clear();
-            OnValueChanged(oldValue);
+            TryInvokeOnValueChangedEvent(oldValue);
         }
         private float GetAddedValue()
         {
-            return BaseAddedValue + _modifiers
+            return _baseAddedValue + _modifiers
                 .Where(modifier => modifier.Type == OperationType.Addition)
                 .Sum(modifier => modifier.Value);
         }
         private float GetMultiplierValue()
         {
-            return BaseMultiplierValue + _modifiers
+            return _baseMultiplierValue + _modifiers
                 .Where(modifier => modifier.Type == OperationType.Multiplication)
                 .Sum(modifier => modifier.Value);
         }
         private float GetActualValue()
         {
             return IsModifiable == false
-                ? (BaseValue + BaseAddedValue) * (BaseMultiplierValue / MultiplierDivisor)
+                ? (BaseValue + _baseAddedValue) * (_baseMultiplierValue / MultiplierDivisor)
                 : (BaseValue + AddedValue) * (MultiplierValue / MultiplierDivisor);
         }
-        private void OnValueChanged(float oldValue)
+        private void TryInvokeOnValueChangedEvent(float oldValue)
         {
             if (Value.Equals(oldValue)) return;
             ValueChangedEvent?.Invoke();

@@ -5,9 +5,9 @@ namespace Assets.Scripts.Entity.Unit
 {
     public class Unit : Entity
     {
-        public Stat.Stat Speed { get; private set; }
-        public Stat.Stat AccelerationSpeed { get; private set; }
-        public Stat.Stat RotationSpeed { get; private set; }
+        public Stats.Stat Speed { get; private set; }
+        public Stats.Stat AccelerationSpeed { get; private set; }
+        public Stats.Stat RotationSpeed { get; private set; }
 
         public event Action OnDeath;
 
