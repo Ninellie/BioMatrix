@@ -1,5 +1,6 @@
 using System;
 using Assets.Scripts.Entity.Stats;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 
 namespace Assets.Scripts.Entity
 {
@@ -172,8 +173,160 @@ namespace Assets.Scripts.Entity
                 }
             }
         }
+
         private int _value;
+
+        public void Set(int value)
+        {
+            Value = value;
+        }
+
+        public void Fill()
+        {
+            Value = (int)_maxValueStat.Value;
+        }
+
+        public void Empty()
+        {
+            Value = _minValue;
+        }
+
+        public void Increase(int value)
+        {
+            Value += value;
+        }
+
+        public void Increase()
+        {
+            var oldValue = _value;
+            _value++;
+        }
+
+        public void Decrease(int value)
+        {
+            Value -= value;
+        }
     
+        public void Decrease()
+        {
+            Value--;
+        }
+    
+        public int GetMinValue()
+        {
+            return _minValue;
+        }
+    
+        public int GetMaxValue()
+        {
+            return (int)_maxValueStat.Value;
+        }
+    
+        public int GetLackValue()
+        {
+            return (int)(_maxValueStat.Value - Value);
+        }
+    
+        public int GetValue()
+        {
+            return _value;
+        }
+    
+        public float GetPercentValue()
+        {
+            var percent = _maxValueStat.Value / 100;
+            var currentPercent = _value / percent;
+            return currentPercent;
+        }
+
+        private void InvokeEvents(int oldValue, int newValue)
+        {
+            if (oldValue == newValue)
+            {
+                return;
+            }
+
+            var dif = newValue - oldValue;
+
+            if (dif == 0)
+            {
+                return;
+            }
+            
+            var fillEventRequired = false;
+            if (_isLimited)
+            {
+                if (newValue >= (int)_maxValueStat.Value)
+                {
+                    _value = (int)_maxValueStat.Value;
+                    fillEventRequired = true;
+                }
+            }
+            if (newValue <= _minValue)
+            {
+                _value = _minValue;
+                EmptyEvent?.Invoke();
+            }
+            else
+            {
+                _value = newValue;
+            }
+
+            if (fillEventRequired)
+            {
+                FillEvent?.Invoke();
+            }
+
+            ValueChangedEvent?.Invoke();
+
+            if (_isRecovering)
+            {
+                if (oldValue < (int)_maxRecoverableValueStat.Value && IsFullyRecovered)
+                {
+                    FullRecoveryEvent?.Invoke();
+                }
+                if (oldValue >= (int)_maxRecoverableValueStat.Value && IsOnRecovery)
+                {
+                    RecoveryStartEvent?.Invoke();
+                }
+            }
+
+            if (dif > 0)
+            {
+                IncreaseEvent?.Invoke();
+                while (dif != 0)
+                {
+                    IncrementEvent?.Invoke();
+                    dif--;
+                }
+            }
+            
+            if (dif < 0)
+            {
+                DecreaseEvent?.Invoke();
+                while (dif != 0)
+                {
+                    DecrementEvent?.Invoke();
+                    dif++;
+                }
+            }
+
+            if (oldValue == _minValue && newValue != _minValue)
+            {
+                NotEmptyEvent?.Invoke();
+            }
+
+            if (oldValue == _edgeValue && _value > _edgeValue)
+            {
+                NotEdgeEvent?.Invoke();
+            }
+            
+            if (newValue == _edgeValue)
+            {
+                EdgeEvent?.Invoke();
+            }
+        }
+
         public Resource() : this(0,
         1,
         new Stat(Single.PositiveInfinity),
@@ -266,68 +419,6 @@ namespace Assets.Scripts.Entity
             _restoreRate = 0.1f;
             _isLimited = isLimited;
             _maxRecoverableValueStat = maxRecoverableValueStat;
-        }
-
-        public void Set(int value)
-        {
-            Value = value;
-        }
-
-        public void Fill()
-        {
-            Value = (int)_maxValueStat.Value;
-        }
-
-        public void Empty()
-        {
-            Value = _minValue;
-        }
-
-        public void Increase(int value)
-        {
-            Value += value;
-        }
-
-        public void Increase()
-        {
-            Value++;
-        }
-
-        public void Decrease(int value)
-        {
-            Value -= value;
-        }
-    
-        public void Decrease()
-        {
-            Value--;
-        }
-    
-        public int GetMinValue()
-        {
-            return _minValue;
-        }
-    
-        public int GetMaxValue()
-        {
-            return (int)_maxValueStat.Value;
-        }
-    
-        public int GetLackValue()
-        {
-            return (int)(_maxValueStat.Value - Value);
-        }
-    
-        public int GetValue()
-        {
-            return _value;
-        }
-    
-        public float GetPercentValue()
-        {
-            var percent = _maxValueStat.Value / 100;
-            var currentPercent = _value / percent;
-            return currentPercent;
         }
     }
 }
