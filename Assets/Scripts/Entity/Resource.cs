@@ -20,13 +20,13 @@ namespace Assets.Scripts.Entity
         public event Action NotEdgeEvent;
         public event Action NotEmptyEvent;
 
-        public bool IsFull => _isLimited && Value == (int)_maxValueStat.Value;
-        public bool IsEmpty => Value == _minValue;
-        public bool IsNotEmpty => Value > _minValue;
-        public bool IsOnEdge => Value == _edgeValue;
-        public bool IsFullyRecovered => _isRecovering && Value >= (int)_maxRecoverableValueStat.Value;
-        public bool IsOverRecovered => _isRecovering && Value > (int)_maxRecoverableValueStat.Value;
-        public bool IsOnRecovery => _isRecovering && Value < (int)_maxRecoverableValueStat.Value;
+        public bool IsFull => _isLimited && _value == (int)_maxValueStat.Value;
+        public bool IsEmpty => _value == _minValue;
+        public bool IsNotEmpty => _value > _minValue;
+        public bool IsOnEdge => _value == _edgeValue;
+        public bool IsFullyRecovered => _isRecovering && _value >= (int)_maxRecoverableValueStat.Value;
+        public bool IsOverRecovered => _isRecovering && _value > (int)_maxRecoverableValueStat.Value;
+        public bool IsOnRecovery => _isRecovering && _value < (int)_maxRecoverableValueStat.Value;
 
         private readonly int _minValue;
         private readonly int _edgeValue;
@@ -46,7 +46,7 @@ namespace Assets.Scripts.Entity
                 {
                     return;
                 }
-                if (Value >= _maxRecoverableValueStat.Value)
+                if (_value >= _maxRecoverableValueStat.Value)
                 {
                     return;
                 }
@@ -71,7 +71,7 @@ namespace Assets.Scripts.Entity
                 {
                     return;
                 }
-                if (Value >= _maxRecoverableValueStat.Value)
+                if (_value >= _maxRecoverableValueStat.Value)
                 {
                     return;
                 }
@@ -79,7 +79,7 @@ namespace Assets.Scripts.Entity
                 {
                     var intValue = (int)value;
                     _reserveValue = value % 1;
-                    Value += intValue;
+                    _value += intValue;
                     RecoverEvent?.Invoke();
                 }
                 else
@@ -89,127 +89,49 @@ namespace Assets.Scripts.Entity
             }
         }
         private float _reserveValue;
-
-        private int Value
-        {
-            get => _value;
-            set
-            {
-                var dif = value - _value;
-                if (dif == 0)
-                {
-                    return;
-                }
-
-                var oldValue = _value;
-                var fillEventRequired = false;
-                if (_isLimited)
-                {
-                    if (value >= (int)_maxValueStat.Value)
-                    {
-                        _value = (int)_maxValueStat.Value;
-                        fillEventRequired = true;
-                    }
-                }
-                if (value <= _minValue)
-                {
-                    _value = _minValue;
-                    EmptyEvent?.Invoke();
-                }
-                else
-                {
-                    _value = value;
-                }
-
-                if (fillEventRequired)
-                {
-                    FillEvent?.Invoke();
-                }
-
-                ValueChangedEvent?.Invoke();
-
-                if (_isRecovering)
-                {
-                    if (oldValue < (int)_maxRecoverableValueStat.Value && IsFullyRecovered)
-                    {
-                        FullRecoveryEvent?.Invoke();
-                    }
-                    if (oldValue >= (int)_maxRecoverableValueStat.Value && IsOnRecovery)
-                    {
-                        RecoveryStartEvent?.Invoke();
-                    }
-                }
-
-                if (dif > 0)
-                {
-                    IncreaseEvent?.Invoke();
-                    while (dif != 0)
-                    {
-                        IncrementEvent?.Invoke();
-                        dif--;
-                    }
-                }
-                if (dif < 0)
-                {
-                    DecreaseEvent?.Invoke();
-                    while (dif != 0)
-                    {
-                        DecrementEvent?.Invoke();
-                        dif++;
-                    }
-                }
-
-                if (oldValue == _minValue && !IsEmpty)
-                {
-                    NotEmptyEvent?.Invoke();
-                }
-                if (oldValue == _edgeValue && _value > _edgeValue)
-                {
-                    NotEdgeEvent?.Invoke();
-                }
-                if (IsOnEdge)
-                {
-                    EdgeEvent?.Invoke();
-                }
-            }
-        }
-
         private int _value;
 
         public void Set(int value)
         {
-            Value = value;
+            var oldValue = _value;
+            _value = value;
+            InvokeEvents(oldValue);
         }
 
         public void Fill()
         {
-            Value = (int)_maxValueStat.Value;
+            var newValue = (int)_maxValueStat.Value;
+            Set(newValue);
         }
 
         public void Empty()
         {
-            Value = _minValue;
+            var newValue = _minValue;
+            Set(newValue);
         }
 
         public void Increase(int value)
         {
-            Value += value;
+            var newValue = _value + value;
+            Set(newValue);
         }
 
         public void Increase()
         {
-            var oldValue = _value;
-            _value++;
+            var newValue = _value + 1;
+            Set(newValue);
         }
 
         public void Decrease(int value)
         {
-            Value -= value;
+            var newValue = _value - value;
+            Set(newValue);
         }
     
         public void Decrease()
         {
-            Value--;
+            var newValue = _value - 1;
+            Set(newValue);
         }
     
         public int GetMinValue()
@@ -224,7 +146,8 @@ namespace Assets.Scripts.Entity
     
         public int GetLackValue()
         {
-            return (int)(_maxValueStat.Value - Value);
+            var maxValue = (int)_maxValueStat.Value;
+            return maxValue - _value;
         }
     
         public int GetValue()
@@ -234,60 +157,56 @@ namespace Assets.Scripts.Entity
     
         public float GetPercentValue()
         {
-            var percent = _maxValueStat.Value / 100;
+            var maxValue = _maxValueStat.Value;
+            var percent = maxValue / 100;
             var currentPercent = _value / percent;
             return currentPercent;
         }
 
-        private void InvokeEvents(int oldValue, int newValue)
+        private void InvokeEvents(int oldValue)
         {
+            var newValue = _value;
+
             if (oldValue == newValue)
             {
                 return;
             }
 
+            var isFillEventRequired = false;
+            var isEmptyEventRequired = false;
+            var isFullRecoveryEventRequired = false;
+            var isRecoveryStartEventRequired = false;
+
             var dif = newValue - oldValue;
 
-            if (dif == 0)
-            {
-                return;
-            }
-            
-            var fillEventRequired = false;
             if (_isLimited)
             {
-                if (newValue >= (int)_maxValueStat.Value)
+                var maxValue = (int)_maxValueStat.Value;
+
+                if (newValue == maxValue)
                 {
-                    _value = (int)_maxValueStat.Value;
-                    fillEventRequired = true;
+                    isFillEventRequired = true;
                 }
             }
-            if (newValue <= _minValue)
-            {
-                _value = _minValue;
-                EmptyEvent?.Invoke();
-            }
-            else
-            {
-                _value = newValue;
-            }
 
-            if (fillEventRequired)
+            if (newValue == _minValue)
             {
-                FillEvent?.Invoke();
+                isEmptyEventRequired = true;
             }
-
-            ValueChangedEvent?.Invoke();
 
             if (_isRecovering)
             {
-                if (oldValue < (int)_maxRecoverableValueStat.Value && IsFullyRecovered)
+                var maxRecoverableValue = (int)_maxRecoverableValueStat.Value;
+                var isFullyRecovered = newValue >= maxRecoverableValue;
+                var isOnRecovery = newValue < maxRecoverableValue;
+
+                if (oldValue < maxRecoverableValue && isFullyRecovered)
                 {
-                    FullRecoveryEvent?.Invoke();
+                    isFullRecoveryEventRequired = true;
                 }
-                if (oldValue >= (int)_maxRecoverableValueStat.Value && IsOnRecovery)
+                if (oldValue >= maxRecoverableValue && isOnRecovery)
                 {
-                    RecoveryStartEvent?.Invoke();
+                    isRecoveryStartEventRequired = true;
                 }
             }
 
@@ -325,6 +244,12 @@ namespace Assets.Scripts.Entity
             {
                 EdgeEvent?.Invoke();
             }
+
+            ValueChangedEvent?.Invoke();
+            if (isFillEventRequired) FillEvent?.Invoke();
+            if (isEmptyEventRequired) EmptyEvent?.Invoke();
+            if (isFullRecoveryEventRequired) FullRecoveryEvent?.Invoke();
+            if (isRecoveryStartEventRequired) RecoveryStartEvent?.Invoke();
         }
 
         public Resource() : this(0,
