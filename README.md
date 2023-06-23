@@ -21,7 +21,6 @@ The most important code requirements I strive for when writing:
 
 When adding new features, I am guided by the following principles:
 - Think about added functionality. Is it necessary in the game? And how will it work? Usually I use Miro or paper to complete my thoughts.
-- Add a small piece of code.
+- Add a small piece of code
 - Make sure it didn't break anything
-- Add it to the game.
-
+- Add it to the game
