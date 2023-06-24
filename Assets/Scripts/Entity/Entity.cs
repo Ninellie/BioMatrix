@@ -15,7 +15,7 @@ namespace Assets.Scripts.Entity
         public bool Alive => !LifePoints.IsEmpty;
         public const int DeathLifePointsThreshold = 0;
         public const int MinimalDamageTaken = 1;
-        public Resource LifePoints { get; private set; }
+        public RecoverableResource LifePoints { get; private set; }
         public Resource KillsCount { get; private set; }
         public Stats.Stat Size { get; private set; }
         public Stats.Stat MaximumLifePoints { get; private set; }
@@ -134,7 +134,7 @@ namespace Assets.Scripts.Entity
         
             transform.localScale = new Vector3(Size.Value, Size.Value, 1);
 
-            LifePoints = new Resource(DeathLifePointsThreshold, MaximumLifePoints, LifeRegenerationPerSecond);
+            LifePoints = new RecoverableResource(DeathLifePointsThreshold, MaximumLifePoints, LifeRegenerationPerSecond);
             LifePoints.Fill();
             KillsCount = new Resource();
         }

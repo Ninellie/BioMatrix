@@ -26,7 +26,7 @@ namespace Assets.Scripts.Entity.Unit.Player
         public Stats.Stat ShieldLayerRechargeRatePerSecond { get; private set; }
         public Stats.Stat ExpMultiplier { get; private set; }
 
-        public Resource ShieldLayers { get; private set; }
+        public RecoverableResource ShieldLayers { get; private set; }
 
         public event Action GamePausedEvent;
         public event Action ExperienceTakenEvent;
@@ -96,7 +96,7 @@ namespace Assets.Scripts.Entity.Unit.Player
             Lvl = new Resource(InitialLevel);
             Exp = new Resource(0, ExpToNextLvl);
 
-            ShieldLayers = new Resource(0, 
+            ShieldLayers = new RecoverableResource(0, 
                 MaxShieldLayersCount,
                 ShieldLayerRechargeRatePerSecond,
                 MaxRechargeableShieldLayersCount);
