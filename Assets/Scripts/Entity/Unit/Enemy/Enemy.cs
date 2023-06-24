@@ -51,11 +51,13 @@ namespace Assets.Scripts.Entity.Unit.Enemy
             }
         }
         private void OnEnable() => BaseOnEnable();
-        private void OnDisable() => BaseOnDisable();
-        private void Awake() => BaseAwake(Settings);
-        private void Update() => BaseUpdate();
-        private void FixedUpdate() => BaseFixedUpdate();
 
+        private void OnDisable() => BaseOnDisable();
+
+        private void Awake() => BaseAwake(Settings);
+
+        private void FixedUpdate() => BaseFixedUpdate();
+        
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
             if (!Alive) return;
@@ -103,29 +105,16 @@ namespace Assets.Scripts.Entity.Unit.Enemy
 
             enemyMoveController.KnockBackFromTarget(thrustPower);
         }
+
+        private void Update() => BaseUpdate();
+
         private void OnDrawGizmos()
         {
-            if (enemyMoveController is null)
-            {
-                return;
-            }
+            if (enemyMoveController is null) return;
             Gizmos.color = Color.red;
             Gizmos.DrawLine(Rb2D.transform.position, enemyMoveController.GetVelocity() + (Vector2)Rb2D.transform.position);
         }
-        private void ChangeColorOnDamageTaken()
-        {
-            SpriteRenderer.color = _enemyType switch
-            {
-                EnemyType.AboveView => Color.cyan,
-                EnemyType.SideView => Color.red,
-                _ => throw new ArgumentOutOfRangeException()
-            };
-        }
-        protected void BaseFixedUpdate()
-        {
-            DeathTimerFixedUpdate();
-            enemyMoveController.FixedUpdateMoveStep();
-        }
+
         protected void BaseAwake(EnemyStatsSettings settings)
         {
             Debug.Log($"{gameObject.name} Enemy Awake");
@@ -144,12 +133,19 @@ namespace Assets.Scripts.Entity.Unit.Enemy
             if (_enemyType == EnemyType.SideView)
             {
                 enemyMoveController = new SideViewEnemyMoveController(this, _player.gameObject);
-            }   
+            }
             else
             {
                 enemyMoveController = new AboveViewEnemyMoveController(this, _player.gameObject);
             }
         }
+
+        protected void BaseFixedUpdate()
+        {
+            DeathTimerFixedUpdate();
+            enemyMoveController.FixedUpdateMoveStep();
+        }
+        
         protected override void BaseUpdate()
         {
             if (enemyMoveController is SideViewEnemyMoveController)
@@ -164,28 +160,15 @@ namespace Assets.Scripts.Entity.Unit.Enemy
             base.BaseUpdate();
             BackToNormalColor();
         }
-        private void BackToNormalColor()
+
+        public void LookAt2D(Vector2 target)
         {
-            if (SpriteRenderer.color == Color.white) return;
-            _spriteColor = SpriteRenderer.color;
-            _spriteColor.r += ReturnToDefaultColorSpeed * Time.deltaTime;
-            _spriteColor.g += ReturnToDefaultColorSpeed * Time.deltaTime;
-            _spriteColor.b += ReturnToDefaultColorSpeed * Time.deltaTime;
-            SpriteRenderer.color = _spriteColor;
+            var direction = (Vector2)Rb2D.transform.position - target;
+            var angle = (Mathf.Atan2(direction.y, direction.x) + Mathf.PI / 2) * Mathf.Rad2Deg;
+            Rb2D.rotation = angle;
+            Rb2D.SetRotation(angle);
         }
-        private void DeathTimerFixedUpdate()
-        {
-            if (IsOnScreen)
-            {
-                _deathTimer = 0; 
-                return;
-            }
-            if (Time.timeScale == 0) return;
-            _deathTimer += Time.fixedDeltaTime;
-            if (!(_deathTimer >= OffscreenDieSeconds)) return;
-            _deathFromProjectile = false;
-            TakeDamage(LifePoints.GetValue());
-        }
+
         public void SetRarity(RarityEnum rarityEnum)
         {
             _rarity.Value = rarityEnum;
@@ -201,15 +184,18 @@ namespace Assets.Scripts.Entity.Unit.Enemy
 
             MaximumLifePoints.AddModifier(statMod);
         }
+        
         public void LevelUp(int value)
         {
             if(value < 0) return;
             Level += value;
         }
+        
         public EnemyType GetEnemyType()
         {
             return _enemyType;
         }
+        
         protected override void Death()
         {
             if (_deathFromProjectile)
@@ -219,18 +205,55 @@ namespace Assets.Scripts.Entity.Unit.Enemy
 
             base.Death();
         }
+
+        private void BackToNormalColor()
+        {
+            if (SpriteRenderer.color == Color.white) return;
+            _spriteColor = SpriteRenderer.color;
+            _spriteColor.r += ReturnToDefaultColorSpeed * Time.deltaTime;
+            _spriteColor.g += ReturnToDefaultColorSpeed * Time.deltaTime;
+            _spriteColor.b += ReturnToDefaultColorSpeed * Time.deltaTime;
+            SpriteRenderer.color = _spriteColor;
+        }
+
+        private void DeathTimerFixedUpdate()
+        {
+            if (IsOnScreen)
+            {
+                _deathTimer = 0;
+                return;
+            }
+            if (Time.timeScale == 0) return;
+            _deathTimer += Time.fixedDeltaTime;
+            if (!(_deathTimer >= OffscreenDieSeconds)) return;
+            _deathFromProjectile = false;
+            TakeDamage(LifePoints.GetValue());
+        }
+
+        private void ChangeColorOnDamageTaken()
+        {
+            SpriteRenderer.color = _enemyType switch
+            {
+                EnemyType.AboveView => Color.cyan,
+                EnemyType.SideView => Color.red,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+
         private void DropBonus()
         {
             _dropCount--;
             var rotation = new Quaternion(0, 0, 0, 0);
             Instantiate(_onDeathDrop, Rb2D.position, rotation);
         }
+        
         private void DropDamagePopup(int damage, Vector2 position)
         {
             var droppedDamagePopup = Instantiate(_damagePopup);
             droppedDamagePopup.transform.position = position;
             droppedDamagePopup.GetComponent<DamagePopup>().Setup(damage);
         }
+        
         private void UpdateMaxLifeStat()
         {
             if (Level <= 1) return;
@@ -238,22 +261,16 @@ namespace Assets.Scripts.Entity.Unit.Enemy
             var mod = new StatModifier(OperationType.Addition, addingValue);
             MaximumLifePoints.AddModifier(mod);
         }
-        public void LookAt2D(Vector2 target)
-        {
-            var direction = (Vector2)Rb2D.transform.position - target;
-            var angle = (Mathf.Atan2(direction.y, direction.x) + Mathf.PI / 2) * Mathf.Rad2Deg;
-            Rb2D.rotation = angle;
-            Rb2D.SetRotation(angle);
-        }
-        public Vector2 GetClosestPointOnCircle(CircleCollider2D otherCollider)
+
+        private Vector2 GetClosestPointOnCircle(CircleCollider2D otherCollider)
         {
             Vector2 center = _circleCollider.transform.position;
             Vector2 otherCenter = otherCollider.transform.position;
-            Vector2 direction = otherCenter - center;
-            float distance = direction.magnitude;
-            float radius = _circleCollider.radius;
-
-            return center + direction.normalized * radius;
+            var direction = otherCenter - center;
+            direction.Normalize();
+            var radius = _circleCollider.radius;
+            var offset = radius * direction.normalized;
+            return center + offset;
         }
     }
 }
