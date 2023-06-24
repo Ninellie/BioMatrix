@@ -5,7 +5,6 @@ using Assets.Scripts.Entity.Effects;
 using Assets.Scripts.Entity.Stats;
 using Assets.Scripts.GameSession.Events;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 namespace Assets.Scripts.Entity
 {
@@ -17,11 +16,11 @@ namespace Assets.Scripts.Entity
         public const int MinimalDamageTaken = 1;
         public RecoverableResource LifePoints { get; private set; }
         public Resource KillsCount { get; private set; }
-        public Stats.Stat Size { get; private set; }
-        public Stats.Stat MaximumLifePoints { get; private set; }
-        public Stats.Stat LifeRegenerationPerSecond { get; private set; }
-        public Stats.Stat KnockbackPower { get; private set; }
-        public Stats.Stat Damage { get; private set; }
+        public Stat Size { get; private set; }
+        public Stat MaximumLifePoints { get; private set; }
+        public Stat LifeRegenerationPerSecond { get; private set; }
+        public Stat KnockbackPower { get; private set; }
+        public Stat Damage { get; private set; }
 
         public SpriteRenderer SpriteRenderer { get; private set; }
         public GameTimeScheduler GameTimeScheduler { get; private set; }
@@ -121,7 +120,7 @@ namespace Assets.Scripts.Entity
         {
             Debug.Log($"{gameObject.name} Entity Awake");
             GameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
-            TryGetComponent<SpriteRenderer>(out SpriteRenderer sR);
+            TryGetComponent(out SpriteRenderer sR);
             SpriteRenderer = sR;
 
             StatFactory = Camera.main.GetComponent<StatFactory>();
@@ -172,13 +171,13 @@ namespace Assets.Scripts.Entity
 
         public void AddStatModifier(StatModifier statModifier, string statPath)
         {
-            var stat = (Stats.Stat)EventHelper.GetPropByPath(this, statPath);
+            var stat = (Stat)EventHelper.GetPropByPath(this, statPath);
             stat?.AddModifier(statModifier);
         }
 
         public void RemoveStatModifier(StatModifier statModifier, string statName)
         {
-            var stat = (Stats.Stat)EventHelper.GetPropByPath(this, statName);
+            var stat = (Stat)EventHelper.GetPropByPath(this, statName);
             stat?.RemoveModifier(statModifier);
         }
         
