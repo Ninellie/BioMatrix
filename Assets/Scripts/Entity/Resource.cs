@@ -11,11 +11,6 @@ namespace Assets.Scripts.Entity
         public event Action IncrementEvent;
         public event Action DecrementEvent;
         public event Action FillEvent;
-
-        //public event Action RecoverEvent;
-        //public event Action RecoveryStartEvent;
-        //public event Action FullRecoveryEvent;
-
         public event Action EmptyEvent;
         public event Action EdgeEvent;
         public event Action NotEdgeEvent;
@@ -36,7 +31,39 @@ namespace Assets.Scripts.Entity
         public void Set(int value)
         {
             var oldValue = _value;
-            _value = value;
+
+            if (_isLimited)
+            {
+                var maxValue = (int)_maxValueStat.Value;
+
+                if (value >= maxValue)
+                {
+                    _value = (int)_maxValueStat.Value;
+                }
+
+                if (value > _minValue && value < maxValue)
+                {
+                    _value = value;
+                }
+
+                if (value <= _minValue)
+                {
+                    _value = _minValue;
+                }
+            }
+            else
+            {
+                if (value > _minValue)
+                {
+                    _value = value;
+                }
+
+                if (value <= _minValue)
+                {
+                    _value = _minValue;
+                }
+            }
+
             var newValue = _value;
             InvokeEvents(oldValue, newValue);
         }
@@ -172,7 +199,6 @@ namespace Assets.Scripts.Entity
             ValueChangedEvent?.Invoke();
             if (isFillEventRequired) FillEvent?.Invoke();
             if (isEmptyEventRequired) EmptyEvent?.Invoke();
-            
         }
 
         public Resource() : this(0,
@@ -185,7 +211,7 @@ namespace Assets.Scripts.Entity
         public Resource(Stat maxValueStat) : this(0,
             1,
             maxValueStat,
-            false)
+            true)
         {
         }
 
