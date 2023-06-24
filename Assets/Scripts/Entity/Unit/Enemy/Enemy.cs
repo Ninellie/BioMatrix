@@ -60,7 +60,7 @@ namespace Assets.Scripts.Entity.Unit.Enemy
         {
             if (!Alive) return;
             _lastDamageSource = this;
-            Collider2D otherCollider2D = collision2D.collider;
+            var otherCollider2D = collision2D.collider;
         
             if (otherCollider2D.gameObject.CompareTag("Enemy"))
             {
