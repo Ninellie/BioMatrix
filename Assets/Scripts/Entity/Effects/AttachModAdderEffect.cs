@@ -14,13 +14,13 @@ namespace Assets.Scripts.Entity.Effects
         public List<(StatModifier mod, string statPath)> Modifiers { get; set; }
 
         public bool IsTemporal { get; set; }
-        public Stats.Stat Duration { get; set; }
+        public Stat Duration { get; set; }
         public bool IsDurationStacks { get; set; }
         public bool IsDurationUpdates { get; set; }
 
         public bool IsStacking { get; set; }
         public bool IsStackSeparateDuration { get; set; }
-        public Stats.Stat MaxStackCount { get; set; }
+        public Stat MaxStackCount { get; set; }
         public Resource StacksCount { get; set; }
 
         private Entity _target;
@@ -80,12 +80,12 @@ namespace Assets.Scripts.Entity.Effects
             targetName,
             modifiers,
             false,
-            new Stats.Stat(0, false),
+            new Stat(0, false),
             false,
             false,
             isStacking,
             false,
-            new Stats.Stat(Single.PositiveInfinity, false)
+            new Stat(Single.PositiveInfinity, false)
         )
         {
         }
@@ -100,12 +100,12 @@ namespace Assets.Scripts.Entity.Effects
             targetName,
             modifiers,
             false,
-            new Stats.Stat(0, false),
+            new Stat(0, false),
             false,
             false,
             false,
             false,
-            new Stats.Stat(1, false)
+            new Stat(1, false)
         )
         {
         }
@@ -116,12 +116,12 @@ namespace Assets.Scripts.Entity.Effects
             string targetName,
             List<(StatModifier mod, string statPath)> modifiers,
             bool isTemporal,
-            Stats.Stat duration,
+            Stat duration,
             bool isDurationStacks,
             bool isDurationUpdates,
             bool isStacking,
             bool isStackSeparateDuration,
-            Stats.Stat maxStackCount
+            Stat maxStackCount
         )
         {
             Name = name;
