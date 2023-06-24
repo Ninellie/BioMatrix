@@ -20,11 +20,11 @@ namespace Assets.Scripts.Entity.Unit.Player
     
         public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
 
-        public Stats.Stat MagnetismRadius { get; private set; }
-        public Stats.Stat MaxShieldLayersCount { get; private set; }
-        public Stats.Stat MaxRechargeableShieldLayersCount { get; private set; }
-        public Stats.Stat ShieldLayerRechargeRatePerSecond { get; private set; }
-        public Stats.Stat ExpMultiplier { get; private set; }
+        public Stat MagnetismRadius { get; private set; }
+        public Stat MaxShieldLayersCount { get; private set; }
+        public Stat MaxRechargeableShieldLayersCount { get; private set; }
+        public Stat ShieldLayerRechargeRatePerSecond { get; private set; }
+        public Stat ExpMultiplier { get; private set; }
 
         public RecoverableResource ShieldLayers { get; private set; }
 
@@ -35,11 +35,11 @@ namespace Assets.Scripts.Entity.Unit.Player
     
         public TurretHub TurretHub { get; set; }
         public Firearm.Firearm Firearm { get; private set; }
-        public bool IsFireButtonPressed { get; private set; } = false;
+        public bool IsFireButtonPressed { get; private set; }
 
         public Resource Lvl { get; set; }
         public Resource Exp { get; set; }
-        public Stats.Stat ExpToNextLvl { get; set; }
+        public Stat ExpToNextLvl { get; set; }
 
         private const int ExperienceToSecondLevel = 20;
         private const int ExperienceAmountIncreasingPerLevel = 5;
