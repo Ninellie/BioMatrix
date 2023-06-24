@@ -94,7 +94,7 @@ namespace Assets.Scripts.Entity.Unit.Player
             _circleCollider.radius = Math.Max(MagnetismRadius.Value, 0);
 
             Lvl = new Resource(InitialLevel);
-            Exp = new Resource(0, ExpToNextLvl);
+            Exp = new Resource(ExpToNextLvl);
 
             ShieldLayers = new RecoverableResource(0, 
                 MaxShieldLayersCount,
