@@ -1,5 +1,4 @@
 using System;
-using Assets.Scripts.Core;
 using Assets.Scripts.Core.Render;
 using Assets.Scripts.Entity.Stats;
 using Assets.Scripts.Entity.Unit.Movement;
@@ -89,9 +88,9 @@ namespace Assets.Scripts.Entity.Unit.Enemy
             if (!otherCollider2D.gameObject.CompareTag("Projectile")) return;
 
             var projectileDamage = collisionEntity.Damage.Value;
-            TakeDamage(projectileDamage);
             if(projectileDamage > 0) _lastDamageSource = collisionEntity;
             _deathFromProjectile = true;
+            TakeDamage(projectileDamage);
 
             if (LifePoints.IsEmpty)
             {
