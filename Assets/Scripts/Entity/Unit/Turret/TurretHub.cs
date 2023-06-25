@@ -103,25 +103,27 @@ namespace Assets.Scripts.Entity.Unit.Turret
 
         private void UpdateTurrets()
         {
-            //var dif = (int)TurretCount.Value - currentTurrets.Count;
-            var dif = (int)Turrets.GetValue() - currentTurrets.Count;
-            var isAboveZero = dif > 0;
-            float delay = 1;
+            var dif = Turrets.GetValue() - currentTurrets.Count; 
+            var delay = 1;
 
-            while (dif != 0)
+            if (dif > 0)
             {
-                if (isAboveZero)
+                while (dif != 0)
                 {
                     Invoke(nameof(CreateTurret), delay);
+                    delay++;
                     dif--;
                 }
-                else
+            }
+
+            if (dif < 0)
+            {
+                while (dif != 0)
                 {
-                    Invoke(nameof(DestroyTurret), delay);
+                    Invoke(nameof(CreateTurret), delay);
+                    delay++;
                     dif++;
                 }
-
-                delay++;
             }
         }
     }
