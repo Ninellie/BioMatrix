@@ -16,7 +16,7 @@ namespace Assets.Scripts.Entity
         public event Action NotEdgeEvent;
         public event Action NotEmptyEvent;
 
-        public bool IsFull => _isLimited && _value == (int)_maxValueStat.Value;
+        public bool IsFull => _isLimited && !(_value < _maxValueStat.Value);
         public bool IsEmpty => _value == _minValue;
         public bool IsNotEmpty => _value > _minValue;
         public bool IsOnEdge => _value == _edgeValue;
@@ -159,7 +159,6 @@ namespace Assets.Scripts.Entity
             {
                 isEmptyEventRequired = true;
             }
-
 
             if (dif > 0)
             {
