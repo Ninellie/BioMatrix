@@ -223,7 +223,7 @@ namespace Assets.Scripts.Entity.Unit.Player
 
         public void GetExperience(int value)
         {
-            var expTakenAmount = value * (int)ExpMultiplier.Value;
+            var expTakenAmount = (int)(value * ExpMultiplier.Value);
             Exp.Increase(expTakenAmount);
             ExperienceTakenEvent?.Invoke();
         }
