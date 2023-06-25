@@ -1,5 +1,6 @@
 using System;
 using Assets.Scripts.Entity.Stats;
+using static System.Single;
 
 namespace Assets.Scripts.Entity
 {
@@ -127,6 +128,10 @@ namespace Assets.Scripts.Entity
     
         public float GetPercentValue()
         {
+            if (_isLimited)
+            {
+                return NaN;
+            }
             var maxValue = _maxValueStat.Value;
             var percent = maxValue / 100;
             var currentPercent = _value / percent;
@@ -202,7 +207,7 @@ namespace Assets.Scripts.Entity
 
         public Resource() : this(0,
         1,
-        new Stat(Single.PositiveInfinity),
+        new Stat(PositiveInfinity),
         false)
         {
         }
@@ -216,7 +221,7 @@ namespace Assets.Scripts.Entity
 
         public Resource(int minValue) : this(minValue,
             minValue + 1,
-            new Stat(Single.PositiveInfinity),
+            new Stat(PositiveInfinity),
             false)
         {
         }
@@ -246,7 +251,7 @@ namespace Assets.Scripts.Entity
             _minValue = minValue;
             _edgeValue = edgeValue;
             _maxValueStat = maxValueStat;
-            _isLimited = isLimited;
+            _isLimited = !IsPositiveInfinity(maxValueStat.Value);
         }
     }
 }
