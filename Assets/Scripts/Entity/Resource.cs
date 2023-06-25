@@ -207,46 +207,32 @@ namespace Assets.Scripts.Entity
 
         public Resource() : this(0,
         1,
-        new Stat(PositiveInfinity),
-        false)
+        new Stat(PositiveInfinity))
         {
         }
 
         public Resource(Stat maxValueStat) : this(0,
             1,
-            maxValueStat,
-            true)
+            maxValueStat)
         {
         }
 
         public Resource(int minValue) : this(minValue,
             minValue + 1,
-            new Stat(PositiveInfinity),
-            false)
+            new Stat(PositiveInfinity))
         {
         }
 
         public Resource(int minValue,
             Stat maxValueStat) : this(minValue,
             minValue + 1,
-            maxValueStat,
-            true)
+            maxValueStat)
         {
         }
 
         public Resource(int minValue,
             int edgeValue,
-            Stat maxValueStat) : this(minValue,
-            edgeValue,
-            maxValueStat,
-            true)
-        {
-        }
-
-        public Resource(int minValue,
-            int edgeValue,
-            Stat maxValueStat,
-            bool isLimited)
+            Stat maxValueStat)
         {
             _minValue = minValue;
             _edgeValue = edgeValue;

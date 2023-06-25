@@ -107,7 +107,6 @@ namespace Assets.Scripts.Entity
             new Stat(Single.PositiveInfinity),
             new Stat(0, false),
             new Stat(0, false),
-            false,
             false)
         {
         }
@@ -117,7 +116,6 @@ namespace Assets.Scripts.Entity
             maxValueStat,
             new Stat(0, false),
             new Stat(0, false),
-            false,
             false)
         {
         }
@@ -127,7 +125,6 @@ namespace Assets.Scripts.Entity
             new Stat(Single.PositiveInfinity),
             new Stat(0, false),
             new Stat(0, false),
-            false,
             false)
         {
         }
@@ -138,8 +135,7 @@ namespace Assets.Scripts.Entity
             maxValueStat,
             new Stat(0, false),
             new Stat(0, false),
-            false,
-            true)
+            false)
         {
         }
 
@@ -150,8 +146,7 @@ namespace Assets.Scripts.Entity
             maxValueStat,
             recoverySpeedPerSecondStat,
             maxValueStat,
-            true,
-            true) 
+            true)
         {
         }
 
@@ -163,7 +158,6 @@ namespace Assets.Scripts.Entity
             maxValueStat,
             recoverySpeedPerSecondStat,
             maxRecoverableValueStat,
-            true,
             true)
         {
         }
@@ -177,7 +171,6 @@ namespace Assets.Scripts.Entity
             maxValueStat,
             recoverySpeedPerSecondStat,
             maxRecoverableValueStat,
-            true,
             true)
         {
         }
@@ -187,8 +180,7 @@ namespace Assets.Scripts.Entity
             Stat maxValueStat,
             Stat recoverySpeedPerSecondStat,
             Stat maxRecoverableValueStat,
-            bool isRecovering,
-            bool isLimited) : base(minValue, edgeValue, maxValueStat, isLimited)
+            bool isRecovering) : base(minValue, edgeValue, maxValueStat)
         {
             _maxRecoverableValueStat = maxRecoverableValueStat;
             _recoverySpeedPerSecondStat = recoverySpeedPerSecondStat;
