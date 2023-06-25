@@ -216,8 +216,7 @@ namespace Assets.Scripts.Entity.Effects
                     new List<(StatModifier mod, string statPath)>
                     {
                         (new StatModifier(OperationType.Multiplication, 5), nameof(Player.Speed)),
-                        (new StatModifier(OperationType.Multiplication, 5),
-                            nameof(Player.Firearm) + "." + nameof(Firearm.Firearm.ShootsPerSecond)),
+                        (new StatModifier(OperationType.Multiplication, 5), nameof(Player.Firearm) + "." + nameof(Firearm.Firearm.ShootsPerSecond)),
                     },
                     true,
                     new Stat(5, true),
@@ -225,7 +224,7 @@ namespace Assets.Scripts.Entity.Effects
                     true,
                     true,
                     false,
-                    new Stat(50, true)
+                    new Stat(10, true)
                 ),
                 // Gun Movement Experience 2
                 [nameof(Player) + nameof(Player.Speed) + nameof(OperationType.Multiplication) + 25] =
@@ -249,8 +248,7 @@ namespace Assets.Scripts.Entity.Effects
                         nameof(Player),
                         new List<(StatModifier mod, string statPath)>
                         {
-                            (new StatModifier(OperationType.Multiplication, 25),
-                                nameof(Player.Firearm) + "." + nameof(Firearm.Firearm.ShootsPerSecond)),
+                            (new StatModifier(OperationType.Multiplication, 25), nameof(Player.Firearm) + "." + nameof(Firearm.Firearm.ShootsPerSecond)),
                         }
                     ),
                 // Gun Movement Experience 3
@@ -342,8 +340,7 @@ namespace Assets.Scripts.Entity.Effects
                         nameof(Player),
                         new List<(StatModifier mod, string statPath)>
                         {
-                            (new StatModifier(OperationType.Multiplication, 100),
-                                nameof(Player.ShieldLayerRechargeRatePerSecond)),
+                            (new StatModifier(OperationType.Multiplication, 100), nameof(Player.ShieldLayerRechargeRatePerSecond)),
                         }
                     ),
                 // Turret Shield 3
@@ -594,9 +591,9 @@ namespace Assets.Scripts.Entity.Effects
             EffectAdderPerResourceEffects = new Dictionary<string, EffectAdderPerResource>
             {
                 // Turret Movement Magnetism 3
-                ["10msPerTurret"] = new EffectAdderPerResource
+                ["25msPerTurret"] = new EffectAdderPerResource
                 (
-                    "10msPerTurret",
+                    "25msPerTurret",
                     "",
                     nameof(Player),
                     AttachModAdderEffects[nameof(Player) + nameof(Player.Speed) + nameof(OperationType.Multiplication) + 25],
@@ -811,7 +808,7 @@ namespace Assets.Scripts.Entity.Effects
                     nameof(Player),
                     new List<(IEffect effect, int stackCount)>
                     {
-                        (effect: EffectAdderPerResourceEffects["10msPerTurret"], stackCount: 1),
+                        (effect: EffectAdderPerResourceEffects["25msPerTurret"], stackCount: 1),
                         (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.MagnetismRadius) + nameof(OperationType.Multiplication) + 25], stackCount: 1),
                     }
                 ),
