@@ -1,4 +1,7 @@
 ﻿using Assets.Scripts.Core;
+using Assets.Scripts.Entity.Stats;
+using System.Collections.Generic;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Assets.Scripts.Entity.Effects
 {
@@ -12,19 +15,19 @@ namespace Assets.Scripts.Entity.Effects
         public PropTrigger RemoveTrigger { get; set; }
         public string ResourceConditionPath { get; set; }
 
-        public IEffect Effect { get; set; }
+        public List<(IEffect effect, int stackCount)> Effects { get; set; }
 
         public string Identifier { get; set; }
 
         public bool IsTemporal { get; set; }
-        public Stats.Stat Duration { get; set; }
+        public Stat Duration { get; set; }
         public bool IsDurationStacks { get; set; }
         public bool IsDurationUpdates { get; set; }
 
         public bool IsStacking { get; set; }
         public bool IsStackSeparateDuration { get; set; }
         public Resource StacksCount { get; set; }
-        public Stats.Stat MaxStackCount { get; set; }
+        public Stat MaxStackCount { get; set; }
 
         private Entity _target;
 
@@ -34,40 +37,85 @@ namespace Assets.Scripts.Entity.Effects
             var isAddCondition = (bool)EventHelper.GetPropByPath(target, ResourceConditionPath);
             if (isAddCondition)
             {
-                AddEffect();
+                AddEffects();
             }
         }
 
         public void Detach()
         {
-            RemoveEffect();
+            RemoveEffects();
         }
 
         public void Subscribe(Entity target)
         {
-            EventHelper.AddActionByName(EventHelper.GetPropByPath(target, AddTrigger.Path), AddTrigger.Name, AddEffect);
-            EventHelper.AddActionByName(EventHelper.GetPropByPath(target, RemoveTrigger.Path), RemoveTrigger.Name, RemoveEffect);
+            EventHelper.AddActionByName(EventHelper.GetPropByPath(target, AddTrigger.Path), AddTrigger.Name, AddEffects);
+            EventHelper.AddActionByName(EventHelper.GetPropByPath(target, RemoveTrigger.Path), RemoveTrigger.Name, RemoveEffects);
+            StacksCount.IncrementEvent += TryAddEffectsStack;
+            StacksCount.DecrementEvent += TryRemoveEffectsStack;
+
         }
 
         public void Unsubscribe(Entity target)
         {
-            EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, RemoveTrigger.Path), RemoveTrigger.Name, RemoveEffect);
-            EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, AddTrigger.Path), AddTrigger.Name, AddEffect);
+            EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, RemoveTrigger.Path), RemoveTrigger.Name, RemoveEffects);
+            EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, AddTrigger.Path), AddTrigger.Name, AddEffects);
+            StacksCount.IncrementEvent -= TryAddEffectsStack;
+            StacksCount.DecrementEvent -= TryRemoveEffectsStack;
         }
-    
-        private void AddEffect()
+
+        private void TryAddEffectsStack()
         {
-            for (int i = 0; i < StacksCount.GetValue(); i++)
+            var isAddCondition = (bool)EventHelper.GetPropByPath(_target, ResourceConditionPath);
+            if (isAddCondition)
             {
-                _target.AddEffectStack(Effect);
+                AddEffectsStack();
             }
         }
 
-        private void RemoveEffect()
+        private void TryRemoveEffectsStack()
+        {
+            var isAddCondition = (bool)EventHelper.GetPropByPath(_target, ResourceConditionPath);
+            if (isAddCondition)
+            {
+                RemoveEffectsStack();
+            }
+        }
+
+        private void AddEffectsStack()
+        {
+            foreach (var tuple in Effects)
+            {
+                for (int i = 0; i < tuple.stackCount; i++)
+                {
+                    _target.RemoveEffectStack(tuple.effect);
+                }
+            }
+        }
+
+        private void RemoveEffectsStack()
+        {
+            foreach (var tuple in Effects)
+            {
+                for (int i = 0; i < tuple.stackCount; i++)
+                {
+                    _target.AddEffectStack(tuple.effect);
+                }
+            }
+        }
+
+        private void AddEffects()
         {
             for (int i = 0; i < StacksCount.GetValue(); i++)
             {
-                _target.RemoveEffectStack(Effect);
+                AddEffectsStack();
+            }
+        }
+
+        private void RemoveEffects()
+        {
+            for (int i = 0; i < StacksCount.GetValue(); i++)
+            {
+                AddEffectsStack();
             }
         }
 
@@ -78,7 +126,7 @@ namespace Assets.Scripts.Entity.Effects
             PropTrigger addTrigger,
             PropTrigger removeTrigger,
             string resourceConditionPath,
-            IEffect effect
+            List<(IEffect effect, int stackCount)> effects
         ) : this(
             name,
             description,
@@ -86,14 +134,14 @@ namespace Assets.Scripts.Entity.Effects
             addTrigger,
             removeTrigger,
             resourceConditionPath,
-            effect,
+            effects,
             false,
-            new Stats.Stat(0, false),
-            false,
-            false,
+            new Stat(0, false),
             false,
             false,
-            new Stats.Stat(1, false)
+            false,
+            false,
+            new Stat(1, false)
         )
         {
         }
@@ -105,14 +153,14 @@ namespace Assets.Scripts.Entity.Effects
             PropTrigger addTrigger,
             PropTrigger removeTrigger,
             string resourceConditionPath,
-            IEffect effect,
+            List<(IEffect effect, int stackCount)> effects,
             bool isTemporal,
-            Stats.Stat duration,
+            Stat duration,
             bool isDurationStacks,
             bool isDurationUpdates,
             bool isStacking,
             bool isStackSeparateDuration,
-            Stats.Stat maxStackCount
+            Stat maxStackCount
         )
         {
             Name = name;
@@ -121,7 +169,7 @@ namespace Assets.Scripts.Entity.Effects
             AddTrigger = addTrigger;
             RemoveTrigger = removeTrigger;
             ResourceConditionPath = resourceConditionPath;
-            Effect = effect;
+            Effects = effects;
             IsTemporal = isTemporal;
             Duration = duration;
             IsDurationStacks = isDurationStacks;
