@@ -58,7 +58,6 @@ namespace Assets.Scripts.Entity.Effects
                 {
                     _target.AddEffectStack(tuple.effect);
                 }
-            
             }
         }
 
