@@ -77,8 +77,7 @@ namespace Assets.Scripts.Entity
 
         public void Empty()
         {
-            var newValue = _minValue;
-            Set(newValue);
+            Set(_minValue);
         }
 
         public void Increase(int value)
@@ -109,10 +108,14 @@ namespace Assets.Scripts.Entity
         {
             return _minValue;
         }
-    
-        public int GetMaxValue()
+
+        public float GetMaxValue()
         {
-            return (int)_maxValueStat.Value;
+            if (_isLimited)
+            {
+                return (int)_maxValueStat.Value;
+            }
+            return Single.PositiveInfinity;
         }
     
         public int GetLackValue()

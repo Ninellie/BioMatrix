@@ -41,8 +41,8 @@ namespace Assets.Scripts.Entity.Unit.Boon
             if (!isBoxCollider) return;
             Debug.Log("The exp crystal was taken");
             var player = collisionGameObject.GetComponent<Player.Player>();
-            var expGiven = LifePoints.GetMaxValue();
-            player.GetExperience(expGiven);
+            var expGiven = (int)LifePoints.GetMaxValue();
+            player.IncreaseExperience(expGiven);
             Death();
         }
 
