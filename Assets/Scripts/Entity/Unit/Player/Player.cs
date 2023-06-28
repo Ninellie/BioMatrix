@@ -221,7 +221,7 @@ namespace Assets.Scripts.Entity.Unit.Player
             Firearm = firearm;
         }
 
-        public void GetExperience(int value)
+        public void IncreaseExperience(int value)
         {
             var expTakenAmount = (int)(value * ExpMultiplier.Value);
             Exp.Increase(expTakenAmount);
