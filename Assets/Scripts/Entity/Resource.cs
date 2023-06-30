@@ -54,15 +54,7 @@ namespace Assets.Scripts.Entity
             }
             else
             {
-                if (value > _minValue)
-                {
-                    _value = value;
-                }
-
-                if (value <= _minValue)
-                {
-                    _value = _minValue;
-                }
+                _value = value > _minValue ? value : _minValue;
             }
 
             var newValue = _value;
@@ -115,7 +107,7 @@ namespace Assets.Scripts.Entity
             {
                 return (int)_maxValueStat.Value;
             }
-            return Single.PositiveInfinity;
+            return PositiveInfinity;
         }
     
         public int GetLackValue()

@@ -2,7 +2,7 @@ using Assets.Scripts.GameSession.Events;
 using Assets.Scripts.GameSession.UIScripts.View;
 using UnityEngine;
 
-namespace Assets.Scripts.Firearm
+namespace Assets.Scripts.Weapons
 {
     public class Reload : MonoBehaviour
     {

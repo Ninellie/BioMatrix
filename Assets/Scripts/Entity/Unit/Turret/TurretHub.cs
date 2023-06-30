@@ -12,7 +12,7 @@ namespace Assets.Scripts.Entity.Unit.Turret
 
         public TurretHubStatsSettings Settings => GetComponent<TurretHubStatsSettings>();
         public Entity Holder { get; private set; }
-        public Firearm.Firearm Firearm { get; set; }
+        public Weapons.Firearm Firearm { get; set; }
         public Resource Turrets { get; private set; }
         public readonly Stack<Turret> currentTurrets = new();
         public bool IsSameTurretTarget
@@ -71,7 +71,7 @@ namespace Assets.Scripts.Entity.Unit.Turret
             w.transform.SetParent(gameObject.transform);
 
             w.transform.position = gameObject.transform.position;
-            var firearm = w.GetComponent<Firearm.Firearm>();
+            var firearm = w.GetComponent<Weapons.Firearm>();
             firearm.IsEnable = false;
             Firearm = firearm;
         }

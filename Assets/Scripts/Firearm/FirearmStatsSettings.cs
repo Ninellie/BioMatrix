@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Firearm
+namespace Assets.Scripts.Weapons
 {
     public class FirearmStatsSettings : MonoBehaviour
     {

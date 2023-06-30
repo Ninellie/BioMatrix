@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
-namespace Assets.Scripts.Firearm
+namespace Assets.Scripts.Weapons
 {
     [RequireComponent(typeof(FirearmStatsSettings))]
     [RequireComponent(typeof(Reload))]

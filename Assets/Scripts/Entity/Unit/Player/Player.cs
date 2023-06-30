@@ -2,6 +2,7 @@ using System;
 using Assets.Scripts.Entity.Stats;
 using Assets.Scripts.Entity.Unit.Movement;
 using Assets.Scripts.Entity.Unit.Turret;
+using Assets.Scripts.Weapons;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,7 +35,7 @@ namespace Assets.Scripts.Entity.Unit.Player
         public event Action FireOffEvent;
     
         public TurretHub TurretHub { get; set; }
-        public Firearm.Firearm Firearm { get; private set; }
+        public Firearm Firearm { get; private set; }
         public bool IsFireButtonPressed { get; private set; }
 
         public Resource Lvl { get; set; }
@@ -216,7 +217,7 @@ namespace Assets.Scripts.Entity.Unit.Player
             w.transform.SetParent(_firePoint);
 
             w.transform.position = _firePoint.transform.position;
-            var firearm = w.GetComponent<Firearm.Firearm>();
+            var firearm = w.GetComponent<Firearm>();
             firearm.SetHolder(this);
             Firearm = firearm;
         }

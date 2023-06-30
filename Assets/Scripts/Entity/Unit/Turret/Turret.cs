@@ -9,7 +9,7 @@ namespace Assets.Scripts.Entity.Unit.Turret
         [SerializeField] private GameObject _attractor;
 
         public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
-        public Firearm.Firearm Firearm { get; private set; }
+        public Weapons.Firearm Firearm { get; private set; }
 
         private TurretHub _hub;
         private MovementControllerTurret _movementController;
@@ -55,7 +55,7 @@ namespace Assets.Scripts.Entity.Unit.Turret
             w.transform.SetParent(_firePoint);
 
             w.transform.position = _firePoint.transform.position;
-            var firearm = w.GetComponent<Firearm.Firearm>();
+            var firearm = w.GetComponent<Weapons.Firearm>();
             firearm.SetHolder(this);
             Firearm = firearm;
         }

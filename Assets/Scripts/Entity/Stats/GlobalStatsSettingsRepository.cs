@@ -2,7 +2,7 @@ using Assets.Scripts.Entity.Enclosure;
 using Assets.Scripts.Entity.Unit;
 using Assets.Scripts.Entity.Unit.Enemy;
 using Assets.Scripts.Entity.Unit.Player;
-using Assets.Scripts.Firearm;
+using Assets.Scripts.Weapons;
 
 namespace Assets.Scripts.Entity.Stats
 {
