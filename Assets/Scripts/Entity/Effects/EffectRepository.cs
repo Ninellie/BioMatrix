@@ -320,28 +320,28 @@ namespace Assets.Scripts.Entity.Effects
                         }
                     ),
                 // Turret Shield 1
-                [nameof(Player) + nameof(Player.MaxRechargeableShieldLayersCount) + nameof(OperationType.Addition) + 1] =
+                [nameof(Player) + nameof(Shield) + nameof(Shield.MaxRechargeableLayers) + nameof(OperationType.Addition) + 1] =
                     new AttachModAdderEffect
                     (
-                        nameof(Player) + nameof(Player.MaxRechargeableShieldLayersCount) + nameof(OperationType.Addition) + 1,
+                        nameof(Player) + nameof(Shield) + nameof(Shield.MaxRechargeableLayers) + nameof(OperationType.Addition) + 1,
                         "",
                         nameof(Player),
                         new List<(StatModifier mod, string statPath)>
                         {
-                            (new StatModifier(OperationType.Addition, 1), nameof(Player.MaxRechargeableShieldLayersCount)),
+                            (new StatModifier(OperationType.Addition, 1), nameof(Player.Shield) + "." + nameof(Shield.MaxRechargeableLayers)),
                         },
                         true
                     ),
                 // Turret Shield 2
-                [nameof(Player) + nameof(Player.ShieldLayerRechargeRatePerSecond) + nameof(OperationType.Multiplication) + 25] =
+                [nameof(Player) + nameof(Shield) + nameof(Shield.RechargeRatePerSecond) + nameof(OperationType.Multiplication) + 25] =
                     new AttachModAdderEffect
                     (
-                        nameof(Player) + nameof(Player.ShieldLayerRechargeRatePerSecond) + nameof(OperationType.Multiplication) + 25,
+                        nameof(Player) + nameof(Shield) + nameof(Shield.RechargeRatePerSecond) + nameof(OperationType.Multiplication) + 25,
                         "",
                         nameof(Player),
                         new List<(StatModifier mod, string statPath)>
                         {
-                            (new StatModifier(OperationType.Multiplication, 25), nameof(Player.ShieldLayerRechargeRatePerSecond)),
+                            (new StatModifier(OperationType.Multiplication, 25), nameof(Player.Shield) + "." + nameof(Shield.RechargeRatePerSecond)),
                         },
                         true
                     ),
@@ -549,14 +549,14 @@ namespace Assets.Scripts.Entity.Effects
                     new PropTrigger
                     {
                         Name = nameof(Resource.EmptyEvent),
-                        Path = nameof(Player.ShieldLayers)
+                        Path = nameof(Player.Shield) + "." + nameof(Shield.LayersCount)
                     },
                     new PropTrigger
                     {
                         Name = nameof(Resource.NotEmptyEvent),
-                        Path = nameof(Player.ShieldLayers)
+                        Path = nameof(Player.Shield) + "." + nameof(Shield.LayersCount)
                     },
-                    nameof(Player.ShieldLayers) + "." + nameof(Resource.IsEmpty),
+                    nameof(Player.Shield) + "." + nameof(Shield.LayersCount) + "." + nameof(Resource.IsEmpty),
                     new List<(IEffect effect, int stackCount)>
                     {
                         (AttachResourceAdderEffects["PlayerTurretHubTurretsAdd1"], 1)
@@ -572,14 +572,14 @@ namespace Assets.Scripts.Entity.Effects
                     new PropTrigger
                     {
                         Name = nameof(Resource.NotEmptyEvent),
-                        Path = nameof(Player.ShieldLayers)
+                        Path = nameof(Player.Shield) + "." + nameof(Shield.LayersCount)
                     },
                     new PropTrigger
                     {
                         Name = nameof(Resource.EmptyEvent),
-                        Path = nameof(Player.ShieldLayers)
+                        Path = nameof(Player.Shield) + "." + nameof(Shield.LayersCount)
                     },
-                    nameof(Player.ShieldLayers) + "." + nameof(Resource.IsNotEmpty),
+                    nameof(Player.Shield) + "." + nameof(Shield.LayersCount) + "." + nameof(Resource.IsNotEmpty),
                     new List<(IEffect effect, int stackCount)>
                     {
                         (AttachModAdderEffects[nameof(Player) + nameof(TurretHub) + nameof(Firearm.Damage) + nameof(OperationType.Multiplication) + 50], 1)
@@ -616,14 +616,14 @@ namespace Assets.Scripts.Entity.Effects
                     new PropTrigger
                     {
                         Name = nameof(RecoverableResource.FullRecoveryEvent),
-                        Path = nameof(Player.ShieldLayers)
+                        Path = nameof(Player.Shield) + "." + nameof(Shield.LayersCount)
                     },
                     new PropTrigger
                     {
                         Name = nameof(RecoverableResource.RecoveryStartEvent),
-                        Path = nameof(Player.ShieldLayers)
+                        Path = nameof(Player.Shield) + "." + nameof(Shield.LayersCount)
                     },
-                    nameof(Player.ShieldLayers) + "." + nameof(RecoverableResource.IsFullyRecovered),
+                    nameof(Player.Shield) + "." + nameof(Shield.LayersCount) + "." + nameof(RecoverableResource.IsFullyRecovered),
                     new List<(IEffect effect, int stackCount)>
                     {
                         (AttachModAdderEffects[nameof(Player) + nameof(Player.MagnetismRadius) + nameof(OperationType.Multiplication) + 25], 4)
@@ -818,7 +818,7 @@ namespace Assets.Scripts.Entity.Effects
                     nameof(Player),
                     new List<(IEffect effect, int stackCount)>
                     {
-                        (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.MaxRechargeableShieldLayersCount) + nameof(OperationType.Addition) + 1], stackCount: 1),
+                        (effect: AttachModAdderEffects[nameof(Player) + nameof(Shield) + nameof(Shield.MaxRechargeableLayers) + nameof(OperationType.Addition) + 1], stackCount: 1),
                     }
                 ),
                 [nameof(CardTag.Turret) + nameof(CardTag.Shield) + 2] = new AttachEffectAdderEffect
@@ -828,7 +828,7 @@ namespace Assets.Scripts.Entity.Effects
                     nameof(Player),
                     new List<(IEffect effect, int stackCount)>
                     {
-                        (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.ShieldLayerRechargeRatePerSecond) + nameof(OperationType.Multiplication) + 25], stackCount: 4),
+                        (effect: AttachModAdderEffects[nameof(Player) + nameof(Shield) + nameof(Shield.RechargeRatePerSecond) + nameof(OperationType.Multiplication) + 25], stackCount: 4),
                     }
                 ),
                 [nameof(CardTag.Turret) + nameof(CardTag.Shield) + 3] = new AttachEffectAdderEffect
@@ -917,7 +917,7 @@ namespace Assets.Scripts.Entity.Effects
                     new List<(IEffect effect, int stackCount)>
                     {
                         (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.MagnetismRadius) + nameof(OperationType.Multiplication) + 25], stackCount: 1),
-                        (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.ShieldLayerRechargeRatePerSecond) + nameof(OperationType.Multiplication) + 25], stackCount: 2)
+                        (effect: AttachModAdderEffects[nameof(Player) + nameof(Shield) + nameof(Shield.RechargeRatePerSecond) + nameof(OperationType.Multiplication) + 25], stackCount: 2)
                     }
                 ),
                 [nameof(CardTag.Shield) + nameof(CardTag.Magnetism) + 2] = new AttachEffectAdderEffect
@@ -927,8 +927,18 @@ namespace Assets.Scripts.Entity.Effects
                     nameof(Player),
                     new List<(IEffect effect, int stackCount)>
                     {
-                        (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.MaxRechargeableShieldLayersCount) + nameof(OperationType.Addition) + 1], stackCount: 1),
+                        (effect: AttachModAdderEffects[nameof(Player) + nameof(Shield) + nameof(Shield.MaxRechargeableLayers) + nameof(OperationType.Addition) + 1], stackCount: 1),
                         (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.MagnetismRadius) + nameof(OperationType.Multiplication) + 25], stackCount: 1),
+                    }
+                ),
+                [nameof(CardTag.Shield) + nameof(CardTag.Magnetism) + 3] = new AttachEffectAdderEffect
+                (
+                    nameof(CardTag.Shield) + nameof(CardTag.Magnetism) + 3,
+                    "",
+                    nameof(Player),
+                    new List<(IEffect effect, int stackCount)>
+                    {
+                        (effect: EffectAdderWhileTrueEffects["ShieldMagnetism3_While_1"], stackCount: 1),
                     }
                 ),
             };
