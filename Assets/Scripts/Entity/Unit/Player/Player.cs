@@ -26,6 +26,7 @@ namespace Assets.Scripts.Entity.Unit.Player
         public event Action FireEvent;
         public event Action FireOffEvent;
     
+        public Shield Shield { get; private set; }
         public TurretHub TurretHub { get; set; }
         public Firearm Firearm { get; private set; }
         public bool IsFireButtonPressed { get; private set; }
@@ -37,7 +38,6 @@ namespace Assets.Scripts.Entity.Unit.Player
         private const int ExperienceAmountIncreasingPerLevel = 5;
         private const int InitialLevel = 1;
 
-        private Shield _shield;
         private MovementControllerPlayer _movementController;
         private Invulnerability _invulnerability;
 
@@ -70,7 +70,7 @@ namespace Assets.Scripts.Entity.Unit.Player
             _circleCollider = GetComponent<CircleCollider2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _invulnerability = GetComponent<Invulnerability>();
-            _shield = GetComponent<Shield>();
+            Shield = GetComponent<Shield>();
 
             MagnetismRadius = StatFactory.GetStat(settings.magnetismRadius);
             ExpMultiplier = StatFactory.GetStat(settings.expMultiplier);
@@ -115,7 +115,7 @@ namespace Assets.Scripts.Entity.Unit.Player
         protected void BaseStart()
         {
             var repulseAdditionMod = new StatModifier(OperationType.Addition, KnockbackPower.Value);
-            _shield.RepulseForce.AddModifier(repulseAdditionMod);
+            Shield.RepulseForce.AddModifier(repulseAdditionMod);
         }
 
         protected void BaseFixedUpdate()
@@ -137,7 +137,7 @@ namespace Assets.Scripts.Entity.Unit.Player
 
             if (!isEnemy && !isEnclosure) return;
 
-            if (_shield.LayersCount.IsEmpty)
+            if (Shield.LayersCount.IsEmpty)
             {
                 TakeDamage(entity.Damage.Value);
                 _invulnerability.ApplyInvulnerable();
@@ -149,7 +149,7 @@ namespace Assets.Scripts.Entity.Unit.Player
             }
             else
             {
-                _shield.LayersCount.Decrease();
+                Shield.LayersCount.Decrease();
             }
 
             if (isEnclosure)
@@ -176,7 +176,7 @@ namespace Assets.Scripts.Entity.Unit.Player
         private void BaseOnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            var shieldRepulseRadius = _shield.RepulseRadius.Value;
+            var shieldRepulseRadius = Shield.RepulseRadius.Value;
             Gizmos.DrawWireSphere(transform.position, shieldRepulseRadius);
         }
 
