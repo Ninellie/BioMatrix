@@ -7,11 +7,10 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    [SerializeField] private ShieldStatsSettings _settings;
+    [SerializeField] private ShieldStatsSettings _stats;
     [SerializeField] private LayerMask _resistancePhysLayer;
     [SerializeField] private GameObject _shield;
-    [SerializeField] private SpriteRenderer _shieldSprite;
-    [SerializeField] private float _SpriteAlphaPerLayer = 0.2f;
+    [SerializeField] private float _spriteAlphaPerLayer = 0.2f;
     [SerializeField] private Color _shieldColor = Color.cyan;
 
     public Stat MaxLayers { get; private set; }
@@ -23,38 +22,36 @@ public class Shield : MonoBehaviour
     public RecoverableResource LayersCount { get; private set; }
 
     private CapsuleCollider2D _capsuleCollider;
-    private StatFactory _statFactory;
+    private SpriteRenderer _shieldSprite;
 
     private void Awake()
     {
-        _statFactory = Camera.main.GetComponent<StatFactory>();
+        var statFactory = Camera.main.GetComponent<StatFactory>();
         _shieldSprite = _shield.GetComponent<SpriteRenderer>();
-        _capsuleCollider = GetComponent<CapsuleCollider2D>();
+        _capsuleCollider = GetComponentInParent<CapsuleCollider2D>();
+
+        MaxLayers = statFactory.GetStat(_stats.maxLayers);
+        MaxRechargeableLayers = statFactory.GetStat(_stats.maxRechargeableLayers);
+        var rechargeRatePerSecond = _stats.rechargeRatePerMinute / 60f;
+        RechargeRatePerSecond = statFactory.GetStat(rechargeRatePerSecond);
+        RepulseForce = statFactory.GetStat(_stats.repulseForce);
+        RepulseRadius = statFactory.GetStat(_stats.repulseRadius);
 
         LayersCount = new RecoverableResource(0, MaxLayers, RechargeRatePerSecond, MaxRechargeableLayers);
-
-        MaxLayers = _statFactory.GetStat(_settings.maxLayers);
-
-        MaxRechargeableLayers = _statFactory.GetStat(_settings.maxRechargeableLayers);
-        var rechargeRatePerSecond = _settings.rechargeRate / 60f;
-        RechargeRatePerSecond = _statFactory.GetStat(rechargeRatePerSecond);
-
-        RepulseForce = _statFactory.GetStat(_settings.repulseForce);
-        RepulseRadius = _statFactory.GetStat(_settings.repulseRadius);
     }
 
     private void OnEnable()
     {
-        LayersCount.EmptyEvent += Enable;
-        LayersCount.NotEmptyEvent += Disable;
+        LayersCount.EmptyEvent += Disable;
+        LayersCount.NotEmptyEvent += Enable;
         LayersCount.ValueChangedEvent += UpdateShieldAlpha;
         LayersCount.DecrementEvent += Repulse;
     }
 
     private void OnDisable()
     {
-        LayersCount.EmptyEvent -= Enable;
-        LayersCount.NotEmptyEvent -= Disable;
+        LayersCount.EmptyEvent -= Disable;
+        LayersCount.NotEmptyEvent -= Enable;
         LayersCount.ValueChangedEvent -= UpdateShieldAlpha;
         LayersCount.DecrementEvent -= Repulse;
     }
@@ -72,9 +69,28 @@ public class Shield : MonoBehaviour
             Enable();
     }
 
+    //private void OnCollisionEnter2D(Collision2D collision2D)
+    //{
+    //    if (LayersCount.IsEmpty) return;
+
+    //    var otherCollider2D = collision2D.collider;
+    //    var isEnemy = otherCollider2D.gameObject.CompareTag("Enemy");
+    //    var isEnclosure = otherCollider2D.gameObject.CompareTag("Enclosure");
+
+    //    if (!isEnemy && !isEnclosure) return;
+
+    //    LayersCount.Decrease();
+    //}
+
     private void Update()
     {
         LayersCount.TimeToRecover += Time.deltaTime;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, RepulseRadius?.Value ?? _stats.repulseRadius);
     }
 
     private void Repulse()
@@ -84,8 +100,6 @@ public class Shield : MonoBehaviour
             enemy.enemyMoveController.KnockBackFromTarget(RepulseForce.Value);
 
         //TODO Lead to the next target.GetComponent<MovementController>().KnockBackFromTarget(force);
-
-        LayersCount.Decrease();
     }
 
     private List<Enemy> GetNearbyEnemiesList(float repulseRadius, LayerMask enemyLayer)
@@ -108,7 +122,7 @@ public class Shield : MonoBehaviour
 
     private void UpdateShieldAlpha()
     {
-        var spriteAlpha = _SpriteAlphaPerLayer * LayersCount.GetValue();
+        var spriteAlpha = _spriteAlphaPerLayer * LayersCount.GetValue();
         _shieldColor.a = spriteAlpha;
         _shieldSprite.color = _shieldColor;
     }

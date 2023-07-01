@@ -55,10 +55,8 @@ namespace Assets.Scripts.Entity.Unit.Player
         private void FixedUpdate() => BaseFixedUpdate();
 
         private void OnCollisionEnter2D(Collision2D collision2D) => BaseOnCollisionEnter2D(collision2D);
-    
-        private void Update() => BaseUpdate();
 
-        private void OnDrawGizmosSelected() => BaseOnDrawGizmosSelected();
+        private void Update() => BaseUpdate();
 
         private void OnDrawGizmos() => BaseOnDrawGizmos();
 
@@ -114,8 +112,7 @@ namespace Assets.Scripts.Entity.Unit.Player
 
         protected void BaseStart()
         {
-            var repulseAdditionMod = new StatModifier(OperationType.Addition, KnockbackPower.Value);
-            Shield.RepulseForce.AddModifier(repulseAdditionMod);
+            
         }
 
         protected void BaseFixedUpdate()
@@ -149,7 +146,7 @@ namespace Assets.Scripts.Entity.Unit.Player
             }
             else
             {
-                Shield.LayersCount.Decrease();
+                Shield.LayersCount.Decrease(1);
             }
 
             if (isEnclosure)
@@ -171,13 +168,6 @@ namespace Assets.Scripts.Entity.Unit.Player
             }
             Gizmos.color = Color.red;
             Gizmos.DrawLine(Rb2D.transform.position, _movementController.GetVelocity() + (Vector2)Rb2D.transform.position);
-        }
-
-        private void BaseOnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.red;
-            var shieldRepulseRadius = Shield.RepulseRadius.Value;
-            Gizmos.DrawWireSphere(transform.position, shieldRepulseRadius);
         }
 
         public void CreateWeapon(GameObject weapon)
