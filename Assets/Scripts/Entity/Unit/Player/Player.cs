@@ -6,28 +6,20 @@ using Assets.Scripts.Weapons;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 namespace Assets.Scripts.Entity.Unit.Player
 {
     [RequireComponent(typeof(PlayerStatsSettings))]
+    [RequireComponent(typeof(Shield))]
     public class Player : Unit
     {
-        [SerializeField] private LayerMask _enemyLayer;
-        [SerializeField] private GameObject _shield;
-        [SerializeField] private SpriteRenderer _shieldSprite;
-        [SerializeField] private float _alphaPerLayer = 0.2f;
-        [SerializeField] private Color _shieldColor = Color.cyan;
-        [SerializeField] private float _shieldRepulseRadius = 250f;
         [SerializeField] private Transform _firePoint;
     
         public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
 
         public Stat MagnetismRadius { get; private set; }
-        public Stat MaxShieldLayersCount { get; private set; }
-        public Stat MaxRechargeableShieldLayersCount { get; private set; }
-        public Stat ShieldLayerRechargeRatePerSecond { get; private set; }
         public Stat ExpMultiplier { get; private set; }
-
-        public RecoverableResource ShieldLayers { get; private set; }
+        public Stat ExpToNextLvl { get; set; }
 
         public event Action GamePausedEvent;
         public event Action ExperienceTakenEvent;
@@ -40,17 +32,16 @@ namespace Assets.Scripts.Entity.Unit.Player
 
         public Resource Lvl { get; set; }
         public Resource Exp { get; set; }
-        public Stat ExpToNextLvl { get; set; }
 
         private const int ExperienceToSecondLevel = 20;
         private const int ExperienceAmountIncreasingPerLevel = 5;
         private const int InitialLevel = 1;
 
+        private Shield _shield;
         private MovementControllerPlayer _movementController;
         private Invulnerability _invulnerability;
 
         private CircleCollider2D _circleCollider;
-        private CapsuleCollider2D _capsuleCollider;
         private SpriteRenderer _spriteRenderer;
 
         private void Awake() => BaseAwake(Settings);
@@ -76,18 +67,11 @@ namespace Assets.Scripts.Entity.Unit.Player
             Debug.Log($"{gameObject.name} {nameof(Player)} Awake");
             base.BaseAwake(settings);
 
-            //_level = InitialLevel;
-            //_experience = InitialExperience;
-
             _circleCollider = GetComponent<CircleCollider2D>();
-            _capsuleCollider = GetComponent<CapsuleCollider2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _invulnerability = GetComponent<Invulnerability>();
-            _shieldSprite = _shield.GetComponent<SpriteRenderer>();
+            _shield = GetComponent<Shield>();
 
-            MaxRechargeableShieldLayersCount = StatFactory.GetStat(settings.maxRechargeableShieldLayersCount);
-            MaxShieldLayersCount = StatFactory.GetStat(settings.maxShieldLayersCount);
-            ShieldLayerRechargeRatePerSecond = StatFactory.GetStat(settings.shieldLayerRechargeRate / 60f);
             MagnetismRadius = StatFactory.GetStat(settings.magnetismRadius);
             ExpMultiplier = StatFactory.GetStat(settings.expMultiplier);
             ExpToNextLvl = StatFactory.GetStat(ExperienceToSecondLevel);
@@ -96,11 +80,6 @@ namespace Assets.Scripts.Entity.Unit.Player
 
             Lvl = new Resource(InitialLevel);
             Exp = new Resource(ExpToNextLvl);
-
-            ShieldLayers = new RecoverableResource(0, 
-                MaxShieldLayersCount,
-                ShieldLayerRechargeRatePerSecond,
-                MaxRechargeableShieldLayersCount);
 
             _movementController = new MovementControllerPlayer(this);
         }
@@ -114,10 +93,6 @@ namespace Assets.Scripts.Entity.Unit.Player
                 effect.Subscribe(this);
             }
 
-            ShieldLayers.EmptyEvent += UpdateShield;
-            ShieldLayers.NotEmptyEvent += UpdateShield;
-            ShieldLayers.ValueChangedEvent += UpdateShieldAlpha;
-
             MagnetismRadius.ValueChangedEvent += ChangeCurrentMagnetismRadius;
 
             Exp.FillEvent += LevelUp;
@@ -130,10 +105,6 @@ namespace Assets.Scripts.Entity.Unit.Player
                 effect.Unsubscribe(this);
             }
 
-            ShieldLayers.EmptyEvent -= UpdateShield;
-            ShieldLayers.NotEmptyEvent -= UpdateShield;
-            ShieldLayers.ValueChangedEvent -= UpdateShieldAlpha;
-
             MagnetismRadius.ValueChangedEvent -= ChangeCurrentMagnetismRadius;
 
             Exp.FillEvent -= LevelUp;
@@ -143,9 +114,8 @@ namespace Assets.Scripts.Entity.Unit.Player
 
         protected void BaseStart()
         {
-            ShieldLayers.Increase((int)MaxRechargeableShieldLayersCount.Value);
-            UpdateShieldAlpha();
-            UpdateShield();
+            var repulseAdditionMod = new StatModifier(OperationType.Addition, KnockbackPower.Value);
+            _shield.RepulseForce.AddModifier(repulseAdditionMod);
         }
 
         protected void BaseFixedUpdate()
@@ -167,7 +137,7 @@ namespace Assets.Scripts.Entity.Unit.Player
 
             if (!isEnemy && !isEnclosure) return;
 
-            if (ShieldLayers.IsEmpty)
+            if (_shield.LayersCount.IsEmpty)
             {
                 TakeDamage(entity.Damage.Value);
                 _invulnerability.ApplyInvulnerable();
@@ -179,7 +149,7 @@ namespace Assets.Scripts.Entity.Unit.Player
             }
             else
             {
-                ShieldRepulse();
+                _shield.LayersCount.Decrease();
             }
 
             if (isEnclosure)
@@ -191,7 +161,6 @@ namespace Assets.Scripts.Entity.Unit.Player
         protected override void BaseUpdate()
         {
             base.BaseUpdate();
-            ShieldLayers.TimeToRecover += Time.deltaTime;
         }
 
         private void BaseOnDrawGizmos()
@@ -207,7 +176,8 @@ namespace Assets.Scripts.Entity.Unit.Player
         private void BaseOnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, _shieldRepulseRadius);
+            var shieldRepulseRadius = _shield.RepulseRadius.Value;
+            Gizmos.DrawWireSphere(transform.position, shieldRepulseRadius);
         }
 
         public void CreateWeapon(GameObject weapon)
@@ -273,33 +243,6 @@ namespace Assets.Scripts.Entity.Unit.Player
         private void ChangeCurrentMagnetismRadius()
         {
             _circleCollider.radius = Math.Max(MagnetismRadius.Value, 0);
-        }
-
-        private void ShieldRepulse()
-        {
-            var colliders2D = Physics2D.OverlapCircleAll(transform.position, _shieldRepulseRadius, _enemyLayer);
-
-            foreach (var collider2d in colliders2D)
-            {
-                collider2d.gameObject.GetComponent<Enemy.Enemy>().enemyMoveController
-                    .KnockBackFromTarget(KnockbackPower.Value);
-            }
-
-            ShieldLayers.Decrease();
-        }
-
-        private void UpdateShield()
-        {
-            var isShieldExists = !ShieldLayers.IsEmpty;
-            _capsuleCollider.enabled = isShieldExists;
-            _shield.SetActive(isShieldExists);
-        }
-
-        private void UpdateShieldAlpha()
-        {
-            var a = _alphaPerLayer * ShieldLayers.GetValue();
-            _shieldColor.a = a;
-            _shieldSprite.color = _shieldColor;
         }
 
         public void OnMove(InputValue input)
