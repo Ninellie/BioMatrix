@@ -1,11 +1,14 @@
 using System;
 
-[Serializable]
-public class ShieldStatsSettings
+namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
-    public float maxLayers;
-    public float maxRechargeableLayers;
-    public float rechargeRatePerMinute;
-    public float repulseRadius;
-    public float repulseForce;
+    [Serializable]
+    public class ShieldStatsSettings
+    {
+        public float maxLayers;
+        public float maxRechargeableLayers;
+        public float rechargeRatePerMinute;
+        public float repulseRadius;
+        public float repulseForce;
+    }
 }
