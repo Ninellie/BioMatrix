@@ -69,19 +69,6 @@ public class Shield : MonoBehaviour
             Enable();
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision2D)
-    //{
-    //    if (LayersCount.IsEmpty) return;
-
-    //    var otherCollider2D = collision2D.collider;
-    //    var isEnemy = otherCollider2D.gameObject.CompareTag("Enemy");
-    //    var isEnclosure = otherCollider2D.gameObject.CompareTag("Enclosure");
-
-    //    if (!isEnemy && !isEnclosure) return;
-
-    //    LayersCount.Decrease();
-    //}
-
     private void Update()
     {
         LayersCount.TimeToRecover += Time.deltaTime;
