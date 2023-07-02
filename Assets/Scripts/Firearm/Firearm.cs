@@ -1,9 +1,9 @@
 using System;
 using Assets.Scripts.Core;
-using Assets.Scripts.Entity;
-using Assets.Scripts.Entity.Stats;
-using Assets.Scripts.Entity.Unit.Player;
-using Assets.Scripts.Entity.Unit.Projectile;
+using Assets.Scripts.EntityComponents;
+using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
+using Assets.Scripts.EntityComponents.UnitComponents.Projectile;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -19,7 +19,7 @@ namespace Assets.Scripts.Weapons
         [SerializeField] private bool _isForPlayer;
         [SerializeField] private LayerMask _enemyLayer;
 
-        public Entity.Entity Holder { get; private set; }
+        public EntityComponents.Entity Holder { get; private set; }
         public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
         public Resource Magazine { get; set; }
 
@@ -190,7 +190,7 @@ namespace Assets.Scripts.Weapons
             return nearestEnemyDirection;
         }
 
-        public void SetHolder(Entity.Entity entity)
+        public void SetHolder(EntityComponents.Entity entity)
         {
             Holder = entity;
         }

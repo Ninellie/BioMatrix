@@ -1,4 +1,4 @@
-using Assets.Scripts.Entity.Unit.Player;
+using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
 namespace Assets.Scripts.GameSession.UIScripts.View

@@ -1,4 +1,4 @@
-using Assets.Scripts.Entity.Enclosure;
+using Assets.Scripts.EntityComponents.Enclosure;
 using UnityEngine;
 
 namespace Assets.Scripts.GameSession.Events

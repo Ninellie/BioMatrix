@@ -1,5 +1,5 @@
 ﻿using System;
-using Assets.Scripts.Entity.Effects;
+using Assets.Scripts.EntityComponents.Effects;
 
 namespace Assets.Scripts.GameSession.Upgrades.Deck
 {

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Entity.Unit.Enemy;
-using Assets.Scripts.Entity.Unit.Player;
+using Assets.Scripts.EntityComponents.UnitComponents.Enemy;
+using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
 namespace Assets.Scripts.GameSession.Spawner

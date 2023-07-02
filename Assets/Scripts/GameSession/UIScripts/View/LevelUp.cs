@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Assets.Scripts.Entity.Unit.Player;
+using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.GameSession.UIScripts.SessionModel;
 using Assets.Scripts.GameSession.Upgrades.Deck;
 using UnityEngine;
