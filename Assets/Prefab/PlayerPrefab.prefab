@@ -64,7 +64,7 @@ MonoBehaviour:
   _stats:
     maxLayers: 3
     maxRechargeableLayers: 0
-    rechargeRatePerMinute: 5
+    rechargeRatePerMinute: 0.5
     repulseRadius: 250
     repulseForce: 100
   _resistancePhysLayer:

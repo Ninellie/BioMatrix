@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7478297182190854537}
   - component: {fileID: -5820009616735749093}
   m_Layer: 7
-  m_Name: UltimateGun
+  m_Name: BubbleGun
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee81df67b8f5f8a4fa628c8d22e6fa4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammo: {fileID: 2741946790039367102, guid: 62ab6d6883f51534595dccca64c6bacb, type: 3}
+  _ammo: {fileID: 2741946790039367102, guid: 1558528fc6125a5409668e7be9b7845d, type: 3}
   _isForPlayer: 1
   _enemyLayer:
     serializedVersion: 2
@@ -90,13 +90,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc11a82609b91584a93b9ccb67ca2afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 55
-  shootForce: 2000
-  shootsPerSecond: 10
-  maxShootDeflectionAngle: 0
-  magazineCapacity: 30
-  reloadTime: 0.5
+  damage: 10
+  shootForce: 150
+  shootsPerSecond: 1
+  maxShootDeflectionAngle: 35
+  magazineCapacity: 5
+  reloadTime: 2
   singleShootProjectile: 1
-  projectileSizeMultiplier: 4
+  projectileSizeMultiplier: 0
   projectilePierceCount: 5
-  addedProjectileKnockback: 1
+  addedProjectileKnockback: 0
