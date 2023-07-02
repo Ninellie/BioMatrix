@@ -97,7 +97,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun Vitality 1",
-                Description = "+ 1 Max HP, +100% Projectile size",
+                Description = "+ 1 Max HP, +100% Projectile size multiplier",
                 Id = 7,
                 DeckId = 3,
                 OrderInDeck = 1,
