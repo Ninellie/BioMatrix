@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Projectile
+namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
 {
     public class ProjectileCreator : MonoBehaviour
     {

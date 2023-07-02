@@ -4,6 +4,7 @@ using Assets.Scripts.EntityComponents;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Projectile;
+using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -19,7 +20,7 @@ namespace Assets.Scripts.Weapons
         [SerializeField] private bool _isForPlayer;
         [SerializeField] private LayerMask _enemyLayer;
 
-        public EntityComponents.Entity Holder { get; private set; }
+        public Entity Holder { get; private set; }
         public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
         public Resource Magazine { get; set; }
 
@@ -47,7 +48,7 @@ namespace Assets.Scripts.Weapons
         private Reload _reload;
         private Player _player;
         private bool IsFireButtonPressed => IsEnable && !_isForPlayer || _player.IsFireButtonPressed;
-        private float _previousShootTimer = 0;
+        private float _previousShootTimer;
         private float MinShootInterval => 1f / ShootsPerSecond.Value;
     
         private void Awake() => BaseAwake(Settings);
@@ -190,21 +191,21 @@ namespace Assets.Scripts.Weapons
             return nearestEnemyDirection;
         }
 
-        public void SetHolder(EntityComponents.Entity entity)
+        public void SetHolder(Entity entity)
         {
             Holder = entity;
         }
 
         private Vector2 GetActualShotDirection(Vector2 direction, float maxShotDeflectionAngle)
         {
-            var angleInRad = (float)Mathf.Deg2Rad * maxShotDeflectionAngle;
+            var angleInRad = Mathf.Deg2Rad * maxShotDeflectionAngle;
             var shotDeflectionAngle = Range(-angleInRad, angleInRad);
             return Rotate(direction, shotDeflectionAngle);
         }
     
         private float Range(float minInclusive, float maxInclusive)
         {
-            var std = PeterAcklamInverseCDF.NormInv(UnityEngine.Random.value);
+            var std = PeterAcklamInverseCDF.NormInv(Random.value);
             return PeterAcklamInverseCDF.RandomGaussian(std, minInclusive, maxInclusive);
         }
     
