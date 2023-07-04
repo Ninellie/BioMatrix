@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.GameSession.PlayingField
@@ -12,7 +13,7 @@ namespace Assets.Scripts.GameSession.PlayingField
         private void Start()
         {
             _camera = UnityEngine.Camera.main;
-            _tileSize = _tiles[0].sprite.bounds.size.x; // Assuming all tile sprites have the same size
+            //_tileSize = _tiles[0].tile.bounds.size.x; // Assuming all tile sprites have the same size
 
             GenerateTiles();
         }
@@ -40,14 +41,11 @@ namespace Assets.Scripts.GameSession.PlayingField
 
         private TileData GetRandomTile()
         {
-            float totalWeight = 0f;
-            foreach (TileData tile in _tiles)
-            {
-                totalWeight += tile.spawnWeight;
-            }
+            var totalWeight = _tiles.Sum(tile => tile.spawnWeight);
 
-            float randomWeight = Random.Range(0f, totalWeight);
-            foreach (TileData tile in _tiles)
+            var randomWeight = Random.Range(0f, totalWeight);
+            
+            foreach (var tile in _tiles)
             {
                 randomWeight -= tile.spawnWeight;
                 if (randomWeight <= 0f)

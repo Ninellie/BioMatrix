@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -6,6 +8,7 @@ namespace Assets.Scripts.GameSession.PlayingField
 {
     public class Floor : MonoBehaviour
     {
+        [SerializeField] private TileData[] _tiles;
         [SerializeField] private Tilemap _tilemap;
         [SerializeField] private TilemapRenderer _tilemapRenderer;
         [SerializeField] private TileBase _baseTile;
@@ -20,6 +23,7 @@ namespace Assets.Scripts.GameSession.PlayingField
             _mainCamera = UnityEngine.Camera.main;
             _camCenterWorld = _mainCamera.ScreenToWorldPoint(_mainCamera.pixelRect.center);
             _cellInCenterOfCam = _tilemap.WorldToCell(_camCenterWorld);
+            FillEmptyTilesInCameraBounds();
         }
         
         private void Update()
@@ -28,34 +32,56 @@ namespace Assets.Scripts.GameSession.PlayingField
             var currentCell = _tilemap.WorldToCell(_camCenterWorld);
             if (_cellInCenterOfCam != currentCell)
             {
-                var boundsInt = GetBoundsIntFromCamera(_mainCamera, _tilemap, _tilemapRenderer.chunkCullingBounds);
-                Fill(_tilemap, boundsInt);
+                FillEmptyTilesInCameraBounds();
             }
             _cellInCenterOfCam = _tilemap.WorldToCell(_camCenterWorld);
         }
-        
-        private void Fill(Tilemap tilemap, BoundsInt boundsInt)
-        {
-            var tileArray = GetTileArray(boundsInt.size.x * boundsInt.size.y);
 
-            tilemap.SetTilesBlock(boundsInt, tileArray);
+        private void FillEmptyTilesInCameraBounds()
+        {
+            var boundsInt = GetBoundsIntFromCamera(_mainCamera, _tilemap, _tilemapRenderer.chunkCullingBounds);
+            FillEmptyTiles(_tilemap, boundsInt);
         }
 
-        private TileBase[] GetTileArray(int length)
+        private void FillEmptyTiles(Tilemap tilemap, BoundsInt bounds)
         {
-            var tileArray = new TileBase[length];
+            var emptyTilePositions = new List<Vector3Int>();
 
-            for (int i = 0; i < tileArray.Length; i++)
+            foreach (var position in bounds.allPositionsWithin)
             {
-                tileArray[i] = _baseTile;
+                if (tilemap.GetTile(position) == null)
+                {
+                    emptyTilePositions.Add(position);
+                }
             }
 
-            return tileArray;
+            foreach (var position in emptyTilePositions)
+            {
+                var randomTile = GetRandomTile(_tiles);
+                tilemap.SetTile(position, randomTile);
+            }
         }
-        
-        private static BoundsInt GetBoundsIntFromCamera(UnityEngine.Camera camera, Tilemap tilemap, Vector3 chunkCullingBounds)
+
+        private static TileBase GetRandomTile(TileData[] tiles)
         {
-            
+            var totalWeight = tiles.Sum(tile => tile.spawnWeight);
+
+            var randomWeight = Random.Range(0f, totalWeight);
+
+            foreach (var tile in tiles)
+            {
+                randomWeight -= tile.spawnWeight;
+                if (randomWeight <= 0f)
+                {
+                    return tile.tile;
+                }
+            }
+
+            return null; // Return null if no tiles are defined
+        }
+
+        private static BoundsInt GetBoundsIntFromCamera(UnityEngine.Camera camera, GridLayout tilemap, Vector3 chunkCullingBounds)
+        {
             var boundsIntSize = new Vector3Int(
                 (((int)camera.pixelRect.width + (int)chunkCullingBounds.x) / (int)tilemap.cellSize.x) + CellBoundsPadding,
                 (((int)camera.pixelRect.height + (int)chunkCullingBounds.y) / (int)tilemap.cellSize.y) + CellBoundsPadding,
