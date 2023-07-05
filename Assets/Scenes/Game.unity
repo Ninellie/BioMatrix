@@ -2109,8 +2109,9 @@ GameObject:
   - component: {fileID: 320754242}
   - component: {fileID: 320754241}
   - component: {fileID: 320754243}
+  - component: {fileID: 320754244}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: Extra Tiles Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2157,15 +2158,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tiles:
-  - tile: {fileID: 11400000, guid: 0f46b3cd3a7fd7643be0b7cd1edc0755, type: 2}
-    prefab: {fileID: 0}
-    spawnWeight: 10
   - tile: {fileID: 11400000, guid: 84670f1adb0c9514082fa689fa062041, type: 2}
     prefab: {fileID: 0}
     spawnWeight: 1
-  _tilemap: {fileID: 1228520834}
-  _tilemapRenderer: {fileID: 1228520833}
-  _baseTile: {fileID: 0}
+  _fillingPercent: 100
+--- !u!114 &320754244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320754240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee4453aa99faa84d95324d5c0b4b461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tile:
+    tile: {fileID: 11400000, guid: 84670f1adb0c9514082fa689fa062041, type: 2}
+    prefab: {fileID: 0}
+    spawnWeight: 1
+  _fillAtStart: 1
+  _fillingFramesCount: 4
+  _delayBetweenFillings: 0.05
 --- !u!1 &345413497
 GameObject:
   m_ObjectHideFlags: 0
@@ -2313,7 +2328,7 @@ GameObject:
   - component: {fileID: 353896469}
   - component: {fileID: 353896468}
   m_Layer: 0
-  m_Name: Floor (1)
+  m_Name: Ground Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2335,9 +2350,7 @@ MonoBehaviour:
   - tile: {fileID: 11400000, guid: ea59ce9360729f74c8eecab5839fd8f0, type: 2}
     prefab: {fileID: 0}
     spawnWeight: 1
-  _tilemap: {fileID: 632446042}
-  _tilemapRenderer: {fileID: 632446040}
-  _baseTile: {fileID: 0}
+  _fillingPercent: 0
 --- !u!156049354 &353896469
 Grid:
   m_ObjectHideFlags: 0
