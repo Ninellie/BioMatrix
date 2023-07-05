@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -41,6 +42,72 @@ namespace Assets.Scripts.GameSession.PlayingField
         {
             var boundsInt = GetBoundsIntFromCamera(_mainCamera, _tilemap, _tilemapRenderer.chunkCullingBounds);
             FillEmptyTiles(_tilemap, boundsInt);
+        }
+
+        private void FillBounds(BoundsInt fillingBounds)
+        {
+            var bounds = fillingBounds;
+            const int minEmptySpace = 4;
+            var x = bounds.xMax - bounds.xMin;
+            var y = bounds.yMax - bounds.yMin;
+
+            var iterationCount = (x - minEmptySpace) / 2;
+
+            if (x / minEmptySpace < 0 || y / minEmptySpace < 0)
+            {
+                return;
+            }
+
+            var min = bounds.min;
+
+            var currentPos = min;
+
+            const int fillingDirection = 4;
+            for (int i = 0; i < iterationCount; i++)
+            {
+                for (int j = 0; j < fillingDirection; j++)
+                {
+                    switch (j)
+                    {
+                        case 0:
+                            while (currentPos.y < bounds.yMax)
+                            {
+                                FillTile(currentPos);
+                                currentPos = new Vector3Int(currentPos.x, currentPos.y + 1, currentPos.z);
+                            }
+                            break;
+                        case 1:
+                            while (currentPos.x < bounds.xMax)
+                            {
+                                FillTile(currentPos);
+                                currentPos = new Vector3Int(currentPos.x + 1, currentPos.y, currentPos.z);
+                            }
+                            break;
+                        case 2:
+                            while (currentPos.y > bounds.yMin)
+                            {
+                                FillTile(currentPos);
+                                currentPos = new Vector3Int(currentPos.x, currentPos.y - 1, currentPos.z);
+                            }
+                            break;
+                        case 3:
+                            while (currentPos.x > bounds.xMin)
+                            {
+                                FillTile(currentPos);
+                                currentPos = new Vector3Int(currentPos.x, currentPos.x + 1, currentPos.z);
+                            }
+                            break;
+                    }
+                }
+
+                bounds = new BoundsInt(currentPos, new Vector3Int(bounds.xMax - (i + 1), bounds.yMax - (i + 1)));
+            }
+        }
+
+        private void FillTile(Vector3Int position)
+        {
+            var tile = GetRandomTile(_tiles);
+            _tilemap.SetTile(position, tile);
         }
 
         private void FillEmptyTiles(Tilemap tilemap, BoundsInt bounds)
