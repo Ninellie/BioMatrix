@@ -2161,7 +2161,7 @@ MonoBehaviour:
   - tile: {fileID: 11400000, guid: 84670f1adb0c9514082fa689fa062041, type: 2}
     prefab: {fileID: 0}
     spawnWeight: 1
-  _fillingPercent: 100
+  _fillingPercent: 10
 --- !u!114 &320754244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2328,7 +2328,7 @@ GameObject:
   - component: {fileID: 353896469}
   - component: {fileID: 353896468}
   m_Layer: 0
-  m_Name: Ground Floor
+  m_Name: Background Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2350,7 +2350,7 @@ MonoBehaviour:
   - tile: {fileID: 11400000, guid: ea59ce9360729f74c8eecab5839fd8f0, type: 2}
     prefab: {fileID: 0}
     spawnWeight: 1
-  _fillingPercent: 0
+  _fillingPercent: 100
 --- !u!156049354 &353896469
 Grid:
   m_ObjectHideFlags: 0

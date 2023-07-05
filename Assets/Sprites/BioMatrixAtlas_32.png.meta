@@ -3,7 +3,7 @@ guid: a493cb95aae29af46b1cba06c929ada2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -63,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -94,6 +95,30 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -1165,53 +1190,53 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BioMatrixAtlas_32_8: -925572762
-      BioMatrixAtlas_32_2: -1724360342
+      BioMatrixAtlas_32_0: -1469869940
+      BioMatrixAtlas_32_1: -78611983
       BioMatrixAtlas_32_10: 524483434
-      BioMatrixAtlas_32_13: 2110938987
-      BioMatrixAtlas_32_18: -843542386
-      BioMatrixAtlas_32_23: 1950882132
-      BioMatrixAtlas_32_4: 1806236194
-      BioMatrixAtlas_32_30: 1878079500
-      BioMatrixAtlas_32_43: -1903838170
-      BioMatrixAtlas_32_21: 1715646929
-      BioMatrixAtlas_32_28: 1047002800
       BioMatrixAtlas_32_11: 23971021
-      BioMatrixAtlas_32_33: 135283892
-      BioMatrixAtlas_32_24: 727872916
-      BioMatrixAtlas_32_26: -1980630433
-      BioMatrixAtlas_32_32: 313288667
-      BioMatrixAtlas_32_9: 1266088672
-      BioMatrixAtlas_32_44: 180724093
-      BioMatrixAtlas_32_3: -1331717645
+      BioMatrixAtlas_32_12: -87472183
+      BioMatrixAtlas_32_13: 2110938987
       BioMatrixAtlas_32_14: 1786133625
-      BioMatrixAtlas_32_38: 119469224
+      BioMatrixAtlas_32_15: -1109977363
+      BioMatrixAtlas_32_16: 798081069
+      BioMatrixAtlas_32_17: -2074011689
+      BioMatrixAtlas_32_18: -843542386
+      BioMatrixAtlas_32_19: -208139433
+      BioMatrixAtlas_32_2: -1724360342
+      BioMatrixAtlas_32_20: -808644665
+      BioMatrixAtlas_32_21: 1715646929
+      BioMatrixAtlas_32_22: -258627199
+      BioMatrixAtlas_32_23: 1950882132
+      BioMatrixAtlas_32_24: 727872916
+      BioMatrixAtlas_32_25: -2028293941
+      BioMatrixAtlas_32_26: -1980630433
+      BioMatrixAtlas_32_27: -1706463500
+      BioMatrixAtlas_32_28: 1047002800
+      BioMatrixAtlas_32_29: 138781213
+      BioMatrixAtlas_32_3: -1331717645
+      BioMatrixAtlas_32_30: 1878079500
+      BioMatrixAtlas_32_31: 760785878
+      BioMatrixAtlas_32_32: 313288667
+      BioMatrixAtlas_32_33: 135283892
+      BioMatrixAtlas_32_34: -420632318
+      BioMatrixAtlas_32_35: 844908276
       BioMatrixAtlas_32_36: 2049148138
       BioMatrixAtlas_32_37: 83556998
-      BioMatrixAtlas_32_27: -1706463500
-      BioMatrixAtlas_32_15: -1109977363
-      BioMatrixAtlas_32_5: -1553333415
-      BioMatrixAtlas_32_20: -808644665
-      BioMatrixAtlas_32_34: -420632318
-      BioMatrixAtlas_32_16: 798081069
-      BioMatrixAtlas_32_1: -78611983
-      BioMatrixAtlas_32_17: -2074011689
+      BioMatrixAtlas_32_38: 119469224
       BioMatrixAtlas_32_39: 702952028
-      BioMatrixAtlas_32_0: -1469869940
-      BioMatrixAtlas_32_25: -2028293941
-      BioMatrixAtlas_32_35: 844908276
-      BioMatrixAtlas_32_22: -258627199
-      BioMatrixAtlas_32_46: -1472417522
-      BioMatrixAtlas_32_45: 1759376699
-      BioMatrixAtlas_32_7: 300837469
-      BioMatrixAtlas_32_12: -87472183
+      BioMatrixAtlas_32_4: 1806236194
+      BioMatrixAtlas_32_40: 64634425
       BioMatrixAtlas_32_41: 1792490174
       BioMatrixAtlas_32_42: 926499159
-      BioMatrixAtlas_32_19: -208139433
-      BioMatrixAtlas_32_40: 64634425
+      BioMatrixAtlas_32_43: -1903838170
+      BioMatrixAtlas_32_44: 180724093
+      BioMatrixAtlas_32_45: 1759376699
+      BioMatrixAtlas_32_46: -1472417522
+      BioMatrixAtlas_32_5: -1553333415
       BioMatrixAtlas_32_6: 2030652481
-      BioMatrixAtlas_32_31: 760785878
-      BioMatrixAtlas_32_29: 138781213
+      BioMatrixAtlas_32_7: 300837469
+      BioMatrixAtlas_32_8: -925572762
+      BioMatrixAtlas_32_9: 1266088672
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
