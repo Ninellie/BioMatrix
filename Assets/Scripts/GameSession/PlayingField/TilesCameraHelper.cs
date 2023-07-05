@@ -34,7 +34,7 @@ namespace Assets.Scripts.GameSession.PlayingField
                 1);
             var camCenterWorld = camera.ScreenToWorldPoint(camera.pixelRect.center);
             var cellInCenterOfCam = tilemap.WorldToCell(camCenterWorld);
-            Vector3Int boundsIntOrigin = new(cellInCenterOfCam.x - (boundsIntSize.x / 2), cellInCenterOfCam.y - boundsIntSize.y / 2, 1);
+            Vector3Int boundsIntOrigin = new(cellInCenterOfCam.x - (boundsIntSize.x / 2), cellInCenterOfCam.y - boundsIntSize.y / 2, 0);
             var boundsInt = new BoundsInt(boundsIntOrigin, boundsIntSize);
             return boundsInt;
         }
