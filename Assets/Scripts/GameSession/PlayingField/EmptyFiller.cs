@@ -7,18 +7,25 @@ namespace Assets.Scripts.GameSession.PlayingField
 {
     public class EmptyFiller : MonoBehaviour
     {
-        [SerializeField] private TileData[] _tiles;
+        [SerializeField]
+        private TileData[] _tiles;
+        
+        [SerializeField]
+        [Range(0, 100)]
+        private float _fillingPercent;
 
         private Tilemap _tilemap;
         private TilemapRenderer _tilemapRenderer;
         private UnityEngine.Camera _mainCamera;
         private Vector3Int _cellInCenterOfCam;
+        private List<Vector3Int>_filledPositions;
 
         private void Awake()
         {
             _mainCamera = UnityEngine.Camera.main;
             _tilemap = GetComponentInChildren<Tilemap>();
             _tilemapRenderer = GetComponentInChildren<TilemapRenderer>();
+            _filledPositions = new List<Vector3Int>();
         }
 
         private void Start()
@@ -51,16 +58,23 @@ namespace Assets.Scripts.GameSession.PlayingField
 
             foreach (var position in bounds.allPositionsWithin)
             {
-                if (tilemap.GetTile(position) == null)
+                if (tilemap.GetTile(position) == null && !_filledPositions.Contains(position))
                 {
                     emptyTilePositions.Add(position);
                 }
             }
 
+            _filledPositions.AddRange(emptyTilePositions);
+
             foreach (var position in emptyTilePositions)
             {
                 var randomTile = GetRandomTile(_tiles);
-                tilemap.SetTile(position, randomTile);
+
+                var r = Random.Range(0f, 100f);
+                if (r <= _fillingPercent)
+                {
+                    tilemap.SetTile(position, randomTile);
+                }
             }
         }
     }
