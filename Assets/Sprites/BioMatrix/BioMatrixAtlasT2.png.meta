@@ -3,7 +3,7 @@ guid: 5f6a36761054ea042b8d6ceb7c202677
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -63,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -94,6 +95,30 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -324,16 +349,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BioMatrixAtlasT2_2: 1005668065
-      BioMatrixAtlasT2_3: 540365836
-      BioMatrixAtlasT2_5: 1712466916
-      BioMatrixAtlasT2_8: -2139042382
-      BioMatrixAtlasT2_9: 1975344508
-      BioMatrixAtlasT2_4: 272889245
-      BioMatrixAtlasT2_6: -123729073
       BioMatrixAtlasT2_0: 2140555393
       BioMatrixAtlasT2_1: -1235013619
+      BioMatrixAtlasT2_2: 1005668065
+      BioMatrixAtlasT2_3: 540365836
+      BioMatrixAtlasT2_4: 272889245
+      BioMatrixAtlasT2_5: 1712466916
+      BioMatrixAtlasT2_6: -123729073
       BioMatrixAtlasT2_7: -1374924722
+      BioMatrixAtlasT2_8: -2139042382
+      BioMatrixAtlasT2_9: 1975344508
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
