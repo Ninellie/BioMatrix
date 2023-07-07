@@ -24,7 +24,7 @@ namespace Assets.Scripts.GameSession.Spawner
             _complicationValue = complicationValue;
             _minComplicationDivider = minComplicationDivider;
             _maxEnemiesInSceneMultiplier = 1;
-            _maxEnemiesInScene = 15;
+            _maxEnemiesInScene = 25;
         }
 
         public int GetMaxEnemiesInScene()
@@ -35,7 +35,7 @@ namespace Assets.Scripts.GameSession.Spawner
             if (multiplier < 1) { multiplier = 1; }
             var maxEnemies = _maxEnemiesInScene * multiplier;
         
-            return _maxEnemiesInScene;
+            return (int)maxEnemies;
         }
         public int GetSize(WaveType waveType)
         {
