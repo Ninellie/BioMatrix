@@ -7,11 +7,7 @@ It is a pixelart-style top-down shooter where you need to survive 5 minutes whil
 
 [![Alt Text](https://s12.gifyu.com/images/SQuYf.gif)](https://www.youtube.com/watch?v=JXmSUmM66nw)
 
-You can try it yourself here:
-
-<iframe frameborder="0" src="https://itch.io/embed/2153694?linkback=true&amp;dark=true" width="552" height="167"><a href="https://border-nine.itch.io/biomatrix">Biomatrix by border_nine</a></iframe>
-
-[Alt Text](https://itch.io/embed/2153694?bg_color=222222&fg_color=ffffff&link_color=b50014&border_color=363636)
+## [Click and try the game in browser](https://border-nine.itch.io/biomatrix)
 
 You can find game scripts (c# classes) here: [C# Scripts](https://github.com/Ninellie/2d_game_prototype/tree/main/Assets/Scripts)
 
