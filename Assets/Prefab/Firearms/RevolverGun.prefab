@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7478297182190854537}
   - component: {fileID: -5820009616735749093}
   m_Layer: 7
-  m_Name: Pistol
+  m_Name: RevolverGun
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,11 +92,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   shootForce: 1600
-  shootsPerSecond: 3
+  shootsPerSecond: 5
   maxShootDeflectionAngle: 10
   magazineCapacity: 6
   reloadTime: 2
   singleShootProjectile: 1
   projectileSizeMultiplier: 0
-  projectilePierceCount: 10
+  projectilePierceCount: 2
   addedProjectileKnockback: 10

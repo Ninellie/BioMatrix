@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7478297182190854537}
   - component: {fileID: -5820009616735749093}
   m_Layer: 7
-  m_Name: TurretPistol
+  m_Name: TurretGun
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
