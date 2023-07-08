@@ -2192,7 +2192,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 320754240}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eee4453aa99faa84d95324d5c0b4b461, type: 3}
   m_Name: 
@@ -2201,7 +2201,7 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 84670f1adb0c9514082fa689fa062041, type: 2}
     prefab: {fileID: 0}
     spawnWeight: 1
-  _fillAtStart: 1
+  _fillAtStart: 0
   _fillingFramesCount: 4
   _delayBetweenFillings: 0.05
 --- !u!1 &345413497
@@ -2262,7 +2262,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: you win!
+  m_text: 'Win!
+
+    You are amazing!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e49880e4f0c6b87468833251cb2fc2a2, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5705,7 +5707,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BACK
+  m_text: Back
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e49880e4f0c6b87468833251cb2fc2a2, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6263,14 +6265,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7890d1b3bc2e65d48a89519cfa82fbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activationTime: 0.05
-  _activationDuration: 0.1
+  _activationTime: 2
+  _activationDuration: 2.5
   _activationDelay: 5
   _blinkingTime: 1
   _blinkTime: 0.1
   _activatedColor: {r: 1, g: 1, b: 1, a: 1}
-  _deactivatedColor: {r: 1, g: 1, b: 1, a: 0.14901961}
-  _blinkingColor: {r: 1, g: 1, b: 1, a: 0.101960786}
+  _deactivatedColor: {r: 1, g: 1, b: 1, a: 0.2627451}
+  _blinkingColor: {r: 1, g: 1, b: 1, a: 0.2627451}
   _isActive: 0
   _isCharging: 0
   _isBlinking: 0
@@ -7543,7 +7545,7 @@ PrefabInstance:
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _playerWeapon
       value: 
-      objectReference: {fileID: 3233653779076600719, guid: 1b37dcc3b13ce0a47971f10497cde577, type: 3}
+      objectReference: {fileID: 3233653779076600719, guid: 1efe1dd8adcbfe74595487da48627252, type: 3}
     - target: {fileID: 1365173418, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _secondsBetweenWaves
       value: 1
@@ -9948,7 +9950,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: back to main menu
+  m_text: Back to main menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e49880e4f0c6b87468833251cb2fc2a2, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

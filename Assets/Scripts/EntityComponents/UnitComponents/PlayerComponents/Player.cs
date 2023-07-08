@@ -35,7 +35,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public Resource Exp { get; set; }
 
         private const int ExperienceToSecondLevel = 20;
-        private const int ExperienceAmountIncreasingPerLevel = 5;
+        private const int ExperienceAmountIncreasingPerLevel = 15;
         private const int InitialLevel = 1;
 
         private MovementControllerPlayer _movementController;
