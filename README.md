@@ -1,11 +1,15 @@
-# 2d_game_prototype
-This is my 2D game prototype
+# Biomatrix
+This is my 2D top-dawn shooter
 
-Now the game is a pixel-style top-down shooter where you need to survive 5 minutes while being besieged by hordes of monsters to win.
+It is a pixelart-style top-down shooter where you need to survive 5 minutes while being besieged by hordes of monsters to win.
 
 > click on gif for full video
 
 [![Alt Text](https://s12.gifyu.com/images/SQuYf.gif)](https://www.youtube.com/watch?v=JXmSUmM66nw)
+
+You can try it yourself here:
+
+<iframe frameborder="0" src="https://itch.io/embed/2153694?bg_color=222222&amp;fg_color=ffffff&amp;link_color=b50014&amp;border_color=363636" width="552" height="167"><a href="https://border-nine.itch.io/biomatrix">Biomatrix by border_nine</a></iframe>
 
 You can find game scripts (c# classes) here: [C# Scripts](https://github.com/Ninellie/2d_game_prototype/tree/main/Assets/Scripts)
 
