@@ -59,7 +59,7 @@ namespace Assets.Scripts.EntityComponents.Effects
             {
                 foreach (var tuple in ResourceValues)
                 {
-                    _target.AddResourceValue(tuple.value, tuple.resourcePath);
+                    _target.IncreaseResourceValue(tuple.value, tuple.resourcePath);
                 }
             }
         }

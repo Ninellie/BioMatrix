@@ -206,13 +206,13 @@ namespace Assets.Scripts.EntityComponents
             stat?.RemoveModifier(statModifier);
         }
         
-        public void AddResourceValue(int value, string resourcePath)
+        public void IncreaseResourceValue(int value, string resourcePath)
         {
             var resource = (Resource)EventHelper.GetPropByPath(this, resourcePath);
             resource?.Increase(value);
         }
 
-        public void RemoveResourceValue(int value, string resourcePath)
+        public void DecreaseResourceValue(int value, string resourcePath)
         {
             var resource = (Resource)EventHelper.GetPropByPath(this, resourcePath);
             resource?.Decrease(value);
