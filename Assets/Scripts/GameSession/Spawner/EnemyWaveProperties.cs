@@ -13,7 +13,7 @@ namespace Assets.Scripts.GameSession.Spawner
         private readonly int _minComplicationDivider;
         private readonly int _maxEnemiesInScene;
         private readonly int _maxEnemiesInSceneMultiplier;
-        public EnemyWaveProperties() : this(6, 3, 1, 60, 2)
+        public EnemyWaveProperties() : this(6, 1, 1, 60, 1)
         {
         }
         public EnemyWaveProperties(int maxSize, int minSize, int firstWaveMultiplier, int complicationValue, int minComplicationDivider)

@@ -11,7 +11,7 @@ namespace Assets.Scripts.GameSession.Spawner
     {
         [Header("Set in Inspector")]
         public GameObject[] enemyPrefabs;
-        [SerializeField] private int _secondsBetweenWaves = 2;
+        [SerializeField] private int _secondsBetweenWaves;
         private readonly System.Random _random = new();
         private readonly Grouping _grouping = new();
         private readonly Rarity _rarity = new();

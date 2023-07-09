@@ -92,10 +92,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   shootForce: 1200
-  shootsPerSecond: 1
+  shootsPerSecond: 0.25
   maxShootDeflectionAngle: 15
   magazineCapacity: 1
-  reloadSpeed: 1000
+  reloadTime: 0
   singleShootProjectile: 1
   projectileSizeMultiplier: 0
   projectilePierceCount: 0

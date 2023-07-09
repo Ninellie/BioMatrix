@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
-  maximumLife: 3333
+  maximumLife: 3
   lifeRegenerationInSecond: 0
   knockbackPower: 100
   damage: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
   accelerationSpeed: 0
   rotationSpeed: 0
   magnetismRadius: 150
-  expMultiplier: 50
+  expMultiplier: 1
 --- !u!114 &2975664437671385834
 MonoBehaviour:
   m_ObjectHideFlags: 0

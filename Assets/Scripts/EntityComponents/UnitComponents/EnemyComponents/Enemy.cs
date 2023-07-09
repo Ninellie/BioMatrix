@@ -27,7 +27,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Enemy
         private float _deathTimer;
         private const float ReturnToDefaultColorSpeed = 5f;
         private const int MinInitialLevel = 1;
-        private const float MaxLifeIncreasePerLevel = 1;
+        private const float MaxLifeIncreasePerLevel = 0;
         private const long OffscreenDieSeconds = 60;
 
         private Entity _lastDamageSource;
