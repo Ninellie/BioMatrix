@@ -34,7 +34,6 @@ namespace Assets.Scripts.EntityComponents.Effects
         {
             while (!StacksCount.IsEmpty)
             {
-                DecreaseResource();
                 StacksCount.Decrease();
             }
         }
