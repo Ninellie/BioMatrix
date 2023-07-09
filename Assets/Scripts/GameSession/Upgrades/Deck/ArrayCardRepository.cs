@@ -137,7 +137,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun Movement Experience 1",
-                Description = "Gain stack of Adrenalin per exp taken\r\nAdrenalin is the effect, that gives you +1% Movement speed and +1% Firerate per stack\r\nMaximum 50 stacks\r\nDuration is updated when a new stack is received.",
+                Description = "Gain stack of Adrenalin for 5 sec per exp taken\r\nAdrenalin is the effect, that gives you +5% Movement speed and +5% Firerate per stack\r\nMaximum 10 stacks\r\nDuration is updated when a new stack is received.",
                 Id = 10,
                 DeckId = 4,
                 OrderInDeck = 1,
