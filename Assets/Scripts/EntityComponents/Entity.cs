@@ -96,7 +96,7 @@ namespace Assets.Scripts.EntityComponents
 
             foreach (var effectName in effectsNameToRemoveStack)
             {
-                foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effectName))
+                foreach (var myEffect in effectsTemp.Where(myEffect => myEffect.Name == effectName))
                 {
                     myEffect.StacksCount.Decrease();
                     if (!myEffect.StacksCount.IsEmpty) return;
