@@ -208,14 +208,14 @@ namespace Assets.Scripts.EntityComponents
         
         public void AddResourceValue(int value, string resourcePath)
         {
-            var stat = (Resource)EventHelper.GetPropByPath(this, resourcePath);
-            stat?.Increase(value);
+            var resource = (Resource)EventHelper.GetPropByPath(this, resourcePath);
+            resource?.Increase(value);
         }
 
         public void RemoveResourceValue(int value, string resourcePath)
         {
-            var stat = (Resource)EventHelper.GetPropByPath(this, resourcePath);
-            stat?.Decrease(value);
+            var resource = (Resource)EventHelper.GetPropByPath(this, resourcePath);
+            resource?.Decrease(value);
         }
 
         protected virtual void Death()
