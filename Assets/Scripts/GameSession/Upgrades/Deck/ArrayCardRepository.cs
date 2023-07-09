@@ -70,7 +70,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun Turret 2",
-                Description = "Turret shoots where the player shoots, +50 turret Firerate",
+                Description = "Turret shoots where the player shoots\r\n+50 turret Firerate",
                 Id = 5,
                 DeckId = 2,
                 OrderInDeck = 2,
@@ -83,7 +83,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun Turret 3",
-                Description = "While magazine full, turrets get +2 projectiles",
+                Description = "While magazine full turrets get +2 projectiles",
                 Id = 6,
                 DeckId = 2,
                 OrderInDeck = 3,
@@ -97,7 +97,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun Vitality 1",
-                Description = "+ 1 Max HP, +100% Projectile size multiplier",
+                Description = "+ 1 Max HP\r\n+100% Projectile size multiplier",
                 Id = 7,
                 DeckId = 3,
                 OrderInDeck = 1,
@@ -123,7 +123,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun Vitality 3",
-                Description = "+100% Firerate, +50% Firearm Damage while you have only 1 hp",
+                Description = "+100% Firerate\r\n+50% Firearm Damage while you have only 1 hp",
                 Id = 9,
                 DeckId = 3,
                 OrderInDeck = 3,
@@ -137,7 +137,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun Movement Experience 1",
-                Description = "Gain stack of Adrenalin per exp taken. Adrenalin is the effect, that gives you +1% Movement speed and +1% Firerate per stack. Maximum 50 stacks. Duration is updated when a new stack is received.",
+                Description = "Gain stack of Adrenalin per exp taken\r\nAdrenalin is the effect, that gives you +1% Movement speed and +1% Firerate per stack\r\nMaximum 50 stacks\r\nDuration is updated when a new stack is received.",
                 Id = 10,
                 DeckId = 4,
                 OrderInDeck = 1,
@@ -150,7 +150,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Gun Movement Experience 2",
-                Description = "+25% Movement speed multiplier, +25% Projectile speed multiplier",
+                Description = "+25% Movement speed multiplier\r\n+25% Projectile speed multiplier",
                 Id = 11,
                 DeckId = 4,
                 OrderInDeck = 2,
@@ -230,7 +230,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Turret Shield 2",
-                Description = "+ 100% shield regeneration rate",
+                Description = "+100% shield regeneration rate",
                 Id = 17,
                 DeckId = 6,
                 OrderInDeck = 2,
@@ -257,7 +257,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Turret Movement Magnetism 1",
-                Description = "+25% magnetism radius, \r\n+10% movement speed per active turret",
+                Description = "+25% magnetism radius\r\n+10% movement speed per active turret",
                 Id = 19,
                 DeckId = 7,
                 OrderInDeck = 1,
@@ -350,7 +350,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Shield Magnetism 2",
-                Description = "+1 max rechargeable shield layer\r\n+ 25% magnetism radius",
+                Description = "+1 max rechargeable shield layer\r\n+25% magnetism radius",
                 Id = 26,
                 DeckId = 9,
                 OrderInDeck = 2,
