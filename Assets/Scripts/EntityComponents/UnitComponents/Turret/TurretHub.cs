@@ -115,12 +115,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
                     dif--;
                 }
             }
-
             if (dif < 0)
             {
                 while (dif != 0)
                 {
-                    Invoke(nameof(CreateTurret), delay);
+                    Invoke(nameof(DestroyTurret), delay);
                     delay++;
                     dif++;
                 }
