@@ -13,7 +13,7 @@ namespace Assets.Scripts.GameSession.Spawner
         private readonly int _minComplicationDivider;
         private readonly int _maxEnemiesInScene;
         private readonly int _maxEnemiesInSceneMultiplier;
-        public EnemyWaveProperties() : this(6, 3, 3, 60, 2)
+        public EnemyWaveProperties() : this(6, 3, 1, 60, 2)
         {
         }
         public EnemyWaveProperties(int maxSize, int minSize, int firstWaveMultiplier, int complicationValue, int minComplicationDivider)
@@ -52,15 +52,12 @@ namespace Assets.Scripts.GameSession.Spawner
         }
         public int GetMinSize(WaveType waveType)
         {
-            switch (waveType)
+            return waveType switch
             {
-                case WaveType.Normal:
-                    return GetMinNormalSize();
-                case WaveType.First:
-                    return _minSize * _firstWaveMultiplier;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(waveType), waveType, null);
-            }
+                WaveType.Normal => GetMinNormalSize(),
+                WaveType.First => _minSize * _firstWaveMultiplier,
+                _ => throw new ArgumentOutOfRangeException(nameof(waveType), waveType, null)
+            };
         }
         private int GetMaxNormalSize()
         {
