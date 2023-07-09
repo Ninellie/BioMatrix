@@ -221,7 +221,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Id = 16,
                 DeckId = 6,
                 OrderInDeck = 1,
-                DropWeight = 1,
+                DropWeight = 1000,
                 Effects = new[]
                 {
                     EffectRepository.Get("TurretShield1")
@@ -234,7 +234,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Id = 17,
                 DeckId = 6,
                 OrderInDeck = 2,
-                DropWeight = 1,
+                DropWeight = 1000,
                 Effects = new[]
                 {
                     EffectRepository.Get("TurretShield2")
@@ -247,10 +247,10 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Id = 18,
                 DeckId = 6,
                 OrderInDeck = 3,
-                DropWeight = 1,
+                DropWeight = 1000,
                 Effects = new[]
                 {
-                    EffectRepository.Get("TurretShield3")
+                    EffectRepository.Get("TurretShield3") // TODO
                 },
             },
             // Turret Movement Magnetism deck

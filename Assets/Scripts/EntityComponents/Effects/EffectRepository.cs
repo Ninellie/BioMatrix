@@ -35,7 +35,7 @@ namespace Assets.Scripts.EntityComponents.Effects
                     false
                 ),
             };
-            AttachResourceAdderEffects = new Dictionary<string, AttachResourceIncreaserEffect>
+            AttachResourceIncreaserEffects = new Dictionary<string, AttachResourceIncreaserEffect>
             {
                 // Turret
                 ["PlayerTurretHubTurretsAdd1"] = new AttachResourceIncreaserEffect
@@ -559,7 +559,7 @@ namespace Assets.Scripts.EntityComponents.Effects
                     nameof(Player.Shield) + "." + nameof(Shield.LayersCount) + "." + nameof(Resource.IsEmpty),
                     new List<(IEffect effect, int stackCount)>
                     {
-                        (AttachResourceAdderEffects["PlayerTurretHubTurretsAdd1"], 1)
+                        (AttachResourceIncreaserEffects["PlayerTurretHubTurretsAdd1"], 1)
                     }
                     
                 ),
@@ -689,7 +689,7 @@ namespace Assets.Scripts.EntityComponents.Effects
                     nameof(Player),
                     new List<(IEffect effect, int stackCount)>
                     {
-                        (effect: AttachResourceAdderEffects["PlayerTurretHubTurretsAdd1"], stackCount: 1),
+                        (effect: AttachResourceIncreaserEffects["PlayerTurretHubTurretsAdd1"], stackCount: 1),
                     }
                 ),
                 [nameof(CardTag.Gun) + nameof(CardTag.Turret) + 2] = new AttachEffectAdderEffect
@@ -786,7 +786,7 @@ namespace Assets.Scripts.EntityComponents.Effects
                     nameof(Player),
                     new List<(IEffect effect, int stackCount)>
                     {
-                        (effect: AttachResourceAdderEffects["PlayerTurretHubTurretsAdd1"], stackCount: 1),
+                        (effect: AttachResourceIncreaserEffects["PlayerTurretHubTurretsAdd1"], stackCount: 1),
                     }
                 ),
                 [nameof(CardTag.Turret) + 2] = new AttachEffectAdderEffect
@@ -872,7 +872,7 @@ namespace Assets.Scripts.EntityComponents.Effects
                     nameof(Player),
                     new List<(IEffect effect, int stackCount)>
                     {
-                        (effect: AttachResourceAdderEffects["PlayerTurretHubTurretsAdd1"], stackCount: 1),
+                        (effect: AttachResourceIncreaserEffects["PlayerTurretHubTurretsAdd1"], stackCount: 1),
                         (effect: AttachModAdderEffects[nameof(Player) + nameof(Player.MagnetismRadius) + nameof(OperationType.Multiplication) + 25], stackCount: 2),
                     }
                 ),
@@ -946,7 +946,7 @@ namespace Assets.Scripts.EntityComponents.Effects
 
         private static readonly Dictionary<string, ResourceIncreaserOnEventEffect> IncreaseResourceOnEffects;
         
-        private static readonly Dictionary<string, AttachResourceIncreaserEffect> AttachResourceAdderEffects;
+        private static readonly Dictionary<string, AttachResourceIncreaserEffect> AttachResourceIncreaserEffects;
 
         private static readonly Dictionary<string, AttachModAdderEffect> AttachModAdderEffects;
 
