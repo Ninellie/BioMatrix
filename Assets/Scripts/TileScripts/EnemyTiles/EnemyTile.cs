@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-
 public class EnemyTile : MonoBehaviour
 {
     [Header("Settings")]
