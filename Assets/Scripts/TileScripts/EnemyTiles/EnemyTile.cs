@@ -87,11 +87,6 @@ public class EnemyTile : MonoBehaviour
         StartCoroutine(InitActivation());
     }
 
-    //private IEnumerator InitBlink()
-    //{
-    //    yield return new WaitForSeconds(_blinkingTime);
-    //}
-
     private IEnumerator InitActivation()
     {
         yield return new WaitForSeconds(_activationTime * 60);
