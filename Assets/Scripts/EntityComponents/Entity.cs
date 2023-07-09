@@ -84,11 +84,37 @@ namespace Assets.Scripts.EntityComponents
 
         public void RemoveEffectStack(IEffect effect)
         {
-            foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effect.Name))
+            var effectsTemp = effects;
+            var effectsNameToRemoveStack = new List<string>();
+            var effectsNameToRemove = new List<string>();
+            var effectsToRemove = new List<IEffect>();
+
+            foreach (var myEffect in effectsTemp.Where(myEffect => myEffect.Name == effect.Name))
             {
-                myEffect.StacksCount.Decrease();
-                if (!myEffect.StacksCount.IsEmpty) return;
-                RemoveEffect(effect);
+                effectsNameToRemoveStack.Add(myEffect.Name);
+            }
+
+            foreach (var effectName in effectsNameToRemoveStack)
+            {
+                foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effectName))
+                {
+                    myEffect.StacksCount.Decrease();
+                    if (!myEffect.StacksCount.IsEmpty) return;
+                    effectsNameToRemove.Add(effect.Name);
+                }
+            }
+            
+            foreach (var effectName in effectsNameToRemove)
+            {
+                foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effectName))
+                {
+                    effectsToRemove.Add(myEffect);
+                }
+            }
+
+            foreach (var effectToRemove in effectsToRemove)
+            {
+                RemoveEffect(effectToRemove);
             }
         }
 
