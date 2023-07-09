@@ -341,7 +341,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Id = 25,
                 DeckId = 9,
                 OrderInDeck = 1,
-                DropWeight = 100,
+                DropWeight = 1,
                 Effects = new[]
                 {
                     EffectRepository.Get("ShieldMagnetism1")
@@ -354,7 +354,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Id = 26,
                 DeckId = 9,
                 OrderInDeck = 2,
-                DropWeight = 100,
+                DropWeight = 1,
                 Effects = new[]
                 {
                     EffectRepository.Get("ShieldMagnetism2")
@@ -367,7 +367,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Id = 27,
                 DeckId = 9,
                 OrderInDeck = 3,
-                DropWeight = 100,
+                DropWeight = 1,
                 Effects = new[]
                 {
                     EffectRepository.Get("ShieldMagnetism3")
