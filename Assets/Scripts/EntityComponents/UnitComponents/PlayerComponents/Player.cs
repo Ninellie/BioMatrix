@@ -43,6 +43,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private CircleCollider2D _circleCollider;
         private SpriteRenderer _spriteRenderer;
+        private Animator _animator;
+        private string _currentState;
 
         private void Awake() => BaseAwake(Settings);
 
@@ -65,8 +67,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             Debug.Log($"{gameObject.name} {nameof(Player)} Awake");
             base.BaseAwake(settings);
 
+            _animator = GetComponent<Animator>();
             _circleCollider = GetComponent<CircleCollider2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+
             _invulnerability = GetComponent<Invulnerability>();
             Shield = GetComponent<Shield>();
 
@@ -235,26 +239,43 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _circleCollider.radius = Math.Max(MagnetismRadius.Value, 0);
         }
 
+        private void ChangeAnimationState(string newState)
+        {
+            if (_currentState == newState) return;
+            _animator.Play(newState);
+        }
+
         public void OnMove(InputValue input)
         {
+            ChangeAnimationState("Run");
             var inputVector2 = input.Get<Vector2>();
             _movementController.SetDirection(inputVector2);
+
             _spriteRenderer.flipX = inputVector2.x switch
             {
-                < 0 => true,
-                > 0 => false,
+                < 0 => false,
+                > 0 => true,
                 _ => _spriteRenderer.flipX
             };
+
+            if (inputVector2 == Vector2.zero)
+            {
+                ChangeAnimationState("Idle");
+            }
         }
 
         public void OnFire()
         {
+            const float animationFireSpeed = 0.5f;
+            _animator.speed = animationFireSpeed;
             IsFireButtonPressed = true;
             FireEvent?.Invoke();
         }
 
         public void OnFireOff()
         {
+            const int animationFireSpeed = 1;
+            _animator.speed = animationFireSpeed;
             IsFireButtonPressed = false;
             FireOffEvent?.Invoke();
         }
