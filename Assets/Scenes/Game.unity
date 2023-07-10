@@ -7541,7 +7541,7 @@ PrefabInstance:
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _playerPrefab
       value: 
-      objectReference: {fileID: 6671026415413744665, guid: d16847cff832e5b4499206093f8d71b4, type: 3}
+      objectReference: {fileID: 6671026415413744665, guid: 9220246068dbc814b83d476f03916742, type: 3}
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _playerWeapon
       value: 
