@@ -23,7 +23,6 @@ namespace Assets.Scripts.GameSession.UIScripts.View
         [SerializeField] private float _delayBeforeClickableCardsInSeconds;
         [SerializeField] private float _cardsImageSize;
 
-
         private List<Card> _selectedCards = new();
         private static readonly ICardRepository CardRepository = new ArrayCardRepository();
         private readonly CardManager _cardManager = new(CardRepository);
