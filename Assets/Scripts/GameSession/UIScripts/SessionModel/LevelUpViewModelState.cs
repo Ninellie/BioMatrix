@@ -22,6 +22,7 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
             _viewModel.ChangeState(ViewModelStateType.Active);
             _viewController.CloseLevelUp();
             _viewController.Unfreeze();
+            _viewController.Repulse();
         }
         public void Options()
         {

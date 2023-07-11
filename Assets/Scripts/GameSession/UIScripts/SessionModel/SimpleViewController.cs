@@ -1,4 +1,5 @@
 using System;
+using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.GameSession.UIScripts.View;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,8 +9,8 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
     public class SimpleViewController : IViewController
     {
         private readonly PlayerInput _playerInput;
+        private readonly Player _player;
         private LevelUp _levelUp;
-
         private GameObject _menuUI;
         private GameObject _optionsUI;
         private GameObject _levelUpUI;
@@ -19,6 +20,7 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 
         public SimpleViewController(PlayerInput playerInput, GameObject menuUI, GameObject optionsUI, GameObject levelUpUI, GameObject winScreenUI, GameObject loseScreenUI, GameObject startScreenUI)
         {
+            _player = playerInput.gameObject.GetComponent<Player>();
             _playerInput = playerInput ?? throw new ArgumentNullException(nameof(playerInput));
             _menuUI = menuUI ?? throw new ArgumentNullException(nameof(menuUI));
             _optionsUI = optionsUI ?? throw new ArgumentNullException(nameof(optionsUI));
@@ -36,6 +38,11 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         {
             Time.timeScale = 1f;
             _playerInput.SwitchCurrentActionMap("Player");
+        }
+        public void Repulse()
+        {
+            _player.Shield.LayersCount.Increase();
+            _player.Shield.LayersCount.Decrease();
         }
         public void OpenMenu()
         {
