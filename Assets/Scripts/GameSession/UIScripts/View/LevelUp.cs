@@ -18,6 +18,7 @@ namespace Assets.Scripts.GameSession.UIScripts.View
         [SerializeField] private ViewController _viewController;
         [SerializeField] private readonly int _givenCardsCount = 3;
         [SerializeField] private float _delayBeforeClickableCardsInSeconds;
+        [SerializeField] private float _pixelsPerStep;
         [SerializeField] private float _cardsImageSize;
 
         private List<Card> _selectedCards = new();
@@ -121,18 +122,16 @@ namespace Assets.Scripts.GameSession.UIScripts.View
             cardImage.fillAmount = 0;
             var cardImageAlpha = 0f;
             cardImage.color = new Color(1, 1, 1, cardImageAlpha);
-
-            var fillingStep = 1 / _cardsImageSize;
-            var fillingAndAlphaStepPerSecond = 1f / _delayBeforeClickableCardsInSeconds;
+            var fillingStep = 1 / _cardsImageSize * _pixelsPerStep; ;
 
             card.SetActive(true);
 
             while (cardImage.fillAmount < 1)
             {
-                var delay = _delayBeforeClickableCardsInSeconds / _cardsImageSize;
-                yield return new WaitForSecondsRealtime(delay);
+                var fillingAndAlphaStepPerSecond = _delayBeforeClickableCardsInSeconds * Time.unscaledDeltaTime;
+                yield return new WaitForSecondsRealtime(fillingAndAlphaStepPerSecond);
                 cardImage.fillAmount += fillingStep;
-                cardImageAlpha += fillingAndAlphaStepPerSecond * Time.fixedDeltaTime;
+                cardImageAlpha += fillingStep;
                 cardImage.color = new Color(1, 1, 1, cardImageAlpha);
             }
 
