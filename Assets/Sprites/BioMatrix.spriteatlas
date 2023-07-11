@@ -46,7 +46,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-    - {fileID: 2800000, guid: 8e4e326f7afe325499841121c13d822f, type: 3}
+    - {fileID: -8328923581568760697, guid: 3fdb0a60d64ddc043805cbb5c37d77fa, type: 3}
     - {fileID: 2800000, guid: 127af07b54a3c014eb6a9987d8f8441a, type: 3}
     - {fileID: 2800000, guid: a493cb95aae29af46b1cba06c929ada2, type: 3}
     - {fileID: 2800000, guid: b141692ef63beeb4cbfc028ec3192468, type: 3}
@@ -77,6 +77,8 @@ SpriteAtlas:
     - 1ea43a4077f5ca04883948b5f538e1ba: 2631990251577133251
     - 1ea43a4077f5ca04883948b5f538e1ba: 1081514941387346388
     - 1ea43a4077f5ca04883948b5f538e1ba: -7571036577011792519
+    - 3fdb0a60d64ddc043805cbb5c37d77fa: -1013476454334267298
+    - 3fdb0a60d64ddc043805cbb5c37d77fa: -3727708252540023451
     - a493cb95aae29af46b1cba06c929ada2: 1047002800
     - a493cb95aae29af46b1cba06c929ada2: 138781213
     - a493cb95aae29af46b1cba06c929ada2: -808644665
@@ -137,8 +139,6 @@ SpriteAtlas:
     - 127af07b54a3c014eb6a9987d8f8441a: -1230191618
     - b141692ef63beeb4cbfc028ec3192468: 21300000
     - 80d81b4e34197e24b9300e6857e5ae84: 21300000
-    - 8e4e326f7afe325499841121c13d822f: -238126526
-    - 8e4e326f7afe325499841121c13d822f: 10297476
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: -5276368667299669577, guid: 1ea43a4077f5ca04883948b5f538e1ba, type: 3}
@@ -163,6 +163,8 @@ SpriteAtlas:
   - {fileID: 2631990251577133251, guid: 1ea43a4077f5ca04883948b5f538e1ba, type: 3}
   - {fileID: 1081514941387346388, guid: 1ea43a4077f5ca04883948b5f538e1ba, type: 3}
   - {fileID: -7571036577011792519, guid: 1ea43a4077f5ca04883948b5f538e1ba, type: 3}
+  - {fileID: -1013476454334267298, guid: 3fdb0a60d64ddc043805cbb5c37d77fa, type: 3}
+  - {fileID: -3727708252540023451, guid: 3fdb0a60d64ddc043805cbb5c37d77fa, type: 3}
   - {fileID: 1047002800, guid: a493cb95aae29af46b1cba06c929ada2, type: 3}
   - {fileID: 138781213, guid: a493cb95aae29af46b1cba06c929ada2, type: 3}
   - {fileID: -808644665, guid: a493cb95aae29af46b1cba06c929ada2, type: 3}
@@ -223,8 +225,6 @@ SpriteAtlas:
   - {fileID: -1230191618, guid: 127af07b54a3c014eb6a9987d8f8441a, type: 3}
   - {fileID: 21300000, guid: b141692ef63beeb4cbfc028ec3192468, type: 3}
   - {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  - {fileID: -238126526, guid: 8e4e326f7afe325499841121c13d822f, type: 3}
-  - {fileID: 10297476, guid: 8e4e326f7afe325499841121c13d822f, type: 3}
   m_PackedSpriteNamesToIndex:
   - bourgeon_Frame_18
   - bourgeon_Frame_21
@@ -248,6 +248,8 @@ SpriteAtlas:
   - bourgeon_Frame_6
   - bourgeon_Frame_5
   - bourgeon_Frame_4
+  - Mite32_Frame_0
+  - Mite32_Frame_1
   - BioMatrixAtlas_32_28
   - BioMatrixAtlas_32_29
   - BioMatrixAtlas_32_20
@@ -308,8 +310,6 @@ SpriteAtlas:
   - ExpCrystalIdle2_0
   - dragon_32
   - SimpleBullet
-  - Mite32_2_1
-  - Mite32_2_0
   m_RenderDataMap: {}
   m_Tag: BioMatrix
   m_IsVariant: 0

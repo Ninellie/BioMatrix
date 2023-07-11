@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a850ce09077234ea53b4b6791f923b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 0.3
+  size: 1.2
   maximumLife: 5
   lifeRegenerationInSecond: 0
   knockbackPower: 150
@@ -132,12 +132,12 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 10297476, guid: 8e4e326f7afe325499841121c13d822f, type: 3}
+  m_Sprite: {fileID: -1013476454334267298, guid: 3fdb0a60d64ddc043805cbb5c37d77fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1
   m_DrawMode: 0
-  m_Size: {x: 128, y: 128}
+  m_Size: {x: 30, y: 30}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -153,8 +153,8 @@ Animator:
   m_GameObject: {fileID: 8954189743293124748}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5787f8fa769be9b4aafa98a20517e323, type: 2}
-  m_CullingMode: 0
+  m_Controller: {fileID: -2874824923208603544, guid: 3fdb0a60d64ddc043805cbb5c37d77fa, type: 3}
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -211,7 +211,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 50
+  m_Radius: 12
 --- !u!50 &3774024594271913881
 Rigidbody2D:
   serializedVersion: 4
