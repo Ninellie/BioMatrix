@@ -97,7 +97,7 @@ MonoBehaviour:
   accelerationSpeed: 0
   rotationSpeed: 0
   magnetismRadius: 75
-  expMultiplier: 1
+  expMultiplier: 2
 --- !u!114 &2975664437671385834
 MonoBehaviour:
   m_ObjectHideFlags: 0
