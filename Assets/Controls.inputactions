@@ -143,8 +143,8 @@
                 {
                     "name": "",
                     "id": "d4608957-6502-457b-b879-e060ecf923a5",
-                    "path": "<Touchscreen>/touch*/Press",
-                    "interactions": "MultiTap(tapCount=3)",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Mobile",
                     "action": "Pause",
@@ -241,6 +241,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PC_Control_scheme",
+                    "action": "Unpause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5b7c900a-69a2-4e9a-bd71-a3765aa44845",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
                     "action": "Unpause",
                     "isComposite": false,
                     "isPartOfComposite": false
