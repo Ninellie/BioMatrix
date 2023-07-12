@@ -52,6 +52,7 @@ MonoBehaviour:
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  _currentFireDirection: {x: 0, y: 0}
 --- !u!114 &2073174384341714352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +94,7 @@ MonoBehaviour:
   damage: 10
   shootForce: 1600
   shootsPerSecond: 4
-  maxShootDeflectionAngle: 7
+  maxShootDeflectionAngle: 3
   magazineCapacity: 6
   reloadTime: 1
   singleShootProjectile: 1

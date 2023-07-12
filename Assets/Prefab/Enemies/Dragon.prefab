@@ -53,7 +53,7 @@ MonoBehaviour:
   _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
   _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
   _enemyType: 0
-  _dieOnPlayerCollision: 0
+  _dieOnPlayerCollision: 1
 --- !u!114 &-4503049236320595623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
   lifeRegenerationInSecond: 0
   knockbackPower: 150
   damage: 1
-  speed: 150
+  speed: 140
   accelerationSpeed: 0
   rotationSpeed: 0
   spawnWeight: 5
@@ -87,8 +87,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0390a211e5d5e0b4bb535708aa195495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _repulseForce: 0.5
-  _penetrationDistanceMultiplier: 1
+  _repulseForce: 0.4
+  _penetrationDistanceMultiplier: 1.1
   _layerName: Enemy
 --- !u!212 &3572984765799172596
 SpriteRenderer:
