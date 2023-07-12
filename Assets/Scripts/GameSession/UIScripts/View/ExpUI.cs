@@ -37,7 +37,7 @@ namespace Assets.Scripts.GameSession.UIScripts.View
         private void UpdateExperienceBar()
         {
             var expToNextLvlValue = _player.Exp.GetLackValue();
-            var experienceToNextLevelText = $"exp to next level: {expToNextLvlValue}";
+            var experienceToNextLevelText = $"Exp to next level: {expToNextLvlValue}";
             experienceToNextLevelBar.text = experienceToNextLevelText;
             Debug.Log("Experience bar was updated");
         }
