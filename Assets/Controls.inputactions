@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FirePosition",
+                    "type": "Value",
+                    "id": "872f0115-4e3f-4426-9bce-f343ba33ea1d",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -100,6 +109,17 @@
                 },
                 {
                     "name": "",
+                    "id": "58dd799d-ca8f-4a88-ae86-251aea8a6c56",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "38b97f04-3661-49eb-81b0-7b041e37c81d",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -124,9 +144,20 @@
                     "name": "",
                     "id": "92137e0f-42f2-4e07-8607-bdea75781675",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Press(pressPoint=1.401298E-45)",
+                    "interactions": "Press(pressPoint=0.1)",
                     "processors": "",
                     "groups": "PC_Control_scheme",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5551378c-8f64-4a3e-ae7e-fea02d62c0e9",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -139,6 +170,17 @@
                     "processors": "",
                     "groups": "PC_Control_scheme",
                     "action": "FireOff",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a94185f-3e61-430e-8daa-5fad3bbe0261",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC_Control_scheme",
+                    "action": "FirePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -203,6 +245,22 @@
                 {
                     "devicePath": "<Mouse>",
                     "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Mobile",
+            "bindingGroup": "Mobile",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": true,
                     "isOR": false
                 }
             ]

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Assets.Scripts.Core;
 using Assets.Scripts.EntityComponents;
 using Assets.Scripts.EntityComponents.Stats;
@@ -19,6 +20,7 @@ namespace Assets.Scripts.Weapons
         [SerializeField] private GameObject _ammo;
         [SerializeField] private bool _isForPlayer;
         [SerializeField] private LayerMask _enemyLayer;
+        [SerializeField] private Vector2 _currentFireDirection;
 
         public Entity Holder { get; private set; }
         public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
@@ -111,6 +113,11 @@ namespace Assets.Scripts.Weapons
         {
             return _isForPlayer;
         }
+
+        public void SetDirection(Vector2 direction)
+        {
+            _currentFireDirection = direction;
+        }
     
         private void Shoot()
         {
@@ -154,46 +161,74 @@ namespace Assets.Scripts.Weapons
             trail.startWidth = projectile.GetComponent<CircleCollider2D>().radius * 2 * projectile.Size.Value;
         }
 
-        private Vector2 GetShotDirection()
-        {
-            if (_isForPlayer || _player.TurretHub.IsSameTurretTarget)
-            {
-                return Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - gameObject.transform.position;
-            }
-
-            Camera mainCamera = Camera.main;
-            Vector3 cameraPos = mainCamera.transform.position;
-            Vector3 cameraTopRight =
-                new Vector3(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize, 0f) + cameraPos;
-            Vector3 cameraBottomLeft =
-                new Vector3(-mainCamera.aspect * mainCamera.orthographicSize, -mainCamera.orthographicSize, 0f) + cameraPos;
-            Collider2D[] colliders = Physics2D.OverlapAreaAll(cameraBottomLeft, cameraTopRight, _enemyLayer);
-
-            if (colliders.Length == 0)
-            {
-                return Random.insideUnitCircle;
-            }
-
-            Vector2 nearestEnemyDirection = Vector2.zero;
-            float nearestDistance = Mathf.Infinity;
-
-            foreach (Collider2D collider in colliders)
-            {
-                Vector2 direction = (collider.transform.position - transform.position).normalized;
-                float distance = Vector2.Distance(transform.position, collider.transform.position);
-
-                if (distance < nearestDistance)
-                {
-                    nearestDistance = distance;
-                    nearestEnemyDirection = direction;
-                }
-            }
-            return nearestEnemyDirection;
-        }
-
         public void SetHolder(Entity entity)
         {
             Holder = entity;
+        }
+
+        private Vector2 GetShotDirection()
+        {
+            return _isForPlayer ? GetShotDirectionForPlayer() : GetShotDirectionForTurret();
+        }
+
+        private Vector2 GetShotDirectionForTurret()
+        {
+            return _player.TurretHub.IsSameTurretTarget ? GetShotDirectionForPlayer() : Random.insideUnitCircle;
+        }
+
+        private Vector2 GetShotDirectionForPlayer()
+        {
+            var playerAimDirection = _player.CurrentAimDirection;
+            var isAiming = !playerAimDirection.Equals(Vector2.zero);
+
+            return isAiming switch
+            {
+                true => playerAimDirection,
+                false => TryGetDirectionToNearestEnemy(out playerAimDirection) ? playerAimDirection : Random.insideUnitCircle
+            };
+        }
+
+        private bool TryGetDirectionToNearestEnemy(out Vector2 direction)
+        {
+            var directionToNearestEnemy = GetDirectionToNearestEnemy();
+            var isNearestEnemyExists = !directionToNearestEnemy.Equals(Vector2.zero);
+            direction = directionToNearestEnemy;
+            return isNearestEnemyExists;
+        }
+
+        private Vector2 GetDirectionToNearestEnemy()
+        {
+            var nearestEnemies = GetEnemyCollidersInCameraBounds();
+            var directionToNearestEnemy = GetNearestCollider(nearestEnemies);
+            return directionToNearestEnemy;
+        }
+
+        private Vector2 GetNearestCollider(IEnumerable<Collider2D> colliders)
+        {
+            var directionToNearestCollider = Vector2.zero;
+            var distanceToNearestCollider = Mathf.Infinity;
+
+            foreach (var col2D in colliders)
+            {
+                var distance = Vector2.Distance(transform.position, col2D.transform.position);
+
+                if (!(distance < distanceToNearestCollider)) continue;
+
+                distanceToNearestCollider = distance;
+                Vector2 direction = (col2D.transform.position - transform.position).normalized;
+                directionToNearestCollider = direction;
+            }
+            return directionToNearestCollider;
+        }
+
+        private Collider2D[] GetEnemyCollidersInCameraBounds()
+        {
+            var mainCamera = Camera.main;
+            var cameraPos = mainCamera.transform.position;
+            var cameraTopRight = new Vector3(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize, 0f) + cameraPos;
+            var cameraBottomLeft = new Vector3(-mainCamera.aspect * mainCamera.orthographicSize, -mainCamera.orthographicSize, 0f) + cameraPos;
+            var collidersInCameraBounds = Physics2D.OverlapAreaAll(cameraBottomLeft, cameraTopRight, _enemyLayer);
+            return collidersInCameraBounds;
         }
 
         private Vector2 GetActualShotDirection(Vector2 direction, float maxShotDeflectionAngle)

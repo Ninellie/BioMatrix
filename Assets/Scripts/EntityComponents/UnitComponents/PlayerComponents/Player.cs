@@ -30,6 +30,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public TurretHub TurretHub { get; set; }
         public Firearm Firearm { get; private set; }
         public bool IsFireButtonPressed { get; private set; }
+        public Vector2 CurrentAimDirection  { get; private set; }
 
         public Resource Lvl { get; set; }
         public Resource Exp { get; set; }
@@ -264,6 +265,14 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             }
         }
 
+        public void OnFirePosition(InputValue input)
+        {
+            var inputVector2 = input.Get<Vector2>();
+            inputVector2 = (Camera.main.ScreenToWorldPoint(inputVector2) - gameObject.transform.position).normalized;
+            CurrentAimDirection = inputVector2;
+            //Firearm.SetDirection(inputVector2);
+        }
+
         public void OnFire()
         {
             const float animationFireSpeed = 0.5f;
@@ -280,13 +289,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             FireOffEvent?.Invoke();
         }
 
-        public void OnPause(InputValue input)
+        public void OnPause()
         {
             GamePausedEvent?.Invoke();
             Debug.Log("Game on pause");
         }
 
-        public void OnUnpause(InputValue input)
+        public void OnUnpause()
         {
             GamePausedEvent?.Invoke();
             Debug.Log("Game is active");

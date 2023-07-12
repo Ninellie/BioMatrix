@@ -243,14 +243,14 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             new Card
             {
                 Title = "Turret Shield 3",
-                Description = "+50% turret damage while has shield\r\n+1 turret while has no shield",
+                Description = "+50% turret damage while has shield\r\n+100% turrets while has no shield",
                 Id = 18,
                 DeckId = 6,
                 OrderInDeck = 3,
                 DropWeight = 1000,
                 Effects = new[]
                 {
-                    EffectRepository.Get("TurretShield3") // TODO
+                    EffectRepository.Get("TurretShield3")
                 },
             },
             // Turret Movement Magnetism deck

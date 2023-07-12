@@ -67,12 +67,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a850ce09077234ea53b4b6791f923b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 1.2
+  size: 1.4
   maximumLife: 5
   lifeRegenerationInSecond: 0
   knockbackPower: 150
   damage: 1
-  speed: 400
+  speed: 350
   accelerationSpeed: 0
   rotationSpeed: 2
   spawnWeight: 1
