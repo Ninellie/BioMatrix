@@ -11,28 +11,19 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Projectile
         public Entity Source { get; private set; }
         public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
 
+        private TrailRenderer _trail;
+        private CircleCollider2D _circleCollider;
+
         private MovementControllerBullet _movementController;
 
         private void Awake() => BaseAwake(Settings);
-    
+
         private void OnEnable() => BaseOnEnable();
 
-        protected override void BaseOnEnable()
-        {
-            base.BaseOnEnable();
-            KillsCount.IncrementEvent += () => Source.KillsCount.Increase();
-        }
-        
         private void OnDisable() => BaseOnDisable();
 
-        protected override void BaseOnDisable()
-        {
-            base.BaseOnDisable();
-            KillsCount.IncrementEvent -= () => Source.KillsCount.Increase();
-        }
-
         private void Update() => BaseUpdate();
-    
+
         private void FixedUpdate()
         {
             _movementController.FixedUpdateStep();
@@ -42,7 +33,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Projectile
 
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
-            Collider2D otherCollider2D = collision2D.collider;
+            var otherCollider2D = collision2D.collider;
             if (!otherCollider2D.gameObject.CompareTag("Enemy")) return;
             if (!otherCollider2D.gameObject.GetComponent<Enemy.Enemy>().Alive) return;
             TakeDamage(MinimalDamageTaken);
@@ -51,11 +42,24 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Projectile
         protected override void BaseAwake(UnitStatsSettings settings)
         {
             base.BaseAwake(settings);
-
+            _trail = GetComponent<TrailRenderer>();
+            _circleCollider = GetComponent<CircleCollider2D>();
             _movementController = new MovementControllerBullet(this);
             _movementController.FixedUpdateStep();
         }
-    
+
+        protected override void BaseOnEnable()
+        {
+            base.BaseOnEnable();
+            KillsCount.IncrementEvent += () => Source.KillsCount.Increase();
+        }
+
+        protected override void BaseOnDisable()
+        {
+            base.BaseOnDisable();
+            KillsCount.IncrementEvent -= () => Source.KillsCount.Increase();
+        }
+
         protected override void BaseUpdate()
         {
             base.BaseUpdate();
@@ -64,7 +68,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Projectile
                 TakeDamage(LifePoints.GetValue());
             }
         }
-    
+
+        protected override void ChangeCurrentSize()
+        {
+            base.ChangeCurrentSize();
+            _trail.startWidth = _circleCollider.radius * 2 * Size.Value;
+        }
+
         public void Launch(Vector2 direction, float force)
         {
             _movementController.SetDirection(direction);

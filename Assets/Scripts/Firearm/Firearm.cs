@@ -144,21 +144,18 @@ namespace Assets.Scripts.Weapons
 
         private void ImproveProjectile(Projectile projectile)
         {
-            var sizeMod = new StatModifier(OperationType.Multiplication, ProjectileSizeMultiplier.Value);
-            projectile.Size.AddModifier(sizeMod);
+            var statMod = new StatModifier(OperationType.Multiplication, ProjectileSizeMultiplier.Value);
+            projectile.Size.AddModifier(statMod);
 
-            var pierceMod = new StatModifier(OperationType.Addition, ProjectilePierceCount.Value);
-            if (pierceMod.Value > 0) projectile.MaximumLifePoints.AddModifier(pierceMod);
+            statMod = new StatModifier(OperationType.Addition, ProjectilePierceCount.Value);
+            if (statMod.Value > 0) projectile.MaximumLifePoints.AddModifier(statMod);
             projectile.LifePoints.Fill();
 
-            var damageMod = new StatModifier(OperationType.Addition, Damage.Value);
-            if (damageMod.Value > 0) projectile.Damage.AddModifier(damageMod);
+            statMod = new StatModifier(OperationType.Addition, Damage.Value);
+            if (statMod.Value > 0) projectile.Damage.AddModifier(statMod);
 
-            var knockbackMod = new StatModifier(OperationType.Addition, AddedProjectileKnockback.Value);
-            if (knockbackMod.Value > 0) projectile.KnockbackPower.AddModifier(knockbackMod);
-
-            var trail = projectile.gameObject.GetComponent<TrailRenderer>();
-            trail.startWidth = projectile.GetComponent<CircleCollider2D>().radius * 2 * projectile.Size.Value;
+            statMod = new StatModifier(OperationType.Addition, AddedProjectileKnockback.Value);
+            if (statMod.Value > 0) projectile.KnockbackPower.AddModifier(statMod);
         }
 
         public void SetHolder(Entity entity)
