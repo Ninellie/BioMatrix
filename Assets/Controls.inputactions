@@ -142,6 +142,17 @@
                 },
                 {
                     "name": "",
+                    "id": "d4608957-6502-457b-b879-e060ecf923a5",
+                    "path": "<Touchscreen>/touch*/Press",
+                    "interactions": "MultiTap(tapCount=3)",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "92137e0f-42f2-4e07-8607-bdea75781675",
                     "path": "<Mouse>/leftButton",
                     "interactions": "Press(pressPoint=0.1)",
@@ -154,8 +165,8 @@
                 {
                     "name": "",
                     "id": "5551378c-8f64-4a3e-ae7e-fea02d62c0e9",
-                    "path": "",
-                    "interactions": "",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Mobile",
                     "action": "Fire",
@@ -169,6 +180,17 @@
                     "interactions": "Press(pressPoint=1.401298E-45,behavior=1)",
                     "processors": "",
                     "groups": "PC_Control_scheme",
+                    "action": "FireOff",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fe958ea8-aa14-4541-b57c-206408df2cb6",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "Mobile",
                     "action": "FireOff",
                     "isComposite": false,
                     "isPartOfComposite": false
