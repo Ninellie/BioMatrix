@@ -2,49 +2,27 @@ using UnityEngine;
 
 public class MobileInputController : MonoBehaviour
 {
-    //This is the Text for the Label at the top of the screen
-    [SerializeField] private string _mDeviceType;
-
+    [SerializeField] private GameObject[] _controllers;
+    
     private void Awake()
     {
-        Debug.Log("Device type : " + _mDeviceType);
 
-        //Check if the device running this is a console
-        if (SystemInfo.deviceType == DeviceType.Console)
-        {
-            //Change the text of the label
-            _mDeviceType = "Console";
-            //gameObject.SetActive(false);
-        }
+        gameObject.SetActive(Application.isMobilePlatform);
+    }
 
-        //Check if the device running this is a desktop
-        if (SystemInfo.deviceType == DeviceType.Desktop)
+    public void EnableTouchScreenControllers()
+    {
+        foreach (var controller in _controllers)
         {
-            _mDeviceType = "Desktop";
-            //gameObject.SetActive(false);
+            controller.SetActive(true);
         }
-
-        //Check if the device running this is a handheld
-        if (SystemInfo.deviceType == DeviceType.Handheld)
+    }
+    
+    public void DisableTouchScreenControllers()
+    {
+        foreach (var controller in _controllers)
         {
-            _mDeviceType = "Handheld";
-            //gameObject.SetActive(true);
-        }
-
-        //Check if the device running this is unknown
-        if (SystemInfo.deviceType == DeviceType.Unknown)
-        {
-            _mDeviceType = "Unknown";
-            //gameObject.SetActive(false);
-        }
-
-        if (Application.isMobilePlatform)
-        {
-            gameObject.SetActive(true);
-        }
-        else
-        {
-            gameObject.SetActive(false);
+            controller.SetActive(false);
         }
     }
 }
