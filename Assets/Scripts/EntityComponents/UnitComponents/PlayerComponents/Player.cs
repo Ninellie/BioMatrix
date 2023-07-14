@@ -14,7 +14,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
     public class Player : Unit
     {
         [SerializeField] private Transform _firePoint;
-    
+
         public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
 
         public Stat MagnetismRadius { get; private set; }
@@ -270,7 +270,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             var inputVector2 = input.Get<Vector2>();
             inputVector2 = (Camera.main.ScreenToWorldPoint(inputVector2) - gameObject.transform.position).normalized;
             CurrentAimDirection = inputVector2;
-            //Firearm.SetDirection(inputVector2);
         }
 
         public void OnFire()
