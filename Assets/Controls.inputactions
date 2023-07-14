@@ -194,17 +194,6 @@
                     "action": "FireOff",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9a94185f-3e61-430e-8daa-5fad3bbe0261",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC_Control_scheme",
-                    "action": "FirePosition",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
