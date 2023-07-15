@@ -58,13 +58,17 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
             KillsCount.IncrementEvent -= () => Holder.KillsCount.Increase();
         }
 
+        public void SetHolder(Entity entity)
+        {
+            Holder = entity;
+        }
 
         private void BaseFixedUpdate()
         {
             // Turret movement logic
         }
 
-        public void CreateTurretWeapon(GameObject weapon)
+        private void CreateTurretWeapon(GameObject weapon)
         {
             var w = Instantiate(weapon);
 
@@ -76,12 +80,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
             Firearm = firearm;
         }
 
-        public void SetHolder(Entity entity)
-        {
-            Holder = entity;
-        }
-
-        public void CreateTurret()
+        private void CreateTurret()
         {
             var turretGameObject = Instantiate(_turretPrefab);
 
@@ -95,7 +94,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
             currentTurrets.Push(createdTurret);
         }
 
-        public void DestroyTurret()
+        private void DestroyTurret()
         {
             var turret = currentTurrets.Pop();
             turret.Destroy();

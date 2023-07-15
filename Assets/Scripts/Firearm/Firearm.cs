@@ -7,7 +7,6 @@ using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Projectile;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Weapons
@@ -18,14 +17,13 @@ namespace Assets.Scripts.Weapons
     public class Firearm : MonoBehaviour
     {
         [SerializeField] private GameObject _ammo;
-        [SerializeField] private bool _isForPlayer;
         [SerializeField] private LayerMask _enemyLayer;
         [SerializeField] private Vector2 _currentFireDirection;
 
         public Entity Holder { get; private set; }
         public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
         public Resource Magazine { get; set; }
-
+        public bool IsForPlayer { get; private set; }
         public Stat Damage { get; private set; }
         public Stat ShootForce { get; private set; }
         public Stat ShootsPerSecond { get; private set; }
@@ -49,11 +47,19 @@ namespace Assets.Scripts.Weapons
         private ProjectileCreator _projectileCreator;
         private Reload _reload;
         private Player _player;
-        private bool IsFireButtonPressed => IsEnable && !_isForPlayer || _player.IsFireButtonPressed;
+        private bool IsFireButtonPressed => IsEnable && !IsForPlayer || _player.IsFireButtonPressed;
         private float _previousShootTimer;
         private float MinShootInterval => 1f / ShootsPerSecond.Value;
     
         private void Awake() => BaseAwake(Settings);
+
+        private void Update()
+        {
+            if (!IsEnable) return;
+            _previousShootTimer -= Time.deltaTime;
+            if (!IsFireButtonPressed) return;
+            if (CanShoot) Shoot();
+        }
 
         private void BaseAwake(FirearmStatsSettings settings)
         {
@@ -78,14 +84,6 @@ namespace Assets.Scripts.Weapons
             _player = FindObjectOfType<Player>();
         }
 
-        private void Update()
-        {
-            if (!IsEnable) return;
-            _previousShootTimer -= Time.deltaTime;
-            if (!IsFireButtonPressed) return;
-            if (CanShoot) Shoot();
-        }
-
         public void SetStats(Firearm firearm)
         {
             Damage = firearm.Damage;
@@ -107,11 +105,6 @@ namespace Assets.Scripts.Weapons
         public void OnReloadEnd()
         {
             ReloadEndEvent?.Invoke();
-        }
-
-        public bool GetIsForPlayer()
-        {
-            return _isForPlayer;
         }
 
         public void SetDirection(Vector2 direction)
@@ -161,11 +154,12 @@ namespace Assets.Scripts.Weapons
         public void SetHolder(Entity entity)
         {
             Holder = entity;
+            IsForPlayer = entity is Player;
         }
 
         private Vector2 GetShotDirection()
         {
-            return _isForPlayer ? GetShotDirectionForPlayer() : GetShotDirectionForTurret();
+            return IsForPlayer ? GetShotDirectionForPlayer() : GetShotDirectionForTurret();
         }
 
         private Vector2 GetShotDirectionForTurret()

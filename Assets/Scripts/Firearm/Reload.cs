@@ -1,25 +1,25 @@
 using Assets.Scripts.GameSession.Events;
-using Assets.Scripts.GameSession.UIScripts.View;
 using UnityEngine;
 
 namespace Assets.Scripts.Weapons
 {
     public class Reload : MonoBehaviour
     {
-        public bool IsInProcess { get; private set; }
-
         [SerializeField] private GameObject _plateUi;
-        private Firearm _firearm;
         [SerializeField] private GameTimeScheduler _gameTimeScheduler;
+        [SerializeField] private bool _isInProgress;
+
+        public bool IsInProcess => _isInProgress;
+
+        private Firearm _firearm;
 
         private void Awake()
         {
             _firearm = GetComponent<Firearm>();
             _gameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
-
-            if (_firearm.GetIsForPlayer())
+            if (_firearm.IsForPlayer)
             {
-                _plateUi = FindObjectOfType<ReloadPlate>().reloadPlate;
+                _plateUi?.SetActive(false);
             }
         }
     
@@ -35,10 +35,10 @@ namespace Assets.Scripts.Weapons
 
         private void Initiate()
         {
-            IsInProcess = true;
+            _isInProgress = true;
             _firearm.OnReload();
 
-            if (_firearm.GetIsForPlayer())
+            if (_firearm.IsForPlayer)
             {
                 _plateUi.SetActive(true);
             }
@@ -49,7 +49,7 @@ namespace Assets.Scripts.Weapons
             switch (isInstant)
             {
                 case false:
-                    _gameTimeScheduler.Schedule(Complete, _firearm.ReloadTime.Value);
+                    _gameTimeScheduler.Schedule(Complete, reloadTime);
                     break;
                 case true:
                     Complete();
@@ -59,16 +59,14 @@ namespace Assets.Scripts.Weapons
 
         private void Complete()
         {
-            IsInProcess = false;
+            _isInProgress = false;
+            _firearm.Magazine.Fill();
+            _firearm.OnReloadEnd();
 
-            if (_firearm.GetIsForPlayer())
+            if (_firearm.IsForPlayer)
             {
                 _plateUi.SetActive(false);
             }
-        
-            _firearm.Magazine.Fill();
-
-            _firearm.OnReloadEnd();
         }
     }
 }
