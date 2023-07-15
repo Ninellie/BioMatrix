@@ -70,6 +70,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+    <Compile Include="Assets\ResourceBar.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
@@ -825,10 +826,6 @@
       <Project>{BD551568-419C-1D93-1499-EF1E4BFA8A62}</Project>
       <Name>Unity.InternalAPIEditorBridge.005</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.VisualScripting.Flow.csproj">
-      <Project>{8F4BB533-70F6-096C-1B42-EC239E44A7B1}</Project>
-      <Name>Unity.VisualScripting.Flow</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Flow.Editor.csproj">
       <Project>{01A00007-8927-9109-17D0-5F652A5C6955}</Project>
       <Name>Unity.VisualScripting.Flow.Editor</Name>
@@ -845,9 +842,9 @@
       <Project>{19336400-332B-9188-878F-33B1EC35B3B0}</Project>
       <Name>Unity.2D.Common.Runtime</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{A93E3AA6-CAE3-7FB1-E5DE-1E08AFE9C0C2}</Project>
-      <Name>UnityEngine.UI</Name>
+    <ProjectReference Include="Unity.VisualScripting.Flow.csproj">
+      <Project>{8F4BB533-70F6-096C-1B42-EC239E44A7B1}</Project>
+      <Name>Unity.VisualScripting.Flow</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Tilemap.Extras.Editor.csproj">
       <Project>{6E6C440F-3263-FA97-4750-A31F70358844}</Project>
@@ -864,6 +861,10 @@
     <ProjectReference Include="Unity.InputSystem.ForUI.csproj">
       <Project>{F12807F6-7AE2-5EB6-7F2B-77D9A9D8F7BA}</Project>
       <Name>Unity.InputSystem.ForUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.csproj">
+      <Project>{A93E3AA6-CAE3-7FB1-E5DE-1E08AFE9C0C2}</Project>
+      <Name>UnityEngine.UI</Name>
     </ProjectReference>
     <ProjectReference Include="Scripts.csproj">
       <Project>{1ADCA4D5-9DAC-E64E-F8F8-AB1D59520C6D}</Project>
