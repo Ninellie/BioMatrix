@@ -14,7 +14,11 @@ public class ResourceBar : MonoBehaviour
 
     [SerializeField]
     [Range(0, 100)]
-    private float _aValue;
+    private float _currentValue;
+
+    [SerializeField]
+    [Range(0, 100)]
+    private float _maxValue;
 
     [SerializeField]
     private string _resourceName;
@@ -43,6 +47,10 @@ public class ResourceBar : MonoBehaviour
 
     private void Update()
     {
+        var onePercent = _maxValue / 100;
+        var currentPercent = _currentValue / onePercent;
+        var integerCurrentPercent = Mathf.RoundToInt(currentPercent);
+        _value = integerCurrentPercent / 100f;
         SetValue(_value);
         SetValueImageColor(_valueColor);
         SetBackgroundImageColor(_backgroundColor);
@@ -52,7 +60,7 @@ public class ResourceBar : MonoBehaviour
     private void SetText()
     {
         if (!_showText) return;
-        var textToSet = _resourceName + " " + _aValue;
+        var textToSet = _resourceName + " " + _currentValue;
         _text.SetText(textToSet);
     }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -8,8 +9,8 @@ namespace Assets.Scripts.GameSession.UIScripts.View
 {
     public class OptionsMenu : MonoBehaviour
     {
-        public AudioMixer audioMixer;
-        public TMPro.TMP_Dropdown resolutionDropdown;
+        [SerializeField] private AudioMixer audioMixer;
+        [SerializeField] public TMP_Dropdown resolutionDropdown;
         public Action onBackToMainMenu;
 
         private Resolution[] _resolutions;
@@ -26,23 +27,28 @@ namespace Assets.Scripts.GameSession.UIScripts.View
             resolutionDropdown.value = currentResolutionIndex;
             resolutionDropdown.RefreshShownValue();
         }
+
         public void SetResolution(int resolutionIndex)
         {
             var resolution = _resolutions[resolutionIndex];
             Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         }
+
         public void SetVolume(float volume)
         {
             audioMixer.SetFloat("volume", volume);
         }
+
         public void SetQuality(int qualityIndex)
         {
             QualitySettings.SetQualityLevel(qualityIndex);
         }
+
         public void SetFullscreen(bool isFullScreen)
         {
             Screen.fullScreen = isFullScreen;
         }
+
         public void BackToMainMenu()
         {
             onBackToMainMenu?.Invoke();
