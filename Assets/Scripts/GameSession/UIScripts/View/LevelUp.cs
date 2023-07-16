@@ -122,14 +122,18 @@ namespace Assets.Scripts.GameSession.UIScripts.View
             cardImage.fillAmount = 0;
             var cardImageAlpha = 0f;
             cardImage.color = new Color(1, 1, 1, cardImageAlpha);
-            var fillingStep = 1 / _cardsImageSize * _pixelsPerStep; ;
+
+            var stepCount = _cardsImageSize / _pixelsPerStep;
+
+            var fillingStep = 1 / stepCount;
+            //var fillingStep = 1 / _cardsImageSize * _pixelsPerStep;
 
             card.SetActive(true);
 
             while (cardImage.fillAmount < 1)
             {
-                var fillingAndAlphaStepPerSecond = _delayBeforeClickableCardsInSeconds * Time.unscaledDeltaTime;
-                yield return new WaitForSecondsRealtime(fillingAndAlphaStepPerSecond);
+                var timeBetweenSteps = _delayBeforeClickableCardsInSeconds / stepCount;
+                yield return new WaitForSecondsRealtime(timeBetweenSteps);
                 cardImage.fillAmount += fillingStep;
                 cardImageAlpha += fillingStep;
                 cardImage.color = new Color(1, 1, 1, cardImageAlpha);
