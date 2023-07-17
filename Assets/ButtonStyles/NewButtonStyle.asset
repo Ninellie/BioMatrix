@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d06e58b36c7151c47b1188734364a80b, type: 3}
+  m_Name: NewButtonStyle
+  m_EditorClassIdentifier: 
+  normalColor: {fileID: 0}
+  hoverColor: {fileID: 0}
+  pressedColor: {fileID: 0}
+  disabledColor: {fileID: 0}
