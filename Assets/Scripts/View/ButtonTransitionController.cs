@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.View
 {
+    [Serializable]
     public enum ButtonState
     {
         Normal,
@@ -24,7 +25,9 @@ namespace Assets.Scripts.View
         private Button _button;
         private TMP_Text _label;
         private EventTrigger _eventTrigger;
+        [SerializeField]
         private ButtonState _currentState;
+        [SerializeField]
         private ButtonState _posState;
 
         private void Awake()
@@ -37,14 +40,21 @@ namespace Assets.Scripts.View
         
         private void OnEnable()
         {
-            if (!_button.IsInteractable()) return;
-            SetDisabledColor();
+            if (_button.IsInteractable())
+            {
+                SetNormalColor();
+            }
+            else
+            {
+                SetDisabledColor();
+            }
             _posState = ButtonState.Normal;
             _currentState = ButtonState.Normal;
         }
 
         private void Start()
         {
+            _eventTrigger.triggers.Clear();
             CreateEvent(EventTriggerType.PointerEnter, OnEnter);
             CreateEvent(EventTriggerType.PointerExit, OnExit);
             CreateEvent(EventTriggerType.PointerDown, OnDawn);
@@ -91,10 +101,12 @@ namespace Assets.Scripts.View
             if (_currentState == ButtonState.Pressed && _posState == ButtonState.Hovered)
             {
                 SetHoverColor();
+                _currentState = ButtonState.Hovered;
             }
             if (_currentState == ButtonState.Pressed && _posState == ButtonState.Normal)
             {
                 SetNormalColor();
+                _currentState = ButtonState.Normal;
             }
         }
 

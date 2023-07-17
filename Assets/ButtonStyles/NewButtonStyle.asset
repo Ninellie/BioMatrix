@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06e58b36c7151c47b1188734364a80b, type: 3}
   m_Name: NewButtonStyle
   m_EditorClassIdentifier: 
-  normalColor: {fileID: 0}
-  hoverColor: {fileID: 0}
-  pressedColor: {fileID: 0}
-  disabledColor: {fileID: 0}
+  normalColor: {fileID: 11400000, guid: 94da8845ac9ce814f857dc72931817d9, type: 2}
+  hoverColor: {fileID: 11400000, guid: 5e9489931766f81478c5169bcc735c45, type: 2}
+  pressedColor: {fileID: 11400000, guid: 1f0ef5a11bb1ab04b847e56b13ec3465, type: 2}
+  disabledColor: {fileID: 11400000, guid: 1f0ef5a11bb1ab04b847e56b13ec3465, type: 2}
