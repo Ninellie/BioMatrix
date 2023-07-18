@@ -120,10 +120,14 @@ namespace Assets.Scripts.EntityComponents
         {
             return _value;
         }
-    
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>Value percent</returns>
         public float GetPercentValue()
         {
-            if (_isLimited)
+            if (!_isLimited)
             {
                 return NaN;
             }
