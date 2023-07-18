@@ -102,15 +102,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
 
         private void UpdateTurrets()
         {
-            var dif = Turrets.GetValue() - currentTurrets.Count; 
-            var delay = 1;
+            var dif = Turrets.GetValue() - currentTurrets.Count;
 
             if (dif > 0)
             {
                 while (dif != 0)
                 {
-                    Invoke(nameof(CreateTurret), delay);
-                    delay++;
+                    CreateTurret();
                     dif--;
                 }
             }
@@ -118,8 +116,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
             {
                 while (dif != 0)
                 {
-                    Invoke(nameof(DestroyTurret), delay);
-                    delay++;
+                    DestroyTurret();
                     dif++;
                 }
             }

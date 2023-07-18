@@ -84,29 +84,29 @@ namespace Assets.Scripts.EntityComponents
 
         public void RemoveEffectStack(IEffect effect)
         {
-            var effectsTemp = effects;
             var effectsNameToRemoveStack = new List<string>();
             var effectsNameToRemove = new List<string>();
             var effectsToRemove = new List<IEffect>();
 
-            foreach (var myEffect in effectsTemp.Where(myEffect => myEffect.Name == effect.Name))
+            foreach (var myEffect in effects.Where(e => e.Name == effect.Name))
             {
                 effectsNameToRemoveStack.Add(myEffect.Name);
             }
 
             foreach (var effectName in effectsNameToRemoveStack)
             {
-                foreach (var myEffect in effectsTemp.Where(myEffect => myEffect.Name == effectName))
+                foreach (var myEffect in effects.Where(e => e.Name == effectName))
                 {
                     myEffect.StacksCount.Decrease();
-                    if (!myEffect.StacksCount.IsEmpty) return;
+                    if (!myEffect.StacksCount.IsEmpty)
+                        continue;
                     effectsNameToRemove.Add(effect.Name);
                 }
             }
             
             foreach (var effectName in effectsNameToRemove)
             {
-                foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effectName))
+                foreach (var myEffect in effects.Where(e => e.Name == effectName))
                 {
                     effectsToRemove.Add(myEffect);
                 }
@@ -114,7 +114,9 @@ namespace Assets.Scripts.EntityComponents
 
             foreach (var effectToRemove in effectsToRemove)
             {
-                RemoveEffect(effectToRemove);
+                effectToRemove.Unsubscribe(this);
+                effectToRemove.Detach();
+                effects.Remove(effectToRemove);
             }
         }
 
@@ -122,7 +124,7 @@ namespace Assets.Scripts.EntityComponents
         {
             var isContain = false;
 
-            foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effect.Name))
+            foreach (var myEffect in effects.Where(e => e.Name == effect.Name))
             {
                 myEffect.StacksCount.Empty();
                 isContain = true;

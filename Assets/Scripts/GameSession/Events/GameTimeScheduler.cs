@@ -39,6 +39,7 @@ namespace Assets.Scripts.GameSession.Events
                 return item.Identifier;
             }
         }
+
         private void Update()
         {
             _indexesToRemove.Clear();
