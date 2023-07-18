@@ -1,21 +1,34 @@
+using System;
+using Assets.Scripts.Core;
 using Assets.Scripts.EntityComponents.UnitComponents.TurretComponents;
 using Assets.Scripts.GameSession.UIScripts.SessionModel;
 using Assets.Scripts.GameSession.UIScripts.View;
+using Assets.Scripts.View;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
+    [Serializable]
+    public class DisplayedResourceData
+    {
+        public string resourceName;
+        public string resourcePath;
+        public ResourceCounter resourceCounter;
+    }
+
     public class PlayerCreator : MonoBehaviour
     {
         [SerializeField] private GameObject _playerPrefab;
         [SerializeField] private GameObject _playerWeapon;
         [SerializeField] private GameObject _turretHub;
+
+        [SerializeField] private DisplayedResourceData[] _displayedResources;
         public Player CurrentPlayer { get; private set; }
 
-        private ExpUI _experienceBar;
-        private AmmoBar _ammoBar;
-        private LifeBar _lifeBar;
+        //private ExpUI _experienceBar;
+        //private AmmoBar _ammoBar;
+        //private LifeBar _lifeBar;
         private GameSessionTimer _gameSessionTimer;
         private OptionsMenu _optionsMenu;
         private ViewController _viewController;
@@ -25,11 +38,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             _gameSessionTimer = FindObjectOfType<GameSessionTimer>();
             _viewController = FindObjectOfType<ViewController>();
-            _experienceBar = FindObjectOfType<ExpUI>();
-            _lifeBar = FindObjectOfType<LifeBar>();
-            _ammoBar = FindObjectOfType<AmmoBar>();
+            //_experienceBar = FindObjectOfType<ExpUI>();
+            //_lifeBar = FindObjectOfType<LifeBar>();
+            //_ammoBar = FindObjectOfType<AmmoBar>();
             _optionsMenu = FindObjectOfType<OptionsMenu>();
-
             if (_playerPrefab == null)
             {
                 Debug.LogWarning("PlayerPrefab is null");
@@ -48,6 +60,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
             _viewController.AwakeController(CurrentPlayer.GetComponent<PlayerInput>());
             Subscription();
+
+            foreach (var displayedResourceData in _displayedResources)
+            {
+                var resource = (Resource)EventHelper.GetPropByPath(CurrentPlayer, displayedResourceData.resourcePath);
+                displayedResourceData.resourceCounter.SetResource(resource);
+                displayedResourceData.resourceCounter.SetLabel(displayedResourceData.resourceName);
+            }
         }
 
         private void CreatePlayer(GameObject playerPrefab)
@@ -58,9 +77,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Subscription()
         {
-            _experienceBar.Subscription();
-            _ammoBar.Subscription();
-            _lifeBar.Subscription();
+            //_experienceBar.Subscription();
+            //_ammoBar.Subscription();
+            //_lifeBar.Subscription();
 
             CurrentPlayer.GamePausedEvent += _viewController.Menu;
             CurrentPlayer.Lvl.IncrementEvent += _viewController.LevelUpEvent;

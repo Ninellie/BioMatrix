@@ -15,15 +15,15 @@ namespace Assets.Scripts.View
     }
 
     [ExecuteInEditMode]
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(Selectable))]
     [RequireComponent(typeof(EventTrigger))]
-    public class ButtonTransitionController : MonoBehaviour
+    public class SelectableTransitionController : MonoBehaviour
     {
         [SerializeField]
         private ButtonStyleData _style;
 
-        private Button _button;
-        private TMP_Text _label;
+        private Selectable _selectable;
+        private TMP_Text[] _labels;
         private EventTrigger _eventTrigger;
         [SerializeField]
         private ButtonState _currentState;
@@ -33,14 +33,14 @@ namespace Assets.Scripts.View
         private void Awake()
         {
             _eventTrigger = GetComponent<EventTrigger>();
-            _label = GetComponentInChildren<TMP_Text>();
-            _button = GetComponent<Button>();
-            _button.transition = Selectable.Transition.None;
+            _labels = GetComponentsInChildren<TMP_Text>();
+            _selectable = GetComponent<Selectable>();
+            _selectable.transition = Selectable.Transition.None;
         }
         
         private void OnEnable()
         {
-            if (_button.IsInteractable())
+            if (_selectable.IsInteractable())
             {
                 SetNormalColor();
             }
@@ -71,7 +71,7 @@ namespace Assets.Scripts.View
 
         private void OnEnter()
         {
-            if (!_button.IsInteractable()) return;
+            if (!_selectable.IsInteractable()) return;
             _posState = ButtonState.Hovered;
             if (_currentState != ButtonState.Normal) return;
             SetHoverColor();
@@ -80,7 +80,7 @@ namespace Assets.Scripts.View
 
         private void OnExit()
         {
-            if (!_button.IsInteractable()) return;
+            if (!_selectable.IsInteractable()) return;
             _posState = ButtonState.Normal;
             if (_currentState != ButtonState.Hovered) return;
             SetNormalColor();
@@ -89,7 +89,7 @@ namespace Assets.Scripts.View
 
         private void OnDawn()
         {
-            if (!_button.IsInteractable()) return;
+            if (!_selectable.IsInteractable()) return;
             if (_currentState != ButtonState.Hovered) return;
             SetPressedColor();
             _currentState = ButtonState.Pressed;
@@ -97,7 +97,7 @@ namespace Assets.Scripts.View
         
         private void OnUp()
         {
-            if (!_button.IsInteractable()) return;
+            if (!_selectable.IsInteractable()) return;
             if (_currentState == ButtonState.Pressed && _posState == ButtonState.Hovered)
             {
                 SetHoverColor();
@@ -112,22 +112,34 @@ namespace Assets.Scripts.View
 
         private void SetNormalColor()
         {
-            _label.colorGradientPreset = _style.normalColor;
+            foreach (var tmpText in _labels)
+            {
+                tmpText.colorGradientPreset = _style.normalColor;
+            }
         }
 
         private void SetHoverColor()
         {
-            _label.colorGradientPreset = _style.hoverColor;
+            foreach (var tmpText in _labels)
+            {
+                tmpText.colorGradientPreset = _style.hoverColor;
+            }
         }
 
         private void SetPressedColor()
         {
-            _label.colorGradientPreset = _style.pressedColor;
+            foreach (var tmpText in _labels)
+            {
+                tmpText.colorGradientPreset = _style.pressedColor;
+            }
         }
 
         private void SetDisabledColor()
         {
-            _label.colorGradientPreset = _style.disabledColor;
+            foreach (var tmpText in _labels)
+            {
+                tmpText.colorGradientPreset = _style.disabledColor;
+            }
         }
     }
 }

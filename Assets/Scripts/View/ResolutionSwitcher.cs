@@ -4,10 +4,6 @@ using UnityEngine;
 
 namespace Assets.Scripts.View
 {
-}
-
-namespace Assets.Scripts.View
-{
     public class ResolutionSwitcher : MonoBehaviour
     {
         [SerializeField] private TMP_Text _resolutionText;

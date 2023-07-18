@@ -1,82 +1,64 @@
-using System.Collections;
-using System.Collections.Generic;
-using Assets.Scripts.EntityComponents;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[ExecuteInEditMode]
-public class ResourceBar : MonoBehaviour
+namespace Assets.Scripts.View
 {
-    [SerializeField]
-    [Range(0, 1)]
-    private float _value;
-
-    [SerializeField]
-    [Range(0, 100)]
-    private float _currentValue;
-
-    [SerializeField]
-    [Range(0, 100)]
-    private float _maxValue;
-
-    [SerializeField]
-    private string _resourceName;
-
-    [Header("Background settings")]
-    [SerializeField] private Image _backgroundImage;
-    [SerializeField] private TMP_ColorGradient _backgroundColor;
-
-    [Header("Value slider settings")]
-    [SerializeField] private TMP_ColorGradient _valueColor;
-    [SerializeField] private Image _valueImage;
-    [SerializeField] private RectTransform _sliderRectTransform;
-
-    [Header("Value text settings")]
-    
-    [SerializeField] private bool _showText;
-    [SerializeField] private TMP_Text _text;
-
-
-
-    private void Awake()
+    public class ResourceBar : ResourceCounter
     {
-        SetValueImageColor(_valueColor);
-        SetBackgroundImageColor(_backgroundColor);
-    }
+        [Header("Bar settings")]
+        [SerializeField]
+        private BarDisplayFormat _barDisplayFormat;
 
-    private void Update()
-    {
-        var onePercent = _maxValue / 100;
-        var currentPercent = _currentValue / onePercent;
-        var integerCurrentPercent = Mathf.RoundToInt(currentPercent);
-        _value = integerCurrentPercent / 100f;
-        SetValue(_value);
-        SetValueImageColor(_valueColor);
-        SetBackgroundImageColor(_backgroundColor);
-        SetText();
-    }
+        [SerializeField]
+        private float _limit;
 
-    private void SetText()
-    {
-        if (!_showText) return;
-        var textToSet = _resourceName + " " + _currentValue;
-        _text.SetText(textToSet);
-    }
+        [SerializeField]
+        [Range(0, 1)]
+        private float _valueStepPerResourceUnit;
 
-    private void SetValue(float value)
-    {
-        _sliderRectTransform.anchorMax = new Vector2(value, 1);
-    }
+        [Header("Background settings")]
+        [SerializeField] private Image _backgroundImage;
+        [SerializeField] private TMP_ColorGradient _backgroundColor;
 
-    private void SetValueImageColor(TMP_ColorGradient color)
-    {
-        _valueImage.color = color.topLeft;
-    }
-    private void SetBackgroundImageColor(TMP_ColorGradient color)
-    {
-        _backgroundImage.color = color.topLeft;
-    }
+        [Header("Value slider settings")]
+        [SerializeField] private TMP_ColorGradient _valueColor;
+        [SerializeField] private Image _valueImage;
+        [SerializeField] private RectTransform _sliderRectTransform;
 
-    //private Resource _targetResource;
+        private void Awake()
+        { 
+            SetValueImageColor(_valueColor);
+            SetBackgroundImageColor(_backgroundColor);
+        }
+
+        protected override void UpdateCounter()
+        {
+            UpdateBarValue();
+            base.UpdateCounter();
+        }
+
+        private void UpdateBarValue()
+        {
+            var value = _barDisplayFormat switch
+            {
+                BarDisplayFormat.Percent => targetResource.GetPercentValue() / 100f,
+                BarDisplayFormat.LimitedToNumber => Mathf.Min(targetResource.GetValue(), _limit),
+                BarDisplayFormat.Unlimited => targetResource.GetValue() * _valueStepPerResourceUnit,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+            _sliderRectTransform.anchorMax = new Vector2(value, 1);
+        }
+
+        private void SetValueImageColor(TMP_ColorGradient color)
+        {
+            _valueImage.color = color.topLeft;
+        }
+
+        private void SetBackgroundImageColor(TMP_ColorGradient color)
+        {
+            _backgroundImage.color = color.topLeft;
+        }
+    }
 }
