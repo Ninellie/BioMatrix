@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d06e58b36c7151c47b1188734364a80b, type: 3}
+  m_Name: MenuButtonStyle
+  m_EditorClassIdentifier: 
+  normalColor: {fileID: 11400000, guid: 8e56042c1a776644988afb418115fdc8, type: 2}
+  hoverColor: {fileID: 11400000, guid: 8e80c359fbef8f346a7c58564497338c, type: 2}
+  pressedColor: {fileID: 11400000, guid: 529d66e1a2d45b741b5e5e589d15ac32, type: 2}
+  disabledColor: {fileID: 11400000, guid: 1f0ef5a11bb1ab04b847e56b13ec3465, type: 2}
