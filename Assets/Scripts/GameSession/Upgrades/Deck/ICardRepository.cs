@@ -12,6 +12,6 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
 
         Card GetCardById(int id);
 
-        int GetDropWeightSum();
+        float GetDropWeightSum();
     }
 }

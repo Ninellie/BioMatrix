@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
     public class CardManager
     {
-        private readonly Random _random = new();
         private readonly ICardRepository _cardRepository;
         private readonly List<Card> _obtainedCards = new();
         private readonly Deck[] _defaultDecks = 
@@ -161,10 +161,8 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         private Card GetRandomCardFromList(List<Card> cardList)
         {
             var sum = cardList.Sum(x => x.DropWeight);
-
-            var next = _random.Next(sum);
-
-            var limit = 0;
+            var next = Random.Range(0, sum);
+            var limit = 0f;
 
             foreach (var card in cardList)
             {
@@ -176,86 +174,5 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             }
             throw new InvalidOperationException("");
         }
-
-        //private List<Card> GetClosedCards()
-        //{
-        //    var closedCardIds = new List<int>();
-        //    closedCardIds.AddRange(_obtainedCards.Select(obtainedCard => obtainedCard.Id));
-        //    foreach (var deck in _defaultDecks)
-        //    {
-        //        var cardIds = deck.CardsId;
-        //        cardIds.Pop();
-        //        while (cardIds.Count > 0)
-        //        {
-        //            closedCardIds.Add(cardIds.Pop());
-        //        }
-        //    }
-
-        //    List<Card> closedCards = new(closedCardIds.Count);
-        //    closedCards.AddRange(closedCardIds.Select(cardId => _cardRepository.GetCardById(cardId)));
-        //    return closedCards;
-        //}
-
-        //private List<Card> GetCards(int[] cardIndexes)
-        //{
-        //    List<Card> cardsList = new();
-
-        //    for (int i = 0; i < _cardRepository.CardCount; i++)
-        //    {
-        //        var card = _cardRepository.GetCardByIndex(i);
-        //        cardsList.Add(card);
-        //    }
-
-        //    for (int i = cardsList.Count - 1; i >= 0; i--)
-        //    {
-        //        if (cardIndexes.Any(t => cardsList[i].Id == t))
-        //        {
-        //            cardsList.RemoveAt(i);
-        //        }
-        //    }
-
-        //    return cardsList;
-        //}
-
-        //public List<Card> GetCards(int numberOfCards)
-        //{
-        //    List<Card> cardsList = new();
-
-        //    for (int i = 0; i < _cardRepository.CardCount; i++)
-        //    {
-        //        var card = _cardRepository.GetCardByIndex(i);
-        //        cardsList.Add(card);
-        //    }
-
-        //    List<Card> selectedCards = new();
-
-        //    for (int i = 0; i < numberOfCards; i++)
-        //    {
-        //        var card = GetRandomCardFromList(cardsList);
-        //        selectedCards.Add(card);
-        //        cardsList.Remove(card);
-        //    }
-        //    return selectedCards;
-        //}
-
-        //public Card GetRandomCard()
-        //{
-        //    var sum = _cardRepository.GetDropWeightSum();
-
-        //    var next = _random.Next(sum);
-
-        //    var limit = 0;
-
-        //    for (int i = 0; i < _cardRepository.CardCount; i++)
-        //    {
-        //        var card = _cardRepository.GetCardByIndex(i);
-        //        limit += card.DropWeight;
-        //        if (next < limit)
-        //        {
-        //            return card;
-        //        }
-        //    }
-        //    throw new InvalidOperationException("");
-        //}
     }
 }
