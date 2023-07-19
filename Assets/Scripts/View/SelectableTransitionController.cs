@@ -40,14 +40,7 @@ namespace Assets.Scripts.View
         
         private void OnEnable()
         {
-            if (_selectable.IsInteractable())
-            {
-                SetNormalColor();
-            }
-            else
-            {
-                SetDisabledColor();
-            }
+            UpdateColor();
             _posState = ButtonState.Normal;
             _currentState = ButtonState.Normal;
         }
@@ -59,6 +52,18 @@ namespace Assets.Scripts.View
             CreateEvent(EventTriggerType.PointerExit, OnExit);
             CreateEvent(EventTriggerType.PointerDown, OnDawn);
             CreateEvent(EventTriggerType.PointerUp, OnUp);
+        }
+
+        public void UpdateColor()
+        {
+            if (_selectable.IsInteractable())
+            {
+                SetNormalColor();
+            }
+            else
+            {
+                SetDisabledColor();
+            }
         }
 
         private void CreateEvent(EventTriggerType eventType, Action action)

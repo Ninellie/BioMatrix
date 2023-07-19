@@ -5,6 +5,14 @@ using UnityEngine;
 
 namespace Assets.Scripts.View
 {
+    public enum ValueFormat
+    {
+        D,
+        D1,
+        D2,
+        D3
+    }
+
     public class ResourceCounter : MonoBehaviour
     {
         [SerializeField]
@@ -12,6 +20,7 @@ namespace Assets.Scripts.View
 
         [Header("Text settings")]
         [SerializeField] private CounterFormat _counterFormat;
+        [SerializeField] private ValueFormat _valueFormat;
     
         [Header("Counter text")]
         [SerializeField] private TMP_Text _text;
@@ -38,12 +47,29 @@ namespace Assets.Scripts.View
 
         private void UpdateLabel()
         {
+            var currentValue = _valueFormat switch
+            {
+                ValueFormat.D => $"{targetResource.GetValue():D}",
+                ValueFormat.D1 => $"{targetResource.GetValue():D1}",
+                ValueFormat.D2 => $"{targetResource.GetValue():D2}",
+                ValueFormat.D3 => $"{targetResource.GetValue():D3}",
+                _ => throw new ArgumentOutOfRangeException()
+            };
+            var maxValue = _valueFormat switch
+            {
+                ValueFormat.D => $"{(int)targetResource.GetMaxValue():D}",
+                ValueFormat.D1 => $"{(int)targetResource.GetMaxValue():D1}",
+                ValueFormat.D2 => $"{(int)targetResource.GetMaxValue():D2}",
+                ValueFormat.D3 => $"{(int)targetResource.GetMaxValue():D3}",
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
             var textToSet = _counterFormat switch
             {
-                CounterFormat.LabelCurrentSlashMax => $"{_resourceName} {targetResource.GetValue()}/{targetResource.GetMaxValue()}",
-                CounterFormat.CurrentSlashMax => $"{targetResource.GetValue()}/{targetResource.GetMaxValue()}",
-                CounterFormat.LabelCurrentOnly => $"{_resourceName} {targetResource.GetValue()}",
-                CounterFormat.CurrentOnly => $"{targetResource.GetValue()}",
+                CounterFormat.LabelCurrentSlashMax => $"{_resourceName} {currentValue}/{maxValue}",
+                CounterFormat.CurrentSlashMax => $"{currentValue}/{maxValue}",
+                CounterFormat.LabelCurrentOnly => $"{_resourceName} {currentValue}",
+                CounterFormat.CurrentOnly => $"{currentValue}",
                 CounterFormat.LabelOnly => $"{_resourceName}",
                 CounterFormat.DoNotShow => $"",
                 _ => throw new ArgumentOutOfRangeException()

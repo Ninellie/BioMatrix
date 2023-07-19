@@ -4,11 +4,22 @@ using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.GameSession.UIScripts.SessionModel;
 using Assets.Scripts.GameSession.Upgrades.Deck;
 using UnityEngine;
+using UnityEngine.UI;
 using Button = UnityEngine.UI.Button;
 using Image = UnityEngine.UI.Image;
 
-namespace Assets.Scripts.GameSession.UIScripts.View
+namespace Assets.Scripts.View
 {
+    public class ScaleSwitcher : MonoBehaviour
+    {
+        [SerializeField] private CanvasScaler scaler;
+
+        public void ChangeScale(bool isScale)
+        {
+
+        }
+    }
+
     public class LevelUp : MonoBehaviour
     {
         [SerializeField] private Player _player;
@@ -20,6 +31,14 @@ namespace Assets.Scripts.GameSession.UIScripts.View
         [SerializeField] private float _delayBeforeClickableCardsInSeconds;
         [SerializeField] private float _pixelsPerStep;
         [SerializeField] private float _cardsImageSize;
+
+        [SerializeField]
+        [Range(0, 1)]
+        private float _initialAlpha;
+        
+        [SerializeField]
+        [Range(0, 1)]
+        private float _finalAlpha;
 
         private List<Card> _selectedCards = new();
         private static readonly ICardRepository CardRepository = new ArrayCardRepository();
@@ -116,6 +135,7 @@ namespace Assets.Scripts.GameSession.UIScripts.View
         private IEnumerator ActivateCard(GameObject card)
         {
             var cardButton = card.GetComponent<Button>();
+            var transitionController = card.GetComponent<SelectableTransitionController>();
             cardButton.interactable = false;
             
             var cardImage = card.GetComponent<Image>();
@@ -126,7 +146,8 @@ namespace Assets.Scripts.GameSession.UIScripts.View
             var stepCount = _cardsImageSize / _pixelsPerStep;
 
             var fillingStep = 1 / stepCount;
-            //var fillingStep = 1 / _cardsImageSize * _pixelsPerStep;
+            
+            var alphaStep = _finalAlpha / stepCount;
 
             card.SetActive(true);
 
@@ -135,11 +156,12 @@ namespace Assets.Scripts.GameSession.UIScripts.View
                 var timeBetweenSteps = _delayBeforeClickableCardsInSeconds / stepCount;
                 yield return new WaitForSecondsRealtime(timeBetweenSteps);
                 cardImage.fillAmount += fillingStep;
-                cardImageAlpha += fillingStep;
+                cardImageAlpha += alphaStep;
                 cardImage.color = new Color(1, 1, 1, cardImageAlpha);
             }
 
             cardButton.interactable = true;
+            transitionController.UpdateColor();
         }
     }
 }
