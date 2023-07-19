@@ -14,11 +14,13 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         }
         public void Menu()
         {
+            _viewModel.IsFromLvlUpScreen = true;
             _viewModel.ChangeState(ViewModelStateType.Menu);
             _viewController.OpenMenu();
         }
         public void Resume()
         {
+            _viewModel.IsFromLvlUpScreen = false;
             _viewModel.ChangeState(ViewModelStateType.Active);
             _viewController.CloseLevelUp();
             _viewController.Unfreeze();

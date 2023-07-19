@@ -2,6 +2,9 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 {
     public class ViewModel
     {   
+        public bool IsFromLvlUpScreen { get; set; }
+        public bool IsFromGameEndScreen { get; set; }
+
         private readonly IViewModelState _active;
         private readonly IViewModelState _options;
         private readonly IViewModelState _menuState;
@@ -11,6 +14,7 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 
         private IViewModelState _currentState;
         private IViewModelState _previousState;
+
         public ViewModel(IViewController viewController)
         {
             _active = new ActiveViewModelState(this, viewController);
@@ -22,7 +26,11 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
             
             _currentState = _start;
             _previousState = _active;
+
+            IsFromLvlUpScreen = false;
+            IsFromGameEndScreen = false;
         }
+
         public void ChangeState(ViewModelStateType stateType)
         {
             _previousState = _currentState;
@@ -35,10 +43,12 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
                 }
             }
         }
+
         public IViewModelState GetCurrentState()
         {
             return _currentState;
         }
+
         public IViewModelState GetPreviousState()
         {
             return _previousState;

@@ -1,6 +1,6 @@
 using System;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
-using Assets.Scripts.GameSession.UIScripts.View;
+using Assets.Scripts.View;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

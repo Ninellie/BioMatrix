@@ -14,6 +14,7 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         }
         public void Menu()
         {
+            _viewModel.IsFromGameEndScreen = true;
             _viewModel.ChangeState(ViewModelStateType.Menu);
             _viewController.OpenMenu();
         }

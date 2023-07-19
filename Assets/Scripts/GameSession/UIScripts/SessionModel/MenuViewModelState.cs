@@ -19,16 +19,33 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         public void Resume()
         {
             var prevState = _viewModel.GetPreviousState().Name;
-            switch (prevState)
+            
+            if (_viewModel.IsFromLvlUpScreen || _viewModel.IsFromGameEndScreen)
             {
-                case ViewModelStateType.GameEnd or ViewModelStateType.LevelUp:
-                    _viewModel.ChangeState(prevState);
-                    break;
-                case ViewModelStateType.Active or ViewModelStateType.Options:
-                    _viewModel.ChangeState(ViewModelStateType.Active);
-                    _viewController.Unfreeze();
-                    break;
+                if (_viewModel.IsFromGameEndScreen)
+                {
+                    _viewModel.ChangeState(ViewModelStateType.GameEnd);
+                }
+
+                if (_viewModel.IsFromLvlUpScreen)
+                {
+                    _viewModel.ChangeState(ViewModelStateType.LevelUp);
+                }
             }
+            else
+            {
+                switch (prevState)
+                {
+                    case ViewModelStateType.GameEnd or ViewModelStateType.LevelUp:
+                        _viewModel.ChangeState(prevState);
+                        break;
+                    case ViewModelStateType.Active or ViewModelStateType.Options:
+                        _viewModel.ChangeState(ViewModelStateType.Active);
+                        _viewController.Unfreeze();
+                        break;
+                }
+            }
+
             _viewController.CloseMenu();
         }
         public void Options()
