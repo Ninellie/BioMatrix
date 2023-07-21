@@ -7,10 +7,24 @@ namespace Assets.Scripts.GameSession.PlayingField
 {
     public class BordersFiller : MonoBehaviour
     {
-        [SerializeField] private TileData _tile;
-        [SerializeField] private bool _fillAtStart;
-        [SerializeField] private int _fillingFramesCount;
-        [SerializeField] private float _delayBetweenFillings;
+        [SerializeField]
+        private TileData _tile;
+
+        [SerializeField]
+        [Range(0, 300)]
+        private float _fillingDelay;
+        
+        [SerializeField]
+        [Range(-5, 5)]
+        private int _boundsOffset;
+
+        [SerializeField]
+        [Range(0, 5)]
+        private int _fillingFramesCount;
+        
+        [SerializeField]
+        [Range(0, 5)]
+        private float _delayBetweenFills;
 
         private Tilemap _tilemap;
         private TilemapRenderer _tilemapRenderer;
@@ -25,32 +39,38 @@ namespace Assets.Scripts.GameSession.PlayingField
 
         private void Start()
         {
-            if (!_fillAtStart) return;
             if (_tile is null) return;
-            FillBorderTilesInCameraBounds();
+            StartCoroutine(FillBorderTilesInCameraBounds());
         }
 
-        private void FillBorderTilesInCameraBounds()
+        private IEnumerator FillBorderTilesInCameraBounds()
         {
+            yield return new WaitForSeconds(_fillingDelay);
             var boundsInt = GetBoundsIntFromCamera(_mainCamera, _tilemap, _tilemapRenderer.chunkCullingBounds);
             StartCoroutine(FillBounds(boundsInt));
         }
 
         private IEnumerator FillBounds(BoundsInt bounds)
         {
+            var min = bounds.min;
+            min = new Vector3Int(min.x + _boundsOffset, min.y + _boundsOffset);
+            var max = bounds.max;
+            max = new Vector3Int(max.x - _boundsOffset, max.y - _boundsOffset);
+
+            bounds.SetMinMax(min, max);
+
             for (int i = 0; i < _fillingFramesCount; i++)
             {
-
-                StartCoroutine(FillFrame(_tilemap, _tile.tile, bounds, _delayBetweenFillings));
+                StartCoroutine(FillFrame(_tilemap, _tile.tile, bounds, _delayBetweenFills));
 
                 var perimeterTilesCount = bounds.size.x * 2 + bounds.size.y * 2 - 2;
-                var frameFillingDelay = perimeterTilesCount * _delayBetweenFillings;
+                var frameFillingDelay = perimeterTilesCount * _delayBetweenFills;
 
                 yield return new WaitForSeconds(frameFillingDelay * 1.1f);
 
-                var min = bounds.min;
+                min = bounds.min;
                 min = new Vector3Int(min.x + 1, min.y + 1);
-                var max = bounds.max;
+                max = bounds.max;
                 max = new Vector3Int(max.x - 1, max.y - 1);
 
                 bounds.SetMinMax(min, max);

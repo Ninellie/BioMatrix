@@ -971,6 +971,7 @@ GameObject:
   - component: {fileID: 320754241}
   - component: {fileID: 320754243}
   - component: {fileID: 320754244}
+  - component: {fileID: 320754245}
   m_Layer: 0
   m_Name: Extra Tiles Floor
   m_TagString: Untagged
@@ -1030,7 +1031,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 320754240}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eee4453aa99faa84d95324d5c0b4b461, type: 3}
   m_Name: 
@@ -1039,9 +1040,30 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 84670f1adb0c9514082fa689fa062041, type: 2}
     prefab: {fileID: 0}
     spawnWeight: 1
-  _fillAtStart: 1
-  _fillingFramesCount: 4
-  _delayBetweenFillings: 0.05
+  _fillingDelay: 120
+  _boundsOffset: 1
+  _fillingFramesCount: 2
+  _delayBetweenFills: 0.5
+--- !u!114 &320754245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320754240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee4453aa99faa84d95324d5c0b4b461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tile:
+    tile: {fileID: 11400000, guid: 84670f1adb0c9514082fa689fa062041, type: 2}
+    prefab: {fileID: 0}
+    spawnWeight: 1
+  _fillingDelay: 120
+  _boundsOffset: 0
+  _fillingFramesCount: 1
+  _delayBetweenFills: 0.05
 --- !u!1 &321286755
 GameObject:
   m_ObjectHideFlags: 0
@@ -4020,8 +4042,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7890d1b3bc2e65d48a89519cfa82fbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activationTime: 2
-  _activationDuration: 2.5
+  _activationTime: 1
+  _activationDuration: 2
   _activationDelay: 5
   _blinkingTime: 1
   _blinkTime: 0.1
