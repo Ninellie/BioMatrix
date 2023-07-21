@@ -20,8 +20,8 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         {
             _multipliers = new Dictionary<CardTag, float>
             {
-                { CardTag.Gun, 2f },
-                { CardTag.Turret, 2f },
+                { CardTag.Gun, 1f },
+                { CardTag.Turret, 1f },
                 { CardTag.Vitality, 1f },
                 { CardTag.Shield, 1f },
                 { CardTag.Movement, 0.5f },
