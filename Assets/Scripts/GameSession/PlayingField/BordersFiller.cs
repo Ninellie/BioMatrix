@@ -79,21 +79,20 @@ namespace Assets.Scripts.GameSession.PlayingField
 
         private IEnumerator FillFrame(Tilemap tilemap, TileBase tileToFill, BoundsInt bounds, float delay)
         {
+            delay = Mathf.Max(0, delay);
             var left = bounds.xMin;
             var right = bounds.xMax - 1;
             var bottom = bounds.yMin;
             var top = bounds.yMax - 1;
 
-            var x = left;
-            var y = bottom;
-
             Vector3Int tilePos;
 
             // Fill bottom row
-            for (int i = x; i <= right; i++)
+            for (int i = left; i <= right; i++)
             {
                 tilePos = new Vector3Int(i, bottom, 0);
                 tilemap.SetTile(tilePos, tileToFill);
+                if (!(delay > 0)) continue;
                 yield return new WaitForSeconds(delay);
             }
 
@@ -102,6 +101,7 @@ namespace Assets.Scripts.GameSession.PlayingField
             {
                 tilePos = new Vector3Int(right, i, 0);
                 tilemap.SetTile(tilePos, tileToFill);
+                if (!(delay > 0)) continue;
                 yield return new WaitForSeconds(delay);
             }
 
@@ -112,6 +112,7 @@ namespace Assets.Scripts.GameSession.PlayingField
                 {
                     tilePos = new Vector3Int(i, top, 0);
                     tilemap.SetTile(tilePos, tileToFill);
+                    if (!(delay > 0)) continue;
                     yield return new WaitForSeconds(delay);
                 }
             }
@@ -123,6 +124,7 @@ namespace Assets.Scripts.GameSession.PlayingField
                 {
                     tilePos = new Vector3Int(left, i, 0);
                     tilemap.SetTile(tilePos, tileToFill);
+                    if (!(delay > 0)) continue;
                     yield return new WaitForSeconds(delay);
                 }
             }

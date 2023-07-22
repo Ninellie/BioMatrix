@@ -1063,7 +1063,7 @@ MonoBehaviour:
   _fillingDelay: 120
   _boundsOffset: 0
   _fillingFramesCount: 1
-  _delayBetweenFills: 0.05
+  _delayBetweenFills: 0
 --- !u!1 &321286755
 GameObject:
   m_ObjectHideFlags: 0
