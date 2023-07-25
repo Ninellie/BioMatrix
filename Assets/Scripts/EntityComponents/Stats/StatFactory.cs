@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.Stats
 {
-    public class StatFactory : MonoBehaviour
+    public static class StatFactory
     {
-        public Stat GetStat(float baseValue)
+        public static Stat GetStat(float baseValue)
         {
             return new Stat(baseValue);
         }
