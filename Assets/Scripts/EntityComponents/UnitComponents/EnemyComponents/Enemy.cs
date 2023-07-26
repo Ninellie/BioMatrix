@@ -1,12 +1,13 @@
 using System;
 using Assets.Scripts.Core.Render;
 using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.EntityComponents.UnitComponents.Enemy;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Assets.Scripts.GameSession.UIScripts.View;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Enemy
+namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 {
     public class Enemy : Unit
     {
@@ -92,13 +93,20 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Enemy
             _deathFromProjectile = true;
             TakeDamage(projectileDamage);
 
+            var isKilled = false;
             if (LifePoints.IsEmpty)
             {
+                isKilled = true;
                 _lastDamageSource.KillsCount.Increase();
             }
 
             var position = GetClosestPointOnCircle(otherCollider2D as CircleCollider2D); //TODO move to Circle.cs
             DropDamagePopup((int)projectileDamage, position);
+
+            if (isKilled)
+            {
+                return;
+            }
 
             ChangeColorOnDamageTaken();
 

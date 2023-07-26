@@ -128,22 +128,20 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             if (Shield.LayersCount.IsEmpty)
             {
                 TakeDamage(entity.Damage.Value);
+
+                if (LifePoints.IsEmpty)
+                    return;
+                
                 _invulnerability.ApplyInvulnerable();
 
                 if (isEnemy)
-                {
                     KnockBackFromEntity(entity);
-                }
+                
             }
-            else
-            {
-                Shield.LayersCount.Decrease(1);
-            }
+            else Shield.LayersCount.Decrease(1);
 
             if (isEnclosure)
-            {
                 KnockBackToEnclosureCenter(entity);
-            }
         }
 
         public void CreateWeapon(GameObject weapon)

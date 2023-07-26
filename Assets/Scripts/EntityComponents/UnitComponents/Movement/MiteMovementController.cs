@@ -11,6 +11,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         [SerializeField]
         private GameObject _target;
 
+        protected override float Speed => speedStat.Value * SpeedScale;
+
         protected override Vector2 MovementDirection
         {
             get
@@ -29,13 +31,26 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 
         protected override Vector2 RawMovementDirection
         {
-            get => (_target.transform.position - transform.position).normalized;
+            get
+            {
+                if (_target == null)
+                {
+                    return Vector2.zero;
+                }
+                if (_target.activeInHierarchy)
+                {
+                    return (_target.transform.position - transform.position).normalized;
+                }
+                else
+                {
+                    return Vector2.zero;
+                }
+            }
             set => throw new System.NotImplementedException();
         }
 
-        private new void Start()
+        private void Start()
         {
-            base.Start();
             _target = FindObjectOfType<Player>().gameObject;
         }
     }

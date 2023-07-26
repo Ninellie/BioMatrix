@@ -5,7 +5,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
     public class RotationController : MonoBehaviour
     {
         [SerializeField]
-        [Tooltip("Degrees per second")]
+        [Tooltip("Radians per second")]
         private float _rotationSpeed;
 
         private float RotationSpeed => _rotationSpeed * _movementController.GetSpeedScale();

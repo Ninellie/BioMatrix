@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
-    public abstract class EnemyMoveController
+    public abstract class OldEnemyMoveController
     {
         protected float knockbackSpeed = 700;
         protected float knockbackTime = 0;
@@ -13,7 +13,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         }
         private Vector2 _knockbackDirection = Vector2.zero;
         protected GameObject Target { get;}
-        protected Enemy.Enemy MyUnit { get; }
+        protected EnemyComponents.Enemy MyUnit { get; }
         public Vector2 Velocity => MovementVelocity + KnockbackVelocity;
         protected Vector2 MovementVelocity => MovementDirection * Speed;
         protected Vector2 KnockbackVelocity => KnockbackDirection * knockbackSpeed;
@@ -49,7 +49,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         }
 
         protected Vector2 MyPosition => MyUnit.transform.position;
-        protected EnemyMoveController(Enemy.Enemy myUnit, GameObject target)
+        protected OldEnemyMoveController(EnemyComponents.Enemy myUnit, GameObject target)
         {
             MyUnit = myUnit;
             Target = target;

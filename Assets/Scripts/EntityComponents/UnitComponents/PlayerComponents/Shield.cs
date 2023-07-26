@@ -93,10 +93,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             //TODO Lead to the next target.GetComponent<MovementController>().KnockBackFromTarget(force);
         }
 
-        private List<Enemy.Enemy> GetNearbyEnemiesList(float repulseRadius, LayerMask enemyLayer)
+        private List<EnemyComponents.Enemy> GetNearbyEnemiesList(float repulseRadius, LayerMask enemyLayer)
         {
             var colliders2D = Physics2D.OverlapCircleAll(transform.position, repulseRadius, enemyLayer);
-            return colliders2D.Select(collider2d => collider2d.gameObject.GetComponent<Enemy.Enemy>()).ToList();
+            return colliders2D.Select(collider2d => collider2d.gameObject.GetComponent<EnemyComponents.Enemy>()).ToList();
         }
 
         private List<IKnockbackController> GetNearbyEnemiesKnockbackControllersList(float repulseRadius, LayerMask enemyLayer)

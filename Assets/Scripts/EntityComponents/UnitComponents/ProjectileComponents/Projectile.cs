@@ -36,7 +36,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
         {
             var otherCollider2D = collision2D.collider;
             if (!otherCollider2D.gameObject.CompareTag("Enemy")) return;
-            if (!otherCollider2D.gameObject.GetComponent<Enemy.Enemy>().Alive) return;
+            if (!otherCollider2D.gameObject.GetComponent<EnemyComponents.Enemy>().Alive) return;
             TakeDamage(MinimalDamageTaken);
         }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
+    [RequireComponent(typeof(IMovementController))]
     public class KnockbackController : MonoBehaviour, IKnockbackController
     {
         [SerializeField]
