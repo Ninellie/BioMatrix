@@ -4,7 +4,7 @@ using Vector2 = UnityEngine.Vector2;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
-    public class Movement
+    public class OldMovement
     {
         public float Speed { get; private set; }
         public float TurningSpeed { get; private set; }
@@ -44,13 +44,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 
         private Vector2 Velocity => _movementDirection.normalized * Speed * VelocityScale;
         private Vector2 LocalUp => _drivenRigidbody2D.transform.up;
-        public Movement(Unit drivenUnit) : this(drivenUnit, MovementState.Idle, 0)
+        public OldMovement(Unit drivenUnit) : this(drivenUnit, MovementState.Idle, 0)
         {
         }
-        public Movement(Unit drivenUnit, float speed) : this(drivenUnit, MovementState.Idle, speed)
+        public OldMovement(Unit drivenUnit, float speed) : this(drivenUnit, MovementState.Idle, speed)
         {
         }
-        public Movement(Unit drivenUnit, MovementState currentState, float speed)
+        public OldMovement(Unit drivenUnit, MovementState currentState, float speed)
         {
             _drivenUnit = drivenUnit;
             _currentState = currentState;

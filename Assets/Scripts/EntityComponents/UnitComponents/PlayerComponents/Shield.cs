@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
@@ -26,16 +27,15 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Awake()
         {
-            var statFactory = Camera.main.GetComponent<StatFactory>();
             _shieldSprite = _shield.GetComponent<SpriteRenderer>();
             _capsuleCollider = GetComponentInParent<CapsuleCollider2D>();
 
-            MaxLayers = statFactory.GetStat(_stats.maxLayers);
-            MaxRechargeableLayers = statFactory.GetStat(_stats.maxRechargeableLayers);
+            MaxLayers = StatFactory.GetStat(_stats.maxLayers);
+            MaxRechargeableLayers = StatFactory.GetStat(_stats.maxRechargeableLayers);
             var rechargeRatePerSecond = _stats.rechargeRatePerMinute / 60f;
-            RechargeRatePerSecond = statFactory.GetStat(rechargeRatePerSecond);
-            RepulseForce = statFactory.GetStat(_stats.repulseForce);
-            RepulseRadius = statFactory.GetStat(_stats.repulseRadius);
+            RechargeRatePerSecond = StatFactory.GetStat(rechargeRatePerSecond);
+            RepulseForce = StatFactory.GetStat(_stats.repulseForce);
+            RepulseRadius = StatFactory.GetStat(_stats.repulseRadius);
 
             LayersCount = new RecoverableResource(0, MaxLayers, RechargeRatePerSecond, MaxRechargeableLayers);
         }
@@ -82,9 +82,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Repulse()
         {
-            var nearbyEnemies = GetNearbyEnemiesList(RepulseRadius.Value, _resistancePhysLayer);
+            //var nearbyEnemies = GetNearbyEnemiesList(RepulseRadius.Value, _resistancePhysLayer);
+            var nearbyEnemies = GetNearbyEnemiesKnockbackControllersList(RepulseRadius.Value, _resistancePhysLayer);
             foreach (var enemy in nearbyEnemies)
-                enemy.enemyMoveController.KnockBackFromTarget(RepulseForce.Value);
+            {
+                enemy.Knockback(gameObject);
+            }
+            //enemy.enemyMoveController.KnockBackFromTarget(RepulseForce.Value);
 
             //TODO Lead to the next target.GetComponent<MovementController>().KnockBackFromTarget(force);
         }
@@ -93,6 +97,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             var colliders2D = Physics2D.OverlapCircleAll(transform.position, repulseRadius, enemyLayer);
             return colliders2D.Select(collider2d => collider2d.gameObject.GetComponent<Enemy.Enemy>()).ToList();
+        }
+
+        private List<IKnockbackController> GetNearbyEnemiesKnockbackControllersList(float repulseRadius, LayerMask enemyLayer)
+        {
+            var colliders2D = Physics2D.OverlapCircleAll(transform.position, repulseRadius, enemyLayer);
+            return colliders2D.Select(collider2d => collider2d.gameObject.GetComponent<IKnockbackController>()).ToList();
         }
     
         private void Disable()

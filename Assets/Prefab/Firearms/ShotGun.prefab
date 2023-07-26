@@ -48,10 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: 93f1b8a0aadc49c4ba7cee4971a727db, type: 3}
-  _isForPlayer: 1
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  _currentFireDirection: {x: 0, y: 0}
 --- !u!114 &2073174384341714352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _plateUi: {fileID: 0}
-  _gameTimeScheduler: {fileID: 0}
+  _isInProgress: 0
 --- !u!114 &7478297182190854537
 MonoBehaviour:
   m_ObjectHideFlags: 0

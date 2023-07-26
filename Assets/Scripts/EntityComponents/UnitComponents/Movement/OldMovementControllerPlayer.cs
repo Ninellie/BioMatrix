@@ -1,8 +1,9 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
-    public class MovementControllerPlayer
+    public class OldMovementControllerPlayer
     {
         private readonly PlayerComponents.Player _myUnit;
         private const float KnockbackSpeed = 1500;
@@ -51,7 +52,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         private Vector2 MovementVelocity => MovementDirection * Speed;
         private Vector2 KnockbackVelocity => KnockbackDirection * KnockbackSpeed;
         
-        public MovementControllerPlayer(PlayerComponents.Player myUnit)
+        public OldMovementControllerPlayer(PlayerComponents.Player myUnit)
         {
             _myUnit = myUnit;
         }
@@ -69,10 +70,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
                 }
             }
             nextPosition += MovementVelocity * Time.fixedDeltaTime;
+
             if (SpeedScale < 1)
             {
                 SpeedScale += SpeedScaleStep;
             }
+
             _myUnit.Rb2D.MovePosition(nextPosition);
         }
         
@@ -81,7 +84,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             MovementDirection = direction;
         }
 
-        public void KnockBack(Vector2 force)
+        public void Knockback(Vector2 force)
         {
             KnockbackDirection = force.normalized;
             _knockbackTime = force.magnitude / KnockbackSpeed;

@@ -16,8 +16,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Enemy
         [SerializeField] private bool _dieOnPlayerCollision;
         public EnemyStatsSettings Settings => GetComponent<EnemyStatsSettings>();
 
-        public EnemyMoveController enemyMoveController;
+        //public EnemyMoveController enemyMoveController;
 
+        private IKnockbackController _knockbackController;
         private int _dropCount = 1;
         private readonly Rarity _rarity = new Rarity();
         private SpriteOutline _spriteOutline;
@@ -75,7 +76,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Enemy
             }
 
             var collisionEntity = otherCollider2D.gameObject.GetComponent<Entity>();
-            var thrustPower = collisionEntity.KnockbackPower.Value;
 
             if (otherCollider2D.gameObject.CompareTag("Player"))
             {
@@ -97,22 +97,19 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Enemy
                 _lastDamageSource.KillsCount.Increase();
             }
 
-            var position = GetClosestPointOnCircle(otherCollider2D as CircleCollider2D);
+            var position = GetClosestPointOnCircle(otherCollider2D as CircleCollider2D); //TODO move to Circle.cs
             DropDamagePopup((int)projectileDamage, position);
 
             ChangeColorOnDamageTaken();
 
-            enemyMoveController.KnockBackFromTarget(thrustPower);
+            Vector2 force = (transform.position - _player.transform.position);
+            force.Normalize();
+            force *= collisionEntity.KnockbackPower.Value;
+
+            _knockbackController.Knockback(force);
         }
 
         private void Update() => BaseUpdate();
-
-        private void OnDrawGizmos()
-        {
-            if (enemyMoveController is null) return;
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(Rb2D.transform.position, enemyMoveController.GetVelocity() + (Vector2)Rb2D.transform.position);
-        }
 
         protected void BaseAwake(EnemyStatsSettings settings)
         {
@@ -129,33 +126,17 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Enemy
 
             _player = FindObjectOfType<PlayerComponents.Player>(); //!!
 
-            if (_enemyType == EnemyType.SideView)
-            {
-                enemyMoveController = new SideViewEnemyMoveController(this, _player.gameObject);
-            }
-            else
-            {
-                enemyMoveController = new AboveViewEnemyMoveController(this, _player.gameObject);
-            }
+            _knockbackController = GetComponent<IKnockbackController>();
         }
 
         protected void BaseFixedUpdate()
         {
             DeathTimerFixedUpdate();
-            enemyMoveController.FixedUpdateMoveStep();
+            //enemyMoveController.FixedUpdateMoveStep();
         }
         
         protected override void BaseUpdate()
         {
-            if (enemyMoveController is SideViewEnemyMoveController)
-            {
-                SpriteRenderer.flipX = enemyMoveController.GetMovementDirection().x switch
-                {
-                    < 0 => false,
-                    > 0 => true,
-                    _ => SpriteRenderer.flipX
-                };
-            }
             base.BaseUpdate();
             BackToNormalColor();
         }

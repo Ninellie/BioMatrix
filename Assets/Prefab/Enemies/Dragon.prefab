@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: -2167475189181900128}
   - component: {fileID: 1878492662911867408}
   - component: {fileID: 3774024594271913881}
+  - component: {fileID: -1246950854706297088}
+  - component: {fileID: 4540966149982126123}
   m_Layer: 6
   m_Name: Dragon
   m_TagString: Enemy
@@ -32,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 8954189743293124748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.2}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -72,7 +74,6 @@ MonoBehaviour:
   knockbackPower: 150
   damage: 1
   speed: 140
-  accelerationSpeed: 0
   rotationSpeed: 0
   spawnWeight: 5
 --- !u!114 &2673435760891721348
@@ -217,3 +218,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-1246950854706297088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7c2c02b7f7b094fa5adaed7da53149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _knockbackSpeed: 700
+  _speedScaleRestoreSpeed: 0
+  _baseSpeedScale: 1
+  _restoreSpeedScale: 1
+  _target: {fileID: 0}
+--- !u!114 &4540966149982126123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7711465a83c3624f969e582d951e1a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isLooksToRight: 0

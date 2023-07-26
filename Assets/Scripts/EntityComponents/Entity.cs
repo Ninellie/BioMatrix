@@ -24,7 +24,6 @@ namespace Assets.Scripts.EntityComponents
 
         public SpriteRenderer SpriteRenderer { get; private set; }
         public GameTimeScheduler GameTimeScheduler { get; private set; }
-        public StatFactory StatFactory { get; private set; }
 
         public readonly List<IEffect> effects = new();
 
@@ -149,8 +148,6 @@ namespace Assets.Scripts.EntityComponents
             GameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
             TryGetComponent(out SpriteRenderer sR);
             SpriteRenderer = sR;
-
-            StatFactory = Camera.main.GetComponent<StatFactory>();
 
             Size = StatFactory.GetStat(settings.size);
             MaximumLifePoints = StatFactory.GetStat(settings.maximumLife);

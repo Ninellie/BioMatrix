@@ -2,19 +2,19 @@ using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Projectile
+namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
 {
     [RequireComponent(typeof(UnitStatsSettings))]
     public class Projectile : Unit
     {
-        [SerializeField] public float timeToStop = 15f;
+        //[SerializeField] public float timeToStop = 15f;
         public Entity Source { get; private set; }
         public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
 
         private TrailRenderer _trail;
         private CircleCollider2D _circleCollider;
-
-        private MovementControllerBullet _movementController;
+        //private OldMovementControllerBullet _oldMovementController;
+        private IProjectileMovementController _movementController;
 
         private void Awake() => BaseAwake(Settings);
 
@@ -26,7 +26,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Projectile
 
         private void FixedUpdate()
         {
-            _movementController.FixedUpdateStep();
+            //_oldMovementController.FixedUpdateStep();
+            //if (!_oldMovementController.IsStopped()) return;
             if (!_movementController.IsStopped()) return;
             Death();
         }
@@ -44,8 +45,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Projectile
             base.BaseAwake(settings);
             _trail = GetComponent<TrailRenderer>();
             _circleCollider = GetComponent<CircleCollider2D>();
-            _movementController = new MovementControllerBullet(this);
-            _movementController.FixedUpdateStep();
+            _movementController = GetComponent<IProjectileMovementController>();
+            //_oldMovementController = new OldMovementControllerBullet(this);
+            //_oldMovementController.FixedUpdateStep();
         }
 
         protected override void BaseOnEnable()
@@ -78,6 +80,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Projectile
         public void Launch(Vector2 direction, float force)
         {
             _movementController.SetDirection(direction);
+            //_oldMovementController.SetDirection(direction);
             var speedMod = new StatModifier(OperationType.Addition, force);
             Speed.AddModifier(speedMod);
         }

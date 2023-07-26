@@ -1,4 +1,5 @@
 using System;
+using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents
@@ -6,7 +7,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents
     public class Unit : Entity
     {
         public Stats.Stat Speed { get; private set; }
-        public Stats.Stat AccelerationSpeed { get; private set; }
         public Stats.Stat RotationSpeed { get; private set; }
 
         public event Action OnDeath;
@@ -27,7 +27,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents
             Rb2D = GetComponent<Rigidbody2D>();
 
             Speed = StatFactory.GetStat(settings.speed);
-            AccelerationSpeed = StatFactory.GetStat(settings.accelerationSpeed);
+            
             RotationSpeed = StatFactory.GetStat(settings.rotationSpeed);
         }
 

@@ -39,7 +39,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private const int ExperienceAmountIncreasingPerLevel = 15;
         private const int InitialLevel = 1;
 
-        private MovementControllerPlayer _movementController;
+        private IKnockbackController _knockbackController;
         private Invulnerability _invulnerability;
 
         private CircleCollider2D _circleCollider;
@@ -49,19 +49,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Awake() => BaseAwake(Settings);
 
-        private void Start() => BaseStart();
-
         private void OnEnable() => BaseOnEnable();
     
         private void OnDisable() => BaseOnDisable();
 
-        private void FixedUpdate() => BaseFixedUpdate();
-
         private void OnCollisionEnter2D(Collision2D collision2D) => BaseOnCollisionEnter2D(collision2D);
 
         private void Update() => BaseUpdate();
-
-        private void OnDrawGizmos() => BaseOnDrawGizmos();
 
         protected void BaseAwake(PlayerStatsSettings settings)
         {
@@ -75,6 +69,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _invulnerability = GetComponent<Invulnerability>();
             Shield = GetComponent<Shield>();
 
+            _knockbackController = GetComponent<IKnockbackController>();
+
             MagnetismRadius = StatFactory.GetStat(settings.magnetismRadius);
             ExpMultiplier = StatFactory.GetStat(settings.expMultiplier);
             ExpToNextLvl = StatFactory.GetStat(ExperienceToSecondLevel);
@@ -84,7 +80,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             Lvl = new Resource(InitialLevel);
             Exp = new Resource(ExpToNextLvl);
 
-            _movementController = new MovementControllerPlayer(this);
+            //_oldMovementController = new OldMovementControllerPlayer(this);
         }
 
         protected override void BaseOnEnable()
@@ -113,16 +109,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             Exp.FillEvent -= LevelUp;
 
             base.BaseOnDisable();
-        }
-
-        protected void BaseStart()
-        {
-            
-        }
-
-        protected void BaseFixedUpdate()
-        {
-            _movementController.FixedUpdateStep();
         }
 
         private void BaseOnCollisionEnter2D(Collision2D collision2D)
@@ -160,21 +146,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             }
         }
 
-        protected override void BaseUpdate()
-        {
-            base.BaseUpdate();
-        }
-
-        private void BaseOnDrawGizmos()
-        {
-            if (_movementController is null)
-            {
-                return;
-            }
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(Rb2D.transform.position, _movementController.GetVelocity() + (Vector2)Rb2D.transform.position);
-        }
-
         public void CreateWeapon(GameObject weapon)
         {
             var w = Instantiate(weapon);
@@ -208,7 +179,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             var direction = ((Vector2)transform.position - (Vector2)entity.transform.position).normalized;
             var force = direction * magnitude;
 
-            _movementController.KnockBack(force);
+            _knockbackController.Knockback(force);
         }
 
         private void KnockBackToEnclosureCenter(Entity entity)
@@ -232,7 +203,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             var direction = (entityPosition - (Vector2)transform.position).normalized;
             var force = direction * magnitude;
 
-            _movementController.KnockBack(force);
+            _knockbackController.Knockback(force);
         }
 
         private void ChangeCurrentMagnetismRadius()
@@ -250,15 +221,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             ChangeAnimationState("Run");
             var inputVector2 = input.Get<Vector2>();
-            _movementController.SetDirection(inputVector2);
-
-            _spriteRenderer.flipX = inputVector2.x switch
-            {
-                < 0 => false,
-                > 0 => true,
-                _ => _spriteRenderer.flipX
-            };
-
             if (inputVector2 == Vector2.zero)
             {
                 ChangeAnimationState("Idle");

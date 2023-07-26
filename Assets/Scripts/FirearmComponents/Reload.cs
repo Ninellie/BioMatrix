@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Assets.Scripts.GameSession.Events;
 using UnityEngine;
 
@@ -6,7 +8,6 @@ namespace Assets.Scripts.Weapons
     public class Reload : MonoBehaviour
     {
         [SerializeField] private GameObject _plateUi;
-        [SerializeField] private GameTimeScheduler _gameTimeScheduler;
         [SerializeField] private bool _isInProgress;
 
         public bool IsInProcess => _isInProgress;
@@ -16,7 +17,6 @@ namespace Assets.Scripts.Weapons
         private void Awake()
         {
             _firearm = GetComponent<Firearm>();
-            _gameTimeScheduler = Camera.main.GetComponent<GameTimeScheduler>();
             if (_firearm.IsForPlayer)
             {
                 _plateUi?.SetActive(false);
@@ -49,12 +49,18 @@ namespace Assets.Scripts.Weapons
             switch (isInstant)
             {
                 case false:
-                    _gameTimeScheduler.Schedule(Complete, reloadTime);
+                    StartCoroutine(CoReload(reloadTime));
                     break;
                 case true:
                     Complete();
                     break;
             }
+        }
+
+        private IEnumerator CoReload(float time)
+        {
+            yield return new WaitForSeconds(time);
+            Complete();
         }
 
         private void Complete()

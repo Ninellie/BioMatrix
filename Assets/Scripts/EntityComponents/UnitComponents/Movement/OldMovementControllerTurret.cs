@@ -3,10 +3,12 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
-    public class MovementControllerTurret
+    public class OldMovementControllerTurret
     {
+        [SerializeField] private float _orbitRadius = 80;
+
         private readonly TurretComponents.Turret _myTurret;
-        private float OrbitRadius => _myTurret.AccelerationSpeed.Value;
+        private float OrbitRadius => _orbitRadius;
         private readonly Circle _circle = new();
         private float _currentAngle;
         private float CurrentAngle
@@ -22,8 +24,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             }
         }
         private float OrbitalSpeed => _myTurret.Speed.Value; //in degrees per second
-        private Vector2 Center => _myTurret.GetAttractor().transform.position;
-        public MovementControllerTurret(TurretComponents.Turret myTurret)
+        //private Vector2 Center => _myTurret.GetAttractor().transform.position;
+        public OldMovementControllerTurret(TurretComponents.Turret myTurret)
         {
             _myTurret = myTurret;
             var r = Random.Range(0f, 360f);
@@ -33,8 +35,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         {
             CurrentAngle += OrbitalSpeed * Time.fixedDeltaTime;
             var fi = CurrentAngle * Mathf.Deg2Rad;
-            var nextPosition = _circle.GetPointOn(OrbitRadius, Center, fi);
-            _myTurret.Rb2D.MovePosition(nextPosition); //set new position
+            //var nextPosition = _circle.GetPointOn(OrbitRadius, Center, fi);
+            //_myTurret.Rb2D.MovePosition(nextPosition); //set new position
         }
     }
 }

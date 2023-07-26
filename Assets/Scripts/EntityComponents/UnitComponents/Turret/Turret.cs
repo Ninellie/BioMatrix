@@ -1,4 +1,3 @@
-using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
@@ -6,13 +5,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
     public class Turret : Unit
     {
         [SerializeField] private Transform _firePoint;
-        [SerializeField] private GameObject _attractor;
+        //[SerializeField] private GameObject _attractor;
 
         public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
         public Weapons.Firearm Firearm { get; private set; }
 
         private TurretHub _hub;
-        private MovementControllerTurret _movementController;
+        //private OldMovementControllerTurret _oldMovementController;
 
         private void Awake() => BaseAwake(Settings);
 
@@ -31,21 +30,21 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
             base.BaseOnDisable();
             KillsCount.IncrementEvent -= () => _hub.KillsCount.Increase();
         }
-        private void FixedUpdate() => BaseFixedUpdate();
+
+        //private void FixedUpdate() => BaseFixedUpdate();
     
-        protected void BaseFixedUpdate()
-        {
-            if (_attractor == null) return;
-            _movementController?.OrbitalFixedUpdateStep();
-        }
+        //protected void BaseFixedUpdate()
+        //{
+        //    if (_attractor == null) return;
+        //    _oldMovementController?.OrbitalFixedUpdateStep();
+        //}
     
         protected override void BaseAwake(UnitStatsSettings settings)
         {
             Debug.Log($"{gameObject.name} Turret Awake");
             base.BaseAwake(settings);
 
-            // acceleration speed = orbit radius, ONLY FOR TURRETS, for rework
-            _movementController = new MovementControllerTurret(this);
+            //_oldMovementController = new OldMovementControllerTurret(this);
         }
 
         public void CreateWeapon(GameObject weapon)
@@ -67,13 +66,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
     
         public void SetAttractor(GameObject attractor)
         {
-            _attractor = attractor;
+            //_attractor = attractor;
             _hub = attractor.GetComponent<TurretHub>();
         }
     
-        public GameObject GetAttractor()
-        {
-            return _attractor;
-        }
+        //public GameObject GetAttractor()
+        //{
+        //    return _attractor;
+        //}
     }
 }

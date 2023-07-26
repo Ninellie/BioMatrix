@@ -4,7 +4,6 @@ using Assets.Scripts.Core;
 using Assets.Scripts.EntityComponents;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
-using Assets.Scripts.EntityComponents.UnitComponents.Projectile;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -43,7 +42,6 @@ namespace Assets.Scripts.Weapons
                                 && !Magazine.IsEmpty
                                 && !_reload.IsInProcess;
 
-        private StatFactory _statFactory;
         private ProjectileCreator _projectileCreator;
         private Reload _reload;
         private Player _player;
@@ -66,18 +64,16 @@ namespace Assets.Scripts.Weapons
             _reload = GetComponent<Reload>();
             _projectileCreator = GetComponent<ProjectileCreator>();
 
-            _statFactory = Camera.main.GetComponent<StatFactory>();
-
-            Damage = _statFactory.GetStat(settings.damage);
-            ShootForce = _statFactory.GetStat(settings.shootForce);
-            ShootsPerSecond = _statFactory.GetStat(settings.shootsPerSecond);
-            MaxShootDeflectionAngle = _statFactory.GetStat(settings.maxShootDeflectionAngle);
-            MagazineCapacity = _statFactory.GetStat(settings.magazineCapacity);
-            ReloadTime = _statFactory.GetStat(settings.reloadTime);
-            SingleShootProjectile = _statFactory.GetStat(settings.singleShootProjectile);
-            ProjectileSizeMultiplier = _statFactory.GetStat(settings.projectileSizeMultiplier);
-            ProjectilePierceCount = _statFactory.GetStat(settings.projectilePierceCount);
-            AddedProjectileKnockback = _statFactory.GetStat(settings.addedProjectileKnockback);
+            Damage = StatFactory.GetStat(settings.damage);
+            ShootForce = StatFactory.GetStat(settings.shootForce);
+            ShootsPerSecond = StatFactory.GetStat(settings.shootsPerSecond);
+            MaxShootDeflectionAngle = StatFactory.GetStat(settings.maxShootDeflectionAngle);
+            MagazineCapacity = StatFactory.GetStat(settings.magazineCapacity);
+            ReloadTime = StatFactory.GetStat(settings.reloadTime);
+            SingleShootProjectile = StatFactory.GetStat(settings.singleShootProjectile);
+            ProjectileSizeMultiplier = StatFactory.GetStat(settings.projectileSizeMultiplier);
+            ProjectilePierceCount = StatFactory.GetStat(settings.projectilePierceCount);
+            AddedProjectileKnockback = StatFactory.GetStat(settings.addedProjectileKnockback);
         
             Magazine = new Resource(0, MagazineCapacity);
             Magazine.Fill();

@@ -66,7 +66,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _plateUi: {fileID: 6522579874615979406}
-  _gameTimeScheduler: {fileID: 0}
   _isInProgress: 0
 --- !u!114 &7478297182190854537
 MonoBehaviour:

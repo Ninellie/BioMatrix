@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: -2167475189181900128}
   - component: {fileID: 5590340840478446595}
   - component: {fileID: 3774024594271913881}
+  - component: {fileID: 4856388557757360404}
+  - component: {fileID: -7174485722683278531}
   m_Layer: 6
   m_Name: Mite
   m_TagString: Enemy
@@ -73,7 +75,6 @@ MonoBehaviour:
   knockbackPower: 150
   damage: 1
   speed: 350
-  accelerationSpeed: 0
   rotationSpeed: 2
   spawnWeight: 1
 --- !u!114 &-3291230919162905398
@@ -239,3 +240,34 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4856388557757360404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d477a7c6f1e68ea499800aa17ece5ba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 2
+--- !u!114 &-7174485722683278531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5bb7ae4e86ae384cb6cd879e13a01cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _knockbackSpeed: 700
+  _speedScaleRestoreSpeed: 1
+  _baseSpeedScale: 1
+  _restoreSpeedScale: 1
+  _viewDirection: 0
+  _target: {fileID: 0}

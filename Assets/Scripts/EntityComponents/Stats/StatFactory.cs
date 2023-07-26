@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Assets.Scripts.EntityComponents.Stats
 {
     public static class StatFactory

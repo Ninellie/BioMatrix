@@ -21,6 +21,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
             set => _isSameTurretTarget = value;
         }
 
+        private IOrbitRotationController _orbitRotationController;
+
         private void Awake() => BaseAwake(Settings);
 
         private void Start() => BaseStart();
@@ -35,15 +37,19 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
 
         protected void BaseAwake(TurretHubStatsSettings settings)
         {
-            Debug.Log($"{gameObject.name} {nameof(TurretHub)} Awake");
             base.BaseAwake(settings);
+            var turretCount = (int)settings.turretCount;
+            _orbitRotationController = GetComponent<IOrbitRotationController>();
             Turrets = new Resource(0);
+            Turrets.Increase(turretCount);
         }
 
         protected void BaseStart()
         {
             CreateTurretWeapon(_turretWeaponPrefab);
             UpdateTurrets();
+            _orbitRotationController.SetObjects(currentTurrets);
+            _orbitRotationController.SetAttractor(gameObject);
         }
 
         protected override void BaseOnEnable()
