@@ -4,7 +4,7 @@ using static System.Single;
 
 namespace Assets.Scripts.EntityComponents
 {
-    public class Resource
+    public class Resource : IResource
     {
         public event Action ValueChangedEvent;
         public event Action IncreaseEvent;
@@ -121,10 +121,6 @@ namespace Assets.Scripts.EntityComponents
             return _value;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns>Value percent</returns>
         public float GetPercentValue()
         {
             if (!_isLimited)
@@ -202,6 +198,84 @@ namespace Assets.Scripts.EntityComponents
             ValueChangedEvent?.Invoke();
             if (isFillEventRequired) FillEvent?.Invoke();
             if (isEmptyEventRequired) EmptyEvent?.Invoke();
+        }
+
+        public void SubscribeAction(ResourceEvent eventType, Action action)
+        {
+            switch (eventType)
+            {
+                case ResourceEvent.ValueChangedEvent:
+                    ValueChangedEvent += action;
+                    break;
+                case ResourceEvent.IncreaseEvent:
+                    IncreaseEvent += action;
+                    break;
+                case ResourceEvent.DecreaseEvent:
+                    DecreaseEvent += action;
+                    break;
+                case ResourceEvent.IncrementEvent:
+                    IncrementEvent += action;
+                    break;
+                case ResourceEvent.DecrementEvent:
+                    DecrementEvent += action;
+                    break;
+                case ResourceEvent.FillEvent:
+                    FillEvent += action;
+                    break;
+                case ResourceEvent.EmptyEvent:
+                    EmptyEvent += action;
+                    break;
+                case ResourceEvent.EdgeEvent:
+                    EdgeEvent += action;
+                    break;
+                case ResourceEvent.NotEdgeEvent:
+                    NotEdgeEvent += action;
+                    break;
+                case ResourceEvent.NotEmptyEvent:
+                    NotEmptyEvent += action;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(eventType), eventType, null);
+            }
+        }
+
+        public void UnsubscribeAction(ResourceEvent eventType, Action action)
+        {
+            switch (eventType)
+            {
+                case ResourceEvent.ValueChangedEvent:
+                    ValueChangedEvent -= action;
+                    break;
+                case ResourceEvent.IncreaseEvent:
+                    IncreaseEvent -= action;
+                    break;
+                case ResourceEvent.DecreaseEvent:
+                    DecreaseEvent -= action;
+                    break;
+                case ResourceEvent.IncrementEvent:
+                    IncrementEvent -= action;
+                    break;
+                case ResourceEvent.DecrementEvent:
+                    DecrementEvent -= action;
+                    break;
+                case ResourceEvent.FillEvent:
+                    FillEvent -= action;
+                    break;
+                case ResourceEvent.EmptyEvent:
+                    EmptyEvent -= action;
+                    break;
+                case ResourceEvent.EdgeEvent:
+                    EdgeEvent -= action;
+                    break;
+                case ResourceEvent.NotEdgeEvent:
+                    NotEdgeEvent -= action;
+                    break;
+                case ResourceEvent.NotEmptyEvent:
+                    NotEmptyEvent -= action;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(eventType), eventType, null);
+            }
         }
 
         public Resource() : this(0,
