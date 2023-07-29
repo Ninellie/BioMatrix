@@ -3,7 +3,15 @@ using Assets.Scripts.EntityComponents.Stats;
 
 namespace Assets.Scripts.EntityComponents
 {
-    public class RecoverableResource : Resource
+    public interface IRecoverable
+    {
+        event Action RecoverEvent;
+        event Action RecoveryStartEvent;
+        event Action FullRecoveryEvent;
+        void AddRecoveryTime(float time);
+    }
+
+    public class RecoverableResource : Resource, IRecoverable
     {
         public event Action RecoverEvent;
         public event Action RecoveryStartEvent;
@@ -70,6 +78,11 @@ namespace Assets.Scripts.EntityComponents
             }
         }
         private float _reserveValue;
+
+        public void AddRecoveryTime(float time)
+        {
+
+        }
 
         protected override void InvokeEvents(int oldValue, int newValue)
         {

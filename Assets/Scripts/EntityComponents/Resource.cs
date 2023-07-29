@@ -4,7 +4,7 @@ using static System.Single;
 
 namespace Assets.Scripts.EntityComponents
 {
-    public class Resource : IResource
+    public class Resource
     {
         public event Action ValueChangedEvent;
         public event Action IncreaseEvent;
@@ -61,38 +61,19 @@ namespace Assets.Scripts.EntityComponents
             InvokeEvents(oldValue, newValue);
         }
 
-        public void Fill()
-        {
-            var newValue = (int)_maxValueStat.Value;
-            Set(newValue);
-        }
+        public void Fill() => Set((int)_maxValueStat.Value);
 
-        public void Empty()
-        {
-            Set(_minValue);
-        }
+        public void Empty() => Set(_minValue);
 
-        public void Increase(int value)
+        public void Increase(int value = 1)
         {
             var newValue = _value + value;
             Set(newValue);
         }
 
-        public void Increase()
-        {
-            var newValue = _value + 1;
-            Set(newValue);
-        }
-
-        public void Decrease(int value)
+        public void Decrease(int value = 1)
         {
             var newValue = _value - value;
-            Set(newValue);
-        }
-    
-        public void Decrease()
-        {
-            var newValue = _value - 1;
             Set(newValue);
         }
     
@@ -198,84 +179,6 @@ namespace Assets.Scripts.EntityComponents
             ValueChangedEvent?.Invoke();
             if (isFillEventRequired) FillEvent?.Invoke();
             if (isEmptyEventRequired) EmptyEvent?.Invoke();
-        }
-
-        public void SubscribeAction(ResourceEvent eventType, Action action)
-        {
-            switch (eventType)
-            {
-                case ResourceEvent.ValueChangedEvent:
-                    ValueChangedEvent += action;
-                    break;
-                case ResourceEvent.IncreaseEvent:
-                    IncreaseEvent += action;
-                    break;
-                case ResourceEvent.DecreaseEvent:
-                    DecreaseEvent += action;
-                    break;
-                case ResourceEvent.IncrementEvent:
-                    IncrementEvent += action;
-                    break;
-                case ResourceEvent.DecrementEvent:
-                    DecrementEvent += action;
-                    break;
-                case ResourceEvent.FillEvent:
-                    FillEvent += action;
-                    break;
-                case ResourceEvent.EmptyEvent:
-                    EmptyEvent += action;
-                    break;
-                case ResourceEvent.EdgeEvent:
-                    EdgeEvent += action;
-                    break;
-                case ResourceEvent.NotEdgeEvent:
-                    NotEdgeEvent += action;
-                    break;
-                case ResourceEvent.NotEmptyEvent:
-                    NotEmptyEvent += action;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(eventType), eventType, null);
-            }
-        }
-
-        public void UnsubscribeAction(ResourceEvent eventType, Action action)
-        {
-            switch (eventType)
-            {
-                case ResourceEvent.ValueChangedEvent:
-                    ValueChangedEvent -= action;
-                    break;
-                case ResourceEvent.IncreaseEvent:
-                    IncreaseEvent -= action;
-                    break;
-                case ResourceEvent.DecreaseEvent:
-                    DecreaseEvent -= action;
-                    break;
-                case ResourceEvent.IncrementEvent:
-                    IncrementEvent -= action;
-                    break;
-                case ResourceEvent.DecrementEvent:
-                    DecrementEvent -= action;
-                    break;
-                case ResourceEvent.FillEvent:
-                    FillEvent -= action;
-                    break;
-                case ResourceEvent.EmptyEvent:
-                    EmptyEvent -= action;
-                    break;
-                case ResourceEvent.EdgeEvent:
-                    EdgeEvent -= action;
-                    break;
-                case ResourceEvent.NotEdgeEvent:
-                    NotEdgeEvent -= action;
-                    break;
-                case ResourceEvent.NotEmptyEvent:
-                    NotEmptyEvent -= action;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(eventType), eventType, null);
-            }
         }
 
         public Resource() : this(0,

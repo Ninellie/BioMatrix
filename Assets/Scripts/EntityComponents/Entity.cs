@@ -75,7 +75,8 @@ namespace Assets.Scripts.EntityComponents
                     effect.Identifier = GameTimeScheduler.Schedule(() => RemoveEffectStack(effect), effect.Duration.Value);
                 }
             }
-            effect.StacksCount.Set(1);
+            effect.StacksCount.Empty();
+            effect.StacksCount.Increase();
             effects.Add(effect);
             effect.Attach(this);
             effect.Subscribe(this);

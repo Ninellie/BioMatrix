@@ -4,26 +4,29 @@ namespace Assets.Scripts.EntityComponents
 {
     public interface IResource
     {
-        public void Set(int value);
-        public void Fill();
-
-        public void Empty();
-
-        public void Increase(int value);
-
-        public void Increase();
-
-        public void Decrease(int value);
-
-        public void Decrease();
-
-        public int GetValue();
-        public int GetMinValue();
-
-        public float GetMaxValue();
-        public int GetLackValue();
-        public float GetPercentValue();
-        public void SubscribeAction(ResourceEvent eventType, Action action);
-        public void UnsubscribeAction(ResourceEvent eventType, Action action);
+        event Action ValueChangedEvent;
+        event Action IncreaseEvent;
+        event Action DecreaseEvent;
+        event Action IncrementEvent;
+        event Action DecrementEvent;
+        event Action FillEvent;
+        event Action EmptyEvent;
+        event Action EdgeEvent;
+        event Action NotEdgeEvent;
+        event Action NotEmptyEvent;
+        void Set(int value);
+        void Fill();
+        void Empty();
+        void Increase(int value);
+        void Increase();
+        void Decrease(int value);
+        void Decrease();
+        int GetValue();
+        int GetMinValue();
+        float GetMaxValue();
+        int GetLackValue();
+        float GetPercentValue();
+        void SubscribeAction(ResourceEvent eventType, Action action);
+        void UnsubscribeAction(ResourceEvent eventType, Action action);
     }
 }
