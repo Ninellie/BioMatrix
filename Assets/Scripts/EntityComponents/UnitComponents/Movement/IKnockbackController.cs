@@ -4,7 +4,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
     public interface IKnockbackController
     {
-        public void Knockback(Vector2 force);
-        public void Knockback(GameObject target);
+        void Knockback(Vector2 force);
+        void Knockback(GameObject target);
     }
 }
