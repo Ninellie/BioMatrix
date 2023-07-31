@@ -73,6 +73,10 @@ MonoBehaviour:
   _shield: {fileID: 7005012959266165756}
   _spriteAlphaPerLayer: 0.2
   _shieldColor: {r: 0, g: 1, b: 1, a: 1}
+  _statHandler:
+    _usePreset: 1
+    _preset: {fileID: 11400000, guid: 33e5e286ca1e6214da5b783d069a51e7, type: 2}
+    _stats: []
 --- !u!114 &659999168091465563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +95,6 @@ MonoBehaviour:
   knockbackPower: 100
   damage: 0
   speed: 220
-  accelerationSpeed: 0
   rotationSpeed: 0
   magnetismRadius: 150
   expMultiplier: 1

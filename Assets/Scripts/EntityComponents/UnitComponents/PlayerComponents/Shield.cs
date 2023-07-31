@@ -14,6 +14,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private float _spriteAlphaPerLayer = 0.2f;
         [SerializeField] private Color _shieldColor = Color.cyan;
 
+        [SerializeField] private StatHandler _statHandler;
+
         public Stat MaxLayers { get; private set; }
         public Stat MaxRechargeableLayers { get; private set; }
         public Stat RechargeRatePerSecond { get; private set; }
@@ -29,7 +31,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             _shieldSprite = _shield.GetComponent<SpriteRenderer>();
             _capsuleCollider = GetComponentInParent<CapsuleCollider2D>();
-
+            _statHandler.Awake();
             MaxLayers = StatFactory.GetStat(_stats.maxLayers);
             MaxRechargeableLayers = StatFactory.GetStat(_stats.maxRechargeableLayers);
             var rechargeRatePerSecond = _stats.rechargeRatePerMinute / 60f;

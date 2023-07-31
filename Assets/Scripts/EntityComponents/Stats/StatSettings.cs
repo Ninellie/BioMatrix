@@ -20,6 +20,6 @@ namespace Assets.Scripts.EntityComponents.Stats
 
         [SerializeField]
         private float _baseMultiplierValue; // 100
-        public float BaseMultiplierValue => BaseMultiplierValue;
+        public float BaseMultiplierValue => _baseMultiplierValue;
     }
 }

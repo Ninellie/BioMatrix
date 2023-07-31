@@ -34,34 +34,42 @@ namespace Assets.Scripts.EntityComponents.Stats
         private float _multiplierValue;
 
         [SerializeField]
-        private List<StatMod> _modifiers;
+        private List<StatMod> _modifiers = new();
 
         public void AddModifier(StatMod modifier)
         {
-            var oldValue = _value;
             _modifiers.Add(modifier);
             UpdateActualValue();
-            TryInvokeOnValueChangedEvent(oldValue);
         }
 
         public bool RemoveModifier(StatMod modifier)
         {
             if (!_modifiers.Contains(modifier))
                 return false;
-            var oldValue = _value;
             _modifiers.Remove(modifier);
             UpdateActualValue();
-            TryInvokeOnValueChangedEvent(oldValue);
             return true;
         }
 
         public void ClearModifiersList()
         {
             if (_modifiers.Count == 0) return;
-            var oldValue = Value;
             _modifiers.Clear();
             UpdateActualValue();
-            TryInvokeOnValueChangedEvent(oldValue);
+        }
+
+        public void SetBaseValue(float value)
+        {
+            _baseValue = value;
+            UpdateActualValue();
+        }
+
+        public void SetName(string name) => _name = name;
+
+        public void SetSettings(StatSettings settings)
+        {
+            _settings = settings;
+            UpdateActualValue();
         }
 
         private void UpdateAddedValue()
@@ -80,12 +88,15 @@ namespace Assets.Scripts.EntityComponents.Stats
 
         private void UpdateActualValue()
         {
+            var oldValue = _value;
             UpdateAddedValue();
             UpdateMultiplierValue();
 
             _value = _settings.IsModifiable == false
                 ? (_baseValue + _settings.BaseAddedValue) * (_settings.BaseMultiplierValue / _settings.MultiplierDivisor)
                 : (_baseValue + _addedValue) * (_multiplierValue / _settings.MultiplierDivisor);
+
+            TryInvokeOnValueChangedEvent(oldValue);
         }
 
         private void TryInvokeOnValueChangedEvent(float oldValue)
