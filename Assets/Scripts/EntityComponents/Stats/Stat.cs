@@ -8,7 +8,6 @@ namespace Assets.Scripts.EntityComponents.Stats
     public class Stat
     {
         public float Value => GetActualValue();
-        public event Action ValueChangedEvent;
         private float BaseValue { get; }
         private bool IsModifiable { get; }
         private const float BaseAddedValue = 0;
@@ -16,6 +15,7 @@ namespace Assets.Scripts.EntityComponents.Stats
         private const float BaseMultiplierValue = 100;
         private float MultiplierValue => GetMultiplierValue();
         private readonly List<StatModifier> _modifiers = new();
+        public event Action ValueChangedEvent;
         private const float MultiplierDivisor = 100;
 
         public void AddModifier(StatModifier modifier)
@@ -41,7 +41,7 @@ namespace Assets.Scripts.EntityComponents.Stats
             return true;
         }
 
-        public bool IsModifierListEmpty()
+        private bool IsModifierListEmpty()
         {
             return _modifiers.Count == 0;
         }

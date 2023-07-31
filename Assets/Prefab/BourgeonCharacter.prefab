@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 885779190258261260}
   - component: {fileID: 2975664437671385834}
+  - component: {fileID: 6962343987427234379}
   - component: {fileID: 659999168091465563}
   - component: {fileID: 58879946241494682}
   - component: {fileID: 6184172464766941476}
@@ -68,6 +69,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 766516748403551923}
+--- !u!114 &6962343987427234379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671026415413744665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25437cf037f85d04b9c499f44afbe3e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stats:
+  - _name: Health
+    _settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}
+    _value: 0
+    _addedValue: 0
+    _multiplierValue: 0
+    _modifiers:
+    - _type: 0
+      _value: 1
 --- !u!114 &659999168091465563
 MonoBehaviour:
   m_ObjectHideFlags: 0
