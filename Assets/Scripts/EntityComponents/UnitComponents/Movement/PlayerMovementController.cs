@@ -12,8 +12,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             //= 0.3f;
         protected override float Speed =>
                 _isFireButtonPressed && !_player.Firearm.Magazine.IsEmpty
-                ? speedStat.Value * SpeedScale * _shootingSpeedMultiplier
-                : speedStat.Value * SpeedScale;
+                ? speedOldStat.Value * SpeedScale * _shootingSpeedMultiplier
+                : speedOldStat.Value * SpeedScale;
 
 
         protected override Vector2 MovementDirection { get; set; }

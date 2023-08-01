@@ -87,12 +87,12 @@ namespace Assets.Scripts.EntityComponents.Effects
                             nameof(Player.Firearm) + "." + nameof(Firearm.ShootsPerSecond)),
                     },
                     true,
-                    new Stat(2),
+                    new OldStat(2),
                     false,
                     true,
                     false,
                     false,
-                    new Stat(1, false)
+                    new OldStat(1, false)
                 ),
                 //Gun3
                 ["PlayerFirearmProjectilePierceAdd2"] = new AttachModAdderEffect
@@ -221,12 +221,12 @@ namespace Assets.Scripts.EntityComponents.Effects
                         (new StatModifier(OperationType.Multiplication, 5), nameof(Player.Firearm) + "." + nameof(Firearm.ShootsPerSecond)),
                     },
                     true,
-                    new Stat(5, true),
+                    new OldStat(5, true),
                     false,
                     true,
                     true,
                     false,
-                    new Stat(10, true)
+                    new OldStat(10, true)
                 ),
                 // Gun Movement Experience 2
                 [nameof(Player) + nameof(Player.Speed) + nameof(OperationType.Multiplication) + 25] =
@@ -283,12 +283,12 @@ namespace Assets.Scripts.EntityComponents.Effects
                                 nameof(Firearm.SingleShootProjectile)),
                         },
                         true,
-                        new Stat(2, true),
+                        new OldStat(2, true),
                         false,
                         true,
                         false,
                         false,
-                        new Stat(1, false)
+                        new OldStat(1, false)
                     ),
                 //Turret 3
                 [nameof(Player) + nameof(TurretHub) + nameof(Firearm.ProjectilePierceCount) + nameof(OperationType.Addition) + 1] =

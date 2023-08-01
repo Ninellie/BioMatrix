@@ -5,7 +5,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
     public class ProjectileMovementController : MovementController, IProjectileMovementController
     {
         //[SerializeField] private float _timeToStop;
-        protected override float Speed => speedStat.Value * SpeedScale;
+        protected override float Speed => speedOldStat.Value * SpeedScale;
         protected override Vector2 MovementDirection
         {
             get => RawMovementDirection;

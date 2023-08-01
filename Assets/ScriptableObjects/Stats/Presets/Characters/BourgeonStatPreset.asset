@@ -10,19 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba9f48a4706e4ef43960da087f4041e8, type: 3}
-  m_Name: PlayerStatPreset
+  m_Name: BourgeonStatPreset
   m_EditorClassIdentifier: 
   stats:
   - name: Size
-    baseValue: 1
-  - name: Health
-    baseValue: 1
+    baseValue: 2.5
+  - name: MaximumHealth
+    baseValue: 3
   - name: Regeneration
-    baseValue: 1
+    baseValue: 0
   - name: KnockbackPower
-    baseValue: 0
+    baseValue: 100
   - name: Speed
-    baseValue: 0
-  - name: size
-    baseValue: 0
+    baseValue: 300
+  - name: ExperienceMultiplier
+    baseValue: 1
+  - name: MagnetismRadius
+    baseValue: 75
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}

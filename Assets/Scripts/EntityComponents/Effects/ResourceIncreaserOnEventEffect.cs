@@ -16,17 +16,17 @@ namespace Assets.Scripts.EntityComponents.Effects
         public List<(int value, string resourcePath)> ResourceValues { get; set; }
 
         public bool IsTemporal { get; set; }
-        public Stats.Stat Duration { get; set; }
+        public Stats.OldStat Duration { get; set; }
         public bool IsDurationStacks { get; set; }
         public bool IsDurationUpdates { get; set; }
 
         public bool IsStacking { get; set; }
         public bool IsStackSeparateDuration { get; set; }
         public Resource StacksCount { get; set; }
-        public Stats.Stat MaxStackCount { get; set; }
+        public Stats.OldStat MaxStackCount { get; set; }
 
         public Resource TriggerCountForIncreasing { get; set; }
-        public Stats.Stat MaxTriggerCountForIncreasing { get; set; }
+        public Stats.OldStat MaxTriggerCountForIncreasing { get; set; }
 
         private Entity _target;
 
@@ -86,13 +86,13 @@ namespace Assets.Scripts.EntityComponents.Effects
             trigger,
             resourceValues,
             false,
-            new Stats.Stat(0, false),
+            new Stats.OldStat(0, false),
             false,
             false,
             isStacking,
             false,
-            new Stats.Stat(Single.PositiveInfinity, false),
-            new Stats.Stat(triggerCountForIncreasing)
+            new Stats.OldStat(Single.PositiveInfinity, false),
+            new Stats.OldStat(triggerCountForIncreasing)
         )
         {
         }
@@ -105,13 +105,13 @@ namespace Assets.Scripts.EntityComponents.Effects
             PropTrigger trigger,
             List<(int value, string resourcePath)> resourceValues,
             bool isTemporal,
-            Stats.Stat duration,
+            Stats.OldStat duration,
             bool isDurationStacks,
             bool isDurationUpdates,
             bool isStacking,
             bool isStackSeparateDuration,
-            Stats.Stat maxStackCount,
-            Stats.Stat maxTriggerCountForIncreasing
+            Stats.OldStat maxStackCount,
+            Stats.OldStat maxTriggerCountForIncreasing
 
         )
         {

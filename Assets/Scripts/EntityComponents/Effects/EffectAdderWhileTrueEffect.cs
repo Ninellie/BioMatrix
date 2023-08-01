@@ -19,14 +19,14 @@ namespace Assets.Scripts.EntityComponents.Effects
         public string Identifier { get; set; }
 
         public bool IsTemporal { get; set; }
-        public Stat Duration { get; set; }
+        public OldStat Duration { get; set; }
         public bool IsDurationStacks { get; set; }
         public bool IsDurationUpdates { get; set; }
 
         public bool IsStacking { get; set; }
         public bool IsStackSeparateDuration { get; set; }
         public Resource StacksCount { get; set; }
-        public Stat MaxStackCount { get; set; }
+        public OldStat MaxStackCount { get; set; }
 
         private Entity _target;
 
@@ -135,12 +135,12 @@ namespace Assets.Scripts.EntityComponents.Effects
             resourceConditionPath,
             effects,
             false,
-            new Stat(0, false),
+            new OldStat(0, false),
             false,
             false,
             false,
             false,
-            new Stat(1, false)
+            new OldStat(1, false)
         )
         {
         }
@@ -154,12 +154,12 @@ namespace Assets.Scripts.EntityComponents.Effects
             string resourceConditionPath,
             List<(IEffect effect, int stackCount)> effects,
             bool isTemporal,
-            Stat duration,
+            OldStat duration,
             bool isDurationStacks,
             bool isDurationUpdates,
             bool isStacking,
             bool isStackSeparateDuration,
-            Stat maxStackCount
+            OldStat maxStackCount
         )
         {
             Name = name;

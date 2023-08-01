@@ -10,16 +10,15 @@ using UnityEngine.InputSystem;
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
     [RequireComponent(typeof(PlayerStatsSettings))]
-    [RequireComponent(typeof(Shield))]
     public class Player : Unit
     {
         [SerializeField] private Transform _firePoint;
 
         public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
 
-        public Stat MagnetismRadius { get; private set; }
-        public Stat ExpMultiplier { get; private set; }
-        public Stat ExpToNextLvl { get; set; }
+        public OldStat MagnetismRadius { get; private set; }
+        public OldStat ExpMultiplier { get; private set; }
+        public OldStat ExpToNextLvl { get; set; }
 
         public event Action GamePausedEvent;
         public event Action ExperienceTakenEvent;
@@ -43,9 +42,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private Invulnerability _invulnerability;
 
         private CircleCollider2D _circleCollider;
-        private SpriteRenderer _spriteRenderer;
         private Animator _animator;
         private string _currentState;
+        private StatHandler _statHandler;
 
         private void Awake() => BaseAwake(Settings);
 
@@ -59,15 +58,15 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         protected void BaseAwake(PlayerStatsSettings settings)
         {
+            _statHandler = GetComponent<StatHandler>();
             Debug.Log($"{gameObject.name} {nameof(Player)} Awake");
             base.BaseAwake(settings);
 
             _animator = GetComponent<Animator>();
             _circleCollider = GetComponent<CircleCollider2D>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
 
             _invulnerability = GetComponent<Invulnerability>();
-            Shield = GetComponent<Shield>();
+            Shield = GetComponentInChildren<Shield>();
 
             _knockbackController = GetComponent<IKnockbackController>();
 

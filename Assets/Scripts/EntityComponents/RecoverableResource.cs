@@ -17,12 +17,12 @@ namespace Assets.Scripts.EntityComponents
         public event Action RecoveryStartEvent;
         public event Action FullRecoveryEvent;
 
-        public bool IsFullyRecovered => _isRecovering && GetValue() >= (int)_maxRecoverableValueStat.Value;
-        public bool IsOverRecovered => _isRecovering && GetValue() > (int)_maxRecoverableValueStat.Value;
-        public bool IsOnRecovery => _isRecovering && GetValue() < (int)_maxRecoverableValueStat.Value;
+        public bool IsFullyRecovered => _isRecovering && GetValue() >= (int)_maxRecoverableValueOldStat.Value;
+        public bool IsOverRecovered => _isRecovering && GetValue() > (int)_maxRecoverableValueOldStat.Value;
+        public bool IsOnRecovery => _isRecovering && GetValue() < (int)_maxRecoverableValueOldStat.Value;
 
-        private readonly Stat _maxRecoverableValueStat;
-        private readonly Stat _recoverySpeedPerSecondStat;
+        private readonly OldStat _maxRecoverableValueOldStat;
+        private readonly OldStat _recoverySpeedPerSecondOldStat;
         private readonly float _restoreRate;
         private readonly bool _isRecovering;
 
@@ -35,14 +35,14 @@ namespace Assets.Scripts.EntityComponents
                 {
                     return;
                 }
-                if (GetValue() >= _maxRecoverableValueStat.Value)
+                if (GetValue() >= _maxRecoverableValueOldStat.Value)
                 {
                     return;
                 }
                 if (value > _restoreRate)
                 {
                     _timeToRecover = value % _restoreRate;
-                    ReserveValue += _recoverySpeedPerSecondStat.Value * _restoreRate;
+                    ReserveValue += _recoverySpeedPerSecondOldStat.Value * _restoreRate;
                 }
                 else
                 {
@@ -60,7 +60,7 @@ namespace Assets.Scripts.EntityComponents
                 {
                     return;
                 }
-                if (GetValue() >= _maxRecoverableValueStat.Value)
+                if (GetValue() >= _maxRecoverableValueOldStat.Value)
                 {
                     return;
                 }
@@ -97,7 +97,7 @@ namespace Assets.Scripts.EntityComponents
 
             if (_isRecovering)
             {
-                var maxRecoverableValue = (int)_maxRecoverableValueStat.Value;
+                var maxRecoverableValue = (int)_maxRecoverableValueOldStat.Value;
                 var isFullyRecovered = newValue >= maxRecoverableValue;
                 var isOnRecovery = newValue < maxRecoverableValue;
 
@@ -117,86 +117,86 @@ namespace Assets.Scripts.EntityComponents
 
         public RecoverableResource() : this(0,
             1,
-            new Stat(Single.PositiveInfinity),
-            new Stat(0, false),
-            new Stat(0, false),
+            new OldStat(Single.PositiveInfinity),
+            new OldStat(0, false),
+            new OldStat(0, false),
             false)
         {
         }
 
-        public RecoverableResource(Stat maxValueStat) : this(0,
+        public RecoverableResource(OldStat maxValueOldStat) : this(0,
             1,
-            maxValueStat,
-            new Stat(0, false),
-            new Stat(0, false),
+            maxValueOldStat,
+            new OldStat(0, false),
+            new OldStat(0, false),
             false)
         {
         }
 
         public RecoverableResource(int minValue) : this(minValue,
             minValue + 1,
-            new Stat(Single.PositiveInfinity),
-            new Stat(0, false),
-            new Stat(0, false),
+            new OldStat(Single.PositiveInfinity),
+            new OldStat(0, false),
+            new OldStat(0, false),
             false)
         {
         }
 
         public RecoverableResource(int minValue,
-            Stat maxValueStat) : this(minValue,
+            OldStat maxValueOldStat) : this(minValue,
             minValue + 1,
-            maxValueStat,
-            new Stat(0, false),
-            new Stat(0, false),
+            maxValueOldStat,
+            new OldStat(0, false),
+            new OldStat(0, false),
             false)
         {
         }
 
         public RecoverableResource(int minValue,
-            Stat maxValueStat,
-            Stat recoverySpeedPerSecondStat) : this(minValue,
+            OldStat maxValueOldStat,
+            OldStat recoverySpeedPerSecondOldStat) : this(minValue,
             minValue + 1,
-            maxValueStat,
-            recoverySpeedPerSecondStat,
-            maxValueStat,
+            maxValueOldStat,
+            recoverySpeedPerSecondOldStat,
+            maxValueOldStat,
             true)
         {
         }
 
         public RecoverableResource(int minValue,
-            Stat maxValueStat,
-            Stat recoverySpeedPerSecondStat,
-            Stat maxRecoverableValueStat) : this(minValue,
+            OldStat maxValueOldStat,
+            OldStat recoverySpeedPerSecondOldStat,
+            OldStat maxRecoverableValueOldStat) : this(minValue,
             minValue + 1,
-            maxValueStat,
-            recoverySpeedPerSecondStat,
-            maxRecoverableValueStat,
+            maxValueOldStat,
+            recoverySpeedPerSecondOldStat,
+            maxRecoverableValueOldStat,
             true)
         {
         }
 
         public RecoverableResource(int minValue,
             int edgeValue,
-            Stat maxValueStat,
-            Stat recoverySpeedPerSecondStat,
-            Stat maxRecoverableValueStat) : this(minValue,
+            OldStat maxValueOldStat,
+            OldStat recoverySpeedPerSecondOldStat,
+            OldStat maxRecoverableValueOldStat) : this(minValue,
             edgeValue,
-            maxValueStat,
-            recoverySpeedPerSecondStat,
-            maxRecoverableValueStat,
+            maxValueOldStat,
+            recoverySpeedPerSecondOldStat,
+            maxRecoverableValueOldStat,
             true)
         {
         }
 
         public RecoverableResource(int minValue,
             int edgeValue,
-            Stat maxValueStat,
-            Stat recoverySpeedPerSecondStat,
-            Stat maxRecoverableValueStat,
-            bool isRecovering) : base(minValue, edgeValue, maxValueStat)
+            OldStat maxValueOldStat,
+            OldStat recoverySpeedPerSecondOldStat,
+            OldStat maxRecoverableValueOldStat,
+            bool isRecovering) : base(minValue, edgeValue, maxValueOldStat)
         {
-            _maxRecoverableValueStat = maxRecoverableValueStat;
-            _recoverySpeedPerSecondStat = recoverySpeedPerSecondStat;
+            _maxRecoverableValueOldStat = maxRecoverableValueOldStat;
+            _recoverySpeedPerSecondOldStat = recoverySpeedPerSecondOldStat;
             _isRecovering = isRecovering;
             _restoreRate = 0.1f;
         }

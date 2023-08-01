@@ -1,10 +1,11 @@
 using System;
 using Assets.Scripts.EntityComponents.Stats;
-using static System.Single;
+using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents
 {
-    public class Resource
+    [Serializable]
+    public class NewResource
     {
         public event Action ValueChangedEvent;
         public event Action IncreaseEvent;
@@ -17,25 +18,46 @@ namespace Assets.Scripts.EntityComponents
         public event Action NotEdgeEvent;
         public event Action NotEmptyEvent;
 
-        public bool IsFull => _isLimited && !(_value < _maxValueOldStat.Value);
+        public bool IsFull => _isLimited && !(_value < _maxValueStat.Value);
         public bool IsEmpty => _value == _minValue;
         public bool IsNotEmpty => _value > _minValue;
         public bool IsOnEdge => _value == _edgeValue;
 
+        [ReadOnly]
+        [SerializeField]
+        private string _name;
+        public string Name => _name;
+
+        [ReadOnly]
+        [SerializeField]
         private int _value;
 
-        private readonly int _minValue;
-        private readonly int _edgeValue;
-        private readonly OldStat _maxValueOldStat;
-        private readonly bool _isLimited;
+        [ReadOnly]
+        [SerializeField]
+        private bool _isLimited;
 
+        [ReadOnly]
+        [SerializeField]
+        private int _minValue;
+
+        [ReadOnly]
+        [SerializeField]
+        private int _edgeValue;
+
+        private Stat _maxValueStat;
+
+        public void SetName(string name) => _name = name;
+        public void SetMinValue(int minValue) => _minValue = minValue;
+        public void SetEdgeValue(int edgeValue) => _edgeValue = edgeValue;
+        public void SetIsLimited(bool isLimited) => _isLimited = isLimited;
+        
         public void Set(int value)
         {
             var oldValue = _value;
 
             if (_isLimited)
             {
-                var maxValue = (int)_maxValueOldStat.Value;
+                var maxValue = (int)_maxValueStat.Value;
 
                 if (value >= maxValue)
                 {
@@ -61,7 +83,7 @@ namespace Assets.Scripts.EntityComponents
             InvokeEvents(oldValue, newValue);
         }
 
-        public void Fill() => Set((int)_maxValueOldStat.Value);
+        public void Fill() => Set((int)_maxValueStat.Value);
 
         public void Empty() => Set(_minValue);
 
@@ -73,17 +95,17 @@ namespace Assets.Scripts.EntityComponents
 
         public int GetMinValue() => _minValue;
 
-        public float GetMaxValue() => _isLimited ? (int)_maxValueOldStat.Value : PositiveInfinity;
+        public float GetMaxValue() => _isLimited ? (int)_maxValueStat.Value : Single.PositiveInfinity;
 
-        public int GetLackValue() => (int)_maxValueOldStat.Value - _value;
+        public int GetLackValue() => (int)_maxValueStat.Value - _value;
 
         public float GetPercentValue()
         {
             if (!_isLimited)
             {
-                return NaN;
+                return Single.NaN;
             }
-            var maxValue = _maxValueOldStat.Value;
+            var maxValue = _maxValueStat.Value;
             var percent = maxValue / 100;
             var currentPercent = _value / percent;
             return currentPercent;
@@ -103,7 +125,7 @@ namespace Assets.Scripts.EntityComponents
 
             if (_isLimited)
             {
-                var maxValue = (int)_maxValueOldStat.Value;
+                var maxValue = (int)_maxValueStat.Value;
 
                 if (newValue == maxValue)
                 {
@@ -125,7 +147,7 @@ namespace Assets.Scripts.EntityComponents
                     dif--;
                 }
             }
-            
+
             if (dif < 0)
             {
                 DecreaseEvent?.Invoke();
@@ -145,7 +167,7 @@ namespace Assets.Scripts.EntityComponents
             {
                 NotEdgeEvent?.Invoke();
             }
-            
+
             if (newValue == _edgeValue)
             {
                 EdgeEvent?.Invoke();
@@ -154,41 +176,6 @@ namespace Assets.Scripts.EntityComponents
             ValueChangedEvent?.Invoke();
             if (isFillEventRequired) FillEvent?.Invoke();
             if (isEmptyEventRequired) EmptyEvent?.Invoke();
-        }
-
-        public Resource() : this(0,
-        1,
-        new OldStat(PositiveInfinity))
-        {
-        }
-
-        public Resource(OldStat maxValueOldStat) : this(0,
-            1,
-            maxValueOldStat)
-        {
-        }
-
-        public Resource(int minValue) : this(minValue,
-            minValue + 1,
-            new OldStat(PositiveInfinity))
-        {
-        }
-
-        public Resource(int minValue,
-            OldStat maxValueOldStat) : this(minValue,
-            minValue + 1,
-            maxValueOldStat)
-        {
-        }
-
-        public Resource(int minValue,
-            int edgeValue,
-            OldStat maxValueOldStat)
-        {
-            _minValue = minValue;
-            _edgeValue = edgeValue;
-            _maxValueOldStat = maxValueOldStat;
-            _isLimited = !IsPositiveInfinity(maxValueOldStat.Value);
         }
     }
 }

@@ -10,17 +10,16 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
     {
         [SerializeField] private ShieldStatsSettings _stats;
         [SerializeField] private LayerMask _resistancePhysLayer;
-        [SerializeField] private GameObject _shield;
         [SerializeField] private float _spriteAlphaPerLayer = 0.2f;
-        [SerializeField] private Color _shieldColor = Color.cyan;
+        [SerializeField] private Color _color = Color.cyan;
 
         [SerializeField] private StatHandler _statHandler;
 
-        public Stat MaxLayers { get; private set; }
-        public Stat MaxRechargeableLayers { get; private set; }
-        public Stat RechargeRatePerSecond { get; private set; }
-        public Stat RepulseForce { get; private set; }
-        public Stat RepulseRadius { get; private set; }
+        public OldStat MaxLayers { get; private set; }
+        public OldStat MaxRechargeableLayers { get; private set; }
+        public OldStat RechargeRatePerSecond { get; private set; }
+        public OldStat RepulseForce { get; private set; }
+        public OldStat RepulseRadius { get; private set; }
 
         public RecoverableResource LayersCount { get; private set; }
 
@@ -29,9 +28,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Awake()
         {
-            _shieldSprite = _shield.GetComponent<SpriteRenderer>();
+            _statHandler = GetComponent<StatHandler>();
+            _shieldSprite = GetComponent<SpriteRenderer>();
             _capsuleCollider = GetComponentInParent<CapsuleCollider2D>();
-            _statHandler.Awake();
+
             MaxLayers = StatFactory.GetStat(_stats.maxLayers);
             MaxRechargeableLayers = StatFactory.GetStat(_stats.maxRechargeableLayers);
             var rechargeRatePerSecond = _stats.rechargeRatePerMinute / 60f;
@@ -84,13 +84,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Repulse()
         {
-            //var nearbyEnemies = GetNearbyEnemiesList(RepulseRadius.Value, _resistancePhysLayer);
             var nearbyEnemies = GetNearbyEnemiesKnockbackControllersList(RepulseRadius.Value, _resistancePhysLayer);
             foreach (var enemy in nearbyEnemies)
-            {
                 enemy.Knockback(gameObject);
-            }
-            //enemy.enemyMoveController.KnockBackFromTarget(RepulseForce.Value);
 
             //TODO Lead to the next target.GetComponent<MovementController>().KnockBackFromTarget(force);
         }
@@ -110,20 +106,20 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private void Disable()
         {
             _capsuleCollider.enabled = false;
-            _shield.SetActive(false);
+            _shieldSprite.enabled = false;
         }
 
         private void Enable()
         {
             _capsuleCollider.enabled = true;
-            _shield.SetActive(true);
+            _shieldSprite.enabled = true;
         }
 
         private void UpdateShieldAlpha()
         {
             var spriteAlpha = _spriteAlphaPerLayer * LayersCount.GetValue();
-            _shieldColor.a = spriteAlpha;
-            _shieldSprite.color = _shieldColor;
+            _color.a = spriteAlpha;
+            _shieldSprite.color = _color;
         }
     }
 }

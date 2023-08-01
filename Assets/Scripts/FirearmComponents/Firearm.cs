@@ -23,16 +23,16 @@ namespace Assets.Scripts.Weapons
         public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
         public Resource Magazine { get; set; }
         public bool IsForPlayer { get; private set; }
-        public Stat Damage { get; private set; }
-        public Stat ShootForce { get; private set; }
-        public Stat ShootsPerSecond { get; private set; }
-        public Stat MaxShootDeflectionAngle { get; private set; }
-        public Stat MagazineCapacity { get; private set; }
-        public Stat ReloadTime { get; private set; }
-        public Stat SingleShootProjectile { get; private set; }
-        public Stat ProjectileSizeMultiplier { get; private set; }
-        public Stat ProjectilePierceCount { get; private set; }
-        public Stat AddedProjectileKnockback { get; private set; }
+        public OldStat Damage { get; private set; }
+        public OldStat ShootForce { get; private set; }
+        public OldStat ShootsPerSecond { get; private set; }
+        public OldStat MaxShootDeflectionAngle { get; private set; }
+        public OldStat MagazineCapacity { get; private set; }
+        public OldStat ReloadTime { get; private set; }
+        public OldStat SingleShootProjectile { get; private set; }
+        public OldStat ProjectileSizeMultiplier { get; private set; }
+        public OldStat ProjectilePierceCount { get; private set; }
+        public OldStat AddedProjectileKnockback { get; private set; }
 
         public event Action ReloadEndEvent;
         public event Action ReloadEvent;

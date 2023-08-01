@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 885779190258261260}
   - component: {fileID: 2975664437671385834}
+  - component: {fileID: 417332088117575202}
+  - component: {fileID: 491074598191817157}
   - component: {fileID: 659999168091465563}
   - component: {fileID: 58879946241494682}
   - component: {fileID: 6184172464766941476}
   - component: {fileID: -1144305010475561183}
   - component: {fileID: -5824956639751101389}
   - component: {fileID: 818376738777939163}
-  - component: {fileID: 1561021120681349175}
   - component: {fileID: 4797799252330293022}
   - component: {fileID: 1183143756002398565}
   - component: {fileID: 7452234380026767843}
@@ -68,6 +69,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 766516748403551923}
+--- !u!114 &417332088117575202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671026415413744665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9c9f584044c0bd4695584b5e1405f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _usePreset: 1
+  _preset: {fileID: 0}
+  _resources: []
+--- !u!114 &491074598191817157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671026415413744665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25437cf037f85d04b9c499f44afbe3e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _usePreset: 1
+  _preset: {fileID: 11400000, guid: 480b5b60630e22f4e94cb3264c8983a3, type: 2}
+  _stats: []
 --- !u!114 &659999168091465563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,34 +197,6 @@ MonoBehaviour:
   _invulnerabilityTime: 1
   _flashDuration: 0.1
   _flashAlpha: 0.3
---- !u!114 &1561021120681349175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671026415413744665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 289c1334e09423249af1972828b27a27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stats:
-    maxLayers: 3
-    maxRechargeableLayers: 0
-    rechargeRatePerMinute: 1
-    repulseRadius: 250
-    repulseForce: 100
-  _resistancePhysLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  _shield: {fileID: 7005012959266165756}
-  _spriteAlphaPerLayer: 0.2
-  _shieldColor: {r: 0, g: 1, b: 1, a: 1}
-  _statHandler:
-    _usePreset: 1
-    _preset: {fileID: 11400000, guid: 33e5e286ca1e6214da5b783d069a51e7, type: 2}
-    _stats: []
 --- !u!114 &4797799252330293022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5243,6 +5246,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3405054952402446014}
+  - component: {fileID: 6155809969865943397}
+  - component: {fileID: 6875561572371950145}
   - component: {fileID: 7579849442500094081}
   m_Layer: 0
   m_Name: Shield
@@ -5266,6 +5271,45 @@ Transform:
   m_Father: {fileID: 885779190258261260}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6155809969865943397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7005012959266165756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25437cf037f85d04b9c499f44afbe3e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _usePreset: 1
+  _preset: {fileID: 11400000, guid: 33e5e286ca1e6214da5b783d069a51e7, type: 2}
+  _stats: []
+--- !u!114 &6875561572371950145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7005012959266165756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 289c1334e09423249af1972828b27a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stats:
+    maxLayers: 3
+    maxRechargeableLayers: 0
+    rechargeRatePerMinute: 1
+    repulseRadius: 250
+    repulseForce: 100
+  _resistancePhysLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _spriteAlphaPerLayer: 0.2
+  _color: {r: 0, g: 1, b: 1, a: 1}
+  _statHandler: {fileID: 0}
 --- !u!212 &7579849442500094081
 SpriteRenderer:
   m_ObjectHideFlags: 0

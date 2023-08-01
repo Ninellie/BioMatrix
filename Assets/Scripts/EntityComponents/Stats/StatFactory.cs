@@ -2,9 +2,9 @@ namespace Assets.Scripts.EntityComponents.Stats
 {
     public static class StatFactory
     {
-        public static Stat GetStat(float baseValue)
+        public static OldStat GetStat(float baseValue)
         {
-            return new Stat(baseValue);
+            return new OldStat(baseValue);
         }
     }
 }

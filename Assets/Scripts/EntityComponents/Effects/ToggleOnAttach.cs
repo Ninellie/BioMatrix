@@ -14,14 +14,14 @@ namespace Assets.Scripts.EntityComponents.Effects
         public string Identifier { get; set; }
 
         public bool IsTemporal { get; }
-        public Stats.Stat Duration { get; }
+        public Stats.OldStat Duration { get; }
         public bool IsDurationStacks { get; }
         public bool IsDurationUpdates { get; }
 
         public bool IsStacking { get; }
         public bool IsStackSeparateDuration { get; }
         public Resource StacksCount { get; }
-        public Stats.Stat MaxStackCount { get; }
+        public Stats.OldStat MaxStackCount { get; }
 
         private Entity _target;
 
@@ -58,7 +58,7 @@ namespace Assets.Scripts.EntityComponents.Effects
             togglePropPath, 
             value, 
             false,
-            new Stats.Stat(0, false),
+            new Stats.OldStat(0, false),
             false,
             false
         )
@@ -73,7 +73,7 @@ namespace Assets.Scripts.EntityComponents.Effects
             string togglePropPath,
             bool value,
             bool isTemporal,
-            Stats.Stat duration,
+            Stats.OldStat duration,
             bool isDurationStacks,
             bool isDurationUpdates
         )
@@ -89,7 +89,7 @@ namespace Assets.Scripts.EntityComponents.Effects
             IsDurationUpdates = isDurationUpdates;
             IsStacking = false;
             IsStackSeparateDuration = false;
-            MaxStackCount = new Stats.Stat(1, false);
+            MaxStackCount = new Stats.OldStat(1, false);
             StacksCount = new Resource(MaxStackCount);
         }
     }

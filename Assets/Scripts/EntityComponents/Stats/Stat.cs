@@ -5,94 +5,104 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.Stats
 {
+    [Serializable]
     public class Stat
     {
-        public float Value => GetActualValue();
-        private float BaseValue { get; }
-        private bool IsModifiable { get; }
-        private const float BaseAddedValue = 0;
-        private float AddedValue => GetAddedValue();
-        private const float BaseMultiplierValue = 100;
-        private float MultiplierValue => GetMultiplierValue();
-        private readonly List<StatModifier> _modifiers = new();
         public event Action ValueChangedEvent;
-        private const float MultiplierDivisor = 100;
 
-        public void AddModifier(StatModifier modifier)
+        [SerializeField]
+        private string _name;
+        public string Name => _name;
+
+        [SerializeField]
+        private float _baseValue;
+
+        [SerializeField]
+        private StatSettings _settings;
+
+        [ReadOnly]
+        [SerializeField]
+        private float _value;
+        public float Value => _value;
+
+        [ReadOnly]
+        [SerializeField]
+        private float _addedValue;
+
+        [ReadOnly]
+        [SerializeField]
+        private float _multiplierValue;
+
+        [SerializeField]
+        private List<StatMod> _modifiers = new();
+
+        public void AddModifier(StatMod modifier)
         {
-            Debug.Log($"Try to add modifier {modifier.Value} {modifier.Type}");
-            var oldValue = Value;
             _modifiers.Add(modifier);
-            TryInvokeOnValueChangedEvent(oldValue);
-            Debug.Log($"Added mod {modifier.Type} : {modifier.Value}. Is mod temporary?: {modifier.IsTemporary}.");
-            Debug.Log($"New stat value: {Value}. Old value: {oldValue}.");
+            UpdateActualValue();
         }
 
-        public bool RemoveModifier(StatModifier modifier)
+        public bool RemoveModifier(StatMod modifier)
         {
-            Debug.LogWarning($"Try to remove {modifier.Value} {modifier.Type}");
             if (!_modifiers.Contains(modifier))
                 return false;
-            var oldValue = Value;
             _modifiers.Remove(modifier);
-            TryInvokeOnValueChangedEvent(oldValue);
-            Debug.Log($"Removed mod {modifier.Type} : {modifier.Value}. Is mod temporary?: {modifier.IsTemporary}.");
-            Debug.Log($"New stat value: {Value}. Old value: {oldValue}.");
+            UpdateActualValue();
             return true;
-        }
-
-        private bool IsModifierListEmpty()
-        {
-            return _modifiers.Count == 0;
         }
 
         public void ClearModifiersList()
         {
-            if (IsModifierListEmpty()) return;
-            var oldValue = Value;
+            if (_modifiers.Count == 0) return;
             _modifiers.Clear();
-            TryInvokeOnValueChangedEvent(oldValue);
+            UpdateActualValue();
         }
 
-        private float GetAddedValue()
+        public void SetBaseValue(float value)
         {
-            return BaseAddedValue + _modifiers
+            _baseValue = value;
+            UpdateActualValue();
+        }
+
+        public void SetName(string name) => _name = name;
+
+        public void SetSettings(StatSettings settings)
+        {
+            _settings = settings;
+            UpdateActualValue();
+        }
+
+        private void UpdateAddedValue()
+        {
+            _addedValue = _settings.BaseAddedValue + _modifiers
                 .Where(modifier => modifier.Type == OperationType.Addition)
                 .Sum(modifier => modifier.Value);
         }
 
-        private float GetMultiplierValue()
+        private void UpdateMultiplierValue()
         {
-            return BaseMultiplierValue + _modifiers
+            _multiplierValue = _settings.BaseMultiplierValue + _modifiers
                 .Where(modifier => modifier.Type == OperationType.Multiplication)
                 .Sum(modifier => modifier.Value);
         }
 
-        private float GetActualValue()
+        private void UpdateActualValue()
         {
-            return IsModifiable == false
-                ? (BaseValue + BaseAddedValue) * (BaseMultiplierValue / MultiplierDivisor)
-                : (BaseValue + AddedValue) * (MultiplierValue / MultiplierDivisor);
+            var oldValue = _value;
+            UpdateAddedValue();
+            UpdateMultiplierValue();
+
+            _value = _settings.IsModifiable == false
+                ? (_baseValue + _settings.BaseAddedValue) * (_settings.BaseMultiplierValue / _settings.MultiplierDivisor)
+                : (_baseValue + _addedValue) * (_multiplierValue / _settings.MultiplierDivisor);
+
+            TryInvokeOnValueChangedEvent(oldValue);
         }
 
         private void TryInvokeOnValueChangedEvent(float oldValue)
         {
             if (Value.Equals(oldValue)) return;
             ValueChangedEvent?.Invoke();
-        }
-
-        public Stat() : this(0, true)
-        {
-        }
-
-        public Stat(float baseValue) : this(baseValue, true)
-        {
-        }
-
-        public Stat(float baseValue, bool isModifiable)
-        {
-            BaseValue = baseValue;
-            IsModifiable = isModifiable;
         }
     }
 }

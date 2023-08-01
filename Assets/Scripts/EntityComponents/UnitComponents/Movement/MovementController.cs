@@ -40,7 +40,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         }
 
         private Vector2 AddedVelocity { get; set; } = Vector2.zero;
-        protected Stat speedStat;
+        protected OldStat speedOldStat;
         protected abstract float Speed { get; }
         protected abstract Vector2 MovementDirection { get; set; }
         protected abstract Vector2 RawMovementDirection { get; set; }
@@ -53,7 +53,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         protected void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            speedStat = GetComponent<Unit>().Speed;
+            speedOldStat = GetComponent<Unit>().Speed;
             SpeedScale = _baseSpeedScale;
         }
 
@@ -71,7 +71,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 
         protected void OnDrawGizmos()
         {
-            if (speedStat == null) return;
+            if (speedOldStat == null) return;
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, Velocity + (Vector2)transform.position);
             Gizmos.color = Color.magenta;

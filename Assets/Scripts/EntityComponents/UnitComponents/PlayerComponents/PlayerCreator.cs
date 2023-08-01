@@ -64,7 +64,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             foreach (var displayedResourceData in _displayedResources)
             {
                 var resource = (Resource)EventHelper.GetPropByPath(CurrentPlayer, displayedResourceData.resourcePath);
-                displayedResourceData.resourceCounter.SetResource(resource);
+                displayedResourceData.resourceCounter.SetResource(resource);    
                 displayedResourceData.resourceCounter.SetLabel(displayedResourceData.resourceName);
             }
         }
@@ -77,10 +77,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Subscription()
         {
-            //_experienceBar.Subscription();
-            //_ammoBar.Subscription();
-            //_lifeBar.Subscription();
-
             CurrentPlayer.GamePausedEvent += _viewController.Menu;
             CurrentPlayer.Lvl.IncrementEvent += _viewController.LevelUpEvent;
             CurrentPlayer.OnDeath += _viewController.Lose;

@@ -6,8 +6,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents
 {
     public class Unit : Entity
     {
-        public Stats.Stat Speed { get; private set; }
-        public Stats.Stat RotationSpeed { get; private set; }
+        public Stats.OldStat Speed { get; private set; }
+        public Stats.OldStat RotationSpeed { get; private set; }
 
         public event Action OnDeath;
 

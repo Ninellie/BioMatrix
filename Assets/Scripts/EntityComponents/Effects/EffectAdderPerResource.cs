@@ -14,14 +14,14 @@ namespace Assets.Scripts.EntityComponents.Effects
         public string Identifier { get; set; }
 
         public bool IsTemporal { get; set; }
-        public Stats.Stat Duration { get; set; }
+        public Stats.OldStat Duration { get; set; }
         public bool IsDurationStacks { get; set; }
         public bool IsDurationUpdates { get; set; }
 
         public bool IsStacking { get; set; }
         public bool IsStackSeparateDuration { get; set; }
         public Resource StacksCount { get; set; }
-        public Stats.Stat MaxStackCount { get; set; }
+        public Stats.OldStat MaxStackCount { get; set; }
 
         private Resource _triggerResource;
         private int _value;
@@ -113,12 +113,12 @@ namespace Assets.Scripts.EntityComponents.Effects
             effect,
             triggerResource,
             false,
-            new Stats.Stat(0, false),
+            new Stats.OldStat(0, false),
             false,
             false,
             false,
             false,
-            new Stats.Stat(1, false)
+            new Stats.OldStat(1, false)
         )
         {
         }
@@ -130,12 +130,12 @@ namespace Assets.Scripts.EntityComponents.Effects
             IEffect effect,
             PropTrigger triggerResource,
             bool isTemporal,
-            Stats.Stat duration,
+            Stats.OldStat duration,
             bool isDurationStacks,
             bool isDurationUpdates,
             bool isStacking,
             bool isStackSeparateDuration,
-            Stats.Stat maxStackCount
+            Stats.OldStat maxStackCount
         )
         {
             Name = name;

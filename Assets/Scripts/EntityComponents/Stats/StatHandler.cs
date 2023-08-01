@@ -5,12 +5,11 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.Stats
 {
-    [Serializable]
-    public class StatHandler
+    public class StatHandler : MonoBehaviour
     {
         [SerializeField] private bool _usePreset;
         [SerializeField] private StatsPreset _preset;
-        [SerializeField] private List<EntityStat> _stats;
+        [SerializeField] private List<Stat> _stats;
 
         public void Awake()
         {
@@ -18,7 +17,7 @@ namespace Assets.Scripts.EntityComponents.Stats
             _stats.Clear();
             foreach (var statPresetData in _preset.stats)
             {
-                var stat = new EntityStat();
+                var stat = new Stat();
                 stat.SetSettings(_preset.settings);
                 stat.SetBaseValue(statPresetData.baseValue);
                 stat.SetName(statPresetData.name);
@@ -26,7 +25,7 @@ namespace Assets.Scripts.EntityComponents.Stats
             }
         }
 
-        public EntityStat GetStatByName(string statName)
+        public Stat GetStatByName(string statName)
         {
             return _stats.FirstOrDefault(stat => stat.Name.Equals(statName));
         }
