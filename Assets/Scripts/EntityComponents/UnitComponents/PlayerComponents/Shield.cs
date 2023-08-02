@@ -8,7 +8,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
     public class Shield : MonoBehaviour
     {
-        [SerializeField] private ShieldStatsSettings _stats;
         [SerializeField] private LayerMask _resistancePhysLayer;
         [SerializeField] private float _spriteAlphaPerLayer = 0.2f;
         [SerializeField] private Color _color = Color.cyan;
@@ -31,44 +30,40 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _statHandler = GetComponent<StatHandler>();
             _shieldSprite = GetComponent<SpriteRenderer>();
             _capsuleCollider = GetComponentInParent<CapsuleCollider2D>();
-
-            MaxLayers = StatFactory.GetStat(_stats.maxLayers);
-            MaxRechargeableLayers = StatFactory.GetStat(_stats.maxRechargeableLayers);
-            var rechargeRatePerSecond = _stats.rechargeRatePerMinute / 60f;
-            RechargeRatePerSecond = StatFactory.GetStat(rechargeRatePerSecond);
-            RepulseForce = StatFactory.GetStat(_stats.repulseForce);
-            RepulseRadius = StatFactory.GetStat(_stats.repulseRadius);
-
-            LayersCount = new RecoverableResource(0, MaxLayers, RechargeRatePerSecond, MaxRechargeableLayers);
-        }
-
-        private void OnEnable()
-        {
-            LayersCount.EmptyEvent += Disable;
-            LayersCount.NotEmptyEvent += Enable;
-            LayersCount.ValueChangedEvent += UpdateShieldAlpha;
-            LayersCount.DecrementEvent += Repulse;
-        }
-
-        private void OnDisable()
-        {
-            LayersCount.EmptyEvent -= Disable;
-            LayersCount.NotEmptyEvent -= Enable;
-            LayersCount.ValueChangedEvent -= UpdateShieldAlpha;
-            LayersCount.DecrementEvent -= Repulse;
         }
 
         private void Start()
         {
+            MaxLayers = StatFactory.GetStat(_statHandler.GetStatByName("MaxLayers").Value);
+            MaxRechargeableLayers = StatFactory.GetStat(_statHandler.GetStatByName("MaxRechargeableLayers").Value);
+            var rechargeRatePerSecond = _statHandler.GetStatByName("RechargeRatePerMinute").Value / 60f;
+            RechargeRatePerSecond = StatFactory.GetStat(rechargeRatePerSecond);
+            RepulseForce = StatFactory.GetStat(_statHandler.GetStatByName("RepulseForce").Value);
+            RepulseRadius = StatFactory.GetStat(_statHandler.GetStatByName("RepulseRadius").Value);
+
+            LayersCount = new RecoverableResource(0, MaxLayers, RechargeRatePerSecond, MaxRechargeableLayers);
+
             var initialLayersCount = (int)MaxRechargeableLayers.Value;
             initialLayersCount = Mathf.Max(initialLayersCount, 0);
             LayersCount.Increase(initialLayersCount);
             UpdateShieldAlpha();
+            
+            Subscribe();
 
             if (initialLayersCount == 0)
                 Disable();
             else
                 Enable();
+        }
+
+        private void OnEnable()
+        {
+            Subscribe();
+        }
+
+        private void OnDisable()
+        {
+            Unsubscribe();
         }
 
         private void Update()
@@ -79,7 +74,26 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(transform.position, RepulseRadius?.Value ?? _stats.repulseRadius);
+            if (RepulseRadius != null)
+                Gizmos.DrawWireSphere(transform.position, RepulseRadius?.Value ?? RepulseRadius.Value);
+        }
+
+        private void Subscribe()
+        {
+            if (LayersCount == null) return;
+            LayersCount.EmptyEvent += Disable;
+            LayersCount.NotEmptyEvent += Enable;
+            LayersCount.ValueChangedEvent += UpdateShieldAlpha;
+            LayersCount.DecrementEvent += Repulse;
+        }
+
+        private void Unsubscribe()
+        {
+            if (LayersCount == null) return;
+            LayersCount.EmptyEvent -= Disable;
+            LayersCount.NotEmptyEvent -= Enable;
+            LayersCount.ValueChangedEvent -= UpdateShieldAlpha;
+            LayersCount.DecrementEvent -= Repulse;
         }
 
         private void Repulse()
@@ -87,8 +101,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             var nearbyEnemies = GetNearbyEnemiesKnockbackControllersList(RepulseRadius.Value, _resistancePhysLayer);
             foreach (var enemy in nearbyEnemies)
                 enemy.Knockback(gameObject);
-
-            //TODO Lead to the next target.GetComponent<MovementController>().KnockBackFromTarget(force);
         }
 
         private List<EnemyComponents.Enemy> GetNearbyEnemiesList(float repulseRadius, LayerMask enemyLayer)

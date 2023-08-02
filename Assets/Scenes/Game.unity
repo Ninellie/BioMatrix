@@ -6042,7 +6042,7 @@ PrefabInstance:
       objectReference: {fileID: 626372314}
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _displayedResources.Array.size
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _displayedResources.Array.data[0].resourceName
@@ -6062,43 +6062,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _displayedResources.Array.data[2].resourceName
-      value: Ammo
+      value: Health
       objectReference: {fileID: 0}
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _displayedResources.Array.data[2].resourcePath
-      value: Firearm.Magazine
+      value: LifePoints
       objectReference: {fileID: 0}
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _displayedResources.Array.data[3].resourceName
-      value: Health
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
-      propertyPath: _displayedResources.Array.data[3].resourcePath
-      value: LifePoints
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
-      propertyPath: _displayedResources.Array.data[4].resourceName
-      value: Shield
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
-      propertyPath: _displayedResources.Array.data[4].resourcePath
-      value: Shield.LayersCount
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
-      propertyPath: _displayedResources.Array.data[5].resourceName
-      value: Health
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
-      propertyPath: _displayedResources.Array.data[5].resourcePath
-      value: LifePoints
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
-      propertyPath: _displayedResources.Array.data[6].resourceName
       value: Kills
       objectReference: {fileID: 0}
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
-      propertyPath: _displayedResources.Array.data[6].resourcePath
+      propertyPath: _displayedResources.Array.data[3].resourcePath
       value: KillsCount
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
+      propertyPath: _displayedResources.Array.data[4].resourceName
+      value: Ammo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
+      propertyPath: _displayedResources.Array.data[4].resourcePath
+      value: Firearm.Magazine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
+      propertyPath: _displayedResources.Array.data[5].resourceName
+      value: Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
+      propertyPath: _displayedResources.Array.data[5].resourcePath
+      value: Shield.LayersCount
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
+      propertyPath: _displayedResources.Array.data[6].resourceName
+      value: Health
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
+      propertyPath: _displayedResources.Array.data[6].resourcePath
+      value: LifePoints
       objectReference: {fileID: 0}
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _displayedResources.Array.data[0].resourceCounter
@@ -6111,23 +6111,23 @@ PrefabInstance:
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _displayedResources.Array.data[2].resourceCounter
       value: 
-      objectReference: {fileID: 262944791}
+      objectReference: {fileID: 1484282434}
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _displayedResources.Array.data[3].resourceCounter
       value: 
-      objectReference: {fileID: 1484282434}
+      objectReference: {fileID: 1130304201}
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _displayedResources.Array.data[4].resourceCounter
       value: 
-      objectReference: {fileID: 1581756438}
+      objectReference: {fileID: 262944791}
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _displayedResources.Array.data[5].resourceCounter
       value: 
-      objectReference: {fileID: 1484282434}
+      objectReference: {fileID: 1581756438}
     - target: {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _displayedResources.Array.data[6].resourceCounter
       value: 
-      objectReference: {fileID: 1130304201}
+      objectReference: {fileID: 1484282434}
     - target: {fileID: 1365173418, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _secondsBetweenWaves
       value: 3

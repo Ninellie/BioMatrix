@@ -21,6 +21,6 @@ MonoBehaviour:
     baseValue: 1
   - name: RepulseRadius
     baseValue: 250
-  - name: RepulceForce
+  - name: RepulseForce
     baseValue: 100
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}

@@ -38,10 +38,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             _gameSessionTimer = FindObjectOfType<GameSessionTimer>();
             _viewController = FindObjectOfType<ViewController>();
-            //_experienceBar = FindObjectOfType<ExpUI>();
-            //_lifeBar = FindObjectOfType<LifeBar>();
-            //_ammoBar = FindObjectOfType<AmmoBar>();
             _optionsMenu = FindObjectOfType<OptionsMenu>();
+
             if (_playerPrefab == null)
             {
                 Debug.LogWarning("PlayerPrefab is null");
@@ -64,7 +62,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             foreach (var displayedResourceData in _displayedResources)
             {
                 var resource = (Resource)EventHelper.GetPropByPath(CurrentPlayer, displayedResourceData.resourcePath);
-                displayedResourceData.resourceCounter.SetResource(resource);    
+                displayedResourceData.resourceCounter.SetResource(resource);
                 displayedResourceData.resourceCounter.SetLabel(displayedResourceData.resourceName);
             }
         }

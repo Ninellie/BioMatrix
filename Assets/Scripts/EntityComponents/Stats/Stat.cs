@@ -75,7 +75,8 @@ namespace Assets.Scripts.EntityComponents.Stats
 
         public void SetSettings()
         {
-            _settings = new StatSettings();
+            //_settings = new StatSettings();
+            _settings = (StatSettings)ScriptableObject.CreateInstance(nameof(StatSettings));
             UpdateActualValue();
         }
 
