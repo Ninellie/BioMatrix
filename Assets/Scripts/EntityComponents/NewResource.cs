@@ -22,11 +22,11 @@ namespace Assets.Scripts.EntityComponents
         public bool IsEmpty => _value == _minValue;
         public bool IsNotEmpty => _value > _minValue;
         public bool IsOnEdge => _value == _edgeValue;
+        public string Name => _name;
 
         [ReadOnly]
         [SerializeField]
         private string _name;
-        public string Name => _name;
 
         [ReadOnly]
         [SerializeField]
@@ -38,21 +38,112 @@ namespace Assets.Scripts.EntityComponents
 
         [ReadOnly]
         [SerializeField]
+        private bool _isInfinite;
+
+        [ReadOnly]
+        [SerializeField]
         private int _minValue;
 
         [ReadOnly]
         [SerializeField]
         private int _edgeValue;
 
+        [ReadOnly]
+        [SerializeField]
         private Stat _maxValueStat;
 
-        public void SetName(string name) => _name = name;
-        public void SetMinValue(int minValue) => _minValue = minValue;
-        public void SetEdgeValue(int edgeValue) => _edgeValue = edgeValue;
-        public void SetIsLimited(bool isLimited) => _isLimited = isLimited;
+        /// <summary>
+        /// Creates infinite resource
+        /// </summary>
+        /// <param name="name"></param>
+        public NewResource(string name)
+        {
+            _name = name;
+            _isLimited = false;
+            _minValue = 0;
+            _edgeValue = 1;
+            _maxValueStat = new Stat();
+            _maxValueStat.SetSettings();
+            _maxValueStat.SetBaseValue(float.PositiveInfinity);
+            _value = int.MaxValue;
+            _isInfinite = true;
+        }
+
+        /// <summary>
+        /// Creates unlimited empty resource
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="minValue"></param>
+        /// <param name="edgeValue"></param>
+        public NewResource(string name, int minValue, int edgeValue)
+        {
+            _name = name;
+            _isLimited = false;
+            _minValue = minValue;
+            _edgeValue = edgeValue;
+            _maxValueStat = new Stat();
+            _maxValueStat.SetSettings();
+            _maxValueStat.SetBaseValue(float.PositiveInfinity);
+            _value = _minValue;
+        }
+
+        /// <summary>
+        /// Creates unlimited resource
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <param name="minValue"></param>
+        /// <param name="edgeValue"></param>
+        public NewResource(string name, int value, int minValue, int edgeValue)
+        {
+            _name = name;
+            _isLimited = true;
+            _minValue = minValue;
+            _edgeValue = edgeValue;
+            _maxValueStat = new Stat();
+            _maxValueStat.SetSettings();
+            _maxValueStat.SetBaseValue(float.PositiveInfinity);
+            
+            _value = _value < minValue ? minValue : value;
+        }
+
+        /// <summary>
+        /// Creates limited resource
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <param name="minValue"></param>
+        /// <param name="edgeValue"></param>
+        /// <param name="maxValueStat"></param>
+        public NewResource(string name, int value, int minValue, int edgeValue, Stat maxValueStat)
+        {
+            _name = name;
+            _isLimited = true;
+            _minValue = minValue;
+            _edgeValue = edgeValue;
+            _maxValueStat = maxValueStat;
+
+            if (_value > maxValueStat.Value)
+            {
+                _value = (int)maxValueStat.Value;
+            }
+            else if (_value < minValue)
+            {
+                _value = minValue;
+            }
+            else
+            {
+                _value = value;
+            }
+        }
         
         public void Set(int value)
         {
+            if (_isInfinite)
+            {
+                value = Mathf.Min(value, _value);
+            }
+
             var oldValue = _value;
 
             if (_isLimited)

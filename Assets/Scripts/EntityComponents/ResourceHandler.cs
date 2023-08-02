@@ -1,25 +1,39 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents
 {
+    [RequireComponent(typeof(StatHandler))]
     public class ResourceHandler : MonoBehaviour
     {
-        [SerializeField] private bool _usePreset;
         [SerializeField] private ResourcePreset _preset;
         [SerializeField] private List<NewResource> _resources;
 
-        public void Awake()
+        private StatHandler _statHandler;
+
+        public void Start()
         {
-            if (!_usePreset) return;
+            _statHandler = GetComponent<StatHandler>();
             _resources.Clear();
-            foreach (var statPresetData in _preset.resources)
+
+            foreach (var data in _preset.resources)
             {
-                var resource = new NewResource();
-                resource.Set(statPresetData.baseValue);
-                resource.SetName(statPresetData.name);
-                _resources.Add(resource);
+                var isLimited = string.IsNullOrEmpty(data.maxValueStatName);
+                if (isLimited)
+                {
+                    var resource = new NewResource(data.name, data.baseValue, data.minValue, data.edgeValue);
+                    _resources.Add(resource);
+                }
+                else
+                {
+                    var maxValueStat = _statHandler.GetStatByName(data.maxValueStatName);
+                    var resource = new NewResource(data.name, data.baseValue, data.minValue, data.edgeValue, maxValueStat);
+                    _resources.Add(resource);
+                }
             }
         }
 

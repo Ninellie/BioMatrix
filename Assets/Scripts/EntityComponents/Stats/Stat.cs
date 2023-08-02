@@ -10,14 +10,15 @@ namespace Assets.Scripts.EntityComponents.Stats
     {
         public event Action ValueChangedEvent;
 
+        [ReadOnly]
         [SerializeField]
         private string _name;
         public string Name => _name;
 
+        [ReadOnly]
         [SerializeField]
         private float _baseValue;
 
-        [SerializeField]
         private StatSettings _settings;
 
         [ReadOnly]
@@ -69,6 +70,12 @@ namespace Assets.Scripts.EntityComponents.Stats
         public void SetSettings(StatSettings settings)
         {
             _settings = settings;
+            UpdateActualValue();
+        }
+
+        public void SetSettings()
+        {
+            _settings = new StatSettings();
             UpdateActualValue();
         }
 

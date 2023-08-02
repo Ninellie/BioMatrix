@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc7d76739178234c9a02b24af3b536b, type: 3}
   m_Name: CharacterResourcePreset
   m_EditorClassIdentifier: 
-  resources: []
-  settings: {fileID: 0}
+  resources:
+  - name: Health
+    baseValue: 3
+    minValue: 0
+    edgeValue: 1
+    maxValueStatName: MaximumHealth
+  - name: Kills
+    baseValue: 0
+    minValue: 0
+    edgeValue: 1
+    maxValueStatName: 

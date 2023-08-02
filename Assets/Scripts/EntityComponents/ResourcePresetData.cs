@@ -9,7 +9,6 @@ namespace Assets.Scripts.EntityComponents
         public int baseValue;
         public int minValue;
         public int edgeValue;
-        public bool isLimited;
         public string maxValueStatName;
     }
 }

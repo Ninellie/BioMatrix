@@ -20,5 +20,13 @@ namespace Assets.Scripts.EntityComponents.Stats
         [SerializeField]
         private float _baseMultiplierValue; // 100
         public float BaseMultiplierValue => _baseMultiplierValue;
+
+        public StatSettings()
+        {
+            _isModifiable = false;
+            _multiplierDivisor = 100;
+            _baseAddedValue = 0;
+            _baseMultiplierValue = 100;
+        }
     }
 }
