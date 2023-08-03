@@ -16,10 +16,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         [SerializeField] private EnemyType _enemyType = EnemyType.SideView;
         [SerializeField] private bool _dieOnPlayerCollision;
         public EnemyStatsSettings Settings => GetComponent<EnemyStatsSettings>();
+        public IKnockbackController knockbackController;
 
         //public EnemyMoveController enemyMoveController;
 
-        private IKnockbackController _knockbackController;
         private int _dropCount = 1;
         private readonly Rarity _rarity = new Rarity();
         private SpriteOutline _spriteOutline;
@@ -114,7 +114,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             force.Normalize();
             force *= collisionEntity.KnockbackPower.Value;
 
-            _knockbackController.Knockback(force);
+            knockbackController.Knockback(force);
         }
 
         private void Update() => BaseUpdate();
@@ -134,7 +134,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
             _player = FindObjectOfType<PlayerComponents.Player>(); //!!
 
-            _knockbackController = GetComponent<IKnockbackController>();
+            knockbackController = GetComponent<IKnockbackController>();
         }
 
         protected void BaseFixedUpdate()

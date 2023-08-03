@@ -5248,6 +5248,8 @@ GameObject:
   - component: {fileID: 6155809969865943397}
   - component: {fileID: 6875561572371950145}
   - component: {fileID: 7579849442500094081}
+  - component: {fileID: 2426479934755923471}
+  - component: {fileID: 5072275712465827581}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -5297,12 +5299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 289c1334e09423249af1972828b27a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stats:
-    maxLayers: 3
-    maxRechargeableLayers: 0
-    rechargeRatePerMinute: 1
-    repulseRadius: 250
-    repulseForce: 100
   _resistancePhysLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -5361,6 +5357,46 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2426479934755923471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7005012959266165756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9c9f584044c0bd4695584b5e1405f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _preset: {fileID: 0}
+  _resources:
+  - _name: 
+    _value: 0
+    _isLimited: 0
+    _isInfinite: 0
+    _minValue: 0
+    _edgeValue: 0
+    _maxValueStat:
+      _name: 
+      _baseValue: 0
+      _value: 0
+      _addedValue: 0
+      _multiplierValue: 0
+      _modifiers: []
+--- !u!114 &5072275712465827581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7005012959266165756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1229dcb63a13f0d47ab813de3461fcb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _preset: {fileID: 0}
 --- !u!1 &7539270031280201737
 GameObject:
   m_ObjectHideFlags: 0

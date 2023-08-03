@@ -10,16 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cc7d76739178234c9a02b24af3b536b, type: 3}
-  m_Name: CharacterResourcePreset
+  m_Name: Shield_R
   m_EditorClassIdentifier: 
   resources:
-  - name: Health
-    baseValue: 3
-    minValue: 0
-    edgeValue: 1
-    maxValueStatName: MaximumHealth
-  - name: Kills
+  - name: Layers
     baseValue: 0
     minValue: 0
     edgeValue: 1
-    maxValueStatName: 
+    maxValueStatName: MaxLayers

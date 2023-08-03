@@ -3,6 +3,8 @@ using System.Linq;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+using UnityEngine.UIElements;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
@@ -98,9 +100,14 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Repulse()
         {
-            var nearbyEnemies = GetNearbyEnemiesKnockbackControllersList(RepulseRadius.Value, _resistancePhysLayer);
+            var nearbyEnemies = GetNearbyEnemiesList(RepulseRadius.Value, _resistancePhysLayer);
             foreach (var enemy in nearbyEnemies)
-                enemy.Knockback(gameObject);
+            {
+                var force = (Vector2)enemy.transform.position - (Vector2)gameObject.transform.position;
+                force.Normalize();
+                force *= RepulseForce.Value;
+                enemy.knockbackController.Knockback(force);
+            }
         }
 
         private List<EnemyComponents.Enemy> GetNearbyEnemiesList(float repulseRadius, LayerMask enemyLayer)

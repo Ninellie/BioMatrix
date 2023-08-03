@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba9f48a4706e4ef43960da087f4041e8, type: 3}
-  m_Name: DragonStatPreset
+  m_Name: Mite_S
   m_EditorClassIdentifier: 
   stats:
   - name: Size
