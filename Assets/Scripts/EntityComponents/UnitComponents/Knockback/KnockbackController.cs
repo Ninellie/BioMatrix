@@ -1,7 +1,8 @@
 using System.Collections;
+using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
+namespace Assets.Scripts.EntityComponents.UnitComponents.Knockback
 {
     [RequireComponent(typeof(IMovementController))]
     public class KnockbackController : MonoBehaviour

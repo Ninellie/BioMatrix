@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
+namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 {
     public interface IOrbitRotationController
     {

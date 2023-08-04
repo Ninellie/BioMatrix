@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.GameSession.UIScripts.View
+namespace Assets.Scripts.View
 {
     public class ObjectsEnabler : MonoBehaviour
     {

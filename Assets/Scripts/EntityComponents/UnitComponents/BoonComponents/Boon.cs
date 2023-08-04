@@ -1,8 +1,7 @@
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
-using Assets.Scripts.EntityComponents.UnitComponents.Enemy;
+using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Boon
+namespace Assets.Scripts.EntityComponents.UnitComponents.BoonComponents
 {
     [RequireComponent(typeof(UnitStatsSettings))]
     public class Boon : Unit

@@ -1,4 +1,4 @@
-namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
+namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 {
     public class TurretHubStatsSettings : EntityStatsSettings
     {

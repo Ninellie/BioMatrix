@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents
+namespace Assets.Scripts.EntityComponents.Resources
 {
     [Serializable]
     public class RecoveringResourceData

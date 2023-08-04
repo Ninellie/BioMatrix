@@ -1,8 +1,7 @@
 using System;
 using Assets.Scripts.Core;
-using Assets.Scripts.EntityComponents.UnitComponents.TurretComponents;
+using Assets.Scripts.EntityComponents.UnitComponents.Turret;
 using Assets.Scripts.GameSession.UIScripts.SessionModel;
-using Assets.Scripts.GameSession.UIScripts.View;
 using Assets.Scripts.View;
 using UnityEngine;
 using UnityEngine.InputSystem;

@@ -8,7 +8,7 @@ using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Assets.Scripts.Weapons
+namespace Assets.Scripts.FirearmComponents
 {
     [RequireComponent(typeof(FirearmStatsSettings))]
     [RequireComponent(typeof(Reload))]

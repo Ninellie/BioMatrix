@@ -1,6 +1,6 @@
 using System;
 
-namespace Assets.Scripts.EntityComponents
+namespace Assets.Scripts.EntityComponents.Stats
 {
     [Serializable]
     public enum StatName

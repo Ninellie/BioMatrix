@@ -1,6 +1,7 @@
+using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
+namespace Assets.Scripts.EntityComponents.UnitComponents.Flip
 {
     public class FlipController : MonoBehaviour
     {

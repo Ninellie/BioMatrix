@@ -1,6 +1,7 @@
+using Assets.Scripts.FirearmComponents;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
+namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 {
     public class Turret : Unit
     {
@@ -8,7 +9,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
         //[SerializeField] private GameObject _attractor;
 
         public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
-        public Weapons.Firearm Firearm { get; private set; }
+        public Firearm Firearm { get; private set; }
 
         private TurretHub _hub;
         //private OldMovementControllerTurret _oldMovementController;
@@ -54,7 +55,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
             w.transform.SetParent(_firePoint);
 
             w.transform.position = _firePoint.transform.position;
-            var firearm = w.GetComponent<Weapons.Firearm>();
+            var firearm = w.GetComponent<Firearm>();
             firearm.SetHolder(this);
             Firearm = firearm;
         }

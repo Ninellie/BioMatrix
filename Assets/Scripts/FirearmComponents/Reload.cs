@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using Assets.Scripts.GameSession.Events;
 using UnityEngine;
 
-namespace Assets.Scripts.Weapons
+namespace Assets.Scripts.FirearmComponents
 {
     public class Reload : MonoBehaviour
     {

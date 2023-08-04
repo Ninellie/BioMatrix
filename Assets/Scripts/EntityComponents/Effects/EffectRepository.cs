@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
-using Assets.Scripts.EntityComponents.UnitComponents.TurretComponents;
+using Assets.Scripts.EntityComponents.UnitComponents.Turret;
+using Assets.Scripts.FirearmComponents;
 using Assets.Scripts.GameSession.Upgrades.Deck;
-using Assets.Scripts.Weapons;
 
 namespace Assets.Scripts.EntityComponents.Effects
 {

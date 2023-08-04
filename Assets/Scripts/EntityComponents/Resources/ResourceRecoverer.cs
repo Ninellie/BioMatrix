@@ -2,7 +2,7 @@ using System.Collections;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents
+namespace Assets.Scripts.EntityComponents.Resources
 {
     [RequireComponent(typeof(ResourceHandler))]
     [RequireComponent(typeof(StatHandler))]

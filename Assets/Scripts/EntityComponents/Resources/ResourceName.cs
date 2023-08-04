@@ -1,4 +1,4 @@
-namespace Assets.Scripts.EntityComponents
+namespace Assets.Scripts.EntityComponents.Resources
 {
     public enum ResourceName
     {

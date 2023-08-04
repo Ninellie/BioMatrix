@@ -4,10 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
-namespace Assets.Scripts.GameSession.UIScripts.View
-{
-}
-namespace Assets.Scripts.GameSession.UIScripts.View
+namespace Assets.Scripts.View
 {
     public class OptionsMenu : MonoBehaviour
     {

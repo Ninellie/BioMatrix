@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Assets.Scripts.FirearmComponents;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
+namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 {
     [RequireComponent(typeof(TurretHubStatsSettings))]
     public class TurretHub : Entity
@@ -12,7 +13,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
 
         public TurretHubStatsSettings Settings => GetComponent<TurretHubStatsSettings>();
         public Entity Holder { get; private set; }
-        public Weapons.Firearm Firearm { get; set; }
+        public Firearm Firearm { get; set; }
         public Resource Turrets { get; private set; }
         public readonly Stack<Turret> currentTurrets = new();
         public bool IsSameTurretTarget
@@ -81,7 +82,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
             w.transform.SetParent(gameObject.transform);
 
             w.transform.position = gameObject.transform.position;
-            var firearm = w.GetComponent<Weapons.Firearm>();
+            var firearm = w.GetComponent<Firearm>();
             firearm.IsEnable = false;
             Firearm = firearm;
         }

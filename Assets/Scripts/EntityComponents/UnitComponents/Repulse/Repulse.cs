@@ -1,8 +1,6 @@
-using System.Linq;
-using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
+namespace Assets.Scripts.EntityComponents.UnitComponents.Repulse
 {
     public class Repulse : MonoBehaviour
     {

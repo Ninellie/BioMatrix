@@ -2,7 +2,7 @@ using Assets.Scripts.GameSession.Upgrades.Deck;
 using Assets.Scripts.GameSession.Upgrades.Deck.JsonCard;
 using UnityEngine;
 
-namespace Assets.Scripts.GameSession.UIScripts.View
+namespace Assets.Scripts.View
 {
     public class TestJson : MonoBehaviour
     {

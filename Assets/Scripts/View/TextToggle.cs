@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.GameSession.UIScripts.View
+namespace Assets.Scripts.View
 {
     public class TextToggle : MonoBehaviour
     {

@@ -1,9 +1,10 @@
 using System;
+using Assets.Scripts.CustomAttributes;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.EntityComponents
+namespace Assets.Scripts.EntityComponents.Resources
 {
     [Serializable]
     public class NewResource

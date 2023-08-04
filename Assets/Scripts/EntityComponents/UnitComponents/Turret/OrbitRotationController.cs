@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Assets.Scripts.GameSession.Spawner;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.TurretComponents
+namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 {
     public class OrbitRotationController : MonoBehaviour, IOrbitRotationController
     {
