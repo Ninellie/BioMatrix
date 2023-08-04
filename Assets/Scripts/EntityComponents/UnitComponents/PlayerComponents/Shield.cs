@@ -114,10 +114,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             return colliders2D.Select(collider2d => collider2d.gameObject.GetComponent<EnemyComponents.Enemy>()).ToList();
         }
 
-        private List<IKnockbackController> GetNearbyEnemiesKnockbackControllersList(float repulseRadius, LayerMask enemyLayer)
+        private List<KnockbackController> GetNearbyEnemiesKnockbackControllersList(float repulseRadius, LayerMask enemyLayer)
         {
             var colliders2D = Physics2D.OverlapCircleAll(transform.position, repulseRadius, enemyLayer);
-            return colliders2D.Select(collider2d => collider2d.gameObject.GetComponent<IKnockbackController>()).ToList();
+            return colliders2D.Select(collider2d => collider2d.gameObject.GetComponent<KnockbackController>()).ToList();
         }
     
         private void Disable()

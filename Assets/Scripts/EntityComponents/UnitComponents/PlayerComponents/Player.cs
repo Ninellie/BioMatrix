@@ -38,7 +38,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private const int ExperienceAmountIncreasingPerLevel = 15;
         private const int InitialLevel = 1;
 
-        private IKnockbackController _knockbackController;
+        private KnockbackController _knockbackController;
         private Invulnerability _invulnerability;
 
         private CircleCollider2D _circleCollider;
@@ -68,7 +68,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _invulnerability = GetComponent<Invulnerability>();
             Shield = GetComponentInChildren<Shield>();
 
-            _knockbackController = GetComponent<IKnockbackController>();
+            _knockbackController = GetComponent<KnockbackController>();
 
             MagnetismRadius = StatFactory.GetStat(settings.magnetismRadius);
             ExpMultiplier = StatFactory.GetStat(settings.expMultiplier);

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
     [RequireComponent(typeof(IMovementController))]
-    public class KnockbackController : MonoBehaviour, IKnockbackController
+    public class KnockbackController : MonoBehaviour
     {
         [SerializeField]
         [Tooltip("In points per seconds")]

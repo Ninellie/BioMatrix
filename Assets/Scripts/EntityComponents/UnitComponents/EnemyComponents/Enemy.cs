@@ -16,7 +16,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         [SerializeField] private EnemyType _enemyType = EnemyType.SideView;
         [SerializeField] private bool _dieOnPlayerCollision;
         public EnemyStatsSettings Settings => GetComponent<EnemyStatsSettings>();
-        public IKnockbackController knockbackController;
+        public KnockbackController knockbackController;
 
         //public EnemyMoveController enemyMoveController;
 
@@ -134,7 +134,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
             _player = FindObjectOfType<PlayerComponents.Player>(); //!!
 
-            knockbackController = GetComponent<IKnockbackController>();
+            knockbackController = GetComponent<KnockbackController>();
         }
 
         protected void BaseFixedUpdate()
