@@ -20,8 +20,8 @@ namespace Assets.Scripts.EntityComponents
             foreach (var data in _preset.recoveringResourceDataList)
             {
                 var resource = _resourceHandler.GetResourceByName(data.resourceName);
-                var recoverLimiterStat = _statHandler.GetStatByName(data.recoverLimiterStatName.ToString());
-                var recoverSpeedStat = _statHandler.GetStatByName(data.recoverSpeedStatName.ToString());
+                var recoverLimiterStat = _statHandler.GetStatByName(data.recoverLimiterStatName);
+                var recoverSpeedStat = _statHandler.GetStatByName(data.recoverSpeedStatName);
                 StartCoroutine(Recover(resource, recoverLimiterStat, recoverSpeedStat));
             }
         }

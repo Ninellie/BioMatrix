@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Bourgeon_R
   m_EditorClassIdentifier: 
   resources:
-  - name: Health
+  - maxValueStatName: 2
+    name: 1
     baseValue: 3
     minValue: 0
     edgeValue: 1
-    maxValueStatName: MaximumHealth
-  - name: Kills
+  - maxValueStatName: 0
+    name: 3
     baseValue: 0
     minValue: 0
     edgeValue: 1
-    maxValueStatName: 

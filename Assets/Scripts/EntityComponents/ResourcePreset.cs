@@ -1,8 +1,19 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents
 {
+    [Serializable]
+    public class ResourcePresetData
+    {
+        public StatName maxValueStatName;
+        public ResourceName name;
+        public int baseValue;
+        public int minValue;
+        public int edgeValue;
+    }
+
     [CreateAssetMenu]
     public class ResourcePreset : ScriptableObject
     {

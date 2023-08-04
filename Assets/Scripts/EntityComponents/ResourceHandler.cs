@@ -10,34 +10,46 @@ namespace Assets.Scripts.EntityComponents
     {
         [SerializeField] private ResourcePreset _preset;
         [SerializeField] private List<NewResource> _resources;
+        [SerializeField] private StatHandler _statHandler;
 
-        private StatHandler _statHandler;
 
-        public void Start()
+        private void Awake()
         {
             _statHandler = GetComponent<StatHandler>();
+        }
+
+        private void Start()
+        {
+            FillListFromPreset();
+        }
+
+        public NewResource GetResourceByName(ResourceName resourceName)
+        {
+            return _resources.FirstOrDefault(resource => resource.Name.Equals(resourceName));
+        }
+
+        [ContextMenu("Read Preset")]
+        private void FillListFromPreset()
+        {
             _resources.Clear();
 
             foreach (var data in _preset.resources)
             {
-                var isLimited = string.IsNullOrEmpty(data.maxValueStatName);
+                var isLimited = data.maxValueStatName != StatName.None;
+
                 if (isLimited)
                 {
-                    var resource = new NewResource(data.name, data.baseValue, data.minValue, data.edgeValue);
+                    var maxValueStat = _statHandler.GetStatByName(data.maxValueStatName);
+                    var resource = new NewResource(data.name, data.baseValue, data.minValue, data.edgeValue,
+                        maxValueStat);
                     _resources.Add(resource);
                 }
                 else
                 {
-                    var maxValueStat = _statHandler.GetStatByName(data.maxValueStatName);
-                    var resource = new NewResource(data.name, data.baseValue, data.minValue, data.edgeValue, maxValueStat);
+                    var resource = new NewResource(data.name, data.baseValue, data.minValue, data.edgeValue);
                     _resources.Add(resource);
                 }
             }
-        }
-
-        public NewResource GetResourceByName(string resourceName)
-        {
-            return _resources.FirstOrDefault(resource => resource.Name.Equals(resourceName));
         }
     }
 }

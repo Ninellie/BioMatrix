@@ -10,17 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba9f48a4706e4ef43960da087f4041e8, type: 3}
-  m_Name: Shield_S
+  m_Name: Bullet_S
   m_EditorClassIdentifier: 
   stats:
-  - name: 10
-    baseValue: 3
-  - name: 11
-    baseValue: 0
-  - name: 12
+  - name: 1
     baseValue: 1
-  - name: 13
-    baseValue: 250
-  - name: 14
-    baseValue: 100
+  - name: 2
+    baseValue: 1
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}

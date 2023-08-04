@@ -13,18 +13,16 @@ MonoBehaviour:
   m_Name: Bourgeon_S
   m_EditorClassIdentifier: 
   stats:
-  - name: Size
+  - name: 1
     baseValue: 2.5
-  - name: MaximumHealth
+  - name: 2
     baseValue: 3
-  - name: Regeneration
+  - name: 3
     baseValue: 0
-  - name: KnockbackPower
-    baseValue: 100
-  - name: Speed
+  - name: 5
     baseValue: 300
-  - name: ExperienceMultiplier
-    baseValue: 1
-  - name: MagnetismRadius
+  - name: 9
     baseValue: 75
+  - name: 8
+    baseValue: 1
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}

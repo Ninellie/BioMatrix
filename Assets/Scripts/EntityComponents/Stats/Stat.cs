@@ -12,8 +12,8 @@ namespace Assets.Scripts.EntityComponents.Stats
 
         [ReadOnly]
         [SerializeField]
-        private string _name;
-        public string Name => _name;
+        private StatName _name;
+        public StatName Name => _name;
 
         [ReadOnly]
         [SerializeField]
@@ -65,7 +65,7 @@ namespace Assets.Scripts.EntityComponents.Stats
             UpdateActualValue();
         }
 
-        public void SetName(string name) => _name = name;
+        public void SetName(StatName name) => _name = name;
 
         public void SetSettings(StatSettings settings)
         {
@@ -75,7 +75,6 @@ namespace Assets.Scripts.EntityComponents.Stats
 
         public void SetSettings()
         {
-            //_settings = new StatSettings();
             _settings = (StatSettings)ScriptableObject.CreateInstance(nameof(StatSettings));
             UpdateActualValue();
         }

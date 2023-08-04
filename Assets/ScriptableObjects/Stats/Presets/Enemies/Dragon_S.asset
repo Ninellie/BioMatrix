@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Dragon_S
   m_EditorClassIdentifier: 
   stats:
-  - name: Size
+  - name: 1
+    baseValue: 0.7
+  - name: 2
+    baseValue: 20
+  - name: 5
+    baseValue: 140
+  - name: 4
+    baseValue: 150
+  - name: 7
     baseValue: 1
-  - name: Health
-    baseValue: 1
-  - name: Regeneration
-    baseValue: 1
-  - name: KnockbackPower
-    baseValue: 0
-  - name: Speed
-    baseValue: 0
-  - name: size
-    baseValue: 0
+  - name: 24
+    baseValue: 5
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}

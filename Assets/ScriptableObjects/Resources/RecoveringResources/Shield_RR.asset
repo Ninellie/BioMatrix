@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Shield_RR
   m_EditorClassIdentifier: 
   recoveringResourceDataList:
-  - resourceName: Layers
-    recoverLimiterStatName: MaxLayers
-    recoverSpeedStatName: 
+  - resourceName: 2
+    recoverLimiterStatName: 11
+    recoverSpeedStatName: 12

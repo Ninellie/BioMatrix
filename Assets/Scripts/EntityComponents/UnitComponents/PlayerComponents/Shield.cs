@@ -3,8 +3,6 @@ using System.Linq;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-using UnityEngine.UIElements;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
@@ -36,12 +34,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Start()
         {
-            MaxLayers = StatFactory.GetStat(_statHandler.GetStatByName("MaxLayers").Value);
-            MaxRechargeableLayers = StatFactory.GetStat(_statHandler.GetStatByName("MaxRechargeableLayers").Value);
-            var rechargeRatePerSecond = _statHandler.GetStatByName("RechargeRatePerMinute").Value / 60f;
+            MaxLayers = StatFactory.GetStat(_statHandler.GetStatByName(StatName.MaximumLayers).Value);
+            MaxRechargeableLayers = StatFactory.GetStat(_statHandler.GetStatByName(StatName.MaximumRechargeableLayers).Value);
+            var rechargeRatePerSecond = _statHandler.GetStatByName(StatName.RechargeRatePerMinute).Value / 60f;
             RechargeRatePerSecond = StatFactory.GetStat(rechargeRatePerSecond);
-            RepulseForce = StatFactory.GetStat(_statHandler.GetStatByName("RepulseForce").Value);
-            RepulseRadius = StatFactory.GetStat(_statHandler.GetStatByName("RepulseRadius").Value);
+            RepulseForce = StatFactory.GetStat(_statHandler.GetStatByName(StatName.RepulseForce).Value);
+            RepulseRadius = StatFactory.GetStat(_statHandler.GetStatByName(StatName.RepulseRadius).Value);
 
             LayersCount = new RecoverableResource(0, MaxLayers, RechargeRatePerSecond, MaxRechargeableLayers);
 

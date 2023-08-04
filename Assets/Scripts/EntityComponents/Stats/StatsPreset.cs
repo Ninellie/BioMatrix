@@ -7,17 +7,14 @@ namespace Assets.Scripts.EntityComponents.Stats
     [Serializable]
     public class StatPresetData
     {
-        public string name;
+        public StatName name;
         public float baseValue;
     }
 
     [CreateAssetMenu]
     public class StatsPreset : ScriptableObject
     {
-        [SerializeField]
         public List<StatPresetData> stats;
-
-        [SerializeField]
         public StatSettings settings;
     }
 }

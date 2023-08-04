@@ -4,22 +4,11 @@ using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.GameSession.UIScripts.SessionModel;
 using Assets.Scripts.GameSession.Upgrades.Deck;
 using UnityEngine;
-using UnityEngine.UI;
 using Button = UnityEngine.UI.Button;
 using Image = UnityEngine.UI.Image;
 
 namespace Assets.Scripts.View
 {
-    public class ScaleSwitcher : MonoBehaviour
-    {
-        [SerializeField] private CanvasScaler scaler;
-
-        public void ChangeScale(bool isScale)
-        {
-
-        }
-    }
-
     public class LevelUp : MonoBehaviour
     {
         [SerializeField] private Player _player;

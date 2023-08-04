@@ -1,13 +1,26 @@
 using System;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.EntityComponents
 {
     [Serializable]
     public class NewResource
     {
-        public event Action ValueChangedEvent;
+        //public event Action ValueChangedEvent;
+        //public event Action IncreaseEvent;
+        //public event Action DecreaseEvent;
+        //public event Action IncrementEvent;
+        //public event Action DecrementEvent;
+        //public event Action FillEvent;
+        //public event Action EmptyEvent;
+        //public event Action EdgeEvent;
+        //public event Action NotEdgeEvent;
+        //public event Action NotEmptyEvent;
+
+        [SerializeField]
+        public UnityEvent ValueChangedEvent;
         public event Action IncreaseEvent;
         public event Action DecreaseEvent;
         public event Action IncrementEvent;
@@ -22,11 +35,11 @@ namespace Assets.Scripts.EntityComponents
         public bool IsEmpty => _value == _minValue;
         public bool IsNotEmpty => _value > _minValue;
         public bool IsOnEdge => _value == _edgeValue;
-        public string Name => _name;
+        public ResourceName Name => _name;
 
         [ReadOnly]
         [SerializeField]
-        private string _name;
+        private ResourceName _name;
 
         [ReadOnly]
         [SerializeField]
@@ -56,7 +69,7 @@ namespace Assets.Scripts.EntityComponents
         /// Creates infinite resource
         /// </summary>
         /// <param name="name"></param>
-        public NewResource(string name)
+        public NewResource(ResourceName name)
         {
             _name = name;
             _isLimited = false;
@@ -75,7 +88,7 @@ namespace Assets.Scripts.EntityComponents
         /// <param name="name"></param>
         /// <param name="minValue"></param>
         /// <param name="edgeValue"></param>
-        public NewResource(string name, int minValue, int edgeValue)
+        public NewResource(ResourceName name, int minValue, int edgeValue)
         {
             _name = name;
             _isLimited = false;
@@ -94,7 +107,7 @@ namespace Assets.Scripts.EntityComponents
         /// <param name="value"></param>
         /// <param name="minValue"></param>
         /// <param name="edgeValue"></param>
-        public NewResource(string name, int value, int minValue, int edgeValue)
+        public NewResource(ResourceName name, int value, int minValue, int edgeValue)
         {
             _name = name;
             _isLimited = true;
@@ -104,7 +117,7 @@ namespace Assets.Scripts.EntityComponents
             _maxValueStat.SetSettings();
             _maxValueStat.SetBaseValue(float.PositiveInfinity);
             
-            _value = _value < minValue ? minValue : value;
+            _value = value < minValue ? minValue : value;
         }
 
         /// <summary>
@@ -115,7 +128,7 @@ namespace Assets.Scripts.EntityComponents
         /// <param name="minValue"></param>
         /// <param name="edgeValue"></param>
         /// <param name="maxValueStat"></param>
-        public NewResource(string name, int value, int minValue, int edgeValue, Stat maxValueStat)
+        public NewResource(ResourceName name, int value, int minValue, int edgeValue, Stat maxValueStat)
         {
             _name = name;
             _isLimited = true;
@@ -123,11 +136,11 @@ namespace Assets.Scripts.EntityComponents
             _edgeValue = edgeValue;
             _maxValueStat = maxValueStat;
 
-            if (_value > maxValueStat.Value)
+            if (value > maxValueStat.Value)
             {
                 _value = (int)maxValueStat.Value;
             }
-            else if (_value < minValue)
+            else if (value < minValue)
             {
                 _value = minValue;
             }

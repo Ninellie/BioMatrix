@@ -14,6 +14,17 @@ namespace Assets.Scripts.EntityComponents.Stats
         public void Awake()
         {
             if(!_usePreset) return;
+            FillListFromPreset();
+        }
+
+        public Stat GetStatByName(StatName statName)
+        {
+            return _stats.FirstOrDefault(stat => stat.Name.Equals(statName));
+        }
+
+        [ContextMenu("Read Preset")]
+        private void FillListFromPreset()
+        {
             _stats.Clear();
             foreach (var statPresetData in _preset.stats)
             {
@@ -23,11 +34,6 @@ namespace Assets.Scripts.EntityComponents.Stats
                 stat.SetName(statPresetData.name);
                 _stats.Add(stat);
             }
-        }
-
-        public Stat GetStatByName(string statName)
-        {
-            return _stats.FirstOrDefault(stat => stat.Name.Equals(statName));
         }
     }
 }

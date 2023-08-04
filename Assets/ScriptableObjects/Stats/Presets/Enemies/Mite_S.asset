@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: Mite_S
   m_EditorClassIdentifier: 
   stats:
-  - name: Size
+  - name: 1
+    baseValue: 1.7
+  - name: 2
+    baseValue: 5
+  - name: 5
+    baseValue: 280
+  - name: 6
+    baseValue: 2
+  - name: 4
+    baseValue: 150
+  - name: 7
     baseValue: 1
-  - name: Health
+  - name: 24
     baseValue: 1
-  - name: Regeneration
-    baseValue: 1
-  - name: KnockbackPower
-    baseValue: 0
-  - name: Speed
-    baseValue: 0
-  - name: size
-    baseValue: 0
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}
