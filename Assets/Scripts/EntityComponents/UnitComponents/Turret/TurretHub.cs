@@ -14,7 +14,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
         public TurretHubStatsSettings Settings => GetComponent<TurretHubStatsSettings>();
         public Entity Holder { get; private set; }
         public Firearm Firearm { get; set; }
-        public Resource Turrets { get; private set; }
+        public OldResource Turrets { get; private set; }
         public readonly Stack<Turret> currentTurrets = new();
         public bool IsSameTurretTarget
         {
@@ -41,7 +41,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             base.BaseAwake(settings);
             var turretCount = (int)settings.turretCount;
             _orbitRotationController = GetComponent<IOrbitRotationController>();
-            Turrets = new Resource(0);
+            Turrets = new OldResource(0);
             Turrets.Increase(turretCount);
         }
 

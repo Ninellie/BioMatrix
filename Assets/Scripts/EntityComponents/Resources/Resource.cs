@@ -7,7 +7,7 @@ using UnityEngine.Events;
 namespace Assets.Scripts.EntityComponents.Resources
 {
     [Serializable]
-    public class NewResource
+    public class Resource
     {
         //public event Action ValueChangedEvent;
         //public event Action IncreaseEvent;
@@ -70,7 +70,7 @@ namespace Assets.Scripts.EntityComponents.Resources
         /// Creates infinite resource
         /// </summary>
         /// <param name="name"></param>
-        public NewResource(ResourceName name)
+        public Resource(ResourceName name)
         {
             _name = name;
             _isLimited = false;
@@ -89,7 +89,7 @@ namespace Assets.Scripts.EntityComponents.Resources
         /// <param name="name"></param>
         /// <param name="minValue"></param>
         /// <param name="edgeValue"></param>
-        public NewResource(ResourceName name, int minValue, int edgeValue)
+        public Resource(ResourceName name, int minValue, int edgeValue)
         {
             _name = name;
             _isLimited = false;
@@ -108,7 +108,7 @@ namespace Assets.Scripts.EntityComponents.Resources
         /// <param name="value"></param>
         /// <param name="minValue"></param>
         /// <param name="edgeValue"></param>
-        public NewResource(ResourceName name, int value, int minValue, int edgeValue)
+        public Resource(ResourceName name, int value, int minValue, int edgeValue)
         {
             _name = name;
             _isLimited = true;
@@ -129,7 +129,7 @@ namespace Assets.Scripts.EntityComponents.Resources
         /// <param name="minValue"></param>
         /// <param name="edgeValue"></param>
         /// <param name="maxValueStat"></param>
-        public NewResource(ResourceName name, int value, int minValue, int edgeValue, Stat maxValueStat)
+        public Resource(ResourceName name, int value, int minValue, int edgeValue, Stat maxValueStat)
         {
             _name = name;
             _isLimited = true;

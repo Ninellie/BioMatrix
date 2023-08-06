@@ -13,7 +13,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private float _spriteAlphaPerLayer = 0.2f;
         [SerializeField] private Color _color = Color.cyan;
 
-        [SerializeField] private StatHandler _statHandler;
+        [SerializeField] private StatList _statList;
 
         public OldStat MaxLayers { get; private set; }
         public OldStat MaxRechargeableLayers { get; private set; }
@@ -21,28 +21,28 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public OldStat RepulseForce { get; private set; }
         public OldStat RepulseRadius { get; private set; }
 
-        public RecoverableResource LayersCount { get; private set; }
+        public OldRecoverableResource LayersCount { get; private set; }
 
         private CapsuleCollider2D _capsuleCollider;
         private SpriteRenderer _shieldSprite;
 
         private void Awake()
         {
-            _statHandler = GetComponent<StatHandler>();
+            _statList = GetComponent<StatList>();
             _shieldSprite = GetComponent<SpriteRenderer>();
             _capsuleCollider = GetComponentInParent<CapsuleCollider2D>();
         }
 
         private void Start()
         {
-            MaxLayers = StatFactory.GetStat(_statHandler.GetStatByName(StatName.MaximumLayers).Value);
-            MaxRechargeableLayers = StatFactory.GetStat(_statHandler.GetStatByName(StatName.MaximumRechargeableLayers).Value);
-            var rechargeRatePerSecond = _statHandler.GetStatByName(StatName.RechargeRatePerMinute).Value / 60f;
+            MaxLayers = StatFactory.GetStat(_statList.GetStatByName(StatName.MaximumLayers).Value);
+            MaxRechargeableLayers = StatFactory.GetStat(_statList.GetStatByName(StatName.MaximumRechargeableLayers).Value);
+            var rechargeRatePerSecond = _statList.GetStatByName(StatName.RechargeRatePerMinute).Value / 60f;
             RechargeRatePerSecond = StatFactory.GetStat(rechargeRatePerSecond);
-            RepulseForce = StatFactory.GetStat(_statHandler.GetStatByName(StatName.RepulseForce).Value);
-            RepulseRadius = StatFactory.GetStat(_statHandler.GetStatByName(StatName.RepulseRadius).Value);
+            RepulseForce = StatFactory.GetStat(_statList.GetStatByName(StatName.RepulseForce).Value);
+            RepulseRadius = StatFactory.GetStat(_statList.GetStatByName(StatName.RepulseRadius).Value);
 
-            LayersCount = new RecoverableResource(0, MaxLayers, RechargeRatePerSecond, MaxRechargeableLayers);
+            LayersCount = new OldRecoverableResource(0, MaxLayers, RechargeRatePerSecond, MaxRechargeableLayers);
 
             var initialLayersCount = (int)MaxRechargeableLayers.Value;
             initialLayersCount = Mathf.Max(initialLayersCount, 0);

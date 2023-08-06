@@ -60,7 +60,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
             foreach (var displayedResourceData in _displayedResources)
             {
-                var resource = (Resource)EventHelper.GetPropByPath(CurrentPlayer, displayedResourceData.resourcePath);
+                var resource = (OldResource)EventHelper.GetPropByPath(CurrentPlayer, displayedResourceData.resourcePath);
                 displayedResourceData.resourceCounter.SetResource(resource);
                 displayedResourceData.resourceCounter.SetLabel(displayedResourceData.resourceName);
             }

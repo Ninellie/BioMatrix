@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.EntityComponents.Effects
 {
-    public class ToggleOnAttach : IEffect
+    public class ToggleOnAttach : IOldEffect
     {
         public string Name { get; set; }
         public string Description { get; }
@@ -20,7 +20,7 @@ namespace Assets.Scripts.EntityComponents.Effects
 
         public bool IsStacking { get; }
         public bool IsStackSeparateDuration { get; }
-        public Resource StacksCount { get; }
+        public OldResource StacksCount { get; }
         public Stats.OldStat MaxStackCount { get; }
 
         private Entity _target;
@@ -90,7 +90,7 @@ namespace Assets.Scripts.EntityComponents.Effects
             IsStacking = false;
             IsStackSeparateDuration = false;
             MaxStackCount = new Stats.OldStat(1, false);
-            StacksCount = new Resource(MaxStackCount);
+            StacksCount = new OldResource(MaxStackCount);
         }
     }
 }

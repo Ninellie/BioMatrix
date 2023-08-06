@@ -2,15 +2,14 @@
 
 namespace Assets.Scripts.EntityComponents.Effects
 {
-    public class EffectAdderPerMissingResource : IEffect
+    public class OldEffectAdderPerResource : IOldEffect
     {
         public string Name { get; set; }
         public string Description { get; set; }
         public string TargetName { get; set; }
 
-        public IEffect Effect { get; set; }
+        public IOldEffect OldEffect { get; set; }
         public PropTrigger TriggerResource { get; set; }
-        public PropTrigger TriggerStat { get; set; }
 
         public string Identifier { get; set; }
 
@@ -21,34 +20,32 @@ namespace Assets.Scripts.EntityComponents.Effects
 
         public bool IsStacking { get; set; }
         public bool IsStackSeparateDuration { get; set; }
-        public Resource StacksCount { get; set; }
+        public OldResource StacksCount { get; set; }
         public Stats.OldStat MaxStackCount { get; set; }
 
-        private Resource _triggerResource;
-        private int _lackValue;
+        private OldResource _triggerResource;
+        private int _value;
         private Entity _target;
 
         public void Attach(Entity target)
         {
             _target = target;
-            _triggerResource = (Resource)EventHelper.GetPropByPath(target, TriggerResource.Path);
-            _lackValue = _triggerResource.GetLackValue();
+            _triggerResource = (OldResource)EventHelper.GetPropByPath(target, TriggerResource.Path);
+            _value = _triggerResource.GetValue();
             UpdateMods();
         }
 
         public void Detach()
         {
-            while (_lackValue > 0)
+            while (_value > 0)
             {
-                _target.RemoveEffectStack(Effect);
-                _lackValue--;
+                _target.RemoveEffectStack(OldEffect);
+                _value--;
             }
         }
 
         public void Subscribe(Entity target)
         {
-            EventHelper.AddActionByName(EventHelper.GetPropByPath(target, TriggerStat.Path), 
-                TriggerStat.Name, UpdateMods);
             EventHelper.AddActionByName(EventHelper.GetPropByPath(target, TriggerResource.Path),
                 TriggerResource.Name, UpdateMods);
             StacksCount.IncrementEvent += AddStack;
@@ -59,25 +56,23 @@ namespace Assets.Scripts.EntityComponents.Effects
         {
             EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, TriggerResource.Path),
                 TriggerResource.Name, UpdateMods);
-            EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, TriggerStat.Path),
-                TriggerStat.Name, UpdateMods);
             StacksCount.IncrementEvent -= AddStack;
             StacksCount.DecrementEvent -= RemoveStack;
         }
 
         private void AddStack()
         {
-            for (int i = 0; i < _lackValue; i++)
+            for (int i = 0; i < _value; i++)
             {
-                _target.AddEffectStack(Effect);
+                _target.AddEffectStack(OldEffect);
             }
         }
 
         private void RemoveStack()
         {
-            for (int i = 0; i < _lackValue; i++)
+            for (int i = 0; i < _value; i++)
             {
-                _target.RemoveEffectStack(Effect);
+                _target.RemoveEffectStack(OldEffect);
             }
         }
 
@@ -85,41 +80,38 @@ namespace Assets.Scripts.EntityComponents.Effects
         {
             for (int i = 0; i < StacksCount.GetValue(); i++)
             {
-                var dif = _triggerResource.GetLackValue() - _lackValue;
+                var dif = _triggerResource.GetValue() - _value;
                 while (dif != 0)
                 {
                     switch (dif)
                     {
                         case > 0:
-                            _target.AddEffectStack(Effect);
+                            _target.AddEffectStack(OldEffect);
                             dif--;
                             break;
                         case < 0:
-                            _target.RemoveEffectStack(Effect);
+                            _target.RemoveEffectStack(OldEffect);
                             dif++;
                             break;
                     }
                 }
             }
 
-            _lackValue = _triggerResource.GetLackValue();
+            _value = _triggerResource.GetValue();
         }
 
-
-        public EffectAdderPerMissingResource(
+        public OldEffectAdderPerResource(
             string name,
             string description,
             string targetName,
-            IEffect effect,
-            PropTrigger triggerResource,
-            PropTrigger triggerStat
+            IOldEffect oldEffect,
+            PropTrigger triggerResource
         ) : this(
             name,
             description,
             targetName,
-            effect,
+            oldEffect,
             triggerResource,
-            triggerStat,
             false,
             new Stats.OldStat(0, false),
             false,
@@ -131,13 +123,12 @@ namespace Assets.Scripts.EntityComponents.Effects
         {
         }
 
-        public EffectAdderPerMissingResource(
+        public OldEffectAdderPerResource(
             string name,
             string description,
             string targetName,
-            IEffect effect,
+            IOldEffect oldEffect,
             PropTrigger triggerResource,
-            PropTrigger triggerStat,
             bool isTemporal,
             Stats.OldStat duration,
             bool isDurationStacks,
@@ -150,9 +141,8 @@ namespace Assets.Scripts.EntityComponents.Effects
             Name = name;
             Description = description;
             TargetName = targetName;
-            Effect = effect;
+            OldEffect = oldEffect;
             TriggerResource = triggerResource;
-            TriggerStat = triggerStat;
             IsTemporal = isTemporal;
             Duration = duration;
             IsDurationStacks = isDurationStacks;
@@ -160,7 +150,7 @@ namespace Assets.Scripts.EntityComponents.Effects
             IsStacking = isStacking;
             IsStackSeparateDuration = isStackSeparateDuration;
             MaxStackCount = maxStackCount;
-            StacksCount = new Resource(MaxStackCount);
+            StacksCount = new OldResource(MaxStackCount);
         }
     }
 }

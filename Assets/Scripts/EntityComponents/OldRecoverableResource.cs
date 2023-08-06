@@ -11,7 +11,7 @@ namespace Assets.Scripts.EntityComponents
         void AddRecoveryTime(float time);
     }
 
-    public class RecoverableResource : Resource, IRecoverable
+    public class OldRecoverableResource : OldResource, IRecoverable
     {
         public event Action RecoverEvent;
         public event Action RecoveryStartEvent;
@@ -115,7 +115,7 @@ namespace Assets.Scripts.EntityComponents
             if (isRecoveryStartEventRequired) RecoveryStartEvent?.Invoke();
         }
 
-        public RecoverableResource() : this(0,
+        public OldRecoverableResource() : this(0,
             1,
             new OldStat(Single.PositiveInfinity),
             new OldStat(0, false),
@@ -124,7 +124,7 @@ namespace Assets.Scripts.EntityComponents
         {
         }
 
-        public RecoverableResource(OldStat maxValueOldStat) : this(0,
+        public OldRecoverableResource(OldStat maxValueOldStat) : this(0,
             1,
             maxValueOldStat,
             new OldStat(0, false),
@@ -133,7 +133,7 @@ namespace Assets.Scripts.EntityComponents
         {
         }
 
-        public RecoverableResource(int minValue) : this(minValue,
+        public OldRecoverableResource(int minValue) : this(minValue,
             minValue + 1,
             new OldStat(Single.PositiveInfinity),
             new OldStat(0, false),
@@ -142,7 +142,7 @@ namespace Assets.Scripts.EntityComponents
         {
         }
 
-        public RecoverableResource(int minValue,
+        public OldRecoverableResource(int minValue,
             OldStat maxValueOldStat) : this(minValue,
             minValue + 1,
             maxValueOldStat,
@@ -152,7 +152,7 @@ namespace Assets.Scripts.EntityComponents
         {
         }
 
-        public RecoverableResource(int minValue,
+        public OldRecoverableResource(int minValue,
             OldStat maxValueOldStat,
             OldStat recoverySpeedPerSecondOldStat) : this(minValue,
             minValue + 1,
@@ -163,7 +163,7 @@ namespace Assets.Scripts.EntityComponents
         {
         }
 
-        public RecoverableResource(int minValue,
+        public OldRecoverableResource(int minValue,
             OldStat maxValueOldStat,
             OldStat recoverySpeedPerSecondOldStat,
             OldStat maxRecoverableValueOldStat) : this(minValue,
@@ -175,7 +175,7 @@ namespace Assets.Scripts.EntityComponents
         {
         }
 
-        public RecoverableResource(int minValue,
+        public OldRecoverableResource(int minValue,
             int edgeValue,
             OldStat maxValueOldStat,
             OldStat recoverySpeedPerSecondOldStat,
@@ -188,7 +188,7 @@ namespace Assets.Scripts.EntityComponents
         {
         }
 
-        public RecoverableResource(int minValue,
+        public OldRecoverableResource(int minValue,
             int edgeValue,
             OldStat maxValueOldStat,
             OldStat recoverySpeedPerSecondOldStat,

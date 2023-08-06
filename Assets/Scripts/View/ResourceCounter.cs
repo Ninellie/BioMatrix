@@ -25,9 +25,9 @@ namespace Assets.Scripts.View
         [Header("Counter text")]
         [SerializeField] private TMP_Text _text;
 
-        protected Resource targetResource;
+        protected OldResource targetResource;
 
-        public void SetResource(Resource resource)
+        public void SetResource(OldResource resource)
         {
             targetResource = resource;
             targetResource.ValueChangedEvent += UpdateCounter;

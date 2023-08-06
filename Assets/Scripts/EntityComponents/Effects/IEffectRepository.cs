@@ -2,6 +2,6 @@
 {
     public interface IEffectRepository
     {
-        IEffect Get(string effectName);
+        IOldEffect Get(string effectName);
     }
 }

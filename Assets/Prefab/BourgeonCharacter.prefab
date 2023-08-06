@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 2759363809282571309}
   - component: {fileID: 6882027957998666689}
   - component: {fileID: 3820900862706131342}
+  - component: {fileID: 3599504211205648597}
   m_Layer: 7
   m_Name: BourgeonCharacter
   m_TagString: Player
@@ -5305,6 +5306,20 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &3599504211205648597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671026415413744665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1229dcb63a13f0d47ab813de3461fcb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _preset: {fileID: 11400000, guid: 734748a3db3525d46967659ae3f29889, type: 2}
+  _recoveringResources: []
 --- !u!1 &7005012959266165756
 GameObject:
   m_ObjectHideFlags: 0
@@ -5402,6 +5417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _preset: {fileID: 11400000, guid: 789e9c8de148959459399f19f9237be9, type: 2}
+  _recoveringResources: []
 --- !u!212 &7579849442500094081
 SpriteRenderer:
   m_ObjectHideFlags: 0

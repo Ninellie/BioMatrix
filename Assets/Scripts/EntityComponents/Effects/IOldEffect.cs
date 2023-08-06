@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.EntityComponents.Effects
 {
-    public interface IEffect
+    public interface IOldEffect
     {
         string Name { get; }
         string Description { get; }
@@ -14,7 +14,7 @@
 
         bool IsStacking { get; }
         bool IsStackSeparateDuration { get; } // Can be true only if IsTemporal and IsStacking
-        Resource StacksCount { get; }
+        OldResource StacksCount { get; }
         Stats.OldStat MaxStackCount { get; }
 
         void Attach(Entity target);

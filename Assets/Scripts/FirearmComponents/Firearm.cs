@@ -21,7 +21,7 @@ namespace Assets.Scripts.FirearmComponents
 
         public Entity Holder { get; private set; }
         public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
-        public Resource Magazine { get; set; }
+        public OldResource Magazine { get; set; }
         public bool IsForPlayer { get; private set; }
         public OldStat Damage { get; private set; }
         public OldStat ShootForce { get; private set; }
@@ -75,7 +75,7 @@ namespace Assets.Scripts.FirearmComponents
             ProjectilePierceCount = StatFactory.GetStat(settings.projectilePierceCount);
             AddedProjectileKnockback = StatFactory.GetStat(settings.addedProjectileKnockback);
         
-            Magazine = new Resource(0, MagazineCapacity);
+            Magazine = new OldResource(0, MagazineCapacity);
             Magazine.Fill();
             _player = FindObjectOfType<Player>();
         }

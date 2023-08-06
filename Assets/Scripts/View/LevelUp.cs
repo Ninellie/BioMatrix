@@ -29,7 +29,7 @@ namespace Assets.Scripts.View
         [Range(0, 1)]
         private float _finalAlpha;
 
-        private List<Card> _selectedCards = new();
+        private List<OldCard> _selectedCards = new();
         private static readonly ICardRepository CardRepository = new ArrayCardRepository();
         private readonly CardManager _cardManager = new(CardRepository);
 
@@ -97,14 +97,14 @@ namespace Assets.Scripts.View
             AddCard(_selectedCards[index]);
         }
 
-        public void AddCard(Card card)
+        public void AddCard(OldCard oldCard)
         {
-            _cardManager.AddCard(card.Id);
-            if (card.Effects is null)
+            _cardManager.AddCard(oldCard.Id);
+            if (oldCard.Effects is null)
             {
                 return;
             }
-            foreach (var cardEffect in card.Effects)
+            foreach (var cardEffect in oldCard.Effects)
             {
                 if (cardEffect.TargetName != nameof(Player)) continue;
 
@@ -113,9 +113,9 @@ namespace Assets.Scripts.View
             }
         }
 
-        public void RemoveCard(Card card)
+        public void RemoveCard(OldCard oldCard)
         {
-            foreach (var cardEffect in card.Effects)
+            foreach (var cardEffect in oldCard.Effects)
             {
                 _player.RemoveEffectStack(cardEffect);
             }

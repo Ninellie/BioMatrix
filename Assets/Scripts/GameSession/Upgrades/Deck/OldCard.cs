@@ -4,7 +4,7 @@ using Assets.Scripts.EntityComponents.Effects;
 namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
     [Serializable]
-    public class Card
+    public class OldCard
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -13,6 +13,6 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         public int DeckId { get; set; }
         public int OrderInDeck { get; set; }
         public float DropWeight { get; set; }
-        public IEffect[] Effects { get; set; }
+        public IOldEffect[] Effects { get; set; }
     }
 }

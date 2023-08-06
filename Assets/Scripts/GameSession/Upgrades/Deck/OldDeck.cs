@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
-    public class Deck
+    public class OldDeck
     {
         public string Name { get; set; }
         public int Id { get; set; }

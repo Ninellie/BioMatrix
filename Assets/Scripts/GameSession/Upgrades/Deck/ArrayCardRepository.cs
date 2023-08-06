@@ -38,10 +38,10 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
 
         private static TagsWeightMultiplierData _multiplierData = new();
 
-        private static readonly Card[] DefaultCards = new[]
+        private static readonly OldCard[] DefaultCards = new[]
         {
             // Gun deck
-            new Card
+            new OldCard
             {
                 Title = "Gun 1",
                 Description = "+50% Damage\r\n+2 Magazine capacity",
@@ -55,7 +55,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("Gun1")
                 },
             },
-            new Card
+            new OldCard
             {
                 Title = "Gun 2",
                 Description = "After reloading, gain +50% Firerate for 2 sec",
@@ -68,7 +68,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("Gun2")
                 },
             },
-            new Card
+            new OldCard
             {
                 Title = "Gun 3",
                 Description = "+2 Projectile pierce\r\n+50% Projectile speed",
@@ -83,7 +83,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 },
             },
             // Gun Turret deck
-            new Card
+            new OldCard
             {
                 Title = "Gun Turret 1",
                 Description = "+1 Turret",
@@ -96,7 +96,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("GunTurret1")
                 }
             },
-            new Card
+            new OldCard
             {
                 Title = "Gun Turret 2",
                 Description = "Turret shoots where the player shoots\r\n+50 Turret Firerate",
@@ -109,7 +109,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("GunTurret2")
                 },
             },
-            new Card
+            new OldCard
             {
                 Title = "Gun Turret 3",
                 Description = "+2 Projectiles for Turrets, while magazine is full",
@@ -123,7 +123,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 },
             },
             // Gun Vitality deck
-            new Card
+            new OldCard
             {
                 Title = "Gun Vitality 1",
                 Description = "+ 1 Max Health\r\n+100% Projectile size multiplier",
@@ -136,7 +136,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("GunVitality1")
                 }
             },
-            new Card
+            new OldCard
             {
                 Title = "Gun Vitality 2",
                 Description = "+ 1 Health Regeneration per minute",
@@ -149,7 +149,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("GunVitality2")
                 },
             },
-            new Card
+            new OldCard
             {
                 Title = "Gun Vitality 3",
                 Description = "+100% Firerate\r\n+50% Damage while you have only 1 Health Point",
@@ -163,7 +163,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 },
             },
             // Gun Movement Experience deck
-            new Card
+            new OldCard
             {
                 Title = "Gun Movement Experience 1",
                 Description = "Gain stack of Adrenalin for 5 sec per exp taken\r\nAdrenalin gives you +5% Movement Speed and +5% Firerate per stack\r\nMaximum 10 stacks\r\nDuration is updated when a new stack is received",
@@ -176,7 +176,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("GunMovementExperience1")
                 }
             },
-            new Card
+            new OldCard
             {
                 Title = "Gun Movement Experience 2",
                 Description = "+25% Movement Speed\r\n+25% Projectile Speed",
@@ -189,7 +189,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("GunMovementExperience2")
                 },
             },
-            new Card
+            new OldCard
             {
                 Title = "Gun Movement Experience 3",
                 Description = "+100% Experience gain",
@@ -203,7 +203,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 },
             },
             // Turret deck
-            new Card
+            new OldCard
             {
                 Title = "Turret 1",
                 Description = "+1 Turret",
@@ -216,7 +216,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("Turret1")
                 }
             },
-            new Card
+            new OldCard
             {
                 Title = "Turret 2",
                 Description = "+2 Projectiles for Turrets after Turret's kill for 2 sec",
@@ -229,7 +229,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("Turret2")
                 },
             },
-            new Card
+            new OldCard
             {
                 Title = "Turret 3",
                 Description = "+1 Turret Projectile Pierce\r\n+50% Turret Firerate",
@@ -243,7 +243,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 },
             },
             // Turret Shield deck
-            new Card
+            new OldCard
             {
                 Title = "Turret Shield 1",
                 Description = "+1 Rechargeable Shield Layer",
@@ -256,7 +256,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("TurretShield1")
                 }
             },
-            new Card
+            new OldCard
             {
                 Title = "Turret Shield 2",
                 Description = "+100% Shield Recharge Rate",
@@ -269,7 +269,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("TurretShield2")
                 },
             },
-            new Card
+            new OldCard
             {
                 Title = "Turret Shield 3",
                 Description = "+50% Turret Damage while under the Shield\r\n+1 Turret while has no Shield",
@@ -283,7 +283,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 },
             },
             // Turret Movement Magnetism deck
-            new Card
+            new OldCard
             {
                 Title = "Turret Movement Magnetism 1",
                 Description = "+25% Magnetism Radius\r\n+10% Movement Speed per active Turret",
@@ -296,7 +296,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("TurretMovementMagnetism1")
                 }
             },
-            new Card
+            new OldCard
             {
                 Title = "Turret Movement Magnetism 2",
                 Description = "+25% Movement Speed,\r\n+25% Magnetism Radius",
@@ -309,7 +309,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("TurretMovementMagnetism2")
                 },
             },
-            new Card
+            new OldCard
             {
                 Title = "Turret Movement Magnetism 3",
                 Description = "+1 Turret\r\n+50% Magnetism Radius",
@@ -323,7 +323,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 },
             },
             // Vitality Experience deck
-            new Card
+            new OldCard
             {
                 Title = "Vitality Experience 1",
                 Description = "+1 Max Health\r\n+25% Experience gain",
@@ -336,7 +336,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("VitalityExperience1")
                 }
             },
-            new Card
+            new OldCard
             {
                 Title = "Vitality Experience 2",
                 Description = "1 Health Point restored per 20 exp taken",
@@ -349,7 +349,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("VitalityExperience2")
                 },
             },
-            new Card
+            new OldCard
             {
                 Title = "Vitality Experience 3",
                 Description = "+100% Experience gain while you have only 1 Health Point",
@@ -363,7 +363,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 },
             },
             // Shield Magnetism deck
-            new Card
+            new OldCard
             {
                 Title = "Shield Magnetism 1",
                 Description = "+25% Magnetism Radius\r\n+50% Shield Recharge Rate",
@@ -376,7 +376,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("ShieldMagnetism1")
                 }
             },
-            new Card
+            new OldCard
             {
                 Title = "Shield Magnetism 2",
                 Description = "+1 Max Rechargeable Shield Layer\r\n+25% Magnetism Radius",
@@ -389,7 +389,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                     EffectRepository.Get("ShieldMagnetism2")
                 },
             },
-            new Card
+            new OldCard
             {
                 Title = "Shield Magnetism 3",
                 Description = "+100% Magnetism Radius while Shield is fully charged",
@@ -404,13 +404,13 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             },
         };
 
-        private readonly Card[] _cards;
+        private readonly OldCard[] _cards;
 
         public ArrayCardRepository() : this(DefaultCards)
         {
         }
 
-        public ArrayCardRepository(Card[] cards)
+        public ArrayCardRepository(OldCard[] cards)
         {
             _cards = cards;
         }
@@ -421,7 +421,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         /// <param name="i">Id of card</param>
         /// <param name="deckId">Deck id</param>
         /// <returns>Card</returns>
-        public List<Card> GetCardsByDeckId(int deckId)
+        public List<OldCard> GetCardsByDeckId(int deckId)
         {
             return _cards.Where(card => card.DeckId == deckId).ToList();
         }
@@ -431,7 +431,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         /// </summary>
         /// <param name="id">Card id</param>
         /// <returns>Card</returns>
-        public Card GetCardById(int id)
+        public OldCard GetCardById(int id)
         {
             return _cards.First(card => card.Id == id);
         }
@@ -441,7 +441,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         /// </summary>
         /// <param name="i">Card index</param>
         /// <returns>Card</returns>
-        public Card GetCardByIndex(int i) => _cards[i];
+        public OldCard GetCardByIndex(int i) => _cards[i];
 
         /// <summary>
         /// Returns the sum of the drop weights of all cards in the repository

@@ -2,14 +2,14 @@
 
 namespace Assets.Scripts.EntityComponents.Effects
 {
-    public class AttachEffectAdderEffect : IEffect
+    public class AttachOldEffectAdderOldEffect : IOldEffect
     {
         public string Name { get; set; }
         public string Description { get; set; }
         public string TargetName { get; set; }
         public string Identifier { get; set; }
 
-        public List<(IEffect effect, int stackCount)> Effects { get; set; }
+        public List<(IOldEffect effect, int stackCount)> Effects { get; set; }
 
         public bool IsTemporal { get; set; }
         public Stats.OldStat Duration { get; set; }
@@ -19,7 +19,7 @@ namespace Assets.Scripts.EntityComponents.Effects
         public bool IsStacking { get; set; }
         public bool IsStackSeparateDuration { get; set; }
         public Stats.OldStat MaxStackCount { get; set; }
-        public Resource StacksCount { get; set; }
+        public OldResource StacksCount { get; set; }
 
         private Entity _target;
 
@@ -72,11 +72,11 @@ namespace Assets.Scripts.EntityComponents.Effects
             }
         }
 
-        public AttachEffectAdderEffect(
+        public AttachOldEffectAdderOldEffect(
             string name,
             string description,
             string targetName,
-            List<(IEffect effect, int stackCount)> effects
+            List<(IOldEffect effect, int stackCount)> effects
         ) : this(
             name,
             description,
@@ -93,11 +93,11 @@ namespace Assets.Scripts.EntityComponents.Effects
         {
         }
 
-        public AttachEffectAdderEffect(
+        public AttachOldEffectAdderOldEffect(
             string name,
             string description,
             string targetName,
-            List<(IEffect effect, int stackCount)> effects,
+            List<(IOldEffect effect, int stackCount)> effects,
             bool isTemporal,
             Stats.OldStat duration,
             bool isDurationStacks,
@@ -118,7 +118,7 @@ namespace Assets.Scripts.EntityComponents.Effects
             IsStacking = isStacking;
             IsStackSeparateDuration = isStackSeparateDuration;
             MaxStackCount = maxStackCount;
-            StacksCount = new Resource(MaxStackCount);
+            StacksCount = new OldResource(MaxStackCount);
         }
     }
 }

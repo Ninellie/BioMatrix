@@ -14,8 +14,8 @@ namespace Assets.Scripts.EntityComponents
         public bool Alive => !LifePoints.IsEmpty;
         public const int DeathLifePointsThreshold = 0;
         public const int MinimalDamageTaken = 1;
-        public RecoverableResource LifePoints { get; private set; }
-        public Resource KillsCount { get; private set; }
+        public OldRecoverableResource LifePoints { get; private set; }
+        public OldResource KillsCount { get; private set; }
         public OldStat Size { get; private set; }
         public OldStat MaximumLifePoints { get; private set; }
         public OldStat LifeRegenerationPerSecond { get; private set; }
@@ -25,11 +25,11 @@ namespace Assets.Scripts.EntityComponents
         public SpriteRenderer SpriteRenderer { get; private set; }
         public GameTimeScheduler GameTimeScheduler { get; private set; }
 
-        public readonly List<IEffect> effects = new();
+        public readonly List<IOldEffect> effects = new();
 
-        public void AddEffectStack(IEffect effect)
+        public void AddEffectStack(IOldEffect oldEffect)
         {
-            foreach (var myEffect in effects.Where(myEffect => myEffect.Name == effect.Name))
+            foreach (var myEffect in effects.Where(myEffect => myEffect.Name == oldEffect.Name))
             {
                 if (myEffect.IsStacking)
                 {
@@ -40,7 +40,7 @@ namespace Assets.Scripts.EntityComponents
 
                     if (myEffect.IsStackSeparateDuration)
                     {
-                        GameTimeScheduler.Schedule(() => RemoveEffectStack(effect), effect.Duration.Value);
+                        GameTimeScheduler.Schedule(() => RemoveEffectStack(oldEffect), oldEffect.Duration.Value);
                         return; 
                     }
                 }
@@ -59,36 +59,36 @@ namespace Assets.Scripts.EntityComponents
                 }
                 return;
             }
-            AddEffect(effect);
+            AddEffect(oldEffect);
         }
 
-        public void AddEffect(IEffect effect)
+        public void AddEffect(IOldEffect oldEffect)
         {
-            if (effect.IsTemporal)
+            if (oldEffect.IsTemporal)
             {
-                if (!effect.IsStackSeparateDuration)
+                if (!oldEffect.IsStackSeparateDuration)
                 {
-                    effect.Identifier = GameTimeScheduler.Schedule(() => RemoveEffect(effect), effect.Duration.Value);
+                    oldEffect.Identifier = GameTimeScheduler.Schedule(() => RemoveEffect(oldEffect), oldEffect.Duration.Value);
                 }
                 else
                 {
-                    effect.Identifier = GameTimeScheduler.Schedule(() => RemoveEffectStack(effect), effect.Duration.Value);
+                    oldEffect.Identifier = GameTimeScheduler.Schedule(() => RemoveEffectStack(oldEffect), oldEffect.Duration.Value);
                 }
             }
-            effect.StacksCount.Empty();
-            effect.StacksCount.Increase();
-            effects.Add(effect);
-            effect.Attach(this);
-            effect.Subscribe(this);
+            oldEffect.StacksCount.Empty();
+            oldEffect.StacksCount.Increase();
+            effects.Add(oldEffect);
+            oldEffect.Attach(this);
+            oldEffect.Subscribe(this);
         }
 
-        public void RemoveEffectStack(IEffect effect)
+        public void RemoveEffectStack(IOldEffect oldEffect)
         {
             var effectsNameToRemoveStack = new List<string>();
             var effectsNameToRemove = new List<string>();
-            var effectsToRemove = new List<IEffect>();
+            var effectsToRemove = new List<IOldEffect>();
 
-            foreach (var myEffect in effects.Where(e => e.Name == effect.Name))
+            foreach (var myEffect in effects.Where(e => e.Name == oldEffect.Name))
             {
                 effectsNameToRemoveStack.Add(myEffect.Name);
             }
@@ -100,7 +100,7 @@ namespace Assets.Scripts.EntityComponents
                     myEffect.StacksCount.Decrease();
                     if (!myEffect.StacksCount.IsEmpty)
                         continue;
-                    effectsNameToRemove.Add(effect.Name);
+                    effectsNameToRemove.Add(oldEffect.Name);
                 }
             }
             
@@ -120,11 +120,11 @@ namespace Assets.Scripts.EntityComponents
             }
         }
 
-        public void RemoveEffect(IEffect effect)
+        public void RemoveEffect(IOldEffect oldEffect)
         {
             var isContain = false;
 
-            foreach (var myEffect in effects.Where(e => e.Name == effect.Name))
+            foreach (var myEffect in effects.Where(e => e.Name == oldEffect.Name))
             {
                 myEffect.StacksCount.Empty();
                 isContain = true;
@@ -132,9 +132,9 @@ namespace Assets.Scripts.EntityComponents
 
             if (!isContain) return;
         
-            effect.Unsubscribe(this);
-            effect.Detach();
-            effects.Remove(effect);
+            oldEffect.Unsubscribe(this);
+            oldEffect.Detach();
+            effects.Remove(oldEffect);
         }
 
         private void OnEnable() => BaseOnEnable();
@@ -158,9 +158,9 @@ namespace Assets.Scripts.EntityComponents
         
             transform.localScale = new Vector3(Size.Value, Size.Value, 1);
 
-            LifePoints = new RecoverableResource(DeathLifePointsThreshold, MaximumLifePoints, LifeRegenerationPerSecond);
+            LifePoints = new OldRecoverableResource(DeathLifePointsThreshold, MaximumLifePoints, LifeRegenerationPerSecond);
             LifePoints.Fill();
-            KillsCount = new Resource();
+            KillsCount = new OldResource();
         }
     
         protected virtual void BaseOnEnable()
@@ -208,13 +208,13 @@ namespace Assets.Scripts.EntityComponents
         
         public void IncreaseResourceValue(int value, string resourcePath)
         {
-            var resource = (Resource)EventHelper.GetPropByPath(this, resourcePath);
+            var resource = (OldResource)EventHelper.GetPropByPath(this, resourcePath);
             resource?.Increase(value);
         }
 
         public void DecreaseResourceValue(int value, string resourcePath)
         {
-            var resource = (Resource)EventHelper.GetPropByPath(this, resourcePath);
+            var resource = (OldResource)EventHelper.GetPropByPath(this, resourcePath);
             resource?.Decrease(value);
         }
 

@@ -8,10 +8,10 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
     public class CardManager
     {
         private readonly ICardRepository _cardRepository;
-        private readonly List<Card> _obtainedCards = new();
-        private readonly Deck[] _defaultDecks = 
+        private readonly List<OldCard> _obtainedCards = new();
+        private readonly OldDeck[] _defaultDecks = 
         {
-            new Deck
+            new OldDeck
             {
                 Name = string.Empty,
                 Id = 1,
@@ -19,7 +19,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Tags = CardTag.Gun,
                 CardsId = new Stack<int>()
             },
-            new Deck
+            new OldDeck
             {
                 Name = string.Empty,
                 Id = 2,
@@ -27,7 +27,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Tags = CardTag.Gun | CardTag.Turret,
                 CardsId = new Stack<int>()
             },
-            new Deck
+            new OldDeck
             {
                 Name = string.Empty,
                 Id = 3,
@@ -35,7 +35,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Tags = CardTag.Gun | CardTag.Vitality,
                 CardsId = new Stack<int>()
             },
-            new Deck
+            new OldDeck
             {
                 Name = string.Empty,
                 Id = 4,
@@ -43,7 +43,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Tags = CardTag.Gun | CardTag.Movement | CardTag.Experience,
                 CardsId = new Stack<int>()
             },
-            new Deck
+            new OldDeck
             {
                 Name = string.Empty,
                 Id = 5,
@@ -51,7 +51,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Tags = CardTag.Turret,
                 CardsId = new Stack<int>()
             },
-            new Deck
+            new OldDeck
             {
                 Name = string.Empty,
                 Id = 6,
@@ -59,7 +59,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Tags = CardTag.Turret | CardTag.Shield,
                 CardsId = new Stack<int>()
             },
-            new Deck
+            new OldDeck
             {
                 Name = string.Empty,
                 Id = 7,
@@ -67,7 +67,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Tags = CardTag.Turret | CardTag.Movement | CardTag.Magnetism,
                 CardsId = new Stack<int>()
             },
-            new Deck
+            new OldDeck
             {
                 Name = string.Empty,
                 Id = 8,
@@ -75,7 +75,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 Tags = CardTag.Vitality | CardTag.Experience,
                 CardsId = new Stack<int>()
             },
-            new Deck
+            new OldDeck
             {
                 Name = string.Empty,
                 Id = 9,
@@ -102,11 +102,11 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             }
         }
 
-        public List<Card> GetRandomOpenedCards(int numberOfCards)
+        public List<OldCard> GetRandomOpenedCards(int numberOfCards)
         {
             var cardsList = GetOpenedCards();
 
-            List<Card> selectedCards = new();
+            List<OldCard> selectedCards = new();
 
             var cardsCount = cardsList.Count;
             if (cardsCount > numberOfCards)
@@ -123,7 +123,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             return selectedCards;
         }
 
-        public List<Card> GetObtainedCards()
+        public List<OldCard> GetObtainedCards()
         {
             return _obtainedCards;
         }
@@ -141,7 +141,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             }
         }
 
-        private List<Card> GetOpenedCards()
+        private List<OldCard> GetOpenedCards()
         {
             List<int> openedCardIds = new();
 
@@ -153,12 +153,12 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 }
             }
 
-            List<Card> openedCards = new(openedCardIds.Count);
+            List<OldCard> openedCards = new(openedCardIds.Count);
             openedCards.AddRange(openedCardIds.Select(openedCardId => _cardRepository.GetCardById(openedCardId)));
             return openedCards;
         }
 
-        private Card GetRandomCardFromList(List<Card> cardList)
+        private OldCard GetRandomCardFromList(List<OldCard> cardList)
         {
             var sum = cardList.Sum(x => x.DropWeight);
             var next = Random.Range(0, sum);

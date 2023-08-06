@@ -1,14 +1,17 @@
-﻿using System;
+﻿using Assets.Scripts.Core;
 using System.Collections.Generic;
+using System;
 
 namespace Assets.Scripts.EntityComponents.Effects
 {
-    public class AttachResourceIncreaserEffect : IEffect
+    public class ResourceIncreaserOnEventOldEffect : IOldEffect
     {
         public string Name { get; set; }
         public string Description { get; set; }
         public string TargetName { get; set; }
         public string Identifier { get; set; }
+
+        public PropTrigger Trigger { get; set; }
 
         public List<(int value, string resourcePath)> ResourceValues { get; set; }
 
@@ -19,64 +22,68 @@ namespace Assets.Scripts.EntityComponents.Effects
 
         public bool IsStacking { get; set; }
         public bool IsStackSeparateDuration { get; set; }
+        public OldResource StacksCount { get; set; }
         public Stats.OldStat MaxStackCount { get; set; }
-        public Resource StacksCount { get; set; }
+
+        public OldResource TriggerCountForIncreasing { get; set; }
+        public Stats.OldStat MaxTriggerCountForIncreasing { get; set; }
 
         private Entity _target;
 
         public void Attach(Entity target)
         {
             _target = target;
-            IncreaseResource();
         }
 
         public void Detach()
         {
-            while (!StacksCount.IsEmpty)
-            {
-                StacksCount.Decrease();
-                DecreaseResource();
-            }
         }
 
         public void Subscribe(Entity target)
         {
-            StacksCount.IncrementEvent += IncreaseResource;
-            StacksCount.DecrementEvent += DecreaseResource;
+            EventHelper.AddActionByName(EventHelper.GetPropByPath(target, Trigger.Path), Trigger.Name, AddTriggerCount);
+
+            TriggerCountForIncreasing.FillEvent += IncreaseResource;
         }
 
         public void Unsubscribe(Entity target)
         {
-            StacksCount.IncrementEvent -= IncreaseResource;
-            StacksCount.DecrementEvent -= DecreaseResource;
+            EventHelper.RemoveActionByName(EventHelper.GetPropByPath(target, Trigger.Path), Trigger.Name, AddTriggerCount);
+            TriggerCountForIncreasing.FillEvent -= IncreaseResource;
         }
 
         private void IncreaseResource()
         {
-            foreach (var tuple in ResourceValues)
+            TriggerCountForIncreasing.Empty();
+            for (int i = 0; i < StacksCount.GetValue(); i++)
             {
-                _target.IncreaseResourceValue(tuple.value, tuple.resourcePath);
+                foreach (var tuple in ResourceValues)
+                {
+                    _target.IncreaseResourceValue(tuple.value, tuple.resourcePath);
+                }
             }
         }
 
-        private void DecreaseResource()
+        private void AddTriggerCount()
         {
-            foreach (var tuple in ResourceValues)
-            {
-                _target.DecreaseResourceValue(tuple.value, tuple.resourcePath);
-            }
+            TriggerCountForIncreasing.Increase();
         }
 
-        public AttachResourceIncreaserEffect(
+        public ResourceIncreaserOnEventOldEffect
+        (
             string name,
             string description,
             string targetName,
+            PropTrigger trigger,
             List<(int value, string resourcePath)> resourceValues,
+            int triggerCountForIncreasing,
             bool isStacking
-        ) : this(
+        ) : this
+        (
             name,
             description,
             targetName,
+            trigger,
             resourceValues,
             false,
             new Stats.OldStat(0, false),
@@ -84,35 +91,18 @@ namespace Assets.Scripts.EntityComponents.Effects
             false,
             isStacking,
             false,
-            new Stats.OldStat(Single.PositiveInfinity, false)
-        )
-        {
-        }
-        public AttachResourceIncreaserEffect(
-            string name,
-            string description,
-            string targetName,
-            List<(int value, string resourcePath)> resourceValues
-        ) : this(
-            name,
-            description,
-            targetName,
-            resourceValues,
-            false,
-            new Stats.OldStat(0, false),
-            false,
-            false,
-            false,
-            false,
-            new Stats.OldStat(1, false)
+            new Stats.OldStat(Single.PositiveInfinity, false),
+            new Stats.OldStat(triggerCountForIncreasing)
         )
         {
         }
 
-        public AttachResourceIncreaserEffect(
+        public ResourceIncreaserOnEventOldEffect
+        (
             string name,
             string description,
             string targetName,
+            PropTrigger trigger,
             List<(int value, string resourcePath)> resourceValues,
             bool isTemporal,
             Stats.OldStat duration,
@@ -120,12 +110,15 @@ namespace Assets.Scripts.EntityComponents.Effects
             bool isDurationUpdates,
             bool isStacking,
             bool isStackSeparateDuration,
-            Stats.OldStat maxStackCount
+            Stats.OldStat maxStackCount,
+            Stats.OldStat maxTriggerCountForIncreasing
+
         )
         {
             Name = name;
             Description = description;
             TargetName = targetName;
+            Trigger = trigger;
             ResourceValues = resourceValues;
             IsTemporal = isTemporal;
             Duration = duration;
@@ -134,7 +127,9 @@ namespace Assets.Scripts.EntityComponents.Effects
             IsStacking = isStacking;
             IsStackSeparateDuration = isStackSeparateDuration;
             MaxStackCount = maxStackCount;
-            StacksCount = new Resource(MaxStackCount);
+            StacksCount = new OldResource(MaxStackCount);
+            MaxTriggerCountForIncreasing = maxTriggerCountForIncreasing;
+            TriggerCountForIncreasing = new OldResource(MaxTriggerCountForIncreasing);
         }
     }
 }

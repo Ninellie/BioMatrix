@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.EntityComponents.Effects
 {
-    public class EffectAdderOnEventEffect : IEffect
+    public class OldEffectAdderOnEventOldEffect : IOldEffect
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -10,7 +10,7 @@ namespace Assets.Scripts.EntityComponents.Effects
         public PropTrigger Trigger { get; set; }
         public string Identifier { get; set; }
 
-        public IEffect Effect { get; set; }
+        public IOldEffect OldEffect { get; set; }
 
         public bool IsTemporal { get; set; }
         public Stats.OldStat Duration { get; set; }
@@ -19,7 +19,7 @@ namespace Assets.Scripts.EntityComponents.Effects
 
         public bool IsStacking { get; set; }
         public bool IsStackSeparateDuration { get; set; }
-        public Resource StacksCount { get; set; }
+        public OldResource StacksCount { get; set; }
         public Stats.OldStat MaxStackCount { get; set; }
 
         private Entity _target;
@@ -54,26 +54,26 @@ namespace Assets.Scripts.EntityComponents.Effects
 
         private void AddEffect()
         {
-            _target.AddEffectStack(Effect);
+            _target.AddEffectStack(OldEffect);
         }
 
         private void RemoveEffect()
         {
-            _target.RemoveEffectStack(Effect);
+            _target.RemoveEffectStack(OldEffect);
         }
 
-        public EffectAdderOnEventEffect(
+        public OldEffectAdderOnEventOldEffect(
             string name,
             string description,
             string targetName,
             PropTrigger trigger,
-            IEffect effect
+            IOldEffect oldEffect
         ) : this(
             name,
             description,
             targetName,
             trigger,
-            effect,
+            oldEffect,
             false,
             new Stats.OldStat(0, false),
             false,
@@ -84,12 +84,12 @@ namespace Assets.Scripts.EntityComponents.Effects
         ) 
         {
         }
-        public EffectAdderOnEventEffect(
+        public OldEffectAdderOnEventOldEffect(
             string name,
             string description,
             string targetName,
             PropTrigger trigger,
-            IEffect effect,
+            IOldEffect oldEffect,
             bool isTemporal,
             Stats.OldStat duration,
             bool isDurationStacks,
@@ -103,7 +103,7 @@ namespace Assets.Scripts.EntityComponents.Effects
             Description = description;
             TargetName = targetName;
             Trigger = trigger;
-            Effect = effect;
+            OldEffect = oldEffect;
             IsTemporal = isTemporal;
             Duration = duration;
             IsDurationStacks = isDurationStacks;
@@ -111,7 +111,7 @@ namespace Assets.Scripts.EntityComponents.Effects
             IsStacking = isStacking;
             IsStackSeparateDuration = isStackSeparateDuration;
             MaxStackCount = maxStackCount;
-            StacksCount = new Resource(MaxStackCount);
+            StacksCount = new OldResource(MaxStackCount);
         }
     }
 }

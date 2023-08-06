@@ -5,17 +5,17 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.Resources
 {
-    [RequireComponent(typeof(StatHandler))]
-    public class ResourceHandler : MonoBehaviour
+    [RequireComponent(typeof(StatList))]
+    public class ResourceList : MonoBehaviour
     {
         [SerializeField] private ResourcePreset _preset;
-        [SerializeField] private List<NewResource> _resources;
-        [SerializeField] private StatHandler _statHandler;
+        [SerializeField] private List<Resource> _resources;
+        [SerializeField] private StatList _statList;
 
 
         private void Awake()
         {
-            _statHandler = GetComponent<StatHandler>();
+            _statList = GetComponent<StatList>();
         }
 
         private void Start()
@@ -23,7 +23,7 @@ namespace Assets.Scripts.EntityComponents.Resources
             FillListFromPreset();
         }
 
-        public NewResource GetResourceByName(ResourceName resourceName)
+        public Resource GetResourceByName(ResourceName resourceName)
         {
             return _resources.FirstOrDefault(resource => resource.Name.Equals(resourceName));
         }
@@ -39,14 +39,14 @@ namespace Assets.Scripts.EntityComponents.Resources
 
                 if (isLimited)
                 {
-                    var maxValueStat = _statHandler.GetStatByName(data.maxValueStatName);
-                    var resource = new NewResource(data.name, data.baseValue, data.minValue, data.edgeValue,
+                    var maxValueStat = _statList.GetStatByName(data.maxValueStatName);
+                    var resource = new Resource(data.name, data.baseValue, data.minValue, data.edgeValue,
                         maxValueStat);
                     _resources.Add(resource);
                 }
                 else
                 {
-                    var resource = new NewResource(data.name, data.baseValue, data.minValue, data.edgeValue);
+                    var resource = new Resource(data.name, data.baseValue, data.minValue, data.edgeValue);
                     _resources.Add(resource);
                 }
             }

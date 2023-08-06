@@ -32,8 +32,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public bool IsFireButtonPressed { get; private set; }
         public Vector2 CurrentAimDirection  { get; private set; }
 
-        public Resource Lvl { get; set; }
-        public Resource Exp { get; set; }
+        public OldResource Lvl { get; set; }
+        public OldResource Exp { get; set; }
 
         private const int ExperienceToSecondLevel = 20;
         private const int ExperienceAmountIncreasingPerLevel = 15;
@@ -45,7 +45,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private CircleCollider2D _circleCollider;
         private Animator _animator;
         private string _currentState;
-        private StatHandler _statHandler;
+        private StatList _statList;
 
         private void Awake() => BaseAwake(Settings);
 
@@ -59,7 +59,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         protected void BaseAwake(PlayerStatsSettings settings)
         {
-            _statHandler = GetComponent<StatHandler>();
+            _statList = GetComponent<StatList>();
             Debug.Log($"{gameObject.name} {nameof(Player)} Awake");
             base.BaseAwake(settings);
 
@@ -77,8 +77,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
             _circleCollider.radius = Math.Max(MagnetismRadius.Value, 0);
 
-            Lvl = new Resource(InitialLevel);
-            Exp = new Resource(ExpToNextLvl);
+            Lvl = new OldResource(InitialLevel);
+            Exp = new OldResource(ExpToNextLvl);
 
             //_oldMovementController = new OldMovementControllerPlayer(this);
         }

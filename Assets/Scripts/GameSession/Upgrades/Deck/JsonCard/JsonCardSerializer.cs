@@ -15,7 +15,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck.JsonCard
         }
         public void Serialize(string fileName)
         {
-            var list = new List<Card>();
+            var list = new List<OldCard>();
             for (var i = 0; i < _cardRepository.CardCount; i++)
             {
                 var card = _cardRepository.GetCardByIndex(i);

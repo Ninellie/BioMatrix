@@ -4,7 +4,7 @@ using static System.Single;
 
 namespace Assets.Scripts.EntityComponents
 {
-    public class Resource
+    public class OldResource
     {
         public event Action ValueChangedEvent;
         public event Action IncreaseEvent;
@@ -156,32 +156,32 @@ namespace Assets.Scripts.EntityComponents
             if (isEmptyEventRequired) EmptyEvent?.Invoke();
         }
 
-        public Resource() : this(0,
+        public OldResource() : this(0,
         1,
         new OldStat(PositiveInfinity))
         {
         }
 
-        public Resource(OldStat maxValueOldStat) : this(0,
+        public OldResource(OldStat maxValueOldStat) : this(0,
             1,
             maxValueOldStat)
         {
         }
 
-        public Resource(int minValue) : this(minValue,
+        public OldResource(int minValue) : this(minValue,
             minValue + 1,
             new OldStat(PositiveInfinity))
         {
         }
 
-        public Resource(int minValue,
+        public OldResource(int minValue,
             OldStat maxValueOldStat) : this(minValue,
             minValue + 1,
             maxValueOldStat)
         {
         }
 
-        public Resource(int minValue,
+        public OldResource(int minValue,
             int edgeValue,
             OldStat maxValueOldStat)
         {

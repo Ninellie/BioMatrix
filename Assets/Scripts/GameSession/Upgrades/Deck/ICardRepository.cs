@@ -6,11 +6,11 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
     {
         int CardCount { get; }
 
-        List<Card> GetCardsByDeckId(int deckId); // True Interface, want to change
+        List<OldCard> GetCardsByDeckId(int deckId); // True Interface, want to change
 
-        Card GetCardByIndex(int i);
+        OldCard GetCardByIndex(int i);
 
-        Card GetCardById(int id);
+        OldCard GetCardById(int id);
 
         float GetDropWeightSum();
     }

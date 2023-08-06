@@ -4,7 +4,7 @@ using Assets.Scripts.EntityComponents.Stats;
 
 namespace Assets.Scripts.EntityComponents.Effects
 {
-    public class EffectAdderWhileTrueEffect : IEffect
+    public class OldEffectAdderWhileTrueOldEffect : IOldEffect
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -14,7 +14,7 @@ namespace Assets.Scripts.EntityComponents.Effects
         public PropTrigger RemoveTrigger { get; set; }
         public string ResourceConditionPath { get; set; }
 
-        public List<(IEffect effect, int stackCount)> Effects { get; set; }
+        public List<(IOldEffect effect, int stackCount)> Effects { get; set; }
 
         public string Identifier { get; set; }
 
@@ -25,7 +25,7 @@ namespace Assets.Scripts.EntityComponents.Effects
 
         public bool IsStacking { get; set; }
         public bool IsStackSeparateDuration { get; set; }
-        public Resource StacksCount { get; set; }
+        public OldResource StacksCount { get; set; }
         public OldStat MaxStackCount { get; set; }
 
         private Entity _target;
@@ -118,14 +118,14 @@ namespace Assets.Scripts.EntityComponents.Effects
             }
         }
 
-        public EffectAdderWhileTrueEffect(
+        public OldEffectAdderWhileTrueOldEffect(
             string name,
             string description,
             string targetName,
             PropTrigger addTrigger,
             PropTrigger removeTrigger,
             string resourceConditionPath,
-            List<(IEffect effect, int stackCount)> effects
+            List<(IOldEffect effect, int stackCount)> effects
         ) : this(
             name,
             description,
@@ -145,14 +145,14 @@ namespace Assets.Scripts.EntityComponents.Effects
         {
         }
 
-        public EffectAdderWhileTrueEffect(
+        public OldEffectAdderWhileTrueOldEffect(
             string name,
             string description,
             string targetName,
             PropTrigger addTrigger,
             PropTrigger removeTrigger,
             string resourceConditionPath,
-            List<(IEffect effect, int stackCount)> effects,
+            List<(IOldEffect effect, int stackCount)> effects,
             bool isTemporal,
             OldStat duration,
             bool isDurationStacks,
@@ -176,7 +176,7 @@ namespace Assets.Scripts.EntityComponents.Effects
             IsStacking = isStacking;
             IsStackSeparateDuration = isStackSeparateDuration;
             MaxStackCount = maxStackCount;
-            StacksCount = new Resource(MaxStackCount);
+            StacksCount = new OldResource(MaxStackCount);
         }
     }
 }
