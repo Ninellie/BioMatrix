@@ -7,7 +7,7 @@ using UnityEngine;
 public interface IEffect
 {
     string Name { get; }
-    string Description { get; }
+    string Description { get; } 
     void Activate();
     void Deactivate();
 }
@@ -44,23 +44,6 @@ public class EffectData
 }
 
 [Serializable]
-public class Effect : IEffect
-{
-    [SerializeField] private string _name;
-    [SerializeField] private string _description;
-    public string Name => _name;
-    public string Description => _description;
-
-    public virtual void Activate()
-    {
-    }
-
-    public virtual void Deactivate()
-    {
-    }
-}
-
-[Serializable]
 public class StatModData
 {
     [SerializeField]
@@ -70,28 +53,9 @@ public class StatModData
     public StatName statName;
 }
 
-[Serializable]
-public class StatModifierEffect : Effect
+public interface IStatModifier
 {
-    [SerializeField]
-    private List<StatModData> _statModList;
+    public List<StatModData> StatModList { get; }
 
-    [SerializeField]
-    private StatList _statList;
-
-    public new void Activate()
-    {
-        foreach (var statModData in _statModList)
-        {
-            _statList.GetStatByName(statModData.statName).AddModifier(statModData.mod);
-        }
-    }
-
-    public new void Deactivate()
-    {
-        foreach (var statModData in _statModList)
-        {
-            _statList.GetStatByName(statModData.statName).RemoveModifier(statModData.mod);
-        }
-    }
+    public void SetStatList(StatList statList);
 }

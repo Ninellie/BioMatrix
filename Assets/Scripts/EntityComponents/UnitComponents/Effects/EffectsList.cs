@@ -6,10 +6,14 @@ using UnityEngine;
 [AddComponentMenu("Entity/Effects/EffectsList")]
 public class EffectsList : MonoBehaviour
 {
+    public IEffect this[string effectName] => GetEffectByName(effectName);
+
     [SerializeField]
     private List<Effect> _effects;
 
-    public IEffect this[string effectName] => GetEffectByName(effectName);
+    [SerializeField]
+    private List<StatModifierEffect> _statModifierEffects;
+
     [Header("Add effect")]
     [Space]
     public StatModifierEffect effect;
@@ -20,6 +24,13 @@ public class EffectsList : MonoBehaviour
         var e = effect;
         _effects.Add(e);
         effect = null;
+    }
+
+    [ContextMenu(nameof(AddNewStatEffectToList))]
+    public void AddNewStatEffectToList()
+    {
+        var e = new StatModifierEffect();
+        _effects.Add(e);
     }
 
     [ContextMenu(nameof(Activate))]
