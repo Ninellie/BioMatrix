@@ -5,11 +5,54 @@ using UnityEngine;
 
 public class StackableStatModifierEffect : StatModifierEffect, IStackable
 {
-    public int StacksCount { get; set; }
-    public int MaxStacks { get; }
+    [SerializeField] private int _maxStacks;
+    [SerializeField] private int _stackCount;
+    [SerializeField] private int _initialStacks;
+
+    public int StacksCount
+    {
+        get => _stackCount;
+        set => _stackCount = value;
+    }
+    public int MaxStacks => _maxStacks;
+    public int InitialStacks => _initialStacks;
+
+    public void AddStack()
+    {
+        if (StacksCount == MaxStacks)
+            return;
+
+        StacksCount++;
+        AddMods();
+    }
+
+    public void RemoveStack()
+    {
+        if (StacksCount == 0)
+            return;
+
+        StacksCount--;
+        RemoveMods();
+    }
 
 
     public new void Activate()
+    {
+        for (int i = 0; i < _initialStacks; i++)
+        {
+            AddStack();
+        }
+    }
+
+    public new void Deactivate()
+    {
+        for (int i = 0; i < StacksCount; i++)
+        {
+            RemoveStack();
+        }
+    }
+
+    private void AddMods()
     {
         foreach (var statModData in statModList)
         {
@@ -17,7 +60,7 @@ public class StackableStatModifierEffect : StatModifierEffect, IStackable
         }
     }
 
-    public new void Deactivate()
+    private void RemoveMods()
     {
         foreach (var statModData in statModList)
         {

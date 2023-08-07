@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,43 +5,32 @@ using UnityEngine;
 [AddComponentMenu("Entity/Effects/EffectsList")]
 public class EffectsList : MonoBehaviour
 {
-    public IEffect this[string effectName] => GetEffectByName(effectName);
+    //public IEffect this[string effectName] => GetEffectByName(effectName);
 
-    [SerializeField]
-    private List<Effect> _effects;
+    [SerializeReference]
+    private List<IEffect> _effects;
 
-    [SerializeField]
-    private List<StatModifierEffect> _statModifierEffects;
-
-    [Header("Add effect")]
-    [Space]
-    public StatModifierEffect effect;
-
-    [ContextMenu(nameof(AddNewEffectToList))]
-    public void AddNewEffectToList()
+    public void AddEffect(IEffect effect)
     {
-        var e = effect;
-        _effects.Add(e);
-        effect = null;
-    }
 
-    [ContextMenu(nameof(AddNewStatEffectToList))]
-    public void AddNewStatEffectToList()
-    {
-        var e = new StatModifierEffect();
-        _effects.Add(e);
     }
 
     [ContextMenu(nameof(Activate))]
     public void Activate()
     {
-        effect.Activate();
+        foreach (var effect in _effects)
+        {
+            effect.Activate();
+        }
     }
 
     [ContextMenu(nameof(Deactivate))]
     public void Deactivate()
     {
-        effect.Deactivate();
+        foreach (var effect in _effects)
+        {
+            effect.Deactivate();
+        }
     }
 
     private IEffect GetEffectByName(string effectName)
@@ -52,6 +40,6 @@ public class EffectsList : MonoBehaviour
             return t;
         }
         Debug.LogError($"effect name: {effectName} not found in the list");
-        throw new ArgumentException($"effect name: {effectName} not found in the list");
+        return null;
     }
 }

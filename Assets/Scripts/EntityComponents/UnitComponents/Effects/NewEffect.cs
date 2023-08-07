@@ -7,7 +7,7 @@ using UnityEngine;
 public interface IEffect
 {
     string Name { get; }
-    string Description { get; } 
+    string Description { get; }
     void Activate();
     void Deactivate();
 }
@@ -32,6 +32,8 @@ public interface IStackable
 {
     int StacksCount { get; set; }
     int MaxStacks { get; }
+    int InitialStacks { get; }
+
     void AddStack();
     void RemoveStack();
 }
