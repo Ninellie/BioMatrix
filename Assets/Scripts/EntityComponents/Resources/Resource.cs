@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Assets.Scripts.CustomAttributes;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
@@ -6,6 +7,26 @@ using UnityEngine.Events;
 
 namespace Assets.Scripts.EntityComponents.Resources
 {
+    public enum ResourceEventType
+    {
+        ValueChanged,
+        Increase,
+        Decrease,
+        Increment,
+        Decrement,
+        Fill,
+        Empty,
+        Edge,
+        NotEdge,
+        NotEmpty,
+    }
+
+    public class ResourceEvent
+    {
+        public ResourceEventType eventType;
+        public UnityEvent unityEvent;
+    }
+
     [Serializable]
     public class Resource
     {
@@ -15,44 +36,30 @@ namespace Assets.Scripts.EntityComponents.Resources
         public bool IsOnEdge => _value == _edgeValue;
         public ResourceName Name => _name;
 
-        [ReadOnly]
-        [SerializeField]
-        private ResourceName _name;
+        [ReadOnly] [SerializeField] private ResourceName _name;
 
-        [ReadOnly]
-        [SerializeField]
-        private int _value;
+        [ReadOnly] [SerializeField] private int _value;
 
-        [ReadOnly]
-        [SerializeField]
-        private bool _isLimited;
+        [ReadOnly] [SerializeField] private bool _isLimited;
 
-        [ReadOnly]
-        [SerializeField]
-        private bool _isInfinite;
+        [ReadOnly] [SerializeField] private bool _isInfinite;
 
-        [ReadOnly]
-        [SerializeField]
-        private int _minValue;
+        [ReadOnly] [SerializeField] private int _minValue;
 
-        [ReadOnly]
-        [SerializeField]
-        private int _edgeValue;
+        [ReadOnly] [SerializeField] private int _edgeValue;
 
-        [ReadOnly]
-        [SerializeField]
-        private Stat _maxValueStat;
+        [ReadOnly] [SerializeField] private Stat _maxValueStat;
 
-        public UnityEvent valueChangedEvent;
-        public UnityEvent increaseEvent;
-        public UnityEvent decreaseEvent;
-        public UnityEvent incrementEvent;
-        public UnityEvent decrementEvent;
-        public UnityEvent fillEvent;
-        public UnityEvent emptyEvent;
-        public UnityEvent edgeEvent;
-        public UnityEvent notEdgeEvent;
-        public UnityEvent notEmptyEvent;
+        [SerializeField] private UnityEvent valueChangedEvent;
+        [SerializeField] private UnityEvent increaseEvent;
+        [SerializeField] private UnityEvent decreaseEvent;
+        [SerializeField] private UnityEvent incrementEvent;
+        [SerializeField] private UnityEvent decrementEvent;
+        [SerializeField] private UnityEvent fillEvent;
+        [SerializeField] private UnityEvent emptyEvent;
+        [SerializeField] private UnityEvent edgeEvent;
+        [SerializeField] private UnityEvent notEdgeEvent;
+        [SerializeField] private UnityEvent notEmptyEvent;
 
         /// <summary>
         /// Creates infinite resource
@@ -202,6 +209,24 @@ namespace Assets.Scripts.EntityComponents.Resources
             var percent = maxValue / 100;
             var currentPercent = _value / percent;
             return currentPercent;
+        }
+
+        public UnityEvent GetEvent(ResourceEventType eventType)
+        {
+            return eventType switch
+            {
+                ResourceEventType.ValueChanged => valueChangedEvent,
+                ResourceEventType.Increase => increaseEvent,
+                ResourceEventType.Decrease => decreaseEvent,
+                ResourceEventType.Increment => incrementEvent,
+                ResourceEventType.Decrement => decrementEvent,
+                ResourceEventType.Fill => fillEvent,
+                ResourceEventType.Empty => emptyEvent,
+                ResourceEventType.Edge => edgeEvent,
+                ResourceEventType.NotEdge => notEdgeEvent,
+                ResourceEventType.NotEmpty => notEmptyEvent,
+                _ => throw new ArgumentOutOfRangeException(nameof(eventType), eventType, null)
+            };
         }
 
         protected virtual void InvokeEvents(int oldValue, int newValue)
