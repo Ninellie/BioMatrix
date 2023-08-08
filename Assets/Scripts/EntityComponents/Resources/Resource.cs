@@ -9,29 +9,6 @@ namespace Assets.Scripts.EntityComponents.Resources
     [Serializable]
     public class Resource
     {
-        //public event Action ValueChangedEvent;
-        //public event Action IncreaseEvent;
-        //public event Action DecreaseEvent;
-        //public event Action IncrementEvent;
-        //public event Action DecrementEvent;
-        //public event Action FillEvent;
-        //public event Action EmptyEvent;
-        //public event Action EdgeEvent;
-        //public event Action NotEdgeEvent;
-        //public event Action NotEmptyEvent;
-
-        [SerializeField]
-        public UnityEvent ValueChangedEvent;
-        public event Action IncreaseEvent;
-        public event Action DecreaseEvent;
-        public event Action IncrementEvent;
-        public event Action DecrementEvent;
-        public event Action FillEvent;
-        public event Action EmptyEvent;
-        public event Action EdgeEvent;
-        public event Action NotEdgeEvent;
-        public event Action NotEmptyEvent;
-
         public bool IsFull => _isLimited && !(_value < _maxValueStat.Value);
         public bool IsEmpty => _value == _minValue;
         public bool IsNotEmpty => _value > _minValue;
@@ -65,6 +42,17 @@ namespace Assets.Scripts.EntityComponents.Resources
         [ReadOnly]
         [SerializeField]
         private Stat _maxValueStat;
+
+        public UnityEvent valueChangedEvent;
+        public UnityEvent increaseEvent;
+        public UnityEvent decreaseEvent;
+        public UnityEvent incrementEvent;
+        public UnityEvent decrementEvent;
+        public UnityEvent fillEvent;
+        public UnityEvent emptyEvent;
+        public UnityEvent edgeEvent;
+        public UnityEvent notEdgeEvent;
+        public UnityEvent notEmptyEvent;
 
         /// <summary>
         /// Creates infinite resource
@@ -245,42 +233,42 @@ namespace Assets.Scripts.EntityComponents.Resources
 
             if (dif > 0)
             {
-                IncreaseEvent?.Invoke();
+                increaseEvent?.Invoke();
                 while (dif != 0)
                 {
-                    IncrementEvent?.Invoke();
+                    incrementEvent?.Invoke();
                     dif--;
                 }
             }
 
             if (dif < 0)
             {
-                DecreaseEvent?.Invoke();
+                decreaseEvent?.Invoke();
                 while (dif != 0)
                 {
-                    DecrementEvent?.Invoke();
+                    decrementEvent?.Invoke();
                     dif++;
                 }
             }
 
             if (oldValue == _minValue && newValue != _minValue)
             {
-                NotEmptyEvent?.Invoke();
+                notEmptyEvent?.Invoke();
             }
 
             if (oldValue == _edgeValue && _value > _edgeValue)
             {
-                NotEdgeEvent?.Invoke();
+                notEdgeEvent?.Invoke();
             }
 
             if (newValue == _edgeValue)
             {
-                EdgeEvent?.Invoke();
+                edgeEvent?.Invoke();
             }
 
-            ValueChangedEvent?.Invoke();
-            if (isFillEventRequired) FillEvent?.Invoke();
-            if (isEmptyEventRequired) EmptyEvent?.Invoke();
+            valueChangedEvent?.Invoke();
+            if (isFillEventRequired) fillEvent?.Invoke();
+            if (isEmptyEventRequired) emptyEvent?.Invoke();
         }
     }
 }

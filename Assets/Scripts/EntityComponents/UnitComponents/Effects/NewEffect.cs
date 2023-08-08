@@ -12,25 +12,28 @@ public interface IEffect
     void Deactivate();
 }
 
-public interface IResponding
+public interface IRespondingEffect : IEffect
 {
     void Subscribe(Entity target);
     void Unsubscribe(Entity target);
 }
 
-public interface IStackableTemporary
+public interface IStackableTemporaryEffect : IStackableEffect, ITemporaryEffect
 {
     bool IsStackSeparateDuration { get; }
 }
 
-public interface ITemporary
+public interface ITemporaryEffect : IEffect
 {
     float Duration { get; }
+    bool IsDurationUpdates { get; }
+    bool IsDurationStacks { get; }
+    string Identifier { get; set; }
 }
 
-public interface IStackable
+public interface IStackableEffect : IEffect
 {
-    int StacksCount { get; set; }
+    int StacksCount { get; }
     int MaxStacks { get; }
     int InitialStacks { get; }
 

@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
 
-public class StackableStatModifierEffect : StatModifierEffect, IStackable
+public class StackableEffectStatModifierEffect : StatModifierEffect, IStackableEffect
 {
     [SerializeField] private int _maxStacks;
     [SerializeField] private int _stackCount;
     [SerializeField] private int _initialStacks;
 
-    public int StacksCount
-    {
-        get => _stackCount;
-        set => _stackCount = value;
-    }
+    public int StacksCount => _stackCount;
     public int MaxStacks => _maxStacks;
     public int InitialStacks => _initialStacks;
 
@@ -22,7 +18,7 @@ public class StackableStatModifierEffect : StatModifierEffect, IStackable
         if (StacksCount == MaxStacks)
             return;
 
-        StacksCount++;
+        _stackCount++;
         AddMods();
     }
 
@@ -31,10 +27,9 @@ public class StackableStatModifierEffect : StatModifierEffect, IStackable
         if (StacksCount == 0)
             return;
 
-        StacksCount--;
+        _stackCount--;
         RemoveMods();
     }
-
 
     public new void Activate()
     {
@@ -46,25 +41,14 @@ public class StackableStatModifierEffect : StatModifierEffect, IStackable
 
     public new void Deactivate()
     {
-        for (int i = 0; i < StacksCount; i++)
+        while (_stackCount > 0)
         {
             RemoveStack();
         }
-    }
 
-    private void AddMods()
-    {
-        foreach (var statModData in statModList)
+        for (int i = 0; i < StacksCount; i++)
         {
-            statList.GetStatByName(statModData.statName).AddModifier(statModData.mod);
-        }
-    }
-
-    private void RemoveMods()
-    {
-        foreach (var statModData in statModList)
-        {
-            statList.GetStatByName(statModData.statName).RemoveModifier(statModData.mod);
+            RemoveStack();
         }
     }
 }
@@ -98,5 +82,21 @@ public class StatModifierEffect : Effect, IStatModifier
     public void SetStatList(StatList statList)
     {
         this.statList = statList;
+    }
+
+    protected void AddMods()
+    {
+        foreach (var statModData in statModList)
+        {
+            statList.GetStatByName(statModData.statName).AddModifier(statModData.mod);
+        }
+    }
+
+    protected void RemoveMods()
+    {
+        foreach (var statModData in statModList)
+        {
+            statList.GetStatByName(statModData.statName).RemoveModifier(statModData.mod);
+        }
     }
 }

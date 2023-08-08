@@ -7906,6 +7906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _effects: []
+  GameTimeScheduler: {fileID: 0}
   references:
     version: 2
     RefIds: []
@@ -7989,10 +7990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _preset: {fileID: 11400000, guid: f6d53f77e5e96684e86f2ea2bb0a35a9, type: 2}
   _resources:
-  - ValueChangedEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    _name: 1
+  - _name: 1
     _value: 3
     _isLimited: 1
     _isInfinite: 0
@@ -8005,10 +8003,37 @@ MonoBehaviour:
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
-  - ValueChangedEvent:
+    valueChangedEvent:
       m_PersistentCalls:
         m_Calls: []
-    _name: 3
+    increaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    decreaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    incrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    decrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    fillEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    emptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    edgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    notEdgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    notEmptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - _name: 3
     _value: 0
     _isLimited: 1
     _isInfinite: 0
@@ -8021,6 +8046,36 @@ MonoBehaviour:
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    increaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    decreaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    incrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    decrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    fillEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    emptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    edgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    notEdgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    notEmptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
   _statList: {fileID: 1893989995}
 --- !u!114 &1893989998
 MonoBehaviour:
@@ -8034,10 +8089,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fb0fe3b9d617d419d622af3e572a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effects: []
+  _effects:
+  - rid: 6947764676532109314
+  - rid: 6947764676532109315
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6947764676532109314
+      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
+      data:
+        _name: 1
+        _description: 1
+        statModList: []
+        statList: {fileID: 0}
+        _maxStacks: 0
+        _stackCount: 0
+        _initialStacks: 0
+    - rid: 6947764676532109315
+      type: {class: StatModifierEffect, ns: , asm: Scripts}
+      data:
+        _name: 
+        _description: 
+        statModList: []
+        statList: {fileID: 0}
 --- !u!1 &1903692666
 GameObject:
   m_ObjectHideFlags: 0
