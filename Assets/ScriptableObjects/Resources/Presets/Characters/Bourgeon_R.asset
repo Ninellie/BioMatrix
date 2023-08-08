@@ -23,3 +23,13 @@ MonoBehaviour:
     baseValue: 0
     minValue: 0
     edgeValue: 1
+  - maxValueStatName: 0
+    name: 7
+    baseValue: 0
+    minValue: 0
+    edgeValue: 1
+  - maxValueStatName: 25
+    name: 6
+    baseValue: 0
+    minValue: 0
+    edgeValue: 1

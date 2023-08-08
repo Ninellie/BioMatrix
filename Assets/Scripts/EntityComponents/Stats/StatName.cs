@@ -44,5 +44,9 @@ namespace Assets.Scripts.EntityComponents.Stats
 
         // Special for Enemies
         SpawnWeight,
+
+        ExperienceToNewLevel,
+
+        TurretAimingRadius,
     }
 }

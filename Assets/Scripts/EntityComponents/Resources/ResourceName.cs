@@ -8,5 +8,7 @@ namespace Assets.Scripts.EntityComponents.Resources
         Kills,
         Ammo,
         Turrets,
+        Experience,
+        Level,
     }
 }
