@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Assets.Scripts.CustomAttributes;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
@@ -7,6 +6,7 @@ using UnityEngine.Events;
 
 namespace Assets.Scripts.EntityComponents.Resources
 {
+    [Serializable]
     public enum ResourceEventType
     {
         ValueChanged,
@@ -19,12 +19,6 @@ namespace Assets.Scripts.EntityComponents.Resources
         Edge,
         NotEdge,
         NotEmpty,
-    }
-
-    public class ResourceEvent
-    {
-        public ResourceEventType eventType;
-        public UnityEvent unityEvent;
     }
 
     [Serializable]
