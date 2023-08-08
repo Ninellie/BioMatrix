@@ -1,6 +1,7 @@
 using Assets.Scripts.GameSession.Events;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
@@ -16,8 +17,13 @@ public class EffectsList : MonoBehaviour
     private GameTimeScheduler _gameTimeScheduler;
 
     private Player _player;
+    private StatList _stats;
 
-    private void Awake() => _player = GetComponent<Player>();
+    private void Awake()
+    {
+        _player = GetComponent<Player>();
+        _stats = GetComponent<StatList>();
+    }
 
     private void AdjustEffect(IEffect effect)
     {
@@ -40,6 +46,9 @@ public class EffectsList : MonoBehaviour
     private void AddNewEffect(IEffect effect)
     {
         _effects.Add(effect);
+
+        if (effect is IStatModifier st)
+            st.SetStatList(_stats);
 
         if (effect is IRespondingEffect re)
             re.Subscribe(_player);

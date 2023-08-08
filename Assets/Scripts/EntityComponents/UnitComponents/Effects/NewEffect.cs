@@ -42,13 +42,6 @@ public interface IStackableEffect : IEffect
 }
 
 [Serializable]
-public class EffectData
-{
-    public string name;
-    public string description;
-}
-
-[Serializable]
 public class StatModData
 {
     [SerializeField]
