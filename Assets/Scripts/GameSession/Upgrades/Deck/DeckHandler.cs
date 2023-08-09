@@ -11,6 +11,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         public int occurrenceFrequency;
         public Card card;
     }
+
     [Serializable]
     public class PatternDeck
     {
@@ -24,6 +25,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
     public class Card
     {
         public string title;
+
         [Multiline]
         public string description;
         //public float dropWeight;

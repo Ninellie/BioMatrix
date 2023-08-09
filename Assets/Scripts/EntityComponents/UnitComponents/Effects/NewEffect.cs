@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Assets.Scripts.EntityComponents;
+using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
 
@@ -12,10 +13,14 @@ public interface IEffect
     void Deactivate();
 }
 
+public interface IEffectAdder : IEffect
+{
+    void SetEffectsList(EffectsList effectList);
+}
+
 public interface IRespondingEffect : IEffect
 {
-    void Subscribe(Entity target);
-    void Unsubscribe(Entity target);
+    void SetResourceList(ResourceList resourceList);
 }
 
 public interface IStackableTemporaryEffect : IStackableEffect, ITemporaryEffect

@@ -1,9 +1,50 @@
 using System;
 using System.Collections.Generic;
+using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
 
-public class StackableEffectStatModifierEffect : StatModifierEffect, IStackableEffect
+public class EffectAdderEffect : Effect, IRespondingEffect, IEffectAdder
+{
+    [SerializeReference]
+    private IEffect _effect;
+
+    [SerializeField]
+    private ResourceName _resourceName;
+
+    [SerializeField]
+    private ResourceEventType _event;
+
+    private EffectsList _effectsList;
+
+    public void SetResourceList(ResourceList resourceList)
+    {
+        resourceList.GetResourceByName(_resourceName).GetEvent(_event).AddListener(() => _effectsList.AddEffect(_effect));
+    }
+
+    public void SetEffectsList(EffectsList effectList)
+    {
+        _effectsList = effectList;
+    }
+}
+
+public class StackableTemporaryStatModifierEffect : StackableStatModifierEffect, ITemporaryEffect
+{
+    [SerializeField]
+    private float _duration;
+
+    private bool _isDurationUpdates;
+
+    private bool _isDurationStacks;
+
+
+    public float Duration => _duration;
+    public bool IsDurationUpdates { get; }
+    public bool IsDurationStacks { get; }
+    public string Identifier { get; set; }
+}
+
+public class StackableStatModifierEffect : StatModifierEffect, IStackableEffect
 {
     [SerializeField] private int _maxStacks;
     [SerializeField] private int _stackCount;

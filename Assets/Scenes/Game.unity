@@ -7906,7 +7906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _effects: []
-  GameTimeScheduler: {fileID: 0}
+  _gameTimeScheduler: {fileID: 0}
   references:
     version: 2
     RefIds: []
@@ -8089,29 +8089,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fb0fe3b9d617d419d622af3e572a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effects:
-  - rid: 6947764676532109314
-  - rid: 6947764676532109315
+  _effects: []
   references:
     version: 2
-    RefIds:
-    - rid: 6947764676532109314
-      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
-      data:
-        _name: 1
-        _description: 1
-        statModList: []
-        statList: {fileID: 0}
-        _maxStacks: 0
-        _stackCount: 0
-        _initialStacks: 0
-    - rid: 6947764676532109315
-      type: {class: StatModifierEffect, ns: , asm: Scripts}
-      data:
-        _name: 
-        _description: 
-        statModList: []
-        statList: {fileID: 0}
+    RefIds: []
 --- !u!1 &1903692666
 GameObject:
   m_ObjectHideFlags: 0

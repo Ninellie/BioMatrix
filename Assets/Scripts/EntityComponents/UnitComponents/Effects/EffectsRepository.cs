@@ -20,4 +20,10 @@ public class EffectsRepository : MonoBehaviour
         var e = new StatModifierEffect();
         _effects.Add(e);
     }
+    
+    public void AddNewEffectAdderEffect()
+    {
+        var e = new EffectAdderEffect();
+        _effects.Add(e);
+    }
 }

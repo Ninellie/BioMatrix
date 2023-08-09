@@ -1,6 +1,7 @@
 using Assets.Scripts.GameSession.Events;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
@@ -18,11 +19,22 @@ public class EffectsList : MonoBehaviour
 
     private Player _player;
     private StatList _stats;
+    private ResourceList _resources;
 
     private void Awake()
     {
         _player = GetComponent<Player>();
         _stats = GetComponent<StatList>();
+        _resources = GetComponent<ResourceList>();
+    }
+
+    public void AddEffect(IEffect effect)
+    {
+        var first = _effects.FirstOrDefault(e => e.Name.Equals(effect.Name));
+        if (first == null)
+            AddNewEffect(effect);
+        else
+            AdjustEffect(first);
     }
 
     private void AdjustEffect(IEffect effect)
@@ -51,7 +63,7 @@ public class EffectsList : MonoBehaviour
             st.SetStatList(_stats);
 
         if (effect is IRespondingEffect re)
-            re.Subscribe(_player);
+            re.SetResourceList(_resources);
 
         effect.Activate();
 
@@ -60,15 +72,6 @@ public class EffectsList : MonoBehaviour
             stTe.Identifier = _gameTimeScheduler.Schedule(() => RemoveEffectStack(stTe), te.Duration);
 
         te.Identifier = _gameTimeScheduler.Schedule(() => RemoveEffect(effect), te.Duration);
-    }
-
-    public void AddEffect(IEffect effect)
-    {
-        var first = _effects.FirstOrDefault(e => e.Name.Equals(effect.Name));
-        if (first == null)
-            AddNewEffect(effect);
-        else
-            AdjustEffect(first);
     }
 
     private void RemoveEffectStack(IStackableEffect effect)
