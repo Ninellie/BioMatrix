@@ -10,7 +10,7 @@ public class EffectsRepository : MonoBehaviour
     [ContextMenu(nameof(AddNewStackableStatModifierEffect))]
     public void AddNewStackableStatModifierEffect()
     {
-        var e = new StackableEffectStatModifierEffect();
+        var e = new StackableStatModifierEffect();
         _effects.Add(e);
     }
 
