@@ -17,15 +17,17 @@ public class EffectsList : MonoBehaviour
     [SerializeField]
     private GameTimeScheduler _gameTimeScheduler;
 
-    private Player _player;
+    [SerializeField]
+    private EffectsManager _effectsManager;
+
     private StatList _stats;
     private ResourceList _resources;
 
     private void Awake()
     {
-        _player = GetComponent<Player>();
         _stats = GetComponent<StatList>();
         _resources = GetComponent<ResourceList>();
+        _effectsManager = GetComponent<EffectsManager>();
     }
 
     public void AddEffect(IEffect effect)
@@ -64,6 +66,9 @@ public class EffectsList : MonoBehaviour
 
         if (effect is IRespondingEffect re)
             re.SetResourceList(_resources);
+        
+        if (effect is IEffectAdder ad)
+            ad.SetEffectsManager(_effectsManager);
 
         effect.Activate();
 

@@ -11,7 +11,7 @@ namespace Assets.Scripts.View
 {
     public class LevelUp : MonoBehaviour
     {
-        [SerializeField] private Player _player;
+        //[SerializeField] private Player _player;
         [SerializeField] private GameObject[] _cardsView;
         [SerializeField] private TMPro.TMP_Text[] _cardsNameText;
         [SerializeField] private TMPro.TMP_Text[] _cardsDescriptionText;
@@ -29,13 +29,27 @@ namespace Assets.Scripts.View
         [Range(0, 1)]
         private float _finalAlpha;
 
-        private List<OldCard> _selectedCards = new();
-        private static readonly ICardRepository CardRepository = new ArrayCardRepository();
-        private readonly CardManager _cardManager = new(CardRepository);
+        //private List<OldCard> _selectedCards = new();
+        private List<Card> _selectedCards = new();
+
+        //private static readonly ICardRepository CardRepository = new ArrayCardRepository();
+        //private readonly CardManager _cardManager = new(CardRepository);
+
+        [SerializeField]
+        private DeckRepository _deckRepository;
+
+        [SerializeField]
+        private EffectsRepository _effectsRepository;
+
+        [SerializeField]
+        private EffectsManager _effectsManager;
 
         private void Start()
         {
-            _player = FindObjectOfType<Player>();
+            //_player = FindObjectOfType<Player>();
+            //_deckRepository = GetComponent<DeckRepository>();
+            //_effectsRepository = GetComponent<EffectsRepository>();
+            //_effectManager = GetComponent<EffectManager>();
         }
 
         [ContextMenu("DisplayCards")]
@@ -56,7 +70,8 @@ namespace Assets.Scripts.View
                 card.SetActive(false);
             }
 
-            _selectedCards = _cardManager.GetRandomOpenedCards(_givenCardsCount);
+            _selectedCards = _deckRepository.GetRandomOpenedCards(_givenCardsCount);
+            //_selectedCards = _cardManager.GetRandomOpenedCards(_givenCardsCount);
 
             if (_selectedCards.Count < 1 || _selectedCards == null)
             {
@@ -66,8 +81,8 @@ namespace Assets.Scripts.View
 
             for (var i = 0; i < _selectedCards.Count; i++)
             {
-                _cardsNameText[i].text = _selectedCards[i].Title;
-                _cardsDescriptionText[i].text = _selectedCards[i].Description;
+                _cardsNameText[i].text = _selectedCards[i].title;
+                _cardsDescriptionText[i].text = _selectedCards[i].description;
                 StartCoroutine(ActivateCard(_cardsView[i]));
             }
         }
@@ -97,29 +112,42 @@ namespace Assets.Scripts.View
             AddCard(_selectedCards[index]);
         }
 
-        public void AddCard(OldCard oldCard)
+        private void AddCard(Card card)
         {
-            _cardManager.AddCard(oldCard.Id);
-            if (oldCard.Effects is null)
-            {
+            _deckRepository.ObtainCard(card);
+            if (card.effectsName is null) 
                 return;
-            }
-            foreach (var cardEffect in oldCard.Effects)
-            {
-                if (cardEffect.TargetName != nameof(Player)) continue;
 
-                Debug.LogWarning($"Add effect to player {cardEffect.Name}");
-                _player.AddEffectStack(cardEffect);
+            foreach (var effectName in card.effectsName)
+            {
+                var e = _effectsRepository.GetEffectByName(effectName);
+                _effectsManager.AddEffect(e);
             }
         }
 
-        public void RemoveCard(OldCard oldCard)
-        {
-            foreach (var cardEffect in oldCard.Effects)
-            {
-                _player.RemoveEffectStack(cardEffect);
-            }
-        }
+        //private void AddCard(OldCard oldCard)
+        //{
+        //    //_cardManager.AddCard(oldCard.Id);
+        //    if (oldCard.Effects is null)
+        //    {
+        //        return;
+        //    }
+        //    foreach (var cardEffect in oldCard.Effects)
+        //    {
+        //        if (cardEffect.TargetName != nameof(Player)) continue;
+
+        //        Debug.LogWarning($"Add effect to player {cardEffect.Name}");
+        //        _player.AddEffectStack(cardEffect);
+        //    }
+        //}
+
+        //public void RemoveCard(OldCard oldCard)
+        //{
+        //    foreach (var cardEffect in oldCard.Effects)
+        //    {
+        //        _player.RemoveEffectStack(cardEffect);
+        //    }
+        //}
 
         private IEnumerator ActivateCard(GameObject card)
         {

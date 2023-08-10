@@ -740,6 +740,8 @@ GameObject:
   m_Component:
   - component: {fileID: 282507448}
   - component: {fileID: 282507449}
+  - component: {fileID: 282507450}
+  - component: {fileID: 282507451}
   m_Layer: 0
   m_Name: CardsRepository
   m_TagString: Untagged
@@ -760,7 +762,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &282507449
 MonoBehaviour:
@@ -778,6 +780,50 @@ MonoBehaviour:
   _preset: {fileID: 11400000, guid: b133bdf683c6a5444ba62a6956fc155c, type: 2}
   _patternDeckList: []
   _deckList: []
+  _obtainedCards: []
+--- !u!114 &282507450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282507447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0fb0fe3b9d617d419d622af3e572a95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _usePreset: 0
+  _presets: []
+  _defaultEffects: []
+  _effects:
+  - rid: 6947764732970401792
+  references:
+    version: 2
+    RefIds:
+    - rid: 6947764732970401792
+      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
+      data:
+        _name: 
+        _description: 
+        _targetName: 3
+        statModList: []
+        statList: {fileID: 0}
+        _maxStacks: 0
+        _stackCount: 0
+        _initialStacks: 0
+--- !u!114 &282507451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282507447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa6476836374d147aac9fcc735a78f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &301307345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,7 +1099,7 @@ Transform:
   m_Children:
   - {fileID: 1228520832}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &320754243
 MonoBehaviour:
@@ -1347,7 +1393,7 @@ Transform:
   m_Children:
   - {fileID: 632446041}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &370682327
 GameObject:
@@ -4260,7 +4306,7 @@ RectTransform:
   - {fileID: 786324382}
   - {fileID: 1869669231}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4279,7 +4325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe3166802797954ea2a58ab2091f4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _cardsView:
   - {fileID: 223641915}
   - {fileID: 1587581910}
@@ -4298,6 +4343,9 @@ MonoBehaviour:
   _cardsImageSize: 128
   _initialAlpha: 0
   _finalAlpha: 0.4
+  _deckRepository: {fileID: 282507449}
+  _effectsRepository: {fileID: 282507450}
+  _effectManager: {fileID: 282507451}
 --- !u!114 &1239585266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7885,7 +7933,6 @@ GameObject:
   - component: {fileID: 1893989995}
   - component: {fileID: 1893989997}
   - component: {fileID: 1893989994}
-  - component: {fileID: 1893989998}
   m_Layer: 0
   m_Name: EffectHandler
   m_TagString: Untagged
@@ -8077,22 +8124,6 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   _statList: {fileID: 1893989995}
---- !u!114 &1893989998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893989993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0fb0fe3b9d617d419d622af3e572a95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _effects: []
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &1903692666
 GameObject:
   m_ObjectHideFlags: 0

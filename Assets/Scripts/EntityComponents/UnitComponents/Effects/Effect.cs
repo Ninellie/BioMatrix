@@ -6,8 +6,10 @@ public class Effect : IEffect
 {
     [SerializeField] protected string _name;
     [SerializeField] protected string _description;
+    [SerializeField] protected TargetName _targetName;
     public string Name => _name;
     public string Description => _description;
+    public TargetName TargetName => _targetName;
 
     public virtual void Activate()
     {

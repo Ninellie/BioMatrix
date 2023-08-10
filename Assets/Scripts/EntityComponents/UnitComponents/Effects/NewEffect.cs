@@ -1,21 +1,29 @@
 using System;
 using System.Collections.Generic;
-using Assets.Scripts.EntityComponents;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
+
+public enum TargetName
+{
+    Player,
+    Shield,
+    TurretHub,
+    Firearm,
+}
 
 public interface IEffect
 {
     string Name { get; }
     string Description { get; }
+    TargetName TargetName { get; }
     void Activate();
     void Deactivate();
 }
 
 public interface IEffectAdder : IEffect
 {
-    void SetEffectsList(EffectsList effectList);
+    void SetEffectsManager(EffectsManager effectsManager);
 }
 
 public interface IRespondingEffect : IEffect

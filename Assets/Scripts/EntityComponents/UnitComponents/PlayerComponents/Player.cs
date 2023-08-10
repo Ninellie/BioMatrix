@@ -1,7 +1,6 @@
 using System;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
-using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Assets.Scripts.EntityComponents.UnitComponents.Turret;
 using Assets.Scripts.FirearmComponents;
 using UnityEngine;

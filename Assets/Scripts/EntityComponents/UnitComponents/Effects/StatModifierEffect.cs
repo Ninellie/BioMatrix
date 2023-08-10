@@ -4,10 +4,11 @@ using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
 
+[Serializable]
 public class EffectAdderEffect : Effect, IRespondingEffect, IEffectAdder
 {
-    [SerializeReference]
-    private IEffect _effect;
+    [SerializeField]
+    private StackableTemporaryStatModifierEffect _effect;
 
     [SerializeField]
     private ResourceName _resourceName;
@@ -15,28 +16,25 @@ public class EffectAdderEffect : Effect, IRespondingEffect, IEffectAdder
     [SerializeField]
     private ResourceEventType _event;
 
-    private EffectsList _effectsList;
+    private EffectsManager _effectsManager;
 
     public void SetResourceList(ResourceList resourceList)
     {
-        resourceList.GetResourceByName(_resourceName).GetEvent(_event).AddListener(() => _effectsList.AddEffect(_effect));
+        resourceList.GetResourceByName(_resourceName).GetEvent(_event).AddListener(() => _effectsManager.AddEffect(_effect));
     }
 
-    public void SetEffectsList(EffectsList effectList)
+    public void SetEffectsManager(EffectsManager effectsManager)
     {
-        _effectsList = effectList;
+        _effectsManager = effectsManager;
     }
 }
 
+[Serializable]
 public class StackableTemporaryStatModifierEffect : StackableStatModifierEffect, ITemporaryEffect
 {
-    [SerializeField]
-    private float _duration;
-
-    private bool _isDurationUpdates;
-
-    private bool _isDurationStacks;
-
+    [SerializeField] private float _duration;
+    [SerializeField] private bool _isDurationUpdates;
+    [SerializeField] private bool _isDurationStacks;
 
     public float Duration => _duration;
     public bool IsDurationUpdates { get; }
@@ -44,6 +42,7 @@ public class StackableTemporaryStatModifierEffect : StackableStatModifierEffect,
     public string Identifier { get; set; }
 }
 
+[Serializable]
 public class StackableStatModifierEffect : StatModifierEffect, IStackableEffect
 {
     [SerializeField] private int _maxStacks;
@@ -74,7 +73,7 @@ public class StackableStatModifierEffect : StatModifierEffect, IStackableEffect
 
     public new void Activate()
     {
-        for (int i = 0; i < _initialStacks; i++)
+        while (_stackCount != _initialStacks)
         {
             AddStack();
         }
@@ -83,11 +82,6 @@ public class StackableStatModifierEffect : StatModifierEffect, IStackableEffect
     public new void Deactivate()
     {
         while (_stackCount > 0)
-        {
-            RemoveStack();
-        }
-
-        for (int i = 0; i < StacksCount; i++)
         {
             RemoveStack();
         }

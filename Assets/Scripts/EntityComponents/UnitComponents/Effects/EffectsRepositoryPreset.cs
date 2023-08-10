@@ -1,34 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.CustomAttributes;
 using UnityEngine;
 
-[AddComponentMenu("Entity/Effects/EffectsRepository")]
-public class EffectsRepository : MonoBehaviour
+[CreateAssetMenu]
+public class EffectsRepositoryPreset : ScriptableObject
 {
-    [SerializeField]
-    private bool _usePreset;
-
-    [SerializeField]
-    private List<EffectsRepositoryPreset> _presets;
-
-    [SerializeReference]
-    private List<IEffect> _defaultEffects;
-
-    [ReadOnly]
     [SerializeReference]
     private List<IEffect> _effects;
-    
 
-    private void Awake()
+    public List<IEffect> GetEffects()
     {
-        if (_usePreset)
-            foreach (var preset in _presets)
-            {
-                _effects.AddRange(preset.GetEffects());
-            }
-        else
-            _effects = _defaultEffects;
+        return _effects;
     }
 
     public IEffect GetEffectByName(string name)
@@ -40,20 +22,20 @@ public class EffectsRepository : MonoBehaviour
     private void AddNewStackableStatModifierEffect()
     {
         var e = new StackableStatModifierEffect();
-        _defaultEffects.Add(e);
+        _effects.Add(e);
     }
 
     [ContextMenu(nameof(AddNewStackableTemporaryStatModifierEffect))]
     private void AddNewStackableTemporaryStatModifierEffect()
     {
         var e = new StackableTemporaryStatModifierEffect();
-        _defaultEffects.Add(e);
+        _effects.Add(e);
     }
 
     [ContextMenu(nameof(AddNewEffectAdderEffect))]
     private void AddNewEffectAdderEffect()
     {
         var e = new EffectAdderEffect();
-        _defaultEffects.Add(e);
+        _effects.Add(e);
     }
 }
