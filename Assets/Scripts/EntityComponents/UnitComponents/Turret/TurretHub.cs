@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 {
-    [RequireComponent(typeof(TurretHubStatsSettings))]
     public class TurretHub : Entity
     {
         [SerializeField] private GameObject _turretPrefab;
@@ -45,7 +44,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 
         protected void BaseStart()
         {
-            CreateTurretWeapon(_turretWeaponPrefab);
             UpdateTurrets();
             _orbitRotationController.SetObjects(currentTurrets);
             _orbitRotationController.SetAttractor(gameObject);
@@ -68,16 +66,15 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             Holder = entity;
         }
 
-        private void CreateTurretWeapon(GameObject weapon)
+        public GameObject CreateTurretWeapon()
         {
-            var w = Instantiate(weapon);
-
+            var w = Instantiate(_turretWeaponPrefab);
             w.transform.SetParent(gameObject.transform);
-
             w.transform.position = gameObject.transform.position;
             var firearm = w.GetComponent<Firearm>();
             firearm.IsEnable = false;
             Firearm = firearm;
+            return w;
         }
 
         private void CreateTurret()

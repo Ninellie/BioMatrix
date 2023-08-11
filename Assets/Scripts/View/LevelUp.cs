@@ -39,8 +39,7 @@ namespace Assets.Scripts.View
         [SerializeField]
         private EffectsRepository _effectsRepository;
 
-        [SerializeField]
-        private EffectsManager _effectsManager;
+        public OverUnitDataAggregator EffectsAggregator { get; set; }
 
         [ContextMenu("DisplayCards")]
         public void DisplayCards()
@@ -110,7 +109,7 @@ namespace Assets.Scripts.View
             foreach (var effectName in card.effectsName)
             {
                 var e = _effectsRepository.GetEffectByName(effectName);
-                _effectsManager.AddEffect(e);
+                EffectsAggregator.AddEffect(e);
             }
         }
 

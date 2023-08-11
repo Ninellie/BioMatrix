@@ -24,7 +24,7 @@ public class EffectsManager : MonoBehaviour
             case TargetName.Shield:
                 _shieldEffects.AddEffect(effect);
                 break;
-            case TargetName.TurretHub:
+            case TargetName.TurretHubWeapon:
                 _turretHubEffects.AddEffect(effect);
                 break;
             case TargetName.Firearm:

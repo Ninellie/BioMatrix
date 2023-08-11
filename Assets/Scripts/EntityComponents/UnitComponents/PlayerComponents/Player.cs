@@ -44,7 +44,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private CircleCollider2D _circleCollider;
         private Animator _animator;
         private string _currentState;
-        private StatList _statList;
 
         private void Awake() => BaseAwake(Settings);
 
@@ -58,7 +57,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         protected void BaseAwake(PlayerStatsSettings settings)
         {
-            _statList = GetComponent<StatList>();
             Debug.Log($"{gameObject.name} {nameof(Player)} Awake");
             base.BaseAwake(settings);
 
@@ -78,8 +76,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
             Lvl = new OldResource(InitialLevel);
             Exp = new OldResource(ExpToNextLvl);
-
-            //_oldMovementController = new OldMovementControllerPlayer(this);
         }
 
         protected override void BaseOnEnable()
@@ -143,7 +139,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 KnockBackToEnclosureCenter(entity);
         }
 
-        public void CreateWeapon(GameObject weapon)
+        public GameObject CreateWeapon(GameObject weapon)
         {
             var w = Instantiate(weapon);
 
@@ -153,6 +149,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             var firearm = w.GetComponent<Firearm>();
             firearm.SetHolder(this);
             Firearm = firearm;
+            return w;
         }
 
         public void IncreaseExperience(int value)

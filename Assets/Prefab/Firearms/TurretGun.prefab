@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2073174384341714352}
   - component: {fileID: 7478297182190854537}
   - component: {fileID: -5820009616735749093}
+  - component: {fileID: -1633797343598649567}
   m_Layer: 7
   m_Name: TurretGun
   m_TagString: Player
@@ -100,3 +101,15 @@ MonoBehaviour:
   projectileSizeMultiplier: 0
   projectilePierceCount: 0
   addedProjectileKnockback: 10
+--- !u!114 &-1633797343598649567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3233653779076600719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4690db0db157e49a2bbd0c97864734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

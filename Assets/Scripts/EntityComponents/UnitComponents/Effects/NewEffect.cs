@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
 public enum TargetName
 {
     Player,
     Shield,
-    TurretHub,
+    TurretHubWeapon,
     Firearm,
 }
 
@@ -23,7 +24,7 @@ public interface IEffect
 
 public interface IEffectAdder : IEffect
 {
-    void SetEffectsManager(EffectsManager effectsManager);
+    void SetEffectsManager(OverUnitDataAggregator effectsAggregator);
 }
 
 public interface IRespondingEffect : IEffect

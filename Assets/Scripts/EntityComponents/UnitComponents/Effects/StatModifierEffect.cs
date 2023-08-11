@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
 [Serializable]
@@ -16,16 +17,16 @@ public class EffectAdderEffect : Effect, IRespondingEffect, IEffectAdder
     [SerializeField]
     private ResourceEventType _event;
 
-    private EffectsManager _effectsManager;
+    private OverUnitDataAggregator _effectsAggregator;
 
     public void SetResourceList(ResourceList resourceList)
     {
-        resourceList.GetResourceByName(_resourceName).GetEvent(_event).AddListener(() => _effectsManager.AddEffect(_effect));
+        resourceList.GetResourceByName(_resourceName).GetEvent(_event).AddListener(() => _effectsAggregator.AddEffect(_effect));
     }
 
-    public void SetEffectsManager(EffectsManager effectsManager)
+    public void SetEffectsManager(OverUnitDataAggregator effectsAggregator)
     {
-        _effectsManager = effectsManager;
+        _effectsAggregator = effectsAggregator;
     }
 }
 

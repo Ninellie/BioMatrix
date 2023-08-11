@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.Resources
 {
+    [AddComponentMenu("Entity/ResourceList")]
     [RequireComponent(typeof(StatList))]
     public class ResourceList : MonoBehaviour
     {

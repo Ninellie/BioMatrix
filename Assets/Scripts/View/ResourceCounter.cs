@@ -1,5 +1,6 @@
 using System;
 using Assets.Scripts.EntityComponents;
+using Assets.Scripts.EntityComponents.Resources;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Assets.Scripts.View
         D3
     }
 
+    [AddComponentMenu("UI/Resource/Counter")]
     public class ResourceCounter : MonoBehaviour
     {
         [SerializeField]
@@ -25,12 +27,12 @@ namespace Assets.Scripts.View
         [Header("Counter text")]
         [SerializeField] private TMP_Text _text;
 
-        protected OldResource targetResource;
+        protected Resource targetResource;
 
-        public void SetResource(OldResource resource)
+        public void SetResource(Resource resource)
         {
             targetResource = resource;
-            targetResource.ValueChangedEvent += UpdateCounter;
+            targetResource.GetEvent(ResourceEventType.ValueChanged).AddListener(UpdateCounter);
             UpdateCounter();
         }
 

@@ -17,6 +17,7 @@ namespace Assets.Scripts.EntityComponents.Resources
         public float value;
     }
 
+    [AddComponentMenu("Entity/ResourceRecoverer")]
     [RequireComponent(typeof(ResourceList))]
     [RequireComponent(typeof(StatList))]
     public class ResourceRecoverer : MonoBehaviour

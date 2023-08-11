@@ -372,6 +372,88 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156202200}
   m_CullTransparentMesh: 1
+--- !u!1 &170780329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 170780330}
+  - component: {fileID: 170780331}
+  - component: {fileID: 170780332}
+  m_Layer: 0
+  m_Name: PlayerHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 2800000, guid: c207dcd389fb689489f5266468cd4609, type: 3}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &170780330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170780329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &170780331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170780329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa6476836374d147aac9fcc735a78f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerEffects: {fileID: 0}
+  _shieldEffects: {fileID: 0}
+  _turretHubEffects: {fileID: 0}
+  _firearmEffects: {fileID: 0}
+--- !u!114 &170780332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170780329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c5fa820929c904cae5aaff3f637eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerPrefab: {fileID: 6671026415413744665, guid: 9220246068dbc814b83d476f03916742, type: 3}
+  _playerWeapon: {fileID: 3233653779076600719, guid: 1efe1dd8adcbfe74595487da48627252, type: 3}
+  _turretHub: {fileID: 9206584794608382483, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+  _displayedResources:
+  - resourceName: 6
+    targetName: 0
+    resourceCounter: {fileID: 626372314}
+  - resourceName: 7
+    targetName: 0
+    resourceCounter: {fileID: 478421512}
+  - resourceName: 1
+    targetName: 0
+    resourceCounter: {fileID: 1484282434}
+  - resourceName: 3
+    targetName: 0
+    resourceCounter: {fileID: 1130304201}
+  - resourceName: 4
+    targetName: 3
+    resourceCounter: {fileID: 262944791}
+  _dataManager: {fileID: 0}
+  _levelUp: {fileID: 1239585264}
 --- !u!1 &185471757
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,7 +823,6 @@ GameObject:
   - component: {fileID: 282507448}
   - component: {fileID: 282507450}
   - component: {fileID: 282507449}
-  - component: {fileID: 282507451}
   m_Layer: 0
   m_Name: DeckRepository
   m_TagString: Untagged
@@ -762,7 +843,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &282507449
 MonoBehaviour:
@@ -800,22 +881,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
---- !u!114 &282507451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282507447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aa6476836374d147aac9fcc735a78f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerEffects: {fileID: 0}
-  _shieldEffects: {fileID: 0}
-  _turretHubEffects: {fileID: 0}
-  _firearmEffects: {fileID: 0}
 --- !u!1 &301307345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,7 +1156,7 @@ Transform:
   m_Children:
   - {fileID: 1228520832}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &320754243
 MonoBehaviour:
@@ -1385,7 +1450,7 @@ Transform:
   m_Children:
   - {fileID: 632446041}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &370682327
 GameObject:
@@ -4298,7 +4363,7 @@ RectTransform:
   - {fileID: 786324382}
   - {fileID: 1869669231}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4335,9 +4400,9 @@ MonoBehaviour:
   _cardsImageSize: 128
   _initialAlpha: 0
   _finalAlpha: 0.4
+  _selectedCards: []
   _deckRepository: {fileID: 282507449}
   _effectsRepository: {fileID: 282507450}
-  _effectsManager: {fileID: 0}
 --- !u!114 &1239585266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6282,6 +6347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5143901183249703335, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
+    - {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

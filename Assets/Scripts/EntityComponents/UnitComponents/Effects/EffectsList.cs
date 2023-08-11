@@ -9,16 +9,15 @@ using UnityEngine;
 [AddComponentMenu("Entity/Effects/EffectsList")]
 public class EffectsList : MonoBehaviour
 {
-    //public IEffect this[string effectName] => GetEffectByName(effectName);
-
     [SerializeReference]
     private List<IEffect> _effects;
 
     [SerializeField]
     private GameTimeScheduler _gameTimeScheduler;
+    public GameTimeScheduler GameTimeScheduler => _gameTimeScheduler;
 
     [SerializeField]
-    private EffectsManager _effectsManager;
+    private OverUnitDataAggregator _effectsAggregator;
 
     private StatList _stats;
     private ResourceList _resources;
@@ -27,7 +26,7 @@ public class EffectsList : MonoBehaviour
     {
         _stats = GetComponent<StatList>();
         _resources = GetComponent<ResourceList>();
-        _effectsManager = GetComponent<EffectsManager>();
+        _effectsAggregator = GetComponentInParent<OverUnitDataAggregator>();
     }
 
     public void AddEffect(IEffect effect)
@@ -68,7 +67,7 @@ public class EffectsList : MonoBehaviour
             re.SetResourceList(_resources);
         
         if (effect is IEffectAdder ad)
-            ad.SetEffectsManager(_effectsManager);
+            ad.SetEffectsManager(_effectsAggregator);
 
         effect.Activate();
 

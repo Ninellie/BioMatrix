@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.Stats
 {
+    [AddComponentMenu("Entity/StatList")]
     public class StatList : MonoBehaviour
     {
         [SerializeField] private bool _usePreset;

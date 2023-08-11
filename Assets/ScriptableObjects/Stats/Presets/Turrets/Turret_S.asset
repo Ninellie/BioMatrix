@@ -9,17 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cc7d76739178234c9a02b24af3b536b, type: 3}
-  m_Name: Turret_R
+  m_Script: {fileID: 11500000, guid: ba9f48a4706e4ef43960da087f4041e8, type: 3}
+  m_Name: Turret_S
   m_EditorClassIdentifier: 
-  resources:
-  - maxValueStatName: 0
-    name: 3
-    baseValue: 0
-    minValue: 0
-    edgeValue: 1
-  - maxValueStatName: 2
-    name: 1
+  stats:
+  - name: 2
     baseValue: 1
-    minValue: 0
-    edgeValue: 1
+  settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}

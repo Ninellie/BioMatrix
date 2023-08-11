@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.View
 {
+    [AddComponentMenu("UI/Resource/Bar")]
     public class ResourceBar : ResourceCounter
     {
         [Header("Bar settings")]
