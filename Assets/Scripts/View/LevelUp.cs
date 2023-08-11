@@ -12,7 +12,6 @@ namespace Assets.Scripts.View
 {
     public class LevelUp : MonoBehaviour
     {
-        //[SerializeField] private Player _player;
         [SerializeField] private GameObject[] _cardsView;
         [SerializeField] private TMPro.TMP_Text[] _cardsNameText;
         [SerializeField] private TMPro.TMP_Text[] _cardsDescriptionText;
