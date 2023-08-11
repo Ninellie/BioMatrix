@@ -13,18 +13,27 @@ MonoBehaviour:
   m_Name: New Effects Repository Preset
   m_EditorClassIdentifier: 
   _effects:
-  - rid: 6947764732970401793
+  - rid: 6947764732970401794
   references:
     version: 2
     RefIds:
-    - rid: 6947764732970401793
-      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
+    - rid: 6947764732970401794
+      type: {class: EffectAdderEffect, ns: , asm: Scripts}
       data:
-        _name: Adrenalin
+        _name: AdrenalinAdder
         _description: 
         _targetName: 0
-        statModList: []
-        statList: {fileID: 0}
-        _maxStacks: 0
-        _stackCount: 0
-        _initialStacks: 0
+        _effect:
+          _name: Adrenalin
+          _description: 
+          _targetName: 0
+          statModList: []
+          statList: {fileID: 0}
+          _maxStacks: 0
+          _stackCount: 0
+          _initialStacks: 0
+          _duration: 0
+          _isDurationUpdates: 0
+          _isDurationStacks: 0
+        _resourceName: 6
+        _event: 1

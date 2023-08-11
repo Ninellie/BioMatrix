@@ -8,14 +8,13 @@ public class EffectsManager : MonoBehaviour
     public EffectsList TurretHubEffects => _turretHubEffects;
     public EffectsList FirearmEffects => _firearmEffects;
 
-    private EffectsList _playerEffects;
-    private EffectsList _shieldEffects;
-    private EffectsList _turretHubEffects;
-    private EffectsList _firearmEffects;
+    [SerializeField] private EffectsList _playerEffects;
+    [SerializeField] private EffectsList _shieldEffects;
+    [SerializeField] private EffectsList _turretHubEffects;
+    [SerializeField] private EffectsList _firearmEffects;
 
     public void AddEffect(IEffect effect)
     {
-        //var targetName = effect.Name.Split(" ")[0];
         var targetName = effect.TargetName;
         switch (targetName)
         {

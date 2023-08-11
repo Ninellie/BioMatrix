@@ -62,7 +62,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
 
         private void Awake()
         {
-            FillDeckList(_usePreset ? _preset.patternDeckList : _patternDeckList);
+            FillDeckListFromPattern(_usePreset ? _preset.patternDeckList : _patternDeckList);
 
             foreach (var deck in _deckList)
                 deck.cards = new Stack<Card>(deck.cardsInitArray);
@@ -126,7 +126,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         }
 
 
-        private void FillDeckList(List<PatternDeck> patternDeckList)
+        private void FillDeckListFromPattern(List<PatternDeck> patternDeckList)
         {
             foreach (var patternDeck in patternDeckList)
             {

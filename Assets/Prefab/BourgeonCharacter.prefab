@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 885779190258261260}
   - component: {fileID: 2975664437671385834}
+  - component: {fileID: 3599504211205648597}
   - component: {fileID: 417332088117575202}
   - component: {fileID: 491074598191817157}
   - component: {fileID: 659999168091465563}
@@ -27,7 +28,6 @@ GameObject:
   - component: {fileID: 2759363809282571309}
   - component: {fileID: 6882027957998666689}
   - component: {fileID: 3820900862706131342}
-  - component: {fileID: 3599504211205648597}
   m_Layer: 7
   m_Name: BourgeonCharacter
   m_TagString: Player
@@ -70,6 +70,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 766516748403551923}
+--- !u!114 &3599504211205648597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671026415413744665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1229dcb63a13f0d47ab813de3461fcb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _preset: {fileID: 11400000, guid: 734748a3db3525d46967659ae3f29889, type: 2}
+  _recoveringResources: []
 --- !u!114 &417332088117575202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,10 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _preset: {fileID: 11400000, guid: f6d53f77e5e96684e86f2ea2bb0a35a9, type: 2}
   _resources:
-  - ValueChangedEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    _name: 1
+  - _name: 1
     _value: 3
     _isLimited: 1
     _isInfinite: 0
@@ -100,10 +111,37 @@ MonoBehaviour:
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
-  - ValueChangedEvent:
+    valueChangedEvent:
       m_PersistentCalls:
         m_Calls: []
-    _name: 3
+    increaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    decreaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    incrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    decrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    fillEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    emptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    edgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    notEdgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    notEmptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - _name: 3
     _value: 0
     _isLimited: 1
     _isInfinite: 0
@@ -116,7 +154,80 @@ MonoBehaviour:
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
-  _statHandler: {fileID: 491074598191817157}
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    increaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    decreaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    incrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    decrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    fillEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    emptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    edgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    notEdgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    notEmptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - _name: 7
+    _value: 0
+    _isLimited: 1
+    _isInfinite: 0
+    _minValue: 0
+    _edgeValue: 1
+    _maxValueStat:
+      _name: 0
+      _baseValue: Infinity
+      _value: Infinity
+      _addedValue: 0
+      _multiplierValue: 100
+      _modifiers: []
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    increaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    decreaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    incrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    decrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    fillEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    emptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    edgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    notEdgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    notEmptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  _statList: {fileID: 491074598191817157}
 --- !u!114 &491074598191817157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +276,12 @@ MonoBehaviour:
   - _name: 8
     _baseValue: 1
     _value: 1
+    _addedValue: 0
+    _multiplierValue: 100
+    _modifiers: []
+  - _name: 25
+    _baseValue: 35
+    _value: 35
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
@@ -5306,20 +5423,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &3599504211205648597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671026415413744665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1229dcb63a13f0d47ab813de3461fcb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _preset: {fileID: 11400000, guid: 734748a3db3525d46967659ae3f29889, type: 2}
-  _recoveringResources: []
 --- !u!1 &7005012959266165756
 GameObject:
   m_ObjectHideFlags: 0
@@ -5373,7 +5476,7 @@ MonoBehaviour:
     m_Bits: 64
   _spriteAlphaPerLayer: 0.2
   _color: {r: 0, g: 1, b: 1, a: 1}
-  _statHandler: {fileID: 0}
+  _statList: {fileID: 0}
 --- !u!114 &6155809969865943397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5403,7 +5506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _preset: {fileID: 11400000, guid: a14f3d1a183893e4a99ba286c9b8f005, type: 2}
   _resources: []
-  _statHandler: {fileID: 0}
+  _statList: {fileID: 0}
 --- !u!114 &5072275712465827581
 MonoBehaviour:
   m_ObjectHideFlags: 0
