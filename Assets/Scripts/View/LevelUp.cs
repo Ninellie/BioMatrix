@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.CustomAttributes;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.GameSession.UIScripts.SessionModel;
 using Assets.Scripts.GameSession.Upgrades.Deck;
@@ -29,11 +30,9 @@ namespace Assets.Scripts.View
         [Range(0, 1)]
         private float _finalAlpha;
 
-        //private List<OldCard> _selectedCards = new();
+        [ReadOnly]
+        [SerializeField]
         private List<Card> _selectedCards = new();
-
-        //private static readonly ICardRepository CardRepository = new ArrayCardRepository();
-        //private readonly CardManager _cardManager = new(CardRepository);
 
         [SerializeField]
         private DeckRepository _deckRepository;
@@ -43,14 +42,6 @@ namespace Assets.Scripts.View
 
         [SerializeField]
         private EffectsManager _effectsManager;
-
-        private void Start()
-        {
-            //_player = FindObjectOfType<Player>();
-            //_deckRepository = GetComponent<DeckRepository>();
-            //_effectsRepository = GetComponent<EffectsRepository>();
-            //_effectManager = GetComponent<EffectManager>();
-        }
 
         [ContextMenu("DisplayCards")]
         public void DisplayCards()
@@ -71,7 +62,6 @@ namespace Assets.Scripts.View
             }
 
             _selectedCards = _deckRepository.GetRandomOpenedCards(_givenCardsCount);
-            //_selectedCards = _cardManager.GetRandomOpenedCards(_givenCardsCount);
 
             if (_selectedCards.Count < 1 || _selectedCards == null)
             {
@@ -124,30 +114,6 @@ namespace Assets.Scripts.View
                 _effectsManager.AddEffect(e);
             }
         }
-
-        //private void AddCard(OldCard oldCard)
-        //{
-        //    //_cardManager.AddCard(oldCard.Id);
-        //    if (oldCard.Effects is null)
-        //    {
-        //        return;
-        //    }
-        //    foreach (var cardEffect in oldCard.Effects)
-        //    {
-        //        if (cardEffect.TargetName != nameof(Player)) continue;
-
-        //        Debug.LogWarning($"Add effect to player {cardEffect.Name}");
-        //        _player.AddEffectStack(cardEffect);
-        //    }
-        //}
-
-        //public void RemoveCard(OldCard oldCard)
-        //{
-        //    foreach (var cardEffect in oldCard.Effects)
-        //    {
-        //        _player.RemoveEffectStack(cardEffect);
-        //    }
-        //}
 
         private IEnumerator ActivateCard(GameObject card)
         {

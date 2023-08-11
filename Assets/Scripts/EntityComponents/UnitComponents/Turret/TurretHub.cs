@@ -34,8 +34,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 
         private void Update() => BaseUpdate();
 
-        private void FixedUpdate() => BaseFixedUpdate();
-
         protected void BaseAwake(TurretHubStatsSettings settings)
         {
             base.BaseAwake(settings);
@@ -68,11 +66,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
         public void SetHolder(Entity entity)
         {
             Holder = entity;
-        }
-
-        private void BaseFixedUpdate()
-        {
-            // Turret movement logic
         }
 
         private void CreateTurretWeapon(GameObject weapon)

@@ -6,13 +6,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
     public class Turret : Unit
     {
         [SerializeField] private Transform _firePoint;
-        //[SerializeField] private GameObject _attractor;
-
         public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
         public Firearm Firearm { get; private set; }
 
         private TurretHub _hub;
-        //private OldMovementControllerTurret _oldMovementController;
 
         private void Awake() => BaseAwake(Settings);
 
@@ -31,21 +28,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             base.BaseOnDisable();
             KillsCount.IncrementEvent -= () => _hub.KillsCount.Increase();
         }
-
-        //private void FixedUpdate() => BaseFixedUpdate();
-    
-        //protected void BaseFixedUpdate()
-        //{
-        //    if (_attractor == null) return;
-        //    _oldMovementController?.OrbitalFixedUpdateStep();
-        //}
     
         protected override void BaseAwake(UnitStatsSettings settings)
         {
             Debug.Log($"{gameObject.name} Turret Awake");
             base.BaseAwake(settings);
-
-            //_oldMovementController = new OldMovementControllerTurret(this);
         }
 
         public void CreateWeapon(GameObject weapon)
@@ -67,13 +54,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
     
         public void SetAttractor(GameObject attractor)
         {
-            //_attractor = attractor;
             _hub = attractor.GetComponent<TurretHub>();
         }
-    
-        //public GameObject GetAttractor()
-        //{
-        //    return _attractor;
-        //}
     }
 }
