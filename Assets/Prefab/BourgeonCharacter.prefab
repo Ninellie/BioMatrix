@@ -5338,7 +5338,7 @@ MonoBehaviour:
         m_Calls: []
   - _name: 3
     _value: 0
-    _isLimited: 1
+    _isLimited: 0
     _isInfinite: 0
     _minValue: 0
     _edgeValue: 1
@@ -5381,7 +5381,7 @@ MonoBehaviour:
         m_Calls: []
   - _name: 7
     _value: 0
-    _isLimited: 1
+    _isLimited: 0
     _isInfinite: 0
     _minValue: 0
     _edgeValue: 1
@@ -5494,7 +5494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effects: []
   _gameTimeScheduler: {fileID: 0}
-  _effectsAggregator: {fileID: 0}
+  _effectsAggregator: {fileID: -1257760533783762766}
   references:
     version: 2
     RefIds: []

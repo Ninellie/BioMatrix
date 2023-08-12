@@ -24,11 +24,11 @@ namespace Assets.Scripts.EntityComponents.Resources
     [Serializable]
     public class Resource
     {
+        public ResourceName Name => _name;
         public bool IsFull => _isLimited && !(_value < _maxValueStat.Value);
         public bool IsEmpty => _value == _minValue;
         public bool IsNotEmpty => _value > _minValue;
         public bool IsOnEdge => _value == _edgeValue;
-        public ResourceName Name => _name;
 
         [ReadOnly] [SerializeField] private ResourceName _name;
 
@@ -100,7 +100,7 @@ namespace Assets.Scripts.EntityComponents.Resources
         public Resource(ResourceName name, int value, int minValue, int edgeValue)
         {
             _name = name;
-            _isLimited = true;
+            _isLimited = false;
             _minValue = minValue;
             _edgeValue = edgeValue;
             _maxValueStat = new Stat();

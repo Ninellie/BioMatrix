@@ -381,7 +381,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 170780330}
-  - component: {fileID: 170780331}
   - component: {fileID: 170780332}
   m_Layer: 0
   m_Name: PlayerHandler
@@ -405,22 +404,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &170780331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170780329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aa6476836374d147aac9fcc735a78f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerEffects: {fileID: 0}
-  _shieldEffects: {fileID: 0}
-  _turretHubEffects: {fileID: 0}
-  _firearmEffects: {fileID: 0}
 --- !u!114 &170780332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,8 +435,8 @@ MonoBehaviour:
   - resourceName: 4
     targetName: 3
     resourceCounter: {fileID: 262944791}
-  _dataManager: {fileID: 0}
   _levelUp: {fileID: 1239585264}
+  _gameTimeScheduler: {fileID: 1365173403}
 --- !u!1 &185471757
 GameObject:
   m_ObjectHideFlags: 0
@@ -4899,6 +4882,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 6798056590901079273, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
   m_PrefabInstance: {fileID: 1570661139}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1365173403 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6660709694169941195, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
+  m_PrefabInstance: {fileID: 1570661139}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09673194e55aae14bb696eeff6eff87b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1369306771
 GameObject:
   m_ObjectHideFlags: 0
@@ -6346,8 +6340,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 5143901183249703335, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
-    - {fileID: 1365173414, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

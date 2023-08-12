@@ -14,7 +14,11 @@ public class EffectsList : MonoBehaviour
 
     [SerializeField]
     private GameTimeScheduler _gameTimeScheduler;
-    public GameTimeScheduler GameTimeScheduler => _gameTimeScheduler;
+    public GameTimeScheduler GameTimeScheduler
+    {
+        get => _gameTimeScheduler;
+        set => _gameTimeScheduler = value;
+    }
 
     [SerializeField]
     private OverUnitDataAggregator _effectsAggregator;

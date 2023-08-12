@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 5384950061153012680}
   - component: {fileID: -497711196860966798}
   - component: {fileID: 8339976463949705807}
+  - component: {fileID: 1710906579515689587}
+  - component: {fileID: -1032734132985709216}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -86,7 +88,6 @@ MonoBehaviour:
   knockbackPower: 0
   damage: 0
   speed: 100
-  accelerationSpeed: 80
   rotationSpeed: 0
 --- !u!114 &6215711091165428909
 MonoBehaviour:
@@ -101,7 +102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 3307108730159776810}
-  _attractor: {fileID: 0}
 --- !u!212 &5384950061153012680
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -171,13 +171,19 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!96 &8339976463949705807
 TrailRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -218,6 +224,7 @@ TrailRenderer:
   m_SortingLayer: 3
   m_SortingOrder: -1
   m_Time: 0.7
+  m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 25
@@ -281,14 +288,140 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 90
     numCapVertices: 90
     alignment: 0
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.1
+  m_MaskInteraction: 0
   m_Autodestruct: 0
   m_Emitting: 1
+  m_ApplyActiveColorSpace: 0
+--- !u!114 &1710906579515689587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206584794608382483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25437cf037f85d04b9c499f44afbe3e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _usePreset: 1
+  _preset: {fileID: 11400000, guid: 8e0f95cb964a4484886bcbe93e6de43a, type: 2}
+  _stats:
+  - _name: 2
+    _baseValue: 1
+    _value: 1
+    _addedValue: 0
+    _multiplierValue: 100
+    _modifiers: []
+--- !u!114 &-1032734132985709216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206584794608382483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9c9f584044c0bd4695584b5e1405f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _preset: {fileID: 11400000, guid: 4218c83206784b74d995c92d9599aa8a, type: 2}
+  _resources:
+  - _name: 3
+    _value: 0
+    _isLimited: 1
+    _isInfinite: 0
+    _minValue: 0
+    _edgeValue: 1
+    _maxValueStat:
+      _name: 0
+      _baseValue: Infinity
+      _value: Infinity
+      _addedValue: 0
+      _multiplierValue: 100
+      _modifiers: []
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    increaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    decreaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    incrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    decrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    fillEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    emptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    edgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    notEdgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    notEmptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - _name: 1
+    _value: 1
+    _isLimited: 1
+    _isInfinite: 0
+    _minValue: 0
+    _edgeValue: 1
+    _maxValueStat:
+      _name: 2
+      _baseValue: 1
+      _value: 1
+      _addedValue: 0
+      _multiplierValue: 100
+      _modifiers: []
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    increaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    decreaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    incrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    decrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    fillEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    emptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    edgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    notEdgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    notEmptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  _statList: {fileID: 1710906579515689587}

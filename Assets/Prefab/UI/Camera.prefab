@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6798056590901079273}
   - component: {fileID: 7947816881530477845}
   - component: {fileID: 7866511869405967590}
-  - component: {fileID: 1365173414}
   - component: {fileID: 1365173418}
   - component: {fileID: 6660709694169941195}
   m_Layer: 0
@@ -114,22 +113,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uniform: 1
   _autoSetUniform: 0
---- !u!114 &1365173414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381442720280931422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c5fa820929c904cae5aaff3f637eab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 6671026415413744665, guid: d77549fb193519146a7a33771c9312b9, type: 3}
-  _playerWeapon: {fileID: 3233653779076600719, guid: 1efe1dd8adcbfe74595487da48627252, type: 3}
-  _turretHub: {fileID: 0}
-  _displayedResources: []
 --- !u!114 &1365173418
 MonoBehaviour:
   m_ObjectHideFlags: 0

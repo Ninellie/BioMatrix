@@ -8,8 +8,8 @@ namespace Assets.Scripts.EntityComponents.Resources
     [Serializable]
     public class ResourcePresetData
     {
-        public StatName maxValueStatName;
         public ResourceName name;
+        public StatName maxValueStatName;
         public int baseValue;
         public int minValue;
         public int edgeValue;

@@ -1,6 +1,7 @@
 using System;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.UnitComponents.Turret;
+using Assets.Scripts.GameSession.Events;
 using Assets.Scripts.GameSession.UIScripts.SessionModel;
 using Assets.Scripts.View;
 using UnityEngine;
@@ -22,16 +23,18 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private GameObject _playerWeapon;
         [SerializeField] private GameObject _turretHub;
         [SerializeField] private OldDisplayedResourceData[] _displayedResources;
-        public Player CurrentPlayer { get; private set; }
-
-        [SerializeField] private OverUnitDataAggregator _dataAggregator;
         [SerializeField] private LevelUp _levelUp;
+        [SerializeField] private GameTimeScheduler _gameTimeScheduler;
+        public Player CurrentPlayer { get; private set; }
+        private OverUnitDataAggregator _playerDataAggregator;
+
         private GameSessionTimer _gameSessionTimer;
         private OptionsMenu _optionsMenu;
         private ViewController _viewController;
 
         private void Awake()
         {
+            _gameTimeScheduler = FindObjectOfType<GameTimeScheduler>();
             _gameSessionTimer = FindObjectOfType<GameSessionTimer>();
             _viewController = FindObjectOfType<ViewController>();
             _optionsMenu = FindObjectOfType<OptionsMenu>();
@@ -45,22 +48,33 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             SetupIndicators();
         }
 
+
+
+        [ContextMenu("Find GameTimeScheduler")]
+        public void FindGameTimeScheduler()
+        {
+            _gameTimeScheduler = FindObjectOfType<GameTimeScheduler>();
+        }
+
         private void CreatePlayerFirearm()
         { 
             var firearm = CurrentPlayer.CreateWeapon(_playerWeapon);
-            _dataAggregator.ReadInfoFromTarget(firearm, TargetName.Firearm);
+            firearm.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
+            _playerDataAggregator.ReadInfoFromTarget(firearm, TargetName.Firearm);
         }
 
         private void CreatePlayer(GameObject playerPrefab)
         {
             var player = Instantiate(playerPrefab, new Vector2(0, 0), Quaternion.identity);
+            player.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
             CurrentPlayer = player.GetComponent<Player>();
-            _dataAggregator = player.GetComponent<OverUnitDataAggregator>();
-            _levelUp.EffectsAggregator = _dataAggregator;
-            _dataAggregator.ReadInfoFromTarget(player, TargetName.Player);
+            _playerDataAggregator = player.GetComponent<OverUnitDataAggregator>();
+            _levelUp.EffectsAggregator = _playerDataAggregator;
+            _playerDataAggregator.ReadInfoFromTarget(player, TargetName.Player);
             //
             var shield = player.GetComponentInChildren<Shield>().gameObject;
-            _dataAggregator.ReadInfoFromTarget(shield, TargetName.Shield);
+            shield.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
+            _playerDataAggregator.ReadInfoFromTarget(shield, TargetName.Shield);
         }
 
         private void CreateTurretHub()
@@ -71,7 +85,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             CurrentPlayer.TurretHub = turretHub;
             turretHubPrefab.transform.SetParent(CurrentPlayer.transform);
             var firearm = turretHub.CreateTurretWeapon();
-            _dataAggregator.ReadInfoFromTarget(firearm, TargetName.TurretHubWeapon);
+            firearm.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
+            _playerDataAggregator.ReadInfoFromTarget(firearm, TargetName.TurretHubWeapon);
         }
 
         private void SetupIndicators()
@@ -80,7 +95,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             {
                 var key = displayedResourceData.targetName;
                 var resourceName = displayedResourceData.resourceName;
-                var resource = _dataAggregator.Resources[key].GetResourceByName(resourceName);
+                var resource = _playerDataAggregator.Resources[key].GetResourceByName(resourceName);
                 if (resource == null) continue;
                 displayedResourceData.resourceCounter.SetResource(resource);
                 displayedResourceData.resourceCounter.SetLabel(resourceName.ToString());
