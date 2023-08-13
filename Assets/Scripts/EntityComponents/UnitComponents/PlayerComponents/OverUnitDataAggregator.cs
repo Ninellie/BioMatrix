@@ -16,7 +16,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             Stats.Add(targetName, target.GetComponent<StatList>());
             Resources.Add(targetName, target.GetComponent<ResourceList>());
-            Effects.Add(targetName, target.GetComponent<EffectsList>());
+            var effectsList = target.GetComponent<EffectsList>();
+            effectsList.OverUnitDataAggregator = this;
+            Effects.Add(targetName, effectsList);
         }
 
         public void AddEffect(IEffect effect)

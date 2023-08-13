@@ -858,7 +858,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _usePreset: 1
-  _presets: []
+  _presets:
+  - {fileID: 11400000, guid: a6de7726b1aa66947b372f24cba878b7, type: 2}
+  - {fileID: 11400000, guid: 84ab0e928a9231b4aa17cfa3613a2f9b, type: 2}
   _defaultEffects: []
   _effects: []
   references:

@@ -9,6 +9,7 @@ public enum TargetName
 {
     Player,
     Shield,
+    TurretHub,
     TurretHubWeapon,
     Firearm,
 }

@@ -13,6 +13,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
     public class Player : Unit
     {
         [SerializeField] private Transform _firePoint;
+        [SerializeField] private Shield _shield;
 
         public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
 
@@ -24,8 +25,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public event Action ExperienceTakenEvent;
         public event Action FireEvent;
         public event Action FireOffEvent;
-    
-        public Shield Shield { get; private set; }
+
+        public Shield Shield => _shield;
         public TurretHub TurretHub { get; set; }
         public Firearm Firearm { get; private set; }
         public bool IsFireButtonPressed { get; private set; }
@@ -64,7 +65,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _circleCollider = GetComponent<CircleCollider2D>();
 
             _invulnerability = GetComponent<Invulnerability>();
-            Shield = GetComponentInChildren<Shield>();
+            //Shield = GetComponentInChildren<Shield>();
 
             _knockbackController = GetComponent<KnockbackController>();
 

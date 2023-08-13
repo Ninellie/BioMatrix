@@ -21,10 +21,16 @@ MonoBehaviour:
       card:
         title: Each 1 lvl
         description: +10% Movement Speed
+        dropWeight: 1
+        effectsName:
+        - MovementSpeedMultiply10
     - occurrenceFrequency: 3
       card:
         title: Each 3 lvl
         description: +50% Reload Speed
+        dropWeight: 1
+        effectsName:
+        - ReloadSpeedMultiply50
   - name: Gun
     description: Improves gun
     capacity: 15
@@ -33,11 +39,20 @@ MonoBehaviour:
       card:
         title: Each 1 lvl
         description: +1 Magazine Amount
+        dropWeight: 1
+        effectsName:
+        - MagazineAdd1
     - occurrenceFrequency: 3
       card:
         title: Each 3 lvl
         description: +50% Firerate
+        dropWeight: 1
+        effectsName:
+        - FirerateMultiply50
     - occurrenceFrequency: 5
       card:
         title: Each 5 lvl
         description: +1 Projectile
+        dropWeight: 1
+        effectsName:
+        - ProjectileAdd1

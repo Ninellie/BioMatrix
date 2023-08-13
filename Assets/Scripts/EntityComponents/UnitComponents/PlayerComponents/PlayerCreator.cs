@@ -56,13 +56,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _gameTimeScheduler = FindObjectOfType<GameTimeScheduler>();
         }
 
-        private void CreatePlayerFirearm()
-        { 
-            var firearm = CurrentPlayer.CreateWeapon(_playerWeapon);
-            firearm.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
-            _playerDataAggregator.ReadInfoFromTarget(firearm, TargetName.Firearm);
-        }
-
         private void CreatePlayer(GameObject playerPrefab)
         {
             var player = Instantiate(playerPrefab, new Vector2(0, 0), Quaternion.identity);
@@ -72,9 +65,15 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _levelUp.EffectsAggregator = _playerDataAggregator;
             _playerDataAggregator.ReadInfoFromTarget(player, TargetName.Player);
             //
-            var shield = player.GetComponentInChildren<Shield>().gameObject;
-            shield.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
-            _playerDataAggregator.ReadInfoFromTarget(shield, TargetName.Shield);
+            CurrentPlayer.Shield.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
+            _playerDataAggregator.ReadInfoFromTarget(CurrentPlayer.Shield.gameObject, TargetName.Shield);
+        }
+
+        private void CreatePlayerFirearm()
+        {
+            var firearm = CurrentPlayer.CreateWeapon(_playerWeapon);
+            firearm.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
+            _playerDataAggregator.ReadInfoFromTarget(firearm, TargetName.Firearm);
         }
 
         private void CreateTurretHub()

@@ -20,6 +20,12 @@ public class EffectsList : MonoBehaviour
         set => _gameTimeScheduler = value;
     }
 
+    public OverUnitDataAggregator OverUnitDataAggregator
+    {
+        get => _effectsAggregator;
+        set => _effectsAggregator = value;
+    }
+
     [SerializeField]
     private OverUnitDataAggregator _effectsAggregator;
 
@@ -30,7 +36,11 @@ public class EffectsList : MonoBehaviour
     {
         _stats = GetComponent<StatList>();
         _resources = GetComponent<ResourceList>();
-        _effectsAggregator = GetComponentInParent<OverUnitDataAggregator>();
+
+        OverUnitDataAggregator dataAggregator;
+        TryGetComponent(out dataAggregator);
+
+        _effectsAggregator = dataAggregator == null ? GetComponentInParent<OverUnitDataAggregator>() : dataAggregator;
     }
 
     public void AddEffect(IEffect effect)

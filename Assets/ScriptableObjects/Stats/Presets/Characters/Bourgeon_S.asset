@@ -13,18 +13,25 @@ MonoBehaviour:
   m_Name: Bourgeon_S
   m_EditorClassIdentifier: 
   stats:
-  - name: 1
+  - _name: 
+    name: 1
     baseValue: 2.5
-  - name: 2
+  - _name: 
+    name: 2
     baseValue: 3
-  - name: 3
+  - _name: 
+    name: 3
     baseValue: 0
-  - name: 5
+  - _name: 
+    name: 5
     baseValue: 300
-  - name: 9
+  - _name: 
+    name: 9
     baseValue: 75
-  - name: 8
+  - _name: 
+    name: 8
     baseValue: 1
-  - name: 25
+  - _name: 
+    name: 25
     baseValue: 35
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}

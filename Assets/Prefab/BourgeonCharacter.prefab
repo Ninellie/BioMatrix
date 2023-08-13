@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 766516748403551923}
+  _shield: {fileID: 6875561572371950145}
 --- !u!114 &659999168091465563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5512,6 +5513,7 @@ GameObject:
   - component: {fileID: 2426479934755923471}
   - component: {fileID: 5072275712465827581}
   - component: {fileID: 7579849442500094081}
+  - component: {fileID: 1402943307523996230}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -5648,6 +5650,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1402943307523996230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7005012959266165756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa509718787c27409773cda7bcf8e0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effects: []
+  _gameTimeScheduler: {fileID: 0}
+  _effectsAggregator: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &7539270031280201737
 GameObject:
   m_ObjectHideFlags: 0

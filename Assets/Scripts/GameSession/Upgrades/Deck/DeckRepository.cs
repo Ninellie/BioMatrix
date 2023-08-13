@@ -63,9 +63,6 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         private void Awake()
         {
             FillDeckListFromPattern(_usePreset ? _preset.patternDeckList : _patternDeckList);
-
-            foreach (var deck in _deckList)
-                deck.cards = new Stack<Card>(deck.cardsInitArray);
         }
 
         public void ObtainCard(Card card)
@@ -148,13 +145,15 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                         if ((i + 1) % patternCard.occurrenceFrequency != 0) continue;
                         
                         deck.cardsInitArray[i].title = $"{i + 1} Level";
-
-                        var description = patternCard.card.description;
                         deck.cardsInitArray[i].description += string.IsNullOrEmpty(deck.cardsInitArray[i].description)
-                            ? description
-                            : "\r\n" + description;
+                            ? patternCard.card.description
+                            : "\r\n" + patternCard.card.description;
+                        deck.cardsInitArray[i].dropWeight = patternCard.card.dropWeight;
+                        deck.cardsInitArray[i].effectsName = patternCard.card.effectsName;
                     }
                 }
+
+                deck.cards = new Stack<Card>(deck.cardsInitArray.Reverse());
 
                 _deckList.Add(deck);
             }
