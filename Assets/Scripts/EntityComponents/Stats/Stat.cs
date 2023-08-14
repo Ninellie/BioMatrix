@@ -9,6 +9,9 @@ namespace Assets.Scripts.EntityComponents.Stats
     [Serializable]
     public class Stat
     {
+        [HideInInspector]
+        public string _strName;
+
         public event Action ValueChangedEvent;
 
         [ReadOnly]

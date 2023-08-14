@@ -59,11 +59,9 @@ public interface IStackableEffect : IEffect
 [Serializable]
 public class StatModData
 {
-    [SerializeField]
-    public StatMod mod;
-
-    [SerializeField]
-    public StatName statName;
+    [HideInInspector] public string strName;
+    [SerializeField] public StatMod mod;
+    [SerializeField] public StatName statName;
 }
 
 public interface IStatModifier

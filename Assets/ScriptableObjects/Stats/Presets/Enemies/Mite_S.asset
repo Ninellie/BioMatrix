@@ -13,18 +13,25 @@ MonoBehaviour:
   m_Name: Mite_S
   m_EditorClassIdentifier: 
   stats:
-  - name: 1
+  - stringName: Size
+    name: 1
     baseValue: 1.7
-  - name: 2
+  - stringName: MaximumHealth
+    name: 2
     baseValue: 5
-  - name: 5
+  - stringName: MovementSpeed
+    name: 5
     baseValue: 280
-  - name: 6
+  - stringName: RotationSpeed
+    name: 6
     baseValue: 2
-  - name: 4
+  - stringName: KnockbackPower
+    name: 4
     baseValue: 150
-  - name: 7
+  - stringName: Damage
+    name: 7
     baseValue: 1
-  - name: 24
+  - stringName: SpawnWeight
+    name: 24
     baseValue: 1
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}

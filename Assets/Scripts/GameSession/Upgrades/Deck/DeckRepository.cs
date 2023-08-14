@@ -9,6 +9,9 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
     [Serializable]
     public class PatternCard
     {
+        [HideInInspector]
+        public string name;
+
         [Min(0)]
         public int occurrenceFrequency;
         public Card card;
@@ -144,7 +147,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                         if (patternCard.occurrenceFrequency == 0) continue;
                         if ((i + 1) % patternCard.occurrenceFrequency != 0) continue;
                         
-                        deck.cardsInitArray[i].title = $"{i + 1} Level";
+                        deck.cardsInitArray[i].title = $"{deck.name} {i + 1} Level";
                         deck.cardsInitArray[i].description += string.IsNullOrEmpty(deck.cardsInitArray[i].description)
                             ? patternCard.card.description
                             : "\r\n" + patternCard.card.description;

@@ -17,7 +17,16 @@ namespace Assets.Scripts.FirearmComponents
     {
         [SerializeField] private GameObject _ammo;
         [SerializeField] private LayerMask _enemyLayer;
-        [SerializeField] private Vector2 _currentFireDirection;
+        //[SerializeField] private Vector2 _currentFireDirection;
+        [SerializeField] private bool _isAimHelperActive;
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.cyan;
+            var stat = _statList.GetStatByName(StatName.TurretAimingRadius);
+            if (stat != null)
+                Gizmos.DrawWireSphere(transform.position, stat.Value);
+        }
 
         public Entity Holder { get; private set; }
         public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
@@ -34,6 +43,8 @@ namespace Assets.Scripts.FirearmComponents
         public OldStat ProjectilePierceCount { get; private set; }
         public OldStat AddedProjectileKnockback { get; private set; }
 
+        private Stat _shootsPerSecond;
+
         public event Action ReloadEndEvent;
         public event Action ReloadEvent;
 
@@ -47,8 +58,11 @@ namespace Assets.Scripts.FirearmComponents
         private Player _player;
         private bool IsFireButtonPressed => IsEnable && !IsForPlayer || _player.IsFireButtonPressed;
         private float _previousShootTimer;
-        private float MinShootInterval => 1f / ShootsPerSecond.Value;
+        //private float MinShootInterval => 1f / ShootsPerSecond.Value;
+        private float MinShootInterval => 1f / _shootsPerSecond.Value;
     
+        private StatList _statList;
+
         private void Awake() => BaseAwake(Settings);
 
         private void Update()
@@ -63,6 +77,10 @@ namespace Assets.Scripts.FirearmComponents
         {
             _reload = GetComponent<Reload>();
             _projectileCreator = GetComponent<ProjectileCreator>();
+
+            _statList = GetComponent<StatList>();
+            _shootsPerSecond = _statList.GetStatByName(StatName.ShootsPerSecond);
+
 
             Damage = StatFactory.GetStat(settings.damage);
             ShootForce = StatFactory.GetStat(settings.shootForce);
@@ -103,10 +121,10 @@ namespace Assets.Scripts.FirearmComponents
             ReloadEndEvent?.Invoke();
         }
 
-        public void SetDirection(Vector2 direction)
-        {
-            _currentFireDirection = direction;
-        }
+        //public void SetDirection(Vector2 direction)
+        //{
+        //    _currentFireDirection = direction;
+        //}
     
         private void Shoot()
         {
@@ -160,7 +178,10 @@ namespace Assets.Scripts.FirearmComponents
 
         private Vector2 GetShotDirectionForTurret()
         {
-            return _player.TurretHub.IsSameTurretTarget ? GetShotDirectionForPlayer() : Random.insideUnitCircle;
+            var aimingRadius = _statList.GetStatByName(StatName.TurretAimingRadius).Value;
+            var direction = GetDirectionToNearestEnemy(aimingRadius);
+
+            return direction.Equals(Vector2.zero) ? Random.insideUnitCircle : direction;
         }
 
         private Vector2 GetShotDirectionForPlayer()
@@ -183,14 +204,21 @@ namespace Assets.Scripts.FirearmComponents
             return isNearestEnemyExists;
         }
 
-        private Vector2 GetDirectionToNearestEnemy()
+        private Vector2 GetDirectionToNearestEnemy(float searchRadius)
         {
-            var nearestEnemies = GetEnemyCollidersInCameraBounds();
-            var directionToNearestEnemy = GetNearestCollider(nearestEnemies);
+            var collidersInAimingRadius = Physics2D.OverlapCircleAll(transform.position, searchRadius, _enemyLayer);
+            var directionToNearestEnemy = GetDirectionToNearestCollider(collidersInAimingRadius);
             return directionToNearestEnemy;
         }
 
-        private Vector2 GetNearestCollider(IEnumerable<Collider2D> colliders)
+        private Vector2 GetDirectionToNearestEnemy()
+        {
+            var nearestEnemies = GetEnemyCollidersInCameraBounds();
+            var directionToNearestEnemy = GetDirectionToNearestCollider(nearestEnemies);
+            return directionToNearestEnemy;
+        }
+
+        private Vector2 GetDirectionToNearestCollider(IEnumerable<Collider2D> colliders)
         {
             var directionToNearestCollider = Vector2.zero;
             var distanceToNearestCollider = Mathf.Infinity;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 namespace Assets.Scripts.EntityComponents.Stats
 {
     [AddComponentMenu("Entity/StatList")]
-    public class StatList : MonoBehaviour
+    public class StatList : MonoBehaviour, ISerializationCallbackReceiver
     {
         [SerializeField] private bool _usePreset;
         [SerializeField] private StatsPreset _preset;
@@ -32,7 +33,31 @@ namespace Assets.Scripts.EntityComponents.Stats
                 stat.SetSettings(_preset.settings);
                 stat.SetBaseValue(statPresetData.baseValue);
                 stat.SetName(statPresetData.name);
+                //stat._strName = $"{statPresetData.name}: {stat.Value}";
+                //stat._strName = statPresetData.name.ToString();
                 _stats.Add(stat);
+            }
+        }
+
+        public void OnBeforeSerialize()
+        {
+            if (_stats is null)
+                return;
+
+            if (_stats.Count == 0)
+                return;
+
+            foreach (var stat in _stats)
+            {
+                stat._strName = $"{stat.Name}: {stat.Value}";
+            }
+        }
+
+        public void OnAfterDeserialize()
+        {
+            foreach (var stat in _stats)
+            {
+                stat._strName = $"{stat.Name}: {stat.Value}";
             }
         }
     }

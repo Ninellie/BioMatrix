@@ -10,6 +10,8 @@ namespace Assets.Scripts.EntityComponents.Resources
     [Serializable]
     public class RecoveringInfo
     {
+        [HideInInspector]
+        public string stringName;
         [ReadOnly]
         public ResourceName resourceName;
         //public float secondsToRecovery;
@@ -20,7 +22,7 @@ namespace Assets.Scripts.EntityComponents.Resources
     [AddComponentMenu("Entity/ResourceRecoverer")]
     [RequireComponent(typeof(ResourceList))]
     [RequireComponent(typeof(StatList))]
-    public class ResourceRecoverer : MonoBehaviour
+    public class ResourceRecoverer : MonoBehaviour, ISerializationCallbackReceiver
     {
         [SerializeField]
         private RecoveringResourcesPreset _preset;
@@ -59,5 +61,19 @@ namespace Assets.Scripts.EntityComponents.Resources
             resource.Increase();
         }
 
+        public void OnBeforeSerialize()
+        {
+            foreach (var recoveringResource in _recoveringResources)
+            {
+                recoveringResource.stringName = $"{recoveringResource.resourceName}: {recoveringResource.value}";
+            }
+        }
+        public void OnAfterDeserialize()
+        {
+            foreach (var recoveringResource in _recoveringResources)
+            {
+                recoveringResource.stringName = $"{recoveringResource.resourceName}: {recoveringResource.value}";
+            }
+        }
     }
 }

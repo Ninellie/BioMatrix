@@ -24,6 +24,8 @@ namespace Assets.Scripts.EntityComponents.Resources
     [Serializable]
     public class Resource
     {
+        [HideInInspector]
+        public string stringName;
         public ResourceName Name => _name;
         public bool IsFull => _isLimited && !(_value < _maxValueStat.Value);
         public bool IsEmpty => _value == _minValue;
