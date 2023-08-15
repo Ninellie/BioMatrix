@@ -13,11 +13,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Knockback
         [Tooltip("In points per seconds")]
         private float _knockbackSpeed;
 
-        private bool _isActive = false;
-        private bool _isSecondaryActive = false;
-        private Vector2 MyPosition => transform.position;
         private IMovementController _movementController;
-
+        private Vector2 MyPosition => transform.position;
         private Vector2 _currentAddedVelocity = Vector2.zero;
 
         protected void Awake()
