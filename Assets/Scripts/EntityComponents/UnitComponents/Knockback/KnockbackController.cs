@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Numerics;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Knockback
 {
@@ -15,7 +17,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Knockback
         private bool _isSecondaryActive = false;
         private Vector2 MyPosition => transform.position;
         private IMovementController _movementController;
-        
+
+        private Vector2 _currentAddedVelocity = Vector2.zero;
+
         protected void Awake()
         {
             _movementController = GetComponent<IMovementController>();
@@ -26,7 +30,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Knockback
             var knockbackTime = force.magnitude / _knockbackSpeed;
             var knockbackDirection = force.normalized;
             var knockbackVelocity = knockbackDirection * _knockbackSpeed;
-            StartCoroutine(InitKnockback(knockbackTime, knockbackVelocity));
+            if (!_currentAddedVelocity.Equals(Vector2.zero))
+            {
+                CancelInvoke(nameof(RemoveVelocity));
+                RemoveVelocity();
+            }
+            AddVelocity(knockbackVelocity);
+            Invoke(nameof(RemoveVelocity), knockbackTime);
         }
 
         public void Knockback(GameObject target)
@@ -37,38 +47,16 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Knockback
             Knockback(force);
         }
 
-        private IEnumerator InitKnockback(float time, Vector2 velocity)
+        private void AddVelocity(Vector2 velocity)
         {
-            bool isSecondary;
+            _movementController.AddVelocity(velocity);
+            _currentAddedVelocity = velocity;
+        }
 
-            if (_isActive)
-            {
-                isSecondary = true;
-                _isSecondaryActive = true;
-            }
-            else
-            {
-                isSecondary = false;
-                _isSecondaryActive = false;
-                _isActive = true;
-                _movementController.AddVelocity(velocity);
-            }
-
-            _movementController.SetSpeedScale(0);
-            
-            yield return new WaitForSeconds(time);
-
-            if (_isSecondaryActive && isSecondary)
-            {
-                _isSecondaryActive = false;
-                _isActive = false;
-                _movementController.AddVelocity(velocity * -1);
-            }
-            else if (!_isSecondaryActive && !isSecondary)
-            {
-                _isActive = false;
-                _movementController.AddVelocity(velocity * -1);
-            }
+        private void RemoveVelocity()
+        {
+            _movementController.AddVelocity(_currentAddedVelocity * -1);
+            _currentAddedVelocity = Vector2.zero;
         }
     }
 }
