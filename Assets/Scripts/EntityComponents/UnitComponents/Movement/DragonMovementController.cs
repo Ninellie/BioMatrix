@@ -1,9 +1,8 @@
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
-    public class DragonMovementController : MovementController
+    public class DragonMovementController : MovementController, ITargeted
     {
         [SerializeField]
         private GameObject _target;
@@ -34,9 +33,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             set => throw new System.NotImplementedException();
         }
 
-        private void Start()
+        public void SetTarget(GameObject target)
         {
-            _target = FindObjectOfType<Player>().gameObject;
+            _target = target;
         }
     }
 }

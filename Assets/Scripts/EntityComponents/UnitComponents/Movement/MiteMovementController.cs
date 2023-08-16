@@ -1,9 +1,8 @@
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
-    public class MiteMovementController : MovementController
+    public class MiteMovementController : MovementController, ITargeted
     {
         [SerializeField]
         private FrontSide _viewDirection;
@@ -49,9 +48,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             set => throw new System.NotImplementedException();
         }
 
-        private void Start()
+        public void SetTarget(GameObject target)
         {
-            _target = FindObjectOfType<Player>().gameObject;
+            _target = target;
         }
     }
 }

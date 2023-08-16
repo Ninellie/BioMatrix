@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
+using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
@@ -16,9 +17,8 @@ namespace Assets.Scripts.GameSession.Spawner
         private readonly Grouping _grouping = new();
         private readonly Rarity _rarity = new();
         private readonly Circle _circle = new Circle();
-        private Player _player;
+        private GameObject _player;
         private EnemyWaveProperties _enemyWaveProperties;
-
         private const int DefaultComplicationValue = 60;
         private int TimerBonus
         {
@@ -30,11 +30,12 @@ namespace Assets.Scripts.GameSession.Spawner
                 return (int)(seconds - remainder) / DefaultComplicationValue;
             }
         }
+
         private void Awake()
         {
             _enemyWaveProperties = new EnemyWaveProperties();
-        
         }
+
         private void Start()
         {
             if (FindObjectOfType<Player>() is null)
@@ -42,11 +43,11 @@ namespace Assets.Scripts.GameSession.Spawner
                 Debug.Log("Player script is null in scene");
                 return;
             }
-            _player = FindObjectOfType<Player>();
+            _player = FindObjectOfType<Player>().gameObject;
             SpawnFirstWave();
             InvokeRepeating(nameof(SpawnNormalWave), _secondsBetweenWaves, _secondsBetweenWaves);
-
         }
+
         private void SpawnWave(WaveType waveType)
         {
             if(_player is null) return;
@@ -60,14 +61,10 @@ namespace Assets.Scripts.GameSession.Spawner
             PlaceEnemies(spawn, mode, playerPosition);
             PrepareEnemies(spawn, playerPosition);
         }
-        private void SpawnFirstWave()
-        {
-            SpawnWave(WaveType.First);
-        }
-        private void SpawnNormalWave()
-        {
-            SpawnWave(WaveType.Normal);
-        }
+
+        private void SpawnFirstWave() => SpawnWave(WaveType.First);
+
+        private void SpawnNormalWave() => SpawnWave(WaveType.Normal);
 
         private bool IsSpawnBlocked()
         {
@@ -76,40 +73,38 @@ namespace Assets.Scripts.GameSession.Spawner
             return enemyCount >= maxEnemies;
         }
 
-        public void PlaceEnemies(GameObject[] enemies, GroupingMode mode, Vector2 playerPosition)
+        private void PlaceEnemies(GameObject[] enemies, GroupingMode mode, Vector2 playerPosition)
         {
             float padding = 0;
             if (mode == GroupingMode.Group)
-            {
                 padding = enemies.Sum(enemy => enemy.GetComponent<CircleCollider2D>().radius) / 2;
-            }
 
             var positions = _circle.GetPositions(enemies.Length, mode, playerPosition, padding);
-
             for (int i = 0; i < enemies.Length; i++)
-            {
                 enemies[i].transform.position = positions[i];
-            }
         }
+
         private GameObject[] CreateWave(int waveSize)
         {
             var spawn = GetEnemyList(waveSize, enemyPrefabs);
             var spawnedEnemies = new GameObject[waveSize];
 
-            for (var i = 0; i < spawn.Length; i++)
-            {
-                spawnedEnemies[i] = Instantiate<GameObject>(spawn[i]);
-            }
+            for (var i = 0; i < spawn.Count; i++)
+                spawnedEnemies[i] = Instantiate(spawn[i]);
+
             return spawnedEnemies;
         }
-        private void PrepareEnemies(GameObject[] enemies, Vector2 playerPosition)
+
+        private void PrepareEnemies(IEnumerable<GameObject> enemies, Vector2 playerPosition)
         {
             foreach (var enemy in enemies)
             {
                 var e = enemy.GetComponent<Enemy>();
+                enemy.GetComponent<ITargeted>().SetTarget(_player);
                 PrepareEnemy(e, playerPosition);
             }
         }
+
         private void PrepareEnemy(Enemy enemy, Vector2 playerPosition)
         {
             var rarity = _rarity.GetRandomRarity();
@@ -122,10 +117,10 @@ namespace Assets.Scripts.GameSession.Spawner
                 enemy.LookAt2D(playerPosition);
             }
         }
-        private GameObject[] GetEnemyList(int numberOfEnemies, IEnumerable<GameObject> enemyTypes)
+
+        private List<GameObject> GetEnemyList(int numberOfEnemies, IEnumerable<GameObject> enemyTypes)
         {
             var enemyList = enemyTypes.ToList();
-
             List<GameObject> selectedEnemies = new();
 
             for (var i = 0; i < numberOfEnemies; i++)
@@ -133,8 +128,9 @@ namespace Assets.Scripts.GameSession.Spawner
                 var randomEnemyFromList = GetRandomEnemyFromList(enemyList);
                 selectedEnemies.Add(randomEnemyFromList);
             }
-            return selectedEnemies.ToArray();
+            return selectedEnemies;
         }
+
         private GameObject GetRandomEnemyFromList(List<GameObject> enemyList)
         {
             var sum = enemyList.Sum(enemy => (int)enemy.GetComponent<Enemy>().Settings.spawnWeight);
