@@ -13,24 +13,37 @@ MonoBehaviour:
   m_Name: TurretFirearm_S
   m_EditorClassIdentifier: 
   stats:
-  - name: 7
+  - stringName: Damage
+    name: 7
     baseValue: 5
-  - name: 15
+  - stringName: ShootForce
+    name: 15
     baseValue: 1600
-  - name: 16
+  - stringName: ShootsPerSecond
+    name: 16
     baseValue: 2
-  - name: 17
+  - stringName: MaxShootDeflectionAngle
+    name: 17
     baseValue: 15
-  - name: 18
+  - stringName: MagazineCapacity
+    name: 18
     baseValue: 1
-  - name: 19
+  - stringName: ReloadTime
+    name: 19
     baseValue: 0
-  - name: 20
+  - stringName: Projectiles
+    name: 20
     baseValue: 1
-  - name: 21
+  - stringName: ProjectileSizeMultiplier
+    name: 21
     baseValue: 0
-  - name: 22
+  - stringName: Pierce
+    name: 22
     baseValue: 0
-  - name: 23
+  - stringName: AddedProjectileKnockback
+    name: 23
     baseValue: 5
+  - stringName: TurretAimingRadius
+    name: 26
+    baseValue: 100
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}

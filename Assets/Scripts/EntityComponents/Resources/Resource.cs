@@ -180,21 +180,13 @@ namespace Assets.Scripts.EntityComponents.Resources
         }
 
         public void Fill() => Set((int)_maxValueStat.Value);
-
         public void Empty() => Set(_minValue);
-
         public void Increase(int value = 1) => Set(_value + value);
-
         public void Decrease(int value = 1) => Set(_value - value);
-
         public int GetValue() => _value;
-
         public int GetMinValue() => _minValue;
-
         public float GetMaxValue() => _isLimited ? (int)_maxValueStat.Value : Single.PositiveInfinity;
-
         public int GetLackValue() => (int)_maxValueStat.Value - _value;
-
         public float GetPercentValue()
         {
             if (!_isLimited)

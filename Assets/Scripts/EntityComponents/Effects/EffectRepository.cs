@@ -481,12 +481,14 @@ namespace Assets.Scripts.EntityComponents.Effects
                     nameof(Player),
                     new PropTrigger
                     {
-                        Name = nameof(Firearm.Magazine.FillEvent),
+                        //Name = nameof(Firearm.Magazine.FillEvent),
+                        Name = nameof(ResourceEvent.FillEvent),
                         Path = nameof(Player.Firearm) + "." + nameof(Firearm.Magazine)
                     },
                     new PropTrigger
                     {
-                        Name = nameof(Firearm.Magazine.DecreaseEvent),
+                        //Name = nameof(Firearm.Magazine.DecreaseEvent),
+                        Name = nameof(ResourceEvent.DecreaseEvent),
                         Path = nameof(Player.Firearm) + "." + nameof(Firearm.Magazine)
                     },
                     nameof(Player.Firearm) + "." +

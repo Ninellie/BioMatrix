@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Assets.Scripts.Core;
 using Assets.Scripts.EntityComponents;
+using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
@@ -10,7 +11,6 @@ using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.FirearmComponents
 {
-    [RequireComponent(typeof(FirearmStatsSettings))]
     [RequireComponent(typeof(Reload))]
     [RequireComponent(typeof(ProjectileCreator))]
     public class Firearm : MonoBehaviour
@@ -22,28 +22,44 @@ namespace Assets.Scripts.FirearmComponents
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.cyan;
             var stat = _statList.GetStatByName(StatName.TurretAimingRadius);
-            if (stat != null)
-                Gizmos.DrawWireSphere(transform.position, stat.Value);
+            if (stat == null) return;
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(transform.position, stat.Value);
         }
 
         public Entity Holder { get; private set; }
-        public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
-        public OldResource Magazine { get; set; }
+        //public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
+        //public OldResource Magazine { get; set; }
+        
         public bool IsForPlayer { get; private set; }
-        public OldStat Damage { get; private set; }
-        public OldStat ShootForce { get; private set; }
-        public OldStat ShootsPerSecond { get; private set; }
-        public OldStat MaxShootDeflectionAngle { get; private set; }
-        public OldStat MagazineCapacity { get; private set; }
-        public OldStat ReloadTime { get; private set; }
-        public OldStat SingleShootProjectile { get; private set; }
-        public OldStat ProjectileSizeMultiplier { get; private set; }
-        public OldStat ProjectilePierceCount { get; private set; }
-        public OldStat AddedProjectileKnockback { get; private set; }
 
-        private Stat _shootsPerSecond;
+        //public OldStat Damage { get; private set; }
+        //public OldStat ShootForce { get; private set; }
+        //public OldStat ShootsPerSecond { get; private set; }
+        //public OldStat MaxShootDeflectionAngle { get; private set; }
+        //public OldStat MagazineCapacity { get; private set; }
+        //public OldStat ReloadTime { get; private set; }
+        //public OldStat SingleShootProjectile { get; private set; }
+        //public OldStat ProjectileSizeMultiplier { get; private set; }
+        //public OldStat ProjectilePierceCount { get; private set; }
+        //public OldStat AddedProjectileKnockback { get; private set; }
+        public Stat Damage { get; private set; }
+        public Stat ShootForce { get; private set; }
+        public Stat ShootsPerSecond { get; private set; }
+        public Stat MaxShootDeflectionAngle { get; private set; }
+        public Stat MagazineCapacity { get; private set; }
+        public Stat ReloadTime { get; private set; }
+        public Stat SingleShootProjectile { get; private set; }
+        public Stat ProjectileSizeMultiplier { get; private set; }
+        public Stat ProjectilePierceCount { get; private set; }
+        public Stat AddedProjectileKnockback { get; private set; }
+        public Stat TurretAimingRadius { get; private set; }
+
+        private ResourceList _resourceList;
+        public Resource Magazine { get; private set; }
+
+        private StatList _statList;
 
         public event Action ReloadEndEvent;
         public event Action ReloadEvent;
@@ -59,12 +75,12 @@ namespace Assets.Scripts.FirearmComponents
         private bool IsFireButtonPressed => IsEnable && !IsForPlayer || _player.IsFireButtonPressed;
         private float _previousShootTimer;
         //private float MinShootInterval => 1f / ShootsPerSecond.Value;
-        private float MinShootInterval => 1f / _shootsPerSecond.Value;
+        private float MinShootInterval => 1f / ShootsPerSecond.Value;
     
-        private StatList _statList;
 
-        private void Awake() => BaseAwake(Settings);
-
+        //private void Awake() => BaseAwake(Settings);
+        private void Awake() => BaseAwake();
+            
         private void Update()
         {
             if (!IsEnable) return;
@@ -73,44 +89,60 @@ namespace Assets.Scripts.FirearmComponents
             if (CanShoot) Shoot();
         }
 
-        private void BaseAwake(FirearmStatsSettings settings)
+        //private void BaseAwake(FirearmStatsSettings settings)
+        private void BaseAwake()
         {
             _reload = GetComponent<Reload>();
             _projectileCreator = GetComponent<ProjectileCreator>();
 
             _statList = GetComponent<StatList>();
-            _shootsPerSecond = _statList.GetStatByName(StatName.ShootsPerSecond);
+            _resourceList = GetComponent<ResourceList>();
 
+            SetStats(_statList);
 
-            Damage = StatFactory.GetStat(settings.damage);
-            ShootForce = StatFactory.GetStat(settings.shootForce);
-            ShootsPerSecond = StatFactory.GetStat(settings.shootsPerSecond);
-            MaxShootDeflectionAngle = StatFactory.GetStat(settings.maxShootDeflectionAngle);
-            MagazineCapacity = StatFactory.GetStat(settings.magazineCapacity);
-            ReloadTime = StatFactory.GetStat(settings.reloadTime);
-            SingleShootProjectile = StatFactory.GetStat(settings.singleShootProjectile);
-            ProjectileSizeMultiplier = StatFactory.GetStat(settings.projectileSizeMultiplier);
-            ProjectilePierceCount = StatFactory.GetStat(settings.projectilePierceCount);
-            AddedProjectileKnockback = StatFactory.GetStat(settings.addedProjectileKnockback);
+            //Damage = StatFactory.GetStat(settings.damage);
+            //ShootForce = StatFactory.GetStat(settings.shootForce);
+            //ShootsPerSecond = StatFactory.GetStat(settings.shootsPerSecond);
+            //MaxShootDeflectionAngle = StatFactory.GetStat(settings.maxShootDeflectionAngle);
+            //MagazineCapacity = StatFactory.GetStat(settings.magazineCapacity);
+            //ReloadTime = StatFactory.GetStat(settings.reloadTime);
+            //SingleShootProjectile = StatFactory.GetStat(settings.singleShootProjectile);
+            //ProjectileSizeMultiplier = StatFactory.GetStat(settings.projectileSizeMultiplier);
+            //ProjectilePierceCount = StatFactory.GetStat(settings.projectilePierceCount);
+            //AddedProjectileKnockback = StatFactory.GetStat(settings.addedProjectileKnockback);
         
-            Magazine = new OldResource(0, MagazineCapacity);
+            //Magazine = new OldResource(0, MagazineCapacity);
+            Magazine = _resourceList.GetResourceByName(ResourceName.Ammo);
             Magazine.Fill();
             _player = FindObjectOfType<Player>();
         }
 
-        public void SetStats(Firearm firearm)
+        public StatList GetStatList()
         {
-            Damage = firearm.Damage;
-            ShootForce = firearm.ShootForce;
-            ShootsPerSecond = firearm.ShootsPerSecond;
-            MaxShootDeflectionAngle = firearm.MaxShootDeflectionAngle;
-            MagazineCapacity = firearm.MagazineCapacity;
-            ReloadTime = firearm.ReloadTime;
-            SingleShootProjectile = firearm.SingleShootProjectile;
-            ProjectileSizeMultiplier = firearm.ProjectileSizeMultiplier;
-            ProjectilePierceCount = firearm.ProjectilePierceCount;
+            return _statList;
         }
-    
+
+        public void SetStatList(StatList statList)
+        {
+            _statList = statList;
+            SetStats(_statList);
+        }
+
+        private void SetStats(StatList firearmStats)
+        {
+            Damage = firearmStats.GetStatByName(StatName.Damage);
+            ShootForce = firearmStats.GetStatByName(StatName.ShootForce);
+            ShootsPerSecond = firearmStats.GetStatByName(StatName.ShootsPerSecond);
+            MaxShootDeflectionAngle = firearmStats.GetStatByName(StatName.MaxShootDeflectionAngle);
+            MagazineCapacity = firearmStats.GetStatByName(StatName.MagazineCapacity);
+            ReloadTime = firearmStats.GetStatByName(StatName.ReloadTime);
+            SingleShootProjectile = firearmStats.GetStatByName(StatName.Projectiles);
+            ProjectileSizeMultiplier = firearmStats.GetStatByName(StatName.ProjectileSizeMultiplier);
+            ProjectilePierceCount = firearmStats.GetStatByName(StatName.Pierce);
+            AddedProjectileKnockback = firearmStats.GetStatByName(StatName.AddedProjectileKnockback);
+            TurretAimingRadius = firearmStats.GetStatByName(StatName.TurretAimingRadius);
+        }
+
         public void OnReload()
         {
             ReloadEvent?.Invoke();

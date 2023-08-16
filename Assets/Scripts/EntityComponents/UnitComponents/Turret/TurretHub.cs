@@ -87,7 +87,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 
             createdTurret.SetAttractor(gameObject);
             createdTurret.CreateWeapon(_turretWeaponPrefab);
-            createdTurret.Firearm.SetStats(Firearm);
+
+            createdTurret.Firearm.SetStatList(Firearm.GetStatList());
             currentTurrets.Push(createdTurret);
         }
 

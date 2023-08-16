@@ -48,8 +48,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             SetupIndicators();
         }
 
-
-
         [ContextMenu("Find GameTimeScheduler")]
         public void FindGameTimeScheduler()
         {
