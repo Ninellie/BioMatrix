@@ -25,12 +25,16 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private OldDisplayedResourceData[] _displayedResources;
         [SerializeField] private LevelUp _levelUp;
         [SerializeField] private GameTimeScheduler _gameTimeScheduler;
-        public Player CurrentPlayer { get; private set; }
-        private OverUnitDataAggregator _playerDataAggregator;
 
+        private Player _player;
+        private OverUnitDataAggregator _playerDataAggregator;
         private GameSessionTimer _gameSessionTimer;
         private OptionsMenu _optionsMenu;
         private ViewController _viewController;
+
+        private ResourceListenerData levelUpListener;
+        private ResourceListenerData loseListener;
+        private ResourceListenerData unsubscriptionListener;
 
         private void Awake()
         {
@@ -39,11 +43,18 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _viewController = FindObjectOfType<ViewController>();
             _optionsMenu = FindObjectOfType<OptionsMenu>();
 
+            levelUpListener = new ResourceListenerData(_viewController.LevelUpEvent,
+                TargetName.Player, ResourceName.Level, ResourceEventType.Increment);
+            loseListener = new ResourceListenerData(_viewController.Lose,
+                TargetName.Player, ResourceName.Health, ResourceEventType.Empty);
+            unsubscriptionListener = new ResourceListenerData(Unsubscription,
+                TargetName.Player, ResourceName.Health, ResourceEventType.Empty);
+
             CreatePlayer(_playerPrefab);
             CreatePlayerFirearm();
             CreateTurretHub();
 
-            _viewController.AwakeController(CurrentPlayer.GetComponent<PlayerInput>());
+            _viewController.AwakeController(_player.GetComponent<PlayerInput>());
             Subscription();
             SetupIndicators();
         }
@@ -58,18 +69,18 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             var player = Instantiate(playerPrefab, new Vector2(0, 0), Quaternion.identity);
             player.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
-            CurrentPlayer = player.GetComponent<Player>();
+            _player = player.GetComponent<Player>();
             _playerDataAggregator = player.GetComponent<OverUnitDataAggregator>();
             _levelUp.EffectsAggregator = _playerDataAggregator;
             _playerDataAggregator.ReadInfoFromTarget(player, TargetName.Player);
             //
-            CurrentPlayer.Shield.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
-            _playerDataAggregator.ReadInfoFromTarget(CurrentPlayer.Shield.gameObject, TargetName.Shield);
+            _player.Shield.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
+            _playerDataAggregator.ReadInfoFromTarget(_player.Shield.gameObject, TargetName.Shield);
         }
 
         private void CreatePlayerFirearm()
         {
-            var firearm = CurrentPlayer.CreateWeapon(_playerWeapon);
+            var firearm = _player.CreateWeapon(_playerWeapon);
             firearm.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
             _playerDataAggregator.ReadInfoFromTarget(firearm, TargetName.Firearm);
         }
@@ -78,9 +89,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             var turretHubPrefab = Instantiate(_turretHub);
             var turretHub = turretHubPrefab.GetComponent<TurretHub>();
-            turretHub.SetHolder(CurrentPlayer);
-            CurrentPlayer.TurretHub = turretHub;
-            turretHubPrefab.transform.SetParent(CurrentPlayer.transform);
+            turretHub.SetHolder(_player);
+            _player.TurretHub = turretHub;
+            turretHubPrefab.transform.SetParent(_player.transform);
             var firearm = turretHub.CreateTurretWeapon();
             firearm.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
             _playerDataAggregator.ReadInfoFromTarget(firearm, TargetName.TurretHubWeapon);
@@ -101,24 +112,26 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Subscription()
         {
-            CurrentPlayer.GamePausedEvent += _viewController.Menu;
-            CurrentPlayer.Lvl.IncrementEvent += _viewController.LevelUpEvent;
-            CurrentPlayer.OnDeath += _viewController.Lose;
             _gameSessionTimer.onGameWinning += _viewController.Win;
-            CurrentPlayer.OnDeath += Unsubscription;
             _gameSessionTimer.onGameWinning += Unsubscription;
             _optionsMenu.onBackToMainMenu += Unsubscription;
+            _player.GamePausedEvent += _viewController.Menu;
+
+            _playerDataAggregator.AddListener(levelUpListener);
+            _playerDataAggregator.AddListener(loseListener);
+            _playerDataAggregator.AddListener(unsubscriptionListener);
         }
 
         public void Unsubscription()
         {
-            CurrentPlayer.GamePausedEvent -= _viewController.Menu;
-            CurrentPlayer.Lvl.IncrementEvent -= _viewController.LevelUpEvent;
-            CurrentPlayer.OnDeath -= _viewController.Lose;
             _gameSessionTimer.onGameWinning -= _viewController.Win;
-            CurrentPlayer.OnDeath -= Unsubscription;
             _gameSessionTimer.onGameWinning -= Unsubscription;
             _optionsMenu.onBackToMainMenu -= Unsubscription;
+            _player.GamePausedEvent -= _viewController.Menu;
+
+            _playerDataAggregator.RemoveListener(levelUpListener);
+            _playerDataAggregator.RemoveListener(loseListener);
+            _playerDataAggregator.RemoveListener(unsubscriptionListener);
         }
     }
 }

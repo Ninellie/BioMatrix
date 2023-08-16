@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.CustomAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.EntityComponents.Stats
 {
@@ -12,7 +13,7 @@ namespace Assets.Scripts.EntityComponents.Stats
         [HideInInspector]
         public string _strName;
 
-        public event Action ValueChangedEvent;
+        public UnityEvent valueChangedEvent;
 
         [ReadOnly]
         [SerializeField]
@@ -113,7 +114,7 @@ namespace Assets.Scripts.EntityComponents.Stats
         private void TryInvokeOnValueChangedEvent(float oldValue)
         {
             if (Value.Equals(oldValue)) return;
-            ValueChangedEvent?.Invoke();
+            valueChangedEvent?.Invoke();
         }
     }
 }
