@@ -17,8 +17,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         public EnemyStatsSettings Settings => GetComponent<EnemyStatsSettings>();
         public KnockbackController knockbackController;
 
-        //public EnemyMoveController enemyMoveController;
-
         private int _dropCount = 1;
         private readonly Rarity _rarity = new Rarity();
         private SpriteOutline _spriteOutline;
@@ -99,7 +97,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
                 _lastDamageSource.KillsCount.Increase();
             }
 
-            var position = GetClosestPointOnCircle(otherCollider2D as CircleCollider2D); //TODO move to Circle.cs
+            var position = GetClosestPointOnCircle(otherCollider2D.transform.position); //TODO move to Circle.cs
             DropDamagePopup((int)projectileDamage, position);
 
             if (isKilled)
@@ -249,11 +247,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             MaximumLifePoints.AddModifier(mod);
         }
 
-        private Vector2 GetClosestPointOnCircle(CircleCollider2D otherCollider)
+        private Vector2 GetClosestPointOnCircle(Vector2 otherCircleColliderCenter)
         {
             Vector2 center = _circleCollider.transform.position;
-            Vector2 otherCenter = otherCollider.transform.position;
-            var direction = otherCenter - center;
+            var direction = otherCircleColliderCenter - center;
             direction.Normalize();
             var radius = _circleCollider.radius;
             var offset = radius * direction.normalized;

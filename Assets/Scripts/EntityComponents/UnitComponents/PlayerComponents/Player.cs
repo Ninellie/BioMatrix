@@ -9,7 +9,6 @@ using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
-    [RequireComponent(typeof(PlayerStatsSettings))]
     public class Player : Unit
     {
         [SerializeField] private Transform _firePoint;
