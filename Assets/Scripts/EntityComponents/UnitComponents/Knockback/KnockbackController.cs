@@ -12,7 +12,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Knockback
         private float _knockbackSpeed;
 
         private IMovementController _movementController;
-        private Vector2 MyPosition => transform.position;
         private Vector2 _currentAddedVelocity = Vector2.zero;
 
         protected void Awake()
@@ -32,14 +31,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Knockback
             }
             AddVelocity(knockbackVelocity);
             Invoke(nameof(RemoveVelocity), knockbackTime);
-        }
-
-        public void Knockback(GameObject target)
-        {
-            var force = MyPosition - (Vector2)target.transform.position;
-            force.Normalize();
-            force *= target.GetComponent<Entity>().KnockbackPower.Value;
-            Knockback(force);
         }
 
         private void AddVelocity(Vector2 velocity)
