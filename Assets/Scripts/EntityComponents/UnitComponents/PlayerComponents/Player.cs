@@ -15,9 +15,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public GameObject CreateWeapon(GameObject weapon);
     }
 
-    public class Player : MonoBehaviour, IWeaponBearer
+    public interface IPlayableCharacter
     {
-        public event Action OnDeath;
+
+    }
+
+    public class Player : MonoBehaviour, IWeaponBearer, IPlayableCharacter
+    {
 
         [SerializeField] private Transform _firePoint;
         [SerializeField] private Shield _shield;
@@ -90,7 +94,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
             if (!isEnemy && !isEnclosure) return;
 
-            if (Shield.LayersCount.IsEmpty)
+            if (!Shield.LayersCount.IsEmpty)
+                Shield.LayersCount.Decrease();
+            else
             {
                 var damageValue = (int)enemyStats.GetStatByName(StatName.Damage).Value;
                 TakeDamage(damageValue);
@@ -101,27 +107,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
                 if (isEnemy) KnockBackFromEntity(entity);
             }
-            else Shield.LayersCount.Decrease();
-
-            if (isEnclosure) KnockBackToEnclosureCenter(entity);
-        }
-
-        private void Death()
-        {
-            gameObject.SetActive(false);
-            Destroy(gameObject);
-        }
-
-        private void TakeDamage(int amount)
-        {
-            _resources.GetResourceByName(ResourceName.Health).Decrease(amount);
-            Debug.Log("Damage is taken " + gameObject.name);
-        }
-
-        private void ChangeCurrentSize()
-        {
-            var sizeValue = _stats.GetStatByName(StatName.Size).Value;
-            transform.localScale = new Vector3(sizeValue, sizeValue, 1);
         }
 
         public GameObject CreateWeapon(GameObject weapon)
@@ -165,28 +150,22 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _knockbackController.Knockback(force);
         }
 
-        private void KnockBackToEnclosureCenter(Entity entity)
+        private void Death()
         {
-            Vector2 entityPosition = entity.transform.position;
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
 
-            var mainCamera = Camera.main;
-            var cameraPos = mainCamera.transform.position;
-            var cameraTopRight =
-                new Vector3(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize, 0f) + cameraPos;
-            var cameraBottomLeft =
-                new Vector3(-mainCamera.aspect * mainCamera.orthographicSize, -mainCamera.orthographicSize, 0f) + cameraPos;
+        private void TakeDamage(int amount)
+        {
+            _resources.GetResourceByName(ResourceName.Health).Decrease(amount);
+            Debug.Log("Damage is taken " + gameObject.name);
+        }
 
-            var width = cameraTopRight.x - cameraBottomLeft.x;
-            var height = cameraTopRight.y - cameraBottomLeft.y;
-
-            var addedPos = new Vector2(width / 2, height / 2);
-            entityPosition += addedPos;
-
-            var magnitude = entity.KnockbackPower.Value;
-            var direction = (entityPosition - (Vector2)transform.position).normalized;
-            var force = direction * magnitude;
-
-            _knockbackController.Knockback(force);
+        private void ChangeCurrentSize()
+        {
+            var sizeValue = _stats.GetStatByName(StatName.Size).Value;
+            transform.localScale = new Vector3(sizeValue, sizeValue, 1);
         }
 
         private void ChangeCurrentMagnetismRadius()
