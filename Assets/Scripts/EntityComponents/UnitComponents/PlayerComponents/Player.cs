@@ -1,4 +1,5 @@
 using System;
+using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Assets.Scripts.EntityComponents.UnitComponents.Turret;
@@ -9,19 +10,19 @@ using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
-    public class Player : Unit
+    public interface IWeaponBearer
     {
+        public GameObject CreateWeapon(GameObject weapon);
+    }
+
+    public class Player : MonoBehaviour, IWeaponBearer
+    {
+        public event Action OnDeath;
+
         [SerializeField] private Transform _firePoint;
         [SerializeField] private Shield _shield;
 
-        public PlayerStatsSettings Settings => GetComponent<PlayerStatsSettings>();
-
-        public OldStat MagnetismRadius { get; private set; }
-        public OldStat ExpMultiplier { get; private set; }
-        public OldStat ExpToNextLvl { get; set; }
-
         public event Action GamePausedEvent;
-        public event Action ExperienceTakenEvent;
         public event Action FireEvent;
         public event Action FireOffEvent;
 
@@ -31,82 +32,49 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public bool IsFireButtonPressed { get; private set; }
         public Vector2 CurrentAimDirection  { get; private set; }
 
-        public OldResource Lvl { get; set; }
-        public OldResource Exp { get; set; }
-
-        private const int ExperienceToSecondLevel = 20;
         private const int ExperienceAmountIncreasingPerLevel = 15;
-        private const int InitialLevel = 1;
-
-        private KnockbackController _knockbackController;
-        private Invulnerability _invulnerability;
 
         private CircleCollider2D _circleCollider;
         private Animator _animator;
+
+        private KnockbackController _knockbackController;
+        private Invulnerability _invulnerability;
+        private StatList _stats;
+        private ResourceList _resources;
+
         private string _currentState;
 
-        private void Awake() => BaseAwake(Settings);
-
-        private void OnEnable() => BaseOnEnable();
-    
-        private void OnDisable() => BaseOnDisable();
-
-        private void OnCollisionEnter2D(Collision2D collision2D) => BaseOnCollisionEnter2D(collision2D);
-
-        private void Update() => BaseUpdate();
-
-        protected void BaseAwake(PlayerStatsSettings settings)
+        private void Awake()
         {
             Debug.Log($"{gameObject.name} {nameof(Player)} Awake");
-            base.BaseAwake(settings);
 
+            _stats = GetComponent<StatList>();
+            _resources = GetComponent<ResourceList>();
             _animator = GetComponent<Animator>();
             _circleCollider = GetComponent<CircleCollider2D>();
-
             _invulnerability = GetComponent<Invulnerability>();
-            //Shield = GetComponentInChildren<Shield>();
-
             _knockbackController = GetComponent<KnockbackController>();
 
-            MagnetismRadius = StatFactory.GetStat(settings.magnetismRadius);
-            ExpMultiplier = StatFactory.GetStat(settings.expMultiplier);
-            ExpToNextLvl = StatFactory.GetStat(ExperienceToSecondLevel);
-
-            _circleCollider.radius = Math.Max(MagnetismRadius.Value, 0);
-
-            Lvl = new OldResource(InitialLevel);
-            Exp = new OldResource(ExpToNextLvl);
+            _circleCollider.radius = Math.Max(_stats.GetStatByName(StatName.MagnetismRadius).Value, 0);
         }
 
-        protected override void BaseOnEnable()
+        private void OnEnable()
         {
-            base.BaseOnEnable();
-
-            foreach (var effect in effects)
-            {
-                effect.Subscribe(this);
-            }
-
-            MagnetismRadius.ValueChangedEvent += ChangeCurrentMagnetismRadius;
-
-            Exp.FillEvent += LevelUp;
+            _stats.GetStatByName(StatName.Size).valueChangedEvent.AddListener(ChangeCurrentSize);
+            _stats.GetStatByName(StatName.MagnetismRadius).valueChangedEvent.AddListener(ChangeCurrentMagnetismRadius);
+            _resources.GetResourceByName(ResourceName.Health).GetEvent(ResourceEventType.Empty).AddListener(Death);
+            _resources.GetResourceByName(ResourceName.Experience).GetEvent(ResourceEventType.Fill).AddListener(LevelUp);
         }
 
-        protected override void BaseOnDisable()
+        private void OnDisable()
         {
-            foreach (var effect in effects)
-            {
-                effect.Unsubscribe(this);
-            }
-
-            MagnetismRadius.ValueChangedEvent -= ChangeCurrentMagnetismRadius;
-
-            Exp.FillEvent -= LevelUp;
-
-            base.BaseOnDisable();
+            _stats.GetStatByName(StatName.Size).valueChangedEvent.RemoveListener(ChangeCurrentSize);
+            _stats.GetStatByName(StatName.MagnetismRadius).valueChangedEvent.RemoveListener(ChangeCurrentMagnetismRadius);
+            _resources.GetResourceByName(ResourceName.Health).GetEvent(ResourceEventType.Empty).RemoveListener(Death);
+            _resources.GetResourceByName(ResourceName.Experience).GetEvent(ResourceEventType.Fill).RemoveListener(LevelUp);
         }
 
-        private void BaseOnCollisionEnter2D(Collision2D collision2D)
+        private void OnCollisionEnter2D(Collision2D collision2D)
         {
             var otherCollider2D = collision2D.collider;
             if (!otherCollider2D.gameObject.TryGetComponent<Entity>(out var entity))
@@ -115,6 +83,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 return;
             }
 
+            otherCollider2D.gameObject.TryGetComponent<StatList>(out var enemyStats);
+
             var isEnemy = otherCollider2D.gameObject.CompareTag("Enemy");
             var isEnclosure = otherCollider2D.gameObject.CompareTag("Enclosure");
 
@@ -122,21 +92,36 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
             if (Shield.LayersCount.IsEmpty)
             {
-                TakeDamage(entity.Damage.Value);
+                var damageValue = (int)enemyStats.GetStatByName(StatName.Damage).Value;
+                TakeDamage(damageValue);
 
-                if (LifePoints.IsEmpty)
-                    return;
-                
+                if (_resources.GetResourceByName(ResourceName.Health).IsEmpty) return;
+
                 _invulnerability.ApplyInvulnerable();
 
-                if (isEnemy)
-                    KnockBackFromEntity(entity);
-                
+                if (isEnemy) KnockBackFromEntity(entity);
             }
-            else Shield.LayersCount.Decrease(1);
+            else Shield.LayersCount.Decrease();
 
-            if (isEnclosure)
-                KnockBackToEnclosureCenter(entity);
+            if (isEnclosure) KnockBackToEnclosureCenter(entity);
+        }
+
+        private void Death()
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+
+        private void TakeDamage(int amount)
+        {
+            _resources.GetResourceByName(ResourceName.Health).Decrease(amount);
+            Debug.Log("Damage is taken " + gameObject.name);
+        }
+
+        private void ChangeCurrentSize()
+        {
+            var sizeValue = _stats.GetStatByName(StatName.Size).Value;
+            transform.localScale = new Vector3(sizeValue, sizeValue, 1);
         }
 
         public GameObject CreateWeapon(GameObject weapon)
@@ -154,17 +139,21 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         public void IncreaseExperience(int value)
         {
-            var expTakenAmount = (int)(value * ExpMultiplier.Value);
-            Exp.Increase(expTakenAmount);
-            ExperienceTakenEvent?.Invoke();
+            var expMultiplierValue = (int)_stats.GetStatByName(StatName.ExperienceMultiplier).Value;
+            var expTakenAmount = value * expMultiplierValue;
+            _resources.GetResourceByName(ResourceName.Experience).Increase(expTakenAmount);
         }
 
         private void LevelUp()
         {
-            Lvl.Increase();
-            var mod = new StatModifier(OperationType.Addition, ExperienceAmountIncreasingPerLevel);
-            ExpToNextLvl.AddModifier(mod);
-            Exp.Empty();
+            var statMod = new StatMod
+            {
+                Value = ExperienceAmountIncreasingPerLevel, // TODO add this to stats
+                Type = OperationType.Addition
+            };
+            _stats.GetStatByName(StatName.ExperienceToNewLevel).AddModifier(statMod);
+            _resources.GetResourceByName(ResourceName.Level).Increase();
+            _resources.GetResourceByName(ResourceName.Experience).Empty();
         }
 
         private void KnockBackFromEntity(Entity entity)
@@ -202,7 +191,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void ChangeCurrentMagnetismRadius()
         {
-            _circleCollider.radius = Math.Max(MagnetismRadius.Value, 0);
+            var magnetismRadiusValue = _stats.GetStatByName(StatName.MagnetismRadius).Value;
+            _circleCollider.radius = Math.Max(magnetismRadiusValue, 0);
         }
 
         private void ChangeAnimationState(string newState)
@@ -214,11 +204,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public void OnMove(InputValue input)
         {
             ChangeAnimationState("Run");
-            var inputVector2 = input.Get<Vector2>();
-            if (inputVector2 == Vector2.zero)
-            {
+            if (input.Get<Vector2>() == Vector2.zero)
                 ChangeAnimationState("Idle");
-            }
         }
 
         public void OnFirePosition(InputValue input)
