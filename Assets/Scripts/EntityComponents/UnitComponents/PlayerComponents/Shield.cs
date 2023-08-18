@@ -35,12 +35,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Start()
         {
-            MaxLayers = StatFactory.GetStat(_statList.GetStatByName(StatName.MaximumLayers).Value);
-            MaxRechargeableLayers = StatFactory.GetStat(_statList.GetStatByName(StatName.MaximumRechargeableLayers).Value);
-            var rechargeRatePerSecond = _statList.GetStatByName(StatName.RechargeRatePerMinute).Value / 60f;
+            MaxLayers = StatFactory.GetStat(_statList.GetStat(StatName.MaximumLayers).Value);
+            MaxRechargeableLayers = StatFactory.GetStat(_statList.GetStat(StatName.MaximumRechargeableLayers).Value);
+            var rechargeRatePerSecond = _statList.GetStat(StatName.RechargeRatePerMinute).Value / 60f;
             RechargeRatePerSecond = StatFactory.GetStat(rechargeRatePerSecond);
-            RepulseForce = StatFactory.GetStat(_statList.GetStatByName(StatName.RepulseForce).Value);
-            RepulseRadius = StatFactory.GetStat(_statList.GetStatByName(StatName.RepulseRadius).Value);
+            RepulseForce = StatFactory.GetStat(_statList.GetStat(StatName.RepulseForce).Value);
+            RepulseRadius = StatFactory.GetStat(_statList.GetStat(StatName.RepulseRadius).Value);
 
             LayersCount = new OldRecoverableResource(0, MaxLayers, RechargeRatePerSecond, MaxRechargeableLayers);
 

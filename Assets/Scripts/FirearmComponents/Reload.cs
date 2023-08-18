@@ -17,7 +17,7 @@ namespace Assets.Scripts.FirearmComponents
         private void Awake()
         {
             _resourceList = GetComponent<ResourceList>();
-            _magazine = _resourceList.GetResourceByName(ResourceName.Ammo);
+            _magazine = _resourceList.GetResource(ResourceName.Ammo);
 
             _firearm = GetComponent<Firearm>();
             if (_firearm.IsForPlayer)

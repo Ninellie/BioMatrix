@@ -21,7 +21,7 @@ public class EffectAdderEffect : Effect, IRespondingEffect, IEffectAdder
 
     public void SetResourceList(ResourceList resourceList)
     {
-        resourceList.GetResourceByName(_resourceName).GetEvent(_event).AddListener(() => _effectsAggregator.AddEffect(_effect));
+        resourceList.GetResource(_resourceName).GetEvent(_event).AddListener(() => _effectsAggregator.AddEffect(_effect));
     }
 
     public void SetEffectsManager(OverUnitDataAggregator effectsAggregator)
@@ -103,7 +103,7 @@ public class StatModifierEffect : Effect, IStatModifier
     {
         foreach (var statModData in statModList)
         {
-            statList.GetStatByName(statModData.statName).AddModifier(statModData.mod);
+            statList.GetStat(statModData.statName).AddModifier(statModData.mod);
         }
     }
 
@@ -111,7 +111,7 @@ public class StatModifierEffect : Effect, IStatModifier
     {
         foreach (var statModData in statModList)
         {
-            statList.GetStatByName(statModData.statName).RemoveModifier(statModData.mod);
+            statList.GetStat(statModData.statName).RemoveModifier(statModData.mod);
         }
     }
 
@@ -124,7 +124,7 @@ public class StatModifierEffect : Effect, IStatModifier
     {
         foreach (var statModData in statModList)
         {
-            statList.GetStatByName(statModData.statName).AddModifier(statModData.mod);
+            statList.GetStat(statModData.statName).AddModifier(statModData.mod);
         }
     }
 
@@ -132,7 +132,7 @@ public class StatModifierEffect : Effect, IStatModifier
     {
         foreach (var statModData in statModList)
         {
-            statList.GetStatByName(statModData.statName).RemoveModifier(statModData.mod);
+            statList.GetStat(statModData.statName).RemoveModifier(statModData.mod);
         }
     }
 }

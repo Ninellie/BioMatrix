@@ -23,7 +23,7 @@ namespace Assets.Scripts.EntityComponents.Resources
             FillListFromPreset();
         }
 
-        public Resource GetResourceByName(ResourceName resourceName)
+        public Resource GetResource(ResourceName resourceName)
         {
             return _resources.FirstOrDefault(resource => resource.Name.Equals(resourceName));
         }
@@ -39,7 +39,7 @@ namespace Assets.Scripts.EntityComponents.Resources
 
                 if (isLimited)
                 {
-                    var maxValueStat = _statList.GetStatByName(data.maxValueStatName);
+                    var maxValueStat = _statList.GetStat(data.maxValueStatName);
                     var resource = new Resource(data.name, data.baseValue, data.minValue, data.edgeValue,
                         maxValueStat);
                     _resources.Add(resource);

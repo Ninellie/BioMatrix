@@ -96,7 +96,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             var resource = listenerData.resource;
             var eventType = listenerData.eventType;
 
-            Resources[target].GetResourceByName(resource).GetEvent(eventType).AddListener(action);
+            Resources[target].GetResource(resource).GetEvent(eventType).AddListener(action);
         }
 
         private void AddListenerToStatEvent(StatListenerData listenerData)
@@ -105,7 +105,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             var target = listenerData.target;
             var stat = listenerData.stat;
 
-            Stats[target].GetStatByName(stat).valueChangedEvent.AddListener(action);
+            Stats[target].GetStat(stat).valueChangedEvent.AddListener(action);
         }
 
         private void RemoveListenerToResourceEvent(ResourceListenerData listenerData)
@@ -115,7 +115,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             var resource = listenerData.resource;
             var eventType = listenerData.eventType;
 
-            Resources[target].GetResourceByName(resource).GetEvent(eventType).RemoveListener(action);
+            Resources[target].GetResource(resource).GetEvent(eventType).RemoveListener(action);
         }
 
         private void RemoveListenerToStatEvent(StatListenerData listenerData)
@@ -124,7 +124,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             var target = listenerData.target;
             var stat = listenerData.stat;
 
-            Stats[target].GetStatByName(stat).valueChangedEvent.RemoveListener(action);
+            Stats[target].GetStat(stat).valueChangedEvent.RemoveListener(action);
         }
     }
 }

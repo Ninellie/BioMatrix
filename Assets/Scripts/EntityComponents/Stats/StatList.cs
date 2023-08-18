@@ -18,7 +18,7 @@ namespace Assets.Scripts.EntityComponents.Stats
             FillListFromPreset();
         }
 
-        public Stat GetStatByName(StatName statName)
+        public Stat GetStat(StatName statName)
         {
             return _stats.FirstOrDefault(stat => stat.Name.Equals(statName));
         }

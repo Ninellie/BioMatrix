@@ -40,14 +40,14 @@ namespace Assets.Scripts.EntityComponents.Resources
 
             foreach (var data in _preset.recoveringResourceDataList)
             {
-                var resource = _resourceList.GetResourceByName(data.resourceName);
+                var resource = _resourceList.GetResource(data.resourceName);
                 var info = new RecoveringInfo
                 {
                     resourceName = resource.Name, value = 0f
                 };
                 _recoveringResources.Add(info);
-                var recoverLimiterStat = _statList.GetStatByName(data.recoverLimiterStatName);
-                var recoverSpeedStat = _statList.GetStatByName(data.recoverSpeedStatName);
+                var recoverLimiterStat = _statList.GetStat(data.recoverLimiterStatName);
+                var recoverSpeedStat = _statList.GetStat(data.recoverSpeedStatName);
                 StartCoroutine(Recover(resource, recoverLimiterStat, recoverSpeedStat, info));
             }
         }

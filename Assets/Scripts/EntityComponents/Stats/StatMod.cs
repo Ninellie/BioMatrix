@@ -18,5 +18,11 @@ namespace Assets.Scripts.EntityComponents.Stats
             get => _value;
             set => _value = value;
         }
+
+        public StatMod(OperationType type, float value)
+        {
+            _type = type;
+            _value = value;
+        }
     }
 }
