@@ -11,7 +11,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         private float _shootingSpeedMultiplier;
             //= 0.3f;
         protected override float Speed =>
-                _isFireButtonPressed && !_player.Firearm.Magazine.IsEmpty
+                _isFireButtonPressed && !_player.GetWeapon().GetAmmoResource().IsEmpty
                 ? speedOldStat.Value * SpeedScale * _shootingSpeedMultiplier
                 : speedOldStat.Value * SpeedScale;
 

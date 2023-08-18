@@ -89,7 +89,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             var turretHubPrefab = Instantiate(_turretHub);
             var turretHub = turretHubPrefab.GetComponent<TurretHub>();
-            turretHub.SetHolder(_player);
+            turretHub.SetSource(_player);
             _player.TurretHub = turretHub;
             turretHubPrefab.transform.SetParent(_player.transform);
             var firearm = turretHub.CreateTurretWeapon();
@@ -103,7 +103,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             {
                 var key = displayedResourceData.targetName;
                 var resourceName = displayedResourceData.resourceName;
-                var resource = _playerDataAggregator.Resources[key].GetResourceByName(resourceName);
+                var resource = _playerDataAggregator.Resources[key].GetResource(resourceName);
                 if (resource == null) continue;
                 displayedResourceData.resourceCounter.SetResource(resource);
                 displayedResourceData.resourceCounter.SetLabel(resourceName.ToString());

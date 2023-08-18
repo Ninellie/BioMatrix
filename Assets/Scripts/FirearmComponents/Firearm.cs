@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Assets.Scripts.Core;
-using Assets.Scripts.EntityComponents;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
@@ -9,41 +8,32 @@ using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+public interface IWeapon
+{
+    Resource GetAmmoResource();
+}
+
+
 namespace Assets.Scripts.FirearmComponents
 {
     [RequireComponent(typeof(Reload))]
     [RequireComponent(typeof(ProjectileCreator))]
-    public class Firearm : MonoBehaviour
+    public class Firearm : MonoBehaviour, ISource, IDerivative, ISlayer, IWeapon
     {
         [SerializeField] private GameObject _ammo;
         [SerializeField] private LayerMask _enemyLayer;
-        //[SerializeField] private Vector2 _currentFireDirection;
         [SerializeField] private bool _isAimHelperActive;
+        //[SerializeField] private Vector2 _currentFireDirection;
 
         private void OnDrawGizmos()
         {
-            var stat = _statList.GetStatByName(StatName.TurretAimingRadius);
+            var stat = _stats.GetStat(StatName.TurretAimingRadius);
             if (stat == null) return;
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(transform.position, stat.Value);
         }
 
-        public Entity Holder { get; private set; }
-        //public FirearmStatsSettings Settings => GetComponent<FirearmStatsSettings>();
-        //public OldResource Magazine { get; set; }
-        
         public bool IsForPlayer { get; private set; }
-
-        //public OldStat Damage { get; private set; }
-        //public OldStat ShootForce { get; private set; }
-        //public OldStat ShootsPerSecond { get; private set; }
-        //public OldStat MaxShootDeflectionAngle { get; private set; }
-        //public OldStat MagazineCapacity { get; private set; }
-        //public OldStat ReloadTime { get; private set; }
-        //public OldStat SingleShootProjectile { get; private set; }
-        //public OldStat ProjectileSizeMultiplier { get; private set; }
-        //public OldStat ProjectilePierceCount { get; private set; }
-        //public OldStat AddedProjectileKnockback { get; private set; }
         public Stat Damage { get; private set; }
         public Stat ShootForce { get; private set; }
         public Stat ShootsPerSecond { get; private set; }
@@ -56,10 +46,7 @@ namespace Assets.Scripts.FirearmComponents
         public Stat AddedProjectileKnockback { get; private set; }
         public Stat TurretAimingRadius { get; private set; }
 
-        private ResourceList _resourceList;
         public Resource Magazine { get; private set; }
-
-        private StatList _statList;
 
         public event Action ReloadEndEvent;
         public event Action ReloadEvent;
@@ -74,13 +61,27 @@ namespace Assets.Scripts.FirearmComponents
         private Player _player;
         private bool IsFireButtonPressed => IsEnable && !IsForPlayer || _player.IsFireButtonPressed;
         private float _previousShootTimer;
-        //private float MinShootInterval => 1f / ShootsPerSecond.Value;
         private float MinShootInterval => 1f / ShootsPerSecond.Value;
-    
 
-        //private void Awake() => BaseAwake(Settings);
-        private void Awake() => BaseAwake();
-            
+        private ISlayer _source;
+        private ResourceList _resources;
+        private StatList _stats;
+
+        private void Awake()
+        {
+            _stats = GetComponent<StatList>();
+            _resources = GetComponent<ResourceList>();
+            _reload = GetComponent<Reload>();
+            _projectileCreator = GetComponent<ProjectileCreator>();
+
+            _player = FindObjectOfType<Player>();
+
+            SetStats(_stats);
+
+            Magazine = _resources.GetResource(ResourceName.Ammo);
+            Magazine.Fill();
+        }
+
         private void Update()
         {
             if (!IsEnable) return;
@@ -89,58 +90,15 @@ namespace Assets.Scripts.FirearmComponents
             if (CanShoot) Shoot();
         }
 
-        //private void BaseAwake(FirearmStatsSettings settings)
-        private void BaseAwake()
-        {
-            _reload = GetComponent<Reload>();
-            _projectileCreator = GetComponent<ProjectileCreator>();
-
-            _statList = GetComponent<StatList>();
-            _resourceList = GetComponent<ResourceList>();
-
-            SetStats(_statList);
-
-            //Damage = StatFactory.GetStat(settings.damage);
-            //ShootForce = StatFactory.GetStat(settings.shootForce);
-            //ShootsPerSecond = StatFactory.GetStat(settings.shootsPerSecond);
-            //MaxShootDeflectionAngle = StatFactory.GetStat(settings.maxShootDeflectionAngle);
-            //MagazineCapacity = StatFactory.GetStat(settings.magazineCapacity);
-            //ReloadTime = StatFactory.GetStat(settings.reloadTime);
-            //SingleShootProjectile = StatFactory.GetStat(settings.singleShootProjectile);
-            //ProjectileSizeMultiplier = StatFactory.GetStat(settings.projectileSizeMultiplier);
-            //ProjectilePierceCount = StatFactory.GetStat(settings.projectilePierceCount);
-            //AddedProjectileKnockback = StatFactory.GetStat(settings.addedProjectileKnockback);
-        
-            //Magazine = new OldResource(0, MagazineCapacity);
-            Magazine = _resourceList.GetResourceByName(ResourceName.Ammo);
-            Magazine.Fill();
-            _player = FindObjectOfType<Player>();
-        }
-
         public StatList GetStatList()
         {
-            return _statList;
+            return _stats;
         }
 
         public void SetStatList(StatList statList)
         {
-            _statList = statList;
-            SetStats(_statList);
-        }
-
-        private void SetStats(StatList firearmStats)
-        {
-            Damage = firearmStats.GetStatByName(StatName.Damage);
-            ShootForce = firearmStats.GetStatByName(StatName.ShootForce);
-            ShootsPerSecond = firearmStats.GetStatByName(StatName.ShootsPerSecond);
-            MaxShootDeflectionAngle = firearmStats.GetStatByName(StatName.MaxShootDeflectionAngle);
-            MagazineCapacity = firearmStats.GetStatByName(StatName.MagazineCapacity);
-            ReloadTime = firearmStats.GetStatByName(StatName.ReloadTime);
-            SingleShootProjectile = firearmStats.GetStatByName(StatName.Projectiles);
-            ProjectileSizeMultiplier = firearmStats.GetStatByName(StatName.ProjectileSizeMultiplier);
-            ProjectilePierceCount = firearmStats.GetStatByName(StatName.Pierce);
-            AddedProjectileKnockback = firearmStats.GetStatByName(StatName.AddedProjectileKnockback);
-            TurretAimingRadius = firearmStats.GetStatByName(StatName.TurretAimingRadius);
+            _stats = statList;
+            SetStats(_stats);
         }
 
         public void OnReload()
@@ -157,22 +115,57 @@ namespace Assets.Scripts.FirearmComponents
         //{
         //    _currentFireDirection = direction;
         //}
-    
+
+        public void SetSource(ISource source)
+        {
+            IsForPlayer = source is IPlayableCharacter;
+            if (source is ISlayer slayer) _source = slayer;
+        }
+
+        public void IncreaseKills()
+        {
+            _resources.GetResource(ResourceName.Kills).Increase();
+            _source.IncreaseKills();
+        }
+
+        public Resource GetAmmoResource()
+        {
+            return  _resources.GetResource(ResourceName.Ammo);
+        }
+
+        private void SetStats(StatList firearmStats)
+        {
+            Damage = firearmStats.GetStat(StatName.Damage);
+            ShootForce = firearmStats.GetStat(StatName.ShootForce);
+            ShootsPerSecond = firearmStats.GetStat(StatName.ShootsPerSecond);
+            MaxShootDeflectionAngle = firearmStats.GetStat(StatName.MaxShootDeflectionAngle);
+            MagazineCapacity = firearmStats.GetStat(StatName.MagazineCapacity);
+            ReloadTime = firearmStats.GetStat(StatName.ReloadTime);
+            SingleShootProjectile = firearmStats.GetStat(StatName.Projectiles);
+            ProjectileSizeMultiplier = firearmStats.GetStat(StatName.ProjectileSizeMultiplier);
+            ProjectilePierceCount = firearmStats.GetStat(StatName.Pierce);
+            AddedProjectileKnockback = firearmStats.GetStat(StatName.AddedProjectileKnockback);
+            TurretAimingRadius = firearmStats.GetStat(StatName.TurretAimingRadius);
+        }
+
         private void Shoot()
         {
             Magazine.Decrease();
-        
+
             var projectiles = _projectileCreator.CreateProjectiles((int)SingleShootProjectile.Value, _ammo, gameObject.transform);
-        
+
             var direction = GetShotDirection();
-        
+
             foreach (var projectile in projectiles)
             {
+                var projStats = projectile.GetComponent<StatList>();
+                var projResources = projectile.GetComponent<ResourceList>();
+
                 var proj = projectile.GetComponent<Projectile>();
 
-                ImproveProjectile(proj);
+                ImproveProjectile(projStats, projResources);
 
-                proj.SetSource(Holder);
+                proj.SetSource(this);
 
                 var actualShotDirection = GetActualShotDirection(direction, MaxShootDeflectionAngle.Value);
                 proj.Launch(actualShotDirection, ShootForce.Value);
@@ -181,26 +174,21 @@ namespace Assets.Scripts.FirearmComponents
             _previousShootTimer = MinShootInterval;
         }
 
-        private void ImproveProjectile(Projectile projectile)
+        private void ImproveProjectile(StatList projectileStats, ResourceList projectileResources)
         {
-            var statMod = new StatModifier(OperationType.Multiplication, ProjectileSizeMultiplier.Value);
-            projectile.Size.AddModifier(statMod);
+            var statMod = new StatMod(OperationType.Multiplication, ProjectileSizeMultiplier.Value);
+            projectileStats.GetStat(StatName.Size).AddModifier(statMod);
 
-            statMod = new StatModifier(OperationType.Addition, ProjectilePierceCount.Value);
-            if (statMod.Value > 0) projectile.MaximumLifePoints.AddModifier(statMod);
-            projectile.LifePoints.Fill();
+            statMod = new StatMod(OperationType.Addition, ProjectilePierceCount.Value);
+            projectileStats.GetStat(StatName.MaximumHealth).AddModifier(statMod);
 
-            statMod = new StatModifier(OperationType.Addition, Damage.Value);
-            if (statMod.Value > 0) projectile.Damage.AddModifier(statMod);
+            statMod = new StatMod(OperationType.Addition, Damage.Value);
+            projectileStats.GetStat(StatName.Damage).AddModifier(statMod);
 
-            statMod = new StatModifier(OperationType.Addition, AddedProjectileKnockback.Value);
-            if (statMod.Value > 0) projectile.KnockbackPower.AddModifier(statMod);
-        }
+            statMod = new StatMod(OperationType.Addition, AddedProjectileKnockback.Value);
+            projectileStats.GetStat(StatName.KnockbackPower).AddModifier(statMod);
 
-        public void SetHolder(Entity entity)
-        {
-            Holder = entity;
-            IsForPlayer = entity is Player;
+            projectileResources.GetResource(ResourceName.Health).Fill();
         }
 
         private Vector2 GetShotDirection()
@@ -210,7 +198,7 @@ namespace Assets.Scripts.FirearmComponents
 
         private Vector2 GetShotDirectionForTurret()
         {
-            var aimingRadius = _statList.GetStatByName(StatName.TurretAimingRadius).Value;
+            var aimingRadius = _stats.GetStat(StatName.TurretAimingRadius).Value;
             var direction = GetDirectionToNearestEnemy(aimingRadius);
 
             return direction.Equals(Vector2.zero) ? Random.insideUnitCircle : direction;
@@ -268,7 +256,7 @@ namespace Assets.Scripts.FirearmComponents
             return directionToNearestCollider;
         }
 
-        private Collider2D[] GetEnemyCollidersInCameraBounds()
+        private IEnumerable<Collider2D> GetEnemyCollidersInCameraBounds()
         {
             var mainCamera = Camera.main;
             var cameraPos = mainCamera.transform.position;

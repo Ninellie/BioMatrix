@@ -2,6 +2,7 @@ using System;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
+using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Turret;
 using Assets.Scripts.FirearmComponents;
 using UnityEngine;
@@ -10,9 +11,16 @@ using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
+    public interface ISlayer
+    {
+        public void IncreaseKills();
+    }
     public interface IWeaponBearer
     {
+        public Transform GetFirePoint();
         public GameObject CreateWeapon(GameObject weapon);
+        public IWeapon GetWeapon();
+
     }
 
     public interface IPlayableCharacter
@@ -20,9 +28,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
     }
 
-    public class Player : MonoBehaviour, IWeaponBearer, IPlayableCharacter
+    public class Player : MonoBehaviour, IWeaponBearer, IPlayableCharacter, ISlayer, ISource
     {
-
         [SerializeField] private Transform _firePoint;
         [SerializeField] private Shield _shield;
 
@@ -59,23 +66,23 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _invulnerability = GetComponent<Invulnerability>();
             _knockbackController = GetComponent<KnockbackController>();
 
-            _circleCollider.radius = Math.Max(_stats.GetStatByName(StatName.MagnetismRadius).Value, 0);
+            _circleCollider.radius = Math.Max(_stats.GetStat(StatName.MagnetismRadius).Value, 0);
         }
 
         private void OnEnable()
         {
-            _stats.GetStatByName(StatName.Size).valueChangedEvent.AddListener(ChangeCurrentSize);
-            _stats.GetStatByName(StatName.MagnetismRadius).valueChangedEvent.AddListener(ChangeCurrentMagnetismRadius);
-            _resources.GetResourceByName(ResourceName.Health).GetEvent(ResourceEventType.Empty).AddListener(Death);
-            _resources.GetResourceByName(ResourceName.Experience).GetEvent(ResourceEventType.Fill).AddListener(LevelUp);
+            _stats.GetStat(StatName.Size).valueChangedEvent.AddListener(ChangeCurrentSize);
+            _stats.GetStat(StatName.MagnetismRadius).valueChangedEvent.AddListener(ChangeCurrentMagnetismRadius);
+            _resources.GetResource(ResourceName.Health).GetEvent(ResourceEventType.Empty).AddListener(Death);
+            _resources.GetResource(ResourceName.Experience).GetEvent(ResourceEventType.Fill).AddListener(LevelUp);
         }
 
         private void OnDisable()
         {
-            _stats.GetStatByName(StatName.Size).valueChangedEvent.RemoveListener(ChangeCurrentSize);
-            _stats.GetStatByName(StatName.MagnetismRadius).valueChangedEvent.RemoveListener(ChangeCurrentMagnetismRadius);
-            _resources.GetResourceByName(ResourceName.Health).GetEvent(ResourceEventType.Empty).RemoveListener(Death);
-            _resources.GetResourceByName(ResourceName.Experience).GetEvent(ResourceEventType.Fill).RemoveListener(LevelUp);
+            _stats.GetStat(StatName.Size).valueChangedEvent.RemoveListener(ChangeCurrentSize);
+            _stats.GetStat(StatName.MagnetismRadius).valueChangedEvent.RemoveListener(ChangeCurrentMagnetismRadius);
+            _resources.GetResource(ResourceName.Health).GetEvent(ResourceEventType.Empty).RemoveListener(Death);
+            _resources.GetResource(ResourceName.Experience).GetEvent(ResourceEventType.Fill).RemoveListener(LevelUp);
         }
 
         private void OnCollisionEnter2D(Collision2D collision2D)
@@ -98,10 +105,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 Shield.LayersCount.Decrease();
             else
             {
-                var damageValue = (int)enemyStats.GetStatByName(StatName.Damage).Value;
+                var damageValue = (int)enemyStats.GetStat(StatName.Damage).Value;
                 TakeDamage(damageValue);
 
-                if (_resources.GetResourceByName(ResourceName.Health).IsEmpty) return;
+                if (_resources.GetResource(ResourceName.Health).IsEmpty) return;
 
                 _invulnerability.ApplyInvulnerable();
 
@@ -109,36 +116,37 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             }
         }
 
+        public Transform GetFirePoint() => _firePoint;
+
         public GameObject CreateWeapon(GameObject weapon)
         {
+            var firePoint = GetFirePoint();
             var w = Instantiate(weapon);
-
-            w.transform.SetParent(_firePoint);
-
-            w.transform.position = _firePoint.transform.position;
+            w.transform.SetParent(firePoint);
+            w.transform.position = firePoint.transform.position;
             var firearm = w.GetComponent<Firearm>();
-            firearm.SetHolder(this);
+            firearm.SetSource(this);
             Firearm = firearm;
             return w;
         }
 
+        public IWeapon GetWeapon() => Firearm;
+
         public void IncreaseExperience(int value)
         {
-            var expMultiplierValue = (int)_stats.GetStatByName(StatName.ExperienceMultiplier).Value;
+            var expMultiplierValue = (int)_stats.GetStat(StatName.ExperienceMultiplier).Value;
             var expTakenAmount = value * expMultiplierValue;
-            _resources.GetResourceByName(ResourceName.Experience).Increase(expTakenAmount);
+            _resources.GetResource(ResourceName.Experience).Increase(expTakenAmount);
         }
 
         private void LevelUp()
         {
-            var statMod = new StatMod
-            {
-                Value = ExperienceAmountIncreasingPerLevel, // TODO add this to stats
-                Type = OperationType.Addition
-            };
-            _stats.GetStatByName(StatName.ExperienceToNewLevel).AddModifier(statMod);
-            _resources.GetResourceByName(ResourceName.Level).Increase();
-            _resources.GetResourceByName(ResourceName.Experience).Empty();
+            var statMod = new StatMod(OperationType.Addition,
+                ExperienceAmountIncreasingPerLevel); // TODO add this value to stats as stat
+
+            _stats.GetStat(StatName.ExperienceToNewLevel).AddModifier(statMod);
+            _resources.GetResource(ResourceName.Level).Increase();
+            _resources.GetResource(ResourceName.Experience).Empty();
         }
 
         private void KnockBackFromEntity(Entity entity)
@@ -158,19 +166,19 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void TakeDamage(int amount)
         {
-            _resources.GetResourceByName(ResourceName.Health).Decrease(amount);
+            _resources.GetResource(ResourceName.Health).Decrease(amount);
             Debug.Log("Damage is taken " + gameObject.name);
         }
 
         private void ChangeCurrentSize()
         {
-            var sizeValue = _stats.GetStatByName(StatName.Size).Value;
+            var sizeValue = _stats.GetStat(StatName.Size).Value;
             transform.localScale = new Vector3(sizeValue, sizeValue, 1);
         }
 
         private void ChangeCurrentMagnetismRadius()
         {
-            var magnetismRadiusValue = _stats.GetStatByName(StatName.MagnetismRadius).Value;
+            var magnetismRadiusValue = _stats.GetStat(StatName.MagnetismRadius).Value;
             _circleCollider.radius = Math.Max(magnetismRadiusValue, 0);
         }
 
@@ -220,6 +228,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             GamePausedEvent?.Invoke();
             Debug.Log("Game is active");
+        }
+
+        public void IncreaseKills()
+        {
+            _resources.GetResource(ResourceName.Kills).Increase();
         }
     }
 }

@@ -1,60 +1,51 @@
+using Assets.Scripts.EntityComponents.Resources;
+using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
+using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using Assets.Scripts.FirearmComponents;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 {
-    public class Turret : Unit
+    public class Turret : MonoBehaviour, ISlayer, ISource, IDerivative
     {
         [SerializeField] private Transform _firePoint;
-        public UnitStatsSettings Settings => GetComponent<UnitStatsSettings>();
         public Firearm Firearm { get; private set; }
 
-        private TurretHub _hub;
+        private ISlayer _source;
+        private ResourceList _resources;
 
-        private void Awake() => BaseAwake(Settings);
-
-        private void OnEnable() => BaseOnEnable();
-
-        protected override void BaseOnEnable()
-        {
-            base.BaseOnEnable();
-            KillsCount.IncrementEvent += () => _hub.KillsCount.Increase();
-        }
-
-        private void OnDisable() => BaseOnDisable();
-
-        protected override void BaseOnDisable()
-        {
-            base.BaseOnDisable();
-            KillsCount.IncrementEvent -= () => _hub.KillsCount.Increase();
-        }
-    
-        protected override void BaseAwake(UnitStatsSettings settings)
+        private void Awake()
         {
             Debug.Log($"{gameObject.name} Turret Awake");
-            base.BaseAwake(settings);
+            _resources = GetComponent<ResourceList>();
         }
 
         public void CreateWeapon(GameObject weapon)
         {
             var w = Instantiate(weapon);
-
             w.transform.SetParent(_firePoint);
-
             w.transform.position = _firePoint.transform.position;
             var firearm = w.GetComponent<Firearm>();
-            firearm.SetHolder(this);
+            firearm.SetSource(this);
             Firearm = firearm;
         }
 
-        public void Destroy()
+        public void Death()
         {
-            TakeDamage(MaximumLifePoints.Value);
+            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
-    
-        public void SetAttractor(GameObject attractor)
+
+        public void IncreaseKills()
         {
-            _hub = attractor.GetComponent<TurretHub>();
+            _resources.GetResource(ResourceName.Kills).Increase();
+            _source.IncreaseKills();
+        }
+
+        public void SetSource(ISource source)
+        {
+            if (source is ISlayer slayer)
+                _source = slayer;
         }
     }
 }

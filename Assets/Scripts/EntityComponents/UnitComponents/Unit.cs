@@ -25,9 +25,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents
             base.BaseAwake(settings);
 
             Rb2D = GetComponent<Rigidbody2D>();
-
             Speed = StatFactory.GetStat(settings.speed);
-            
             RotationSpeed = StatFactory.GetStat(settings.rotationSpeed);
         }
 
