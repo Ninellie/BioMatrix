@@ -5,12 +5,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
     public class MiteMovementController : MovementController, ITargeted
     {
         [SerializeField]
-        private FrontSide _viewDirection;
+        private Direction _viewDirection;
 
         [SerializeField]
         private GameObject _target;
 
-        protected override float Speed => speedOldStat.Value * SpeedScale;
+        protected override float Speed => speedStat.Value * SpeedScale;
 
         protected override Vector2 MovementDirection
         {
@@ -18,10 +18,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             {
                 return _viewDirection switch
                 {
-                    FrontSide.Up => gameObject.transform.TransformVector(0, 1, 0),
-                    FrontSide.Down => gameObject.transform.TransformVector(0, -1, 0),
-                    FrontSide.Right => gameObject.transform.TransformVector(1, 0, 0),
-                    FrontSide.Left => gameObject.transform.TransformVector(-1, 0, 0),
+                    Direction.Up => gameObject.transform.TransformVector(0, 1, 0),
+                    Direction.Down => gameObject.transform.TransformVector(0, -1, 0),
+                    Direction.Right => gameObject.transform.TransformVector(1, 0, 0),
+                    Direction.Left => gameObject.transform.TransformVector(-1, 0, 0),
                     _ => Vector2.zero
                 };
             }
@@ -40,10 +40,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
                 {
                     return (_target.transform.position - transform.position).normalized;
                 }
-                else
-                {
-                    return Vector2.zero;
-                }
+
+                return Vector2.zero;
             }
             set => throw new System.NotImplementedException();
         }

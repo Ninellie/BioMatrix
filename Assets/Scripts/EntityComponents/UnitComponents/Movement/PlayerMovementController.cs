@@ -8,14 +8,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
     public class PlayerMovementController : MovementController
     {
         [SerializeField]
-        private float _shootingSpeedMultiplier;
-            //= 0.3f;
+        private float _shootingSpeedMultiplier; //= 0.3f;
+
         protected override float Speed =>
-                _isFireButtonPressed && !_player.GetWeapon().GetAmmoResource().IsEmpty
-                ? speedOldStat.Value * SpeedScale * _shootingSpeedMultiplier
-                : speedOldStat.Value * SpeedScale;
-
-
+            _isFireButtonPressed && !_player.GetWeapon().GetAmmoResource().IsEmpty
+                ? speedStat.Value * SpeedScale * _shootingSpeedMultiplier
+                : speedStat.Value * SpeedScale;
         protected override Vector2 MovementDirection { get; set; }
         protected override Vector2 RawMovementDirection
         {
@@ -38,14 +36,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             MovementDirection = inputVector2;
         }
 
-        public void OnFire()
-        {
-            _isFireButtonPressed = true;
-        }
+        public void OnFire() => _isFireButtonPressed = true;
 
-        public void OnFireOff()
-        {
-            _isFireButtonPressed = false;
-        }
+        public void OnFireOff() => _isFireButtonPressed = false;
     }
 }

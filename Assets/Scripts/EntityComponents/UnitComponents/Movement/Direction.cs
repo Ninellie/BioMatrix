@@ -1,6 +1,6 @@
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
-    public enum FrontSide
+    public enum Direction
     {
         Up, Down, Left, Right
     }

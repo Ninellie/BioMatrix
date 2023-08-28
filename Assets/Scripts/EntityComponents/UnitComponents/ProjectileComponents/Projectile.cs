@@ -43,15 +43,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
         private void OnEnable()
         {
             _stats.GetStat(StatName.Size).valueChangedEvent.AddListener(ChangeCurrentSize);
-            _resources.GetResource(ResourceName.Health).
-                GetEvent(ResourceEventType.Empty).AddListener(Death);
+            _resources.GetResource(ResourceName.Health).GetEvent(ResourceEventType.Empty).AddListener(Death);
         }
 
         private void OnDisable()
         {
             _stats.GetStat(StatName.Size).valueChangedEvent.RemoveListener(ChangeCurrentSize);
-            _resources.GetResource(ResourceName.Health).
-                GetEvent(ResourceEventType.Empty).RemoveListener(Death);
+            _resources.GetResource(ResourceName.Health).GetEvent(ResourceEventType.Empty).RemoveListener(Death);
         }
 
         private void FixedUpdate()

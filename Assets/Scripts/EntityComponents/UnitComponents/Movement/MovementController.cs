@@ -40,7 +40,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         }
 
         private Vector2 AddedVelocity { get; set; } = Vector2.zero;
-        protected OldStat speedOldStat;
+        protected Stat speedStat;
         protected abstract float Speed { get; }
         protected abstract Vector2 MovementDirection { get; set; }
         protected abstract Vector2 RawMovementDirection { get; set; }
@@ -53,7 +53,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         protected void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            speedOldStat = GetComponent<Unit>().Speed;
+            speedStat = GetComponent<StatList>().GetStat(StatName.MovementSpeed);
             SpeedScale = _baseSpeedScale;
         }
 
@@ -63,30 +63,22 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             if (_restoreSpeedScale)
                 RestoreSpeedScale(t);
 
-            //UpdateKnockbackTime(t);
-
             var nextPosition = GetMoveStep(t);
             _rigidbody2D.MovePosition(nextPosition);
         }
 
         protected void OnDrawGizmos()
         {
-            if (speedOldStat == null) return;
+            if (speedStat == null) return;
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, Velocity + (Vector2)transform.position);
             Gizmos.color = Color.magenta;
             Gizmos.DrawLine(transform.position, MovementVelocity + (Vector2)transform.position);
         }
 
-        public Vector2 GetRawMovementDirection()
-        {
-            return RawMovementDirection;
-        }
+        public Vector2 GetRawMovementDirection() => RawMovementDirection;
 
-        public float GetSpeedScale()
-        {
-            return SpeedScale;
-        }
+        public float GetSpeedScale() => SpeedScale;
 
         public void SetSpeedScale(float value)
         {
@@ -105,20 +97,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             SpeedScale = value;
         }
 
-        public bool IsStopped()
-        {
-            return Speed <= 0f;
-        }
+        public bool IsStopped() => Speed <= 0f;
 
-        public void AddVelocity(Vector2 velocity)
-        {
-            AddedVelocity += velocity;
-        }
+        public void AddVelocity(Vector2 velocity) => AddedVelocity += velocity;
 
-        private Vector2 GetMoveStep(float time)
-        {
-            return MyPosition + Velocity * time;
-        }
+        private Vector2 GetMoveStep(float time) => MyPosition + Velocity * time;
 
         private void RestoreSpeedScale(float time)
         {
