@@ -17,6 +17,11 @@ namespace Assets.Scripts.EntityComponents.Stats
             if(!_usePreset) return;
             FillListFromPreset();
         }
+        // ???
+        public float GetPresetStatValue(StatName statName)
+        {
+            return _preset.stats.FirstOrDefault(stat => stat.name.Equals(statName))!.baseValue;
+        }
 
         public Stat GetStat(StatName statName)
         {

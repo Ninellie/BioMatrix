@@ -38,15 +38,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 
         private void FixedUpdate() => OrbitalStep(Time.fixedDeltaTime);
 
-        public void SetObjects(Stack<Turret> objects)
-        {
-            _objects = objects;
-        }
+        public void SetObjects(Stack<Turret> objects) => _objects = objects;
 
-        public void SetAttractor(GameObject attractor)
-        {
-            _attractor = attractor;
-        }
+        public void SetAttractor(GameObject attractor) => _attractor = attractor;
 
         private void OrbitalStep(float time)
         {

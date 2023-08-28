@@ -47,7 +47,7 @@ namespace Assets.Scripts.TileScripts.EnemyTiles
 
         [Header("Indicators")]
     
-        [SerializeField] private bool _isActive;
+        //[SerializeField] private bool _isActive;
         [SerializeField] private bool _isCharging;
         [SerializeField] private bool _isBlinking;
         [SerializeField] private float _alphaPerSecondCharging;
@@ -107,14 +107,14 @@ namespace Assets.Scripts.TileScripts.EnemyTiles
 
         private void Activate()
         {
-            _isActive = true;
+            //_isActive = true;
             _tilemapRenderer.material.color = _activatedColor;
             _rb.simulated = true;
         }
 
         private void Deactivate()
         {
-            _isActive = false;
+            //_isActive = false;
             _tilemapRenderer.material.color = _deactivatedColor;
             _rb.simulated = false;
         }

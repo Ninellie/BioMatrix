@@ -53,8 +53,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         protected void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            speedStat = GetComponent<StatList>().GetStat(StatName.MovementSpeed);
             SpeedScale = _baseSpeedScale;
+        }
+
+        protected void Start()
+        {
+            speedStat = GetComponent<StatList>().GetStat(StatName.MovementSpeed);
         }
 
         protected void FixedUpdate()

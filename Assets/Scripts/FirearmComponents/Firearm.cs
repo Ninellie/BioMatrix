@@ -13,7 +13,6 @@ public interface IWeapon
     Resource GetAmmoResource();
 }
 
-
 namespace Assets.Scripts.FirearmComponents
 {
     [RequireComponent(typeof(Reload))]
@@ -24,14 +23,6 @@ namespace Assets.Scripts.FirearmComponents
         [SerializeField] private LayerMask _enemyLayer;
         [SerializeField] private bool _isAimHelperActive;
         //[SerializeField] private Vector2 _currentFireDirection;
-
-        private void OnDrawGizmos()
-        {
-            var stat = _stats.GetStat(StatName.TurretAimingRadius);
-            if (stat == null) return;
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(transform.position, stat.Value);
-        }
 
         public bool IsForPlayer { get; private set; }
         public Stat Damage { get; private set; }
@@ -90,10 +81,15 @@ namespace Assets.Scripts.FirearmComponents
             if (CanShoot) Shoot();
         }
 
-        public StatList GetStatList()
+        private void OnDrawGizmos()
         {
-            return _stats;
+            var stat = _stats.GetStat(StatName.TurretAimingRadius);
+            if (stat == null) return;
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(transform.position, stat.Value);
         }
+
+        public StatList GetStatList() => _stats;
 
         public void SetStatList(StatList statList)
         {
@@ -101,15 +97,9 @@ namespace Assets.Scripts.FirearmComponents
             SetStats(_stats);
         }
 
-        public void OnReload()
-        {
-            ReloadEvent?.Invoke();
-        }
+        public void OnReload() => ReloadEvent?.Invoke();
 
-        public void OnReloadEnd()
-        {
-            ReloadEndEvent?.Invoke();
-        }
+        public void OnReloadEnd() => ReloadEndEvent?.Invoke();
 
         //public void SetDirection(Vector2 direction)
         //{
@@ -128,10 +118,7 @@ namespace Assets.Scripts.FirearmComponents
             _source.IncreaseKills();
         }
 
-        public Resource GetAmmoResource()
-        {
-            return  _resources.GetResource(ResourceName.Ammo);
-        }
+        public Resource GetAmmoResource() => _resources.GetResource(ResourceName.Ammo);
 
         private void SetStats(StatList firearmStats)
         {

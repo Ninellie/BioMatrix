@@ -32,7 +32,7 @@ namespace Assets.Scripts.View
         public void SetResource(Resource resource)
         {
             targetResource = resource;
-            targetResource.GetEvent(ResourceEventType.ValueChanged).AddListener(UpdateCounter);
+            targetResource.AddListenerToEvent(ResourceEventType.ValueChanged).AddListener(UpdateCounter);
             UpdateCounter();
         }
 

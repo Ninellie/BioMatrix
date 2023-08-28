@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6042837996286799121}
   - component: {fileID: 8165684587596004793}
-  - component: {fileID: -4503049236320595623}
   - component: {fileID: -1246950854706297088}
   - component: {fileID: -7540060648430052599}
   - component: {fileID: 4540966149982126123}
@@ -58,28 +57,8 @@ MonoBehaviour:
   _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
   _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
   _enemyType: 0
-  _dieOnPlayerCollision: 1
-  knockbackController: {fileID: 0}
---- !u!114 &-4503049236320595623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8954189743293124748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2a850ce09077234ea53b4b6791f923b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 0.7
-  maximumLife: 20
-  lifeRegenerationInSecond: 0
-  knockbackPower: 150
-  damage: 1
-  speed: 140
-  rotationSpeed: 0
-  spawnWeight: 5
+  _dieOnPlayerCollision: 0
+  knockbackController: {fileID: -7540060648430052599}
 --- !u!114 &-1246950854706297088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,37 +262,61 @@ MonoBehaviour:
   _usePreset: 1
   _preset: {fileID: 11400000, guid: 44beba384aa2c414ab20475fe44adc78, type: 2}
   _stats:
-  - _name: 1
+  - _strName: 'Size: 0,7'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 1
     _baseValue: 0.7
     _value: 0.7
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 2
+  - _strName: 'MaximumHealth: 20'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 2
     _baseValue: 20
     _value: 20
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 5
+  - _strName: 'MovementSpeed: 140'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 5
     _baseValue: 140
     _value: 140
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 4
+  - _strName: 'KnockbackPower: 150'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 4
     _baseValue: 150
     _value: 150
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 7
+  - _strName: 'Damage: 1'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 7
     _baseValue: 1
     _value: 1
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 24
+  - _strName: 'SpawnWeight: 5'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 24
     _baseValue: 5
     _value: 5
     _addedValue: 0
@@ -333,90 +336,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _preset: {fileID: 11400000, guid: 60536cb26f4ab17468f56b3d80b53c58, type: 2}
   _resources:
-  - _name: 1
+  - stringName: 'Health: 20'
+    _name: 1
     _value: 20
     _isLimited: 1
     _isInfinite: 0
     _minValue: 0
     _edgeValue: 1
     _maxValueStat:
+      _strName: 
+      valueChangedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _name: 2
       _baseValue: 20
       _value: 20
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
-    valueChangedEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    increaseEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    decreaseEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    incrementEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    decrementEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    fillEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    emptyEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    edgeEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    notEdgeEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    notEmptyEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - _name: 3
+  - stringName: 'Kills: 0'
+    _name: 3
     _value: 0
     _isLimited: 0
     _isInfinite: 0
     _minValue: 0
     _edgeValue: 1
     _maxValueStat:
+      _strName: 
+      valueChangedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _name: 0
       _baseValue: Infinity
       _value: Infinity
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
-    valueChangedEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    increaseEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    decreaseEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    incrementEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    decrementEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    fillEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    emptyEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    edgeEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    notEdgeEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    notEmptyEvent:
-      m_PersistentCalls:
-        m_Calls: []
   _statList: {fileID: -4600533595376686882}

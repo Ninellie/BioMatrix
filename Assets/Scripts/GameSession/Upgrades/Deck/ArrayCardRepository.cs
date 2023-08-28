@@ -34,7 +34,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
     [Serializable]
     public class ArrayCardRepository : ICardRepository
     {
-        private static readonly IEffectRepository EffectRepository = new EffectRepository();
+        private static readonly IEffectRepository EffectRepository; // = new EffectRepository();
 
         private static TagsWeightMultiplierData _multiplierData = new();
 

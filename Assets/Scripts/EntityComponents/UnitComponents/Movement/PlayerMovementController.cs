@@ -30,6 +30,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             base.Awake();
         }
 
+        private new void Start()
+        {
+            base.Start();
+        }
+
         public void OnMove(InputValue input)
         {
             var inputVector2 = input.Get<Vector2>();

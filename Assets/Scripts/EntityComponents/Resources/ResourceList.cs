@@ -16,16 +16,17 @@ namespace Assets.Scripts.EntityComponents.Resources
         private void Awake()
         {
             _statList = GetComponent<StatList>();
+            FillListFromPreset();
         }
 
         private void Start()
         {
-            FillListFromPreset();
+            
         }
 
         public Resource GetResource(ResourceName resourceName)
         {
-            return _resources.FirstOrDefault(resource => resource.Name.Equals(resourceName));
+            return _resources.First(resource => resource.Name.Equals(resourceName));
         }
 
         [ContextMenu("Read Preset")]

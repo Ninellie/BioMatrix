@@ -1,12 +1,15 @@
 using System;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Turret;
 using Assets.Scripts.FirearmComponents;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using static UnityEngine.EventSystems.EventTrigger;
 
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
@@ -52,8 +55,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private Invulnerability _invulnerability;
         private StatList _stats;
         private ResourceList _resources;
-
         private string _currentState;
+        private bool _isSubscribed;
 
         private void Awake()
         {
@@ -69,50 +72,86 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _circleCollider.radius = Math.Max(_stats.GetStat(StatName.MagnetismRadius).Value, 0);
         }
 
-        private void OnEnable()
+        private void Start() => Subscribe();
+        private void OnEnable() => Subscribe();
+        private void OnDisable() => Unsubscribe();
+        private void Subscribe()
         {
-            _stats.GetStat(StatName.Size).valueChangedEvent.AddListener(ChangeCurrentSize);
-            _stats.GetStat(StatName.MagnetismRadius).valueChangedEvent.AddListener(ChangeCurrentMagnetismRadius);
-            _resources.GetResource(ResourceName.Health).GetEvent(ResourceEventType.Empty).AddListener(Death);
-            _resources.GetResource(ResourceName.Experience).GetEvent(ResourceEventType.Fill).AddListener(LevelUp);
+            if (_isSubscribed) return;
+
+            var sizeStat = _stats.GetStat(StatName.Size);
+            var magnetismRadiusStat = _stats.GetStat(StatName.MagnetismRadius);
+            var healthResource = _resources.GetResource(ResourceName.Health);
+            var experienceResource = _resources.GetResource(ResourceName.Experience);
+
+            if (sizeStat is null) return;
+            if (magnetismRadiusStat is null) return;
+            if (healthResource is null) return;
+            if (experienceResource is null) return;
+
+            sizeStat.valueChangedEvent.AddListener(ChangeCurrentSize);
+            magnetismRadiusStat.valueChangedEvent.AddListener(ChangeCurrentMagnetismRadius);
+            healthResource.
+                AddListenerToEvent(ResourceEventType.Empty).
+                AddListener(Death);
+            experienceResource.AddListenerToEvent(ResourceEventType.Fill).AddListener(LevelUp);
+
+            _isSubscribed = true;
         }
 
-        private void OnDisable()
+        private void Unsubscribe()
         {
+            if (!_isSubscribed) return;
+
             _stats.GetStat(StatName.Size).valueChangedEvent.RemoveListener(ChangeCurrentSize);
             _stats.GetStat(StatName.MagnetismRadius).valueChangedEvent.RemoveListener(ChangeCurrentMagnetismRadius);
-            _resources.GetResource(ResourceName.Health).GetEvent(ResourceEventType.Empty).RemoveListener(Death);
-            _resources.GetResource(ResourceName.Experience).GetEvent(ResourceEventType.Fill).RemoveListener(LevelUp);
+            _resources.GetResource(ResourceName.Health).AddListenerToEvent(ResourceEventType.Empty).RemoveListener(Death);
+            _resources.GetResource(ResourceName.Experience).AddListenerToEvent(ResourceEventType.Fill).RemoveListener(LevelUp);
+
+            _isSubscribed = false;
         }
 
-        private void OnCollisionEnter2D(Collision2D collision2D)
+
+
+        private void CollideWithEnemy(Enemy enemy)
         {
-            var otherCollider2D = collision2D.collider;
-            if (!otherCollider2D.gameObject.TryGetComponent<Entity>(out var entity))
-            {
-                Debug.LogWarning("OnTriggerEnter2D with game object without Entity component", this);
-                return;
-            }
-
-            otherCollider2D.gameObject.TryGetComponent<StatList>(out var enemyStats);
-
-            var isEnemy = otherCollider2D.gameObject.CompareTag("Enemy");
-            var isEnclosure = otherCollider2D.gameObject.CompareTag("Enclosure");
-
-            if (!isEnemy && !isEnclosure) return;
-
             if (!Shield.LayersCount.IsEmpty)
                 Shield.LayersCount.Decrease();
             else
             {
-                var damageValue = (int)enemyStats.GetStat(StatName.Damage).Value;
-                TakeDamage(damageValue);
+                var damageAmount = enemy.GetDamage();
+                TakeDamage(damageAmount);
 
                 if (_resources.GetResource(ResourceName.Health).IsEmpty) return;
 
                 _invulnerability.ApplyInvulnerable();
 
-                if (isEnemy) KnockBackFromEntity(entity);
+                var knockbackPower = enemy.GetKnockbackPower();
+                Vector2 enemyPosition = enemy.transform.position;
+
+                KnockBackFromEntity(knockbackPower, enemyPosition);
+            }
+        }
+
+        //private void CollideWithEnclosure(Player player)
+        //{
+        // shield, damage, knockback from pos with power
+        //}
+
+        private void OnCollisionEnter2D(Collision2D collision2D)
+        {
+            var otherTag = collision2D.collider.tag;
+
+            switch (otherTag)
+            {
+                case "Enemy":
+                    var enemy = collision2D.gameObject.GetComponent<Enemy>();
+                    CollideWithEnemy(enemy);
+                    break;
+                case "Enclosure":
+                    
+                    //CollideWithEnclosure(projectile);
+                    break;
             }
         }
 
@@ -141,20 +180,17 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void LevelUp()
         {
-            var statMod = new StatMod(OperationType.Addition,
-                ExperienceAmountIncreasingPerLevel); // TODO add this value to stats as stat
+            var statMod = new StatMod(OperationType.Addition, ExperienceAmountIncreasingPerLevel); // TODO add this value to stats as stat
 
             _stats.GetStat(StatName.ExperienceToNewLevel).AddModifier(statMod);
             _resources.GetResource(ResourceName.Level).Increase();
             _resources.GetResource(ResourceName.Experience).Empty();
         }
 
-        private void KnockBackFromEntity(Entity entity)
+        private void KnockBackFromEntity(float knockbackPower, Vector2 position)
         {
-            var magnitude = entity.KnockbackPower.Value;
-            var direction = ((Vector2)transform.position - (Vector2)entity.transform.position).normalized;
-            var force = direction * magnitude;
-
+            var direction = ((Vector2)transform.position - position).normalized;
+            var force = direction * knockbackPower;
             _knockbackController.Knockback(force);
         }
 

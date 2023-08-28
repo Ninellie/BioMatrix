@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25437cf037f85d04b9c499f44afbe3e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _usePreset: 0
+  _usePreset: 1
   _preset: {fileID: 11400000, guid: b589406355a3e934b901a3ffe4fec710, type: 2}
   _stats: []
 --- !u!114 &7887913964525145941

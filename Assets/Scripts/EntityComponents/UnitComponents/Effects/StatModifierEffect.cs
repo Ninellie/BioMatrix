@@ -21,7 +21,7 @@ public class EffectAdderEffect : Effect, IRespondingEffect, IEffectAdder
 
     public void SetResourceList(ResourceList resourceList)
     {
-        resourceList.GetResource(_resourceName).GetEvent(_event).AddListener(() => _effectsAggregator.AddEffect(_effect));
+        resourceList.GetResource(_resourceName).AddListenerToEvent(_event, () => _effectsAggregator.AddEffect(_effect));
     }
 
     public void SetEffectsManager(OverUnitDataAggregator effectsAggregator)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
@@ -108,14 +109,11 @@ namespace Assets.Scripts.GameSession.Spawner
         private void PrepareEnemy(Enemy enemy, Vector2 playerPosition)
         {
             var rarity = _rarity.GetRandomRarity();
-            var levelUpBonus = TimerBonus;
+            //var levelUpBonus = TimerBonus;
             enemy.SetRarity(rarity);
-            enemy.LevelUp(levelUpBonus);
-            enemy.RestoreLifePoints();
-            if (enemy.GetEnemyType() == EnemyType.AboveView)
-            {
-                enemy.LookAt2D(playerPosition);
-            }
+            //enemy.LevelUp(levelUpBonus);
+            if (enemy.GetEnemyType() != EnemyType.AboveView) return;
+            enemy.LookAt2D(playerPosition);
         }
 
         private List<GameObject> GetEnemyList(int numberOfEnemies, IEnumerable<GameObject> enemyTypes)
@@ -133,12 +131,14 @@ namespace Assets.Scripts.GameSession.Spawner
 
         private GameObject GetRandomEnemyFromList(List<GameObject> enemyList)
         {
-            var sum = enemyList.Sum(enemy => (int)enemy.GetComponent<Enemy>().Settings.spawnWeight);
+            var sum = enemyList.Sum(enemy =>
+                (int)enemy.GetComponent<StatList>().GetPresetStatValue(StatName.SpawnWeight));
+
             var next = _random.Next(sum);
             var limit = 0;
             foreach (var enemy in enemyList)
             {
-                limit += (int)enemy.GetComponent<Enemy>().Settings.spawnWeight;
+                limit += (int)enemy.GetComponent<StatList>().GetPresetStatValue(StatName.SpawnWeight);
                 if (next < limit)
                 {
                     return enemy;

@@ -5238,43 +5238,71 @@ MonoBehaviour:
   _usePreset: 1
   _preset: {fileID: 11400000, guid: 480b5b60630e22f4e94cb3264c8983a3, type: 2}
   _stats:
-  - _name: 1
+  - _strName: 'Size: 2,5'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 1
     _baseValue: 2.5
     _value: 2.5
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 2
+  - _strName: 'MaximumHealth: 3'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 2
     _baseValue: 3
     _value: 3
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 3
+  - _strName: 'Regeneration: 0'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 3
     _baseValue: 0
     _value: 0
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 5
+  - _strName: 'MovementSpeed: 300'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 5
     _baseValue: 300
     _value: 300
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 9
+  - _strName: 'MagnetismRadius: 75'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 9
     _baseValue: 75
     _value: 75
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 8
+  - _strName: 'ExperienceMultiplier: 1'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 8
     _baseValue: 1
     _value: 1
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 25
+  - _strName: 'ExperienceToNewLevel: 35'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 25
     _baseValue: 35
     _value: 35
     _addedValue: 0
@@ -5294,178 +5322,78 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _preset: {fileID: 11400000, guid: f6d53f77e5e96684e86f2ea2bb0a35a9, type: 2}
   _resources:
-  - _name: 1
+  - stringName: 'Health: 3'
+    _name: 1
     _value: 3
     _isLimited: 1
     _isInfinite: 0
     _minValue: 0
     _edgeValue: 1
     _maxValueStat:
+      _strName: 'MaximumHealth: 3'
+      valueChangedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _name: 2
       _baseValue: 3
       _value: 3
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
-    valueChangedEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    increaseEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    decreaseEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    incrementEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    decrementEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    fillEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    emptyEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    edgeEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    notEdgeEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    notEmptyEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - _name: 3
+  - stringName: 'Kills: 0'
+    _name: 3
     _value: 0
     _isLimited: 0
     _isInfinite: 0
     _minValue: 0
     _edgeValue: 1
     _maxValueStat:
+      _strName: 
+      valueChangedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _name: 0
       _baseValue: Infinity
       _value: Infinity
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
-    valueChangedEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    increaseEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    decreaseEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    incrementEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    decrementEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    fillEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    emptyEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    edgeEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    notEdgeEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    notEmptyEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - _name: 7
+  - stringName: 'Level: 0'
+    _name: 7
     _value: 0
     _isLimited: 0
     _isInfinite: 0
     _minValue: 0
     _edgeValue: 1
     _maxValueStat:
+      _strName: 
+      valueChangedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _name: 0
       _baseValue: Infinity
       _value: Infinity
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
-    valueChangedEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    increaseEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    decreaseEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    incrementEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    decrementEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    fillEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    emptyEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    edgeEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    notEdgeEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    notEmptyEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  - _name: 6
+  - stringName: 'Experience: 0'
+    _name: 6
     _value: 0
     _isLimited: 1
     _isInfinite: 0
     _minValue: 0
     _edgeValue: 1
     _maxValueStat:
+      _strName: 'ExperienceToNewLevel: 35'
+      valueChangedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _name: 25
       _baseValue: 35
       _value: 35
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
-    valueChangedEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    increaseEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    decreaseEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    incrementEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    decrementEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    fillEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    emptyEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    edgeEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    notEdgeEvent:
-      m_PersistentCalls:
-        m_Calls: []
-    notEmptyEvent:
-      m_PersistentCalls:
-        m_Calls: []
   _statList: {fileID: 4013630423983573852}
 --- !u!114 &6842002535895687529
 MonoBehaviour:

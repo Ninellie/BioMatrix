@@ -46,16 +46,16 @@ namespace Assets.Scripts.EntityComponents.Resources
 
         [ReadOnly] [SerializeField] private Stat _maxValueStat;
 
-        [SerializeField] private UnityEvent valueChangedEvent;
-        [SerializeField] private UnityEvent increaseEvent;
-        [SerializeField] private UnityEvent decreaseEvent;
-        [SerializeField] private UnityEvent incrementEvent;
-        [SerializeField] private UnityEvent decrementEvent;
-        [SerializeField] private UnityEvent fillEvent;
-        [SerializeField] private UnityEvent emptyEvent;
-        [SerializeField] private UnityEvent edgeEvent;
-        [SerializeField] private UnityEvent notEdgeEvent;
-        [SerializeField] private UnityEvent notEmptyEvent;
+        private UnityEvent _valueChangedEvent = new();
+        private UnityEvent _increaseEvent = new();
+        private UnityEvent _decreaseEvent = new();
+        private UnityEvent _incrementEvent = new();
+        private UnityEvent _decrementEvent = new();
+        private UnityEvent _fillEvent = new();
+        private UnityEvent _emptyEvent = new();
+        private UnityEvent _edgeEvent = new();
+        private UnityEvent _notEdgeEvent = new();
+        private UnityEvent _notEmptyEvent = new();
 
         /// <summary>
         /// Creates infinite resource
@@ -199,30 +199,48 @@ namespace Assets.Scripts.EntityComponents.Resources
             return currentPercent;
         }
 
-        public UnityEvent GetEvent(ResourceEventType eventType)
+        public void AddListenerToEvent(ResourceEventType eventType, UnityAction action)
         {
-            return eventType switch
+            switch (eventType)
             {
-                ResourceEventType.ValueChanged => valueChangedEvent,
-                ResourceEventType.Increase => increaseEvent,
-                ResourceEventType.Decrease => decreaseEvent,
-                ResourceEventType.Increment => incrementEvent,
-                ResourceEventType.Decrement => decrementEvent,
-                ResourceEventType.Fill => fillEvent,
-                ResourceEventType.Empty => emptyEvent,
-                ResourceEventType.Edge => edgeEvent,
-                ResourceEventType.NotEdge => notEdgeEvent,
-                ResourceEventType.NotEmpty => notEmptyEvent,
-                _ => throw new ArgumentOutOfRangeException(nameof(eventType), eventType, null)
-            };
+                case ResourceEventType.ValueChanged:
+                    _valueChangedEvent.AddListener(action);
+                    break;
+                case ResourceEventType.Increase:
+                    _increaseEvent.AddListener(action);
+                    break;
+                case ResourceEventType.Decrease:
+                    _decreaseEvent.AddListener(action);
+                    break;
+                case ResourceEventType.Increment:
+                    _incrementEvent.AddListener(action);
+                    break;
+                case ResourceEventType.Decrement:
+                    _decrementEvent.AddListener(action);
+                    break;
+                case ResourceEventType.Fill:
+                    _fillEvent.AddListener(action);
+                    break;
+                case ResourceEventType.Empty:
+                    _emptyEvent.AddListener(action);
+                    break;
+                case ResourceEventType.Edge:
+                    _edgeEvent.AddListener(action);
+                    break;
+                case ResourceEventType.NotEdge:
+                    _notEdgeEvent.AddListener(action);
+                    break;
+                case ResourceEventType.NotEmpty:
+                    _notEmptyEvent.AddListener(action);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(eventType), eventType, null);
+            }
         }
 
-        protected virtual void InvokeEvents(int oldValue, int newValue)
+        private void InvokeEvents(int oldValue, int newValue)
         {
-            if (oldValue == newValue)
-            {
-                return;
-            }
+            if (oldValue == newValue) return;
 
             var isFillEventRequired = false;
             var isEmptyEventRequired = false;
@@ -246,42 +264,42 @@ namespace Assets.Scripts.EntityComponents.Resources
 
             if (dif > 0)
             {
-                increaseEvent?.Invoke();
+                _increaseEvent?.Invoke();
                 while (dif != 0)
                 {
-                    incrementEvent?.Invoke();
+                    _incrementEvent?.Invoke();
                     dif--;
                 }
             }
 
             if (dif < 0)
             {
-                decreaseEvent?.Invoke();
+                _decreaseEvent?.Invoke();
                 while (dif != 0)
                 {
-                    decrementEvent?.Invoke();
+                    _decrementEvent?.Invoke();
                     dif++;
                 }
             }
 
             if (oldValue == _minValue && newValue != _minValue)
             {
-                notEmptyEvent?.Invoke();
+                _notEmptyEvent?.Invoke();
             }
 
             if (oldValue == _edgeValue && _value > _edgeValue)
             {
-                notEdgeEvent?.Invoke();
+                _notEdgeEvent?.Invoke();
             }
 
             if (newValue == _edgeValue)
             {
-                edgeEvent?.Invoke();
+                _edgeEvent?.Invoke();
             }
 
-            valueChangedEvent?.Invoke();
-            if (isFillEventRequired) fillEvent?.Invoke();
-            if (isEmptyEventRequired) emptyEvent?.Invoke();
+            _valueChangedEvent?.Invoke();
+            if (isFillEventRequired) _fillEvent?.Invoke();
+            if (isEmptyEventRequired) _emptyEvent?.Invoke();
         }
     }
 }

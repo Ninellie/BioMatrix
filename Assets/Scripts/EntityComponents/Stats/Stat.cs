@@ -13,7 +13,7 @@ namespace Assets.Scripts.EntityComponents.Stats
         [HideInInspector]
         public string _strName;
 
-        public UnityEvent valueChangedEvent;
+        public UnityEvent valueChangedEvent = new();
 
         [ReadOnly]
         [SerializeField]

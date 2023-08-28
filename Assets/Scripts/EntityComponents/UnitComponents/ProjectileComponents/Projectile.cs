@@ -1,5 +1,6 @@
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
@@ -16,8 +17,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
         public void SetSource(ISource source);
     }
 
+    public interface IKnockbackDealer
+    {
+        float GetKnockbackPower();
+    }
+
     [RequireComponent(typeof(UnitStatsSettings))]
-    public class Projectile : MonoBehaviour, ISlayer, IDerivative
+    public class Projectile : MonoBehaviour, ISlayer, IDerivative, IDamageDealer, IDamageable, IKnockbackDealer
     {
         private TrailRenderer _trail;
         private CircleCollider2D _circleCollider;
@@ -26,6 +32,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
         private ISlayer _source;
         private StatList _stats;
         private ResourceList _resources;
+
+        private bool _isSubscribed;
 
         private void Awake()
         {
@@ -40,17 +48,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
             ChangeCurrentSize();
         }
 
-        private void OnEnable()
-        {
-            _stats.GetStat(StatName.Size).valueChangedEvent.AddListener(ChangeCurrentSize);
-            _resources.GetResource(ResourceName.Health).GetEvent(ResourceEventType.Empty).AddListener(Death);
-        }
+        private void Start() => Subscribe();
 
-        private void OnDisable()
-        {
-            _stats.GetStat(StatName.Size).valueChangedEvent.RemoveListener(ChangeCurrentSize);
-            _resources.GetResource(ResourceName.Health).GetEvent(ResourceEventType.Empty).RemoveListener(Death);
-        }
+        private void OnEnable() => Subscribe();
+
+        private void OnDisable() => Unsubscribe();
 
         private void FixedUpdate()
         {
@@ -62,11 +64,21 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
         {
             var otherCollider2D = collision2D.collider;
             if (!otherCollider2D.gameObject.CompareTag("Enemy")) return;
-            if (!otherCollider2D.gameObject.GetComponent<EnemyComponents.Enemy>().Alive) return;
+            if (!otherCollider2D.gameObject.GetComponent<Enemy>().IsAlive) return;
             _resources.GetResource(ResourceName.Health).Decrease();
         }
 
         private void OnBecameInvisible() => Death();
+
+        public int GetDamage()
+        {
+            return (int)_stats.GetStat(StatName.Damage).Value;
+        }
+
+        public void TakeDamage(int damageAmount)
+        {
+            _resources.GetResource(ResourceName.Health).Decrease(damageAmount);
+        }
 
         public void Launch(Vector2 direction, float force)
         {
@@ -87,11 +99,44 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
                 _source = slayer;
         }
 
+        public float GetKnockbackPower() => _stats.GetStat(StatName.KnockbackPower).Value;
+
         private void ChangeCurrentSize()
         {
             var sizeValue = _stats.GetStat(StatName.Size).Value;
             transform.localScale = new Vector3(sizeValue, sizeValue, 1);
             _trail.startWidth = _circleCollider.radius * 2 * sizeValue;
+        }
+
+        private void Subscribe()
+        {
+            if (_isSubscribed) return;
+
+            var sizeStat = _stats.GetStat(StatName.Size);
+            var healthResource = _resources.GetResource(ResourceName.Health);
+
+            if (sizeStat is null) return;
+            if (healthResource is null) return;
+
+            sizeStat.valueChangedEvent.AddListener(ChangeCurrentSize);
+            healthResource.AddListenerToEvent(ResourceEventType.Empty).AddListener(Death);
+
+            _isSubscribed = true;
+        }
+
+        private void Unsubscribe()
+        {
+            if (!_isSubscribed) return;
+            var sizeStat = _stats.GetStat(StatName.Size);
+            var healthResource = _resources.GetResource(ResourceName.Health);
+
+            if (sizeStat is null) return;
+            if (healthResource is null) return;
+
+            sizeStat.valueChangedEvent.RemoveListener(ChangeCurrentSize);
+            healthResource.AddListenerToEvent(ResourceEventType.Empty).RemoveListener(Death);
+
+            _isSubscribed = false;
         }
 
         private void Death()

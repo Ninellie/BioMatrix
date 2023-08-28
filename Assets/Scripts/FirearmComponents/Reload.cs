@@ -26,12 +26,13 @@ namespace Assets.Scripts.FirearmComponents
     
         private void OnEnable()
         {
-            _magazine.GetEvent(ResourceEventType.Empty).AddListener(Initiate);
+            _magazine.AddListenerToEvent(ResourceEventType.Empty).AddListener(Initiate);
+            _magazine.AddListenerToEvent(ResourceEventType.Empty, Initiate);
         }
 
         private void OnDisable()
         {
-            _magazine.GetEvent(ResourceEventType.Empty).RemoveListener(Initiate);
+            _magazine.AddListenerToEvent(ResourceEventType.Empty).RemoveListener(Initiate);
         }
 
         private void Initiate()
