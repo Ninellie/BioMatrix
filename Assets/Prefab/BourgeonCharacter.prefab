@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 885779190258261260}
   - component: {fileID: 2975664437671385834}
-  - component: {fileID: 659999168091465563}
   - component: {fileID: 58879946241494682}
   - component: {fileID: 6184172464766941476}
   - component: {fileID: -1144305010475561183}
@@ -73,27 +72,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 766516748403551923}
   _shield: {fileID: 6875561572371950145}
---- !u!114 &659999168091465563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671026415413744665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4a1cf3573fe33342b0bb47bc2f0310e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 2.5
-  maximumLife: 3
-  lifeRegenerationInSecond: 0
-  knockbackPower: 100
-  damage: 0
-  speed: 300
-  rotationSpeed: 0
-  magnetismRadius: 75
-  expMultiplier: 1
 --- !u!114 &58879946241494682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5320,6 +5298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c9f584044c0bd4695584b5e1405f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _usePreset: 1
   _preset: {fileID: 11400000, guid: f6d53f77e5e96684e86f2ea2bb0a35a9, type: 2}
   _resources:
   - stringName: 'Health: 3'
@@ -5340,6 +5319,36 @@ MonoBehaviour:
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
+    _valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _increaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _decreaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _incrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _decrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _fillEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _emptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _edgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _notEdgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _notEmptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - stringName: 'Kills: 0'
     _name: 3
     _value: 0
@@ -5358,6 +5367,36 @@ MonoBehaviour:
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
+    _valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _increaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _decreaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _incrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _decrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _fillEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _emptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _edgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _notEdgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _notEmptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - stringName: 'Level: 0'
     _name: 7
     _value: 0
@@ -5376,6 +5415,36 @@ MonoBehaviour:
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
+    _valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _increaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _decreaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _incrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _decrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _fillEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _emptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _edgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _notEdgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _notEmptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
   - stringName: 'Experience: 0'
     _name: 6
     _value: 0
@@ -5394,6 +5463,36 @@ MonoBehaviour:
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
+    _valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _increaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _decreaseEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _incrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _decrementEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _fillEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _emptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _edgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _notEdgeEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _notEmptyEvent:
+      m_PersistentCalls:
+        m_Calls: []
   _statList: {fileID: 4013630423983573852}
 --- !u!114 &6842002535895687529
 MonoBehaviour:
@@ -5509,6 +5608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c9f584044c0bd4695584b5e1405f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _usePreset: 1
   _preset: {fileID: 11400000, guid: a14f3d1a183893e4a99ba286c9b8f005, type: 2}
   _resources: []
   _statList: {fileID: 0}

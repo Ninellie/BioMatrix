@@ -70,10 +70,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             if (_isSubscribed) return;
 
             var turretsResource = _resources.GetResource(ResourceName.Turrets);
-            if (turretsResource is null)
-                return;
+            if (turretsResource is null) return;
 
-            turretsResource.AddListenerToEvent(ResourceEventType.ValueChanged).AddListener(UpdateTurrets);
+            _resources.GetResource(ResourceName.Turrets).AddListenerToEvent(ResourceEventType.ValueChanged, UpdateTurrets);
 
             _isSubscribed = true;
         }
@@ -83,10 +82,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             if (!_isSubscribed) return;
 
             var turretsResource = _resources.GetResource(ResourceName.Turrets);
-            if (turretsResource is null)
-                return;
+            if (turretsResource is null) return;
 
-            turretsResource.AddListenerToEvent(ResourceEventType.ValueChanged).RemoveListener(UpdateTurrets);
+            _resources.GetResource(ResourceName.Turrets).RemoveListenerToEvent(ResourceEventType.ValueChanged, UpdateTurrets);
 
             _isSubscribed = false;
         }

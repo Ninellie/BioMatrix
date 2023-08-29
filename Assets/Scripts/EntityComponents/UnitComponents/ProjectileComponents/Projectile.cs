@@ -119,7 +119,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
             if (healthResource is null) return;
 
             sizeStat.valueChangedEvent.AddListener(ChangeCurrentSize);
-            healthResource.AddListenerToEvent(ResourceEventType.Empty).AddListener(Death);
+            healthResource.AddListenerToEvent(ResourceEventType.Empty, Death);
 
             _isSubscribed = true;
         }
@@ -134,7 +134,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
             if (healthResource is null) return;
 
             sizeStat.valueChangedEvent.RemoveListener(ChangeCurrentSize);
-            healthResource.AddListenerToEvent(ResourceEventType.Empty).RemoveListener(Death);
+            healthResource.RemoveListenerToEvent(ResourceEventType.Empty, Death);
 
             _isSubscribed = false;
         }

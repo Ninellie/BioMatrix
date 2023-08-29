@@ -46,16 +46,16 @@ namespace Assets.Scripts.EntityComponents.Resources
 
         [ReadOnly] [SerializeField] private Stat _maxValueStat;
 
-        private UnityEvent _valueChangedEvent = new();
-        private UnityEvent _increaseEvent = new();
-        private UnityEvent _decreaseEvent = new();
-        private UnityEvent _incrementEvent = new();
-        private UnityEvent _decrementEvent = new();
-        private UnityEvent _fillEvent = new();
-        private UnityEvent _emptyEvent = new();
-        private UnityEvent _edgeEvent = new();
-        private UnityEvent _notEdgeEvent = new();
-        private UnityEvent _notEmptyEvent = new();
+        public UnityEvent OnValueChanged = new UnityEvent();
+        public UnityEvent OnIncrease = new UnityEvent();
+        public UnityEvent OnDecrease = new UnityEvent();
+        public UnityEvent OnIncrement = new UnityEvent();
+        public UnityEvent OnDecrement = new UnityEvent();
+        public UnityEvent Onfill = new UnityEvent();
+        public UnityEvent OnEmpty = new UnityEvent();
+        public UnityEvent OnEdge = new UnityEvent();
+        public UnityEvent OnNotEdge = new UnityEvent();
+        public UnityEvent OnNotEmpty = new UnityEvent();
 
         /// <summary>
         /// Creates infinite resource
@@ -189,10 +189,7 @@ namespace Assets.Scripts.EntityComponents.Resources
         public int GetLackValue() => (int)_maxValueStat.Value - _value;
         public float GetPercentValue()
         {
-            if (!_isLimited)
-            {
-                return Single.NaN;
-            }
+            if (!_isLimited) return Single.NaN;
             var maxValue = _maxValueStat.Value;
             var percent = maxValue / 100;
             var currentPercent = _value / percent;
@@ -204,37 +201,72 @@ namespace Assets.Scripts.EntityComponents.Resources
             switch (eventType)
             {
                 case ResourceEventType.ValueChanged:
-                    _valueChangedEvent.AddListener(action);
+                    OnValueChanged.AddListener(action);
                     break;
                 case ResourceEventType.Increase:
-                    _increaseEvent.AddListener(action);
+                    OnIncrease.AddListener(action);
                     break;
                 case ResourceEventType.Decrease:
-                    _decreaseEvent.AddListener(action);
+                    OnDecrease.AddListener(action);
                     break;
                 case ResourceEventType.Increment:
-                    _incrementEvent.AddListener(action);
+                    OnIncrement.AddListener(action);
                     break;
                 case ResourceEventType.Decrement:
-                    _decrementEvent.AddListener(action);
+                    OnDecrement.AddListener(action);
                     break;
                 case ResourceEventType.Fill:
-                    _fillEvent.AddListener(action);
+                    Onfill.AddListener(action);
                     break;
                 case ResourceEventType.Empty:
-                    _emptyEvent.AddListener(action);
+                    OnEmpty.AddListener(action);
                     break;
                 case ResourceEventType.Edge:
-                    _edgeEvent.AddListener(action);
+                    OnEdge.AddListener(action);
                     break;
                 case ResourceEventType.NotEdge:
-                    _notEdgeEvent.AddListener(action);
+                    OnNotEdge.AddListener(action);
                     break;
                 case ResourceEventType.NotEmpty:
-                    _notEmptyEvent.AddListener(action);
+                    OnNotEmpty.AddListener(action);
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(eventType), eventType, null);
+            }
+        }
+
+        public void RemoveListenerToEvent(ResourceEventType eventType, UnityAction action)
+        {
+            switch (eventType)
+            {
+                case ResourceEventType.ValueChanged:
+                    OnValueChanged.RemoveListener(action);
+                    break;
+                case ResourceEventType.Increase:
+                    OnIncrease.RemoveListener(action);
+                    break;
+                case ResourceEventType.Decrease:
+                    OnDecrease.RemoveListener(action);
+                    break;
+                case ResourceEventType.Increment:
+                    OnIncrement.RemoveListener(action);
+                    break;
+                case ResourceEventType.Decrement:
+                    OnDecrement.RemoveListener(action);
+                    break;
+                case ResourceEventType.Fill:
+                    Onfill.RemoveListener(action);
+                    break;
+                case ResourceEventType.Empty:
+                    OnEmpty.RemoveListener(action);
+                    break;
+                case ResourceEventType.Edge:
+                    OnEdge.RemoveListener(action);
+                    break;
+                case ResourceEventType.NotEdge:
+                    OnNotEdge.RemoveListener(action);
+                    break;
+                case ResourceEventType.NotEmpty:
+                    OnNotEmpty.RemoveListener(action);
+                    break;
             }
         }
 
@@ -264,42 +296,46 @@ namespace Assets.Scripts.EntityComponents.Resources
 
             if (dif > 0)
             {
-                _increaseEvent?.Invoke();
+                OnIncrease?.Invoke();
                 while (dif != 0)
                 {
-                    _incrementEvent?.Invoke();
+                    OnIncrement?.Invoke();
                     dif--;
                 }
             }
 
             if (dif < 0)
             {
-                _decreaseEvent?.Invoke();
+                OnDecrease?.Invoke();
                 while (dif != 0)
                 {
-                    _decrementEvent?.Invoke();
+                    OnDecrement?.Invoke();
                     dif++;
                 }
             }
 
             if (oldValue == _minValue && newValue != _minValue)
             {
-                _notEmptyEvent?.Invoke();
+                OnNotEmpty?.Invoke();
             }
 
             if (oldValue == _edgeValue && _value > _edgeValue)
             {
-                _notEdgeEvent?.Invoke();
+                OnNotEdge.Invoke();
             }
 
             if (newValue == _edgeValue)
             {
-                _edgeEvent?.Invoke();
+                OnEdge.Invoke();
             }
 
-            _valueChangedEvent?.Invoke();
-            if (isFillEventRequired) _fillEvent?.Invoke();
-            if (isEmptyEventRequired) _emptyEvent?.Invoke();
+            OnValueChanged?.Invoke();
+            if (isFillEventRequired) Onfill.Invoke();
+            if (isEmptyEventRequired)
+            {
+                Debug.LogWarning($"empty event");
+                OnEmpty.Invoke();
+            }
         }
     }
 }

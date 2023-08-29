@@ -9,24 +9,22 @@ namespace Assets.Scripts.EntityComponents.Resources
     [RequireComponent(typeof(StatList))]
     public class ResourceList : MonoBehaviour, ISerializationCallbackReceiver
     {
+        [SerializeField] private bool _usePreset;
         [SerializeField] private ResourcePreset _preset;
         [SerializeField] private List<Resource> _resources;
         [SerializeField] private StatList _statList;
 
         private void Awake()
         {
-            _statList = GetComponent<StatList>();
+            TryGetComponent<StatList>(out var statList);
+            _statList = statList;
+            if (!_usePreset) return;
             FillListFromPreset();
-        }
-
-        private void Start()
-        {
-            
         }
 
         public Resource GetResource(ResourceName resourceName)
         {
-            return _resources.First(resource => resource.Name.Equals(resourceName));
+            return _resources.FirstOrDefault(resource => resource.Name.Equals(resourceName));
         }
 
         [ContextMenu("Read Preset")]

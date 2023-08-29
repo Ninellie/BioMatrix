@@ -57,6 +57,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private ResourceList _resources;
         private string _currentState;
         private bool _isSubscribed;
+        private Resource _health;
 
         private void Awake()
         {
@@ -64,6 +65,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
             _stats = GetComponent<StatList>();
             _resources = GetComponent<ResourceList>();
+            _health = _resources.GetResource(ResourceName.Health);
+
+
             _animator = GetComponent<Animator>();
             _circleCollider = GetComponent<CircleCollider2D>();
             _invulnerability = GetComponent<Invulnerability>();
@@ -91,10 +95,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
             sizeStat.valueChangedEvent.AddListener(ChangeCurrentSize);
             magnetismRadiusStat.valueChangedEvent.AddListener(ChangeCurrentMagnetismRadius);
-            healthResource.
-                AddListenerToEvent(ResourceEventType.Empty).
-                AddListener(Death);
-            experienceResource.AddListenerToEvent(ResourceEventType.Fill).AddListener(LevelUp);
+
+            _resources.GetResource(ResourceName.Health).AddListenerToEvent(ResourceEventType.Empty, Death);
+            _resources.GetResource(ResourceName.Experience).AddListenerToEvent(ResourceEventType.Fill, LevelUp);
 
             _isSubscribed = true;
         }
@@ -105,8 +108,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
             _stats.GetStat(StatName.Size).valueChangedEvent.RemoveListener(ChangeCurrentSize);
             _stats.GetStat(StatName.MagnetismRadius).valueChangedEvent.RemoveListener(ChangeCurrentMagnetismRadius);
-            _resources.GetResource(ResourceName.Health).AddListenerToEvent(ResourceEventType.Empty).RemoveListener(Death);
-            _resources.GetResource(ResourceName.Experience).AddListenerToEvent(ResourceEventType.Fill).RemoveListener(LevelUp);
+            _resources.GetResource(ResourceName.Health).RemoveListenerToEvent(ResourceEventType.Empty, Death);
+            _resources.GetResource(ResourceName.Experience).RemoveListenerToEvent(ResourceEventType.Fill, LevelUp);
 
             _isSubscribed = false;
         }

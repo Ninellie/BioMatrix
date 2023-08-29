@@ -54,7 +54,7 @@ MonoBehaviour:
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  _currentFireDirection: {x: 0, y: 0}
+  _isAimHelperActive: 0
 --- !u!114 &2073174384341714352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,61 +118,101 @@ MonoBehaviour:
   _usePreset: 1
   _preset: {fileID: 11400000, guid: dfa09e6c51b141a40a06e9f6aae9b8ca, type: 2}
   _stats:
-  - _name: 7
+  - _strName: 'Damage: 5'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 7
     _baseValue: 5
     _value: 5
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 15
+  - _strName: 'ShootForce: 1600'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 15
     _baseValue: 1600
     _value: 1600
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 16
+  - _strName: 'ShootsPerSecond: 2'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 16
     _baseValue: 2
     _value: 2
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 17
+  - _strName: 'MaxShootDeflectionAngle: 15'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 17
     _baseValue: 15
     _value: 15
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 18
+  - _strName: 'MagazineCapacity: 1'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 18
     _baseValue: 1
     _value: 1
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 19
+  - _strName: 'ReloadTime: 0'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 19
     _baseValue: 0
     _value: 0
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 20
+  - _strName: 'Projectiles: 1'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 20
     _baseValue: 1
     _value: 1
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 21
+  - _strName: 'ProjectileSizeMultiplier: 0'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 21
     _baseValue: 0
     _value: 0
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 22
+  - _strName: 'Pierce: 0'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 22
     _baseValue: 0
     _value: 0
     _addedValue: 0
     _multiplierValue: 100
     _modifiers: []
-  - _name: 23
+  - _strName: 'AddedProjectileKnockback: 5'
+    valueChangedEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    _name: 23
     _baseValue: 5
     _value: 5
     _addedValue: 0
@@ -190,92 +230,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c9f584044c0bd4695584b5e1405f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _usePreset: 1
   _preset: {fileID: 11400000, guid: f42d114b67ec0944bbd9d1987ad4aa23, type: 2}
   _resources:
-  - _name: 3
+  - stringName: 'Kills: 0'
+    _name: 3
     _value: 0
     _isLimited: 0
     _isInfinite: 0
     _minValue: 0
     _edgeValue: 1
     _maxValueStat:
+      _strName: 
+      valueChangedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _name: 0
       _baseValue: Infinity
       _value: Infinity
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
-    valueChangedEvent:
+    _valueChangedEvent:
       m_PersistentCalls:
         m_Calls: []
-    increaseEvent:
+    _increaseEvent:
       m_PersistentCalls:
         m_Calls: []
-    decreaseEvent:
+    _decreaseEvent:
       m_PersistentCalls:
         m_Calls: []
-    incrementEvent:
+    _incrementEvent:
       m_PersistentCalls:
         m_Calls: []
-    decrementEvent:
+    _decrementEvent:
       m_PersistentCalls:
         m_Calls: []
-    fillEvent:
+    _fillEvent:
       m_PersistentCalls:
         m_Calls: []
-    emptyEvent:
+    _emptyEvent:
       m_PersistentCalls:
         m_Calls: []
-    edgeEvent:
+    _edgeEvent:
       m_PersistentCalls:
         m_Calls: []
-    notEdgeEvent:
+    _notEdgeEvent:
       m_PersistentCalls:
         m_Calls: []
-    notEmptyEvent:
+    _notEmptyEvent:
       m_PersistentCalls:
         m_Calls: []
-  - _name: 4
+  - stringName: 'Ammo: 1'
+    _name: 4
     _value: 1
     _isLimited: 1
     _isInfinite: 0
     _minValue: 0
     _edgeValue: 1
     _maxValueStat:
+      _strName: 
+      valueChangedEvent:
+        m_PersistentCalls:
+          m_Calls: []
       _name: 18
       _baseValue: 1
       _value: 1
       _addedValue: 0
       _multiplierValue: 100
       _modifiers: []
-    valueChangedEvent:
+    _valueChangedEvent:
       m_PersistentCalls:
         m_Calls: []
-    increaseEvent:
+    _increaseEvent:
       m_PersistentCalls:
         m_Calls: []
-    decreaseEvent:
+    _decreaseEvent:
       m_PersistentCalls:
         m_Calls: []
-    incrementEvent:
+    _incrementEvent:
       m_PersistentCalls:
         m_Calls: []
-    decrementEvent:
+    _decrementEvent:
       m_PersistentCalls:
         m_Calls: []
-    fillEvent:
+    _fillEvent:
       m_PersistentCalls:
         m_Calls: []
-    emptyEvent:
+    _emptyEvent:
       m_PersistentCalls:
         m_Calls: []
-    edgeEvent:
+    _edgeEvent:
       m_PersistentCalls:
         m_Calls: []
-    notEdgeEvent:
+    _notEdgeEvent:
       m_PersistentCalls:
         m_Calls: []
-    notEmptyEvent:
+    _notEmptyEvent:
       m_PersistentCalls:
         m_Calls: []
   _statList: {fileID: 6425109085915426426}

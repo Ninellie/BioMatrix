@@ -130,8 +130,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             if (sizeStat is null) return;
             if (healthResource is null) return;
 
-            sizeStat.valueChangedEvent.AddListener(UpdateCurrentSize);
-            healthResource.AddListenerToEvent(ResourceEventType.Empty).AddListener(Death);
+            _stats.GetStat(StatName.Size).valueChangedEvent.AddListener(UpdateCurrentSize);
+            _resources.GetResource(ResourceName.Health).AddListenerToEvent(ResourceEventType.Empty, Death);
+            //_resources.GetResource(ResourceName.Health).OnEmpty.AddListener(Death);
 
             _isSubscribed = true;
         }
@@ -141,7 +142,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             if (!_isSubscribed) return;
 
             _stats.GetStat(StatName.Size).valueChangedEvent.RemoveListener(UpdateCurrentSize);
-            _resources.GetResource(ResourceName.Health).AddListenerToEvent(ResourceEventType.Empty).RemoveListener(Death);
+            _resources.GetResource(ResourceName.Health).RemoveListenerToEvent(ResourceEventType.Empty, Death);
 
             _isSubscribed = false;
         }
@@ -281,8 +282,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private void Death()
         {
-            if (_deathFromProjectile) DropBonus();
-            _lastDamageSource.IncreaseKills();
+            Debug.LogWarning("Death of enemy");
+
+            //if (_deathFromProjectile) DropBonus();
+            //_lastDamageSource.IncreaseKills();
             gameObject.SetActive(false);
             Destroy(gameObject);
         }

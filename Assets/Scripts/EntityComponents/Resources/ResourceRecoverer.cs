@@ -33,11 +33,14 @@ namespace Assets.Scripts.EntityComponents.Resources
         private ResourceList _resourceList;
         private StatList _statList;
 
-        private void Start()
+        private void Awake()
         {
             _resourceList = GetComponent<ResourceList>();
             _statList = GetComponent<StatList>();
+        }
 
+        private void Start()
+        {
             foreach (var data in _preset.recoveringResourceDataList)
             {
                 var resource = _resourceList.GetResource(data.resourceName);

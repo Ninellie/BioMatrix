@@ -66,6 +66,10 @@ namespace Assets.Scripts.FirearmComponents
             _projectileCreator = GetComponent<ProjectileCreator>();
 
             _player = FindObjectOfType<Player>();
+        }
+
+        private void Start()
+        {
 
             SetStats(_stats);
 

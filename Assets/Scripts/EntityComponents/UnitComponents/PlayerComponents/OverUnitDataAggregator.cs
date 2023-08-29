@@ -96,7 +96,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             var resource = listenerData.resource;
             var eventType = listenerData.eventType;
 
-            Resources[target].GetResource(resource).AddListenerToEvent(eventType).AddListener(action);
+            Resources[target].GetResource(resource).AddListenerToEvent(eventType, action);
         }
 
         private void AddListenerToStatEvent(StatListenerData listenerData)
@@ -115,7 +115,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             var resource = listenerData.resource;
             var eventType = listenerData.eventType;
 
-            Resources[target].GetResource(resource).AddListenerToEvent(eventType).RemoveListener(action);
+            Resources[target].GetResource(resource).RemoveListenerToEvent(eventType, action);
         }
 
         private void RemoveListenerToStatEvent(StatListenerData listenerData)

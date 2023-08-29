@@ -13,26 +13,39 @@ namespace Assets.Scripts.FirearmComponents
         public bool IsInProcess => _isInProgress;
 
         private Firearm _firearm;
-
+        private bool _isSubscribed;
         private void Awake()
         {
             _resourceList = GetComponent<ResourceList>();
-            _magazine = _resourceList.GetResource(ResourceName.Ammo);
-
             _firearm = GetComponent<Firearm>();
-            if (_firearm.IsForPlayer)
-                _plateUi?.SetActive(false);
-        }
-    
-        private void OnEnable()
-        {
-            _magazine.AddListenerToEvent(ResourceEventType.Empty).AddListener(Initiate);
-            _magazine.AddListenerToEvent(ResourceEventType.Empty, Initiate);
+
+            if (_firearm.IsForPlayer) _plateUi?.SetActive(false);
         }
 
-        private void OnDisable()
+        private void Start()
         {
-            _magazine.AddListenerToEvent(ResourceEventType.Empty).RemoveListener(Initiate);
+            _magazine = _resourceList.GetResource(ResourceName.Ammo);
+            Subscribe();
+        }
+
+        private void OnEnable() => Subscribe();
+
+        private void OnDisable() => Unsubscribe();
+
+        private void Subscribe()
+        {
+            if (_isSubscribed) return;
+            if (_magazine is null) return;
+            _magazine.AddListenerToEvent(ResourceEventType.Empty, Initiate);
+            _isSubscribed = true;
+        }
+
+        private void Unsubscribe()
+        {
+            if (!_isSubscribed) return;
+            if (_magazine is null) return;
+            _magazine.RemoveListenerToEvent(ResourceEventType.Empty, Initiate);
+            _isSubscribed = false;
         }
 
         private void Initiate()
