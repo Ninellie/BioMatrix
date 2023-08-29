@@ -46,16 +46,16 @@ namespace Assets.Scripts.EntityComponents.Resources
 
         [ReadOnly] [SerializeField] private Stat _maxValueStat;
 
-        public UnityEvent OnValueChanged = new UnityEvent();
-        public UnityEvent OnIncrease = new UnityEvent();
-        public UnityEvent OnDecrease = new UnityEvent();
-        public UnityEvent OnIncrement = new UnityEvent();
-        public UnityEvent OnDecrement = new UnityEvent();
-        public UnityEvent Onfill = new UnityEvent();
-        public UnityEvent OnEmpty = new UnityEvent();
-        public UnityEvent OnEdge = new UnityEvent();
-        public UnityEvent OnNotEdge = new UnityEvent();
-        public UnityEvent OnNotEmpty = new UnityEvent();
+        public UnityEvent OnValueChanged = new();
+        public UnityEvent OnIncrease = new();
+        public UnityEvent OnDecrease = new();
+        public UnityEvent OnIncrement = new();
+        public UnityEvent OnDecrement = new();
+        public UnityEvent Onfill = new();
+        public UnityEvent OnEmpty = new();
+        public UnityEvent OnEdge = new();
+        public UnityEvent OnNotEdge = new();
+        public UnityEvent OnNotEmpty = new();
 
         /// <summary>
         /// Creates infinite resource
