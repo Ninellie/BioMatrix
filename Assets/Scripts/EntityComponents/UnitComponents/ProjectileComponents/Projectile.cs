@@ -44,11 +44,14 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
             _trail = GetComponent<TrailRenderer>();
             _circleCollider = GetComponent<CircleCollider2D>();
             _movementController = GetComponent<IProjectileMovementController>();
-
-            ChangeCurrentSize();
         }
 
-        private void Start() => Subscribe();
+        private void Start()
+        {
+            _resources.GetResource(ResourceName.Health).Fill();
+            ChangeCurrentSize();
+            Subscribe();
+        }
 
         private void OnEnable() => Subscribe();
 

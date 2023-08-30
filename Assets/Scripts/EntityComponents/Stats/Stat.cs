@@ -10,37 +10,20 @@ namespace Assets.Scripts.EntityComponents.Stats
     [Serializable]
     public class Stat
     {
-        [HideInInspector]
-        public string _strName;
-
-        public UnityEvent valueChangedEvent = new();
-
-        [ReadOnly]
-        [SerializeField]
-        private StatName _name;
+        [HideInInspector] public string _strName;
+        public float Value => _value;
         public StatName Name => _name;
 
-        [ReadOnly]
-        [SerializeField]
-        private float _baseValue;
+        [HideInInspector, NonSerialized] public UnityEvent valueChangedEvent = new();
 
+        [ReadOnly] [SerializeField] private StatName _name;
+        [ReadOnly] [SerializeField] private float _value;
+        [ReadOnly] [SerializeField] private float _baseValue;
+        [ReadOnly] [SerializeField] private float _addedValue;
+        [ReadOnly] [SerializeField] private float _multiplierValue;
+
+        [SerializeField] private List<StatMod> _modifiers = new();
         private StatSettings _settings;
-
-        [ReadOnly]
-        [SerializeField]
-        private float _value;
-        public float Value => _value;
-
-        [ReadOnly]
-        [SerializeField]
-        private float _addedValue;
-
-        [ReadOnly]
-        [SerializeField]
-        private float _multiplierValue;
-
-        [SerializeField]
-        private List<StatMod> _modifiers = new();
 
         public void AddModifier(StatMod modifier)
         {

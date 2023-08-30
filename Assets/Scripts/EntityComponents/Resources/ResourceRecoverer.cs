@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Assets.Scripts.CustomAttributes;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
@@ -66,6 +67,8 @@ namespace Assets.Scripts.EntityComponents.Resources
 
         public void OnBeforeSerialize()
         {
+            if (_recoveringResources == null) return;
+            
             foreach (var recoveringResource in _recoveringResources)
             {
                 recoveringResource.stringName = $"{recoveringResource.resourceName}: {recoveringResource.value}";
@@ -73,10 +76,6 @@ namespace Assets.Scripts.EntityComponents.Resources
         }
         public void OnAfterDeserialize()
         {
-            foreach (var recoveringResource in _recoveringResources)
-            {
-                recoveringResource.stringName = $"{recoveringResource.resourceName}: {recoveringResource.value}";
-            }
         }
     }
 }

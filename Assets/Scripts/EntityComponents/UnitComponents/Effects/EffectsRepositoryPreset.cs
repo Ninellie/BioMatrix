@@ -10,12 +10,14 @@ public class EffectsRepositoryPreset : ScriptableObject
 
     public List<IEffect> GetEffects()
     {
-        return _effects;
+        return Instantiate(this)._effects;
+
+        //return _effects;
     }
 
-    public IEffect GetEffectByName(string name)
+    public IEffect GetEffectByName(string effectName)
     {
-        return _effects.FirstOrDefault(e => e.Name.Equals(name));
+        return _effects.FirstOrDefault(e => e.Name.Equals(effectName));
     }
 
     [ContextMenu(nameof(AddNewStackableStatModifierEffect))]

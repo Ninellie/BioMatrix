@@ -10,56 +10,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c67aca5695f6114bb2d9c3c60e9a879, type: 3}
-  m_Name: GunDeckEffects
+  m_Name: AgilityDeckEffects
   m_EditorClassIdentifier: 
   _effects:
   - rid: 6947764788704051201
-  - rid: 6947764788704051202
-  - rid: 6947764788704051203
+  - rid: 6947764788704051204
   references:
     version: 2
     RefIds:
     - rid: 6947764788704051201
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
-        _name: MagazineAdd1
+        _name: MovementSpeedMultiply10
         _description: 
-        _targetName: 3
+        _targetName: 0
         statModList:
-        - mod:
-            _type: 0
-            _value: 1
-          statName: 18
+        - strName: 
+          mod:
+            name: 
+            _type: 1
+            _value: 10
+          statName: 5
         statList: {fileID: 0}
         _maxStacks: 1000
         _stackCount: 0
         _initialStacks: 1
-    - rid: 6947764788704051202
+    - rid: 6947764788704051204
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
-        _name: FirerateMultiply50
+        _name: ReloadSpeedMultiply50
         _description: 
-        _targetName: 3
+        _targetName: 4
         statModList:
-        - mod:
+        - strName: 
+          mod:
+            name: 
             _type: 1
             _value: 50
-          statName: 16
-        statList: {fileID: 0}
-        _maxStacks: 1000
-        _stackCount: 0
-        _initialStacks: 1
-    - rid: 6947764788704051203
-      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
-      data:
-        _name: ProjectileAdd1
-        _description: 
-        _targetName: 3
-        statModList:
-        - mod:
-            _type: 0
-            _value: 1
-          statName: 20
+          statName: 19
         statList: {fileID: 0}
         _maxStacks: 1000
         _stackCount: 0

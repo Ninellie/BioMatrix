@@ -66,10 +66,6 @@ namespace Assets.Scripts.EntityComponents.Resources
         }
         public void OnAfterDeserialize()
         {
-            foreach (var resource in _resources)
-            {
-                resource.stringName = $"{resource.Name}: {resource.GetValue()}";
-            }
         }
     }
 }

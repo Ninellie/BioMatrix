@@ -860,7 +860,7 @@ MonoBehaviour:
   _usePreset: 1
   _presets:
   - {fileID: 11400000, guid: a6de7726b1aa66947b372f24cba878b7, type: 2}
-  - {fileID: 11400000, guid: 84ab0e928a9231b4aa17cfa3613a2f9b, type: 2}
+  - {fileID: 11400000, guid: 140efbaae8c05114da832f58069fc365, type: 2}
   _defaultEffects: []
   _effects: []
   references:
@@ -6370,7 +6370,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573640153}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8b8c573db1590049aa3eff10ad274a0, type: 3}
   m_Name: 

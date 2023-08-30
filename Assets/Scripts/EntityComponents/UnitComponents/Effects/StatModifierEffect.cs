@@ -47,10 +47,10 @@ public class StackableTemporaryStatModifierEffect : StackableStatModifierEffect,
 public class StackableStatModifierEffect : StatModifierEffect, IStackableEffect
 {
     [SerializeField] private int _maxStacks;
-    [SerializeField] private int _stackCount;
+    [SerializeField] private int _currentStackCount;
     [SerializeField] private int _initialStacks;
 
-    public int StacksCount => _stackCount;
+    public int StacksCount => _currentStackCount;
     public int MaxStacks => _maxStacks;
     public int InitialStacks => _initialStacks;
 
@@ -59,7 +59,7 @@ public class StackableStatModifierEffect : StatModifierEffect, IStackableEffect
         if (StacksCount == MaxStacks)
             return;
 
-        _stackCount++;
+        _currentStackCount++;
         AddMods();
     }
 
@@ -68,13 +68,13 @@ public class StackableStatModifierEffect : StatModifierEffect, IStackableEffect
         if (StacksCount == 0)
             return;
 
-        _stackCount--;
+        _currentStackCount--;
         RemoveMods();
     }
 
     public new void Activate()
     {
-        while (_stackCount != _initialStacks)
+        while (_currentStackCount != _initialStacks)
         {
             AddStack();
         }
@@ -82,7 +82,7 @@ public class StackableStatModifierEffect : StatModifierEffect, IStackableEffect
 
     public new void Deactivate()
     {
-        while (_stackCount > 0)
+        while (_currentStackCount > 0)
         {
             RemoveStack();
         }

@@ -284,8 +284,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         {
             Debug.LogWarning("Death of enemy");
 
-            //if (_deathFromProjectile) DropBonus();
-            //_lastDamageSource.IncreaseKills();
+            if (_deathFromProjectile) DropBonus();
+            _lastDamageSource.IncreaseKills();
             gameObject.SetActive(false);
             Destroy(gameObject);
         }

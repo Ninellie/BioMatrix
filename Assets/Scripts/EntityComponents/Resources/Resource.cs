@@ -44,18 +44,32 @@ namespace Assets.Scripts.EntityComponents.Resources
 
         [ReadOnly] [SerializeField] private int _edgeValue;
 
-        [ReadOnly] [SerializeField] private Stat _maxValueStat;
+        [SerializeReference] private Stat _maxValueStat;
 
-        public UnityEvent onValueChanged = new();
-        public UnityEvent onIncrease = new();
-        public UnityEvent onDecrease = new();
-        public UnityEvent onIncrement = new();
-        public UnityEvent onDecrement = new();
-        public UnityEvent onFill = new();
-        public UnityEvent onEmpty = new();
-        public UnityEvent onEdge = new();
-        public UnityEvent onNotEdge = new();
-        public UnityEvent onNotEmpty = new();
+        [HideInInspector, NonSerialized] public UnityEvent onValueChanged = new();
+        [HideInInspector, NonSerialized] public UnityEvent onIncrease = new();
+        [HideInInspector, NonSerialized] public UnityEvent onDecrease = new();
+        [HideInInspector, NonSerialized] public UnityEvent onIncrement = new();
+        [HideInInspector, NonSerialized] public UnityEvent onDecrement = new();
+        [HideInInspector, NonSerialized] public UnityEvent onFill = new();
+        [HideInInspector, NonSerialized] public UnityEvent onEmpty = new();
+        [HideInInspector, NonSerialized] public UnityEvent onEdge = new();
+        [HideInInspector, NonSerialized] public UnityEvent onNotEdge = new();
+        [HideInInspector, NonSerialized] public UnityEvent onNotEmpty = new();
+
+        private void InitializeEvents()
+        {
+            onValueChanged = new UnityEvent();
+            onIncrease = new UnityEvent();
+            onDecrease = new UnityEvent();
+            onIncrement = new UnityEvent();
+            onDecrement = new UnityEvent();
+            onFill = new UnityEvent();
+            onEmpty = new UnityEvent();
+            onEdge = new UnityEvent();
+            onNotEdge = new UnityEvent();
+            onNotEmpty = new UnityEvent();
+        }
 
         /// <summary>
         /// Creates infinite resource
@@ -72,6 +86,7 @@ namespace Assets.Scripts.EntityComponents.Resources
             _maxValueStat.SetBaseValue(float.PositiveInfinity);
             _value = int.MaxValue;
             _isInfinite = true;
+            InitializeEvents();
         }
 
         /// <summary>
@@ -90,6 +105,7 @@ namespace Assets.Scripts.EntityComponents.Resources
             _maxValueStat.SetSettings();
             _maxValueStat.SetBaseValue(float.PositiveInfinity);
             _value = _minValue;
+            InitializeEvents();
         }
 
         /// <summary>
@@ -108,8 +124,8 @@ namespace Assets.Scripts.EntityComponents.Resources
             _maxValueStat = new Stat();
             _maxValueStat.SetSettings();
             _maxValueStat.SetBaseValue(float.PositiveInfinity);
-            
             _value = value < minValue ? minValue : value;
+            InitializeEvents();
         }
 
         /// <summary>
@@ -140,6 +156,7 @@ namespace Assets.Scripts.EntityComponents.Resources
             {
                 _value = value;
             }
+            InitializeEvents();
         }
         
         public void Set(int value)
@@ -321,20 +338,24 @@ namespace Assets.Scripts.EntityComponents.Resources
 
             if (oldValue == _edgeValue && _value > _edgeValue)
             {
-                onNotEdge.Invoke();
+                onNotEdge?.Invoke();
             }
 
             if (newValue == _edgeValue)
             {
-                onEdge.Invoke();
+                onEdge?.Invoke();
             }
 
             onValueChanged?.Invoke();
-            if (isFillEventRequired) onFill.Invoke();
+            if (isFillEventRequired)
+            {
+                Debug.LogWarning($"Fill event");
+                onFill?.Invoke();
+            }
             if (isEmptyEventRequired)
             {
-                Debug.LogWarning($"empty event");
-                onEmpty.Invoke();
+                Debug.LogWarning($"Empty event");
+                onEmpty?.Invoke();
             }
         }
     }

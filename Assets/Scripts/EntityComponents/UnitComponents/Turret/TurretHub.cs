@@ -11,9 +11,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
     {
         [SerializeField] private GameObject _turretPrefab;
         [SerializeField] private GameObject _turretWeaponPrefab;
-        [SerializeField] private bool _isSameTurretTarget;
+        //[SerializeField] private bool _isSameTurretTarget;
 
-        public Entity Holder { get; private set; }
         public Firearm Firearm { get; set; }
 
         public readonly Stack<Turret> currentTurrets = new();

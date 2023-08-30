@@ -37,19 +37,37 @@ public class EffectsList : MonoBehaviour
         _stats = GetComponent<StatList>();
         _resources = GetComponent<ResourceList>();
 
-        OverUnitDataAggregator dataAggregator;
-        TryGetComponent(out dataAggregator);
+        TryGetComponent(out OverUnitDataAggregator dataAggregator);
 
         _effectsAggregator = dataAggregator == null ? GetComponentInParent<OverUnitDataAggregator>() : dataAggregator;
     }
 
     public void AddEffect(IEffect effect)
     {
-        var first = _effects.FirstOrDefault(e => e.Name.Equals(effect.Name));
-        if (first == null)
+        IEffect e = null;
+
+        foreach (var ef in _effects)
+        {
+            if (!ef.Name.Equals(effect.Name)) continue;
+            e = ef;
+            break;
+        }
+
+        if (e == null)
+        {
             AddNewEffect(effect);
+        }
         else
-            AdjustEffect(first);
+        {
+            AdjustEffect(_effects.Find(eff => eff.Name.Equals(e.Name)));
+        }
+
+
+        //var first = _effects.FirstOrDefault(e => e.Name.Equals(effect.Name));
+        //if (first == null)
+        //    AddNewEffect(effect);
+        //else
+        //    AdjustEffect(first);
     }
 
     private void AdjustEffect(IEffect effect)

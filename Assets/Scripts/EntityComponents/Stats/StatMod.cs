@@ -6,6 +6,7 @@ namespace Assets.Scripts.EntityComponents.Stats
     [Serializable]
     public class StatMod
     {
+        [HideInInspector] public string name;
         [SerializeField] private OperationType _type;
         [SerializeField] private float _value;
         public OperationType Type
@@ -23,6 +24,7 @@ namespace Assets.Scripts.EntityComponents.Stats
         {
             _type = type;
             _value = value;
+            name = type.ToString() + _value;
         }
     }
 }

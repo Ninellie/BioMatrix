@@ -1,6 +1,7 @@
 using System;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.EntityComponents.UnitComponents.BoonComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
@@ -57,7 +58,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private ResourceList _resources;
         private string _currentState;
         private bool _isSubscribed;
-        private Resource _health;
 
         private void Awake()
         {
@@ -65,18 +65,19 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
             _stats = GetComponent<StatList>();
             _resources = GetComponent<ResourceList>();
-            _health = _resources.GetResource(ResourceName.Health);
-
 
             _animator = GetComponent<Animator>();
             _circleCollider = GetComponent<CircleCollider2D>();
             _invulnerability = GetComponent<Invulnerability>();
             _knockbackController = GetComponent<KnockbackController>();
-
-            _circleCollider.radius = Math.Max(_stats.GetStat(StatName.MagnetismRadius).Value, 0);
         }
 
-        private void Start() => Subscribe();
+        private void Start()
+        {
+            _circleCollider.radius = Math.Max(_stats.GetStat(StatName.MagnetismRadius).Value, 0);
+            Subscribe();
+        }
+
         private void OnEnable() => Subscribe();
         private void OnDisable() => Unsubscribe();
         private void Subscribe()
@@ -97,7 +98,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             magnetismRadiusStat.valueChangedEvent.AddListener(ChangeCurrentMagnetismRadius);
 
             _resources.GetResource(ResourceName.Health).AddListenerToEvent(ResourceEventType.Empty, Death);
-            _resources.GetResource(ResourceName.Experience).AddListenerToEvent(ResourceEventType.Fill, LevelUp);
+            //_resources.GetResource(ResourceName.Experience).AddListenerToEvent(ResourceEventType.Fill, LevelUp);
+            _resources.GetResource(ResourceName.Experience).onFill.AddListener(LevelUp);
 
             _isSubscribed = true;
         }
@@ -158,6 +160,19 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             }
         }
 
+        private void OnTriggerEnter2D(Collider2D collision2D)
+        {
+            var otherTag = collision2D.tag;
+
+            switch (otherTag)
+            {
+                case "Boon":
+                    var experienceAmount = collision2D.gameObject.GetComponent<Boon>().GetExperience();
+                    IncreaseExperience(experienceAmount);
+                    break;
+            }
+        }
+
         public Transform GetFirePoint() => _firePoint;
 
         public GameObject CreateWeapon(GameObject weapon)
@@ -174,7 +189,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         public IWeapon GetWeapon() => Firearm;
 
-        public void IncreaseExperience(int value)
+        private void IncreaseExperience(int value)
         {
             var expMultiplierValue = (int)_stats.GetStat(StatName.ExperienceMultiplier).Value;
             var expTakenAmount = value * expMultiplierValue;
@@ -183,11 +198,14 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void LevelUp()
         {
+            Debug.LogWarning("Level up");
+
             var statMod = new StatMod(OperationType.Addition, ExperienceAmountIncreasingPerLevel); // TODO add this value to stats as stat
 
             _stats.GetStat(StatName.ExperienceToNewLevel).AddModifier(statMod);
             _resources.GetResource(ResourceName.Level).Increase();
             _resources.GetResource(ResourceName.Experience).Empty();
+            
         }
 
         private void KnockBackFromEntity(float knockbackPower, Vector2 position)

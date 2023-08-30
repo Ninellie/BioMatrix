@@ -151,7 +151,6 @@ namespace Assets.Scripts.FirearmComponents
             {
                 var projStats = projectile.GetComponent<StatList>();
                 var projResources = projectile.GetComponent<ResourceList>();
-
                 var proj = projectile.GetComponent<Projectile>();
 
                 ImproveProjectile(projStats, projResources);
@@ -179,7 +178,7 @@ namespace Assets.Scripts.FirearmComponents
             statMod = new StatMod(OperationType.Addition, AddedProjectileKnockback.Value);
             projectileStats.GetStat(StatName.KnockbackPower).AddModifier(statMod);
 
-            projectileResources.GetResource(ResourceName.Health).Fill();
+            //projectileResources.GetResource(ResourceName.Health).Fill();
         }
 
         private Vector2 GetShotDirection()
