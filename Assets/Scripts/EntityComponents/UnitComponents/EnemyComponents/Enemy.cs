@@ -282,8 +282,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private void Death()
         {
-            Debug.LogWarning("Death of enemy");
-
+            Debug.Log($"Enemy {gameObject.name} died. From projectile: {_deathFromProjectile}");
             if (_deathFromProjectile) DropBonus();
             _lastDamageSource.IncreaseKills();
             gameObject.SetActive(false);
