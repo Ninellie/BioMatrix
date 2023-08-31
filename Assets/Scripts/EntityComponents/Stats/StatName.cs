@@ -36,7 +36,7 @@ namespace Assets.Scripts.EntityComponents.Stats
         ShootsPerSecond,
         MaxShootDeflectionAngle,
         MagazineCapacity,
-        ReloadTime,
+        ReloadSpeed,
         Projectiles,
         ProjectileSizeMultiplier,
         Pierce,

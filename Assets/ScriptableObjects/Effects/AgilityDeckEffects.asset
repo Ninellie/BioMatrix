@@ -33,7 +33,7 @@ MonoBehaviour:
           statName: 5
         statList: {fileID: 0}
         _maxStacks: 1000
-        _stackCount: 0
+        _currentStackCount: 0
         _initialStacks: 1
     - rid: 6947764788704051204
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
@@ -50,5 +50,5 @@ MonoBehaviour:
           statName: 19
         statList: {fileID: 0}
         _maxStacks: 1000
-        _stackCount: 0
+        _currentStackCount: 0
         _initialStacks: 1

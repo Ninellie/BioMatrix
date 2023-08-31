@@ -30,7 +30,7 @@ namespace Assets.Scripts.FirearmComponents
         public Stat ShootsPerSecond { get; private set; }
         public Stat MaxShootDeflectionAngle { get; private set; }
         public Stat MagazineCapacity { get; private set; }
-        public Stat ReloadTime { get; private set; }
+        public Stat ReloadSpeed { get; private set; }
         public Stat SingleShootProjectile { get; private set; }
         public Stat ProjectileSizeMultiplier { get; private set; }
         public Stat ProjectilePierceCount { get; private set; }
@@ -131,7 +131,7 @@ namespace Assets.Scripts.FirearmComponents
             ShootsPerSecond = firearmStats.GetStat(StatName.ShootsPerSecond);
             MaxShootDeflectionAngle = firearmStats.GetStat(StatName.MaxShootDeflectionAngle);
             MagazineCapacity = firearmStats.GetStat(StatName.MagazineCapacity);
-            ReloadTime = firearmStats.GetStat(StatName.ReloadTime);
+            ReloadSpeed = firearmStats.GetStat(StatName.ReloadSpeed);
             SingleShootProjectile = firearmStats.GetStat(StatName.Projectiles);
             ProjectileSizeMultiplier = firearmStats.GetStat(StatName.ProjectileSizeMultiplier);
             ProjectilePierceCount = firearmStats.GetStat(StatName.Pierce);

@@ -17,14 +17,16 @@ MonoBehaviour:
     description: Improves agility mastery
     capacity: 15
     cardsArray:
-    - occurrenceFrequency: 1
+    - name: Each 1 lvl
+      occurrenceFrequency: 1
       card:
         title: Each 1 lvl
         description: +10% Movement Speed
         dropWeight: 1
         effectsName:
         - MovementSpeedMultiply10
-    - occurrenceFrequency: 3
+    - name: Each 3 lvl
+      occurrenceFrequency: 3
       card:
         title: Each 3 lvl
         description: +50% Reload Speed
@@ -35,21 +37,24 @@ MonoBehaviour:
     description: Improves gun
     capacity: 15
     cardsArray:
-    - occurrenceFrequency: 1
+    - name: Each 1 lvl
+      occurrenceFrequency: 1
       card:
         title: Each 1 lvl
         description: +1 Magazine Amount
         dropWeight: 1
         effectsName:
         - MagazineAdd1
-    - occurrenceFrequency: 3
+    - name: Each 3 lvl
+      occurrenceFrequency: 3
       card:
         title: Each 3 lvl
         description: +50% Firerate
         dropWeight: 1
         effectsName:
         - FirerateMultiply50
-    - occurrenceFrequency: 5
+    - name: Each 5 lvl
+      occurrenceFrequency: 5
       card:
         title: Each 5 lvl
         description: +1 Projectile

@@ -109,7 +109,14 @@ namespace Assets.Scripts.View
             foreach (var effectName in card.effectsName)
             {
                 var e = _effectsRepository.GetEffectByName(effectName);
-                EffectsAggregator.AddEffect(e);
+                if (e != null)
+                {
+                    EffectsAggregator.AddEffect(e);
+                }
+                else
+                {
+                    Debug.LogWarning($"Effect with name: {effectName} does not found in repository");
+                }
             }
         }
 

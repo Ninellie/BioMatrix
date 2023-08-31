@@ -144,54 +144,28 @@ namespace Assets.Scripts.EntityComponents.Resources
             _edgeValue = edgeValue;
             _maxValueStat = maxValueStat;
 
-            if (value > maxValueStat.Value)
-            {
-                _value = (int)maxValueStat.Value;
-            }
-            else if (value < minValue)
-            {
-                _value = minValue;
-            }
-            else
-            {
-                _value = value;
-            }
+            if (value > maxValueStat.Value) _value = (int)maxValueStat.Value;
+            else if (value < minValue) _value = minValue;
+            else _value = value;
+
             InitializeEvents();
         }
         
         public void Set(int value)
         {
-            if (_isInfinite)
-            {
-                value = Mathf.Min(value, _value);
-            }
-
+            if (_isInfinite) value = Mathf.Min(value, _value);
             var oldValue = _value;
-
             if (_isLimited)
             {
                 var maxValue = (int)_maxValueStat.Value;
-
-                if (value >= maxValue)
-                {
-                    _value = maxValue;
-                }
-
-                if (value > _minValue && value < maxValue)
-                {
-                    _value = value;
-                }
-
-                if (value <= _minValue)
-                {
-                    _value = _minValue;
-                }
+                if (value >= maxValue) _value = maxValue;
+                if (value > _minValue && value < maxValue) _value = value;
+                if (value <= _minValue) _value = _minValue;
             }
             else
             {
                 _value = value > _minValue ? value : _minValue;
             }
-
             var newValue = _value;
             InvokeEvents(oldValue, newValue);
         }
@@ -331,32 +305,12 @@ namespace Assets.Scripts.EntityComponents.Resources
                 }
             }
 
-            if (oldValue == _minValue && newValue != _minValue)
-            {
-                onNotEmpty?.Invoke();
-            }
-
-            if (oldValue == _edgeValue && _value > _edgeValue)
-            {
-                onNotEdge?.Invoke();
-            }
-
-            if (newValue == _edgeValue)
-            {
-                onEdge?.Invoke();
-            }
-
+            if (oldValue == _minValue && newValue != _minValue) onNotEmpty?.Invoke();
+            if (oldValue == _edgeValue && _value > _edgeValue) onNotEdge?.Invoke();
+            if (newValue == _edgeValue) onEdge?.Invoke();
             onValueChanged?.Invoke();
-            if (isFillEventRequired)
-            {
-                Debug.LogWarning($"Fill event");
-                onFill?.Invoke();
-            }
-            if (isEmptyEventRequired)
-            {
-                Debug.LogWarning($"Empty event");
-                onEmpty?.Invoke();
-            }
+            if (isFillEventRequired) onFill?.Invoke();
+            if (isEmptyEventRequired) onEmpty?.Invoke();
         }
     }
 }

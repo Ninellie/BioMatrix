@@ -1,4 +1,5 @@
 using System.Collections;
+using Assets.Scripts.CustomAttributes;
 using Assets.Scripts.EntityComponents.Resources;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace Assets.Scripts.FirearmComponents
     public class Reload : MonoBehaviour
     {
         [SerializeField] private GameObject _plateUi;
-        [SerializeField] private bool _isInProgress;
+        [ReadOnly, SerializeField] private bool _isInProgress;
         private ResourceList _resourceList;
         private Resource _magazine;
         public bool IsInProcess => _isInProgress;
@@ -56,7 +57,7 @@ namespace Assets.Scripts.FirearmComponents
             if (_firearm.IsForPlayer)
                 _plateUi.SetActive(true);
 
-            var reloadTime = _firearm.ReloadTime.Value;
+            var reloadTime = 1 / _firearm.ReloadSpeed.Value;
             var isInstant = !(reloadTime > 0);
 
             switch (isInstant)
