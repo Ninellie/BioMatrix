@@ -6,6 +6,60 @@ using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
 [Serializable]
+public class ResourceIncreaserEffect : Effect, IRespondingEffect, IStackableEffect
+{
+    [Header("Incremental resource settings")]
+    [SerializeField] private ResourceName _resourceName;
+    [SerializeField, Min(0)] private int _value;
+
+    [Header("Stacks settings")]
+    [SerializeField] private int _maxStacks;
+    [SerializeField] private int _currentStackCount;
+    [SerializeField] private int _initialStacks;
+
+    public int StacksCount => _currentStackCount;
+    public int MaxStacks => _maxStacks;
+    public int InitialStacks => _initialStacks;
+
+    private ResourceList _resources;
+
+    public void AddStack()
+    {
+        if (_currentStackCount == _maxStacks) return;
+        _resources.GetResource(_resourceName).Increase(_value);
+        _currentStackCount++;
+    }
+
+    public void RemoveStack()
+    {
+        if (_currentStackCount == 0) return;
+        _resources.GetResource(_resourceName).Decrease(_value);
+        _currentStackCount--;
+    }
+
+    public new void Activate()
+    {
+        while (_currentStackCount != _initialStacks)
+        {
+            AddStack();
+        }
+    }
+
+    public new void Deactivate()
+    {
+        while (_currentStackCount > 0)
+        {
+            RemoveStack();
+        }
+    }
+    public void SetResourceList(ResourceList resourceList)
+    {
+        _resources = resourceList;
+    }
+}
+
+
+[Serializable]
 public class EffectAdderEffect : Effect, IRespondingEffect, IEffectAdder
 {
     [SerializeField]

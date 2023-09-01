@@ -103,10 +103,10 @@ namespace Assets.Scripts.View
         private void AddCard(Card card)
         {
             _deckRepository.ObtainCard(card);
-            if (card.effectsName is null) 
+            if (card.effectNames is null) 
                 return;
 
-            foreach (var effectName in card.effectsName)
+            foreach (var effectName in card.effectNames)
             {
                 var e = _effectsRepository.GetEffectByName(effectName);
                 if (e != null)

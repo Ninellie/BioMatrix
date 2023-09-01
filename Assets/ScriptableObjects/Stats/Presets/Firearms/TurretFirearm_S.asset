@@ -28,9 +28,9 @@ MonoBehaviour:
   - stringName: MagazineCapacity
     name: 18
     baseValue: 1
-  - stringName: ReloadTime
+  - stringName: ReloadSpeed
     name: 19
-    baseValue: 0
+    baseValue: 100
   - stringName: Projectiles
     name: 20
     baseValue: 1

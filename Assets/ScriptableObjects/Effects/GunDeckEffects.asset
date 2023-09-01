@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c67aca5695f6114bb2d9c3c60e9a879, type: 3}
+  m_Name: GunDeckEffects
+  m_EditorClassIdentifier: 
+  _effects:
+  - rid: 6947765197103955982
+  - rid: 6947765197103955983
+  - rid: 6947765197103955984
+  references:
+    version: 2
+    RefIds:
+    - rid: 6947765197103955982
+      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
+      data:
+        _name: MagazineAdd1
+        _description: 
+        _targetName: 4
+        statModList:
+        - strName: 
+          mod:
+            name: 
+            _type: 0
+            _value: 1
+          statName: 18
+        statList: {fileID: 0}
+        _maxStacks: 1000
+        _currentStackCount: 0
+        _initialStacks: 1
+    - rid: 6947765197103955983
+      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
+      data:
+        _name: FirerateMultiply50
+        _description: 
+        _targetName: 4
+        statModList:
+        - strName: 
+          mod:
+            name: 
+            _type: 1
+            _value: 50
+          statName: 16
+        statList: {fileID: 0}
+        _maxStacks: 1000
+        _currentStackCount: 0
+        _initialStacks: 1
+    - rid: 6947765197103955984
+      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
+      data:
+        _name: ProjectileAdd1
+        _description: 
+        _targetName: 4
+        statModList:
+        - strName: 
+          mod:
+            name: 
+            _type: 0
+            _value: 1
+          statName: 20
+        statList: {fileID: 0}
+        _maxStacks: 1000
+        _currentStackCount: 0
+        _initialStacks: 1

@@ -9,9 +9,6 @@ using Assets.Scripts.EntityComponents.UnitComponents.Turret;
 using Assets.Scripts.FirearmComponents;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEngine.EventSystems.EventTrigger;
-
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
@@ -160,19 +157,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision2D)
-        {
-            var otherTag = collision2D.tag;
-
-            switch (otherTag)
-            {
-                case "Boon":
-                    var experienceAmount = collision2D.gameObject.GetComponent<Boon>().GetExperience();
-                    IncreaseExperience(experienceAmount);
-                    break;
-            }
-        }
-
         public Transform GetFirePoint() => _firePoint;
 
         public GameObject CreateWeapon(GameObject weapon)
@@ -189,12 +173,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         public IWeapon GetWeapon() => Firearm;
 
-        private void IncreaseExperience(int value)
-        {
-            var expMultiplierValue = (int)_stats.GetStat(StatName.ExperienceMultiplier).Value;
-            var expTakenAmount = value * expMultiplierValue;
-            _resources.GetResource(ResourceName.Experience).Increase(expTakenAmount);
-        }
+        //private void IncreaseExperience(int value)
+        //{
+        //    var expMultiplierValue = (int)_stats.GetStat(StatName.ExperienceMultiplier).Value;
+        //    var expTakenAmount = value * expMultiplierValue;
+        //    _resources.GetResource(ResourceName.Experience).Increase(expTakenAmount);
+        //}
 
         private void LevelUp()
         {

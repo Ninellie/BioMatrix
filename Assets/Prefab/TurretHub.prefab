@@ -41,7 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9034957501157506180}
   - component: {fileID: -497711196860966798}
-  - component: {fileID: 8444090664184179504}
   - component: {fileID: -9047308907296507604}
   - component: {fileID: -8906158504319753904}
   - component: {fileID: 5986424607426530457}
@@ -97,24 +96,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8444090664184179504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9206584794608382483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a5d5ad2b00e3614ba992d85a8b84906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 1
-  maximumLife: 1
-  lifeRegenerationInSecond: 0
-  knockbackPower: 0
-  damage: 0
-  turretCount: 5
 --- !u!114 &-9047308907296507604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turretPrefab: {fileID: 9206584794608382483, guid: e4b56dd8ab154984597f19cc0101b423, type: 3}
   _turretWeaponPrefab: {fileID: 3233653779076600719, guid: fc06b7e8f38d50e48892e3fde399d532, type: 3}
-  _isSameTurretTarget: 0
 --- !u!114 &-8906158504319753904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +155,9 @@ MonoBehaviour:
   _preset: {fileID: 11400000, guid: 48f6d8ac2be26644690ef6576f54e35b, type: 2}
   _resources: []
   _statList: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &-5373451152742501804
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -92,6 +92,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             turretHub.SetSource(_player);
             _player.TurretHub = turretHub;
             turretHubPrefab.transform.SetParent(_player.transform);
+            turretHubPrefab.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
+            _playerDataAggregator.ReadInfoFromTarget(turretHubPrefab, TargetName.TurretHub);
+
             var firearm = turretHub.CreateTurretWeapon();
             firearm.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
             _playerDataAggregator.ReadInfoFromTarget(firearm, TargetName.TurretHubWeapon);

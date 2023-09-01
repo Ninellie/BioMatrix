@@ -108,9 +108,8 @@ namespace Assets.Scripts.GameSession.Spawner
 
         private void PrepareEnemy(Enemy enemy, Vector2 playerPosition)
         {
-            var rarity = _rarity.GetRandomRarity();
             //var levelUpBonus = TimerBonus;
-            enemy.SetRarity(rarity);
+            enemy.SetRarity(_rarity.GetRandomRarity());
             //enemy.LevelUp(levelUpBonus);
             if (enemy.GetEnemyType() != EnemyType.AboveView) return;
             enemy.LookAt2D(playerPosition);

@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: -5954339166794116234}
   - component: {fileID: 6842002535895687529}
   - component: {fileID: -9195608851856029835}
+  - component: {fileID: 5175443557757980242}
   m_Layer: 7
   m_Name: BourgeonCharacter
   m_TagString: Player
@@ -5232,6 +5233,9 @@ MonoBehaviour:
   _preset: {fileID: 11400000, guid: f6d53f77e5e96684e86f2ea2bb0a35a9, type: 2}
   _resources: []
   _statList: {fileID: 4013630423983573852}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &6842002535895687529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5264,6 +5268,22 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &5175443557757980242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671026415413744665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d86fb8b3225c344ea460ce60351e1c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boonLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _magnetismRadius: 0
 --- !u!1 &7005012959266165756
 GameObject:
   m_ObjectHideFlags: 0
@@ -5350,6 +5370,9 @@ MonoBehaviour:
   _preset: {fileID: 11400000, guid: a14f3d1a183893e4a99ba286c9b8f005, type: 2}
   _resources: []
   _statList: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &5072275712465827581
 MonoBehaviour:
   m_ObjectHideFlags: 0

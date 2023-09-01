@@ -11,8 +11,6 @@ public class EffectsRepositoryPreset : ScriptableObject
     public List<IEffect> GetEffects()
     {
         return Instantiate(this)._effects;
-
-        //return _effects;
     }
 
     public IEffect GetEffectByName(string effectName)
@@ -23,21 +21,24 @@ public class EffectsRepositoryPreset : ScriptableObject
     [ContextMenu(nameof(AddNewStackableStatModifierEffect))]
     private void AddNewStackableStatModifierEffect()
     {
-        var e = new StackableStatModifierEffect();
-        _effects.Add(e);
+        _effects.Add(new StackableStatModifierEffect());
     }
 
     [ContextMenu(nameof(AddNewStackableTemporaryStatModifierEffect))]
     private void AddNewStackableTemporaryStatModifierEffect()
     {
-        var e = new StackableTemporaryStatModifierEffect();
-        _effects.Add(e);
+        _effects.Add(new StackableTemporaryStatModifierEffect());
     }
 
     [ContextMenu(nameof(AddNewEffectAdderEffect))]
     private void AddNewEffectAdderEffect()
     {
-        var e = new EffectAdderEffect();
-        _effects.Add(e);
+        _effects.Add(new EffectAdderEffect());
+    }
+
+    [ContextMenu(nameof(AddNewResourceIncreaserEffect))]
+    private void AddNewResourceIncreaserEffect()
+    {
+        _effects.Add(new ResourceIncreaserEffect());
     }
 }

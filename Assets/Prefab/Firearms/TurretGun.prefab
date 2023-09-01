@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4874424156683704592}
   - component: {fileID: 2073174384341714352}
   - component: {fileID: 7478297182190854537}
-  - component: {fileID: -5820009616735749093}
   - component: {fileID: 6425109085915426426}
   - component: {fileID: -3379787577297695319}
   - component: {fileID: -5299867336331947294}
@@ -81,28 +80,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b6c56da68b614e479d0ecbf0d5e843a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-5820009616735749093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3233653779076600719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc11a82609b91584a93b9ccb67ca2afa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
-  shootForce: 1200
-  shootsPerSecond: 0.5
-  maxShootDeflectionAngle: 15
-  magazineCapacity: 1
-  reloadTime: 0
-  singleShootProjectile: 1
-  projectileSizeMultiplier: 0
-  projectilePierceCount: 0
-  addedProjectileKnockback: 10
 --- !u!114 &6425109085915426426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +111,9 @@ MonoBehaviour:
   _preset: {fileID: 11400000, guid: f42d114b67ec0944bbd9d1987ad4aa23, type: 2}
   _resources: []
   _statList: {fileID: 6425109085915426426}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &-5299867336331947294
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class EffectsRepository : MonoBehaviour
     [SerializeReference]
     private List<IEffect> _defaultEffects;
 
-    [ReadOnly]
+    //[ReadOnly]
     [SerializeReference]
     private List<IEffect> _effects;
     

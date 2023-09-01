@@ -132,7 +132,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
             _stats.GetStat(StatName.Size).valueChangedEvent.AddListener(UpdateCurrentSize);
             _resources.GetResource(ResourceName.Health).AddListenerToEvent(ResourceEventType.Empty, Death);
-            //_resources.GetResource(ResourceName.Health).OnEmpty.AddListener(Death);
 
             _isSubscribed = true;
         }
@@ -149,8 +148,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private void CollideWithProjectile(Projectile projectile)
         {
-            var health = _resources.GetResource(ResourceName.Health);
-
             var projectileDamage = projectile.GetDamage();
             if (projectileDamage > 0) _lastDamageSource = projectile;
             _deathFromProjectile = true;
@@ -166,16 +163,15 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             force *= projectile.GetKnockbackPower();
             knockbackController.Knockback(force);
 
-            if (!health.IsEmpty) return;
-            //Death();
+            if (!_resources.GetResource(ResourceName.Health).IsEmpty) return;
             _isAlive = false;
         }
 
         private void CollideWithPlayer(Player player)
         {
             if (!_isAlive) return;
-            _deathFromProjectile = false;
             if (!_dieOnPlayerCollision) return;
+            _deathFromProjectile = false;
             _lastDamageSource = player;
             Death();
         }
@@ -222,6 +218,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         
             var statMod = new StatMod(OperationType.Multiplication, multiplier);
             _stats.GetStat(StatName.MaximumHealth).AddModifier(statMod);
+            _resources.GetResource(ResourceName.Health).Fill();
         }
         
         public EnemyType GetEnemyType() => _enemyType;

@@ -10,55 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c67aca5695f6114bb2d9c3c60e9a879, type: 3}
-  m_Name: Gun
+  m_Name: TurretDeckEffects
   m_EditorClassIdentifier: 
   _effects:
-  - rid: 6947765197103955982
-  - rid: 6947765197103955983
-  - rid: 6947765197103955984
+  - rid: 6947765209104384130
+  - rid: 6947765209104384131
+  - rid: 6947765209104384132
   references:
     version: 2
     RefIds:
-    - rid: 6947765197103955982
-      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
+    - rid: 6947765209104384130
+      type: {class: ResourceIncreaserEffect, ns: , asm: Scripts}
       data:
-        _name: MagazineAdd1
+        _name: TurretsIncrease1
         _description: 
-        _targetName: 4
-        statModList:
-        - strName: 
-          mod:
-            name: 
-            _type: 0
-            _value: 1
-          statName: 18
-        statList: {fileID: 0}
+        _targetName: 2
+        _resourceName: 5
+        _value: 1
         _maxStacks: 1000
         _currentStackCount: 0
         _initialStacks: 1
-    - rid: 6947765197103955983
+    - rid: 6947765209104384131
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
-        _name: FirerateMultiply50
+        _name: TurretProjectileAdd1
         _description: 
-        _targetName: 4
-        statModList:
-        - strName: 
-          mod:
-            name: 
-            _type: 1
-            _value: 50
-          statName: 16
-        statList: {fileID: 0}
-        _maxStacks: 1000
-        _currentStackCount: 0
-        _initialStacks: 1
-    - rid: 6947765197103955984
-      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
-      data:
-        _name: ProjectileAdd1
-        _description: 
-        _targetName: 4
+        _targetName: 3
         statModList:
         - strName: 
           mod:
@@ -68,5 +45,22 @@ MonoBehaviour:
           statName: 20
         statList: {fileID: 0}
         _maxStacks: 1000
+        _currentStackCount: 0
+        _initialStacks: 1
+    - rid: 6947765209104384132
+      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
+      data:
+        _name: TurretAimMultiply100
+        _description: 
+        _targetName: 3
+        statModList:
+        - strName: 
+          mod:
+            name: 
+            _type: 1
+            _value: 100
+          statName: 26
+        statList: {fileID: 0}
+        _maxStacks: 100
         _currentStackCount: 0
         _initialStacks: 1

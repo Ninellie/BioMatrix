@@ -32,7 +32,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         public string title;
         [Multiline] public string description;
         public float dropWeight;
-        public List<string> effectsName;
+        public List<string> effectNames;
     }
 
     [Serializable]
@@ -138,7 +138,10 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 };
 
                 for (var index = 0; index < deck.cardsInitArray.Length; index++)
+                {
                     deck.cardsInitArray[index] = new Card();
+                    deck.cardsInitArray[index].effectNames = new List<string>();
+                }
 
                 foreach (var patternCard in patternDeck.cardsArray)
                 {
@@ -152,7 +155,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                             ? patternCard.card.description
                             : "\r\n" + patternCard.card.description;
                         deck.cardsInitArray[i].dropWeight = patternCard.card.dropWeight;
-                        deck.cardsInitArray[i].effectsName = patternCard.card.effectsName;
+                        deck.cardsInitArray[i].effectNames.AddRange(patternCard.card.effectNames);
                     }
                 }
 
