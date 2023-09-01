@@ -31,7 +31,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.BoonComponents
             if (!isBoxCollider) return;
             if (!collider2D.gameObject.CompareTag("Player")) return;
 
-            Invoke(nameof(Death), 0.3f);
+            Invoke(nameof(Death), 0.1f);
         }
 
         public int GetExperience()

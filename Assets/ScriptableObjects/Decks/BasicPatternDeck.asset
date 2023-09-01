@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e919ee59592c6a8489d1002a8505cadd, type: 3}
-  m_Name: AgilityAndGun
+  m_Name: BasicPatternDeck
   m_EditorClassIdentifier: 
   patternDeckList:
   - name: Agility

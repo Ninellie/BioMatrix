@@ -15,7 +15,7 @@ MonoBehaviour:
   stats:
   - stringName: Damage
     name: 7
-    baseValue: 5
+    baseValue: 2
   - stringName: ShootForce
     name: 15
     baseValue: 1600
@@ -30,7 +30,7 @@ MonoBehaviour:
     baseValue: 1
   - stringName: ReloadSpeed
     name: 19
-    baseValue: 100
+    baseValue: 1
   - stringName: Projectiles
     name: 20
     baseValue: 1
@@ -45,5 +45,5 @@ MonoBehaviour:
     baseValue: 5
   - stringName: TurretAimingRadius
     name: 26
-    baseValue: 100
+    baseValue: 150
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}

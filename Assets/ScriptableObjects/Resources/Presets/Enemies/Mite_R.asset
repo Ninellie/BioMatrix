@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: Mite_R
   m_EditorClassIdentifier: 
   resources:
-  - maxValueStatName: 2
+  - stringName: Health
     name: 1
-    baseValue: 5
+    maxValueStatName: 2
+    baseValue: 2
     minValue: 0
     edgeValue: 1
-  - maxValueStatName: 0
+  - stringName: Kills
     name: 3
+    maxValueStatName: 0
     baseValue: 0
     minValue: 0
     edgeValue: 1

@@ -13,24 +13,34 @@ MonoBehaviour:
   m_Name: RevolverFirearm_S
   m_EditorClassIdentifier: 
   stats:
-  - name: 7
+  - stringName: Damage
+    name: 7
     baseValue: 10
-  - name: 15
-    baseValue: 1600
-  - name: 16
-    baseValue: 4
-  - name: 17
+  - stringName: ShootForce
+    name: 15
+    baseValue: 1000
+  - stringName: ShootsPerSecond
+    name: 16
     baseValue: 3
-  - name: 18
+  - stringName: MaxShootDeflectionAngle
+    name: 17
+    baseValue: 10
+  - stringName: MagazineCapacity
+    name: 18
     baseValue: 6
-  - name: 19
+  - stringName: ReloadSpeed
+    name: 19
     baseValue: 1
-  - name: 20
+  - stringName: Projectiles
+    name: 20
     baseValue: 1
-  - name: 21
+  - stringName: ProjectileSizeMultiplier
+    name: 21
     baseValue: 0
-  - name: 22
+  - stringName: Pierce
+    name: 22
     baseValue: 0
-  - name: 23
-    baseValue: 15
+  - stringName: AddedProjectileKnockback
+    name: 23
+    baseValue: 20
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}

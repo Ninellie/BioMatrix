@@ -18,7 +18,7 @@ MonoBehaviour:
     baseValue: 1.7
   - stringName: MaximumHealth
     name: 2
-    baseValue: 5
+    baseValue: 2
   - stringName: MovementSpeed
     name: 5
     baseValue: 280
