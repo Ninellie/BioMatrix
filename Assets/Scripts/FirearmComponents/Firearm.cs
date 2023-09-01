@@ -153,6 +153,19 @@ namespace Assets.Scripts.FirearmComponents
 
             var direction = GetShotDirection();
 
+            var projSpread = _stats.GetStat(StatName.MaxShootDeflectionAngle).Value;
+
+            var projCount = projectiles.Length;
+
+            var fireAngle = projSpread * (projCount - 1);
+
+            var halfFireAngleRad = fireAngle * 0.5f * Mathf.Deg2Rad;
+
+            var leftDirection = Rotate(direction, -halfFireAngleRad);
+
+            var actualShotDirection = leftDirection;
+
+
             foreach (var projectile in projectiles)
             {
                 var projStats = projectile.GetComponent<StatList>();
@@ -163,8 +176,9 @@ namespace Assets.Scripts.FirearmComponents
 
                 proj.SetSource(this);
 
-                var actualShotDirection = GetActualShotDirection(direction, MaxShootDeflectionAngle.Value);
+                //var actualShotDirection = GetActualShotDirection(direction, MaxShootDeflectionAngle.Value);
                 proj.Launch(actualShotDirection, ShootForce.Value);
+                actualShotDirection = Rotate(actualShotDirection, projSpread * Mathf.Deg2Rad);
             }
 
             _previousShootTimer = MinShootInterval;
