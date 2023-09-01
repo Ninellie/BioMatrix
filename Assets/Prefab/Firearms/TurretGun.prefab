@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9126805039593386211}
   - component: {fileID: 4874424156683704592}
   - component: {fileID: 2073174384341714352}
-  - component: {fileID: 7478297182190854537}
   - component: {fileID: 6425109085915426426}
   - component: {fileID: -3379787577297695319}
   - component: {fileID: -5299867336331947294}
@@ -49,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee81df67b8f5f8a4fa628c8d22e6fa4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammo: {fileID: 2741946790039367102, guid: 62ab6d6883f51534595dccca64c6bacb, type: 3}
+  _ammo: {fileID: 2741946790039367102, guid: b80e23b7f795d9c4b949d80c75fc8433, type: 3}
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -68,18 +67,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _plateUi: {fileID: 0}
   _isInProgress: 0
---- !u!114 &7478297182190854537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3233653779076600719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b6c56da68b614e479d0ecbf0d5e843a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6425109085915426426
 MonoBehaviour:
   m_ObjectHideFlags: 0

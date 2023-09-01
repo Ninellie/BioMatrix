@@ -16,7 +16,6 @@ public interface IWeapon
 namespace Assets.Scripts.FirearmComponents
 {
     [RequireComponent(typeof(Reload))]
-    [RequireComponent(typeof(ProjectileCreator))]
     public class Firearm : MonoBehaviour, ISource, IDerivative, ISlayer, IWeapon
     {
         [SerializeField] private GameObject _ammo;
@@ -47,7 +46,6 @@ namespace Assets.Scripts.FirearmComponents
                                 && !Magazine.IsEmpty
                                 && !_reload.IsInProcess;
 
-        private ProjectileCreator _projectileCreator;
         private Reload _reload;
         private Player _player;
         private bool IsFireButtonPressed => IsEnable && !IsForPlayer || _player.IsFireButtonPressed;
@@ -63,7 +61,6 @@ namespace Assets.Scripts.FirearmComponents
             _stats = GetComponent<StatList>();
             _resources = GetComponent<ResourceList>();
             _reload = GetComponent<Reload>();
-            _projectileCreator = GetComponent<ProjectileCreator>();
 
             _player = FindObjectOfType<Player>();
         }
@@ -138,12 +135,21 @@ namespace Assets.Scripts.FirearmComponents
             AddedProjectileKnockback = firearmStats.GetStat(StatName.AddedProjectileKnockback);
             TurretAimingRadius = firearmStats.GetStat(StatName.TurretAimingRadius);
         }
+        public GameObject[] CreateProjectiles(int singleShotProjectiles, GameObject ammo, Transform firingPoint)
+        {
+            var projectiles = new GameObject[singleShotProjectiles];
 
+            for (var i = 0; i < projectiles.Length; i++)
+            {
+                projectiles[i] = Instantiate(ammo, firingPoint.position, firingPoint.rotation);
+            }
+            return projectiles;
+        }
         private void Shoot()
         {
             Magazine.Decrease();
 
-            var projectiles = _projectileCreator.CreateProjectiles((int)SingleShootProjectile.Value, _ammo, gameObject.transform);
+            var projectiles = CreateProjectiles((int)SingleShootProjectile.Value, _ammo, gameObject.transform);
 
             var direction = GetShotDirection();
 

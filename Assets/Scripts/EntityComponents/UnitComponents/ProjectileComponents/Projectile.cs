@@ -22,7 +22,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
         float GetKnockbackPower();
     }
 
-    [RequireComponent(typeof(UnitStatsSettings))]
     public class Projectile : MonoBehaviour, ISlayer, IDerivative, IDamageDealer, IDamageable, IKnockbackDealer
     {
         private TrailRenderer _trail;
