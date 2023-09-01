@@ -30,14 +30,20 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.BoonComponents
             var isBoxCollider = collider2D is BoxCollider2D;
             if (!isBoxCollider) return;
             if (!collider2D.gameObject.CompareTag("Player")) return;
-            Debug.Log("The exp boon was taken");
-            gameObject.SetActive(false);
-            Destroy(gameObject);
+
+            Invoke(nameof(Death), 0.3f);
         }
 
         public int GetExperience()
         {
             return _experienceAmount;
+        }
+
+        private void Death()
+        {
+            Debug.Log($"Boon {gameObject.name} has been destroyed");
+            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

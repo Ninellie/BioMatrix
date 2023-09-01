@@ -208,7 +208,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private void TakeDamage(int amount)
         {
             _resources.GetResource(ResourceName.Health).Decrease(amount);
-            Debug.Log("Damage is taken " + gameObject.name);
+            Debug.Log("Damage is taken " + gameObject.name); // ECS?
         }
 
         private void ChangeCurrentSize()
