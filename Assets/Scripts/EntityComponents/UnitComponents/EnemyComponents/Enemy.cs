@@ -59,7 +59,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private void Awake()
         {
-            Debug.Log($"{gameObject.GetInstanceID()} Enemy Awake");
+            Debug.Log($"Enemy {gameObject.name} Awake");
             _isAlive = true;
 
             _stats = GetComponent<StatList>();

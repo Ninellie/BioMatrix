@@ -37,7 +37,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
 
         private void Awake()
         {
-            Debug.Log($"{gameObject.name} Projectile Awake");
+            Debug.Log($"Projectile {gameObject.name} Awake");
 
             _stats = GetComponent<StatList>();
             _resources = GetComponent<ResourceList>();
