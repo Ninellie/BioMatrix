@@ -120,3 +120,61 @@ MonoBehaviour:
         dropWeight: 1
         effectNames:
         - PierceAdd1
+  - name: Health
+    description: Improves survivability
+    capacity: 15
+    cardsArray:
+    - name: Each 1 lvl
+      occurrenceFrequency: 1
+      card:
+        title: Each 1 lvl
+        description: +1 Maximum Health
+        dropWeight: 1
+        effectNames:
+        - MaxHealthAdd1
+        - HealthIncrease1
+    - name: Each 3 lvl
+      occurrenceFrequency: 3
+      card:
+        title: Each 3 lvl
+        description: Gain Adrenalin on Health Loss for 5 seconds
+        dropWeight: 1
+        effectNames:
+        - AdrenalinOnHealthDecrement
+    - name: Each 5 lvl
+      occurrenceFrequency: 5
+      card:
+        title: Each 5 lvl
+        description: Gain +5 Firearm Damage permanently when you lose a Health Point.
+        dropWeight: 1
+        effectNames:
+        - DamageAdd5OnHealthDecrement
+  - name: Nerves
+    description: Improves your nerves
+    capacity: 15
+    cardsArray:
+    - name: Each 1 lvl
+      occurrenceFrequency: 1
+      card:
+        title: Each 1 lvl
+        description: +15% Magnetism Radius
+        dropWeight: 1
+        effectNames:
+        - +15% Magnetism Radius
+    - name: Each 3 lvl
+      occurrenceFrequency: 3
+      card:
+        title: Each 3 lvl
+        description: +1 Shield Layer. The layer is restored in 1 minute
+        dropWeight: 1
+        effectNames:
+        - +1 Max Shield Layers
+        - +1 Shield Layer
+    - name: Each 5 lvl
+      occurrenceFrequency: 5
+      card:
+        title: Each 5 lvl
+        description: +200% Shield Recharge Rate
+        dropWeight: 1
+        effectNames:
+        - +200% Shield Recharge Rate

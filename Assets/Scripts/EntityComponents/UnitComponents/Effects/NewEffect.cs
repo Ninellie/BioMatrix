@@ -26,11 +26,17 @@ public interface IEffect
 public interface IEffectAdder : IEffect
 {
     void SetEffectsManager(OverUnitDataAggregator effectsAggregator);
+    //void SetEffectsRepository(EffectsRepository effectsRepository);
+}
+
+public interface IResourceOperator : IEffect
+{
+    void SetResourceList(ResourceList resourceList);
 }
 
 public interface IRespondingEffect : IEffect
 {
-    void SetResourceList(ResourceList resourceList);
+    void Subscribe();
 }
 
 public interface IStackableTemporaryEffect : IStackableEffect, ITemporaryEffect

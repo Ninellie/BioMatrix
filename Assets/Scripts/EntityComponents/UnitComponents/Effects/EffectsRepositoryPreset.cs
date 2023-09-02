@@ -15,7 +15,8 @@ public class EffectsRepositoryPreset : ScriptableObject
 
     public IEffect GetEffectByName(string effectName)
     {
-        return _effects.FirstOrDefault(e => e.Name.Equals(effectName));
+        return Instantiate(this)._effects.FirstOrDefault(e => e.Name.Equals(effectName));
+        //return _effects.FirstOrDefault(e => e.Name.Equals(effectName));
     }
 
     [ContextMenu(nameof(AddNewStackableStatModifierEffect))]
@@ -30,10 +31,10 @@ public class EffectsRepositoryPreset : ScriptableObject
         _effects.Add(new StackableTemporaryStatModifierEffect());
     }
 
-    [ContextMenu(nameof(AddNewEffectAdderEffect))]
-    private void AddNewEffectAdderEffect()
+    [ContextMenu(nameof(AddNewRespondingEffectAdderEffect))]
+    private void AddNewRespondingEffectAdderEffect()
     {
-        _effects.Add(new EffectAdderEffect());
+        _effects.Add(new RespondingEffectAdderEffect());
     }
 
     [ContextMenu(nameof(AddNewResourceIncreaserEffect))]

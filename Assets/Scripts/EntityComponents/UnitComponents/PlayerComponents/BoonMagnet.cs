@@ -35,7 +35,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             if (!_boxCollider2D.IsTouchingLayers(_boonLayer)) return;
             if (!_boxCollider2D.IsTouching(collider2D)) return;
-            var experienceAmount = collider2D.gameObject.GetComponent<Boon>().GetExperience();
+            var isBoon = collider2D.gameObject.TryGetComponent(out Boon boon);
+            if (!isBoon) return;
+            var experienceAmount = boon.GetExperience();
             IncreaseExperience(experienceAmount);
         }
 

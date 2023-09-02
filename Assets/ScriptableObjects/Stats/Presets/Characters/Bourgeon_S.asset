@@ -27,10 +27,10 @@ MonoBehaviour:
     baseValue: 300
   - stringName: MagnetismRadius
     name: 9
-    baseValue: 75
+    baseValue: 40
   - stringName: ExperienceMultiplier
     name: 8
-    baseValue: 1
+    baseValue: 11
   - stringName: ExperienceToNewLevel
     name: 25
     baseValue: 35

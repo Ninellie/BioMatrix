@@ -5250,6 +5250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _preset: {fileID: 11400000, guid: 734748a3db3525d46967659ae3f29889, type: 2}
   _recoveringResources: []
+  _updateRateInSeconds: 1
 --- !u!114 &-9195608851856029835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5338,7 +5339,8 @@ MonoBehaviour:
     m_Bits: 64
   _spriteAlphaPerLayer: 0.2
   _color: {r: 0, g: 1, b: 1, a: 1}
-  _statList: {fileID: 0}
+  _stats: {fileID: 0}
+  _resources: {fileID: 0}
 --- !u!114 &6155809969865943397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5387,6 +5389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _preset: {fileID: 11400000, guid: 789e9c8de148959459399f19f9237be9, type: 2}
   _recoveringResources: []
+  _updateRateInSeconds: 0.1
 --- !u!212 &7579849442500094081
 SpriteRenderer:
   m_ObjectHideFlags: 0

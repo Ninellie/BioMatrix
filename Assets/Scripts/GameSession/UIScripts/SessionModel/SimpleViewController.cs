@@ -1,4 +1,5 @@
 using System;
+using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.View;
 using UnityEngine;
@@ -41,8 +42,8 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         }
         public void Repulse()
         {
-            _player.Shield.LayersCount.Increase();
-            _player.Shield.LayersCount.Decrease();
+            _player.Shield.Layers.Increase();
+            _player.Shield.Layers.Decrease();
         }
         public void OpenMenu()
         {

@@ -117,8 +117,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void CollideWithEnemy(Enemy enemy)
         {
-            if (!Shield.LayersCount.IsEmpty)
-                Shield.LayersCount.Decrease();
+            if (!Shield.Layers.IsEmpty)
+                Shield.Layers.Decrease();
             else
             {
                 var damageAmount = enemy.GetDamage();

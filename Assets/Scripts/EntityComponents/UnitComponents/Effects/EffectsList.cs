@@ -95,11 +95,14 @@ public class EffectsList : MonoBehaviour
         if (effect is IStatModifier st)
             st.SetStatList(_stats);
 
-        if (effect is IRespondingEffect re)
-            re.SetResourceList(_resources);
-        
+        if (effect is IResourceOperator ro)
+            ro.SetResourceList(_resources);
+
         if (effect is IEffectAdder ad)
             ad.SetEffectsManager(_effectsAggregator);
+
+        if (effect is IRespondingEffect re)
+            re.Subscribe();
 
         effect.Activate();
 

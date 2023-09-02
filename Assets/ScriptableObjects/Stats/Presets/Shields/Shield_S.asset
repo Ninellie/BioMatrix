@@ -13,14 +13,19 @@ MonoBehaviour:
   m_Name: Shield_S
   m_EditorClassIdentifier: 
   stats:
-  - name: 10
+  - stringName: MaximumLayers
+    name: 10
     baseValue: 3
-  - name: 11
+  - stringName: MaximumRechargeableLayers
+    name: 11
     baseValue: 0
-  - name: 12
+  - stringName: RechargeRatePerMinute
+    name: 12
     baseValue: 1
-  - name: 13
+  - stringName: RepulseForce
+    name: 13
     baseValue: 250
-  - name: 14
+  - stringName: RepulseRadius
+    name: 14
     baseValue: 100
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}

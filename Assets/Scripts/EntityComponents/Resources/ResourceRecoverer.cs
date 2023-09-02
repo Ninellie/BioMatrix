@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Assets.Scripts.CustomAttributes;
 using Assets.Scripts.EntityComponents.Stats;
@@ -25,11 +26,10 @@ namespace Assets.Scripts.EntityComponents.Resources
     [RequireComponent(typeof(StatList))]
     public class ResourceRecoverer : MonoBehaviour, ISerializationCallbackReceiver
     {
-        [SerializeField]
-        private RecoveringResourcesPreset _preset;
+        [SerializeField] private RecoveringResourcesPreset _preset;
+        [SerializeField] private List<RecoveringInfo> _recoveringResources;
 
-        [SerializeField]
-        private List<RecoveringInfo> _recoveringResources;
+        [SerializeField] [Min(0)] private float _updateRateInSeconds = 1;
 
         private ResourceList _resourceList;
         private StatList _statList;
@@ -56,13 +56,17 @@ namespace Assets.Scripts.EntityComponents.Resources
             }
         }
 
-        private IEnumerator Recover(Resource resource, Stat limiter, Stat valuePerSecond, RecoveringInfo info)
+        private IEnumerator Recover(Resource resource, Stat limiter, Stat valuePerMinute, RecoveringInfo info)
         {
-            info.value += valuePerSecond.Value;
-            yield return new WaitForSeconds(1 / valuePerSecond.Value);
-            if (!(resource.GetValue() < limiter.Value)) yield break;
-            info.value = 0f;
-            resource.Increase();
+            while (true)
+            {
+                yield return new WaitWhile(() => !(resource.GetValue() < limiter.Value));
+                info.value += valuePerMinute.Value / 60 * _updateRateInSeconds;
+                yield return new WaitForSeconds(_updateRateInSeconds);
+                if (!(info.value > 1)) continue;
+                info.value = 0f;
+                resource.Increase();
+            }
         }
 
         public void OnBeforeSerialize()

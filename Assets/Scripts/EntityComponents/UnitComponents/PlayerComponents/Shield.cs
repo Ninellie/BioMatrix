@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using UnityEngine;
@@ -13,45 +15,30 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private float _spriteAlphaPerLayer = 0.2f;
         [SerializeField] private Color _color = Color.cyan;
 
-        [SerializeField] private StatList _statList;
-
-        public OldStat MaxLayers { get; private set; }
-        public OldStat MaxRechargeableLayers { get; private set; }
-        public OldStat RechargeRatePerSecond { get; private set; }
-        public OldStat RepulseForce { get; private set; }
-        public OldStat RepulseRadius { get; private set; }
-
-        public OldRecoverableResource LayersCount { get; private set; }
+        [SerializeField] private StatList _stats;
+        [SerializeField] private ResourceList _resources;
+        public Resource Layers { get; private set; }
 
         private CapsuleCollider2D _capsuleCollider;
         private SpriteRenderer _shieldSprite;
 
+        private bool _isSubscribed;
+
         private void Awake()
         {
-            _statList = GetComponent<StatList>();
+            _stats = GetComponent<StatList>();
+            _resources = GetComponent<ResourceList>();
             _shieldSprite = GetComponent<SpriteRenderer>();
             _capsuleCollider = GetComponentInParent<CapsuleCollider2D>();
         }
 
         private void Start()
         {
-            MaxLayers = StatFactory.GetStat(_statList.GetStat(StatName.MaximumLayers).Value);
-            MaxRechargeableLayers = StatFactory.GetStat(_statList.GetStat(StatName.MaximumRechargeableLayers).Value);
-            var rechargeRatePerSecond = _statList.GetStat(StatName.RechargeRatePerMinute).Value / 60f;
-            RechargeRatePerSecond = StatFactory.GetStat(rechargeRatePerSecond);
-            RepulseForce = StatFactory.GetStat(_statList.GetStat(StatName.RepulseForce).Value);
-            RepulseRadius = StatFactory.GetStat(_statList.GetStat(StatName.RepulseRadius).Value);
-
-            LayersCount = new OldRecoverableResource(0, MaxLayers, RechargeRatePerSecond, MaxRechargeableLayers);
-
-            var initialLayersCount = (int)MaxRechargeableLayers.Value;
-            initialLayersCount = Mathf.Max(initialLayersCount, 0);
-            LayersCount.Increase(initialLayersCount);
+            Layers = _resources.GetResource(ResourceName.Layers);
             UpdateShieldAlpha();
-            
             Subscribe();
 
-            if (initialLayersCount == 0)
+            if (Layers.GetValue() == 0)
                 Disable();
             else
                 Enable();
@@ -67,59 +54,61 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             Unsubscribe();
         }
 
-        private void Update()
-        {
-            LayersCount.TimeToRecover += Time.deltaTime;
-        }
-
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.cyan;
-            if (RepulseRadius != null)
-                Gizmos.DrawWireSphere(transform.position, RepulseRadius?.Value ?? RepulseRadius.Value);
+            var repulseRadius = _stats.GetStat(StatName.RepulseRadius).Value;
+            Gizmos.DrawWireSphere(transform.position, repulseRadius);
         }
 
         private void Subscribe()
         {
-            if (LayersCount == null) return;
-            LayersCount.EmptyEvent += Disable;
-            LayersCount.NotEmptyEvent += Enable;
-            LayersCount.ValueChangedEvent += UpdateShieldAlpha;
-            LayersCount.DecrementEvent += Repulse;
+            if (_isSubscribed) return;
+            if (Layers == null) return;
+            Layers.AddListenerToEvent(ResourceEventType.Empty, Disable);
+            Layers.AddListenerToEvent(ResourceEventType.NotEmpty, Enable);
+            Layers.AddListenerToEvent(ResourceEventType.ValueChanged, UpdateShieldAlpha);
+            Layers.AddListenerToEvent(ResourceEventType.Decrement, Repulse);
+            _isSubscribed = true;
         }
 
         private void Unsubscribe()
         {
-            if (LayersCount == null) return;
-            LayersCount.EmptyEvent -= Disable;
-            LayersCount.NotEmptyEvent -= Enable;
-            LayersCount.ValueChangedEvent -= UpdateShieldAlpha;
-            LayersCount.DecrementEvent -= Repulse;
+            if (!_isSubscribed) return;
+            if (Layers == null) return;
+            Layers.RemoveListenerToEvent(ResourceEventType.Empty, Disable);
+            Layers.RemoveListenerToEvent(ResourceEventType.NotEmpty, Enable);
+            Layers.RemoveListenerToEvent(ResourceEventType.ValueChanged, UpdateShieldAlpha);
+            Layers.RemoveListenerToEvent(ResourceEventType.Decrement, Repulse);
+            _isSubscribed = false;
         }
 
         private void Repulse()
         {
-            var nearbyEnemies = GetNearbyEnemiesList(RepulseRadius.Value, _resistancePhysLayer);
+            var repulseRadius = _stats.GetStat(StatName.RepulseRadius).Value;
+            var repulseForce = _stats.GetStat(StatName.RepulseForce).Value;
+
+            var nearbyEnemies = GetNearbyEnemiesList(repulseRadius, _resistancePhysLayer);
             foreach (var enemy in nearbyEnemies)
             {
                 var force = (Vector2)enemy.transform.position - (Vector2)gameObject.transform.position;
                 force.Normalize();
-                force *= RepulseForce.Value;
+                force *= repulseForce;
                 enemy.knockbackController.Knockback(force);
             }
         }
 
-        private List<EnemyComponents.Enemy> GetNearbyEnemiesList(float repulseRadius, LayerMask enemyLayer)
+        private List<Enemy> GetNearbyEnemiesList(float repulseRadius, LayerMask enemyLayer)
         {
             var colliders2D = Physics2D.OverlapCircleAll(transform.position, repulseRadius, enemyLayer);
             return colliders2D.Select(collider2d => collider2d.gameObject.GetComponent<EnemyComponents.Enemy>()).ToList();
         }
 
-        private List<KnockbackController> GetNearbyEnemiesKnockbackControllersList(float repulseRadius, LayerMask enemyLayer)
-        {
-            var colliders2D = Physics2D.OverlapCircleAll(transform.position, repulseRadius, enemyLayer);
-            return colliders2D.Select(collider2d => collider2d.gameObject.GetComponent<KnockbackController>()).ToList();
-        }
+        //private List<KnockbackController> GetNearbyEnemiesKnockbackControllersList(float repulseRadius, LayerMask enemyLayer)
+        //{
+        //    var colliders2D = Physics2D.OverlapCircleAll(transform.position, repulseRadius, enemyLayer);
+        //    return colliders2D.Select(collider2d => collider2d.gameObject.GetComponent<KnockbackController>()).ToList();
+        //}
     
         private void Disable()
         {
@@ -135,7 +124,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void UpdateShieldAlpha()
         {
-            var spriteAlpha = _spriteAlphaPerLayer * LayersCount.GetValue();
+            var spriteAlpha = _spriteAlphaPerLayer * Layers.GetValue();
             _color.a = spriteAlpha;
             _shieldSprite.color = _color;
         }

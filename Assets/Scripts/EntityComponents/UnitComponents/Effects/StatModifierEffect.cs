@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
+using UnityEditor.Presets;
 using UnityEngine;
 
 [Serializable]
-public class ResourceIncreaserEffect : Effect, IRespondingEffect, IStackableEffect
+public class ResourceIncreaserEffect : Effect, IResourceOperator, IStackableEffect
 {
     [Header("Incremental resource settings")]
     [SerializeField] private ResourceName _resourceName;
@@ -60,27 +62,37 @@ public class ResourceIncreaserEffect : Effect, IRespondingEffect, IStackableEffe
 
 
 [Serializable]
-public class EffectAdderEffect : Effect, IRespondingEffect, IEffectAdder
+public class RespondingEffectAdderEffect : Effect, IResourceOperator, IEffectAdder, IRespondingEffect
 {
-    [SerializeField]
-    private StackableTemporaryStatModifierEffect _effect;
-
-    [SerializeField]
-    private ResourceName _resourceName;
-
-    [SerializeField]
-    private ResourceEventType _event;
+    [SerializeField] private List<string> _effectNames;
+    [SerializeField] private ResourceName _resourceName;
+    [SerializeField] private ResourceEventType _event;
+    [SerializeField] private EffectsRepositoryPreset _effectPreset;
 
     private OverUnitDataAggregator _effectsAggregator;
+    private Resource _resource;
 
     public void SetResourceList(ResourceList resourceList)
     {
-        resourceList.GetResource(_resourceName).AddListenerToEvent(_event, () => _effectsAggregator.AddEffect(_effect));
+        _resource = resourceList.GetResource(_resourceName);
     }
 
     public void SetEffectsManager(OverUnitDataAggregator effectsAggregator)
     {
         _effectsAggregator = effectsAggregator;
+    }
+
+    public void Subscribe()
+    {
+        _resource.AddListenerToEvent(_event, AddEffect);
+    }
+
+    private void AddEffect()
+    {
+        foreach (var effectName in _effectNames)
+        {
+            _effectsAggregator.AddEffect(_effectPreset.GetEffectByName(effectName));
+        }
     }
 }
 
@@ -92,8 +104,8 @@ public class StackableTemporaryStatModifierEffect : StackableStatModifierEffect,
     [SerializeField] private bool _isDurationStacks;
 
     public float Duration => _duration;
-    public bool IsDurationUpdates { get; }
-    public bool IsDurationStacks { get; }
+    public bool IsDurationUpdates => _isDurationUpdates;
+    public bool IsDurationStacks => _isDurationStacks;
     public string Identifier { get; set; }
 }
 

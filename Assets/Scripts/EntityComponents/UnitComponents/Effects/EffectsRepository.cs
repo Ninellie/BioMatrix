@@ -57,7 +57,7 @@ public class EffectsRepository : MonoBehaviour
     [ContextMenu(nameof(AddNewEffectAdderEffect))]
     private void AddNewEffectAdderEffect()
     {
-        var e = new EffectAdderEffect();
+        var e = new RespondingEffectAdderEffect();
         _defaultEffects.Add(e);
     }
 }

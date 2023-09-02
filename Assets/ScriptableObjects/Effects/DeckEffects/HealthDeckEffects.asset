@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c67aca5695f6114bb2d9c3c60e9a879, type: 3}
+  m_Name: HealthDeckEffects
+  m_EditorClassIdentifier: 
+  _effects:
+  - rid: 5662863174633521152
+  - rid: 5662863174633521153
+  - rid: 5662863174633521158
+  references:
+    version: 2
+    RefIds:
+    - rid: 5662863174633521152
+      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
+      data:
+        _name: MaxHealthAdd1
+        _description: 
+        _targetName: 0
+        statModList:
+        - strName: 
+          mod:
+            name: 
+            _type: 0
+            _value: 1
+          statName: 2
+        statList: {fileID: 0}
+        _maxStacks: 1000
+        _currentStackCount: 0
+        _initialStacks: 1
+    - rid: 5662863174633521153
+      type: {class: ResourceIncreaserEffect, ns: , asm: Scripts}
+      data:
+        _name: HealthIncrease1
+        _description: 
+        _targetName: 0
+        _resourceName: 1
+        _value: 1
+        _maxStacks: 1000
+        _currentStackCount: 0
+        _initialStacks: 1
+    - rid: 5662863174633521158
+      type: {class: RespondingEffectAdderEffect, ns: , asm: Scripts}
+      data:
+        _name: DamageAdd5OnHealthDecrement
+        _description: 
+        _targetName: 0
+        _effectNames:
+        - FirearmDamageAdd5
+        _resourceName: 1
+        _event: 4
+        _effectPreset: {fileID: 11400000, guid: 0302e0047db09a740b7d089ae3d25db3, type: 2}
