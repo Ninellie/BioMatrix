@@ -14,11 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effects:
   - rid: 6947765197103955982
-  - rid: 6947765197103955983
+  - rid: 5662863153972641914
   - rid: 6947765197103955984
+  - rid: 6947765197103955983
   references:
     version: 2
     RefIds:
+    - rid: 5662863153972641914
+      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
+      data:
+        _name: ShootForceMultiply15
+        _description: 
+        _targetName: 4
+        statModList:
+        - strName: 
+          mod:
+            name: 
+            _type: 1
+            _value: 15
+          statName: 15
+        statList: {fileID: 0}
+        _maxStacks: 1000
+        _currentStackCount: 0
+        _initialStacks: 1
     - rid: 6947765197103955982
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:

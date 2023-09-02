@@ -41,26 +41,29 @@ MonoBehaviour:
       occurrenceFrequency: 1
       card:
         title: Each 1 lvl
-        description: +1 Magazine Amount
+        description: '+1 Magazine Amount
+
+          +15% Shoot Force'
         dropWeight: 1
         effectNames:
         - MagazineAdd1
+        - ShootForceMultiply15
     - name: Each 3 lvl
       occurrenceFrequency: 3
       card:
         title: Each 3 lvl
-        description: +50% Firerate
-        dropWeight: 1
-        effectNames:
-        - FirerateMultiply50
-    - name: Each 5 lvl
-      occurrenceFrequency: 5
-      card:
-        title: Each 5 lvl
         description: +1 Projectile
         dropWeight: 1
         effectNames:
         - ProjectileAdd1
+    - name: Each 5 lvl
+      occurrenceFrequency: 5
+      card:
+        title: Each 5 lvl
+        description: +50% Firerate
+        dropWeight: 1
+        effectNames:
+        - FirerateMultiply50
   - name: Turrets
     description: Improves turrets
     capacity: 15
@@ -89,3 +92,31 @@ MonoBehaviour:
         dropWeight: 1
         effectNames:
         - TurretAimMultiply100
+  - name: Projectiles
+    description: Improves Projectiles of main firearm
+    capacity: 15
+    cardsArray:
+    - name: Each 1 lvl
+      occurrenceFrequency: 1
+      card:
+        title: Each 1 lvl
+        description: +2 Main Firearm Damage
+        dropWeight: 1
+        effectNames:
+        - DamageAdd2
+    - name: Each 3 lvl
+      occurrenceFrequency: 3
+      card:
+        title: Each 3 lvl
+        description: +75% Projectile Size
+        dropWeight: 1
+        effectNames:
+        - ProjSizeAdd75
+    - name: Each 5 lvl
+      occurrenceFrequency: 5
+      card:
+        title: Each 5 lvl
+        description: +1 Pierce
+        dropWeight: 1
+        effectNames:
+        - PierceAdd1
