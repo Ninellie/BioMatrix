@@ -16,6 +16,7 @@ MonoBehaviour:
   - rid: 5662863174633521152
   - rid: 5662863174633521153
   - rid: 5662863174633521158
+  - rid: 5662863221171159119
   references:
     version: 2
     RefIds:
@@ -58,3 +59,15 @@ MonoBehaviour:
         _resourceName: 1
         _event: 4
         _effectPreset: {fileID: 11400000, guid: 0302e0047db09a740b7d089ae3d25db3, type: 2}
+    - rid: 5662863221171159119
+      type: {class: RespondingEffectAdderEffect, ns: , asm: Scripts}
+      data:
+        _name: AdrenalinOnHealthDecrement
+        _description: 
+        _targetName: 0
+        _effectNames:
+        - FirearmAdrenalin
+        - PlayerAdrenalin
+        _resourceName: 1
+        _event: 4
+        _effectPreset: {fileID: 11400000, guid: 9b9e236ad150db442816ebc6e512c135, type: 2}

@@ -15,9 +15,21 @@ MonoBehaviour:
   _effects:
   - rid: 6947764788704051201
   - rid: 6947764788704051204
+  - rid: 5662863221171159041
   references:
     version: 2
     RefIds:
+    - rid: 5662863221171159041
+      type: {class: RespondingEffectAdderEffect, ns: , asm: Scripts}
+      data:
+        _name: RushOnReload
+        _description: 
+        _targetName: 4
+        _effectNames:
+        - Rush
+        _resourceName: 4
+        _event: 6
+        _effectPreset: {fileID: 11400000, guid: 1dfbc1d2876c71f48898a9a72442859d, type: 2}
     - rid: 6947764788704051201
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
@@ -38,7 +50,7 @@ MonoBehaviour:
     - rid: 6947764788704051204
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
-        _name: ReloadSpeedMultiply50
+        _name: ReloadSpeedMultiply35
         _description: 
         _targetName: 4
         statModList:
@@ -46,7 +58,7 @@ MonoBehaviour:
           mod:
             name: 
             _type: 1
-            _value: 50
+            _value: 35
           statName: 19
         statList: {fileID: 0}
         _maxStacks: 1000

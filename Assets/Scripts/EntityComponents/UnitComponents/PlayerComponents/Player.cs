@@ -157,6 +157,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             }
         }
 
+        
+
         public Transform GetFirePoint() => _firePoint;
 
         public GameObject CreateWeapon(GameObject weapon)
@@ -180,6 +182,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         //    _resources.GetResource(ResourceName.Experience).Increase(expTakenAmount);
         //}
 
+        [ContextMenu(nameof(LevelUp))]
         private void LevelUp()
         {
             Debug.LogWarning("Level up");

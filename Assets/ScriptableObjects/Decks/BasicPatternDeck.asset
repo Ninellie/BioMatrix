@@ -29,10 +29,18 @@ MonoBehaviour:
       occurrenceFrequency: 3
       card:
         title: Each 3 lvl
-        description: +50% Reload Speed
+        description: +35% Reload Speed
         dropWeight: 1
         effectNames:
-        - ReloadSpeedMultiply50
+        - ReloadSpeedMultiply35
+    - name: Each 3 lvl
+      occurrenceFrequency: 5
+      card:
+        title: Each 3 lvl
+        description: Rush for 1 sec on Reload
+        dropWeight: 1
+        effectNames:
+        - RushOnReload
   - name: Gun
     description: Improves gun
     capacity: 15
@@ -178,3 +186,31 @@ MonoBehaviour:
         dropWeight: 1
         effectNames:
         - +200% Shield Recharge Rate
+  - name: Plasma
+    description: Improves your nerves
+    capacity: 15
+    cardsArray:
+    - name: Each 1 lvl
+      occurrenceFrequency: 1
+      card:
+        title: Each 1 lvl
+        description: +1 Turret Damage
+        dropWeight: 1
+        effectNames:
+        - +1 Turret Damage
+    - name: Each 3 lvl
+      occurrenceFrequency: 3
+      card:
+        title: Each 3 lvl
+        description: Gain Overload for 3 seconds after Shield Layer Lost and after
+          Leveling Up
+        dropWeight: 1
+        effectNames:
+        - Gain Overload On Shield Layer Lost
+    - name: Each 5 lvl
+      occurrenceFrequency: 5
+      card:
+        title: Each 5 lvl
+        description: 
+        dropWeight: 1
+        effectNames: []

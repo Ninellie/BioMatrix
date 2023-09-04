@@ -10,57 +10,48 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c67aca5695f6114bb2d9c3c60e9a879, type: 3}
-  m_Name: AdrenalinEffects
+  m_Name: Overload
   m_EditorClassIdentifier: 
   _effects:
-  - rid: 5662863174633521156
-  - rid: 5662863174633521157
+  - rid: 5662863221171159042
   references:
     version: 2
     RefIds:
-    - rid: 5662863174633521156
+    - rid: 5662863221171159042
       type: {class: StackableTemporaryStatModifierEffect, ns: , asm: Scripts}
       data:
-        _name: FirearmAdrenalin
+        _name: Overload
         _description: 
-        _targetName: 4
+        _targetName: 3
         statModList:
         - strName: 
           mod:
             name: 
             _type: 1
-            _value: 100
+            _value: 25
           statName: 16
         - strName: 
           mod:
             name: 
             _type: 1
-            _value: 100
+            _value: 50
           statName: 19
-        statList: {fileID: 0}
-        _maxStacks: 1
-        _currentStackCount: 0
-        _initialStacks: 1
-        _duration: 5
-        _isDurationUpdates: 1
-        _isDurationStacks: 0
-    - rid: 5662863174633521157
-      type: {class: StackableTemporaryStatModifierEffect, ns: , asm: Scripts}
-      data:
-        _name: PlayerAdrenalin
-        _description: 
-        _targetName: 0
-        statModList:
         - strName: 
           mod:
             name: 
             _type: 1
-            _value: 100
-          statName: 5
+            _value: 50
+          statName: 15
+        - strName: 
+          mod:
+            name: 
+            _type: 0
+            _value: 200
+          statName: 21
         statList: {fileID: 0}
         _maxStacks: 1
         _currentStackCount: 0
         _initialStacks: 1
-        _duration: 5
+        _duration: 3
         _isDurationUpdates: 1
         _isDurationStacks: 0
