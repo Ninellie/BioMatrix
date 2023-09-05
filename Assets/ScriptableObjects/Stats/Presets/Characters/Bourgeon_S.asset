@@ -30,8 +30,8 @@ MonoBehaviour:
     baseValue: 40
   - stringName: ExperienceMultiplier
     name: 8
-    baseValue: 11
+    baseValue: 1
   - stringName: ExperienceToNewLevel
     name: 25
-    baseValue: 35
+    baseValue: 24
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}
