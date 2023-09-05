@@ -92,7 +92,7 @@ MonoBehaviour:
   _speedScaleRestoreSpeed: 1
   _restoreSpeedScale: 1
   _staticSpeedScale: 1
-  _shootingSpeedMultiplier: 0.3
+  _shootingSpeedMultiplier: 0.5
 --- !u!114 &6184172464766941476
 MonoBehaviour:
   m_ObjectHideFlags: 0

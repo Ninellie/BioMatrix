@@ -10,48 +10,57 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c67aca5695f6114bb2d9c3c60e9a879, type: 3}
-  m_Name: Overload
+  m_Name: Metabolism Acceleration
   m_EditorClassIdentifier: 
   _effects:
-  - rid: 5662863221171159042
+  - rid: 5662863174633521156
+  - rid: 5662863174633521157
   references:
     version: 2
     RefIds:
-    - rid: 5662863221171159042
+    - rid: 5662863174633521156
       type: {class: StackableTemporaryStatModifierEffect, ns: , asm: Scripts}
       data:
-        _name: Overload
+        _name: Metabolism Acceleration Firearm
         _description: 
-        _targetName: 3
+        _targetName: 4
         statModList:
         - strName: 
           mod:
             name: 
             _type: 1
-            _value: 100
+            _value: 2
           statName: 16
         - strName: 
           mod:
             name: 
             _type: 1
-            _value: 200
+            _value: 2
           statName: 19
+        statList: {fileID: 0}
+        _maxStacks: 25
+        _currentStackCount: 0
+        _initialStacks: 1
+        _duration: 5
+        _isDurationUpdates: 1
+        _isDurationStacks: 0
+    - rid: 5662863174633521157
+      type: {class: StackableTemporaryStatModifierEffect, ns: , asm: Scripts}
+      data:
+        _name: Metabolism Acceleration Player
+        _description: 
+        _targetName: 0
+        statModList:
         - strName: 
           mod:
             name: 
             _type: 1
-            _value: 50
-          statName: 15
-        - strName: 
-          mod:
-            name: 
-            _type: 0
-            _value: 100
-          statName: 21
+            _value: 2
+          statName: 5
         statList: {fileID: 0}
-        _maxStacks: 1
+        _maxStacks: 25
         _currentStackCount: 0
         _initialStacks: 1
-        _duration: 3
+        _duration: 5
         _isDurationUpdates: 1
         _isDurationStacks: 0

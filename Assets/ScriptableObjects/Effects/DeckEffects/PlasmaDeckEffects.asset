@@ -15,6 +15,8 @@ MonoBehaviour:
   _effects:
   - rid: 6947765209104384131
   - rid: 5662863221171159113
+  - rid: 5662863221171159229
+  - rid: 5662863242286596096
   references:
     version: 2
     RefIds:
@@ -29,6 +31,40 @@ MonoBehaviour:
         _resourceName: 2
         _event: 2
         _effectPreset: {fileID: 11400000, guid: 1a41b187c925a674cbb8fd2cb6c3d999, type: 2}
+    - rid: 5662863221171159229
+      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
+      data:
+        _name: +1 Turret Pierce
+        _description: 
+        _targetName: 3
+        statModList:
+        - strName: 
+          mod:
+            name: 
+            _type: 0
+            _value: 1
+          statName: 22
+        statList: {fileID: 0}
+        _maxStacks: 1000
+        _currentStackCount: 0
+        _initialStacks: 1
+    - rid: 5662863242286596096
+      type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
+      data:
+        _name: +50% Shield Recharge
+        _description: 
+        _targetName: 1
+        statModList:
+        - strName: 
+          mod:
+            name: 
+            _type: 1
+            _value: 50
+          statName: 12
+        statList: {fileID: 0}
+        _maxStacks: 1000
+        _currentStackCount: 0
+        _initialStacks: 1
     - rid: 6947765209104384131
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:

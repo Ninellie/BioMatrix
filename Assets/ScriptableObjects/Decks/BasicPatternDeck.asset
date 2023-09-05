@@ -128,7 +128,7 @@ MonoBehaviour:
         dropWeight: 1
         effectNames:
         - PierceAdd1
-  - name: Health
+  - name: Epithelium
     description: Improves survivability
     capacity: 15
     cardsArray:
@@ -187,7 +187,7 @@ MonoBehaviour:
         effectNames:
         - +200% Shield Recharge Rate
   - name: Plasma
-    description: Improves your nerves
+    description: Improves your turrets and shield
     capacity: 15
     cardsArray:
     - name: Each 1 lvl
@@ -211,6 +211,67 @@ MonoBehaviour:
       occurrenceFrequency: 5
       card:
         title: Each 5 lvl
-        description: 
+        description: '+1 Turret''s Projectile Pierce
+
+          +50% Shield Recharge'
         dropWeight: 1
-        effectNames: []
+        effectNames:
+        - +1 Turret Pierce
+        - +50% Shield Recharge
+  - name: Adaptation
+    description: Improves your adaptation ability
+    capacity: 15
+    cardsArray:
+    - name: Each 1 lvl
+      occurrenceFrequency: 1
+      card:
+        title: Each 1 lvl
+        description: +25% Experience Multiplier
+        dropWeight: 1
+        effectNames:
+        - +25% Experience Multiplier
+    - name: Each 3 lvl
+      occurrenceFrequency: 3
+      card:
+        title: Each 3 lvl
+        description: Gain Stack Metabolism on taking experience shard
+        dropWeight: 1
+        effectNames:
+        - Gain Stack Metabolism On Exp Increase
+    - name: Each 5 lvl
+      occurrenceFrequency: 5
+      card:
+        title: Each 5 lvl
+        description: +1 Health On Level Up
+        dropWeight: 1
+        effectNames:
+        - +1 Health On Level Up
+  - name: Blood
+    description: Improves your health and regeneration
+    capacity: 15
+    cardsArray:
+    - name: Each 1 lvl
+      occurrenceFrequency: 1
+      card:
+        title: Each 1 lvl
+        description: +0.25 Regeneration per minute
+        dropWeight: 1
+        effectNames:
+        - +0.25 Regeneration per minute
+    - name: Each 3 lvl
+      occurrenceFrequency: 3
+      card:
+        title: Each 3 lvl
+        description: Gain 1 Ammo when you kill an enemy
+        dropWeight: 1
+        effectNames:
+        - Gain 1 Ammo when you kill an enemy
+    - name: Each 5 lvl
+      occurrenceFrequency: 5
+      card:
+        title: Each 5 lvl
+        description: Gain +20% Damage every time you have one health point left (maximum
+          is 3 times)
+        dropWeight: 1
+        effectNames:
+        - +20% Damage on Health Edge
