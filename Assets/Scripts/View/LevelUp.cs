@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts.CustomAttributes;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.GameSession.UIScripts.SessionModel;
 using Assets.Scripts.GameSession.Upgrades.Deck;
@@ -29,7 +28,6 @@ namespace Assets.Scripts.View
         [Range(0, 1)]
         private float _finalAlpha;
 
-        [ReadOnly]
         [SerializeField]
         private List<Card> _selectedCards = new();
 

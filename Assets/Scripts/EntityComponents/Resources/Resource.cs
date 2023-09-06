@@ -1,5 +1,5 @@
 using System;
-using Assets.Scripts.CustomAttributes;
+//using Assets.Scripts.CustomAttributes;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,17 +32,23 @@ namespace Assets.Scripts.EntityComponents.Resources
         public bool IsNotEmpty => _value > _minValue;
         public bool IsOnEdge => _value == _edgeValue;
 
-        [ReadOnly] [SerializeField] private ResourceName _name;
+        //[ReadOnly]
+        [SerializeField] private ResourceName _name;
 
-        [ReadOnly] [SerializeField] private int _value;
+        //[ReadOnly]
+        [SerializeField] private int _value;
 
-        [ReadOnly] [SerializeField] private bool _isLimited;
+        //[ReadOnly]
+        [SerializeField] private bool _isLimited;
 
-        [ReadOnly] [SerializeField] private bool _isInfinite;
+        //[ReadOnly]
+        [SerializeField]  private bool _isInfinite;
 
-        [ReadOnly] [SerializeField] private int _minValue;
+        //[ReadOnly]
+        [SerializeField] private int _minValue;
 
-        [ReadOnly] [SerializeField] private int _edgeValue;
+        //[ReadOnly] 
+        [SerializeField] private int _edgeValue;
 
         [SerializeReference] private Stat _maxValueStat;
 

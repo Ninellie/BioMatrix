@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.CustomAttributes;
 using UnityEngine;
 
 [AddComponentMenu("Entity/Effects/EffectsRepository")]
@@ -15,7 +14,6 @@ public class EffectsRepository : MonoBehaviour
     [SerializeReference]
     private List<IEffect> _defaultEffects;
 
-    //[ReadOnly]
     [SerializeReference]
     private List<IEffect> _effects;
     

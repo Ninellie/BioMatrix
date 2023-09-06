@@ -1,5 +1,4 @@
 using System.Collections;
-using Assets.Scripts.CustomAttributes;
 using Assets.Scripts.EntityComponents.Resources;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ namespace Assets.Scripts.FirearmComponents
     public class Reload : MonoBehaviour
     {
         [SerializeField] private GameObject _plateUi;
-        [ReadOnly, SerializeField] private bool _isInProgress;
+        [SerializeField] private bool _isInProgress;
         private ResourceList _resourceList;
         private Resource _magazine;
         public bool IsInProcess => _isInProgress;

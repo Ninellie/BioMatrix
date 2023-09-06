@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.CustomAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,11 +15,11 @@ namespace Assets.Scripts.EntityComponents.Stats
 
         [HideInInspector, NonSerialized] public UnityEvent valueChangedEvent = new();
 
-        [ReadOnly] [SerializeField] private StatName _name;
-        [ReadOnly] [SerializeField] private float _value;
-        [ReadOnly] [SerializeField] private float _baseValue;
-        [ReadOnly] [SerializeField] private float _addedValue;
-        [ReadOnly] [SerializeField] private float _multiplierValue;
+        [SerializeField] private StatName _name;
+        [SerializeField] private float _value;
+        [SerializeField] private float _baseValue;
+        [SerializeField] private float _addedValue;
+        [SerializeField] private float _multiplierValue;
 
         [SerializeField] private List<StatMod> _modifiers = new();
         private StatSettings _settings;

@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Assets.Scripts.CustomAttributes;
+//using Assets.CustomAttributes;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
 
@@ -14,10 +12,7 @@ namespace Assets.Scripts.EntityComponents.Resources
     {
         [HideInInspector]
         public string stringName;
-        [ReadOnly]
         public ResourceName resourceName;
-        //public float secondsToRecovery;
-        [ReadOnly]
         public float value;
     }
 

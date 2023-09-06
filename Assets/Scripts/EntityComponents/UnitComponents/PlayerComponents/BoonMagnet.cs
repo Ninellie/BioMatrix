@@ -1,4 +1,4 @@
-using Assets.Scripts.CustomAttributes;
+//using Assets.CustomAttributes;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.BoonComponents;
@@ -9,7 +9,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
     public class BoonMagnet : MonoBehaviour
     {
         [SerializeField] private LayerMask _boonLayer;
-        [ReadOnly, SerializeField] private float _magnetismRadius;
+        //[ReadOnly] 
+        [SerializeField] private float _magnetismRadius;
         private Bounds _pickingBounds;
 
         private BoxCollider2D _boxCollider2D;

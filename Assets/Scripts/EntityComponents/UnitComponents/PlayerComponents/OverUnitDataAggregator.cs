@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
-using Codice.Client.GameUI.Explorer;
 using UnityEngine;
 using UnityEngine.Events;
 
