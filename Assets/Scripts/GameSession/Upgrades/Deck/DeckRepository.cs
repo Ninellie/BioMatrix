@@ -29,6 +29,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
     [Serializable]
     public class Card
     {
+        [HideInInspector] public string inspectorName;
         public string title;
         [Multiline] public string description;
         public float dropWeight;
@@ -41,7 +42,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         public string name;
         public string description;
 
-        [SerializeField] public Card[] cardsInitArray;
+        [SerializeField] public List<Card> cardsInspectorList;
 
         public Stack<Card> cards;
     }
@@ -74,15 +75,14 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             RemoveCard(card);
         }
 
-        public void RemoveCard(Card card)
+        private void RemoveCard(Card card)
         {
             foreach (var deck in _deckList)
             {
-                if (!deck.cards.TryPeek(out var result))
-                    continue;
-
-                if (result == card)
-                    deck.cards.Pop();
+                if (!deck.cards.TryPeek(out var result)) continue;
+                if (result != card) continue;
+                deck.cards.Pop();
+                card.inspectorName += $" | (TAKEN)";
             }
         }
 
@@ -104,7 +104,12 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         private List<Card> GetOpenedCards()
         {
             var cards = new List <Card>();
-            cards.AddRange(_deckList.Select(deck => deck.cards.Peek()));
+
+            foreach (var deck in _deckList)
+            {
+                if (!deck.cards.TryPeek(out var card)) continue;
+                cards.Add(card);
+            }
             return cards;
         }
 
@@ -132,36 +137,57 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             {
                 var deck = new Deck
                 {
-                    cardsInitArray = new Card[patternDeck.capacity],
+                    cardsInspectorList = new List<Card>(patternDeck.capacity),
                     name = patternDeck.name,
                     description = patternDeck.description,
                 };
 
-                for (var index = 0; index < deck.cardsInitArray.Length; index++)
+                
+
+                for (var index = 0; index < deck.cardsInspectorList.Capacity; index++)
                 {
-                    deck.cardsInitArray[index] = new Card();
-                    deck.cardsInitArray[index].effectNames = new List<string>();
+                    var card = new Card
+                    {
+                        effectNames = new List<string>()
+                    };
+
+                    deck.cardsInspectorList.Add(card);
                 }
 
                 foreach (var patternCard in patternDeck.cardsArray)
                 {
-                    for (int i = 0; i < deck.cardsInitArray.Length; i++)
-                    {
-                        if (patternCard.occurrenceFrequency == 0) continue;
-                        if ((i + 1) % patternCard.occurrenceFrequency != 0) continue;
-                        
-                        deck.cardsInitArray[i].title = $"{deck.name} \r\n Level {i + 1}";
-                        deck.cardsInitArray[i].description += string.IsNullOrEmpty(deck.cardsInitArray[i].description)
-                            ? patternCard.card.description
-                            : "\r\n" + patternCard.card.description;
-                        deck.cardsInitArray[i].dropWeight = patternCard.card.dropWeight;
-                        deck.cardsInitArray[i].effectNames.AddRange(patternCard.card.effectNames);
-                    }
+                    FillCardFromPattern(deck, patternCard);
                 }
 
-                deck.cards = new Stack<Card>(deck.cardsInitArray.Reverse());
-
+                deck.cardsInspectorList.Reverse();
+                deck.cards = new Stack<Card>(deck.cardsInspectorList);
+                deck.cardsInspectorList.Reverse();
                 _deckList.Add(deck);
+            }
+        }
+
+        private void FillCardFromPattern(Deck deck, PatternCard patternCard)
+        {
+            for (int i = 0; i < deck.cardsInspectorList.Count; i++)
+            {
+                if (patternCard.occurrenceFrequency == 0) continue;
+                if ((i + 1) % patternCard.occurrenceFrequency != 0) continue;
+                
+                deck.cardsInspectorList[i].inspectorName +=
+                    string.IsNullOrEmpty(deck.cardsInspectorList[i].inspectorName)
+                        ? $"{deck.name} Level {i + 1} | Pattern: {patternCard.occurrenceFrequency}"
+                        : $" {patternCard.occurrenceFrequency}";
+
+                deck.cardsInspectorList[i].title = $"{deck.name} \r\n Level {i + 1}";
+
+                deck.cardsInspectorList[i].description += 
+                    string.IsNullOrEmpty(deck.cardsInspectorList[i].description) 
+                    ? patternCard.card.description
+                    : "\r\n" + patternCard.card.description;
+
+                deck.cardsInspectorList[i].dropWeight = patternCard.card.dropWeight;
+
+                deck.cardsInspectorList[i].effectNames.AddRange(patternCard.card.effectNames);
             }
         }
     }
