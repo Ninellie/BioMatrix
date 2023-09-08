@@ -7,6 +7,7 @@ using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Turret;
 using Assets.Scripts.FirearmComponents;
+using Assets.Scripts.GameSession.UIScripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,14 +15,19 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
     public interface ISlayer
     {
-        public void IncreaseKills();
+        void IncreaseKills();
     }
     public interface IWeaponBearer
     {
-        public Transform GetFirePoint();
-        public GameObject CreateWeapon(GameObject weapon);
-        public IWeapon GetWeapon();
+        Transform GetFirePoint();
+        GameObject CreateWeapon(GameObject weapon);
+        IWeapon GetWeapon();
+        void Shoot();
+    }
 
+    public interface IAiming
+    {
+        void SetAimMode(AimMode mode);
     }
 
     public interface IPlayableCharacter
@@ -29,7 +35,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
     }
 
-    public class Player : MonoBehaviour, IWeaponBearer, IPlayableCharacter, ISlayer, ISource
+    public class Player : MonoBehaviour, IWeaponBearer, IPlayableCharacter, ISlayer, ISource, IAiming
     {
         [SerializeField] private Transform _firePoint;
         [SerializeField] private Shield _shield;
@@ -38,10 +44,14 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public event Action FireEvent;
         public event Action FireOffEvent;
 
+        public AimMode aimMode = AimMode.AutoAim;
+
         public Shield Shield => _shield;
         public TurretHub TurretHub { get; set; }
         public Firearm Firearm { get; private set; }
+
         public bool IsFireButtonPressed { get; private set; }
+
         public Vector2 CurrentAimDirection  { get; private set; }
 
         private const int ExperienceAmountIncreasingPerLevel = 8;
@@ -239,27 +249,73 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 ChangeAnimationState("Idle");
         }
 
-        public void OnFirePosition(InputValue input)
+        private void Update()
         {
-            var inputVector2 = input.Get<Vector2>();
-            inputVector2 = (Camera.main.ScreenToWorldPoint(inputVector2) - gameObject.transform.position).normalized;
-            CurrentAimDirection = inputVector2;
+            if (IsFireButtonPressed) Shoot();
         }
 
-        public void OnFire()
+        public void Shoot()
         {
+            Firearm.DoAction();
             const float animationFireSpeed = 0.5f;
             _animator.speed = animationFireSpeed;
-            IsFireButtonPressed = true;
-            FireEvent?.Invoke();
+            CancelInvoke(nameof(RestoreAnimationSpeed));
+            Invoke(nameof(RestoreAnimationSpeed), 0.2f);
         }
 
-        public void OnFireOff()
+        private void RestoreAnimationSpeed()
         {
-            const int animationFireSpeed = 1;
-            _animator.speed = animationFireSpeed;
+            _animator.speed = 1f;
+        }
+
+        public void OnFireStart()
+        {
+            IsFireButtonPressed = true;
+        }
+
+        public void OnFireEnd()
+        {
             IsFireButtonPressed = false;
-            FireOffEvent?.Invoke();
+        }
+
+        public void OnAiming(InputValue input)
+        {
+            Debug.LogWarning("OnAimingFire");
+            if (aimMode == AimMode.AutoAim)
+            {
+                if (CurrentAimDirection.Equals(Vector2.zero)) return;
+                CurrentAimDirection = Vector2.zero;
+                return;
+            }
+            var mousePosition = Camera.main.ScreenToWorldPoint(input.Get<Vector2>());
+            var directionToMousePos = (mousePosition - gameObject.transform.position).normalized;
+            CurrentAimDirection = directionToMousePos;
+        }
+
+        public void OnFire(InputValue input)
+        {
+            Debug.LogWarning("OnFire");
+            if (aimMode == AimMode.SelfAim) return;
+            CurrentAimDirection = Vector2.zero;
+            IsFireButtonPressed = input.isPressed;
+        }
+
+        public void OnJoystickAimingFire(InputValue input)
+        {
+            Debug.LogWarning("InJoystickAimingFire");
+            CurrentAimDirection = input.Get<Vector2>();
+            IsFireButtonPressed = !CurrentAimDirection.Equals(Vector2.zero);
+        }
+
+        public void OnChangeAimMode()
+        {
+            aimMode = aimMode switch
+            {
+                AimMode.AutoAim => AimMode.SelfAim,
+                AimMode.SelfAim => AimMode.AutoAim,
+                _ => aimMode
+            };
+            Debug.Log($"Aim mode changes to {aimMode}");
         }
 
         public void OnPause()
@@ -277,6 +333,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public void IncreaseKills()
         {
             _resources.GetResource(ResourceName.Kills).Increase();
+        }
+
+        public void SetAimMode(AimMode mode)
+        {
+            aimMode = mode;
         }
     }
 }

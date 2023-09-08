@@ -73,6 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 766516748403551923}
   _shield: {fileID: 6875561572371950145}
+  aimMode: 0
 --- !u!114 &58879946241494682
 MonoBehaviour:
   m_ObjectHideFlags: 0

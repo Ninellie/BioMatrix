@@ -5,12 +5,14 @@ using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
+using Assets.Scripts.GameSession.UIScripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public interface IWeapon
 {
     Resource GetAmmoResource();
+    void DoAction();
 }
 
 namespace Assets.Scripts.FirearmComponents
@@ -20,8 +22,7 @@ namespace Assets.Scripts.FirearmComponents
     {
         [SerializeField] private GameObject _ammo;
         [SerializeField] private LayerMask _enemyLayer;
-        [SerializeField] private bool _isAimHelperActive;
-        //[SerializeField] private Vector2 _currentFireDirection;
+        //[SerializeField] private AimMode _isAimHelperActive;
 
         public bool IsForPlayer { get; private set; }
         public Stat Damage { get; private set; }
@@ -44,11 +45,11 @@ namespace Assets.Scripts.FirearmComponents
         public bool IsEnable { get; set; } = true;
         public bool CanShoot => _previousShootTimer <= 0
                                 && !Magazine.IsEmpty
-                                && !_reload.IsInProcess;
+                                && !Reload.IsInProcess;
 
-        private Reload _reload;
+        public Reload Reload { get; private set; }
         private Player _player;
-        private bool IsFireButtonPressed => IsEnable && !IsForPlayer || _player.IsFireButtonPressed;
+        //private bool IsFireButtonPressed => IsEnable && !IsForPlayer || _player.IsFireButtonPressed;
         private float _previousShootTimer;
         private float MinShootInterval => 1f / ShootsPerSecond.Value;
 
@@ -60,16 +61,14 @@ namespace Assets.Scripts.FirearmComponents
         {
             _stats = GetComponent<StatList>();
             _resources = GetComponent<ResourceList>();
-            _reload = GetComponent<Reload>();
+            Reload = GetComponent<Reload>();
 
             _player = FindObjectOfType<Player>();
         }
 
         private void Start()
         {
-
             SetStats(_stats);
-
             Magazine = _resources.GetResource(ResourceName.Ammo);
             Magazine.Fill();
         }
@@ -78,8 +77,8 @@ namespace Assets.Scripts.FirearmComponents
         {
             if (!IsEnable) return;
             _previousShootTimer -= Time.deltaTime;
-            if (!IsFireButtonPressed) return;
-            if (CanShoot) Shoot();
+            //if (!IsFireButtonPressed) return;
+            //if (CanShoot) Shoot();
         }
 
         private void OnDrawGizmos()
@@ -120,6 +119,10 @@ namespace Assets.Scripts.FirearmComponents
         }
 
         public Resource GetAmmoResource() => _resources.GetResource(ResourceName.Ammo);
+        public void DoAction()
+        {
+            if (CanShoot) Shoot();
+        }
 
         private void SetStats(StatList firearmStats)
         {
@@ -176,7 +179,6 @@ namespace Assets.Scripts.FirearmComponents
 
                 proj.SetSource(this);
 
-                //var actualShotDirection = GetActualShotDirection(direction, MaxShootDeflectionAngle.Value);
                 proj.Launch(actualShotDirection, ShootForce.Value);
                 actualShotDirection = Rotate(actualShotDirection, projSpread * Mathf.Deg2Rad);
             }

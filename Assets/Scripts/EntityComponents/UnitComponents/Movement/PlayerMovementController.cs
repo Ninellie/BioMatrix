@@ -7,13 +7,28 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
     [RequireComponent(typeof(Player))]
     public class PlayerMovementController : MovementController
     {
-        [SerializeField]
-        private float _shootingSpeedMultiplier; //= 0.3f;
+        [SerializeField] private float _aimingSpeedMultiplier = 0.5f;
 
-        protected override float Speed =>
-            _isFireButtonPressed && !_player.GetWeapon().GetAmmoResource().IsEmpty
-                ? speedStat.Value * SpeedScale * _shootingSpeedMultiplier
-                : speedStat.Value * SpeedScale;
+        protected override float Speed
+        {
+            get
+            {
+                if (_player.Firearm.Reload.IsInProcess) // Кнопка не нажата, оружие на перезарядке
+                    return NoAimingSpeed;
+
+                if (_player.IsFireButtonPressed)
+                    return AimingSpeed;
+
+                if (_player.Firearm.CanShoot) // Кнопка не нажата, оружие готово к стрельбе
+                    return NoAimingSpeed;
+
+
+                return AimingSpeed; // Кнопка не нажата, оружие не на перезарядке, но совсем недавно стреляло и ещё не готово к стрельбе
+            }
+        }
+        protected float NoAimingSpeed => speedStat.Value * SpeedScale;
+        protected float AimingSpeed => NoAimingSpeed * _aimingSpeedMultiplier;
+
         protected override Vector2 MovementDirection { get; set; }
         protected override Vector2 RawMovementDirection
         {
@@ -22,7 +37,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         }
 
         private Player _player;
-        private bool _isFireButtonPressed;
 
         private new void Awake()
         {
@@ -37,12 +51,20 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 
         public void OnMove(InputValue input)
         {
-            var inputVector2 = input.Get<Vector2>();
-            MovementDirection = inputVector2;
+            MovementDirection = input.Get<Vector2>();
         }
 
-        public void OnFire() => _isFireButtonPressed = true;
+        public void OnFire()
+        {
+        }
 
-        public void OnFireOff() => _isFireButtonPressed = false;
+        public void OnAimingFire()
+        {
+        }
+
+        private void RestoreMultiplier()
+        {
+            _aimingSpeedMultiplier = 1;
+        }
     }
 }

@@ -18,6 +18,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
         {
             Debug.Log($"{gameObject.name} Turret Awake");
             _resources = GetComponent<ResourceList>();
+
+        }
+
+        private void FixedUpdate()
+        {
+            Firearm.DoAction();
         }
 
         public void CreateWeapon(GameObject weapon)
