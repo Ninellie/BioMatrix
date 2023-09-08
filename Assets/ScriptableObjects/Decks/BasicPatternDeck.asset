@@ -20,6 +20,7 @@ MonoBehaviour:
     - name: Each 1 lvl
       occurrenceFrequency: 1
       card:
+        inspectorName: 
         title: Each 1 lvl
         description: +10% Movement Speed
         dropWeight: 1
@@ -28,6 +29,7 @@ MonoBehaviour:
     - name: Each 3 lvl
       occurrenceFrequency: 3
       card:
+        inspectorName: 
         title: Each 3 lvl
         description: +35% Reload Speed
         dropWeight: 1
@@ -36,6 +38,7 @@ MonoBehaviour:
     - name: Each 3 lvl
       occurrenceFrequency: 5
       card:
+        inspectorName: 
         title: Each 3 lvl
         description: Rush for 1 sec on Reload
         dropWeight: 1
@@ -48,6 +51,7 @@ MonoBehaviour:
     - name: Each 1 lvl
       occurrenceFrequency: 1
       card:
+        inspectorName: 
         title: Each 1 lvl
         description: '+1 Magazine Amount
 
@@ -59,6 +63,7 @@ MonoBehaviour:
     - name: Each 3 lvl
       occurrenceFrequency: 3
       card:
+        inspectorName: 
         title: Each 3 lvl
         description: +1 Projectile
         dropWeight: 1
@@ -67,6 +72,7 @@ MonoBehaviour:
     - name: Each 5 lvl
       occurrenceFrequency: 5
       card:
+        inspectorName: 
         title: Each 5 lvl
         description: +50% Firerate
         dropWeight: 1
@@ -79,6 +85,7 @@ MonoBehaviour:
     - name: Each 1 lvl
       occurrenceFrequency: 1
       card:
+        inspectorName: 
         title: Each 1 lvl
         description: +1 Turret
         dropWeight: 1
@@ -87,6 +94,7 @@ MonoBehaviour:
     - name: Each 3 lvl
       occurrenceFrequency: 3
       card:
+        inspectorName: 
         title: Each 3 lvl
         description: +1 Turret's Projectile
         dropWeight: 1
@@ -95,6 +103,7 @@ MonoBehaviour:
     - name: Each 5 lvl
       occurrenceFrequency: 5
       card:
+        inspectorName: 
         title: Each 5 lvl
         description: +100% Turrets Aiming Radius
         dropWeight: 1
@@ -107,6 +116,7 @@ MonoBehaviour:
     - name: Each 1 lvl
       occurrenceFrequency: 1
       card:
+        inspectorName: 
         title: Each 1 lvl
         description: +2 Main Firearm Damage
         dropWeight: 1
@@ -115,6 +125,7 @@ MonoBehaviour:
     - name: Each 3 lvl
       occurrenceFrequency: 3
       card:
+        inspectorName: 
         title: Each 3 lvl
         description: +75% Projectile Size
         dropWeight: 1
@@ -123,6 +134,7 @@ MonoBehaviour:
     - name: Each 5 lvl
       occurrenceFrequency: 5
       card:
+        inspectorName: 
         title: Each 5 lvl
         description: +1 Pierce
         dropWeight: 1
@@ -135,6 +147,7 @@ MonoBehaviour:
     - name: Each 1 lvl
       occurrenceFrequency: 1
       card:
+        inspectorName: 
         title: Each 1 lvl
         description: +1 Maximum Health
         dropWeight: 1
@@ -144,6 +157,7 @@ MonoBehaviour:
     - name: Each 3 lvl
       occurrenceFrequency: 3
       card:
+        inspectorName: 
         title: Each 3 lvl
         description: Gain Adrenalin on Health Loss for 5 seconds
         dropWeight: 1
@@ -152,6 +166,7 @@ MonoBehaviour:
     - name: Each 5 lvl
       occurrenceFrequency: 5
       card:
+        inspectorName: 
         title: Each 5 lvl
         description: Gain +5 Firearm Damage permanently when you lose a Health Point.
         dropWeight: 1
@@ -164,6 +179,7 @@ MonoBehaviour:
     - name: Each 1 lvl
       occurrenceFrequency: 1
       card:
+        inspectorName: 
         title: Each 1 lvl
         description: +15% Magnetism Radius
         dropWeight: 1
@@ -172,6 +188,7 @@ MonoBehaviour:
     - name: Each 3 lvl
       occurrenceFrequency: 3
       card:
+        inspectorName: 
         title: Each 3 lvl
         description: +1 Shield Layer. The layer is restored in 1 minute
         dropWeight: 1
@@ -181,6 +198,7 @@ MonoBehaviour:
     - name: Each 5 lvl
       occurrenceFrequency: 5
       card:
+        inspectorName: 
         title: Each 5 lvl
         description: +200% Shield Recharge Rate
         dropWeight: 1
@@ -193,6 +211,7 @@ MonoBehaviour:
     - name: Each 1 lvl
       occurrenceFrequency: 1
       card:
+        inspectorName: 
         title: Each 1 lvl
         description: +1 Turret Damage
         dropWeight: 1
@@ -201,6 +220,7 @@ MonoBehaviour:
     - name: Each 3 lvl
       occurrenceFrequency: 3
       card:
+        inspectorName: 
         title: Each 3 lvl
         description: Gain Overload for 3 seconds after Shield Layer Lost and after
           Leveling Up
@@ -210,6 +230,7 @@ MonoBehaviour:
     - name: Each 5 lvl
       occurrenceFrequency: 5
       card:
+        inspectorName: 
         title: Each 5 lvl
         description: '+1 Turret''s Projectile Pierce
 
@@ -225,6 +246,7 @@ MonoBehaviour:
     - name: Each 1 lvl
       occurrenceFrequency: 1
       card:
+        inspectorName: 
         title: Each 1 lvl
         description: +25% Experience Multiplier
         dropWeight: 1
@@ -233,6 +255,7 @@ MonoBehaviour:
     - name: Each 3 lvl
       occurrenceFrequency: 3
       card:
+        inspectorName: 
         title: Each 3 lvl
         description: Gain Stack Metabolism on taking experience shard
         dropWeight: 1
@@ -241,6 +264,7 @@ MonoBehaviour:
     - name: Each 5 lvl
       occurrenceFrequency: 5
       card:
+        inspectorName: 
         title: Each 5 lvl
         description: +1 Health On Level Up
         dropWeight: 1
@@ -253,6 +277,7 @@ MonoBehaviour:
     - name: Each 1 lvl
       occurrenceFrequency: 1
       card:
+        inspectorName: 
         title: Each 1 lvl
         description: +0.25 Regeneration per minute
         dropWeight: 1
@@ -261,6 +286,7 @@ MonoBehaviour:
     - name: Each 3 lvl
       occurrenceFrequency: 3
       card:
+        inspectorName: 
         title: Each 3 lvl
         description: Gain 1 Ammo when you kill an enemy
         dropWeight: 1
@@ -269,6 +295,7 @@ MonoBehaviour:
     - name: Each 5 lvl
       occurrenceFrequency: 5
       card:
+        inspectorName: 
         title: Each 5 lvl
         description: Gain +20% Damage every time you have one health point left (maximum
           is 3 times)
