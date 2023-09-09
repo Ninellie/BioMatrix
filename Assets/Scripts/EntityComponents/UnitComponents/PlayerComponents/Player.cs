@@ -1,7 +1,6 @@
 using System;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
-using Assets.Scripts.EntityComponents.UnitComponents.BoonComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
