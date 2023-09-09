@@ -9136,10 +9136,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Shooting - Left mouse button
 
-    Movement - W A S D
+    Change aiming mode - X
 
-    Open menu -
-    Esc or Space
+    Movement
+    - W A S D
+
+    Open menu - Esc or Space
 
 
     SURVIVE 5 MINUTES!'
@@ -9169,7 +9171,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.05
+  m_fontSize: 32.55
   m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 1
