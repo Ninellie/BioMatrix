@@ -312,18 +312,17 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         public void OnChangeAimMode()
         {
-            if (aimMode == AimMode.AutoAim)
+            switch (aimMode)
             {
-                aimMode = AimMode.SelfAim;
-            }
-            else if (aimMode == AimMode.SelfAim)
-            {
-                aimMode = AimMode.AutoAim;
-
-                var t = Firearm.GetCurrentTarget();
-                if (t != null)
+                case AimMode.AutoAim:
+                    aimMode = AimMode.SelfAim;
+                    break;
+                case AimMode.SelfAim:
                 {
-                    t.RemoveFromTarget();
+                    aimMode = AimMode.AutoAim;
+                    var t = Firearm.GetCurrentTarget();
+                    if (t != null) t.RemoveFromTarget();
+                    break;
                 }
             }
 
