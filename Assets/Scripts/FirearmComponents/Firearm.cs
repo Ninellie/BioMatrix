@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Core;
+using Assets.Scripts.Core.Render;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using Assets.Scripts.GameSession.UIScripts;
@@ -36,7 +39,7 @@ namespace Assets.Scripts.FirearmComponents
         public Stat ProjectilePierceCount { get; private set; }
         public Stat AddedProjectileKnockback { get; private set; }
         public Stat TurretAimingRadius { get; private set; }
-
+        
         public Resource Magazine { get; private set; }
 
         public event Action ReloadEndEvent;
@@ -56,6 +59,13 @@ namespace Assets.Scripts.FirearmComponents
         private ISlayer _source;
         private ResourceList _resources;
         private StatList _stats;
+
+        private Enemy _currentEnemyTarget;
+
+        public Enemy GetCurrentTarget()
+        {
+            return _currentEnemyTarget;
+        }
 
         private void Awake()
         {
@@ -79,6 +89,14 @@ namespace Assets.Scripts.FirearmComponents
             _previousShootTimer -= Time.deltaTime;
             //if (!IsFireButtonPressed) return;
             //if (CanShoot) Shoot();
+        }
+
+        private void FixedUpdate()
+        {
+            if (_player.aimMode == AimMode.AutoAim)
+            {
+                GetDirectionToNearestEnemy();
+            }
         }
 
         private void OnDrawGizmos()
@@ -254,8 +272,14 @@ namespace Assets.Scripts.FirearmComponents
         {
             var directionToNearestCollider = Vector2.zero;
             var distanceToNearestCollider = Mathf.Infinity;
+            var collider2Ds = colliders as Collider2D[] ?? colliders.ToArray();
+            Collider2D nearestCol = null;
+            if (collider2Ds.Length > 0)
+            {
+                nearestCol = collider2Ds[0];
+            }
 
-            foreach (var col2D in colliders)
+            foreach (var col2D in collider2Ds)
             {
                 var distance = Vector2.Distance(transform.position, col2D.transform.position);
 
@@ -264,8 +288,28 @@ namespace Assets.Scripts.FirearmComponents
                 distanceToNearestCollider = distance;
                 Vector2 direction = (col2D.transform.position - transform.position).normalized;
                 directionToNearestCollider = direction;
+                nearestCol = col2D;
             }
+
+            if (!IsForPlayer || nearestCol == null) return directionToNearestCollider;
+
+            var target = nearestCol.GetComponent<Enemy>();
+
+            if (_currentEnemyTarget == null)
+            {
+                _currentEnemyTarget = target;
+            }
+            else if (_currentEnemyTarget == target)
+            {
+                return directionToNearestCollider;
+            }
+
+            _currentEnemyTarget.RemoveFromTarget();
+            _currentEnemyTarget = target;
+            _currentEnemyTarget.TakeAsTarget();
+
             return directionToNearestCollider;
+
         }
 
         private IEnumerable<Collider2D> GetEnemyCollidersInCameraBounds()

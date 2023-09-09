@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Aiming",
+                    "name": "MouseAiming",
                     "type": "Value",
                     "id": "872f0115-4e3f-4426-9bce-f343ba33ea1d",
                     "expectedControlType": "Vector2",
@@ -46,15 +46,6 @@
                     "type": "Value",
                     "id": "49592831-1262-4945-b873-0f2b3d7b4db6",
                     "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Fire",
-                    "type": "Button",
-                    "id": "f6c89145-20b2-418b-9498-1dbbfa36b789",
-                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -185,7 +176,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PC_Control_scheme",
-                    "action": "Aiming",
+                    "action": "MouseAiming",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -208,17 +199,6 @@
                     "processors": "",
                     "groups": "PC_Control_scheme",
                     "action": "ChangeAimMode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d5e772ce-d12a-4e8d-90e3-04d1b8058b3b",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "Press(pressPoint=1.401298E-45)",
-                    "processors": "",
-                    "groups": "Mobile",
-                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -252,6 +232,28 @@
                     "processors": "",
                     "groups": "Mobile",
                     "action": "JoystickAimingFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5187eb2b-6228-468b-98a1-22a4361c5042",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "FireEnd",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6f4c1537-3163-4e68-9037-5e184f9dca0c",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "FireStart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

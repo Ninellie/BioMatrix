@@ -40,6 +40,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private Transform _firePoint;
         [SerializeField] private Shield _shield;
 
+
         public event Action GamePausedEvent;
         public event Action FireEvent;
         public event Action FireOffEvent;
@@ -77,6 +78,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _circleCollider = GetComponent<CircleCollider2D>();
             _invulnerability = GetComponent<Invulnerability>();
             _knockbackController = GetComponent<KnockbackController>();
+            aimMode = AimMode.AutoAim;
+            CurrentAimDirection = Vector2.zero;
         }
 
         private void Start()
@@ -249,7 +252,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 ChangeAnimationState("Idle");
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (IsFireButtonPressed) Shoot();
         }
@@ -278,43 +281,52 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             IsFireButtonPressed = false;
         }
 
-        public void OnAiming(InputValue input)
+        private void TakeAim(Vector2 direction)
         {
-            Debug.LogWarning("OnAimingFire");
+            direction.Normalize();
+
             if (aimMode == AimMode.AutoAim)
             {
                 if (CurrentAimDirection.Equals(Vector2.zero)) return;
                 CurrentAimDirection = Vector2.zero;
                 return;
             }
-            var mousePosition = Camera.main.ScreenToWorldPoint(input.Get<Vector2>());
-            var directionToMousePos = (mousePosition - gameObject.transform.position).normalized;
-            CurrentAimDirection = directionToMousePos;
+
+            CurrentAimDirection = direction;
         }
 
-        public void OnFire(InputValue input)
+        public void OnMouseAiming(InputValue input)
         {
-            Debug.LogWarning("OnFire");
-            if (aimMode == AimMode.SelfAim) return;
-            CurrentAimDirection = Vector2.zero;
-            IsFireButtonPressed = input.isPressed;
+            Debug.LogWarning("OnMouseAiming");
+            var mousePosition = Camera.main.ScreenToWorldPoint(input.Get<Vector2>());
+            var directionToMousePos = mousePosition - gameObject.transform.position;
+            TakeAim(directionToMousePos);
         }
 
         public void OnJoystickAimingFire(InputValue input)
         {
-            Debug.LogWarning("InJoystickAimingFire");
-            CurrentAimDirection = input.Get<Vector2>();
+            Debug.LogWarning("OnJoystickAimingFire");
+            TakeAim(input.Get<Vector2>());
             IsFireButtonPressed = !CurrentAimDirection.Equals(Vector2.zero);
         }
 
         public void OnChangeAimMode()
         {
-            aimMode = aimMode switch
+            if (aimMode == AimMode.AutoAim)
             {
-                AimMode.AutoAim => AimMode.SelfAim,
-                AimMode.SelfAim => AimMode.AutoAim,
-                _ => aimMode
-            };
+                aimMode = AimMode.SelfAim;
+            }
+            else if (aimMode == AimMode.SelfAim)
+            {
+                aimMode = AimMode.AutoAim;
+
+                var t = Firearm.GetCurrentTarget();
+                if (t != null)
+                {
+                    t.RemoveFromTarget();
+                }
+            }
+
             Debug.Log($"Aim mode changes to {aimMode}");
         }
 

@@ -205,6 +205,21 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             _rigidbody2D.SetRotation(angle);
         }
 
+        public void TakeAsTarget()
+        {
+            var color = Color.red;
+            _spriteOutline.enabled = true;
+            _spriteOutline.color = color;
+        }
+
+        public void RemoveFromTarget()
+        {
+            var color = _rarity.Color;
+            _spriteOutline.color = color;
+            _spriteOutline.enabled = _rarity.Value != RarityEnum.Normal;
+            
+        }
+
         public void SetRarity(RarityEnum rarityEnum)
         {
             _rarity.Value = rarityEnum;

@@ -42,5 +42,5 @@ MonoBehaviour:
     baseValue: 0
   - stringName: AddedProjectileKnockback
     name: 23
-    baseValue: 20
+    baseValue: 30
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}

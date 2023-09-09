@@ -15,27 +15,15 @@ namespace Assets.Scripts.GameSession.UIScripts
     public class AimModeButton : MonoBehaviour
     {
         [SerializeField] private AimMode _aimMode;
-
-        [SerializeField]
-        private TMP_Text _buttonText;
-
+        [SerializeField] private TMP_Text _buttonText;
         [SerializeField] private GameObject _selfAimModeController;
-
         [SerializeField] private GameObject _autoAimModeController;
-
-        private Player _player;
 
         private void Awake()
         {
             _buttonText = GetComponentInChildren<TMP_Text>();
+            _aimMode = AimMode.AutoAim;
         }
-
-        private void Start()
-        {
-            //_player = FindFirstObjectByType<Player>();
-            //_player.SetAimMode(_aimMode);
-        }
-
 
         public void ChangeAimMode()
         {
@@ -48,11 +36,7 @@ namespace Assets.Scripts.GameSession.UIScripts
                     SetAutoAimMode();
                     break;
             }
-
-            //_player.SetAimMode(_aimMode);
-
             _buttonText.text = "Aim: " + _aimMode;
-
             _autoAimModeController.SetActive(_aimMode == AimMode.AutoAim);
             _selfAimModeController.SetActive(_aimMode == AimMode.SelfAim);
         }
