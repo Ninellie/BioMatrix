@@ -6500,7 +6500,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1484282434}
     - target: {fileID: 1365173418, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
+      propertyPath: _preset
+      value: 
+      objectReference: {fileID: 11400000, guid: f4a5826a3081a8841a808ace89530e60, type: 2}
+    - target: {fileID: 1365173418, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365173418, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
+      propertyPath: _usePreset
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1365173418, guid: c97abc87fa32bd841832fc18b6850458, type: 3}

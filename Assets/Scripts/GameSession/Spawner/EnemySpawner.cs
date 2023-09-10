@@ -9,37 +9,17 @@ using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.GameSession.Spawner
 {
-
-    [Serializable]
-    public class EnemySpawnData
-    {
-        public GameObject enemyPrefab;
-        public AnimationCurve spawnWeightCurve;
-        public float currentWeight;
-    }
-
-    [Serializable]
-    public class InspectorSpawnData
-    {
-        public string enemyName;
-        public float currentSpawnWeight;
-
-        public InspectorSpawnData(string enemyName, float currentSpawnWeight)
-        {
-            this.enemyName = enemyName;
-            this.currentSpawnWeight = currentSpawnWeight;
-        }
-    }
-
     public class EnemySpawner : MonoBehaviour
     {
-        [SerializeField] private EnemySpawnData[] _enemiesSpawnData;
+        [SerializeField] private bool _usePreset;
+        [SerializeField] private EnemySpawnDataListPreset _preset;
+        [SerializeField] private List<EnemySpawnData> _enemiesSpawnData;
         [SerializeField] private int _secondsBetweenWaves;
         private readonly Grouping _grouping = new();
         private readonly Rarity _rarity = new();
         private readonly Circle _circle = new();
         private GameObject _player;
-        private EnemyWaveProperties _enemyWaveProperties;
+        private readonly EnemyWaveProperties _enemyWaveProperties = new();
         private const int DefaultComplicationValue = 60;
 
         private int TimerBonus
@@ -55,7 +35,9 @@ namespace Assets.Scripts.GameSession.Spawner
 
         private void Awake()
         {
-            _enemyWaveProperties = new EnemyWaveProperties();
+            if (!_usePreset) return;
+            var preset = Instantiate(_preset);
+            _enemiesSpawnData = preset.enemiesSpawnData;
         }
 
         private void Start()
