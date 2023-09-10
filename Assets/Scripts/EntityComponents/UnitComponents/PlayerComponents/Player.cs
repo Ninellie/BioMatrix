@@ -39,7 +39,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private Transform _firePoint;
         [SerializeField] private Shield _shield;
 
-
         public event Action GamePausedEvent;
         public event Action FireEvent;
         public event Action FireOffEvent;
@@ -49,11 +48,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public Shield Shield => _shield;
         public TurretHub TurretHub { get; set; }
         public Firearm Firearm { get; private set; }
-
         public bool IsFireButtonPressed { get; private set; }
-
         public Vector2 CurrentAimDirection  { get; private set; }
-
         private const int ExperienceAmountIncreasingPerLevel = 8;
 
         private CircleCollider2D _circleCollider;
@@ -73,10 +69,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _stats = GetComponent<StatList>();
             _resources = GetComponent<ResourceList>();
 
-            _animator = GetComponent<Animator>();
-            _circleCollider = GetComponent<CircleCollider2D>();
             _invulnerability = GetComponent<Invulnerability>();
             _knockbackController = GetComponent<KnockbackController>();
+
+            _circleCollider = GetComponent<CircleCollider2D>();
+            _animator = GetComponent<Animator>();
+
             aimMode = AimMode.AutoAim;
             CurrentAimDirection = Vector2.zero;
         }
@@ -88,7 +86,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         }
 
         private void OnEnable() => Subscribe();
+
         private void OnDisable() => Unsubscribe();
+
         private void Subscribe()
         {
             if (_isSubscribed) return;
@@ -107,7 +107,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             magnetismRadiusStat.valueChangedEvent.AddListener(ChangeCurrentMagnetismRadius);
 
             _resources.GetResource(ResourceName.Health).AddListenerToEvent(ResourceEventType.Empty, Death);
-            //_resources.GetResource(ResourceName.Experience).AddListenerToEvent(ResourceEventType.Fill, LevelUp);
             _resources.GetResource(ResourceName.Experience).onFill.AddListener(LevelUp);
 
             _isSubscribed = true;
@@ -124,8 +123,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
             _isSubscribed = false;
         }
-
-
 
         private void CollideWithEnemy(Enemy enemy)
         {
@@ -169,8 +166,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             }
         }
 
-        
-
         public Transform GetFirePoint() => _firePoint;
 
         public GameObject CreateWeapon(GameObject weapon)
@@ -187,13 +182,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         public IWeapon GetWeapon() => Firearm;
 
-        //private void IncreaseExperience(int value)
-        //{
-        //    var expMultiplierValue = (int)_stats.GetStat(StatName.ExperienceMultiplier).Value;
-        //    var expTakenAmount = value * expMultiplierValue;
-        //    _resources.GetResource(ResourceName.Experience).Increase(expTakenAmount);
-        //}
-
         [ContextMenu(nameof(LevelUp))]
         private void LevelUp()
         {
@@ -204,7 +192,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _stats.GetStat(StatName.ExperienceToNewLevel).AddModifier(statMod);
             _resources.GetResource(ResourceName.Level).Increase();
             _resources.GetResource(ResourceName.Experience).Empty();
-            
+            IsFireButtonPressed = false;
         }
 
         private void KnockBackFromEntity(float knockbackPower, Vector2 position)
