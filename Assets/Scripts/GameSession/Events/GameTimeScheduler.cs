@@ -19,6 +19,12 @@ namespace Assets.Scripts.GameSession.Events
         private readonly List<int> _indexesToRemove = new(256);
         private readonly object _lock = new();
     
+        /// <summary>
+        /// Schedule an action with shall be triggered after time time
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="time">Added time in seconds</param>
+        /// <returns></returns>
         public string Schedule(Action action, float time)
         {
             var absoluteTime = Time.timeSinceLevelLoad + time;
