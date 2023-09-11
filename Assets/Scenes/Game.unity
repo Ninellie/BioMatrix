@@ -2083,7 +2083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b87e24158d23db4390d498ab3a29e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resourceName: Simple Resource
+  _resourceName: Level
   _counterFormat: 2
   _valueFormat: 0
   _text: {fileID: 1987224060}
@@ -2432,6 +2432,7 @@ MonoBehaviour:
   _valueColor: {fileID: 11400000, guid: 1f0ef5a11bb1ab04b847e56b13ec3465, type: 2}
   _valueImage: {fileID: 1892806532}
   _sliderRectTransform: {fileID: 1892806531}
+  _im: {fileID: 0}
 --- !u!222 &626372317
 CanvasRenderer:
   m_ObjectHideFlags: 0
