@@ -1,46 +1,36 @@
-using Assets.Scripts.GameSession.Upgrades.Deck;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DeckPanel : MonoBehaviour
 {
-    [SerializeField] private GameObject _cardFramePrefab;
-    [SerializeField] private Transform _cardListContainer;
+    [SerializeField] private LayoutElement _cardListPort;
+    [SerializeField] private LayoutElement _cardListContent;
 
-    [SerializeField] private RectTransform _deckContentPanel;
+    [SerializeField] private RectTransform _viewport;
+
+    [SerializeField] private GameObject _cardFramePrefab;
     [SerializeField] private int _cardCount;
-    [SerializeField] private float padding;
+    [SerializeField] private float _padding;
+    [SerializeField] private float _spacing;
+    [SerializeField] private float _cardWidth;
 
     private LinkedList<GameObject> _cardList;
 
     private void Awake()
     {
-        //var initialPos = _deckContentPanel.transform.position;
-        //var right = _deckContentPanel.right;
-        //var containerWidth = _cardCount * (padding + 100) + padding;
-        //var containerRightPosition = new Vector2(containerWidth / (padding + 100), 1);
-        //_deckContentPanel.anchorMax = containerRightPosition;
-        //_deckContentPanel.sizeDelta = containerRightPosition;
-        //_deckContentPanel.position = initialPos;
+        var containerWidth = _cardCount * (_cardWidth + _spacing) + _padding;
+        _cardListContent.minWidth = containerWidth;
 
-
-        //for (int i = 0; i < _cardCount; i++)
-        //{
-        //    var card = Instantiate(_cardFramePrefab, _cardListContainer);
-        //    var cardPosition = _deckContentPanel.anchorMin;
-        //    cardPosition.x += padding;
-        //    cardPosition.x += padding * i;
-        //    var card3DPos = new Vector3(cardPosition.x, cardPosition.y, 0f);
-        //    card.transform.position= card3DPos;
-        //    card.name = $"Card {i}";
-        //    card.GetComponentInChildren<TMP_Text>().text = $"{i}";
-        //}
+        var portWidth = containerWidth * 2 - _viewport.rect.width;
+        _cardListPort.minWidth = portWidth;
+        _cardListPort.preferredWidth = portWidth;
+        _cardListPort.flexibleWidth = portWidth;
 
         for (int i = 0; i < _cardCount; i++)
         {
-            var card = Instantiate(_cardFramePrefab, _cardListContainer);
+            var card = Instantiate(_cardFramePrefab, _cardListContent.transform);
             card.name = $"Card {i}";
             card.GetComponentInChildren<TMP_Text>().text = $"{i}";
         }

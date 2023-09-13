@@ -1,16 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Core.Render
 {
     [ExecuteInEditMode]
-    public class SpriteOutline : MonoBehaviour
+    public class ImageOutline : MonoBehaviour
     {
         public Color color = Color.white;
-        private SpriteRenderer _spriteRenderer;
+        private Image _image;
 
         void OnEnable()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _image = GetComponent<Image>();
             UpdateOutline(true);
         }
 
@@ -26,11 +27,8 @@ namespace Assets.Scripts.Core.Render
 
         void UpdateOutline(bool outline)
         {
-            var mpb = new MaterialPropertyBlock();
-            _spriteRenderer.GetPropertyBlock(mpb);
-            mpb.SetFloat("_Outline", outline ? 1f : 0);
-            mpb.SetColor("_OutlineColor", color);
-            _spriteRenderer.SetPropertyBlock(mpb);
+            _image.material.SetFloat("_Outline", outline ? 1f : 0);
+            _image.material.SetColor("_OutlineColor", color);
         }
     }
 }
