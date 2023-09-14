@@ -12,6 +12,7 @@ namespace Assets.Scripts.View
     public class LevelUp : MonoBehaviour
     {
         [SerializeField] private GameObject[] _cardsView;
+        [SerializeField] private DeckPanel[] _deckView;
         [SerializeField] private TMPro.TMP_Text[] _cardsNameText;
         [SerializeField] private TMPro.TMP_Text[] _cardsDescriptionText;
         [SerializeField] private ViewController _viewController;
@@ -38,6 +39,12 @@ namespace Assets.Scripts.View
         private EffectsRepository _effectsRepository;
 
         public OverUnitDataAggregator EffectsAggregator { get; set; }
+
+        [ContextMenu("DisplayDecks")]
+        public void DisplayDecks()
+        {
+
+        }
 
         [ContextMenu("DisplayCards")]
         public void DisplayCards()
@@ -95,10 +102,10 @@ namespace Assets.Scripts.View
                 return;
             }
 
-            AddCard(_selectedCards[index]);
+            TakeCard(_selectedCards[index]);
         }
 
-        private void AddCard(Card card)
+        private void TakeCard(Card card)
         {
             _deckRepository.ObtainCard(card);
             if (card.effectNames is null) 

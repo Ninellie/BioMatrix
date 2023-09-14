@@ -7,16 +7,26 @@ public class DeckPanel : MonoBehaviour
 {
     [SerializeField] private LayoutElement _cardListPort;
     [SerializeField] private LayoutElement _cardListContent;
-
     [SerializeField] private RectTransform _viewport;
 
     [SerializeField] private GameObject _cardFramePrefab;
-    [SerializeField] private int _cardCount;
+
     [SerializeField] private float _padding;
     [SerializeField] private float _spacing;
     [SerializeField] private float _cardWidth;
 
-    private LinkedList<GameObject> _cardList;
+    [SerializeField] private int _cardCount;
+
+
+
+    [Space]
+    [Header("Properties")]
+    [SerializeField] private TMP_ColorGradient _openedColorGradient;
+    [SerializeField] private TMP_ColorGradient _closedColorGradient;
+    [SerializeField] private TMP_ColorGradient _obtainedColorGradient;
+
+    //private LinkedList<GameObject> _cardList;
+    private readonly LinkedList<CardUI> _cardList = new();
 
     private void Awake()
     {
@@ -28,11 +38,38 @@ public class DeckPanel : MonoBehaviour
         _cardListPort.preferredWidth = portWidth;
         _cardListPort.flexibleWidth = portWidth;
 
-        for (int i = 0; i < _cardCount; i++)
+        int openedCardNumber = Random.Range(1, _cardCount + 1);
+        for (int i = 1; i <= _cardCount; i++)
         {
             var card = Instantiate(_cardFramePrefab, _cardListContent.transform);
             card.name = $"Card {i}";
-            card.GetComponentInChildren<TMP_Text>().text = $"{i}";
+            var cardUI = card.GetComponentInChildren<CardUI>();
+            _cardList.AddLast(cardUI);
+            cardUI.SetText($"{i}");
+            cardUI.SetColorPresets(_openedColorGradient, _closedColorGradient, _obtainedColorGradient);
+
+            if (i < openedCardNumber)
+            {
+                cardUI.Obtain();
+            }
+            if (i == openedCardNumber)
+            {
+                cardUI.Open();
+            }
+            if (i > openedCardNumber)
+            {
+                cardUI.Close();
+            }
         }
+    }
+
+    public void SetDeck()
+    {
+
+    }
+
+    public void FillDeck()
+    {
+
     }
 }
