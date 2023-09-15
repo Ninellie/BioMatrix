@@ -32,8 +32,6 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 
         private IViewController CreateMapController(PlayerInput playerInput)
         {
-            //var currentPlayer = FindObjectOfType<Player>();
-            //var playerInput = currentPlayer.GetComponent<PlayerInput>();
             var mapController = new SimpleViewController(playerInput, _menuUi, _optionsUi, _levelUpUi, _winScreenUi, _loseScreenUi, _startScreenUi);
             return mapController;
         }

@@ -125,7 +125,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _playerDataAggregator.AddListener(unsubscriptionListener);
         }
 
-        public void Unsubscription()
+        private void Unsubscription()
         {
             _gameSessionTimer.onGameWinning -= _viewController.Win;
             _gameSessionTimer.onGameWinning -= Unsubscription;
