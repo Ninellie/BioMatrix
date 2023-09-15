@@ -1,7 +1,5 @@
 using System;
-using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
-using Assets.Scripts.View;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +9,7 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
     {
         private readonly PlayerInput _playerInput;
         private readonly Player _player;
-        private LevelUp _levelUp;
+        private ILevelUp _levelUp;
         private GameObject _menuUI;
         private GameObject _optionsUI;
         private GameObject _levelUpUI;
@@ -26,6 +24,7 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
             _menuUI = menuUI ?? throw new ArgumentNullException(nameof(menuUI));
             _optionsUI = optionsUI ?? throw new ArgumentNullException(nameof(optionsUI));
             _levelUpUI = levelUpUI ?? throw new ArgumentNullException(nameof(levelUpUI));
+            _levelUp = _levelUpUI.GetComponent<ILevelUp>();
             _winScreenUI = winScreenUI ?? throw new ArgumentNullException(nameof(winScreenUI));
             _loseScreenUI = loseScreenUI ?? throw new ArgumentNullException(nameof(loseScreenUI));
             _startScreenUI = startScreenUI ?? throw new ArgumentNullException(nameof(loseScreenUI));
@@ -45,43 +44,20 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
             _player.Shield.Layers.Increase();
             _player.Shield.Layers.Decrease();
         }
-        public void OpenMenu()
-        {
-            _menuUI.SetActive(true);
-        }
-        public void CloseMenu()
-        {
-            _menuUI.SetActive(false);
-        }
-        public void CloseStartScreen()
-        {
-            _startScreenUI.SetActive(false);
-        }
-        public void OpenOptions()
-        {
-            _optionsUI.SetActive(true);
-        }
-        public void CloseOptions()
-        {
-            _optionsUI.SetActive(false);
-        }
-        public void OpenWinScreen()
-        {
-            _winScreenUI.SetActive(true);
-        }
-        public void OpenLoseScreen()
-        {
-            _loseScreenUI.SetActive(true);
-        }
-        public void CloseLevelUp()
-        {
-            _levelUpUI.SetActive(false);
-        }
+        public void OpenMenu() => _menuUI.SetActive(true);
+        public void CloseMenu() => _menuUI.SetActive(false);
+        public void CloseStartScreen() => _startScreenUI.SetActive(false);
+        public void OpenOptions() => _optionsUI.SetActive(true);
+        public void CloseOptions() => _optionsUI.SetActive(false);
+        public void OpenWinScreen() => _winScreenUI.SetActive(true);
+        public void OpenLoseScreen() => _loseScreenUI.SetActive(true);
+        public void CloseLevelUp() => _levelUpUI.SetActive(false);
+
         public void InitiateLevelUp()
         {
             _levelUpUI.SetActive(true);
-            _levelUp ??= GameObject.FindObjectOfType<LevelUp>();
-            _levelUp.DisplayCards();
+            //_levelUp.DisplayCards();
+            _levelUp.Initiate();
         }
     }
 }

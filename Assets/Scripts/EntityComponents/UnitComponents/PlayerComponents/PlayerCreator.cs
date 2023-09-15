@@ -30,7 +30,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private OverUnitDataAggregator _playerDataAggregator;
         private GameSessionTimer _gameSessionTimer;
         private OptionsMenu _optionsMenu;
-        private ViewController _viewController;
+        private ViewControllerComponent _viewControllerComponent;
 
         private ResourceListenerData levelUpListener;
         private ResourceListenerData loseListener;
@@ -40,12 +40,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             _gameTimeScheduler = FindObjectOfType<GameTimeScheduler>();
             _gameSessionTimer = FindObjectOfType<GameSessionTimer>();
-            _viewController = FindObjectOfType<ViewController>();
+            _viewControllerComponent = FindObjectOfType<ViewControllerComponent>();
             _optionsMenu = FindObjectOfType<OptionsMenu>();
 
-            levelUpListener = new ResourceListenerData(_viewController.LevelUpEvent,
+            levelUpListener = new ResourceListenerData(_viewControllerComponent.LevelUpEvent,
                 TargetName.Player, ResourceName.Level, ResourceEventType.Increment);
-            loseListener = new ResourceListenerData(_viewController.Lose,
+            loseListener = new ResourceListenerData(_viewControllerComponent.Lose,
                 TargetName.Player, ResourceName.Health, ResourceEventType.Empty);
             unsubscriptionListener = new ResourceListenerData(Unsubscription,
                 TargetName.Player, ResourceName.Health, ResourceEventType.Empty);
@@ -54,7 +54,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             CreatePlayerFirearm();
             CreateTurretHub();
 
-            _viewController.AwakeController(_player.GetComponent<PlayerInput>());
+            _viewControllerComponent.AwakeController(_player.GetComponent<PlayerInput>());
             Subscription();
             SetupIndicators();
         }
@@ -115,10 +115,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Subscription()
         {
-            _gameSessionTimer.onGameWinning += _viewController.Win;
+            _gameSessionTimer.onGameWinning += _viewControllerComponent.Win;
             _gameSessionTimer.onGameWinning += Unsubscription;
             _optionsMenu.onBackToMainMenu += Unsubscription;
-            _player.GamePausedEvent += _viewController.Menu;
+            _player.GamePausedEvent += _viewControllerComponent.Menu;
 
             _playerDataAggregator.AddListener(levelUpListener);
             _playerDataAggregator.AddListener(loseListener);
@@ -127,10 +127,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Unsubscription()
         {
-            _gameSessionTimer.onGameWinning -= _viewController.Win;
+            _gameSessionTimer.onGameWinning -= _viewControllerComponent.Win;
             _gameSessionTimer.onGameWinning -= Unsubscription;
             _optionsMenu.onBackToMainMenu -= Unsubscription;
-            _player.GamePausedEvent -= _viewController.Menu;
+            _player.GamePausedEvent -= _viewControllerComponent.Menu;
 
             _playerDataAggregator.RemoveListener(levelUpListener);
             _playerDataAggregator.RemoveListener(loseListener);

@@ -1,10 +1,9 @@
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 {
-    public class ViewController : MonoBehaviour
+    public class ViewControllerComponent : MonoBehaviour
     {
         [SerializeField] private GameObject _menuUi;
         [SerializeField] private GameObject _optionsUi;
@@ -12,6 +11,7 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         [SerializeField] private GameObject _winScreenUi;
         [SerializeField] private GameObject _loseScreenUi;
         [SerializeField] private GameObject _startScreenUi;
+        
         private ViewModel _viewModel;
 
         public void AwakeController(PlayerInput playerInput)

@@ -15,7 +15,7 @@ namespace Assets.Scripts.View
         [SerializeField] private DeckPanel[] _deckView;
         [SerializeField] private TMPro.TMP_Text[] _cardsNameText;
         [SerializeField] private TMPro.TMP_Text[] _cardsDescriptionText;
-        [SerializeField] private ViewController _viewController;
+        [SerializeField] private ViewControllerComponent _viewControllerComponent;
         [SerializeField] private readonly int _givenCardsCount = 3;
         [SerializeField] private float _delayBeforeClickableCardsInSeconds;
         [SerializeField] private float _pixelsPerStep;
@@ -68,7 +68,7 @@ namespace Assets.Scripts.View
 
             if (_selectedCards.Count < 1 || _selectedCards == null)
             {
-                _viewController.Resume();
+                _viewControllerComponent.Resume();
                 return;
             }
 

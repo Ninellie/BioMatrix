@@ -18,7 +18,6 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         }
         public void Resume()
         {
-            //var prevState = _viewModel.GetPreviousState().Name;
             _viewController.Unfreeze();
             _viewModel.ChangeState(ViewModelStateType.Active);
             _viewController.CloseStartScreen();
