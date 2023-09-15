@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 {
-    public class ViewControllerComponent : MonoBehaviour
+    public class GameSessionController : MonoBehaviour
     {
         [SerializeField] private GameObject _menuUi;
         [SerializeField] private GameObject _optionsUi;
@@ -16,9 +16,9 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 
         public void AwakeController(PlayerInput playerInput)
         {
-            var mapController = CreateMapController(playerInput);
+            var viewController = new SimpleViewController(playerInput, _menuUi, _optionsUi, _levelUpUi, _winScreenUi, _loseScreenUi, _startScreenUi);
             
-            _viewModel = new ViewModel(mapController);
+            _viewModel = new ViewModel(viewController);
 
             Time.timeScale = 0f;
             playerInput.SwitchCurrentActionMap("Menu");
@@ -29,11 +29,5 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         public void LevelUpEvent() { _viewModel.GetCurrentState().LevelUp(); }
         public void Win() { _viewModel.GetCurrentState().Win(); }
         public void Lose() { _viewModel.GetCurrentState().Lose(); }
-
-        private IViewController CreateMapController(PlayerInput playerInput)
-        {
-            var mapController = new SimpleViewController(playerInput, _menuUi, _optionsUi, _levelUpUi, _winScreenUi, _loseScreenUi, _startScreenUi);
-            return mapController;
-        }
     }
 }

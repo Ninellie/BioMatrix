@@ -5,16 +5,30 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public interface ILevelUp
+public interface ILevelUpController
 {
     void Initiate();
     void LevelUp(); // Берёт активную карту и применяет на игрока
-    void SetPlayer(Player player);
+    void AcceptActiveDeck();
 }
 
-public class LevelUpScreen : MonoBehaviour, ILevelUp
+public class LevelUpControllerScreen : MonoBehaviour, ILevelUpController
 {
     [SerializeField] private GameObject deck;
+    public void Initiate()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void LevelUp()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void AcceptActiveDeck()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 public class DeckDisplayer : MonoBehaviour

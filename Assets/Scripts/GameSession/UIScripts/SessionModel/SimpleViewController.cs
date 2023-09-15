@@ -12,7 +12,7 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         private GameObject _menuUI;
         private GameObject _optionsUI;
         private GameObject _levelUpUI;
-        private ILevelUp _levelUp;
+        private ILevelUpController _levelUpController;
         private GameObject _winScreenUI;
         private GameObject _loseScreenUI;
         private GameObject _startScreenUI;
@@ -24,7 +24,7 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
             _menuUI = menuUI ?? throw new ArgumentNullException(nameof(menuUI));
             _optionsUI = optionsUI ?? throw new ArgumentNullException(nameof(optionsUI));
             _levelUpUI = levelUpUI ?? throw new ArgumentNullException(nameof(levelUpUI));
-            _levelUp = _levelUpUI.GetComponent<ILevelUp>();
+            _levelUpController = _levelUpUI.GetComponent<ILevelUpController>();
             _winScreenUI = winScreenUI ?? throw new ArgumentNullException(nameof(winScreenUI));
             _loseScreenUI = loseScreenUI ?? throw new ArgumentNullException(nameof(loseScreenUI));
             _startScreenUI = startScreenUI ?? throw new ArgumentNullException(nameof(loseScreenUI));
@@ -51,13 +51,24 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         public void CloseOptions() => _optionsUI.SetActive(false);
         public void OpenWinScreen() => _winScreenUI.SetActive(true);
         public void OpenLoseScreen() => _loseScreenUI.SetActive(true);
-        public void CloseLevelUp() => _levelUpUI.SetActive(false);
+        public void CloseLevelUp()
+        {
+            _playerInput.SwitchCurrentActionMap("Player");
+            _levelUpUI.SetActive(false);
+        }
+
+        //public void GetBonusToPlayer()
+        //{
+        //    _levelUpController
+        //    _player.
+        //}
 
         public void InitiateLevelUp()
         {
+            _playerInput.SwitchCurrentActionMap("LevelUpScreen");
             _levelUpUI.SetActive(true);
+            _levelUpController.Initiate();
             //_levelUp.DisplayCards();
-            _levelUp.Initiate();
         }
     }
 }
