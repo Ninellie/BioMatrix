@@ -1,13 +1,7 @@
+using Assets.Scripts.GameSession.Upgrades.Deck;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
-public enum CardState
-{
-    Opened,
-    Closed,
-    Obtained
-}
 
 public class CardUI : MonoBehaviour
 {
@@ -22,13 +16,24 @@ public class CardUI : MonoBehaviour
     [SerializeField] private TMP_ColorGradient _closedColorGradient;
     [SerializeField] private TMP_ColorGradient _obtainedColorGradient;
     [Space]
-    [SerializeField] private CardState _state;
+    [SerializeField] private CardStatus _status;
     [SerializeField] private bool _isSelected;
-    
-    [SerializeField] private string _description;
+    [SerializeField] private int _index;
 
-    
-    public void SetColorPresets(TMP_ColorGradient openedColorGradient, TMP_ColorGradient closedColorGradient,
+    private DeckPanel _deckPanel;
+
+    public void SetIndex(int index)
+    {
+        _index = index;
+    }
+
+    public void Take()
+    { 
+        _deckPanel.TakeOpenedCard();
+    }
+
+    public void SetColorPresets(TMP_ColorGradient openedColorGradient, 
+        TMP_ColorGradient closedColorGradient,
         TMP_ColorGradient obtainedColorGradient)
     {
         _openedColorGradient = openedColorGradient;
@@ -41,15 +46,10 @@ public class CardUI : MonoBehaviour
         _text.text = text;
     }
 
-    public void SetDescription(string text)
-    {
-        _description = text;
-    }
-
     [ContextMenu(nameof(Open))]
     public void Open()
     {
-        _state = CardState.Opened;
+        _status = CardStatus.Opened;
         _blackoutFlap.color = new Color(0, 0, 0, 0f);
         _blackoutFlap.gameObject.SetActive(false);
         _text.colorGradientPreset = _openedColorGradient;
@@ -59,7 +59,7 @@ public class CardUI : MonoBehaviour
     [ContextMenu(nameof(Obtain))]
     public void Obtain()
     {
-        _state = CardState.Obtained;
+        _status = CardStatus.Obtained;
         _blackoutFlap.color = new Color(0, 0, 0, 0f);
         _blackoutFlap.gameObject.SetActive(true);
 
@@ -69,7 +69,7 @@ public class CardUI : MonoBehaviour
     [ContextMenu(nameof(Close))]
     public void Close()
     {
-        _state = CardState.Closed;
+        _status = CardStatus.Closed;
         _blackoutFlap.color = new Color(0, 0, 0, 0);
         _blackoutFlap.gameObject.SetActive(false);
         _text.colorGradientPreset = _closedColorGradient;
