@@ -9,10 +9,10 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
     {
         private readonly PlayerInput _playerInput;
         private readonly Player _player;
-        private ILevelUp _levelUp;
         private GameObject _menuUI;
         private GameObject _optionsUI;
         private GameObject _levelUpUI;
+        private ILevelUp _levelUp;
         private GameObject _winScreenUI;
         private GameObject _loseScreenUI;
         private GameObject _startScreenUI;
