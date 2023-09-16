@@ -46,39 +46,39 @@ namespace Assets.Scripts.View
 
         }
 
-        [ContextMenu("DisplayCards")]
-        public void DisplayCards()
-        {
-            foreach (var tmpText in _cardsNameText)
-            {
-                tmpText.text = string.Empty;
-            }
+        //[ContextMenu("DisplayCards")]
+        //public void DisplayCards()
+        //{
+        //    foreach (var tmpText in _cardsNameText)
+        //    {
+        //        tmpText.text = string.Empty;
+        //    }
 
-            foreach (var tmpText in _cardsDescriptionText)
-            {
-                tmpText.text = string.Empty;
-            }
+        //    foreach (var tmpText in _cardsDescriptionText)
+        //    {
+        //        tmpText.text = string.Empty;
+        //    }
 
-            foreach (var card in _cardsView)
-            {
-                card.SetActive(false);
-            }
+        //    foreach (var card in _cardsView)
+        //    {
+        //        card.SetActive(false);
+        //    }
 
-            _selectedCards = _deckRepository.GetRandomOpenedCards(_givenCardsCount);
+        //    _selectedCards = _deckRepository.GetRandomOpenedCards(_givenCardsCount);
 
-            if (_selectedCards.Count < 1 || _selectedCards == null)
-            {
-                _gameSessionController.Resume();
-                return;
-            }
+        //    if (_selectedCards.Count < 1 || _selectedCards == null)
+        //    {
+        //        _gameSessionController.Resume();
+        //        return;
+        //    }
 
-            for (var i = 0; i < _selectedCards.Count; i++)
-            {
-                _cardsNameText[i].text = _selectedCards[i].title;
-                _cardsDescriptionText[i].text = _selectedCards[i].description;
-                StartCoroutine(ActivateCard(_cardsView[i]));
-            }
-        }
+        //    for (var i = 0; i < _selectedCards.Count; i++)
+        //    {
+        //        _cardsNameText[i].text = _selectedCards[i].title;
+        //        _cardsDescriptionText[i].text = _selectedCards[i].description;
+        //        StartCoroutine(ActivateCard(_cardsView[i]));
+        //    }
+        //}
 
         public void Improve(int index)
         {
@@ -102,28 +102,28 @@ namespace Assets.Scripts.View
                 return;
             }
 
-            TakeCard(_selectedCards[index]);
+            //TakeCard(_selectedCards[index]);
         }
 
-        private void TakeCard(Card card)
-        {
-            _deckRepository.ObtainCard(card);
-            if (card.effectNames is null) 
-                return;
+        //private void TakeCard(Card card)
+        //{
+        //    _deckRepository.ObtainCard(card);
+        //    if (card.effectNames is null) 
+        //        return;
 
-            foreach (var effectName in card.effectNames)
-            {
-                var e = _effectsRepository.GetEffectByName(effectName);
-                if (e != null)
-                {
-                    EffectsAggregator.AddEffect(e);
-                }
-                else
-                {
-                    Debug.LogWarning($"Effect with name: {effectName} does not found in repository");
-                }
-            }
-        }
+        //    foreach (var effectName in card.effectNames)
+        //    {
+        //        var e = _effectsRepository.GetEffectByName(effectName);
+        //        if (e != null)
+        //        {
+        //            EffectsAggregator.AddEffect(e);
+        //        }
+        //        else
+        //        {
+        //            Debug.LogWarning($"Effect with name: {effectName} does not found in repository");
+        //        }
+        //    }
+        //}
 
         private IEnumerator ActivateCard(GameObject card)
         {

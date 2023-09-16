@@ -15,7 +15,6 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         }
 
         public void Menu()
-
         {
             _viewModel.IsFromLvlUpScreen = true;
             _viewModel.ChangeState(ViewModelStateType.Menu);

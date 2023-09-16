@@ -29,7 +29,7 @@ public class CardUI : MonoBehaviour
 
     public void Take()
     { 
-        _deckPanel.TakeOpenedCard();
+        //_deckPanel.TakeOpenedCard();
     }
 
     public void SetColorPresets(TMP_ColorGradient openedColorGradient, 

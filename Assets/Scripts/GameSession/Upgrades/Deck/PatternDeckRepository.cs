@@ -29,19 +29,27 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
     {
         List<Deck> GetDecks();
         Deck GetDeck(string deckName);
-        //Card GetCard(string deckName, int cardPosition);
     }
 
     public class PatternDeckRepository : MonoBehaviour, IDeckRepository
     {
         [SerializeField]
         private PatternDeckPreset _preset;
+        
+        [SerializeField]
+        private PatternDeckPreset _usedDecks;
+
+        
+        private void Awake()
+        {
+            _usedDecks = Instantiate(_preset);
+        }
 
         public List<Deck> GetDecks()
         {
             var deckList = new List<Deck>();
 
-            foreach (var patternDeck in _preset.patternDeckList)
+            foreach (var patternDeck in _usedDecks.patternDeckList)
             {
                 var deck = new Deck
                 {

@@ -1,83 +1,7 @@
-using System.Collections.Generic;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
-using Assets.Scripts.GameSession.Upgrades.Deck;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public interface ILevelUpController
-{
-    void Initiate();
-    void LevelUp(); // Берёт активную карту и применяет на игрока
-    void AcceptActiveDeck();
-}
-
-public class LevelUpControllerScreen : MonoBehaviour, ILevelUpController
-{
-    [SerializeField] private GameObject deck;
-    public void Initiate()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void LevelUp()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void AcceptActiveDeck()
-    {
-        throw new System.NotImplementedException();
-    }
-}
-
-public class DeckDisplayer : MonoBehaviour
-{
-    [SerializeField] private GameObject DeckPanelPrefab;
-
-    public void DisplayRandomDecksFromHand(IHand hand)
-    {
-        var h = hand.
-    }
-}
-
-public interface CardInfoDisplayer
-{
-    void SetActiveCardInfo(string deckTitle, string cardTitle, string cardDescription);
-    void SetSelectedCardInfo(string deckTitle, string cardTitle, string cardDescription);
-    void Select();
-    void Deselect();
-}
-
-public class CardInfoUIPanel : MonoBehaviour, CardInfoDisplayer
-{
-    private string _panelTitle;
-
-    private string _activeCardDeckTitle;
-    private string _activeCardTitle;
-    private string _activeCardDescription;
-
-    private string activeCard
-    private string activeCard
-
-
-    public void SetActiveCardInfo(string deckTitle, string cardTitle, string cardDescription)
-    {
-    }
-
-    public void SetSelectedCardInfo(string deckTitle, string cardTitle, string cardDescription)
-    {
-    }
-
-    public void Select()
-    {
-
-    }
-
-    public void Deselect()
-    {
-    }
-}
 
 public class DeckPanel : MonoBehaviour
 {
@@ -99,22 +23,16 @@ public class DeckPanel : MonoBehaviour
     [SerializeField] private TMP_ColorGradient _closedColorGradient;
     [SerializeField] private TMP_ColorGradient _obtainedColorGradient;
 
-    private IHand _hand;
     //private LinkedList<GameObject> _cardList;
     //private readonly LinkedList<CardUI> _cardList = new();
     private string _name;
 
-    public void TakeOpenedCard()
+    public string GetName()
     {
-        _hand.TakeCardFromDeck(_name);
+        return _name;
     }
 
-    public void SetHand(IHand hand)
-    {
-        _hand = hand;
-    }
-
-    private void DisplayDeck(string deckName, int deckSize, int openedCardIndex)
+    public void DisplayDeck(string deckName, int deckSize, int openedCardIndex)
     {
         _name = deckName;
         var containerWidth = deckSize * (_cardWidth + _spacing) + _padding;

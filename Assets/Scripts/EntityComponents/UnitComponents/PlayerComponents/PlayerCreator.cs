@@ -1,8 +1,10 @@
 using System;
+using Assets.Scripts.EntityComponents.Effects;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.UnitComponents.Turret;
 using Assets.Scripts.GameSession.Events;
 using Assets.Scripts.GameSession.UIScripts.SessionModel;
+using Assets.Scripts.GameSession.Upgrades.Deck;
 using Assets.Scripts.View;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,14 +25,18 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private GameObject _playerWeapon;
         [SerializeField] private GameObject _turretHub;
         [SerializeField] private OldDisplayedResourceData[] _displayedResources;
-        [SerializeField] private LevelUp _levelUp;
+        //[SerializeField] private LevelUp _levelUp;
+        [SerializeField] private LevelUpControllerScreen _levelUpController;
         [SerializeField] private GameTimeScheduler _gameTimeScheduler;
 
         private Player _player;
+        private IHand _hand;
         private OverUnitDataAggregator _playerDataAggregator;
         private GameSessionTimer _gameSessionTimer;
         private OptionsMenu _optionsMenu;
         private GameSessionController _gameSessionController;
+        private EffectsRepository _effectsRepository;
+        private IDeckRepository _deckRepository;
 
         private ResourceListenerData levelUpListener;
         private ResourceListenerData loseListener;
@@ -42,6 +48,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _gameSessionTimer = FindObjectOfType<GameSessionTimer>();
             _gameSessionController = FindObjectOfType<GameSessionController>();
             _optionsMenu = FindObjectOfType<OptionsMenu>();
+
+            _effectsRepository = FindObjectOfType<EffectsRepository>();
+            _deckRepository = FindObjectOfType<PatternDeckRepository>();
 
             levelUpListener = new ResourceListenerData(_gameSessionController.LevelUpEvent,
                 TargetName.Player, ResourceName.Level, ResourceEventType.Increment);
@@ -71,7 +80,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             player.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
             _player = player.GetComponent<Player>();
             _playerDataAggregator = player.GetComponent<OverUnitDataAggregator>();
-            _levelUp.EffectsAggregator = _playerDataAggregator;
+            _hand = player.GetComponent<IHand>();
+            _hand.SetDeckRepository(_deckRepository);
+            _hand.SetEffectRepository(_effectsRepository);
+            _levelUpController.SetHand(_hand);
             _playerDataAggregator.ReadInfoFromTarget(player, TargetName.Player);
             //
             _player.Shield.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
