@@ -6,25 +6,58 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
+
+    public enum CardStatus
+    {
+        Opened,
+        Closed,
+        Obtained
+    }
+
+    [Serializable]
+    public class Card
+    {
+        [HideInInspector] public string inspectorName;
+        public string title;
+        [Multiline] public string description;
+        public float dropWeight;
+        public List<string> effectNames;
+        public CardStatus status;
+    }
+
+    [Serializable]
+    public class Deck
+    {
+        public string name;
+        public string description;
+
+        [SerializeField] public List<Card> cardsInspectorList;
+
+        public Stack<Card> cards;
+    }
+
     [Serializable]
     public class HandDeckData
     {
         public string name;
         public int size;
         public int openedCardPosition;
+        public float dropWeight;
 
-        public HandDeckData(string name, int size, int openedCardPosition)
+        public HandDeckData(string name, int size, int openedCardPosition, float dropWeight)
         {
             this.name = name;
             this.size = size;
             this.openedCardPosition = openedCardPosition;
+            this.dropWeight = dropWeight;
         }
+
         /// <summary>
-        /// Without opened cards
+        /// Without opened cards, with base weight 1
         /// </summary>
         /// <param name="name"></param>
         /// <param name="size"></param>
-        public HandDeckData(string name, int size) : this(name, size, 0)
+        public HandDeckData(string name, int size) : this(name, size, 0, 1)
         {
         }
     }

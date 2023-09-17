@@ -1,11 +1,17 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.GameSession.Upgrades.Deck;
+using PlasticPipe.PlasticProtocol.Messages;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
+using Random = UnityEngine.Random;
 
 public interface IDeckDisplay
 {
     string GetActiveDeckName();
     void DisplayDecks(List<HandDeckData> decksData);
+    void DisplayRandomDecks(List<HandDeckData> decksData, int amount);
 }
 
 public class DeckDisplay : MonoBehaviour, IDeckDisplay
@@ -56,5 +62,46 @@ public class DeckDisplay : MonoBehaviour, IDeckDisplay
             }
             deckCount++;
         }
+    }
+
+    public void DisplayRandomDecks(List<HandDeckData> decksData, int amount)
+    {
+        var trueAmount = Mathf.Clamp(amount, 0, decksData.Count);
+        var decksDataTemp = GetOpenedDecksDataFromList(decksData);
+        var selectedDecks = new List<HandDeckData>(trueAmount);
+
+        for (int i = 0; i < selectedDecks.Capacity; i++)
+        {
+            var deck = GetRandomDeckDataFromList(decksDataTemp);
+            selectedDecks.Add(deck);
+            decksDataTemp.Remove(deck);
+        }
+
+        DisplayDecks(selectedDecks);
+    }
+
+    public List<HandDeckData> GetOpenedDecksDataFromList(List<HandDeckData> decksData)
+    {
+        var decksWithOpenedCards = decksData.Where(deckData => deckData.openedCardPosition < deckData.size).ToList();
+        return decksWithOpenedCards;
+    }
+
+    private HandDeckData GetRandomDeckDataFromList(List<HandDeckData> decksData)
+    {
+        var sum = decksData.Sum(x => x.dropWeight);
+        var next = Random.Range(0, sum);
+        var limit = 0f;
+
+        foreach (var deck in decksData)
+        {
+            limit += deck.dropWeight;
+            if (next < limit)
+            {
+                return deck;
+            }
+        }
+
+        Debug.LogWarning("Error, mb all weights of decks is 0");
+        throw new InvalidOperationException("");
     }
 }

@@ -11,6 +11,7 @@ public interface ILevelUpController
 
 public class LevelUpControllerScreen : MonoBehaviour, ILevelUpController
 {
+    [SerializeField] private int _baseDeckAmount = 3;
     private GameSessionController _gameSessionController;
     private IDeckDisplay _deckDisplay;
     private IHand _hand;
@@ -23,8 +24,8 @@ public class LevelUpControllerScreen : MonoBehaviour, ILevelUpController
 
     public void Initiate()
     {
-        var hand = _hand.GetHandData();
-        _deckDisplay.DisplayDecks(hand);
+        var handDecks = _hand.GetHandData();
+        _deckDisplay.DisplayRandomDecks(handDecks, _baseDeckAmount);
     }
 
     public void LevelUp()
