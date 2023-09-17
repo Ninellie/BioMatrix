@@ -7131,7 +7131,7 @@ PrefabInstance:
       objectReference: {fileID: 8954189743293124748, guid: 9719345d2ddcc4a4ea8ab441315bf454, type: 3}
     - target: {fileID: 1365173418, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: _enemiesSpawnData.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1365173418, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: widthCurve.m_Curve.Array.size
@@ -10706,7 +10706,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a6b1baf072c48645912ae25c040569c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameSessionController: {fileID: 1239585266}
 --- !u!114 &2025358893
 MonoBehaviour:
   m_ObjectHideFlags: 0

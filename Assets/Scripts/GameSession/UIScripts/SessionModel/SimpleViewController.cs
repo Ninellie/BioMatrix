@@ -65,7 +65,7 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 
         public void InitiateLevelUp()
         {
-            _playerInput.SwitchCurrentActionMap("LevelUpScreen");
+            //_playerInput.SwitchCurrentActionMap("LevelUpScreen");
             _levelUpUI.SetActive(true);
             _levelUpController.Initiate();
             //_levelUp.DisplayCards();

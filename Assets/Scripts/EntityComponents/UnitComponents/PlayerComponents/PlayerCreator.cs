@@ -1,5 +1,4 @@
 using System;
-using Assets.Scripts.EntityComponents.Effects;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.UnitComponents.Turret;
 using Assets.Scripts.GameSession.Events;
@@ -29,14 +28,15 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private LevelUpControllerScreen _levelUpController;
         [SerializeField] private GameTimeScheduler _gameTimeScheduler;
 
-        private Player _player;
-        private IHand _hand;
-        private OverUnitDataAggregator _playerDataAggregator;
         private GameSessionTimer _gameSessionTimer;
         private OptionsMenu _optionsMenu;
         private GameSessionController _gameSessionController;
         private EffectsRepository _effectsRepository;
         private IDeckRepository _deckRepository;
+
+        private Player _player;
+        private IHand _hand;
+        private OverUnitDataAggregator _playerDataAggregator;
 
         private ResourceListenerData levelUpListener;
         private ResourceListenerData loseListener;
@@ -83,6 +83,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _hand = player.GetComponent<IHand>();
             _hand.SetDeckRepository(_deckRepository);
             _hand.SetEffectRepository(_effectsRepository);
+
             _levelUpController.SetHand(_hand);
             _playerDataAggregator.ReadInfoFromTarget(player, TargetName.Player);
             //

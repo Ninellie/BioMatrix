@@ -11,12 +11,13 @@ public interface ILevelUpController
 
 public class LevelUpControllerScreen : MonoBehaviour, ILevelUpController
 {
-    [SerializeField] private IDeckDisplay _deckDisplay;
-    [SerializeField] private GameSessionController _gameSessionController;
+    private GameSessionController _gameSessionController;
+    private IDeckDisplay _deckDisplay;
     private IHand _hand;
 
     private void Awake()
     {
+        _gameSessionController = GetComponentInParent<GameSessionController>();
         _deckDisplay = gameObject.GetComponent<IDeckDisplay>();
     }
 

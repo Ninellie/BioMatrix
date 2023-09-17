@@ -5,6 +5,35 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
+    public enum CardStatus
+    {
+        Opened,
+        Closed,
+        Obtained
+    }
+
+    [Serializable]
+    public class Card
+    {
+        [HideInInspector] public string inspectorName;
+        public string title;
+        [Multiline] public string description;
+        public float dropWeight;
+        public List<string> effectNames;
+        public CardStatus status;
+    }
+
+    [Serializable]
+    public class Deck
+    {
+        public string name;
+        public string description;
+
+        [SerializeField] public List<Card> cardsInspectorList;
+
+        public Stack<Card> cards;
+    }
+
     [Serializable]
     public class PatternCard
     {
