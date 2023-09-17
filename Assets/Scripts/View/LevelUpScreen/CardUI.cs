@@ -70,8 +70,8 @@ public class CardUI : MonoBehaviour
     public void Close()
     {
         _status = CardStatus.Closed;
-        _blackoutFlap.color = new Color(0, 0, 0, 0);
-        _blackoutFlap.gameObject.SetActive(false);
+        _blackoutFlap.gameObject.SetActive(true);
+        _blackoutFlap.color = new Color(0, 0, 0, 0.2f);
         _text.colorGradientPreset = _closedColorGradient;
     }
 }

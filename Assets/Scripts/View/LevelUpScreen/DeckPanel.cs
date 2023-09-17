@@ -5,27 +5,33 @@ using UnityEngine.UI;
 
 public class DeckPanel : MonoBehaviour
 {
+    [Header("Card panel properties")]
+    [SerializeField] private GameObject _cardFramePrefab;
+    [Space]
     [SerializeField] private LayoutElement _cardListPort;
     [SerializeField] private LayoutElement _cardListContent;
     [SerializeField] private RectTransform _viewport;
-
-    [SerializeField] private GameObject _cardFramePrefab;
-
+    [Space]
     [SerializeField] private float _padding;
     [SerializeField] private float _spacing;
     [SerializeField] private float _cardWidth;
 
-    [SerializeField] private int _cardCount;
+    [Space]
+    [Header("Deck naming properties")]
+    [SerializeField] private TMP_Text _deckNameText;
+    //[SerializeField] private Image _deckIcon; TODO icon info taken from deck repository from scriptableObject prefab
 
     [Space]
-    [Header("Properties")]
+    [Header("Color presets")]
     [SerializeField] private TMP_ColorGradient _openedColorGradient;
     [SerializeField] private TMP_ColorGradient _closedColorGradient;
     [SerializeField] private TMP_ColorGradient _obtainedColorGradient;
 
+    [Space]
+    [Header("Properties")]
+    [SerializeField] private string _name;
     //private LinkedList<GameObject> _cardList;
     //private readonly LinkedList<CardUI> _cardList = new();
-    private string _name;
 
     public string GetName()
     {
@@ -35,6 +41,7 @@ public class DeckPanel : MonoBehaviour
     public void DisplayDeck(string deckName, int deckSize, int openedCardIndex)
     {
         _name = deckName;
+        _deckNameText.text = _name;
         var containerWidth = deckSize * (_cardWidth + _spacing) + _padding;
         _cardListContent.minWidth = containerWidth;
 
@@ -51,6 +58,7 @@ public class DeckPanel : MonoBehaviour
             cardUI.SetText($"{i}");
             cardUI.SetColorPresets(_openedColorGradient, _closedColorGradient, _obtainedColorGradient);
             cardUI.SetIndex(i);
+
             if (i < openedCardIndex)
             {
                 cardUI.Obtain();
