@@ -1,4 +1,3 @@
-using Assets.Scripts.GameSession.UIScripts.SessionModel;
 using Assets.Scripts.GameSession.Upgrades.Deck;
 using UnityEngine;
 
@@ -12,13 +11,11 @@ public interface ILevelUpController
 public class LevelUpControllerScreen : MonoBehaviour, ILevelUpController
 {
     [SerializeField] private int _baseDeckAmount = 3;
-    private GameSessionController _gameSessionController;
     private IDeckDisplay _deckDisplay;
     private IHand _hand;
 
     private void Awake()
     {
-        _gameSessionController = GetComponentInParent<GameSessionController>();
         _deckDisplay = gameObject.GetComponent<IDeckDisplay>();
     }
 
@@ -32,7 +29,7 @@ public class LevelUpControllerScreen : MonoBehaviour, ILevelUpController
     {
         var deckName = _deckDisplay.GetActiveDeckName();
         _hand.TakeCardFromDeck(deckName);
-        _gameSessionController.Resume();
+        _deckDisplay.DestroyAllDecks();
     }
 
     public void SetHand(IHand hand)

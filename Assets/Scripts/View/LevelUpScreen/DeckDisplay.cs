@@ -2,15 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.GameSession.Upgrades.Deck;
-using PlasticPipe.PlasticProtocol.Messages;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 using Random = UnityEngine.Random;
 
 public interface IDeckDisplay
 {
-    string GetActiveDeckName();
     void DisplayDecks(List<HandDeckData> decksData);
+    void DestroyAllDecks();
+    string GetActiveDeckName();
     void DisplayRandomDecks(List<HandDeckData> decksData, int amount);
 }
 
@@ -22,6 +21,15 @@ public class DeckDisplay : MonoBehaviour, IDeckDisplay
     private LinkedList<DeckPanel> _deckPanels;
 
     private LinkedListNode<DeckPanel> _activeDeck;
+
+    public void DestroyAllDecks()
+    {
+        foreach (var deckPanel in _deckPanels)
+        {
+            deckPanel.gameObject.SetActive(false);
+            Destroy(deckPanel.gameObject);
+        }
+    }
 
     public string GetActiveDeckName()
     {
