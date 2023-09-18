@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c67aca5695f6114bb2d9c3c60e9a879, type: 3}
-  m_Name: AgilityDeckSubEffects
+  m_Name: Rush
   m_EditorClassIdentifier: 
   _effects:
   - rid: 5662863221171159042

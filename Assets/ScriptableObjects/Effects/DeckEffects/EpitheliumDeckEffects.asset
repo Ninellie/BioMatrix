@@ -24,7 +24,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: MaxHealthAdd1
-        _description: 
+        _description: +1 Maximum Health
         _targetName: 0
         statModList:
         - strName: 
@@ -41,7 +41,7 @@ MonoBehaviour:
       type: {class: ResourceIncreaserEffect, ns: , asm: Scripts}
       data:
         _name: HealthIncrease1
-        _description: 
+        _description: +1 Health
         _targetName: 0
         _resourceName: 1
         _value: 1
@@ -52,7 +52,7 @@ MonoBehaviour:
       type: {class: RespondingEffectAdderEffect, ns: , asm: Scripts}
       data:
         _name: DamageAdd5OnHealthDecrement
-        _description: 
+        _description: Gain 5 Firearm Damage on losing Health
         _targetName: 0
         _effectNames:
         - FirearmDamageAdd5
@@ -63,7 +63,12 @@ MonoBehaviour:
       type: {class: RespondingEffectAdderEffect, ns: , asm: Scripts}
       data:
         _name: AdrenalinOnHealthDecrement
-        _description: 
+        _description: 'Gain an Adrenalin for 5 seconds on losing Health
+
+          Adrenalin
+          gives you +100% Movement, Reload and Fire speed
+
+'
         _targetName: 0
         _effectNames:
         - FirearmAdrenalin

@@ -23,7 +23,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: DamageAdd2
-        _description: 
+        _description: +2 Firearm Damage
         _targetName: 4
         statModList:
         - strName: 
@@ -40,7 +40,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: ProjSizeAdd75
-        _description: 
+        _description: +75% Projectile Size
         _targetName: 4
         statModList:
         - strName: 
@@ -57,7 +57,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: PierceAdd1
-        _description: 
+        _description: +1 Projectile Pierce
         _targetName: 4
         statModList:
         - strName: 

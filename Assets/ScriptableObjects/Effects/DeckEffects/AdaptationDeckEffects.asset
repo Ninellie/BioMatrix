@@ -23,7 +23,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: +25% Experience Multiplier
-        _description: 
+        _description: +25% Experience Multiplier
         _targetName: 0
         statModList:
         - strName: 
@@ -40,7 +40,7 @@ MonoBehaviour:
       type: {class: RespondingEffectAdderEffect, ns: , asm: Scripts}
       data:
         _name: +1 Health On Level Up
-        _description: 
+        _description: +1 Health on Level increase
         _targetName: 0
         _effectNames:
         - +1 Health
@@ -51,7 +51,13 @@ MonoBehaviour:
       type: {class: RespondingEffectAdderEffect, ns: , asm: Scripts}
       data:
         _name: Gain Stack Metabolism On Exp Increase
-        _description: 
+        _description: 'Gain a stack of Metabolism Acceleration for 5 seconds after
+          gaining experience.
+
+          Metabolism Acceleration gives you +2% movement,
+          reload and fire speed per stack (max 25 stacks)
+
+'
         _targetName: 0
         _effectNames:
         - Metabolism Acceleration Firearm

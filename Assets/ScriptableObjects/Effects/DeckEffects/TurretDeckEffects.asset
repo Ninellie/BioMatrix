@@ -23,7 +23,11 @@ MonoBehaviour:
       type: {class: ResourceIncreaserEffect, ns: , asm: Scripts}
       data:
         _name: TurretsIncrease1
-        _description: 
+        _description: '+1 Turret
+
+          Turrets circle around the player. If
+          there is an enemy within a small radius of them, they shoot at him with
+          precision, otherwise they shoot in a random direction.'
         _targetName: 2
         _resourceName: 5
         _value: 1
@@ -34,7 +38,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: TurretProjectileAdd1
-        _description: 
+        _description: +1 Turret Projectile
         _targetName: 3
         statModList:
         - strName: 
@@ -51,7 +55,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: TurretAimMultiply100
-        _description: 
+        _description: +100% Turrets Aim Radius
         _targetName: 3
         statModList:
         - strName: 

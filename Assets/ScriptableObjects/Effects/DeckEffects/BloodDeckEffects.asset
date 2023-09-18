@@ -23,7 +23,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: +0.25 Regeneration per minute
-        _description: 
+        _description: +0.25 Regeneration per minute
         _targetName: 0
         statModList:
         - strName: 
@@ -51,7 +51,7 @@ MonoBehaviour:
       type: {class: RespondingEffectAdderEffect, ns: , asm: Scripts}
       data:
         _name: +20% Damage on Health Edge
-        _description: +20% Damage on Health Edge
+        _description: +20% Firearm Damage on Health Edge (1 Health)
         _targetName: 0
         _effectNames:
         - +20% Damage

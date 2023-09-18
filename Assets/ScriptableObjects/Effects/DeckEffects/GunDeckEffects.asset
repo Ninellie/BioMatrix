@@ -24,7 +24,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: ShootForceMultiply15
-        _description: 
+        _description: +15% Shoot Force
         _targetName: 4
         statModList:
         - strName: 
@@ -41,7 +41,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: MagazineAdd1
-        _description: 
+        _description: "+1 Magazine \u0421apacity "
         _targetName: 4
         statModList:
         - strName: 
@@ -58,7 +58,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: FirerateMultiply50
-        _description: 
+        _description: +50% Firerate
         _targetName: 4
         statModList:
         - strName: 
@@ -75,7 +75,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: ProjectileAdd1
-        _description: 
+        _description: +1 Firearm Projectile
         _targetName: 4
         statModList:
         - strName: 

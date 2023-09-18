@@ -24,7 +24,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: +15% Magnetism Radius
-        _description: 
+        _description: +15% Magnetism Radius
         _targetName: 0
         statModList:
         - strName: 
@@ -52,7 +52,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: +1 Max Shield Layers
-        _description: 
+        _description: +1 Max Shield Layers
         _targetName: 1
         statModList:
         - strName: 
@@ -69,7 +69,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: +200% Shield Recharge Rate
-        _description: 
+        _description: +200% Shield Recharge Rate
         _targetName: 1
         statModList:
         - strName: 

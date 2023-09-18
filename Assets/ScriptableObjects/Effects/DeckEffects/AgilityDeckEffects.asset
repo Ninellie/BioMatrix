@@ -23,7 +23,10 @@ MonoBehaviour:
       type: {class: RespondingEffectAdderEffect, ns: , asm: Scripts}
       data:
         _name: RushOnReload
-        _description: 
+        _description: 'Gain Rush on Reload
+
+          Rush gives you 40% Movement
+          Speed'
         _targetName: 4
         _effectNames:
         - Rush
@@ -34,7 +37,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: MovementSpeedMultiply10
-        _description: 
+        _description: +10% Movement Speed
         _targetName: 0
         statModList:
         - strName: 
@@ -51,7 +54,7 @@ MonoBehaviour:
       type: {class: StackableStatModifierEffect, ns: , asm: Scripts}
       data:
         _name: ReloadSpeedMultiply35
-        _description: 
+        _description: +35% Reload Speed
         _targetName: 4
         statModList:
         - strName: 
