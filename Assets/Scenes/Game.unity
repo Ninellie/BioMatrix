@@ -2630,9 +2630,9 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -40
+  m_lineSpacing: 0
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 50
+  m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0
@@ -2677,8 +2677,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 581731783}
+  - component: {fileID: 581731784}
   m_Layer: 0
-  m_Name: Description
+  m_Name: Card Info Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2706,6 +2707,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &581731784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581731782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18040e0fe3afaa04db05234254059548, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeCardDeckTitle: {fileID: 99906592}
+  _activeCardTitle: {fileID: 578173463}
+  _activeCardDescription: {fileID: 1279992960}
+  _deckRepository: {fileID: 282507451}
+  _effectsRepository: {fileID: 282507450}
 --- !u!1 &609447121
 GameObject:
   m_ObjectHideFlags: 0
@@ -5870,14 +5888,14 @@ MonoBehaviour:
   m_fontSizeMin: 0
   m_fontSizeMax: 50
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -40
+  m_lineSpacing: 0
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 50
+  m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0
@@ -11052,6 +11070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deckPanelPrefab: {fileID: 7686584683030057135, guid: 7210052bbc9bb3e46947d82fd572332f, type: 3}
   _decksArea: {fileID: 1582125627}
+  _cardInfoDisplay: {fileID: 581731784}
 --- !u!1 &2043662794
 GameObject:
   m_ObjectHideFlags: 0

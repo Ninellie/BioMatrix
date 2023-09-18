@@ -314,6 +314,94 @@
             "id": "b7ef492d-6b83-4bb6-86e4-327cf4c20cea",
             "actions": [],
             "bindings": []
+        },
+        {
+            "name": "LevelUpScreen",
+            "id": "11254ba8-5e7f-4514-95c0-ed984aee7dcc",
+            "actions": [
+                {
+                    "name": "Next Card",
+                    "type": "Button",
+                    "id": "dfb4d702-02c6-43cd-8794-3c594d41379f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Next Deck",
+                    "type": "Button",
+                    "id": "c18e5375-167f-435a-82f7-41bdd7c9062c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Previous Card",
+                    "type": "Button",
+                    "id": "b1d56e76-d94e-45de-bbc2-93156b44da2e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Previous deck",
+                    "type": "Button",
+                    "id": "034c155f-79ad-416e-80f3-7716bbcfb5af",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4e548b53-405c-416c-8aad-7b24835a13cd",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC_Control_scheme",
+                    "action": "Next Card",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27b8d233-3e19-41fc-a5c8-c4d1efd17d0a",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC_Control_scheme",
+                    "action": "Previous Card",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cd8d04ac-b7a3-4117-8c28-2598282087cd",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC_Control_scheme",
+                    "action": "Previous deck",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "14f93b34-0075-45f3-9a75-5d6f4de10483",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC_Control_scheme",
+                    "action": "Next Deck",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

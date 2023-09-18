@@ -21,7 +21,7 @@ public class DeckDisplay : MonoBehaviour, IDeckDisplay
 {
     [SerializeField] private GameObject _deckPanelPrefab;
     [SerializeField] private Transform _decksArea;
-    [SerializeField] private CardInfoDisplay _cardInfoDisplay;
+    [SerializeField] private CardInfoUIPanel _cardInfoDisplay;
 
     private LinkedList<DeckPanel> _deckPanels;
 
@@ -53,12 +53,12 @@ public class DeckDisplay : MonoBehaviour, IDeckDisplay
 
     public void SelectNextCard()
     {
-        _activeDeck = _activeDeck.Next;
+        _activeDeck.Value.SelectNextCard();
     }
 
     public void SelectPreviousCard()
     {
-        _activeDeck = _activeDeck.Previous;
+        _activeDeck.Value.SelectPreviousCard();
     }
 
     public void DisplayDecks(List<HandDeckData> decksData)

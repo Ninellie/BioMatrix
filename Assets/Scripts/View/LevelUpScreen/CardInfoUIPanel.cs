@@ -14,13 +14,11 @@ public interface CardInfoDisplay
 
 public class CardInfoUIPanel : MonoBehaviour, CardInfoDisplay
 {
-    private string _panelTitle;
+    [SerializeField] private TMP_Text _activeCardDeckTitle;
+    [SerializeField] private TMP_Text _activeCardTitle;
+    [SerializeField] private TMP_Text _activeCardDescription;
 
-    private TMP_Text _activeCardDeckTitle;
-    private TMP_Text _activeCardTitle;
-    private TMP_Text _activeCardDescription;
-
-    [SerializeField] private IDeckRepository _deckRepository;
+    [SerializeReference] private PatternDeckRepository _deckRepository;
     [SerializeField] private EffectsRepository _effectsRepository;
     //private string activeCard
     //private string selectedCard
@@ -34,10 +32,9 @@ public class CardInfoUIPanel : MonoBehaviour, CardInfoDisplay
         deck.cards.ToArray()[cardPosition].status = CardStatus.Obtained;
         var effectNames = deck.cards.ToArray()[cardPosition].effectNames;
 
-        foreach (var effectName in effectNames)
+        foreach (var effectDescription in effectNames.Select(effectName => _effectsRepository.GetEffectDescriptionByName(effectName)))
         {
-            var effect = _effectsRepository.GetEffectByName(effectName);
-            _activeCardDescription.text += effect + "\r\n";
+            _activeCardDescription.text += effectDescription + "\r\n";
         }
     }
 }

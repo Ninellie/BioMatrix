@@ -57,18 +57,12 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
             _levelUpUI.SetActive(false);
         }
 
-        //public void GetBonusToPlayer()
-        //{
-        //    _levelUpController
-        //    _player.
-        //}
-
         public void InitiateLevelUp()
         {
-            //_playerInput.SwitchCurrentActionMap("LevelUpScreen");
+            _playerInput.SwitchCurrentActionMap("LevelUpScreen");
             _levelUpUI.SetActive(true);
             _levelUpController.Initiate();
-            //_levelUp.DisplayCards();
+            
         }
     }
 }

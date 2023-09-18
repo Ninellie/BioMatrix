@@ -37,6 +37,10 @@ public class EffectsRepository : MonoBehaviour
     {
         return _effects.FirstOrDefault(e => e.Name.Equals(name));
     }
+    public string GetEffectDescriptionByName(string name)
+    {
+        return _effects.FirstOrDefault(e => e.Name.Equals(name)).Description;
+    }
 
     [ContextMenu(nameof(AddNewStackableStatModifierEffect))]
     private void AddNewStackableStatModifierEffect()

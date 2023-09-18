@@ -45,6 +45,18 @@ public class DeckPanel : MonoBehaviour
         return _selectedCard.Value.GetIndex();
     }
 
+    public void UpdateScrollPosition()
+    {
+        //var selectedCardIndex = _selectedCard.Value.GetIndex();
+        //var cardsCount = _cardList.Count;
+        //var step = 1f / cardsCount;
+        //var selectedCardNormalizedPosition = step * selectedCardIndex;
+        //_cardsScrollRect.verticalNormalizedPosition = selectedCardNormalizedPosition;
+        //_cardsScrollRect.decelerationRate = 0;
+        
+        _cardsScrollRect.horizontalNormalizedPosition += 1f / _cardList.Count;
+    }
+
     public void SelectNextCard()
     {
         if (_selectedCard.Next is null)
@@ -52,10 +64,11 @@ public class DeckPanel : MonoBehaviour
             Debug.LogWarning($"Previous card does not exist");
             return;
         }
-
         _selectedCard.Next.Value.Select();
         _selectedCard.Value.Deselect();
         _selectedCard = _selectedCard.Next;
+        _cardsScrollRect.horizontalNormalizedPosition += 1f / _cardList.Count;
+        //UpdateScrollPosition();
     }
 
     public void SelectPreviousCard()
@@ -69,23 +82,21 @@ public class DeckPanel : MonoBehaviour
         _selectedCard.Previous.Value.Select();
         _selectedCard.Value.Deselect();
         _selectedCard = _selectedCard.Previous;
+        _cardsScrollRect.horizontalNormalizedPosition -= 1f / _cardList.Count;
+        //UpdateScrollPosition();
     }
 
     public void Activate()
     {
         SelectOpenedCard();
         _flapPanel.SetActive(false);
-        var selectedCardIndex = _selectedCard.Value.GetIndex();
-        var cardsCount = _cardList.Count;
-        var step = 1f / cardsCount;
-        var selectedCardNormalizedPosition = step * selectedCardIndex;
-        _cardsScrollRect.verticalNormalizedPosition = selectedCardNormalizedPosition;
-
+        UpdateScrollPosition();
     }
 
     public void Deactivate()
     {
-        // Deselect all cards
+        // Deselect selected Card
+        _selectedCard.Value.Deselect();
         _flapPanel.SetActive(false);
         _cardsScrollRect.verticalNormalizedPosition = 0;
     }
