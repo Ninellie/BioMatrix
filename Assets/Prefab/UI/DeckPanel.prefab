@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3545008942826269846}
   - component: {fileID: 8495761169952506135}
   m_Layer: 0
-  m_Name: Background
+  m_Name: Flap Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -627,6 +627,8 @@ MonoBehaviour:
   _padding: 50
   _spacing: 50
   _cardWidth: 100
+  _flapPanel: {fileID: 1005504336438120365}
+  _cardsScrollRect: {fileID: 8958660335125216005}
   _deckNameText: {fileID: 5465993631673818229}
   _openedColorGradient: {fileID: 11400000, guid: 8e56042c1a776644988afb418115fdc8, type: 2}
   _closedColorGradient: {fileID: 11400000, guid: 5e9489931766f81478c5169bcc735c45, type: 2}

@@ -9,26 +9,28 @@ namespace Assets.Scripts.Core.Render
         public Color color = Color.white;
         private Image _image;
 
-        void OnEnable()
+        private void OnEnable()
         {
             _image = GetComponent<Image>();
             UpdateOutline(true);
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             UpdateOutline(false);
         }
 
-        void Update()
+        private void Update()
         {
             UpdateOutline(true);
         }
 
-        void UpdateOutline(bool outline)
+        public void UpdateOutline(bool outline)
         {
-            _image.material.SetFloat("_Outline", outline ? 1f : 0);
-            _image.material.SetColor("_OutlineColor", color);
+            var mat = new Material(_image.material);
+            mat.SetColor("_OutlineColor", color);
+            mat.SetFloat("_Outline", outline ? 1f : 0);
+            _image.material = mat;
         }
     }
 }

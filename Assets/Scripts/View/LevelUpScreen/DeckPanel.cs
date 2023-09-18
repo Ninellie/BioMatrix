@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +17,9 @@ public class DeckPanel : MonoBehaviour
     [SerializeField] private float _padding;
     [SerializeField] private float _spacing;
     [SerializeField] private float _cardWidth;
+    [Space]
+    [SerializeField] private GameObject _flapPanel;
+    [SerializeField] private ScrollRect _cardsScrollRect;
 
     [Space]
     [Header("Deck naming properties")]
@@ -30,16 +35,80 @@ public class DeckPanel : MonoBehaviour
     [Space]
     [Header("Properties")]
     [SerializeField] private string _name;
-    //private LinkedList<GameObject> _cardList;
-    //private readonly LinkedList<CardUI> _cardList = new();
+    
+    private readonly LinkedList<CardUI> _cardList = new();
+    private LinkedListNode<CardUI> _selectedCard;
+    private CardUI _openedCard;
+
+    public int GetSelectedCardIndex()
+    {
+        return _selectedCard.Value.GetIndex();
+    }
+
+    public void SelectNextCard()
+    {
+        if (_selectedCard.Next is null)
+        {
+            Debug.LogWarning($"Previous card does not exist");
+            return;
+        }
+
+        _selectedCard.Next.Value.Select();
+        _selectedCard.Value.Deselect();
+        _selectedCard = _selectedCard.Next;
+    }
+
+    public void SelectPreviousCard()
+    {
+        if (_selectedCard.Previous is null)
+        {
+            Debug.LogWarning($"Previous card does not exist");
+            return;
+        }
+
+        _selectedCard.Previous.Value.Select();
+        _selectedCard.Value.Deselect();
+        _selectedCard = _selectedCard.Previous;
+    }
+
+    public void Activate()
+    {
+        SelectOpenedCard();
+        _flapPanel.SetActive(false);
+        var selectedCardIndex = _selectedCard.Value.GetIndex();
+        var cardsCount = _cardList.Count;
+        var step = 1f / cardsCount;
+        var selectedCardNormalizedPosition = step * selectedCardIndex;
+        _cardsScrollRect.verticalNormalizedPosition = selectedCardNormalizedPosition;
+
+    }
+
+    public void Deactivate()
+    {
+        // Deselect all cards
+        _flapPanel.SetActive(false);
+        _cardsScrollRect.verticalNormalizedPosition = 0;
+    }
 
     public string GetName()
     {
         return _name;
     }
 
+    private void SelectOpenedCard()
+    {
+        _selectedCard = _cardList.Find(_openedCard);
+        _selectedCard.Value.Select();
+    }
+
+    private void DeselectSelectedCard()
+    {
+        _selectedCard.Value.Deselect();
+    }
+
     public void DisplayDeck(string deckName, int deckSize, int openedCardIndex)
     {
+        _cardList.Clear();
         _name = deckName;
         _deckNameText.text = _name;
         var containerWidth = deckSize * (_cardWidth + _spacing) + _padding;
@@ -53,10 +122,11 @@ public class DeckPanel : MonoBehaviour
         for (int i = 0; i < deckSize; i++)
         {
             var cardUIGameObject = Instantiate(_cardFramePrefab, _cardListContent.transform);
-            cardUIGameObject.name = $"Card {i}";
+            cardUIGameObject.name = $"{deckName} Card {i}";
             var cardUI = cardUIGameObject.GetComponentInChildren<CardUI>();
+            var cardNode = _cardList.AddLast(cardUI);
             cardUI.SetText($"{i}");
-            cardUI.SetColorPresets(_openedColorGradient, _closedColorGradient, _obtainedColorGradient);
+            cardUI.SetColorTextPresets(_openedColorGradient, _closedColorGradient, _obtainedColorGradient);
             cardUI.SetIndex(i);
 
             if (i < openedCardIndex)
@@ -66,6 +136,8 @@ public class DeckPanel : MonoBehaviour
             if (i == openedCardIndex)
             {
                 cardUI.Open();
+                _openedCard = cardUI;
+                _selectedCard = cardNode;
             }
             if (i > openedCardIndex)
             {

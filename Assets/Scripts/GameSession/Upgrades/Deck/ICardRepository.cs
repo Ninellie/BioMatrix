@@ -2,16 +2,16 @@
 
 namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
-    public interface ICardRepository
-    {
-        int CardCount { get; }
+    //public interface ICardRepository
+    //{
+    //    int CardCount { get; }
 
-        List<OldCard> GetCardsByDeckId(int deckId); // True Interface, want to change
+    //    List<OldCard> GetCardsByDeckId(int deckId); // True Interface, want to change
 
-        OldCard GetCardByIndex(int i);
+    //    OldCard GetCardByIndex(int i);
 
-        OldCard GetCardById(int id);
+    //    OldCard GetCardById(int id);
 
-        float GetDropWeightSum();
-    }
+    //    float GetDropWeightSum();
+    //}
 }

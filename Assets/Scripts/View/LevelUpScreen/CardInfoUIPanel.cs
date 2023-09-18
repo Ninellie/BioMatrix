@@ -1,39 +1,43 @@
+using System.Linq;
+using Assets.Scripts.GameSession.Upgrades.Deck;
+using TMPro;
 using UnityEngine;
 
-public interface CardInfoDisplayer
+public interface CardInfoDisplay
 {
-    void SetActiveCardInfo(string deckTitle, string cardTitle, string cardDescription);
-    void SetSelectedCardInfo(string deckTitle, string cardTitle, string cardDescription);
-    void Select();
-    void Deselect();
+    void DisplayCardInfo(string deckName, int cardPosition);
+    //void SetActiveCardInfo(string deckTitle, string cardTitle, string cardDescription);
+    //void SetSelectedCardInfo(string deckTitle, string cardTitle, string cardDescription);
+    //void Select();
+    //void Deselect();
 }
 
-public class CardInfoUIPanel : MonoBehaviour, CardInfoDisplayer
+public class CardInfoUIPanel : MonoBehaviour, CardInfoDisplay
 {
     private string _panelTitle;
 
-    private string _activeCardDeckTitle;
-    private string _activeCardTitle;
-    private string _activeCardDescription;
+    private TMP_Text _activeCardDeckTitle;
+    private TMP_Text _activeCardTitle;
+    private TMP_Text _activeCardDescription;
 
+    [SerializeField] private IDeckRepository _deckRepository;
+    [SerializeField] private EffectsRepository _effectsRepository;
     //private string activeCard
     //private string selectedCard
-
-
-    public void SetActiveCardInfo(string deckTitle, string cardTitle, string cardDescription)
+    public void DisplayCardInfo(string deckName, int cardPosition)
     {
-    }
+        _activeCardDeckTitle.text = deckName;
+        _activeCardTitle.text = $"Level {cardPosition}";
+        _activeCardDescription.text = "";
+        var decks = _deckRepository.GetDecks();
+        var deck = decks.First(d => d.name.Equals(deckName));
+        deck.cards.ToArray()[cardPosition].status = CardStatus.Obtained;
+        var effectNames = deck.cards.ToArray()[cardPosition].effectNames;
 
-    public void SetSelectedCardInfo(string deckTitle, string cardTitle, string cardDescription)
-    {
-    }
-
-    public void Select()
-    {
-
-    }
-
-    public void Deselect()
-    {
+        foreach (var effectName in effectNames)
+        {
+            var effect = _effectsRepository.GetEffectByName(effectName);
+            _activeCardDescription.text += effect + "\r\n";
+        }
     }
 }

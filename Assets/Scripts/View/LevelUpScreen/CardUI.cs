@@ -8,6 +8,9 @@ public class CardUI : MonoBehaviour
     [Header("Components references")]
     [SerializeField] private Image _blackoutFlap;
     [SerializeField] private Image _frame;
+    [SerializeField] private Image _selectedFrame;
+    [SerializeField] private Image _magicFrame;
+    [SerializeField] private Image _rareFrame;
     [SerializeField] private TMP_Text _text;
     [SerializeField] private Image _background;
     [Space]
@@ -16,25 +19,38 @@ public class CardUI : MonoBehaviour
     [SerializeField] private TMP_ColorGradient _closedColorGradient;
     [SerializeField] private TMP_ColorGradient _obtainedColorGradient;
     [Space]
+    [Header("Don't change!")]
     [SerializeField] private CardStatus _status;
     [SerializeField] private bool _isSelected;
     [SerializeField] private int _index;
 
     private DeckPanel _deckPanel;
 
-    public void SetIndex(int index)
+    public void SetIndex(int index) => _index = index;
+
+    public int GetIndex() => _index;
+
+    private void SetFrameSelected(bool outline)
     {
-        _index = index;
+        _selectedFrame.gameObject.SetActive(outline);
+        _frame.gameObject.SetActive(!outline);
     }
 
-    public void Take()
-    { 
-        //_deckPanel.TakeOpenedCard();
+    public void Select()
+    {
+        SetFrameSelected(true);
+        _isSelected = true;
     }
 
-    public void SetColorPresets(TMP_ColorGradient openedColorGradient, 
-        TMP_ColorGradient closedColorGradient,
-        TMP_ColorGradient obtainedColorGradient)
+    public void Deselect()
+    {
+        SetFrameSelected(false);
+        _isSelected = false;
+    }
+
+    public void SetColorTextPresets(TMP_ColorGradient openedColorGradient,
+                                    TMP_ColorGradient closedColorGradient,
+                                    TMP_ColorGradient obtainedColorGradient)
     {
         _openedColorGradient = openedColorGradient;
         _closedColorGradient = closedColorGradient;

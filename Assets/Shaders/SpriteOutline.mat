@@ -31,8 +31,9 @@ Material:
     m_Ints: []
     m_Floats:
     - PixelSnap: 0
-    - _OutlineWidth: 1
+    - _OutlineEnabled: 0
+    - _OutlineWidth: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 1, b: 0.8721261, a: 1}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
