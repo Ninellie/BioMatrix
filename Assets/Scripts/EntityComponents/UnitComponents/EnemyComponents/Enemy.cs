@@ -256,7 +256,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         {
             _spriteRenderer.color = _enemyType switch
             {
-                EnemyType.AboveView => Color.cyan,
+                EnemyType.AboveView => Color.red,
                 EnemyType.SideView => Color.red,
                 _ => throw new ArgumentOutOfRangeException()
             };
