@@ -34,7 +34,7 @@ public class CardInfoUIPanel : MonoBehaviour, CardInfoDisplay
 
         foreach (var effectDescription in effectNames.Select(effectName => _effectsRepository.GetEffectDescriptionByName(effectName)))
         {
-            _activeCardDescription.text += effectDescription + "\r\n";
+            _activeCardDescription.text += effectDescription + "\r\n" + "\r\n";
         }
     }
 }

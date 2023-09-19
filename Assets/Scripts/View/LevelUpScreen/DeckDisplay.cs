@@ -24,7 +24,6 @@ public class DeckDisplay : MonoBehaviour, IDeckDisplay
     [SerializeField] private CardInfoUIPanel _cardInfoDisplay;
 
     private LinkedList<DeckPanel> _deckPanels;
-
     private LinkedListNode<DeckPanel> _activeDeck;
 
     public void DestroyAllDecks()
@@ -43,22 +42,49 @@ public class DeckDisplay : MonoBehaviour, IDeckDisplay
 
     public void ActivateNextDeck()
     {
+        if (_activeDeck.Next is null)
+        {
+            Debug.LogWarning($"Next deck does not exist");
+            return;
+        }
+        _activeDeck.Value.Deactivate();
         _activeDeck = _activeDeck.Next;
+        _activeDeck.Value.Activate();
+        //UpdateContentPosition();
+        DisplayActiveCardInfo();
     }
 
     public void ActivatePreviousDeck()
     {
+        if (_activeDeck.Previous is null)
+        {
+            Debug.LogWarning($"Previous deck does not exist");
+            return;
+        }
+        _activeDeck.Value.Deactivate();
         _activeDeck = _activeDeck.Previous;
+        _activeDeck.Value.Activate();
+        //UpdateContentPosition();
+        DisplayActiveCardInfo();
+    }
+
+    private void DisplayActiveCardInfo()
+    {
+        var activeDeckName = _activeDeck.Value.GetName();
+        var activeCardIndex = _activeDeck.Value.GetSelectedCardIndex();
+        _cardInfoDisplay.DisplayCardInfo(activeDeckName, activeCardIndex);
     }
 
     public void SelectNextCard()
     {
         _activeDeck.Value.SelectNextCard();
+        DisplayActiveCardInfo();
     }
 
     public void SelectPreviousCard()
     {
         _activeDeck.Value.SelectPreviousCard();
+        DisplayActiveCardInfo();
     }
 
     public void DisplayDecks(List<HandDeckData> decksData)
@@ -71,6 +97,7 @@ public class DeckDisplay : MonoBehaviour, IDeckDisplay
             var deckPanelGameObject = Instantiate(_deckPanelPrefab, _decksArea);
             var deckPanel = deckPanelGameObject.GetComponent<DeckPanel>();
             deckPanel.DisplayDeck(deckData.name, deckData.size, deckData.openedCardPosition);
+            deckPanel.UpdateContentPosition();
             Debug.Log($"Displayed deck with name: {deckData.name}, size: {deckData.size}, opened card position in deck is: {deckData.openedCardPosition}");
             var deckNode = _deckPanels.AddLast(deckPanel);
             if (deckCount == middleDeckIndex) _activeDeck = deckNode;

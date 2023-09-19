@@ -19,5 +19,15 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             _deckDisplay.SelectPreviousCard();
         }
+
+        public void OnNextDeck()
+        {
+            _deckDisplay.ActivateNextDeck();
+        }
+
+        public void OnPreviousDeck()
+        {
+            _deckDisplay.ActivatePreviousDeck();
+        }
     }
 }

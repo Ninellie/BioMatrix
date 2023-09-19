@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -10,9 +11,11 @@ public class DeckPanel : MonoBehaviour
     [Header("Card panel properties")]
     [SerializeField] private GameObject _cardFramePrefab;
     [Space]
-    [SerializeField] private LayoutElement _cardListPort;
-    [SerializeField] private LayoutElement _cardListContent;
-    [SerializeField] private RectTransform _viewport;
+    //[SerializeField] private LayoutElement _cardListPort;
+    //[SerializeField] private LayoutElement _cardListContent;
+    [SerializeField] private RectTransform _cardListScrollView; // Scrollview
+    [SerializeField] private RectTransform _viewport; // Viewport
+    [SerializeField] private RectTransform _cardListContent; // This is Content
     [Space]
     [SerializeField] private float _padding;
     [SerializeField] private float _spacing;
@@ -40,35 +43,48 @@ public class DeckPanel : MonoBehaviour
     private LinkedListNode<CardUI> _selectedCard;
     private CardUI _openedCard;
 
-    public int GetSelectedCardIndex()
-    {
-        return _selectedCard.Value.GetIndex();
-    }
 
-    public void UpdateScrollPosition()
+    public void UpdateContentPosition()
     {
-        //var selectedCardIndex = _selectedCard.Value.GetIndex();
-        //var cardsCount = _cardList.Count;
-        //var step = 1f / cardsCount;
-        //var selectedCardNormalizedPosition = step * selectedCardIndex;
-        //_cardsScrollRect.verticalNormalizedPosition = selectedCardNormalizedPosition;
-        //_cardsScrollRect.decelerationRate = 0;
-        
-        _cardsScrollRect.horizontalNormalizedPosition += 1f / _cardList.Count;
+        var portRect = _cardListScrollView; // This is scroll rect
+        var contentRect = _cardListContent; // This is content rect
+        var selectedCardRectTransform = _selectedCard.Value.GetComponent<RectTransform>();
+        var overflow = (contentRect.rect.width - portRect.rect.width) / 2f;
+        var leftBorder = overflow - selectedCardRectTransform.offsetMin.x;
+        var rightBorder = contentRect.rect.width - overflow - selectedCardRectTransform.offsetMax.x;
+
+        if (leftBorder > contentRect.anchoredPosition.x)
+            contentRect.anchoredPosition = new Vector2(leftBorder + _padding, contentRect.anchoredPosition.y);
+        else if (rightBorder < contentRect.anchoredPosition.x)
+            contentRect.anchoredPosition = new Vector2(rightBorder - _padding, contentRect.anchoredPosition.y);
+    }
+    public void UpdateContentPositionToOpenedCard()
+    {
+        _cardsScrollRect.horizontalNormalizedPosition = 0f;
+        var portRect = _cardListScrollView; // This is scroll rect
+        var contentRect = _cardListContent; // This is content rect
+        var selectedCardRectTransform = _openedCard.GetComponent<RectTransform>();
+        var overflow = (contentRect.rect.width - portRect.rect.width) / 2f;
+        var leftBorder = overflow - selectedCardRectTransform.offsetMin.x;
+        var rightBorder = contentRect.rect.width - overflow - selectedCardRectTransform.offsetMax.x;
+
+        if (leftBorder > contentRect.anchoredPosition.x)
+            contentRect.anchoredPosition = new Vector2(leftBorder + _padding, contentRect.anchoredPosition.y);
+        else if (rightBorder < contentRect.anchoredPosition.x)
+            contentRect.anchoredPosition = new Vector2(rightBorder - _padding, contentRect.anchoredPosition.y);
     }
 
     public void SelectNextCard()
     {
         if (_selectedCard.Next is null)
         {
-            Debug.LogWarning($"Previous card does not exist");
+            Debug.LogWarning($"Next card does not exist");
             return;
         }
         _selectedCard.Next.Value.Select();
         _selectedCard.Value.Deselect();
         _selectedCard = _selectedCard.Next;
-        _cardsScrollRect.horizontalNormalizedPosition += 1f / _cardList.Count;
-        //UpdateScrollPosition();
+        UpdateContentPosition();
     }
 
     public void SelectPreviousCard()
@@ -82,23 +98,26 @@ public class DeckPanel : MonoBehaviour
         _selectedCard.Previous.Value.Select();
         _selectedCard.Value.Deselect();
         _selectedCard = _selectedCard.Previous;
-        _cardsScrollRect.horizontalNormalizedPosition -= 1f / _cardList.Count;
-        //UpdateScrollPosition();
+        UpdateContentPosition();
+    }
+
+    public int GetSelectedCardIndex()
+    {
+        return _selectedCard.Value.GetIndex();
     }
 
     public void Activate()
     {
         SelectOpenedCard();
         _flapPanel.SetActive(false);
-        UpdateScrollPosition();
+        UpdateContentPosition();
     }
 
     public void Deactivate()
     {
-        // Deselect selected Card
         _selectedCard.Value.Deselect();
-        _flapPanel.SetActive(false);
-        _cardsScrollRect.verticalNormalizedPosition = 0;
+        _flapPanel.SetActive(true);
+        UpdateContentPositionToOpenedCard();
     }
 
     public string GetName()
@@ -112,23 +131,16 @@ public class DeckPanel : MonoBehaviour
         _selectedCard.Value.Select();
     }
 
-    private void DeselectSelectedCard()
-    {
-        _selectedCard.Value.Deselect();
-    }
+    //private void DeselectSelectedCard()
+    //{
+    //    _selectedCard.Value.Deselect();
+    //}
 
     public void DisplayDeck(string deckName, int deckSize, int openedCardIndex)
     {
         _cardList.Clear();
         _name = deckName;
         _deckNameText.text = _name;
-        var containerWidth = deckSize * (_cardWidth + _spacing) + _padding;
-        _cardListContent.minWidth = containerWidth;
-
-        var portWidth = containerWidth * 2 - _viewport.rect.width;
-        _cardListPort.minWidth = portWidth;
-        _cardListPort.preferredWidth = portWidth;
-        _cardListPort.flexibleWidth = portWidth;
 
         for (int i = 0; i < deckSize; i++)
         {
@@ -155,5 +167,7 @@ public class DeckPanel : MonoBehaviour
                 cardUI.Close();
             }
         }
+
+        UpdateContentPositionToOpenedCard();
     }
 }

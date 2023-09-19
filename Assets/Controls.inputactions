@@ -326,7 +326,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Next Deck",
@@ -335,7 +335,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Previous Card",
@@ -344,16 +344,16 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "Previous deck",
+                    "name": "Previous Deck",
                     "type": "Button",
                     "id": "034c155f-79ad-416e-80f3-7716bbcfb5af",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -382,18 +382,18 @@
                 {
                     "name": "",
                     "id": "cd8d04ac-b7a3-4117-8c28-2598282087cd",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC_Control_scheme",
-                    "action": "Previous deck",
+                    "action": "Previous Deck",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "14f93b34-0075-45f3-9a75-5d6f4de10483",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC_Control_scheme",
