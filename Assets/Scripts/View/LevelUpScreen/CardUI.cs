@@ -36,6 +36,27 @@ public class CardUI : MonoBehaviour
         _frame.gameObject.SetActive(!outline);
     }
 
+    public void TurnToNormal()
+    {
+        _frame.gameObject.SetActive(true);
+        _magicFrame.gameObject.SetActive(false);
+        _rareFrame.gameObject.SetActive(false);
+    }
+
+    public void TurnToMagic()
+    {
+        _frame.gameObject.SetActive(true);
+        _magicFrame.gameObject.SetActive(true);
+        _rareFrame.gameObject.SetActive(false);
+    }
+
+    public void TurnToRare()
+    {
+        _frame.gameObject.SetActive(true);
+        _magicFrame.gameObject.SetActive(true);
+        _rareFrame.gameObject.SetActive(true);
+    }
+
     public void Select()
     {
         SetFrameSelected(true);

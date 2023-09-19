@@ -166,6 +166,26 @@ public class DeckPanel : MonoBehaviour
             {
                 cardUI.Close();
             }
+
+            //if ((i + 1) % 15 == 0)
+            //{
+            //    cardUI.TurnToGreat();
+            //    continue;
+            //}
+
+            if ((i + 1) % 5 == 0)
+            {
+                cardUI.TurnToRare();
+                continue;
+            }
+
+            if ((i + 1) % 3 == 0)
+            {
+                cardUI.TurnToMagic();
+                continue;
+            }
+            
+            cardUI.TurnToNormal();
         }
 
         UpdateContentPositionToOpenedCard();

@@ -320,13 +320,31 @@
             "id": "11254ba8-5e7f-4514-95c0-ed984aee7dcc",
             "actions": [
                 {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "00eb4261-1dae-424a-9913-bcb7ebb403ec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LevelUp",
+                    "type": "Button",
+                    "id": "3d5fd3d1-9919-4fd9-b8a0-ec506002cd7c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Next Card",
                     "type": "Button",
                     "id": "dfb4d702-02c6-43cd-8794-3c594d41379f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Next Deck",
@@ -335,7 +353,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Previous Card",
@@ -344,7 +362,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Previous Deck",
@@ -353,7 +371,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -361,7 +379,7 @@
                     "name": "",
                     "id": "4e548b53-405c-416c-8aad-7b24835a13cd",
                     "path": "<Keyboard>/d",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "PC_Control_scheme",
                     "action": "Next Card",
@@ -372,7 +390,7 @@
                     "name": "",
                     "id": "27b8d233-3e19-41fc-a5c8-c4d1efd17d0a",
                     "path": "<Keyboard>/a",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "PC_Control_scheme",
                     "action": "Previous Card",
@@ -383,7 +401,7 @@
                     "name": "",
                     "id": "cd8d04ac-b7a3-4117-8c28-2598282087cd",
                     "path": "<Keyboard>/w",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "PC_Control_scheme",
                     "action": "Previous Deck",
@@ -394,10 +412,54 @@
                     "name": "",
                     "id": "14f93b34-0075-45f3-9a75-5d6f4de10483",
                     "path": "<Keyboard>/s",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "PC_Control_scheme",
                     "action": "Next Deck",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9852d40f-8af7-4393-834d-cd055a00153c",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC_Control_scheme",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "93e597e8-ee43-4766-aea1-683210c0cbfe",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f681176-4408-46ec-ba3d-0a08cd4f3d63",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC_Control_scheme",
+                    "action": "LevelUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "536141ba-76f5-4848-ba5c-bc84ce5a1d8b",
+                    "path": "<Touchscreen>/primaryTouch/delta/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "Next Card",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
