@@ -374,7 +374,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwipeLeft",
+                    "name": "Next Card_M",
                     "type": "Value",
                     "id": "8b60d4af-cc71-468d-83e5-d52879f4d272",
                     "expectedControlType": "",
@@ -383,7 +383,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "SwipeUp",
+                    "name": "Next Deck_M",
                     "type": "Value",
                     "id": "21e4b523-4be8-45a4-a7c4-1b8388e2be6d",
                     "expectedControlType": "",
@@ -392,7 +392,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "SwipeRight",
+                    "name": "Previous Card_M",
                     "type": "Value",
                     "id": "307bedf0-2c5f-45e3-be24-d2bc82ae72ce",
                     "expectedControlType": "",
@@ -401,13 +401,22 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "SwipeDown",
+                    "name": "Previous Deck_M",
                     "type": "Value",
                     "id": "a98ef766-c57d-4d42-bb32-d59ab59a6a65",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "SwipeEnd",
+                    "type": "Button",
+                    "id": "bff7da2b-8e86-4445-97af-0c8f61450388",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -490,45 +499,56 @@
                 },
                 {
                     "name": "",
-                    "id": "8468155e-96d1-4ce4-b8a0-0c23473294a2",
-                    "path": "<Touchscreen>/primaryTouch/delta",
+                    "id": "e7a6b5db-d0b5-440c-8678-bb0486a4cdde",
+                    "path": "<Touchscreen>/delta/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mobile",
-                    "action": "SwipeLeft",
+                    "action": "Next Deck_M",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "39cfadee-f0ac-4544-b204-17a4b34e9794",
-                    "path": "<Touchscreen>/primaryTouch/delta",
+                    "id": "f9452223-af7d-4d00-9226-9b1d3d13c000",
+                    "path": "<Touchscreen>/delta/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mobile",
-                    "action": "SwipeUp",
+                    "action": "Previous Deck_M",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "afd9cdda-c31f-469c-9bb3-b4914e122902",
-                    "path": "<Touchscreen>/primaryTouch/delta",
+                    "id": "1e3fc2e5-ed40-44d4-b288-e06d51f5478d",
+                    "path": "<Touchscreen>/delta/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mobile",
-                    "action": "SwipeRight",
+                    "action": "Previous Card_M",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "dd4de21b-6407-4d30-a7f8-5a7ad37b6bf5",
-                    "path": "<Touchscreen>/primaryTouch/delta",
+                    "id": "ee53adce-e929-4696-98de-52764a07e9e0",
+                    "path": "<Touchscreen>/delta/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mobile",
-                    "action": "SwipeDown",
+                    "action": "Next Card_M",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2bdd87fc-6d83-49a6-b263-6433b0768b22",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "SwipeEnd",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
