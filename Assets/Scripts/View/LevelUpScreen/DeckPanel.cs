@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -11,15 +9,9 @@ public class DeckPanel : MonoBehaviour
     [Header("Card panel properties")]
     [SerializeField] private GameObject _cardFramePrefab;
     [Space]
-    //[SerializeField] private LayoutElement _cardListPort;
-    //[SerializeField] private LayoutElement _cardListContent;
-    [SerializeField] private RectTransform _cardListScrollView; // Scrollview
-    [SerializeField] private RectTransform _viewport; // Viewport
-    [SerializeField] private RectTransform _cardListContent; // This is Content
-    [Space]
-    [SerializeField] private float _padding;
-    [SerializeField] private float _spacing;
-    [SerializeField] private float _cardWidth;
+    [SerializeField] private RectTransform _cardListScrollView;
+    [SerializeField] private RectTransform _viewport;
+    [SerializeField] private RectTransform _cardListContent;
     [Space]
     [SerializeField] private GameObject _flapPanel;
     [SerializeField] private ScrollRect _cardsScrollRect;
@@ -38,6 +30,7 @@ public class DeckPanel : MonoBehaviour
     [Space]
     [Header("Properties")]
     [SerializeField] private string _name;
+    [SerializeField] private bool _isActive;
     
     private readonly LinkedList<CardUI> _cardList = new();
     private LinkedListNode<CardUI> _selectedCard;
@@ -46,32 +39,34 @@ public class DeckPanel : MonoBehaviour
 
     public void UpdateContentPosition()
     {
-        var portRect = _cardListScrollView; // This is scroll rect
+        var scrollRect = _cardListScrollView; // This is scroll rect
         var contentRect = _cardListContent; // This is content rect
+        var padding = _cardListContent.GetComponent<HorizontalOrVerticalLayoutGroup>().padding;
         var selectedCardRectTransform = _selectedCard.Value.GetComponent<RectTransform>();
-        var overflow = (contentRect.rect.width - portRect.rect.width) / 2f;
-        var leftBorder = overflow - selectedCardRectTransform.offsetMin.x;
-        var rightBorder = contentRect.rect.width - overflow - selectedCardRectTransform.offsetMax.x;
+        var overflow = (contentRect.rect.width - scrollRect.rect.width) / 2f;
+        var leftBorder = overflow - selectedCardRectTransform.offsetMin.x + padding.left;
+        var rightBorder = contentRect.rect.width - overflow - selectedCardRectTransform.offsetMax.x - padding.right;
 
         if (leftBorder > contentRect.anchoredPosition.x)
-            contentRect.anchoredPosition = new Vector2(leftBorder + _padding, contentRect.anchoredPosition.y);
+            contentRect.anchoredPosition = new Vector2(leftBorder, contentRect.anchoredPosition.y);
         else if (rightBorder < contentRect.anchoredPosition.x)
-            contentRect.anchoredPosition = new Vector2(rightBorder - _padding, contentRect.anchoredPosition.y);
+            contentRect.anchoredPosition = new Vector2(rightBorder, contentRect.anchoredPosition.y);
     }
     public void UpdateContentPositionToOpenedCard()
     {
         _cardsScrollRect.horizontalNormalizedPosition = 0f;
-        var portRect = _cardListScrollView; // This is scroll rect
-        var contentRect = _cardListContent; // This is content rect
+        var scrollRect = _cardListScrollView;
+        var contentRect = _cardListContent;
+        var padding = _cardListContent.GetComponent<HorizontalOrVerticalLayoutGroup>().padding;
         var selectedCardRectTransform = _openedCard.GetComponent<RectTransform>();
-        var overflow = (contentRect.rect.width - portRect.rect.width) / 2f;
-        var leftBorder = overflow - selectedCardRectTransform.offsetMin.x;
-        var rightBorder = contentRect.rect.width - overflow - selectedCardRectTransform.offsetMax.x;
+        var overflow = (contentRect.rect.width - scrollRect.rect.width) / 2f;
+        var leftBorder = overflow - selectedCardRectTransform.offsetMin.x + padding.left;
+        var rightBorder = contentRect.rect.width - overflow - selectedCardRectTransform.offsetMax.x - padding.right;
 
         if (leftBorder > contentRect.anchoredPosition.x)
-            contentRect.anchoredPosition = new Vector2(leftBorder + _padding, contentRect.anchoredPosition.y);
+            contentRect.anchoredPosition = new Vector2(leftBorder, contentRect.anchoredPosition.y);
         else if (rightBorder < contentRect.anchoredPosition.x)
-            contentRect.anchoredPosition = new Vector2(rightBorder - _padding, contentRect.anchoredPosition.y);
+            contentRect.anchoredPosition = new Vector2(rightBorder, contentRect.anchoredPosition.y);
     }
 
     public void SelectNextCard()
@@ -81,11 +76,32 @@ public class DeckPanel : MonoBehaviour
             Debug.LogWarning($"Next card does not exist");
             return;
         }
+
+        //if (_selectedCard.Previous is not null) _selectedCard.Previous.Value.transform.localScale = new Vector3(0.5f, 0.5f, 1);
         _selectedCard.Next.Value.Select();
         _selectedCard.Value.Deselect();
         _selectedCard = _selectedCard.Next;
+
+        //UpdateCardsScale();
+
         UpdateContentPosition();
     }
+
+    //private void UpdateCardsScale()
+    //{
+    //    var selectedScale = new Vector3(1f, 1f, 1);
+    //    var neighbourScale = new Vector3(0.75f, 0.75f, 1);
+
+    //    if (!_isActive)
+    //    {
+    //        neighbourScale = new Vector3(0.5f, 0.5f, 1);
+    //        selectedScale = new Vector3(0.5f, 0.5f, 1);
+    //    }
+
+    //    if (_selectedCard.Next is not null) _selectedCard.Next.Value.transform.localScale = neighbourScale;
+    //    _selectedCard.Value.transform.localScale = selectedScale;
+    //    if (_selectedCard.Previous is not null) _selectedCard.Previous.Value.transform.localScale = neighbourScale;
+    //}
 
     public void SelectPreviousCard()
     {
@@ -94,10 +110,14 @@ public class DeckPanel : MonoBehaviour
             Debug.LogWarning($"Previous card does not exist");
             return;
         }
+        //if (_selectedCard.Next is not null) _selectedCard.Next.Value.transform.localScale = new Vector3(0.5f, 0.5f, 1);
 
         _selectedCard.Previous.Value.Select();
         _selectedCard.Value.Deselect();
         _selectedCard = _selectedCard.Previous;
+
+        //UpdateCardsScale();
+
         UpdateContentPosition();
     }
 
@@ -108,16 +128,24 @@ public class DeckPanel : MonoBehaviour
 
     public void Activate()
     {
+        _isActive = true;
+        transform.localScale = new Vector3(1, 1, 1);
         SelectOpenedCard();
         _flapPanel.SetActive(false);
+        //UpdateCardsScale();
         UpdateContentPosition();
+        //transform.localScale = new Vector3(1.5f, 1.5f, 1);
     }
 
     public void Deactivate()
     {
+        _isActive = false;
+        transform.localScale = new Vector3(0.75f, 0.75f, 1);
         _selectedCard.Value.Deselect();
         _flapPanel.SetActive(true);
+        //UpdateCardsScale();
         UpdateContentPositionToOpenedCard();
+        //transform.localScale = new Vector3(1, 1, 1);
     }
 
     public string GetName()
@@ -139,6 +167,7 @@ public class DeckPanel : MonoBehaviour
     public void DisplayDeck(string deckName, int deckSize, int openedCardIndex)
     {
         _cardList.Clear();
+        transform.localScale = new Vector3(0.75f, 0.75f, 1);
         _name = deckName;
         _deckNameText.text = _name;
 
@@ -151,6 +180,7 @@ public class DeckPanel : MonoBehaviour
             cardUI.SetText($"{i}");
             cardUI.SetColorTextPresets(_openedColorGradient, _closedColorGradient, _obtainedColorGradient);
             cardUI.SetIndex(i);
+            //cardUI.transform.localScale = new Vector3(0.5f, 0.5f, 1);
 
             if (i < openedCardIndex)
             {

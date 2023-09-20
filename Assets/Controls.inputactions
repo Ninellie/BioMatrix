@@ -372,6 +372,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SwipeLeft",
+                    "type": "Value",
+                    "id": "8b60d4af-cc71-468d-83e5-d52879f4d272",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SwipeUp",
+                    "type": "Value",
+                    "id": "21e4b523-4be8-45a4-a7c4-1b8388e2be6d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SwipeRight",
+                    "type": "Value",
+                    "id": "307bedf0-2c5f-45e3-be24-d2bc82ae72ce",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SwipeDown",
+                    "type": "Value",
+                    "id": "a98ef766-c57d-4d42-bb32-d59ab59a6a65",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -454,12 +490,45 @@
                 },
                 {
                     "name": "",
-                    "id": "536141ba-76f5-4848-ba5c-bc84ce5a1d8b",
-                    "path": "<Touchscreen>/primaryTouch/delta/right",
+                    "id": "8468155e-96d1-4ce4-b8a0-0c23473294a2",
+                    "path": "<Touchscreen>/primaryTouch/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mobile",
-                    "action": "Next Card",
+                    "action": "SwipeLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39cfadee-f0ac-4544-b204-17a4b34e9794",
+                    "path": "<Touchscreen>/primaryTouch/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "SwipeUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "afd9cdda-c31f-469c-9bb3-b4914e122902",
+                    "path": "<Touchscreen>/primaryTouch/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "SwipeRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd4de21b-6407-4d30-a7f8-5a7ad37b6bf5",
+                    "path": "<Touchscreen>/primaryTouch/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "SwipeDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
