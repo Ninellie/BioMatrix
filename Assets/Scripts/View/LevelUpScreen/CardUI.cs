@@ -25,7 +25,6 @@ public class CardUI : MonoBehaviour
     [SerializeField] private bool _isSelected;
     [SerializeField] private int _index;
 
-
     private DeckPanel _deckPanel;
 
     public void SetIndex(int index) => _index = index;
@@ -43,7 +42,6 @@ public class CardUI : MonoBehaviour
         _frame.gameObject.SetActive(true);
         _magicFrame.gameObject.SetActive(false);
         _rareFrame.gameObject.SetActive(false);
-        //transform.localScale = new Vector3(0.5f, 0.5f, 1);
     }
 
     public void TurnToMagic()
@@ -51,7 +49,6 @@ public class CardUI : MonoBehaviour
         _frame.gameObject.SetActive(true);
         _magicFrame.gameObject.SetActive(true);
         _rareFrame.gameObject.SetActive(false);
-        //transform.localScale = new Vector3(0.75f, 0.75f, 1);
     }
 
     public void TurnToRare()
@@ -59,21 +56,26 @@ public class CardUI : MonoBehaviour
         _frame.gameObject.SetActive(true);
         _magicFrame.gameObject.SetActive(true);
         _rareFrame.gameObject.SetActive(true);
-        //transform.localScale = new Vector3(1, 1, 1);
     }
 
     public void Select()
     {
-        //transform.localScale = new Vector3(1.5f, 1.5f, 1);
         SetFrameSelected(true);
         _isSelected = true;
+    }
+
+    public void ToggleSelected(bool isSelected)
+    {
+        if (isSelected)
+            Select();
+        else
+            Deselect();
     }
 
     public void Deselect()
     {
         SetFrameSelected(false);
         _isSelected = false;
-        //transform.localScale = new Vector3(1, 1, 1);
     }
 
     public void SetColorTextPresets(TMP_ColorGradient openedColorGradient,

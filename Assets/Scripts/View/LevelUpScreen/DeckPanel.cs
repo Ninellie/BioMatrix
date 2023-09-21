@@ -15,6 +15,7 @@ public class DeckPanel : MonoBehaviour
     [Space]
     [SerializeField] private GameObject _flapPanel;
     [SerializeField] private ScrollRect _cardsScrollRect;
+    [SerializeField] private ToggleGroup _cardsToggleGroup;
 
     [Space]
     [Header("Deck naming properties")]
@@ -87,22 +88,6 @@ public class DeckPanel : MonoBehaviour
         UpdateContentPosition();
     }
 
-    //private void UpdateCardsScale()
-    //{
-    //    var selectedScale = new Vector3(1f, 1f, 1);
-    //    var neighbourScale = new Vector3(0.75f, 0.75f, 1);
-
-    //    if (!_isActive)
-    //    {
-    //        neighbourScale = new Vector3(0.5f, 0.5f, 1);
-    //        selectedScale = new Vector3(0.5f, 0.5f, 1);
-    //    }
-
-    //    if (_selectedCard.Next is not null) _selectedCard.Next.Value.transform.localScale = neighbourScale;
-    //    _selectedCard.Value.transform.localScale = selectedScale;
-    //    if (_selectedCard.Previous is not null) _selectedCard.Previous.Value.transform.localScale = neighbourScale;
-    //}
-
     public void SelectPreviousCard()
     {
         if (_selectedCard.Previous is null)
@@ -110,13 +95,10 @@ public class DeckPanel : MonoBehaviour
             Debug.LogWarning($"Previous card does not exist");
             return;
         }
-        //if (_selectedCard.Next is not null) _selectedCard.Next.Value.transform.localScale = new Vector3(0.5f, 0.5f, 1);
 
         _selectedCard.Previous.Value.Select();
         _selectedCard.Value.Deselect();
         _selectedCard = _selectedCard.Previous;
-
-        //UpdateCardsScale();
 
         UpdateContentPosition();
     }
@@ -132,9 +114,7 @@ public class DeckPanel : MonoBehaviour
         transform.localScale = new Vector3(1, 1, 1);
         SelectOpenedCard();
         _flapPanel.SetActive(false);
-        //UpdateCardsScale();
         UpdateContentPosition();
-        //transform.localScale = new Vector3(1.5f, 1.5f, 1);
     }
 
     public void Deactivate()
@@ -175,6 +155,9 @@ public class DeckPanel : MonoBehaviour
         {
             var cardUIGameObject = Instantiate(_cardFramePrefab, _cardListContent.transform);
             cardUIGameObject.name = $"{deckName} Card {i}";
+            var toggle = cardUIGameObject.GetComponent<Toggle>();
+            toggle.isOn = false;
+            toggle.group = _cardsToggleGroup;
             var cardUI = cardUIGameObject.GetComponentInChildren<CardUI>();
             var cardNode = _cardList.AddLast(cardUI);
             cardUI.SetText($"{i}");
@@ -189,6 +172,7 @@ public class DeckPanel : MonoBehaviour
             if (i == openedCardIndex)
             {
                 cardUI.Open();
+                toggle.isOn = true;
                 _openedCard = cardUI;
                 _selectedCard = cardNode;
             }
