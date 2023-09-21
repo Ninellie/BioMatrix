@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.GameSession.Upgrades.Deck;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public interface IDeckDisplay
@@ -22,6 +24,7 @@ public class DeckDisplay : MonoBehaviour, IDeckDisplay
     [SerializeField] private GameObject _deckPanelPrefab;
     [SerializeField] private Transform _decksArea;
     [SerializeField] private CardInfoUIPanel _cardInfoDisplay;
+    [SerializeField] private ToggleGroup _cardsToggleGroup;
 
     private LinkedList<DeckPanel> _deckPanels;
     private LinkedListNode<DeckPanel> _activeDeck;
@@ -51,7 +54,7 @@ public class DeckDisplay : MonoBehaviour, IDeckDisplay
         _activeDeck = _activeDeck.Next;
         _activeDeck.Value.Activate();
         //UpdateContentPosition();
-        DisplayActiveCardInfo();
+        //DisplayActiveCardInfo();
     }
 
     public void ActivatePreviousDeck()
@@ -65,26 +68,26 @@ public class DeckDisplay : MonoBehaviour, IDeckDisplay
         _activeDeck = _activeDeck.Previous;
         _activeDeck.Value.Activate();
         //UpdateContentPosition();
-        DisplayActiveCardInfo();
+        //DisplayActiveCardInfo();
     }
 
-    private void DisplayActiveCardInfo()
-    {
-        var activeDeckName = _activeDeck.Value.GetName();
-        var activeCardIndex = _activeDeck.Value.GetSelectedCardIndex();
-        _cardInfoDisplay.DisplayCardInfo(activeDeckName, activeCardIndex);
-    }
+    //public void DisplayActiveCardInfo()
+    //{
+    //    var activeDeckName = _activeDeck.Value.GetName();
+    //    var activeCardIndex = _activeDeck.Value.GetSelectedCardIndex();
+    //    _cardInfoDisplay.DisplayCardInfo(activeDeckName, activeCardIndex);
+    //}
 
     public void SelectNextCard()
     {
         _activeDeck.Value.SelectNextCard();
-        DisplayActiveCardInfo();
+        //DisplayActiveCardInfo();
     }
 
     public void SelectPreviousCard()
     {
         _activeDeck.Value.SelectPreviousCard();
-        DisplayActiveCardInfo();
+        //DisplayActiveCardInfo();
     }
 
     public void DisplayDecks(List<HandDeckData> decksData)
@@ -92,17 +95,20 @@ public class DeckDisplay : MonoBehaviour, IDeckDisplay
         _deckPanels = new LinkedList<DeckPanel>();
         var middleDeckIndex = decksData.Count / 2;
         var deckCount = 0;
+
         foreach (var deckData in decksData)
         {
             var deckPanelGameObject = Instantiate(_deckPanelPrefab, _decksArea);
             var deckPanel = deckPanelGameObject.GetComponent<DeckPanel>();
-            deckPanel.DisplayDeck(deckData.name, deckData.size, deckData.openedCardPosition);
+            deckPanel.SetCardInfo(_cardInfoDisplay);
+            deckPanel.DisplayDeck(deckData.name, deckData.size, deckData.openedCardPosition, _cardsToggleGroup);
             deckPanel.UpdateContentPosition();
             Debug.Log($"Displayed deck with name: {deckData.name}, size: {deckData.size}, opened card position in deck is: {deckData.openedCardPosition}");
             var deckNode = _deckPanels.AddLast(deckPanel);
             if (deckCount == middleDeckIndex) _activeDeck = deckNode;
             deckCount++;
         }
+
         _activeDeck.Value.Activate();
 
         var activeDeckName = _activeDeck.Value.GetName();

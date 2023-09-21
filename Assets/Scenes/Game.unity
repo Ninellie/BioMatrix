@@ -9253,7 +9253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 1
+  m_AllowSwitchOff: 0
 --- !u!1 &1582699862
 GameObject:
   m_ObjectHideFlags: 0
@@ -12037,6 +12037,7 @@ MonoBehaviour:
   _deckPanelPrefab: {fileID: 7686584683030057135, guid: 7210052bbc9bb3e46947d82fd572332f, type: 3}
   _decksArea: {fileID: 1582125627}
   _cardInfoDisplay: {fileID: 581731784}
+  _cardsToggleGroup: {fileID: 1582125630}
 --- !u!1 &2043662794
 GameObject:
   m_ObjectHideFlags: 0

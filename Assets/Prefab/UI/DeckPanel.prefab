@@ -485,7 +485,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4458936366507379484}
   - component: {fileID: 162767502129961425}
-  - component: {fileID: 3332778796610392342}
   m_Layer: 0
   m_Name: DeckPanel
   m_TagString: Untagged
@@ -533,42 +532,14 @@ MonoBehaviour:
   _cardListContent: {fileID: 7532958963739273399}
   _flapPanel: {fileID: 1005504336438120365}
   _cardsScrollRect: {fileID: 3737488879204432019}
-  _cardsToggleGroup: {fileID: 2800349002090031209}
+  _cardsToggleGroup: {fileID: 0}
+  _cardInfo: {fileID: 0}
   _deckNameText: {fileID: 5465993631673818229}
   _openedColorGradient: {fileID: 11400000, guid: 8e56042c1a776644988afb418115fdc8, type: 2}
   _closedColorGradient: {fileID: 11400000, guid: 5e9489931766f81478c5169bcc735c45, type: 2}
   _obtainedColorGradient: {fileID: 11400000, guid: 1f0ef5a11bb1ab04b847e56b13ec3465, type: 2}
   _name: 
   _isActive: 0
---- !u!114 &3332778796610392342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7686584683030057135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1 &8644975782034455976
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +551,6 @@ GameObject:
   - component: {fileID: 7532958963739273399}
   - component: {fileID: 1751972701608266152}
   - component: {fileID: 3019222534299689620}
-  - component: {fileID: 2800349002090031209}
   m_Layer: 0
   m_Name: Content
   m_TagString: Untagged
@@ -647,16 +617,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
---- !u!114 &2800349002090031209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8644975782034455976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 0

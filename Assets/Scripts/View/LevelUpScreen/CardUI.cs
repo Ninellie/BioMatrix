@@ -1,6 +1,7 @@
 using Assets.Scripts.GameSession.Upgrades.Deck;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CardUI : MonoBehaviour
@@ -12,8 +13,9 @@ public class CardUI : MonoBehaviour
     [SerializeField] private Image _magicFrame;
     [SerializeField] private Image _rareFrame;
     [SerializeField] private TMP_Text _text;
-    [SerializeField] private Image _background;
-    [SerializeField] private LayoutElement _layoutElement;
+    //[SerializeField] private Toggle _toggle;
+    //[SerializeField] private Image _background;
+    //[SerializeField] private LayoutElement _layoutElement;
     [Space]
     [Header("Properties")]
     [SerializeField] private TMP_ColorGradient _openedColorGradient;
@@ -22,13 +24,17 @@ public class CardUI : MonoBehaviour
     [Space]
     [Header("Don't change!")]
     [SerializeField] private CardStatus _status;
-    [SerializeField] private bool _isSelected;
+    [SerializeField] private string _deckName;
     [SerializeField] private int _index;
+    [SerializeField] private bool _isSelected;
 
+    private CardInfoUIPanel _cardInfo;
     private DeckPanel _deckPanel;
 
+    public void SetDeckPanel(DeckPanel deckPanel) => _deckPanel = deckPanel;
+    public void SetCardInfo(CardInfoUIPanel cardInfo) => _cardInfo = cardInfo;
+    public void SetDeckName(string deckName) => _deckName = deckName;
     public void SetIndex(int index) => _index = index;
-
     public int GetIndex() => _index;
 
     private void SetFrameSelected(bool outline)
@@ -54,14 +60,24 @@ public class CardUI : MonoBehaviour
     public void TurnToRare()
     {
         _frame.gameObject.SetActive(true);
+        _magicFrame.gameObject.SetActive(false);
+        _rareFrame.gameObject.SetActive(true);
+    }
+
+    public void TurnToGreat()
+    {
+        _frame.gameObject.SetActive(true);
         _magicFrame.gameObject.SetActive(true);
         _rareFrame.gameObject.SetActive(true);
     }
 
     public void Select()
     {
+        //_toggle.isOn = true;
         SetFrameSelected(true);
+        _deckPanel.SelectCard(this);
         _isSelected = true;
+        _cardInfo.DisplayCardInfo(_deckName, _index);
     }
 
     public void ToggleSelected(bool isSelected)

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 
@@ -15,7 +16,8 @@ public class DeckPanel : MonoBehaviour
     [Space]
     [SerializeField] private GameObject _flapPanel;
     [SerializeField] private ScrollRect _cardsScrollRect;
-    [SerializeField] private ToggleGroup _cardsToggleGroup;
+    
+    [SerializeField] private CardInfoUIPanel _cardInfo;
 
     [Space]
     [Header("Deck naming properties")]
@@ -37,6 +39,7 @@ public class DeckPanel : MonoBehaviour
     private LinkedListNode<CardUI> _selectedCard;
     private CardUI _openedCard;
 
+    public void SetCardInfo(CardInfoUIPanel cardInfo) => _cardInfo = cardInfo;
 
     public void UpdateContentPosition()
     {
@@ -112,7 +115,8 @@ public class DeckPanel : MonoBehaviour
     {
         _isActive = true;
         transform.localScale = new Vector3(1, 1, 1);
-        SelectOpenedCard();
+        SelectCard(_openedCard);
+        _selectedCard.Value.Select();
         _flapPanel.SetActive(false);
         UpdateContentPosition();
     }
@@ -128,23 +132,15 @@ public class DeckPanel : MonoBehaviour
         //transform.localScale = new Vector3(1, 1, 1);
     }
 
-    public string GetName()
+    public string GetName() => _name;
+
+    public void SelectCard(CardUI card)
     {
-        return _name;
+        _selectedCard = _cardList.Find(card);
+        //_selectedCard.Value.Select();
     }
 
-    private void SelectOpenedCard()
-    {
-        _selectedCard = _cardList.Find(_openedCard);
-        _selectedCard.Value.Select();
-    }
-
-    //private void DeselectSelectedCard()
-    //{
-    //    _selectedCard.Value.Deselect();
-    //}
-
-    public void DisplayDeck(string deckName, int deckSize, int openedCardIndex)
+    public void DisplayDeck(string deckName, int deckSize, int openedCardIndex, ToggleGroup cardsToggleGroup)
     {
         _cardList.Clear();
         transform.localScale = new Vector3(0.75f, 0.75f, 1);
@@ -155,15 +151,18 @@ public class DeckPanel : MonoBehaviour
         {
             var cardUIGameObject = Instantiate(_cardFramePrefab, _cardListContent.transform);
             cardUIGameObject.name = $"{deckName} Card {i}";
-            var toggle = cardUIGameObject.GetComponent<Toggle>();
-            toggle.isOn = false;
-            toggle.group = _cardsToggleGroup;
             var cardUI = cardUIGameObject.GetComponentInChildren<CardUI>();
             var cardNode = _cardList.AddLast(cardUI);
             cardUI.SetText($"{i}");
             cardUI.SetColorTextPresets(_openedColorGradient, _closedColorGradient, _obtainedColorGradient);
             cardUI.SetIndex(i);
-            //cardUI.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+            cardUI.SetDeckName(_name);
+            cardUI.SetCardInfo(_cardInfo);
+            cardUI.SetDeckPanel(this);
+
+            var toggle = cardUIGameObject.GetComponent<Toggle>();
+            //toggle.isOn = false;
+            toggle.group = cardsToggleGroup;
 
             if (i < openedCardIndex)
             {
@@ -172,7 +171,7 @@ public class DeckPanel : MonoBehaviour
             if (i == openedCardIndex)
             {
                 cardUI.Open();
-                toggle.isOn = true;
+                //toggle.isOn = true;
                 _openedCard = cardUI;
                 _selectedCard = cardNode;
             }
@@ -181,11 +180,11 @@ public class DeckPanel : MonoBehaviour
                 cardUI.Close();
             }
 
-            //if ((i + 1) % 15 == 0)
-            //{
-            //    cardUI.TurnToGreat();
-            //    continue;
-            //}
+            if ((i + 1) % 15 == 0)
+            {
+                cardUI.TurnToGreat();
+                continue;
+            }
 
             if ((i + 1) % 5 == 0)
             {
@@ -201,7 +200,7 @@ public class DeckPanel : MonoBehaviour
             
             cardUI.TurnToNormal();
         }
-
+        //_selectedCard.Value.gameObject.GetComponent<Toggle>().isOn = true;
         UpdateContentPositionToOpenedCard();
     }
 }

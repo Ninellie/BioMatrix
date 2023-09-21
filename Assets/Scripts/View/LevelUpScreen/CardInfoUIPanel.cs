@@ -20,8 +20,7 @@ public class CardInfoUIPanel : MonoBehaviour, CardInfoDisplay
 
     [SerializeReference] private PatternDeckRepository _deckRepository;
     [SerializeField] private EffectsRepository _effectsRepository;
-    //private string activeCard
-    //private string selectedCard
+
     public void DisplayCardInfo(string deckName, int cardPosition)
     {
         _activeCardDeckTitle.text = deckName;

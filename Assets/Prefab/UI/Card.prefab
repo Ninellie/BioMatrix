@@ -451,14 +451,27 @@ MonoBehaviour:
   _magicFrame: {fileID: 1150999300529919353}
   _rareFrame: {fileID: 5521228005009116871}
   _text: {fileID: 4969421688692471325}
-  _background: {fileID: 1275808009852509180}
-  _layoutElement: {fileID: 0}
   _openedColorGradient: {fileID: 11400000, guid: 1f0ef5a11bb1ab04b847e56b13ec3465, type: 2}
   _closedColorGradient: {fileID: 11400000, guid: d0a6fd6aaafa2584aa6c177aaa55a29a, type: 2}
   _obtainedColorGradient: {fileID: 11400000, guid: 1f0ef5a11bb1ab04b847e56b13ec3465, type: 2}
   _status: 0
-  _isSelected: 0
   _index: 0
+  _isSelected: 0
+  onSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8998671477039742877
 MonoBehaviour:
   m_ObjectHideFlags: 0
