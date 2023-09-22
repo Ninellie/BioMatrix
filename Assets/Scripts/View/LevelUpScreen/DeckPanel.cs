@@ -35,27 +35,30 @@ public class DeckPanel : MonoBehaviour
     [SerializeField] private string _name;
     [SerializeField] private bool _isActive;
     
+
+    public bool IsActive => _isActive;
     private readonly LinkedList<CardUI> _cardList = new();
-    private LinkedListNode<CardUI> _selectedCard;
+    //private LinkedListNode<CardUI> _selectedCard;
     private CardUI _openedCard;
 
     public void SetCardInfo(CardInfoUIPanel cardInfo) => _cardInfo = cardInfo;
 
-    public void UpdateContentPosition()
-    {
-        var scrollRect = _cardListScrollView; // This is scroll rect
-        var contentRect = _cardListContent; // This is content rect
-        var padding = _cardListContent.GetComponent<HorizontalOrVerticalLayoutGroup>().padding;
-        var selectedCardRectTransform = _selectedCard.Value.GetComponent<RectTransform>();
-        var overflow = (contentRect.rect.width - scrollRect.rect.width) / 2f;
-        var leftBorder = overflow - selectedCardRectTransform.offsetMin.x + padding.left;
-        var rightBorder = contentRect.rect.width - overflow - selectedCardRectTransform.offsetMax.x - padding.right;
+    //public void UpdateContentPosition()
+    //{
+    //    var scrollRect = _cardListScrollView; // This is scroll rect
+    //    var contentRect = _cardListContent; // This is content rect
+    //    var padding = _cardListContent.GetComponent<HorizontalOrVerticalLayoutGroup>().padding;
+    //    var selectedCardRectTransform = _selectedCard.Value.GetComponent<RectTransform>();
+    //    var overflow = (contentRect.rect.width - scrollRect.rect.width) / 2f;
+    //    var leftBorder = overflow - selectedCardRectTransform.offsetMin.x + padding.left;
+    //    var rightBorder = contentRect.rect.width - overflow - selectedCardRectTransform.offsetMax.x - padding.right;
 
-        if (leftBorder > contentRect.anchoredPosition.x)
-            contentRect.anchoredPosition = new Vector2(leftBorder, contentRect.anchoredPosition.y);
-        else if (rightBorder < contentRect.anchoredPosition.x)
-            contentRect.anchoredPosition = new Vector2(rightBorder, contentRect.anchoredPosition.y);
-    }
+    //    if (leftBorder > contentRect.anchoredPosition.x)
+    //        contentRect.anchoredPosition = new Vector2(leftBorder, contentRect.anchoredPosition.y);
+    //    else if (rightBorder < contentRect.anchoredPosition.x)
+    //        contentRect.anchoredPosition = new Vector2(rightBorder, contentRect.anchoredPosition.y);
+    //}
+
     public void UpdateContentPositionToOpenedCard()
     {
         _cardsScrollRect.horizontalNormalizedPosition = 0f;
@@ -73,72 +76,82 @@ public class DeckPanel : MonoBehaviour
             contentRect.anchoredPosition = new Vector2(rightBorder, contentRect.anchoredPosition.y);
     }
 
-    public void SelectNextCard()
-    {
-        if (_selectedCard.Next is null)
-        {
-            Debug.LogWarning($"Next card does not exist");
-            return;
-        }
+    //public void SelectNextCard()
+    //{
+    //    if (_selectedCard.Next is null)
+    //    {
+    //        Debug.LogWarning($"Next card does not exist");
+    //        return;
+    //    }
 
-        //if (_selectedCard.Previous is not null) _selectedCard.Previous.Value.transform.localScale = new Vector3(0.5f, 0.5f, 1);
-        _selectedCard.Next.Value.Select();
-        _selectedCard.Value.Deselect();
-        _selectedCard = _selectedCard.Next;
+    //    //if (_selectedCard.Previous is not null) _selectedCard.Previous.Value.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+    //    _selectedCard.Next.Value.Select();
+    //    _selectedCard.Value.Deselect();
+    //    _selectedCard = _selectedCard.Next;
 
-        //UpdateCardsScale();
+    //    //UpdateCardsScale();
 
-        UpdateContentPosition();
-    }
+    //    UpdateContentPosition();
+    //}
 
-    public void SelectPreviousCard()
-    {
-        if (_selectedCard.Previous is null)
-        {
-            Debug.LogWarning($"Previous card does not exist");
-            return;
-        }
+    //public void SelectPreviousCard()
+    //{
+    //    if (_selectedCard.Previous is null)
+    //    {
+    //        Debug.LogWarning($"Previous card does not exist");
+    //        return;
+    //    }
 
-        _selectedCard.Previous.Value.Select();
-        _selectedCard.Value.Deselect();
-        _selectedCard = _selectedCard.Previous;
+    //    _selectedCard.Previous.Value.Select();
+    //    _selectedCard.Value.Deselect();
+    //    _selectedCard = _selectedCard.Previous;
 
-        UpdateContentPosition();
-    }
+    //    UpdateContentPosition();
+    //}
 
-    public int GetSelectedCardIndex()
-    {
-        return _selectedCard.Value.GetIndex();
-    }
+    //public int GetSelectedCardIndex()
+    //{
+    //    return _selectedCard.Value.GetIndex();
+    //}
 
     public void Activate()
     {
         _isActive = true;
         transform.localScale = new Vector3(1, 1, 1);
-        SelectCard(_openedCard);
-        _selectedCard.Value.Select();
+        //SelectCard(_openedCard);
+        //_selectedCard.Value.Select();
         _flapPanel.SetActive(false);
-        UpdateContentPosition();
+        UpdateContentPositionToOpenedCard();
+        //UpdateContentPosition();
+
+        _openedCard.Select();
+        _cardInfo.DisplayOpenedCardInfo(_name);
     }
 
     public void Deactivate()
     {
         _isActive = false;
         transform.localScale = new Vector3(0.75f, 0.75f, 1);
-        _selectedCard.Value.Deselect();
+        //_selectedCard.Value.Deselect();
         _flapPanel.SetActive(true);
         //UpdateCardsScale();
         UpdateContentPositionToOpenedCard();
         //transform.localScale = new Vector3(1, 1, 1);
+        _openedCard.Deselect();
     }
 
     public string GetName() => _name;
 
-    public void SelectCard(CardUI card)
+    public CardUI GetOpenedCard()
     {
-        _selectedCard = _cardList.Find(card);
-        //_selectedCard.Value.Select();
+        return _openedCard;
     }
+
+    //public void SelectCard(CardUI card)
+    //{
+    //    _selectedCard = _cardList.Find(card);
+    //    //_selectedCard.Value.Select();
+    //}
 
     public void DisplayDeck(string deckName, int deckSize, int openedCardIndex, ToggleGroup cardsToggleGroup)
     {
@@ -150,14 +163,14 @@ public class DeckPanel : MonoBehaviour
         for (int i = 0; i < deckSize; i++)
         {
             var cardUIGameObject = Instantiate(_cardFramePrefab, _cardListContent.transform);
-            cardUIGameObject.name = $"{deckName} Card {i}";
+            cardUIGameObject.name = $"{deckName} Card {i + 1}";
             var cardUI = cardUIGameObject.GetComponentInChildren<CardUI>();
             var cardNode = _cardList.AddLast(cardUI);
-            cardUI.SetText($"{i}");
+            cardUI.SetText($"{i + 1}");
             cardUI.SetColorTextPresets(_openedColorGradient, _closedColorGradient, _obtainedColorGradient);
             cardUI.SetIndex(i);
             cardUI.SetDeckName(_name);
-            cardUI.SetCardInfo(_cardInfo);
+            cardUI.SetCardInfoPanel(_cardInfo);
             cardUI.SetDeckPanel(this);
 
             var toggle = cardUIGameObject.GetComponent<Toggle>();
@@ -173,7 +186,7 @@ public class DeckPanel : MonoBehaviour
                 cardUI.Open();
                 //toggle.isOn = true;
                 _openedCard = cardUI;
-                _selectedCard = cardNode;
+                //_selectedCard = cardNode;
             }
             if (i > openedCardIndex)
             {

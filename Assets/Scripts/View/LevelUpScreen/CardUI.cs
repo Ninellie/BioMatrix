@@ -2,9 +2,10 @@ using Assets.Scripts.GameSession.Upgrades.Deck;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardUI : MonoBehaviour
+public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Components references")]
     [SerializeField] private Image _blackoutFlap;
@@ -13,9 +14,6 @@ public class CardUI : MonoBehaviour
     [SerializeField] private Image _magicFrame;
     [SerializeField] private Image _rareFrame;
     [SerializeField] private TMP_Text _text;
-    //[SerializeField] private Toggle _toggle;
-    //[SerializeField] private Image _background;
-    //[SerializeField] private LayoutElement _layoutElement;
     [Space]
     [Header("Properties")]
     [SerializeField] private TMP_ColorGradient _openedColorGradient;
@@ -26,21 +24,20 @@ public class CardUI : MonoBehaviour
     [SerializeField] private CardStatus _status;
     [SerializeField] private string _deckName;
     [SerializeField] private int _index;
-    [SerializeField] private bool _isSelected;
+    [SerializeField] private bool _isOpened;
 
-    private CardInfoUIPanel _cardInfo;
+    private CardInfoUIPanel _cardInfoPanel;
     private DeckPanel _deckPanel;
 
     public void SetDeckPanel(DeckPanel deckPanel) => _deckPanel = deckPanel;
-    public void SetCardInfo(CardInfoUIPanel cardInfo) => _cardInfo = cardInfo;
+    public void SetCardInfoPanel(CardInfoUIPanel cardInfoPanel) => _cardInfoPanel = cardInfoPanel;
     public void SetDeckName(string deckName) => _deckName = deckName;
     public void SetIndex(int index) => _index = index;
-    public int GetIndex() => _index;
+    //public int GetIndex() => _index;
 
     private void SetFrameSelected(bool outline)
     {
         _selectedFrame.gameObject.SetActive(outline);
-        _frame.gameObject.SetActive(!outline);
     }
 
     public void TurnToNormal()
@@ -71,15 +68,6 @@ public class CardUI : MonoBehaviour
         _rareFrame.gameObject.SetActive(true);
     }
 
-    public void Select()
-    {
-        //_toggle.isOn = true;
-        SetFrameSelected(true);
-        _deckPanel.SelectCard(this);
-        _isSelected = true;
-        _cardInfo.DisplayCardInfo(_deckName, _index);
-    }
-
     public void ToggleSelected(bool isSelected)
     {
         if (isSelected)
@@ -88,10 +76,33 @@ public class CardUI : MonoBehaviour
             Deselect();
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        var openedCard = _deckPanel.GetOpenedCard();
+        if (Equals(openedCard)) return;
+        Select();
+        openedCard.Deselect();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        var openedCard = _deckPanel.GetOpenedCard();
+        if (Equals(openedCard)) return;
+        Deselect();
+        if (!_deckPanel.IsActive) return;
+        openedCard.Select();
+    }
+
+    public void Select()
+    {
+        _selectedFrame.gameObject.SetActive(true);
+        if (!_deckPanel.IsActive) return;
+        _cardInfoPanel.DisplayCardInfo(_deckName, _index);
+    }
+
     public void Deselect()
     {
-        SetFrameSelected(false);
-        _isSelected = false;
+        _selectedFrame.gameObject.SetActive(false);
     }
 
     public void SetColorTextPresets(TMP_ColorGradient openedColorGradient,

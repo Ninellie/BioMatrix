@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.29803923}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -163,9 +163,9 @@ MonoBehaviour:
   m_Content: {fileID: 7532958963739273399}
   m_Horizontal: 1
   m_Vertical: 0
-  m_MovementType: 2
+  m_MovementType: 1
   m_Elasticity: 0.1
-  m_Inertia: 0
+  m_Inertia: 1
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 1
   m_Viewport: {fileID: 4389657020800918550}
@@ -532,7 +532,6 @@ MonoBehaviour:
   _cardListContent: {fileID: 7532958963739273399}
   _flapPanel: {fileID: 1005504336438120365}
   _cardsScrollRect: {fileID: 3737488879204432019}
-  _cardsToggleGroup: {fileID: 0}
   _cardInfo: {fileID: 0}
   _deckNameText: {fileID: 5465993631673818229}
   _openedColorGradient: {fileID: 11400000, guid: 8e56042c1a776644988afb418115fdc8, type: 2}

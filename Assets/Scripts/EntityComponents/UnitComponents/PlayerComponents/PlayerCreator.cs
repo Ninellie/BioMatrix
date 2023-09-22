@@ -25,7 +25,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private GameObject _turretHub;
         [SerializeField] private OldDisplayedResourceData[] _displayedResources;
         //[SerializeField] private LevelUp _levelUp;
-        [SerializeField] private LevelUpControllerScreen _levelUpController;
+        [SerializeField] private LevelUpController _levelUpController;
         [SerializeField] private GameTimeScheduler _gameTimeScheduler;
 
         private GameSessionTimer _gameSessionTimer;

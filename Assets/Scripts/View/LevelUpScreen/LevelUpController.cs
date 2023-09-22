@@ -8,28 +8,28 @@ public interface ILevelUpController
     void SetHand(IHand hand);
 }
 
-public class LevelUpControllerScreen : MonoBehaviour, ILevelUpController
+public class LevelUpController : MonoBehaviour, ILevelUpController
 {
     [SerializeField] private int _baseDeckAmount = 3;
-    private IDeckDisplay _deckDisplay;
+    private ILevelUpDisplay _levelUpDisplay;
     private IHand _hand;
 
     private void Awake()
     {
-        _deckDisplay = gameObject.GetComponent<IDeckDisplay>();
+        _levelUpDisplay = gameObject.GetComponent<ILevelUpDisplay>();
     }
 
     public void Initiate()
     {
         var handDecks = _hand.GetHandData();
-        _deckDisplay.DisplayRandomDecks(handDecks, _baseDeckAmount);
+        _levelUpDisplay.DisplayRandomDecks(handDecks, _baseDeckAmount);
     }
 
     public void LevelUp()
     {
-        var deckName = _deckDisplay.GetActiveDeckName();
+        var deckName = _levelUpDisplay.GetActiveDeckName();
         _hand.TakeCardFromDeck(deckName);
-        _deckDisplay.DestroyAllDecks();
+        _levelUpDisplay.DestroyAllDecks();
     }
 
     public void SetHand(IHand hand)

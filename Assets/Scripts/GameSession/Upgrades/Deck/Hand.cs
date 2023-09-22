@@ -65,6 +65,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
     public interface IHand
     {
         List<HandDeckData> GetHandData();
+        //int GetOpenedCardPositionInDeck(string deckName);
         void TakeCardFromDeck(string deckName);
         void SetEffectRepository(EffectsRepository effectRepository);
         void SetDeckRepository(IDeckRepository deckRepository);
@@ -88,6 +89,11 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             _decks = _deckRepository.GetDecks();
             Identify();
         }
+
+        //public int GetOpenedCardPositionInDeck(string deckName)
+        //{
+        //    return _hand.Where(data => data.name == deckName).Select(data => data.openedCardPosition).FirstOrDefault();
+        //}
 
         public List<HandDeckData> GetHandData()
         {

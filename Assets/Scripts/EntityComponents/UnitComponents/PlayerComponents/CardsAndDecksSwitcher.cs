@@ -1,27 +1,21 @@
-using System;
 using Assets.Scripts.GameSession.UIScripts.SessionModel;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
-    public enum Side
-    {
-        Left, Right, Up, Down
-    }
-
     public class CardsAndDecksSwitcher : MonoBehaviour
     {
-        [SerializeField] private DeckDisplay _deckDisplay;
+        [SerializeField] private ComplexLevelUpDisplay _complexLevelUpDisplay;
         [SerializeField] private GameSessionController _gameSessionController;
-        [SerializeField] private LevelUpControllerScreen _levelUp;
+        [SerializeField] private LevelUpController _levelUp;
 
-        private Side _side;
+        private Vector2 _side = Vector2.zero;
 
         private void Awake()
         {
-            _deckDisplay = FindObjectOfType<DeckDisplay>(true);
+            _complexLevelUpDisplay = FindObjectOfType<ComplexLevelUpDisplay>(true);
             _gameSessionController = FindObjectOfType<GameSessionController>(true);
-            _levelUp = FindObjectOfType<LevelUpControllerScreen>(true);
+            _levelUp = FindObjectOfType<LevelUpController>(true);
         }
 
         public bool _isInProcess = false;
@@ -32,73 +26,66 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _levelUp.LevelUp();
         }
 
-        public void OnNextCard()
-        {
-            _deckDisplay.SelectNextCard();
-        }
+        //public void OnNextCard()
+        //{
+        //    _complexLevelUpDisplay.SelectNextCard();
+        //}
 
-        public void OnPreviousCard()
-        {
-            _deckDisplay.SelectPreviousCard();
-        }
+        //public void OnPreviousCard()
+        //{
+        //    _complexLevelUpDisplay.SelectPreviousCard();
+        //}
 
         public void OnNextDeck()
         {
-            _deckDisplay.ActivateNextDeck();
+            _complexLevelUpDisplay.ActivateNextDeck();
         }
 
         public void OnPreviousDeck()
         {
-            _deckDisplay.ActivatePreviousDeck();
+            _complexLevelUpDisplay.ActivatePreviousDeck();
         }
 
         public void OnSwipeEnd()
         {
-            switch (_side)
+            if (_side.Equals(Vector2.up))
             {
-                case Side.Left:
-                    _deckDisplay.SelectPreviousCard();
-                    break;
-                case Side.Right:
-                    _deckDisplay.SelectNextCard();
-                    break;
-                case Side.Up:
-                    _deckDisplay.ActivateNextDeck();
-                    break;
-                case Side.Down:
-                    _deckDisplay.ActivatePreviousDeck();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                _complexLevelUpDisplay.ActivateNextDeck();
             }
+            if (_side.Equals(Vector2.down))
+            {
+                _complexLevelUpDisplay.ActivatePreviousDeck();
+            }
+
             _isInProcess = false;
+            _side = Vector2.zero;
         }
 
-        public void OnNextCard_M()
-        {
-            if (_isInProcess) return;
-                _side = Side.Right;
-            _isInProcess = true;
-        }
+        //public void OnNextCard_M()
+        //{
+        //    if (_isInProcess) return;
+        //        _side = Side.Right;
+        //    _isInProcess = true;
+        //}
 
-        public void OnPreviousCard_M()
-        {
-            if (_isInProcess) return;
-            _side = Side.Left;
-            _isInProcess = true;
-        }
+        //public void OnPreviousCard_M()
+        //{
+        //    if (_isInProcess) return;
+        //        _side = Side.Left;
+        //    _isInProcess = true;
+        //}
 
         public void OnNextDeck_M()
         {
             if (_isInProcess) return;
-            _side = Side.Up;
+            _side = Vector2.up;
             _isInProcess = true;
         }
 
         public void OnPreviousDeck_M()
         {
             if (_isInProcess) return;
-            _side = Side.Down;
+            _side = Vector2.down;
             _isInProcess = true;
         }
     }
