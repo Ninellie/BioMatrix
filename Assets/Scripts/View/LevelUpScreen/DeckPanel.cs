@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public class DeckPanel : MonoBehaviour
+public class DeckPanel : MonoBehaviour, 
+    IPointerClickHandler, IPointerDownHandler, 
+    IPointerUpHandler, IPointerEnterHandler, 
+    IPointerExitHandler
 {
     [Header("Card panel properties")]
     [SerializeField] private GameObject _cardFramePrefab;
@@ -35,29 +38,17 @@ public class DeckPanel : MonoBehaviour
     [SerializeField] private string _name;
     [SerializeField] private bool _isActive;
     
-
+    [SerializeField] private ComplexLevelUpDisplay _parentDisplay;
     public bool IsActive => _isActive;
+
     private readonly LinkedList<CardUI> _cardList = new();
-    //private LinkedListNode<CardUI> _selectedCard;
     private CardUI _openedCard;
+    private bool _isSelected;
 
     public void SetCardInfo(CardInfoUIPanel cardInfo) => _cardInfo = cardInfo;
-
-    //public void UpdateContentPosition()
-    //{
-    //    var scrollRect = _cardListScrollView; // This is scroll rect
-    //    var contentRect = _cardListContent; // This is content rect
-    //    var padding = _cardListContent.GetComponent<HorizontalOrVerticalLayoutGroup>().padding;
-    //    var selectedCardRectTransform = _selectedCard.Value.GetComponent<RectTransform>();
-    //    var overflow = (contentRect.rect.width - scrollRect.rect.width) / 2f;
-    //    var leftBorder = overflow - selectedCardRectTransform.offsetMin.x + padding.left;
-    //    var rightBorder = contentRect.rect.width - overflow - selectedCardRectTransform.offsetMax.x - padding.right;
-
-    //    if (leftBorder > contentRect.anchoredPosition.x)
-    //        contentRect.anchoredPosition = new Vector2(leftBorder, contentRect.anchoredPosition.y);
-    //    else if (rightBorder < contentRect.anchoredPosition.x)
-    //        contentRect.anchoredPosition = new Vector2(rightBorder, contentRect.anchoredPosition.y);
-    //}
+    public void SetParentDisplay(ComplexLevelUpDisplay display) => _parentDisplay = display;
+    public string GetName() => _name;
+    public CardUI GetOpenedCard() => _openedCard;
 
     public void UpdateContentPositionToOpenedCard()
     {
@@ -76,54 +67,12 @@ public class DeckPanel : MonoBehaviour
             contentRect.anchoredPosition = new Vector2(rightBorder, contentRect.anchoredPosition.y);
     }
 
-    //public void SelectNextCard()
-    //{
-    //    if (_selectedCard.Next is null)
-    //    {
-    //        Debug.LogWarning($"Next card does not exist");
-    //        return;
-    //    }
-
-    //    //if (_selectedCard.Previous is not null) _selectedCard.Previous.Value.transform.localScale = new Vector3(0.5f, 0.5f, 1);
-    //    _selectedCard.Next.Value.Select();
-    //    _selectedCard.Value.Deselect();
-    //    _selectedCard = _selectedCard.Next;
-
-    //    //UpdateCardsScale();
-
-    //    UpdateContentPosition();
-    //}
-
-    //public void SelectPreviousCard()
-    //{
-    //    if (_selectedCard.Previous is null)
-    //    {
-    //        Debug.LogWarning($"Previous card does not exist");
-    //        return;
-    //    }
-
-    //    _selectedCard.Previous.Value.Select();
-    //    _selectedCard.Value.Deselect();
-    //    _selectedCard = _selectedCard.Previous;
-
-    //    UpdateContentPosition();
-    //}
-
-    //public int GetSelectedCardIndex()
-    //{
-    //    return _selectedCard.Value.GetIndex();
-    //}
-
     public void Activate()
     {
         _isActive = true;
         transform.localScale = new Vector3(1, 1, 1);
-        //SelectCard(_openedCard);
-        //_selectedCard.Value.Select();
         _flapPanel.SetActive(false);
         UpdateContentPositionToOpenedCard();
-        //UpdateContentPosition();
-
         _openedCard.Select();
         _cardInfo.DisplayOpenedCardInfo(_name);
     }
@@ -132,26 +81,11 @@ public class DeckPanel : MonoBehaviour
     {
         _isActive = false;
         transform.localScale = new Vector3(0.75f, 0.75f, 1);
-        //_selectedCard.Value.Deselect();
+        _flapPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.5f);
         _flapPanel.SetActive(true);
-        //UpdateCardsScale();
         UpdateContentPositionToOpenedCard();
-        //transform.localScale = new Vector3(1, 1, 1);
         _openedCard.Deselect();
     }
-
-    public string GetName() => _name;
-
-    public CardUI GetOpenedCard()
-    {
-        return _openedCard;
-    }
-
-    //public void SelectCard(CardUI card)
-    //{
-    //    _selectedCard = _cardList.Find(card);
-    //    //_selectedCard.Value.Select();
-    //}
 
     public void DisplayDeck(string deckName, int deckSize, int openedCardIndex, ToggleGroup cardsToggleGroup)
     {
@@ -174,7 +108,6 @@ public class DeckPanel : MonoBehaviour
             cardUI.SetDeckPanel(this);
 
             var toggle = cardUIGameObject.GetComponent<Toggle>();
-            //toggle.isOn = false;
             toggle.group = cardsToggleGroup;
 
             if (i < openedCardIndex)
@@ -184,9 +117,7 @@ public class DeckPanel : MonoBehaviour
             if (i == openedCardIndex)
             {
                 cardUI.Open();
-                //toggle.isOn = true;
                 _openedCard = cardUI;
-                //_selectedCard = cardNode;
             }
             if (i > openedCardIndex)
             {
@@ -213,7 +144,39 @@ public class DeckPanel : MonoBehaviour
             
             cardUI.TurnToNormal();
         }
-        //_selectedCard.Value.gameObject.GetComponent<Toggle>().isOn = true;
         UpdateContentPositionToOpenedCard();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (_isActive) return;
+        _parentDisplay.ActivateDeck(this);
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (_isActive) return;
+        transform.localScale = new Vector3(1, 1, 1);
+        _parentDisplay.GetActiveDeck().transform.localScale = new Vector3(0.75f, 0.75f, 1);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (_isActive) return;
+        transform.localScale = new Vector3(0.75f, 0.75f, 1);
+        _parentDisplay.GetActiveDeck().transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (_isActive) return;
+        _flapPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (_isActive) return;
+        _flapPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.5f);
+        transform.localScale = new Vector3(0.75f, 0.75f, 1);
     }
 }

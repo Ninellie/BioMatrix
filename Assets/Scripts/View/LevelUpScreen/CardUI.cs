@@ -1,7 +1,6 @@
 using Assets.Scripts.GameSession.Upgrades.Deck;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 

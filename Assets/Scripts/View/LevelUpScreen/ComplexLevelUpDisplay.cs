@@ -14,8 +14,6 @@ public interface ILevelUpDisplay
     void DisplayRandomDecks(List<HandDeckData> decksData, int amount);
     void ActivateNextDeck();
     void ActivatePreviousDeck();
-    void SelectNextCard();
-    void SelectPreviousCard();
 }
 
 public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
@@ -28,8 +26,26 @@ public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
     private LinkedList<DeckPanel> _deckPanels;
     private LinkedListNode<DeckPanel> _activeDeck;
 
+    public DeckPanel GetActiveDeck() => _activeDeck.Value;
+
+    public void ActivateDeck(DeckPanel deckPanel)
+    {
+        var deckPanelNode = _deckPanels.Find(deckPanel);
+        if (deckPanelNode == _activeDeck) return;
+        if (deckPanelNode == null)
+        {
+            Debug.LogError($"Trying to activate deck outside the array");
+            return;
+        }
+
+        _activeDeck.Value.Deactivate();
+        _activeDeck = deckPanelNode;
+        _activeDeck.Value.Activate();
+    }
+
     public void DestroyAllDecks()
     {
+        _activeDeck = null;
         foreach (var deckPanel in _deckPanels)
         {
             deckPanel.gameObject.SetActive(false);
@@ -52,8 +68,6 @@ public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
         _activeDeck.Value.Deactivate();
         _activeDeck = _activeDeck.Next;
         _activeDeck.Value.Activate();
-        //UpdateContentPosition();
-        //DisplayActiveCardInfo();
     }
 
     public void ActivatePreviousDeck()
@@ -66,18 +80,6 @@ public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
         _activeDeck.Value.Deactivate();
         _activeDeck = _activeDeck.Previous;
         _activeDeck.Value.Activate();
-        //UpdateContentPosition();
-        //DisplayActiveCardInfo();
-    }
-
-    public void SelectNextCard()
-    {
-        //_activeDeck.Value.SelectNextCard();
-    }
-
-    public void SelectPreviousCard()
-    {
-        //_activeDeck.Value.SelectPreviousCard();
     }
 
     public void DisplayDecks(List<HandDeckData> handData)
@@ -91,6 +93,7 @@ public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
         {
             var deckPanelGameObject = Instantiate(_deckPanelPrefab, _decksArea);
             var deckPanel = deckPanelGameObject.GetComponent<DeckPanel>();
+            deckPanel.SetParentDisplay(this);
             deckPanel.SetCardInfo(_cardInfoDisplay);
             deckPanel.DisplayDeck(deckData.name, deckData.size, deckData.openedCardPosition, _cardsToggleGroup);
             //deckPanel.UpdateContentPosition();
@@ -104,8 +107,6 @@ public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
         _activeDeck.Value.Activate();
 
         var activeDeckName = _activeDeck.Value.GetName();
-        //var activeCardIndex = _activeDeck.Value.GetSelectedCardIndex();
-        //_cardInfoDisplay.DisplayCardInfo(activeDeckName, activeCardIndex);
         _cardInfoDisplay.DisplayOpenedCardInfo(activeDeckName);
     }
 

@@ -539,6 +539,7 @@ MonoBehaviour:
   _obtainedColorGradient: {fileID: 11400000, guid: 1f0ef5a11bb1ab04b847e56b13ec3465, type: 2}
   _name: 
   _isActive: 0
+  _parentDisplay: {fileID: 0}
 --- !u!1 &8644975782034455976
 GameObject:
   m_ObjectHideFlags: 0

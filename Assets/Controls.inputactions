@@ -354,33 +354,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Next Deck_M",
-                    "type": "Value",
-                    "id": "21e4b523-4be8-45a4-a7c4-1b8388e2be6d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Previous Deck_M",
-                    "type": "Value",
-                    "id": "a98ef766-c57d-4d42-bb32-d59ab59a6a65",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "SwipeEnd",
-                    "type": "Button",
-                    "id": "bff7da2b-8e86-4445-97af-0c8f61450388",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -458,39 +431,6 @@
                     "processors": "",
                     "groups": "PC_Control_scheme",
                     "action": "LevelUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e7a6b5db-d0b5-440c-8678-bb0486a4cdde",
-                    "path": "<Touchscreen>/delta/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mobile",
-                    "action": "Next Deck_M",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f9452223-af7d-4d00-9226-9b1d3d13c000",
-                    "path": "<Touchscreen>/delta/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mobile",
-                    "action": "Previous Deck_M",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2bdd87fc-6d83-49a6-b263-6433b0768b22",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "Mobile",
-                    "action": "SwipeEnd",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
