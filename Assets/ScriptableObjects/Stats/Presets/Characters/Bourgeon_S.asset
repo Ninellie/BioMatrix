@@ -15,7 +15,7 @@ MonoBehaviour:
   stats:
   - stringName: Size
     name: 1
-    baseValue: 2.5
+    baseValue: 2.3
   - stringName: MaximumHealth
     name: 2
     baseValue: 3
@@ -27,7 +27,7 @@ MonoBehaviour:
     baseValue: 300
   - stringName: MagnetismRadius
     name: 9
-    baseValue: 40
+    baseValue: 60
   - stringName: ExperienceMultiplier
     name: 8
     baseValue: 1

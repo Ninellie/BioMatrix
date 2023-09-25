@@ -120,9 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0390a211e5d5e0b4bb535708aa195495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _repulseForce: 1
+  _repulseForce: 300
   _penetrationDistanceMultiplier: 1
   _layerName: Enclosure
+  _simpleRepulse: 1
 --- !u!114 &-5824956639751101389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5315,7 +5316,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc4e5f24cc3d1a42b8928222786bfcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deckDisplay: {fileID: 0}
+  _complexLevelUpDisplay: {fileID: 0}
+  _gameSessionController: {fileID: 0}
+  _levelUp: {fileID: 0}
 --- !u!1 &7005012959266165756
 GameObject:
   m_ObjectHideFlags: 0

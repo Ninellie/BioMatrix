@@ -15,7 +15,7 @@ MonoBehaviour:
   stats:
   - stringName: Size
     name: 1
-    baseValue: 1.9
+    baseValue: 1.8
   - stringName: MaximumHealth
     name: 2
     baseValue: 1
