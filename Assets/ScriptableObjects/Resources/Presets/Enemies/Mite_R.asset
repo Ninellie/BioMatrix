@@ -16,7 +16,7 @@ MonoBehaviour:
   - stringName: Health
     name: 1
     maxValueStatName: 2
-    baseValue: 2
+    baseValue: 1
     minValue: 0
     edgeValue: 1
   - stringName: Kills

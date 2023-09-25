@@ -81,8 +81,14 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Start()
         {
-            _circleCollider.radius = Math.Max(_stats.GetStat(StatName.MagnetismRadius).Value, 0);
+            UpdateMagnetismRadius();
             Subscribe();
+            UpdateSize();
+        }
+
+        public void UpdateMagnetismRadius()
+        {
+            _circleCollider.radius = Math.Max(_stats.GetStat(StatName.MagnetismRadius).Value, 0);
         }
 
         private void OnEnable() => Subscribe();
@@ -103,7 +109,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             if (healthResource is null) return;
             if (experienceResource is null) return;
 
-            sizeStat.valueChangedEvent.AddListener(ChangeCurrentSize);
+            sizeStat.valueChangedEvent.AddListener(UpdateSize);
             magnetismRadiusStat.valueChangedEvent.AddListener(ChangeCurrentMagnetismRadius);
 
             _resources.GetResource(ResourceName.Health).AddListenerToEvent(ResourceEventType.Empty, Death);
@@ -116,7 +122,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             if (!_isSubscribed) return;
 
-            _stats.GetStat(StatName.Size).valueChangedEvent.RemoveListener(ChangeCurrentSize);
+            _stats.GetStat(StatName.Size).valueChangedEvent.RemoveListener(UpdateSize);
             _stats.GetStat(StatName.MagnetismRadius).valueChangedEvent.RemoveListener(ChangeCurrentMagnetismRadius);
             _resources.GetResource(ResourceName.Health).RemoveListenerToEvent(ResourceEventType.Empty, Death);
             _resources.GetResource(ResourceName.Experience).RemoveListenerToEvent(ResourceEventType.Fill, LevelUp);
@@ -214,7 +220,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             Debug.Log("Damage is taken " + gameObject.name); // ECS?
         }
 
-        private void ChangeCurrentSize()
+        private void UpdateSize()
         {
             var sizeValue = _stats.GetStat(StatName.Size).Value;
             transform.localScale = new Vector3(sizeValue, sizeValue, 1);
