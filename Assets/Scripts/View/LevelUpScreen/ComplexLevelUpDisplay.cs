@@ -8,12 +8,11 @@ using Random = UnityEngine.Random;
 
 public interface ILevelUpDisplay
 {
-    void DisplayDecks(List<HandDeckData> handData);
-    void DestroyAllDecks();
     string GetActiveDeckName();
-    void DisplayRandomDecks(List<HandDeckData> decksData, int amount);
     void ActivateNextDeck();
     void ActivatePreviousDeck();
+    void DisplayRandomDecks(List<HandDeckData> decksData, int amount);
+    void DestroyAllDecks();
 }
 
 public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
@@ -27,6 +26,8 @@ public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
     private LinkedListNode<DeckPanel> _activeDeck;
 
     public DeckPanel GetActiveDeck() => _activeDeck.Value;
+
+    public string GetActiveDeckName() => _activeDeck.Value.GetName();
 
     public void ActivateDeck(DeckPanel deckPanel)
     {
@@ -43,71 +44,14 @@ public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
         _activeDeck.Value.Activate();
     }
 
-    public void DestroyAllDecks()
-    {
-        _activeDeck = null;
-        foreach (var deckPanel in _deckPanels)
-        {
-            deckPanel.gameObject.SetActive(false);
-            Destroy(deckPanel.gameObject);
-        }
-    }
-
-    public string GetActiveDeckName()
-    {
-        return _activeDeck.Value.GetName();
-    }
-
     public void ActivateNextDeck()
     {
-        if (_activeDeck.Next is null)
-        {
-            Debug.LogWarning($"Next deck does not exist");
-            return;
-        }
-        _activeDeck.Value.Deactivate();
-        _activeDeck = _activeDeck.Next;
-        _activeDeck.Value.Activate();
+        if (_activeDeck.Next != null) ActivateDeck(_activeDeck.Next.Value);
     }
 
     public void ActivatePreviousDeck()
     {
-        if (_activeDeck.Previous is null)
-        {
-            Debug.LogWarning($"Previous deck does not exist");
-            return;
-        }
-        _activeDeck.Value.Deactivate();
-        _activeDeck = _activeDeck.Previous;
-        _activeDeck.Value.Activate();
-    }
-
-    public void DisplayDecks(List<HandDeckData> handData)
-    {
-        _cardInfoDisplay.SetHandData(handData);
-        _deckPanels = new LinkedList<DeckPanel>();
-        var middleDeckIndex = handData.Count / 2;
-        var deckCount = 0;
-
-        foreach (var deckData in handData)
-        {
-            var deckPanelGameObject = Instantiate(_deckPanelPrefab, _decksArea);
-            var deckPanel = deckPanelGameObject.GetComponent<DeckPanel>();
-            deckPanel.SetParentDisplay(this);
-            deckPanel.SetCardInfo(_cardInfoDisplay);
-            deckPanel.DisplayDeck(deckData.name, deckData.size, deckData.openedCardPosition, _cardsToggleGroup);
-            //deckPanel.UpdateContentPosition();
-            deckPanel.UpdateContentPositionToOpenedCard();
-            Debug.Log($"Displayed deck with name: {deckData.name}, size: {deckData.size}, opened card position in deck is: {deckData.openedCardPosition}");
-            var deckNode = _deckPanels.AddLast(deckPanel);
-            if (deckCount == middleDeckIndex) _activeDeck = deckNode;
-            deckCount++;
-        }
-
-        _activeDeck.Value.Activate();
-
-        var activeDeckName = _activeDeck.Value.GetName();
-        _cardInfoDisplay.DisplayOpenedCardInfo(activeDeckName);
+        if (_activeDeck.Previous != null) ActivateDeck(_activeDeck.Previous.Value);
     }
 
     public void DisplayRandomDecks(List<HandDeckData> decksData, int amount)
@@ -126,7 +70,44 @@ public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
         DisplayDecks(selectedDecks);
     }
 
-    public List<HandDeckData> GetOpenedDecksDataFromList(List<HandDeckData> decksData)
+    public void DestroyAllDecks()
+    {
+        _activeDeck = null;
+        foreach (var deckPanel in _deckPanels)
+        {
+            deckPanel.gameObject.SetActive(false);
+            Destroy(deckPanel.gameObject);
+        }
+    }
+
+    private void DisplayDecks(List<HandDeckData> handData)
+    {
+        _cardInfoDisplay.SetHandData(handData);
+        _deckPanels = new LinkedList<DeckPanel>();
+        var middleDeckIndex = handData.Count / 2;
+        var deckCount = 0;
+
+        foreach (var deckData in handData)
+        {
+            var deckPanelGameObject = Instantiate(_deckPanelPrefab, _decksArea);
+            var deckPanel = deckPanelGameObject.GetComponent<DeckPanel>();
+            deckPanel.SetParentDisplay(this);
+            deckPanel.SetCardInfo(_cardInfoDisplay);
+            deckPanel.DisplayDeck(deckData.name, deckData.size, deckData.openedCardPosition, _cardsToggleGroup);
+            deckPanel.UpdateContentPositionToOpenedCard();
+            Debug.Log($"Displayed deck with name: {deckData.name}, size: {deckData.size}, opened card position in deck is: {deckData.openedCardPosition}");
+            var deckNode = _deckPanels.AddLast(deckPanel);
+            if (deckCount == middleDeckIndex) _activeDeck = deckNode;
+            deckCount++;
+        }
+
+        _activeDeck.Value.Activate();
+
+        var activeDeckName = _activeDeck.Value.GetName();
+        _cardInfoDisplay.DisplayOpenedCardInfo(activeDeckName);
+    }
+
+    private List<HandDeckData> GetOpenedDecksDataFromList(IEnumerable<HandDeckData> decksData)
     {
         var decksWithOpenedCards = decksData.Where(deckData => deckData.openedCardPosition < deckData.size).ToList();
         return decksWithOpenedCards;

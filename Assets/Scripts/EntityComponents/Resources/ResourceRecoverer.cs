@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-//using Assets.CustomAttributes;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
 

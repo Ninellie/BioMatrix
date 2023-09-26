@@ -11,8 +11,8 @@ namespace Assets.Scripts.EntityComponents.Resources
     {
         [SerializeField] private bool _usePreset;
         [SerializeField] private ResourcePreset _preset;
-        [SerializeField] private List<Resource> _resources;
         [SerializeField] private StatList _statList;
+        [SerializeField] private List<Resource> _resources;
 
         private void Awake()
         {
@@ -53,11 +53,8 @@ namespace Assets.Scripts.EntityComponents.Resources
 
         public void OnBeforeSerialize()
         {
-            if (_resources is null)
-                return;
-            
-            if (_resources.Count == 0)
-                return;
+            if (_resources is null) return;
+            if (_resources.Count == 0) return;
 
             foreach (var resource in _resources)
             {

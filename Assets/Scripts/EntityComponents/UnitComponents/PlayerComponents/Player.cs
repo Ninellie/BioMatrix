@@ -4,7 +4,6 @@ using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
-using Assets.Scripts.EntityComponents.UnitComponents.Turret;
 using Assets.Scripts.FirearmComponents;
 using Assets.Scripts.GameSession.UIScripts;
 using UnityEngine;
@@ -12,10 +11,6 @@ using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
-    public interface ISlayer
-    {
-        void IncreaseKills();
-    }
     public interface IWeaponBearer
     {
         Transform GetFirePoint();
@@ -46,7 +41,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public AimMode aimMode = AimMode.AutoAim;
 
         public Shield Shield => _shield;
-        public TurretHub TurretHub { get; set; }
         public Firearm Firearm { get; private set; }
         public bool IsFireButtonPressed { get; private set; }
         public Vector2 CurrentAimDirection  { get; private set; }
@@ -68,10 +62,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
             _stats = GetComponent<StatList>();
             _resources = GetComponent<ResourceList>();
-
             _invulnerability = GetComponent<Invulnerability>();
             _knockbackController = GetComponent<KnockbackController>();
-
             _circleCollider = GetComponent<CircleCollider2D>();
             _animator = GetComponent<Animator>();
 
@@ -81,14 +73,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Start()
         {
-            UpdateMagnetismRadius();
             Subscribe();
+            UpdateMagnetismRadius();
             UpdateSize();
-        }
-
-        public void UpdateMagnetismRadius()
-        {
-            _circleCollider.radius = Math.Max(_stats.GetStat(StatName.MagnetismRadius).Value, 0);
         }
 
         private void OnEnable() => Subscribe();
@@ -110,7 +97,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             if (experienceResource is null) return;
 
             sizeStat.valueChangedEvent.AddListener(UpdateSize);
-            magnetismRadiusStat.valueChangedEvent.AddListener(ChangeCurrentMagnetismRadius);
+            magnetismRadiusStat.valueChangedEvent.AddListener(UpdateMagnetismRadius);
 
             _resources.GetResource(ResourceName.Health).AddListenerToEvent(ResourceEventType.Empty, Death);
             _resources.GetResource(ResourceName.Experience).onFill.AddListener(LevelUp);
@@ -123,11 +110,32 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             if (!_isSubscribed) return;
 
             _stats.GetStat(StatName.Size).valueChangedEvent.RemoveListener(UpdateSize);
-            _stats.GetStat(StatName.MagnetismRadius).valueChangedEvent.RemoveListener(ChangeCurrentMagnetismRadius);
+            _stats.GetStat(StatName.MagnetismRadius).valueChangedEvent.RemoveListener(UpdateMagnetismRadius);
             _resources.GetResource(ResourceName.Health).RemoveListenerToEvent(ResourceEventType.Empty, Death);
             _resources.GetResource(ResourceName.Experience).RemoveListenerToEvent(ResourceEventType.Fill, LevelUp);
 
             _isSubscribed = false;
+        }
+
+        //private void CollideWithEnclosure(Player player)
+        //{
+        // shield, damage, knockback from pos with power
+        //}
+
+        private void OnCollisionEnter2D(Collision2D collision2D)
+        {
+            var otherTag = collision2D.collider.tag;
+
+            switch (otherTag)
+            {
+                case "Enemy":
+                    var enemy = collision2D.gameObject.GetComponent<Enemy>();
+                    CollideWithEnemy(enemy);
+                    break;
+                case "Enclosure":
+                    //CollideWithEnclosure(projectile);
+                    break;
+            }
         }
 
         private void CollideWithEnemy(Enemy enemy)
@@ -147,28 +155,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 Vector2 enemyPosition = enemy.transform.position;
 
                 KnockBackFromEntity(knockbackPower, enemyPosition);
-            }
-        }
-
-        //private void CollideWithEnclosure(Player player)
-        //{
-        // shield, damage, knockback from pos with power
-        //}
-
-        private void OnCollisionEnter2D(Collision2D collision2D)
-        {
-            var otherTag = collision2D.collider.tag;
-
-            switch (otherTag)
-            {
-                case "Enemy":
-                    var enemy = collision2D.gameObject.GetComponent<Enemy>();
-                    CollideWithEnemy(enemy);
-                    break;
-                case "Enclosure":
-                    
-                    //CollideWithEnclosure(projectile);
-                    break;
             }
         }
 
@@ -217,7 +203,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private void TakeDamage(int amount)
         {
             _resources.GetResource(ResourceName.Health).Decrease(amount);
-            Debug.Log("Damage is taken " + gameObject.name); // ECS?
+            Debug.Log("Damage is taken " + gameObject.name);
         }
 
         private void UpdateSize()
@@ -226,10 +212,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             transform.localScale = new Vector3(sizeValue, sizeValue, 1);
         }
 
-        private void ChangeCurrentMagnetismRadius()
+        private void UpdateMagnetismRadius()
         {
-            var magnetismRadiusValue = _stats.GetStat(StatName.MagnetismRadius).Value;
-            _circleCollider.radius = Math.Max(magnetismRadiusValue, 0);
+            _circleCollider.radius = Math.Max(_stats.GetStat(StatName.MagnetismRadius).Value, 0);
         }
 
         private void ChangeAnimationState(string newState)
