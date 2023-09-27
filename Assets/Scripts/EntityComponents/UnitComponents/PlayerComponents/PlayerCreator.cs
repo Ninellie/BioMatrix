@@ -1,4 +1,5 @@
 using System;
+using Assets.Scripts.EntityComponents.Effects;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.UnitComponents.Turret;
 using Assets.Scripts.GameSession.Events;
@@ -24,7 +25,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private GameObject _playerWeapon;
         [SerializeField] private GameObject _turretHub;
         [SerializeField] private OldDisplayedResourceData[] _displayedResources;
-        //[SerializeField] private LevelUp _levelUp;
         [SerializeField] private LevelUpController _levelUpController;
         [SerializeField] private GameTimeScheduler _gameTimeScheduler;
 

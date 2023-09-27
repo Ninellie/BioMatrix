@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.EntityComponents.Effects;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
 namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
-
     public enum CardStatus
     {
         Opened,

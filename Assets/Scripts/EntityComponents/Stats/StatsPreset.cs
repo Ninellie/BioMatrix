@@ -20,6 +20,7 @@ namespace Assets.Scripts.EntityComponents.Stats
         public StatSettings settings;
 
         public void OnBeforeSerialize() { }
+
         public void OnAfterDeserialize()
         {
             foreach (var statPresetData in stats)
