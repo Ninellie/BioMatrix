@@ -21,20 +21,16 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         void TakeDamage(int damageAmount);
     }
 
-    public interface ISpawning
-    {
-        float GetSpawningWeight();
-    }
-
-    public class Enemy : MonoBehaviour, ISpawning, IDamageDealer, IDamageable, IKnockbackDealer
+    public class Enemy : MonoBehaviour, IDamageDealer, IDamageable, IKnockbackDealer
     {
         [SerializeField] private GameObject _onDeathDrop;
         [SerializeField] private GameObject _damagePopup;
         [SerializeField] private EnemyType _enemyType = EnemyType.SideView;
         [SerializeField] private bool _dieOnPlayerCollision;
 
-        public KnockbackController knockbackController;
-        public bool IsAlive => _isAlive;
+        public KnockbackController KnockbackController { get; private set; }
+        public bool IsAlive { get; private set; }
+
         private int _dropCount = 1;
         private readonly Rarity _rarity = new();
         private bool _deathFromProjectile;
@@ -53,18 +49,17 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         private ISlayer _lastDamageSource;
         private Player _player;
 
-        private bool _isAlive;
         private bool _isSubscribed;
 
 
         private void Awake()
         {
             Debug.Log($"Enemy {gameObject.name} Awake");
-            _isAlive = true;
+            IsAlive = true;
 
             _stats = GetComponent<StatList>();
             _resources = GetComponent<ResourceList>();
-            knockbackController = GetComponent<KnockbackController>();
+            KnockbackController = GetComponent<KnockbackController>();
             _spriteOutline = GetComponent<SpriteOutline>();
             _circleCollider = GetComponent<CircleCollider2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -74,7 +69,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
             _spriteColor = _spriteRenderer.color;
             _rarity.Value = RarityEnum.Normal;
-
         }
 
         private void Start()
@@ -89,7 +83,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
-            if (!_isAlive) return;
+            if (!IsAlive) return;
 
             var otherTag = collision2D.collider.tag;
 
@@ -108,84 +102,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             }
         }
 
+        private void Update() => BackToNormalColor();
+
         private void OnBecameInvisible() => StartDeathTimer();
 
         private void OnBecameVisible() => StopDeathTimer();
-
-        private void StartDeathTimer()
-        {
-            _deathFromProjectile = false;
-            Invoke(nameof(Death), OffscreenDieSeconds);
-        }
-
-        private void StopDeathTimer() => CancelInvoke(nameof(Death));
-
-        private void Subscribe()
-        {
-            if (_isSubscribed) return;
-
-            var sizeStat = _stats.GetStat(StatName.Size);
-            var healthResource = _resources.GetResource(ResourceName.Health);
-
-            if (sizeStat is null) return;
-            if (healthResource is null) return;
-
-            _stats.GetStat(StatName.Size).valueChangedEvent.AddListener(UpdateCurrentSize);
-            _resources.GetResource(ResourceName.Health).AddListenerToEvent(ResourceEventType.Empty, Death);
-
-            _isSubscribed = true;
-        }
-
-        private void Unsubscribe()
-        {
-            if (!_isSubscribed) return;
-
-            _stats.GetStat(StatName.Size).valueChangedEvent.RemoveListener(UpdateCurrentSize);
-            _resources.GetResource(ResourceName.Health).RemoveListenerToEvent(ResourceEventType.Empty, Death);
-
-            _isSubscribed = false;
-        }
-
-        private void CollideWithProjectile(Projectile projectile)
-        {
-            var projectileDamage = projectile.GetDamage();
-            if (projectileDamage > 0) _lastDamageSource = projectile;
-            _deathFromProjectile = true;
-            TakeDamage(projectileDamage);
-
-            var dropPosition = GetClosestPointOnCircle(projectile.transform.position); //TODO move to Circle.cs
-            DropDamagePopup(projectileDamage, dropPosition);
-
-            ChangeColorOnDamageTaken();
-
-            Vector2 force = transform.position - _player.transform.position;
-            force.Normalize();
-            force *= projectile.GetKnockbackPower();
-            knockbackController.Knockback(force);
-
-            if (!_resources.GetResource(ResourceName.Health).IsEmpty) return;
-            _isAlive = false;
-        }
-
-        private void CollideWithPlayer(Player player)
-        {
-            if (!_isAlive) return;
-            if (!_dieOnPlayerCollision) return;
-            _deathFromProjectile = false;
-            _lastDamageSource = player;
-            Death();
-        }
-
-        //private void CollideWithEnemy(Enemy enemy)
-        //{
-        //    return;
-        //}
-
-
-        private void Update()
-        {
-            BackToNormalColor();
-        }
 
         public int GetDamage()
         {
@@ -238,9 +159,71 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         
         public EnemyType GetEnemyType() => _enemyType;
 
-        public float GetSpawningWeight() => _stats.GetStat(StatName.SpawnWeight).Value;
-
         public float GetKnockbackPower() => _stats.GetStat(StatName.KnockbackPower).Value;
+
+        private void StartDeathTimer()
+        {
+            _deathFromProjectile = false;
+            Invoke(nameof(Death), OffscreenDieSeconds);
+        }
+
+        private void StopDeathTimer() => CancelInvoke(nameof(Death));
+
+        private void Subscribe()
+        {
+            if (_isSubscribed) return;
+
+            var sizeStat = _stats.GetStat(StatName.Size);
+            var healthResource = _resources.GetResource(ResourceName.Health);
+
+            if (sizeStat is null) return;
+            if (healthResource is null) return;
+
+            _stats.GetStat(StatName.Size).valueChangedEvent.AddListener(UpdateCurrentSize);
+            _resources.GetResource(ResourceName.Health).AddListenerToEvent(ResourceEventType.Empty, Death);
+
+            _isSubscribed = true;
+        }
+
+        private void Unsubscribe()
+        {
+            if (!_isSubscribed) return;
+
+            _stats.GetStat(StatName.Size).valueChangedEvent.RemoveListener(UpdateCurrentSize);
+            _resources.GetResource(ResourceName.Health).RemoveListenerToEvent(ResourceEventType.Empty, Death);
+
+            _isSubscribed = false;
+        }
+
+        private void CollideWithProjectile(Projectile projectile)
+        {
+            var projectileDamage = projectile.GetDamage();
+            if (projectileDamage > 0) _lastDamageSource = projectile;
+            _deathFromProjectile = true;
+            TakeDamage(projectileDamage);
+
+            var dropPosition = GetClosestPointOnCircle(projectile.transform.position); //TODO move to Circle.cs
+            DropDamagePopup(projectileDamage, dropPosition);
+
+            ChangeColorOnDamageTaken();
+
+            Vector2 force = transform.position - _player.transform.position;
+            force.Normalize();
+            force *= projectile.GetKnockbackPower();
+            KnockbackController.Knockback(force);
+
+            if (!_resources.GetResource(ResourceName.Health).IsEmpty) return;
+            IsAlive = false;
+        }
+
+        private void CollideWithPlayer(ISlayer player)
+        {
+            if (!IsAlive) return;
+            if (!_dieOnPlayerCollision) return;
+            _deathFromProjectile = false;
+            _lastDamageSource = player;
+            Death();
+        }
 
         private void BackToNormalColor()
         {

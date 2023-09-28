@@ -14,7 +14,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private LayerMask _resistancePhysLayer;
         [SerializeField] private float _spriteAlphaPerLayer = 0.2f;
         [SerializeField] private Color _color = Color.cyan;
-
         [SerializeField] private StatList _stats;
         [SerializeField] private ResourceList _resources;
         public Resource Layers { get; private set; }
@@ -44,15 +43,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 Enable();
         }
 
-        private void OnEnable()
-        {
-            Subscribe();
-        }
+        private void OnEnable() => Subscribe();
 
-        private void OnDisable()
-        {
-            Unsubscribe();
-        }
+        private void OnDisable() => Unsubscribe();
 
         private void OnDrawGizmos()
         {
@@ -94,7 +87,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 var force = (Vector2)enemy.transform.position - (Vector2)gameObject.transform.position;
                 force.Normalize();
                 force *= repulseForce;
-                enemy.knockbackController.Knockback(force);
+                enemy.KnockbackController.Knockback(force);
             }
         }
 
@@ -103,12 +96,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             var colliders2D = Physics2D.OverlapCircleAll(transform.position, repulseRadius, enemyLayer);
             return colliders2D.Select(collider2d => collider2d.gameObject.GetComponent<EnemyComponents.Enemy>()).ToList();
         }
-
-        //private List<KnockbackController> GetNearbyEnemiesKnockbackControllersList(float repulseRadius, LayerMask enemyLayer)
-        //{
-        //    var colliders2D = Physics2D.OverlapCircleAll(transform.position, repulseRadius, enemyLayer);
-        //    return colliders2D.Select(collider2d => collider2d.gameObject.GetComponent<KnockbackController>()).ToList();
-        //}
     
         private void Disable()
         {
