@@ -8,10 +8,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 {
     public class Rarity
     {
+        // Rarity preset?
         public RarityEnum Value { get; set; }
         private readonly Color _magic = new(0.8352942f, 0.2352941f, 0.4156863f);
         private readonly Color _rare = new(1f, 0.509804f, 0.454902f);
-        private readonly float _normalOutline = 0.01f;
+        private const float NormalOutline = 0.01f;
         private readonly Dictionary<RarityEnum, int> _rarityWeights = new()
         {
             {RarityEnum.Normal, 970},
@@ -22,10 +23,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         public float Width =>
             Value switch
             {
-                RarityEnum.Normal => _normalOutline,
-                RarityEnum.Magic => _normalOutline,
-                RarityEnum.Rare => _normalOutline,
-                RarityEnum.Unique => _normalOutline,
+                RarityEnum.Normal => NormalOutline,
+                RarityEnum.Magic => NormalOutline,
+                RarityEnum.Rare => NormalOutline,
+                RarityEnum.Unique => NormalOutline,
                 _ => throw new ArgumentOutOfRangeException(nameof(Value), Value, null)
             };
 
@@ -49,7 +50,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
                 _ => throw new ArgumentOutOfRangeException(nameof(Value), Value, null)
             };
 
-        public Rarity(RarityEnum value) => Value = value;
+        //public Rarity(RarityEnum value) => Value = value;
 
         public Rarity() => Value = RarityEnum.Normal;
 
