@@ -11,15 +11,16 @@ namespace Assets.Scripts.GameSession.Spawner
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [SerializeField] private bool _usePreset;
-        [SerializeField] private EnemySpawnDataListPreset _preset;
+        [SerializeField] private EnemySpawnDataListPreset _spawnDataPreset;
+        [SerializeField] private EnemyWaveDataPreset _waveDataPreset;
         [SerializeField] private List<EnemySpawnData> _enemiesSpawnData;
         [SerializeField] private int _secondsBetweenWaves;
+
         private readonly Grouping _grouping = new();
         private readonly Rarity _rarity = new();
         private readonly Circle _circle = new();
         private GameObject _player;
-        private readonly EnemyWaveProperties _enemyWaveProperties = new();
+        //private readonly EnemyWaveProperties _enemyWaveProperties = new();
         private const int DefaultComplicationValue = 60;
 
         private int TimerBonus
@@ -35,8 +36,7 @@ namespace Assets.Scripts.GameSession.Spawner
 
         private void Awake()
         {
-            if (!_usePreset) return;
-            var preset = Instantiate(_preset);
+            var preset = Instantiate(_spawnDataPreset);
             _enemiesSpawnData = preset.enemiesSpawnData;
         }
 
@@ -62,7 +62,8 @@ namespace Assets.Scripts.GameSession.Spawner
             if (IsSpawnBlocked()) return;
 
             var playerPosition = (Vector2)_player.transform.position;
-            var waveSize = _enemyWaveProperties.GetSize(waveType);
+            //var waveSize = _enemyWaveProperties.GetSize(waveType);
+            var waveSize = _waveDataPreset.GetSize(waveType);
             var spawn = CreateWave(waveSize);
             if (spawn is null) return;
             var mode = _grouping.GetRandomMode();
@@ -128,7 +129,7 @@ namespace Assets.Scripts.GameSession.Spawner
         private bool IsSpawnBlocked()
         {
             var enemyCount = FindObjectsOfType<Enemy>().Length;
-            var maxEnemies = _enemyWaveProperties.GetMaxEnemiesInScene();
+            var maxEnemies = _waveDataPreset.GetMaxEnemiesInScene();
             return enemyCount >= maxEnemies;
         }
 

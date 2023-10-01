@@ -2939,8 +2939,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f28df27bdbbdb4cb55f6538ec3d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _usePreset: 1
-  _preset: {fileID: 11400000, guid: db8820b77b928be4fb801a38e1598609, type: 2}
+  _spawnDataPreset: {fileID: 11400000, guid: db8820b77b928be4fb801a38e1598609, type: 2}
+  _waveDataPreset: {fileID: 11400000, guid: 71404f963dce78749b739ad16a30bd27, type: 2}
   _enemiesSpawnData: []
   _secondsBetweenWaves: 3
 --- !u!1 &602989447

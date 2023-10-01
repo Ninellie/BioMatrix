@@ -44,7 +44,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public Firearm Firearm { get; private set; }
         public bool IsFireButtonPressed { get; private set; }
         public Vector2 CurrentAimDirection  { get; private set; }
-        private const int ExperienceAmountIncreasingPerLevel = 8;
+        private const int ExperienceAmountIncreasingPerLevel = 12;
 
         private CircleCollider2D _circleCollider;
         private Animator _animator;
