@@ -61,7 +61,6 @@ namespace Assets.Scripts.EntityComponents.Resources
                 resource.stringName = $"{resource.Name}: {resource.GetValue()}";
             }
         }
-
         public void OnAfterDeserialize()
         {
         }

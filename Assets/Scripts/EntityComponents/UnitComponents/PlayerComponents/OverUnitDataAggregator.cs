@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using Assets.Scripts.EntityComponents.Effects;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;

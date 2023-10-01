@@ -19,7 +19,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             {RarityEnum.Magic, 29 },
             {RarityEnum.Rare, 1}
         };
-
         public float Width =>
             Value switch
             {
@@ -29,7 +28,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
                 RarityEnum.Unique => NormalOutline,
                 _ => throw new ArgumentOutOfRangeException(nameof(Value), Value, null)
             };
-
         public Color Color =>
             Value switch
             {
@@ -39,7 +37,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
                 RarityEnum.Unique => Color.red,
                 _ => throw new ArgumentOutOfRangeException(nameof(Value), Value, null)
             };
-
         public float Multiplier =>
             Value switch
             {
@@ -53,7 +50,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         //public Rarity(RarityEnum value) => Value = value;
 
         public Rarity() => Value = RarityEnum.Normal;
-
         public RarityEnum GetRandomRarity()
         {
             var sum = GetWeightSum();
@@ -75,7 +71,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             }
             throw new InvalidOperationException("");
         }
-
         private int GetWeightSum()
         {
             return _rarityWeights.Sum(keyValuePair => keyValuePair.Value);
