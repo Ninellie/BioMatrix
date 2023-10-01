@@ -33,5 +33,5 @@ MonoBehaviour:
     baseValue: 1
   - stringName: ExperienceToNewLevel
     name: 25
-    baseValue: 24
+    baseValue: 32
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}
