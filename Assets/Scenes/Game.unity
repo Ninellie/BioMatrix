@@ -2895,6 +2895,54 @@ MonoBehaviour:
   _activeCardDescription: {fileID: 1279992960}
   _deckRepository: {fileID: 282507451}
   _effectsRepository: {fileID: 282507450}
+--- !u!1 &602567462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 602567463}
+  - component: {fileID: 602567464}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &602567463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602567462}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1659.3832, y: 11614.623, z: -13.278861}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &602567464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602567462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f28df27bdbbdb4cb55f6538ec3d0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _usePreset: 1
+  _preset: {fileID: 11400000, guid: db8820b77b928be4fb801a38e1598609, type: 2}
+  _enemiesSpawnData: []
+  _secondsBetweenWaves: 3
 --- !u!1 &602989447
 GameObject:
   m_ObjectHideFlags: 0
@@ -8883,10 +8931,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6798056590901079273, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: orthographic size
-      value: 240
+      value: 540
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 1365173418, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -15481,6 +15530,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1570661139}
   - {fileID: 2100729389}
+  - {fileID: 602567463}
   - {fileID: 170780330}
   - {fileID: 282507448}
   - {fileID: 1239585261}
