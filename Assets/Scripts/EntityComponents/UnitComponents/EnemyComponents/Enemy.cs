@@ -44,7 +44,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private Color _spriteColor;
         private const float ReturnToDefaultColorSpeed = 5f;
-        private const long OffscreenDieSeconds = 60;
+        private const float OffscreenDieSeconds = 5f;
 
         private ISlayer _lastDamageSource;
         private Player _player;
@@ -163,11 +163,17 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private void StartDeathTimer()
         {
+
+            Debug.LogWarning(nameof(StartDeathTimer));
             _deathFromProjectile = false;
             Invoke(nameof(Death), OffscreenDieSeconds);
         }
 
-        private void StopDeathTimer() => CancelInvoke(nameof(Death));
+        private void StopDeathTimer()
+        {
+            Debug.LogWarning(nameof(StopDeathTimer));
+            CancelInvoke(nameof(Death));
+        }
 
         private void Subscribe()
         {
@@ -279,7 +285,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         {
             Debug.Log($"Enemy {gameObject.name} died. From projectile: {_deathFromProjectile}");
             if (_deathFromProjectile) DropBonus();
-            _lastDamageSource.IncreaseKills();
+            _lastDamageSource?.IncreaseKills();
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
