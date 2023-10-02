@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0390a211e5d5e0b4bb535708aa195495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _repulseForce: 300
+  _repulseForce: 700
   _penetrationDistanceMultiplier: 1
   _layerName: Enclosure
   _simpleRepulse: 1
@@ -5234,8 +5234,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _usePreset: 1
   _preset: {fileID: 11400000, guid: f6d53f77e5e96684e86f2ea2bb0a35a9, type: 2}
-  _resources: []
   _statList: {fileID: 4013630423983573852}
+  _resources: []
   references:
     version: 2
     RefIds: []
@@ -5404,8 +5404,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _usePreset: 1
   _preset: {fileID: 11400000, guid: a14f3d1a183893e4a99ba286c9b8f005, type: 2}
-  _resources: []
   _statList: {fileID: 0}
+  _resources: []
   references:
     version: 2
     RefIds: []
