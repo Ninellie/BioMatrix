@@ -56,6 +56,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private string _currentState;
         private bool _isSubscribed;
 
+        private bool _isCaged;
+        private float _cageTime = 15f;
+
         private void Awake()
         {
             Debug.Log($"{gameObject.name} {nameof(Player)} Awake");
@@ -117,11 +120,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _isSubscribed = false;
         }
 
-        //private void CollideWithEnclosure(Player player)
-        //{
-        // shield, damage, knockback from pos with power
-        //}
-
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
             var otherTag = collision2D.collider.tag;
@@ -133,9 +131,33 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                     CollideWithEnemy(enemy);
                     break;
                 case "Enclosure":
-                    //CollideWithEnclosure(projectile);
+                    Debug.LogWarning("ENCLOSURE");
+                    CollideWithEnclosure(collision2D);
                     break;
             }
+        }
+
+        //private void CollideWithEnclosure(Player player)
+        //{
+        // shield, damage, knockback from pos with power
+        //}
+
+        private void CollideWithEnclosure(Collision2D collision2D)
+        {
+            if (!_invulnerability.IsInvulnerable)
+            {
+                if (!Shield.Layers.IsEmpty)
+                    Shield.Layers.Decrease();
+                else
+                {
+                    TakeDamage(1);
+                }
+
+                if (_resources.GetResource(ResourceName.Health).IsEmpty) return;
+                _invulnerability.ApplyInvulnerable();
+            }
+
+            KnockBackFromEntity(50f, collision2D.transform.position);
         }
 
         private void CollideWithEnemy(Enemy enemy)
