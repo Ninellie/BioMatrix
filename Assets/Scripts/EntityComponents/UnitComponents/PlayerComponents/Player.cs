@@ -120,9 +120,15 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _isSubscribed = false;
         }
 
+        private void FixedUpdate()
+        {
+            if (IsFireButtonPressed) Shoot();
+        }
+
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
             var otherTag = collision2D.collider.tag;
+            var otherCollider = collision2D.otherCollider;
 
             switch (otherTag)
             {
@@ -132,32 +138,49 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                     break;
                 case "Enclosure":
                     Debug.LogWarning("ENCLOSURE");
-                    CollideWithEnclosure(collision2D);
+                    //CollideWithEnclosure(collision2D);
+                    break;
+                case "Cage":
+                    Debug.LogWarning("Cage");
+                    //CollideWithCage(collision2D);
                     break;
             }
         }
 
-        //private void CollideWithEnclosure(Player player)
-        //{
-        // shield, damage, knockback from pos with power
-        //}
+        private void DetectCollisionWithEnclosure()
+        {
+            // Если в следующем кадре, герой столкнётся с Enclosure, то оттолкнуть его в противоположную его движению сторону.
+
+            // Получить вектор движения объекта
+
+            // Кинуть луч по этому вектору
+
+            // Понять, задел ли луч Enclosure
+
+            // Если луч не задел Enclosure - выйти
+
+            // Откинуть объект назад с определённой скоростью
+        }
 
         private void CollideWithEnclosure(Collision2D collision2D)
         {
+            var normal = -collision2D.contacts[0].normal;
+            var direction = collision2D.contacts[0].point;
+
             if (!_invulnerability.IsInvulnerable)
             {
                 if (!Shield.Layers.IsEmpty)
                     Shield.Layers.Decrease();
                 else
                 {
-                    TakeDamage(1);
+                    //TakeDamage(1);
                 }
 
                 if (_resources.GetResource(ResourceName.Health).IsEmpty) return;
                 _invulnerability.ApplyInvulnerable();
             }
 
-            KnockBackFromEntity(50f, collision2D.transform.position);
+            KnockBackFromEntity(50f, normal);
         }
 
         private void CollideWithEnemy(Enemy enemy)
@@ -250,11 +273,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             ChangeAnimationState("Run");
             if (input.Get<Vector2>() == Vector2.zero)
                 ChangeAnimationState("Idle");
-        }
-
-        private void FixedUpdate()
-        {
-            if (IsFireButtonPressed) Shoot();
         }
 
         public void Shoot()

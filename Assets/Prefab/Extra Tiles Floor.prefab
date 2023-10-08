@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5233967856779956458}
   m_Layer: 8
   m_Name: CollisionTilemap
-  m_TagString: Untagged
+  m_TagString: Enclosure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,9 +276,9 @@ GameObject:
   - component: {fileID: 7038445815432115736}
   - component: {fileID: 7591444909339643193}
   - component: {fileID: 912793447245826550}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Extra Tiles Floor
-  m_TagString: Untagged
+  m_TagString: Enclosure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
