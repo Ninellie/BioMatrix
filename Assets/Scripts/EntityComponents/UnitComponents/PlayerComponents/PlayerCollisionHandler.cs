@@ -1,6 +1,7 @@
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
+using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
@@ -12,12 +13,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private KnockbackController _knockbackController;
         private Invulnerability _invulnerability;
         private ResourceList _resources;
-
+        private PlayerMovementController _movementController;
         private void Awake()
         {
             _resources = GetComponent<ResourceList>();
             _invulnerability = GetComponent<Invulnerability>();
             _knockbackController = GetComponent<KnockbackController>();
+            _movementController = GetComponent<PlayerMovementController>();
         }
 
         private void OnCollisionEnter2D(Collision2D collision2D)
@@ -33,7 +35,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                     break;
                 case "Enclosure":
                     Debug.LogWarning("ENCLOSURE");
-                    //CollideWithEnclosure(collision2D);
+                    CollideWithEnclosure();
                     break;
                 case "Cage":
                     Debug.LogWarning("Cage");
@@ -52,11 +54,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             // Откинуть объект назад с определённой скоростью
         }
 
-        private void CollideWithEnclosure(Collision2D collision2D)
+        private void CollideWithEnclosure()
         {
-            var normal = -collision2D.contacts[0].normal;
-            KnockBackFromPosition(50f, normal);
-            var direction = collision2D.transform.position;
+
+            // Оттолкнуться в противоположную движению сторону
+            var direction = _movementController.GetRawMovementDirection();
+            var force = direction * -50f;
+            _knockbackController.Knockback(force);
 
             if (!_invulnerability.IsInvulnerable)
             {
@@ -72,7 +76,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
                 if (_resources.GetResource(ResourceName.Health).IsEmpty) return;
             }
-
         }
 
         private void CollideWithEnemy(Enemy enemy)
@@ -83,14 +86,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             {
                 var damageAmount = enemy.GetDamage();
                 TakeDamage(damageAmount);
-
                 if (_resources.GetResource(ResourceName.Health).IsEmpty) return;
-
                 _invulnerability.ApplyInvulnerable();
-
                 var knockbackPower = enemy.GetKnockbackPower();
                 Vector2 enemyPosition = enemy.transform.position;
-
                 KnockBackFromPosition(knockbackPower, enemyPosition);
             }
         }
