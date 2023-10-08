@@ -43,14 +43,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public Shield Shield => _shield;
         public Firearm Firearm { get; private set; }
         public bool IsFireButtonPressed { get; private set; }
-        public Vector2 CurrentAimDirection  { get; private set; }
+        public Vector2 CurrentAimDirection { get; private set; }
         private const int ExperienceAmountIncreasingPerLevel = 16;
 
         private CircleCollider2D _circleCollider;
         private Animator _animator;
 
-        private KnockbackController _knockbackController;
-        private Invulnerability _invulnerability;
         private StatList _stats;
         private ResourceList _resources;
         private string _currentState;
@@ -65,8 +63,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
             _stats = GetComponent<StatList>();
             _resources = GetComponent<ResourceList>();
-            _invulnerability = GetComponent<Invulnerability>();
-            _knockbackController = GetComponent<KnockbackController>();
             _circleCollider = GetComponent<CircleCollider2D>();
             _animator = GetComponent<Animator>();
 
@@ -125,84 +121,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             if (IsFireButtonPressed) Shoot();
         }
 
-        private void OnCollisionEnter2D(Collision2D collision2D)
-        {
-            var otherTag = collision2D.collider.tag;
-            var otherCollider = collision2D.otherCollider;
-
-            switch (otherTag)
-            {
-                case "Enemy":
-                    var enemy = collision2D.gameObject.GetComponent<Enemy>();
-                    CollideWithEnemy(enemy);
-                    break;
-                case "Enclosure":
-                    Debug.LogWarning("ENCLOSURE");
-                    //CollideWithEnclosure(collision2D);
-                    break;
-                case "Cage":
-                    Debug.LogWarning("Cage");
-                    //CollideWithCage(collision2D);
-                    break;
-            }
-        }
-
-        private void DetectCollisionWithEnclosure()
-        {
-            // Если в следующем кадре, герой столкнётся с Enclosure, то оттолкнуть его в противоположную его движению сторону.
-
-            // Получить вектор движения объекта
-
-            // Кинуть луч по этому вектору
-
-            // Понять, задел ли луч Enclosure
-
-            // Если луч не задел Enclosure - выйти
-
-            // Откинуть объект назад с определённой скоростью
-        }
-
-        private void CollideWithEnclosure(Collision2D collision2D)
-        {
-            var normal = -collision2D.contacts[0].normal;
-            var direction = collision2D.contacts[0].point;
-
-            if (!_invulnerability.IsInvulnerable)
-            {
-                if (!Shield.Layers.IsEmpty)
-                    Shield.Layers.Decrease();
-                else
-                {
-                    //TakeDamage(1);
-                }
-
-                if (_resources.GetResource(ResourceName.Health).IsEmpty) return;
-                _invulnerability.ApplyInvulnerable();
-            }
-
-            KnockBackFromEntity(50f, normal);
-        }
-
-        private void CollideWithEnemy(Enemy enemy)
-        {
-            if (!Shield.Layers.IsEmpty)
-                Shield.Layers.Decrease();
-            else
-            {
-                var damageAmount = enemy.GetDamage();
-                TakeDamage(damageAmount);
-
-                if (_resources.GetResource(ResourceName.Health).IsEmpty) return;
-
-                _invulnerability.ApplyInvulnerable();
-
-                var knockbackPower = enemy.GetKnockbackPower();
-                Vector2 enemyPosition = enemy.transform.position;
-
-                KnockBackFromEntity(knockbackPower, enemyPosition);
-            }
-        }
-
         public Transform GetFirePoint() => _firePoint;
 
         public GameObject CreateWeapon(GameObject weapon)
@@ -232,23 +150,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             IsFireButtonPressed = false;
         }
 
-        private void KnockBackFromEntity(float knockbackPower, Vector2 position)
-        {
-            var direction = ((Vector2)transform.position - position).normalized;
-            var force = direction * knockbackPower;
-            _knockbackController.Knockback(force);
-        }
-
         private void Death()
         {
             gameObject.SetActive(false);
             Destroy(gameObject);
-        }
-
-        private void TakeDamage(int amount)
-        {
-            _resources.GetResource(ResourceName.Health).Decrease(amount);
-            Debug.Log("Damage is taken " + gameObject.name);
         }
 
         private void UpdateSize()
@@ -336,12 +241,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                     aimMode = AimMode.SelfAim;
                     break;
                 case AimMode.SelfAim:
-                {
-                    aimMode = AimMode.AutoAim;
-                    var t = Firearm.GetCurrentTarget();
-                    if (t != null) t.RemoveFromTarget();
-                    break;
-                }
+                    {
+                        aimMode = AimMode.AutoAim;
+                        var t = Firearm.GetCurrentTarget();
+                        if (t != null) t.RemoveFromTarget();
+                        break;
+                    }
             }
 
             Debug.Log($"Aim mode changes to {aimMode}");
