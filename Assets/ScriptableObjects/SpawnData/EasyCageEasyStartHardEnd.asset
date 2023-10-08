@@ -92,15 +92,15 @@ MonoBehaviour:
         time: 180
         value: 0.1
         inSlope: -0
-        outSlope: 0.004166667
+        outSlope: 0.0040839952
         tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 240
+        time: 241.21457
         value: 0.35
-        inSlope: 0.004166667
+        inSlope: 0.0040839952
         outSlope: 0
         tangentMode: 69
         weightedMode: 0
