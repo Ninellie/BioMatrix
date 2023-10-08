@@ -220,7 +220,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         public void OnMouseAiming(InputValue input)
         {
-            Debug.LogWarning("OnMouseAiming");
             var mousePosition = Camera.main.ScreenToWorldPoint(input.Get<Vector2>());
             var directionToMousePos = mousePosition - gameObject.transform.position;
             TakeAim(directionToMousePos);
@@ -228,7 +227,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         public void OnJoystickAimingFire(InputValue input)
         {
-            Debug.LogWarning("OnJoystickAimingFire");
             TakeAim(input.Get<Vector2>());
             IsFireButtonPressed = !CurrentAimDirection.Equals(Vector2.zero);
         }
