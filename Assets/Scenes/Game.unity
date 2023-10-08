@@ -11476,18 +11476,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 912793447245826550, guid: 0382619a9280d184a85f56eb4ff5eeeb, type: 3}
-      propertyPath: _fillingDelay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3752424516178755033, guid: 0382619a9280d184a85f56eb4ff5eeeb, type: 3}
-      propertyPath: _activationTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7591444909339643193, guid: 0382619a9280d184a85f56eb4ff5eeeb, type: 3}
-      propertyPath: _fillingDelay
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8554277198165889980, guid: 0382619a9280d184a85f56eb4ff5eeeb, type: 3}
       propertyPath: m_Name
       value: Extra Tiles Floor
