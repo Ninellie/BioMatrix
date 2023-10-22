@@ -14,8 +14,9 @@ namespace Assets.Scripts.GameSession.PlayingField
         [Range(0, 100)]
         private float _fillingPercent;
 
-        private Tilemap _tilemap;
-        private TilemapRenderer _tilemapRenderer;
+        [SerializeField] private Tilemap _tilemap;
+        [SerializeField] private TilemapRenderer _tilemapRenderer;
+
         private UnityEngine.Camera _mainCamera;
         private Vector3Int _cellInCenterOfCam;
         private List<Vector3Int>_filledPositions;
@@ -23,8 +24,8 @@ namespace Assets.Scripts.GameSession.PlayingField
         private void Awake()
         {
             _mainCamera = UnityEngine.Camera.main;
-            _tilemap = GetComponentInChildren<Tilemap>();
-            _tilemapRenderer = GetComponentInChildren<TilemapRenderer>();
+            //_tilemap = GetComponentInChildren<Tilemap>();
+            //_tilemapRenderer = GetComponentInChildren<TilemapRenderer>();
             _filledPositions = new List<Vector3Int>();
         }
 

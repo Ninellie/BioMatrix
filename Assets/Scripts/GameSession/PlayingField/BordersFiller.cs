@@ -1,4 +1,5 @@
 using System.Collections;
+using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static Assets.Scripts.GameSession.PlayingField.TilesCameraHelper;
@@ -7,34 +8,22 @@ namespace Assets.Scripts.GameSession.PlayingField
 {
     public class BordersFiller : MonoBehaviour
     {
-        [SerializeField]
-        private TileData _tile;
-
-        [SerializeField]
-        [Range(0, 300)]
-        private float _fillingDelay;
-        
-        [SerializeField]
-        [Range(-5, 5)]
-        private int _boundsOffset;
-
-        [SerializeField]
-        [Range(0, 5)]
-        private int _fillingFramesCount;
-        
-        [SerializeField]
-        [Range(0, 5)]
-        private float _delayBetweenFills;
-
-        private Tilemap _tilemap;
-        private TilemapRenderer _tilemapRenderer;
+        [SerializeField] private TileData _tile;
+        [SerializeField] private TileBase _otherTile;
+        [SerializeField] [Range(0, 300)] private float _fillingDelay;
+        [SerializeField] [Range(-5, 5)] private int _boundsOffset;
+        [SerializeField] [Range(0, 5)] private int _fillingFramesCount;
+        [SerializeField] [Range(0, 5)] private float _delayBetweenFills;
+        [SerializeField] private Tilemap _tilemap;
+        [SerializeField] private Tilemap _otherTilemap;
+        [SerializeField] private TilemapRenderer _tilemapRenderer;
         private UnityEngine.Camera _mainCamera;
 
         private void Awake()
         {
             _mainCamera = UnityEngine.Camera.main;
-            _tilemap = GetComponentInChildren<Tilemap>();
-            _tilemapRenderer = GetComponentInChildren<TilemapRenderer>();
+            //_tilemap = GetComponentInChildren<Tilemap>();
+            //_tilemapRenderer = GetComponentInChildren<TilemapRenderer>();
         }
 
         private void Start()
@@ -47,6 +36,7 @@ namespace Assets.Scripts.GameSession.PlayingField
         {
             yield return new WaitForSeconds(_fillingDelay);
             var boundsInt = GetBoundsIntFromCamera(_mainCamera, _tilemap, _tilemapRenderer.chunkCullingBounds);
+            FindFirstObjectByType<PlayerCollisionHandler>().SetCageCenter(_mainCamera.transform.position);
             StartCoroutine(FillBounds(boundsInt));
         }
 
@@ -91,6 +81,7 @@ namespace Assets.Scripts.GameSession.PlayingField
             for (int i = left; i <= right; i++)
             {
                 tilePos = new Vector3Int(i, bottom, 0);
+                _otherTilemap.SetTile(tilePos, _otherTile);
                 tilemap.SetTile(tilePos, tileToFill);
                 if (!(delay > 0)) continue;
                 yield return new WaitForSeconds(delay);
@@ -100,6 +91,7 @@ namespace Assets.Scripts.GameSession.PlayingField
             for (int i = bottom + 1; i <= top; i++)
             {
                 tilePos = new Vector3Int(right, i, 0);
+                _otherTilemap.SetTile(tilePos, _otherTile);
                 tilemap.SetTile(tilePos, tileToFill);
                 if (!(delay > 0)) continue;
                 yield return new WaitForSeconds(delay);
@@ -111,6 +103,7 @@ namespace Assets.Scripts.GameSession.PlayingField
                 for (int i = right - 1; i >= left; i--)
                 {
                     tilePos = new Vector3Int(i, top, 0);
+                    _otherTilemap.SetTile(tilePos, _otherTile);
                     tilemap.SetTile(tilePos, tileToFill);
                     if (!(delay > 0)) continue;
                     yield return new WaitForSeconds(delay);
@@ -123,6 +116,7 @@ namespace Assets.Scripts.GameSession.PlayingField
                 for (int i = top - 1; i > bottom; i--)
                 {
                     tilePos = new Vector3Int(left, i, 0);
+                    _otherTilemap.SetTile(tilePos, _otherTile);
                     tilemap.SetTile(tilePos, tileToFill);
                     if (!(delay > 0)) continue;
                     yield return new WaitForSeconds(delay);

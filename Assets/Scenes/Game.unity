@@ -1512,6 +1512,8 @@ MonoBehaviour:
     prefab: {fileID: 0}
     spawnWeight: 1
   _fillingPercent: 100
+  _tilemap: {fileID: 632446042}
+  _tilemapRenderer: {fileID: 632446040}
 --- !u!156049354 &353896469
 Grid:
   m_ObjectHideFlags: 0

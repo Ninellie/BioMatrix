@@ -9,6 +9,7 @@ TagManager:
   - Boon
   - Canvas
   - Enclosure
+  - Cage
   layers:
   - Default
   - TransparentFX

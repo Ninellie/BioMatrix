@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Repulse
@@ -69,21 +70,20 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Repulse
 
         private void Collider2DRepulseFrom(Collider2D otherCollider2D, Collision2D collision)
         {
-            var penetrationDepth = 0f;
-
-            foreach (var contact in collision.contacts)
-            {
-                var distance = Vector2.Distance(transform.position, contact.point);
-                var radiiSum = _collider.bounds.extents.magnitude + otherCollider2D.bounds.extents.magnitude;
-                var multipliedRadiiSum = radiiSum * _penetrationDistanceMultiplier;
-                var f = multipliedRadiiSum - distance;
-                penetrationDepth = Mathf.Max(penetrationDepth, f);
-            }
-
+            var penetrationDepth = collision.contacts.Aggregate(0f, (current, contact) => GetPenetrationDepth(otherCollider2D, contact, current));
             var repulseForce = _repulseForce * penetrationDepth;
             var repulseVector = collision.contacts[0].normal * repulseForce;
-
             transform.Translate(repulseVector * Time.fixedDeltaTime, Space.World);
+        }
+
+        private float GetPenetrationDepth(Collider2D otherCollider2D, ContactPoint2D contact, float penetrationDepth)
+        {
+            var distance = Vector2.Distance(transform.position, contact.point);
+            var radiiSum = _collider.bounds.extents.magnitude + otherCollider2D.bounds.extents.magnitude;
+            var multipliedRadiiSum = radiiSum * _penetrationDistanceMultiplier;
+            var f = multipliedRadiiSum - distance;
+            penetrationDepth = Mathf.Max(penetrationDepth, f);
+            return penetrationDepth;
         }
 
         private void SimpleRepulse(Collider2D otherCollider2D, Collision2D collision)

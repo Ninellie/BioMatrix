@@ -14,6 +14,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private Invulnerability _invulnerability;
         private ResourceList _resources;
         private PlayerMovementController _movementController;
+        private Vector2 _cageCenter;
+
         private void Awake()
         {
             _resources = GetComponent<ResourceList>();
@@ -22,10 +24,26 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _movementController = GetComponent<PlayerMovementController>();
         }
 
+        private void OnCollisionStay2D(Collision2D collision2D)
+        {
+            switch (collision2D.collider.tag)
+            {
+                case "Cage":
+                    Debug.LogWarning("CAGE_STAY");
+                    PushBackInsideCage();
+                    break;
+            }
+        }
+
+        private void PushBackInsideCage()
+        {
+            var directionToCameraCenter = (_cageCenter - (Vector2)gameObject.transform.position).normalized;
+            gameObject.transform.Translate(directionToCameraCenter * 10f);
+        }
+
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
             var otherTag = collision2D.collider.tag;
-            var otherCollider = collision2D.otherCollider;
 
             switch (otherTag)
             {
@@ -35,46 +53,36 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                     break;
                 case "Enclosure":
                     Debug.LogWarning("ENCLOSURE");
-                    CollideWithEnclosure();
+                    var movementDirection = _movementController.GetRawMovementDirection() * -1;
+                    CollideWithEnclosure(movementDirection);
                     break;
                 case "Cage":
-                    Debug.LogWarning("Cage");
-                    //CollideWithCage(collision2D);
+                    Debug.LogWarning("CAGE");
+                    var directionToCameraCenter = (_cageCenter - (Vector2)gameObject.transform.position).normalized;
+                    CollideWithEnclosure(directionToCameraCenter);
                     break;
             }
         }
 
-        private void DetectCollisionWithEnclosure()
+        public void SetCageCenter(Vector2 center)
         {
-            // Если в следующем кадре, герой столкнётся с Enclosure, то оттолкнуть его в противоположную его движению сторону.
-            // Получить вектор движения объекта
-            // Кинуть луч по этому вектору
-            // Понять, задел ли луч Enclosure
-            // Если луч не задел Enclosure - выйти
-            // Откинуть объект назад с определённой скоростью
+            _cageCenter = center;
         }
 
-        private void CollideWithEnclosure()
+        private void CollideWithEnclosure(Vector2 direction)
         {
-
-            // Оттолкнуться в противоположную движению сторону
-            var direction = _movementController.GetRawMovementDirection();
-            var force = direction * -50f;
+            var force = direction * 50f;
             _knockbackController.Knockback(force);
-
-            if (!_invulnerability.IsInvulnerable)
+            if (_invulnerability.IsInvulnerable) return;
+            _invulnerability.ApplyInvulnerable();
+            if (!_shield.Layers.IsEmpty)
             {
-                _invulnerability.ApplyInvulnerable();
-                if (!_shield.Layers.IsEmpty)
-                {
-                    _shield.Layers.Decrease();
-                }
-                else
-                {
-                    //TakeDamage(1);
-                }
-
-                if (_resources.GetResource(ResourceName.Health).IsEmpty) return;
+                _shield.Layers.Decrease();
+            }
+            else
+            {
+                //if (_resources.GetResource(ResourceName.Health).IsEmpty) return;
+                //TakeDamage(1);
             }
         }
 
@@ -106,10 +114,5 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _resources.GetResource(ResourceName.Health).Decrease(amount);
             Debug.Log("Damage is taken " + gameObject.name);
         }
-
-
-        //public void OnMove(InputValue input)
-        //{
-        //}
     }
 }
