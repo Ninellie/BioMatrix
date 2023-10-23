@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
@@ -159,7 +158,9 @@ namespace Assets.Scripts.GameSession.Spawner
             //var levelUpBonus = TimerBonus;
             //Debug.LogWarning(levelUpBonus);
             //enemy.LevelUp(levelUpBonus);
-            enemy.SetRarity(_rarity.GetRandomRarity());
+            //var rarity = _rarity.GetRandomRarity();
+            //enemy.SetRarity(rarity);
+            enemy.SetRarity(RarityEnum.Normal);
             if (enemy.GetEnemyType() != EnemyType.AboveView) return;
             enemy.LookAt2D(playerPosition);
         }
