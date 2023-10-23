@@ -31,7 +31,4 @@ MonoBehaviour:
   - stringName: Damage
     name: 7
     baseValue: 1
-  - stringName: SpawnWeight
-    name: 24
-    baseValue: 1
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}
