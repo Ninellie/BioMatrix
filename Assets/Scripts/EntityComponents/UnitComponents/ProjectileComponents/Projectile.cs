@@ -7,22 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
 {
-    public interface ISource
-    {
-
-    }
-
-    public interface IDerivative
-    {
-        public void SetSource(ISource source);
-    }
-
-    public interface IKnockbackDealer
-    {
-        float GetKnockbackPower();
-    }
-
-    public class Projectile : MonoBehaviour, ISlayer, IDerivative, IDamageDealer, IDamageable, IKnockbackDealer
+    public class Projectile : MonoBehaviour, ISlayer, IDerivative, IDamageDealer, IDamageTaker, IKnockbackDealer
     {
         private TrailRenderer _trail;
         private CircleCollider2D _circleCollider;

@@ -11,17 +11,7 @@ using Debug = UnityEngine.Debug;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 {
-    public interface IDamageDealer
-    {
-        int GetDamage();
-    }
-
-    public interface IDamageable
-    {
-        void TakeDamage(int damageAmount);
-    }
-
-    public class Enemy : MonoBehaviour, IDamageDealer, IDamageable, IKnockbackDealer
+    public class Enemy : MonoBehaviour, IDamageDealer, IDamageTaker, IKnockbackDealer
     {
         [SerializeField] private GameObject _onDeathDrop;
         [SerializeField] private GameObject _damagePopup;
@@ -118,9 +108,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             _resources.GetResource(ResourceName.Health).Decrease(damageAmount);
         }
 
-        public void LookAt2D(Vector2 target)
+        public void LookAt2D(Vector2 targetPosition)
         {
-            var direction = (Vector2)_rigidbody2D.transform.position - target;
+            var direction = (Vector2)_rigidbody2D.transform.position - targetPosition;
             var angle = (Mathf.Atan2(direction.y, direction.x) + Mathf.PI / 2) * Mathf.Rad2Deg;
             _rigidbody2D.rotation = angle;
             _rigidbody2D.SetRotation(angle);
@@ -208,7 +198,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             _deathFromProjectile = true;
             TakeDamage(projectileDamage);
 
-            var dropPosition = GetClosestPointOnCircle(projectile.transform.position); //TODO move to Circle.cs
+            var dropPosition = GetClosestPointOnCircle(projectile.transform.position);
             DropDamagePopup(projectileDamage, dropPosition);
 
             ChangeColorOnDamageTaken();
@@ -258,11 +248,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             Instantiate(_onDeathDrop, _rigidbody2D.position, rotation);
         }
         
-        private void DropDamagePopup(int damage, Vector2 position)
+        private void DropDamagePopup(int damageValue, Vector2 position)
         {
             var droppedDamagePopup = Instantiate(_damagePopup);
             droppedDamagePopup.transform.position = position;
-            droppedDamagePopup.GetComponent<DamagePopup>().Setup(damage);
+            droppedDamagePopup.GetComponent<DamagePopup>().Setup(damageValue);
         }
 
         private Vector2 GetClosestPointOnCircle(Vector2 otherCircleColliderCenter)
