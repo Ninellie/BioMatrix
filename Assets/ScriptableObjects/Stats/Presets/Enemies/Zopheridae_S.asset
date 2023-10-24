@@ -21,7 +21,7 @@ MonoBehaviour:
     baseValue: 50
   - stringName: MovementSpeed
     name: 5
-    baseValue: 240
+    baseValue: 140
   - stringName: KnockbackPower
     name: 4
     baseValue: 150

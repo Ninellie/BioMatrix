@@ -5329,6 +5329,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 737220736389588004, guid: 1bc987c6695435940887c3ede1b9f640, type: 3}
+      propertyPath: _spawnDataPreset
+      value: 
+      objectReference: {fileID: 11400000, guid: db8820b77b928be4fb801a38e1598609, type: 2}
     - target: {fileID: 5359229345271194115, guid: 1bc987c6695435940887c3ede1b9f640, type: 3}
       propertyPath: m_Name
       value: Spawner

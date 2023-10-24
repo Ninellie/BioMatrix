@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8165684587596004793}
   - component: {fileID: -1246950854706297088}
   - component: {fileID: -7540060648430052599}
+  - component: {fileID: -4677112879797899843}
   - component: {fileID: 4540966149982126123}
   - component: {fileID: 2673435760891721348}
   - component: {fileID: 3572984765799172596}
@@ -54,10 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2423b6cbbaa2b1d44a8b712cd8ecc5af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
-  _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
   _enemyType: 0
-  _dieOnPlayerCollision: 0
 --- !u!114 &-1246950854706297088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,6 +89,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _knockbackSpeed: 700
+--- !u!114 &-4677112879797899843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 514a38e797d12fc4ea4697da3806bf51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isArmored: 0
+  _damageThreshold: 5
+  _armoredTime: 3
+  _armoredStatMod:
+    strName: 
+    mod:
+      name: 
+      _type: 1
+      _value: -40
+    statName: 5
+  _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
+  _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
+  _dieOnPlayerCollision: 0
+  _takeDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &4540966149982126123
 MonoBehaviour:
   m_ObjectHideFlags: 0
