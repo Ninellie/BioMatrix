@@ -15,13 +15,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         [SerializeField] private bool _dieOnPlayerCollision;
         [SerializeField] private Color _takeDamageColor;
 
-        private KnockbackController _knockbackController;
-        public bool IsAlive { get; private set; }
-
+        private bool _isAlive;
         private int _dropCount = 1;
         private readonly Rarity _rarity = new();
         private bool _deathFromProjectile;
 
+        private KnockbackController _knockbackController;
         private Rigidbody2D _rigidbody2D;
         private CircleCollider2D _circleCollider;
         private SpriteRenderer _spriteRenderer;
@@ -38,7 +37,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private void Awake()
         {
-            IsAlive = true;
+            _isAlive = true;
 
             _resources = GetComponent<ResourceList>();
             _knockbackController = GetComponent<KnockbackController>();
@@ -54,7 +53,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
-            if (!IsAlive) return;
+            if (!_isAlive) return;
             switch (collision2D.collider.tag)
             {
                 case "Projectile":
@@ -93,12 +92,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             _knockbackController.Knockback(force);
 
             if (!_resources.GetResource(ResourceName.Health).IsEmpty) return;
-            IsAlive = false;
+            _isAlive = false;
         }
 
         private void CollideWithPlayer(ISlayer player)
         {
-            if (!IsAlive) return;
+            if (!_isAlive) return;
             if (!_dieOnPlayerCollision) return;
             _deathFromProjectile = false;
             _lastDamageSource = player;
