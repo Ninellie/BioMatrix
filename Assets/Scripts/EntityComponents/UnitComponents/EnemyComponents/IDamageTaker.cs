@@ -2,6 +2,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 {
     public interface IDamageTaker
     {
-        void TakeDamage(int damageAmount);
+        //bool IsAlive { get; }
+        //void TakeDamage(int damageAmount);
     }
 }

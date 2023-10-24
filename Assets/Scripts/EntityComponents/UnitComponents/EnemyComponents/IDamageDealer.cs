@@ -1,7 +1,7 @@
-namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
-{
-    public interface IDamageDealer
-    {
-        int GetDamage();
-    }
-}
+//namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
+//{
+//    public interface IDamageDealer
+//    {
+//        int GetDamage();
+//    }
+//}
