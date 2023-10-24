@@ -44,14 +44,7 @@ public class EffectsList : MonoBehaviour
 
     public void AddEffect(IEffect effect)
     {
-        IEffect e = null;
-
-        foreach (var ef in _effects)
-        {
-            if (!ef.Name.Equals(effect.Name)) continue;
-            e = ef;
-            break;
-        }
+        var e = _effects.FirstOrDefault(ef => ef.Name.Equals(effect.Name));
 
         if (e == null)
         {
@@ -61,7 +54,6 @@ public class EffectsList : MonoBehaviour
         {
             AdjustEffect(_effects.Find(eff => eff.Name.Equals(e.Name)));
         }
-
 
         //var first = _effects.FirstOrDefault(e => e.Name.Equals(effect.Name));
         //if (first == null)
