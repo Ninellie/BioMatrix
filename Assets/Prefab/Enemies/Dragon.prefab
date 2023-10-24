@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8165684587596004793}
   - component: {fileID: -1246950854706297088}
   - component: {fileID: -7540060648430052599}
+  - component: {fileID: -526775894936834805}
   - component: {fileID: 4540966149982126123}
   - component: {fileID: 2673435760891721348}
   - component: {fileID: 3572984765799172596}
@@ -57,8 +58,6 @@ MonoBehaviour:
   _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
   _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
   _enemyType: 0
-  _dieOnPlayerCollision: 0
-  knockbackController: {fileID: -7540060648430052599}
 --- !u!114 &-1246950854706297088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +91,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _knockbackSpeed: 700
+--- !u!114 &-526775894936834805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69480e5252f8e924db9dbb89a33a8882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
+  _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
+  _dieOnPlayerCollision: 0
+  _takeDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &4540966149982126123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +135,7 @@ MonoBehaviour:
   _repulseForce: 0.4
   _penetrationDistanceMultiplier: 1.1
   _layerName: Enemy
+  _simpleRepulse: 0
 --- !u!212 &3572984765799172596
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -276,8 +292,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _usePreset: 1
   _preset: {fileID: 11400000, guid: 60536cb26f4ab17468f56b3d80b53c58, type: 2}
-  _resources: []
   _statList: {fileID: -4600533595376686882}
+  _resources: []
   references:
     version: 2
     RefIds: []

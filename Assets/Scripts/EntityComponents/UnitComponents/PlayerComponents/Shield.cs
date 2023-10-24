@@ -5,6 +5,7 @@ using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
+using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
@@ -80,21 +81,20 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             var repulseRadius = _stats.GetStat(StatName.RepulseRadius).Value;
             var repulseForce = _stats.GetStat(StatName.RepulseForce).Value;
-
-            var nearbyEnemies = GetNearbyEnemiesList(repulseRadius, _resistancePhysLayer);
+            var nearbyEnemies = GetNearbyEnemiesKnockbackControllerList(repulseRadius, _resistancePhysLayer);
             foreach (var enemy in nearbyEnemies)
             {
                 var force = (Vector2)enemy.transform.position - (Vector2)gameObject.transform.position;
                 force.Normalize();
                 force *= repulseForce;
-                enemy.KnockbackController.Knockback(force);
+                enemy.Knockback(force);
             }
         }
 
-        private List<Enemy> GetNearbyEnemiesList(float repulseRadius, LayerMask enemyLayer)
+        private List<KnockbackController> GetNearbyEnemiesKnockbackControllerList(float repulseRadius, LayerMask enemyLayer)
         {
             var colliders2D = Physics2D.OverlapCircleAll(transform.position, repulseRadius, enemyLayer);
-            return colliders2D.Select(collider2d => collider2d.gameObject.GetComponent<EnemyComponents.Enemy>()).ToList();
+            return colliders2D.Select(collider2d => collider2d.gameObject.GetComponent<KnockbackController>()).ToList();
         }
     
         private void Disable()

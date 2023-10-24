@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -7174485722683278531}
   - component: {fileID: -3405878202213395143}
   - component: {fileID: 4856388557757360404}
+  - component: {fileID: -9007329207117418387}
   - component: {fileID: -3291230919162905398}
   - component: {fileID: 3572984765799172596}
   - component: {fileID: -2167475189181900128}
@@ -35,13 +36,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8954189743293124748}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8165684587596004793
 MonoBehaviour:
@@ -58,8 +59,6 @@ MonoBehaviour:
   _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
   _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
   _enemyType: 1
-  _dieOnPlayerCollision: 1
-  knockbackController: {fileID: -3405878202213395143}
 --- !u!114 &-7174485722683278531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,6 +106,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotationSpeed: 2
+--- !u!114 &-9007329207117418387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69480e5252f8e924db9dbb89a33a8882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
+  _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
+  _dieOnPlayerCollision: 0
+  _takeDamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &-3291230919162905398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +137,7 @@ MonoBehaviour:
   _repulseForce: 0.3
   _penetrationDistanceMultiplier: 0.8
   _layerName: Enemy
+  _simpleRepulse: 0
 --- !u!212 &3572984765799172596
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -299,5 +315,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _usePreset: 1
   _preset: {fileID: 11400000, guid: af8fc1384509a8340a9572ecccccda20, type: 2}
-  _resources: []
   _statList: {fileID: -2015605512780989611}
+  _resources: []
+  references:
+    version: 2
+    RefIds: []

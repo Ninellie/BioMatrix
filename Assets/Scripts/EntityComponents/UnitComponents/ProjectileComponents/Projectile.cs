@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
 {
-    public class Projectile : MonoBehaviour, ISlayer, IDerivative, IDamageDealer, IDamageTaker, IKnockbackDealer
+    public class Projectile : MonoBehaviour, ISlayer, IDerivative
     {
         private TrailRenderer _trail;
         private CircleCollider2D _circleCollider;
@@ -57,10 +57,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
 
         private void OnBecameInvisible() => Death();
 
-        public int GetDamage()
-        {
-            return (int)_stats.GetStat(StatName.Damage).Value;
-        }
+        public bool IsAlive { get; }
 
         public void TakeDamage(int damageAmount)
         {
@@ -85,8 +82,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
             if (source is ISlayer slayer)
                 _source = slayer;
         }
-
-        public float GetKnockbackPower() => _stats.GetStat(StatName.KnockbackPower).Value;
 
         private void ChangeCurrentSize()
         {

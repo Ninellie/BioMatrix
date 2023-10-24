@@ -1,4 +1,5 @@
 using Assets.Scripts.EntityComponents.Resources;
+using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
@@ -48,7 +49,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             switch (otherTag)
             {
                 case "Enemy":
-                    var enemy = collision2D.gameObject.GetComponent<Enemy>();
+                    var enemy = collision2D.gameObject.GetComponent<StatList>();
                     CollideWithEnemy(enemy);
                     break;
                 case "Enclosure":
@@ -86,19 +87,20 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             }
         }
 
-        private void CollideWithEnemy(Enemy enemy)
+        private void CollideWithEnemy(StatList enemyStats)
         {
             if (!_shield.Layers.IsEmpty)
                 _shield.Layers.Decrease();
             else
             {
-                var damageAmount = enemy.GetDamage();
-                TakeDamage(damageAmount);
+                var enemyDamage = (int)enemyStats.GetStat(StatName.Damage).Value;
+                TakeDamage(enemyDamage);
+
                 if (_resources.GetResource(ResourceName.Health).IsEmpty) return;
+
                 _invulnerability.ApplyInvulnerable();
-                var knockbackPower = enemy.GetKnockbackPower();
-                Vector2 enemyPosition = enemy.transform.position;
-                KnockBackFromPosition(knockbackPower, enemyPosition);
+                var knockbackPower = enemyStats.GetStat(StatName.KnockbackPower).Value;
+                KnockBackFromPosition(knockbackPower, enemyStats.transform.position);
             }
         }
 

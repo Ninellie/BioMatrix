@@ -16,10 +16,9 @@ namespace Assets.Scripts.GameSession.Spawner
         [SerializeField] private int _secondsBetweenWaves;
 
         private readonly Grouping _grouping = new();
-        private readonly Rarity _rarity = new();
+        //private readonly Rarity _rarity = new();
         private readonly Circle _circle = new();
         private GameObject _player;
-        //private readonly EnemyWaveProperties _enemyWaveProperties = new();
         private const int DefaultComplicationValue = 60;
 
         private int TimerBonus
@@ -61,7 +60,6 @@ namespace Assets.Scripts.GameSession.Spawner
             if (IsSpawnBlocked()) return;
 
             var playerPosition = (Vector2)_player.transform.position;
-            //var waveSize = _enemyWaveProperties.GetSize(waveType);
             var waveSize = _waveDataPreset.GetSize(waveType);
             var spawn = CreateWave(waveSize);
             if (spawn is null) return;
@@ -73,7 +71,6 @@ namespace Assets.Scripts.GameSession.Spawner
 
         private GameObject[] CreateWave(int waveSize)
         {
-            //var spawn = GetEnemyList(waveSize, currentEnemyPrefabs);
             var spawn = GetWeighedEnemyListByTime(waveSize);
             if (spawn is null) return null;
             if (spawn.Count == 0) return null;
@@ -161,7 +158,7 @@ namespace Assets.Scripts.GameSession.Spawner
             //var rarity = _rarity.GetRandomRarity();
             //enemy.SetRarity(rarity);
             enemy.SetRarity(RarityEnum.Normal);
-            if (enemy.GetEnemyType() != EnemyType.AboveView) return;
+            if (enemy.EnemyType != EnemyType.AboveView) return;
             enemy.LookAt2D(playerPosition);
         }
     }
