@@ -90,9 +90,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 
         private void CreateTurret()
         {
-            var turretGameObject = Instantiate(_turretPrefab);
-            turretGameObject.transform.SetParent(gameObject.transform);
-
+            var turretGameObject = Instantiate(_turretPrefab, transform.position, new Quaternion(), transform);
+            //turretGameObject.transform.SetParent(gameObject.transform);
             var createdTurret = turretGameObject.GetComponent<Turret>();
             createdTurret.SetSource(this);
             createdTurret.CreateWeapon(_turretWeaponPrefab);
