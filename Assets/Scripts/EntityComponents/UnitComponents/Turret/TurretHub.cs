@@ -11,12 +11,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
     {
         [SerializeField] private GameObject _turretPrefab;
         [SerializeField] private GameObject _turretWeaponPrefab;
-        //[SerializeField] private bool _isSameTurretTarget;
 
-        public Firearm Firearm { get; set; }
-
-        public readonly Stack<Turret> currentTurrets = new();
-
+        private Firearm _firearm;
+        private readonly Stack<Turret> _currentTurrets = new();
         private IOrbitRotationController _orbitRotationController;
         private ISlayer _source;
         private ResourceList _resources;
@@ -33,7 +30,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
         {
             Subscribe();
             UpdateTurrets();
-            _orbitRotationController.SetObjects(currentTurrets);
+            _orbitRotationController.SetObjects(_currentTurrets);
             _orbitRotationController.SetAttractor(gameObject);
         }
 
@@ -60,7 +57,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             w.transform.position = gameObject.transform.position;
             var firearm = w.GetComponent<Firearm>();
             firearm.IsEnable = false;
-            Firearm = firearm;
+            _firearm = firearm;
             return w;
         }
 
@@ -95,21 +92,20 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             var createdTurret = turretGameObject.GetComponent<Turret>();
             createdTurret.SetSource(this);
             createdTurret.CreateWeapon(_turretWeaponPrefab);
-            createdTurret.Firearm.SetStatList(Firearm.GetStatList());
-
-            currentTurrets.Push(createdTurret);
+            createdTurret.Firearm.SetStatList(_firearm.GetStatList());
+            _currentTurrets.Push(createdTurret);
         }
 
         private void DestroyTurret()
         {
-            var turret = currentTurrets.Pop();
+            var turret = _currentTurrets.Pop();
             turret.Death();
         }
 
         private void UpdateTurrets()
         {
             var turretsCount = _resources.GetResource(ResourceName.Turrets).GetValue();
-            var dif = turretsCount - currentTurrets.Count;
+            var dif = turretsCount - _currentTurrets.Count;
 
             if (dif > 0)
             {
