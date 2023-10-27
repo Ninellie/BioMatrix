@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b57a2a00642ad84892aa8d396643e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyTag: Enemy
 --- !u!114 &-5652939125271565065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,8 +346,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _usePreset: 1
   _preset: {fileID: 11400000, guid: b1f1e538b619c3144a63482aa413b8a6, type: 2}
-  _resources: []
   _statList: {fileID: 1949819608208524623}
+  _resources: []
   references:
     version: 2
     RefIds: []

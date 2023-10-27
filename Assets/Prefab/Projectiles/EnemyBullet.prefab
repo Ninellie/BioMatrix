@@ -15,12 +15,11 @@ GameObject:
   - component: {fileID: 401081946869708339}
   - component: {fileID: 5384938256212642916}
   - component: {fileID: 156745283301569288}
-  - component: {fileID: -3720850493605128076}
   - component: {fileID: 1949819608208524623}
   - component: {fileID: 8223658841121444557}
-  m_Layer: 10
-  m_Name: TurretBullet
-  m_TagString: Projectile
+  m_Layer: 11
+  m_Name: EnemyBullet
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b57a2a00642ad84892aa8d396643e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyTag: Enemy
+  _enemyTag: Player
 --- !u!114 &-5652939125271565065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,9 +68,9 @@ MonoBehaviour:
   _minSpeedScale: 0
   _maxSpeedScale: 1
   _tendSpeedScale: 0
-  _speedScaleRestoreSpeed: 0.7
-  _restoreSpeedScale: 1
-  _staticSpeedScale: 0
+  _speedScaleRestoreSpeed: 1
+  _restoreSpeedScale: 0
+  _staticSpeedScale: 1
 --- !u!50 &2316403284215167119
 Rigidbody2D:
   serializedVersion: 4
@@ -176,7 +175,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
+  m_Color: {r: 0.0047169924, g: 0.7502035, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -259,8 +258,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.60586303, b: 0.8, a: 1}
-      key1: {r: 0.71132076, g: 0.9825025, b: 1, a: 0}
+      key0: {r: 1, g: 0.50980395, b: 0.454902, a: 1}
+      key1: {r: 1, g: 0.50980395, b: 0.454902, a: 0}
       key2: {r: 0.8352942, g: 0.23529413, b: 0.4156863, a: 0}
       key3: {r: 0.8352942, g: 0.23529413, b: 0.4156863, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -268,7 +267,7 @@ TrailRenderer:
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 24865
+      ctime1: 65535
       ctime2: 65535
       ctime3: 65535
       ctime4: 0
@@ -284,7 +283,7 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 1
@@ -299,24 +298,6 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 0
---- !u!114 &-3720850493605128076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2741946790039367102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa509718787c27409773cda7bcf8e0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _effects: []
-  _gameTimeScheduler: {fileID: 0}
-  _effectsAggregator: {fileID: 0}
-  references:
-    version: 2
-    RefIds: []
 --- !u!114 &1949819608208524623
 MonoBehaviour:
   m_ObjectHideFlags: 0
