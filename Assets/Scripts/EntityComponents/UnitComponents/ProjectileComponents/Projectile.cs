@@ -9,6 +9,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
 {
     public class Projectile : MonoBehaviour, ISlayer, IDerivative
     {
+        [SerializeField] private string _enemyTag;
+
         private TrailRenderer _trail;
         private CircleCollider2D _circleCollider;
         private IProjectileMovementController _movementController;
@@ -50,14 +52,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
             var otherCollider2D = collision2D.collider;
-            if (!otherCollider2D.gameObject.CompareTag("Enemy")) return;
-            if (!otherCollider2D.gameObject.GetComponent<Enemy>().IsAlive) return;
+            if (!otherCollider2D.gameObject.CompareTag(_enemyTag)) return;
+            //if (!otherCollider2D.gameObject.GetComponent<Enemy>().IsAlive) return;
             _resources.GetResource(ResourceName.Health).Decrease();
         }
 
         private void OnBecameInvisible() => Death();
-
-        public bool IsAlive { get; }
 
         public void TakeDamage(int damageAmount)
         {

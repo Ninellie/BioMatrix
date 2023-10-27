@@ -64,9 +64,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         protected void FixedUpdate()
         {
             var t = Time.fixedDeltaTime;
-            if (_restoreSpeedScale)
-                RestoreSpeedScale(t);
-
+            if (_restoreSpeedScale) RestoreSpeedScale(t);
             var nextPosition = GetMoveStep(t);
             _rigidbody2D.MovePosition(nextPosition);
         }

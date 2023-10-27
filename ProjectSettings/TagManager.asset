@@ -10,6 +10,7 @@ TagManager:
   - Canvas
   - Enclosure
   - Cage
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Enclosure
   - Boon
   - Projectile
-  - 
+  - EnemyProjectile
   - 
   - 
   - 
