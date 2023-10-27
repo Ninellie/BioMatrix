@@ -52,7 +52,6 @@ namespace Assets.Scripts.FirearmComponents
 
         public Reload Reload { get; private set; }
         private Player _player;
-        //private bool IsFireButtonPressed => IsEnable && !IsForPlayer || _player.IsFireButtonPressed;
         private float _previousShootTimer;
         private float MinShootInterval => 1f / ShootsPerSecond.Value;
 
@@ -87,8 +86,6 @@ namespace Assets.Scripts.FirearmComponents
         {
             if (!IsEnable) return;
             _previousShootTimer -= Time.deltaTime;
-            //if (!IsFireButtonPressed) return;
-            //if (CanShoot) Shoot();
         }
 
         private void FixedUpdate()
@@ -118,11 +115,6 @@ namespace Assets.Scripts.FirearmComponents
         public void OnReload() => ReloadEvent?.Invoke();
 
         public void OnReloadEnd() => ReloadEndEvent?.Invoke();
-
-        //public void SetDirection(Vector2 direction)
-        //{
-        //    _currentFireDirection = direction;
-        //}
 
         public void SetSource(ISource source)
         {
@@ -171,21 +163,13 @@ namespace Assets.Scripts.FirearmComponents
             Magazine.Decrease();
 
             var projectiles = CreateProjectiles((int)SingleShootProjectile.Value, _ammo, gameObject.transform);
-
             var direction = GetShotDirection();
-
             var projSpread = _stats.GetStat(StatName.MaxShootDeflectionAngle).Value;
-
             var projCount = projectiles.Length;
-
             var fireAngle = projSpread * (projCount - 1);
-
             var halfFireAngleRad = fireAngle * 0.5f * Mathf.Deg2Rad;
-
             var leftDirection = Rotate(direction, -halfFireAngleRad);
-
             var actualShotDirection = leftDirection;
-
 
             foreach (var projectile in projectiles)
             {
