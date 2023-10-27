@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
+namespace Assets.Scripts.EntityComponents.UnitComponents
 {
     public interface ITargeted
     {

@@ -1,22 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Core;
-using Assets.Scripts.Core.Render;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using Assets.Scripts.GameSession.UIScripts;
+using Codice.Client.Common;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
-public interface IWeapon
-{
-    Resource GetAmmoResource();
-    void DoAction();
-}
+using Time = UnityEngine.Time;
 
 namespace Assets.Scripts.FirearmComponents
 {
@@ -25,8 +19,6 @@ namespace Assets.Scripts.FirearmComponents
     {
         [SerializeField] private GameObject _ammo;
         [SerializeField] private LayerMask _enemyLayer;
-        //[SerializeField] private AimMode _isAimHelperActive;
-
         public bool IsForPlayer { get; private set; }
         public Stat Damage { get; private set; }
         public Stat ShootForce { get; private set; }
@@ -148,16 +140,7 @@ namespace Assets.Scripts.FirearmComponents
             AddedProjectileKnockback = firearmStats.GetStat(StatName.AddedProjectileKnockback);
             TurretAimingRadius = firearmStats.GetStat(StatName.TurretAimingRadius);
         }
-        public GameObject[] CreateProjectiles(int singleShotProjectiles, GameObject ammo, Transform firingPoint)
-        {
-            var projectiles = new GameObject[singleShotProjectiles];
 
-            for (var i = 0; i < projectiles.Length; i++)
-            {
-                projectiles[i] = Instantiate(ammo, firingPoint.position, firingPoint.rotation);
-            }
-            return projectiles;
-        }
         private void Shoot()
         {
             Magazine.Decrease();
@@ -168,27 +151,37 @@ namespace Assets.Scripts.FirearmComponents
             var projCount = projectiles.Length;
             var fireAngle = projSpread * (projCount - 1);
             var halfFireAngleRad = fireAngle * 0.5f * Mathf.Deg2Rad;
-            var leftDirection = Rotate(direction, -halfFireAngleRad);
+            var leftDirection = MathFirearm.Rotate(direction, -halfFireAngleRad);
             var actualShotDirection = leftDirection;
 
             foreach (var projectile in projectiles)
             {
                 var projStats = projectile.GetComponent<StatList>();
-                var projResources = projectile.GetComponent<ResourceList>();
                 var proj = projectile.GetComponent<Projectile>();
 
-                ImproveProjectile(projStats, projResources);
+                ImproveProjectile(projStats);
 
                 proj.SetSource(this);
 
                 proj.Launch(actualShotDirection, ShootForce.Value);
-                actualShotDirection = Rotate(actualShotDirection, projSpread * Mathf.Deg2Rad);
+                actualShotDirection = MathFirearm.Rotate(actualShotDirection, projSpread * Mathf.Deg2Rad);
             }
 
             _previousShootTimer = MinShootInterval;
         }
 
-        private void ImproveProjectile(StatList projectileStats, ResourceList projectileResources)
+        public GameObject[] CreateProjectiles(int singleShotProjectiles, GameObject ammo, Transform firingPoint)
+        {
+            var projectiles = new GameObject[singleShotProjectiles];
+
+            for (var i = 0; i < projectiles.Length; i++)
+            {
+                projectiles[i] = Instantiate(ammo, firingPoint.position, firingPoint.rotation);
+            }
+            return projectiles;
+        }
+
+        private void ImproveProjectile(StatList projectileStats)
         {
             var statMod = new StatMod(OperationType.Multiplication, ProjectileSizeMultiplier.Value);
             projectileStats.GetStat(StatName.Size).AddModifier(statMod);
@@ -201,8 +194,6 @@ namespace Assets.Scripts.FirearmComponents
 
             statMod = new StatMod(OperationType.Addition, AddedProjectileKnockback.Value);
             projectileStats.GetStat(StatName.KnockbackPower).AddModifier(statMod);
-
-            //projectileResources.GetResource(ResourceName.Health).Fill();
         }
 
         private Vector2 GetShotDirection()
@@ -304,27 +295,6 @@ namespace Assets.Scripts.FirearmComponents
             var cameraBottomLeft = new Vector3(-mainCamera.aspect * mainCamera.orthographicSize, -mainCamera.orthographicSize, 0f) + cameraPos;
             var collidersInCameraBounds = Physics2D.OverlapAreaAll(cameraBottomLeft, cameraTopRight, _enemyLayer);
             return collidersInCameraBounds;
-        }
-
-        private Vector2 GetActualShotDirection(Vector2 direction, float maxShotDeflectionAngle)
-        {
-            var angleInRad = Mathf.Deg2Rad * maxShotDeflectionAngle;
-            var shotDeflectionAngle = Range(-angleInRad, angleInRad);
-            return Rotate(direction, shotDeflectionAngle);
-        }
-    
-        private float Range(float minInclusive, float maxInclusive)
-        {
-            var std = PeterAcklamInverseCDF.NormInv(Random.value);
-            return PeterAcklamInverseCDF.RandomGaussian(std, minInclusive, maxInclusive);
-        }
-    
-        private Vector2 Rotate(Vector2 point, float angle)
-        {
-            Vector2 rotatedPoint;
-            rotatedPoint.x = point.x * Mathf.Cos(angle) - point.y * Mathf.Sin(angle);
-            rotatedPoint.y = point.x * Mathf.Sin(angle) + point.y * Mathf.Cos(angle);
-            return rotatedPoint;
         }
     }
 }

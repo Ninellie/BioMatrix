@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.EntityComponents.UnitComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
-using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 using Random = UnityEngine.Random;
