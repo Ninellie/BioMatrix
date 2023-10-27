@@ -62,6 +62,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                     var directionToCameraCenter = (_cageCenter - (Vector2)gameObject.transform.position).normalized;
                     CollideWithEnclosure(directionToCameraCenter);
                     break;
+                case "EnemyProjectile":
+                    Debug.LogWarning("EnemyProjectile");
+                    var enemyProjectile = collision2D.gameObject.GetComponent<StatList>();
+                    CollideWithEnemy(enemyProjectile);
+                    break;
             }
         }
 
