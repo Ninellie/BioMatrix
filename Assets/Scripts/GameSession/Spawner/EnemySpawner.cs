@@ -145,7 +145,11 @@ namespace Assets.Scripts.GameSession.Spawner
             foreach (var enemy in enemies)
             {
                 var e = enemy.GetComponent<Enemy>();
-                enemy.GetComponent<ITargeted>().SetTarget(_player);
+
+                foreach (var targeted in enemy.GetComponentsInChildren<ITargeted>())
+                {
+                    targeted.SetTarget(_player);
+                }
                 PrepareEnemy(e, playerPosition);
             }
         }
