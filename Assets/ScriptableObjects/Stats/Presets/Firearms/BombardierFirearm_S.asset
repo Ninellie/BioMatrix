@@ -18,10 +18,10 @@ MonoBehaviour:
     baseValue: 1
   - stringName: ShootForce
     name: 15
-    baseValue: 500
+    baseValue: 250
   - stringName: ShootsPerSecond
     name: 16
-    baseValue: 0.5
+    baseValue: 0.25
   - stringName: MaxShootDeflectionAngle
     name: 17
     baseValue: 10
@@ -36,11 +36,11 @@ MonoBehaviour:
     baseValue: 1
   - stringName: ProjectileSizeMultiplier
     name: 21
-    baseValue: 0
+    baseValue: 200
   - stringName: Pierce
     name: 22
     baseValue: 0
   - stringName: AddedProjectileKnockback
     name: 23
-    baseValue: 5
+    baseValue: 150
   settings: {fileID: 11400000, guid: 96609de8ebfc0894da58917cbf1bad39, type: 2}
