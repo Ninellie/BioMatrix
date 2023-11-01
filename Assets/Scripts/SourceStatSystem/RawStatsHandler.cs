@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.SourceStatSystem
@@ -14,31 +13,33 @@ namespace Assets.Scripts.SourceStatSystem
     public enum StatImpactType
     {
         None,
-        Addition,
+        Flat,
         Percentage
     }
 
     [Serializable]
     public class StatSourceData
     {
-        [field: SerializeField] public string Id { get; private set; } = string.Empty;
+        public StatSourceData(Stat statId, StatImpactType impactType)
+        {
+            StatId = statId;
+            ImpactType = impactType;
+            Value = 0;
+        }
+
+        public StatSourceData(string id, StatSourceType type, Stat statId, StatImpactType impactType, int value)
+        {
+            Id = id;
+            Type = type;
+            StatId = statId;
+            ImpactType = impactType;
+            Value = value;
+        }
+
+        [field: SerializeField] public string Id { get; set; } = string.Empty;
         [field: SerializeField] public StatSourceType Type { get; set; } = StatSourceType.None;
         [field: SerializeField] public Stat StatId { get; set; }
-        [field: SerializeField] public StatImpactType ImpactType { get; set; } = StatImpactType.None;
-        [field: SerializeField] public int Value { get; private set; } = 0;
-    }
-
-    public class BaseStatSources : ScriptableObject, ISerializationCallbackReceiver
-    {
-        [field: SerializeField] public List<StatSourceData> StatSources { get; private set; } = new List<StatSourceData>();
-
-        void ISerializationCallbackReceiver.OnBeforeSerialize() { }
-        void ISerializationCallbackReceiver.OnAfterDeserialize()
-        {
-            foreach (var baseStatSource in StatSources)
-            {
-                baseStatSource.Type = StatSourceType.Base;
-            }
-        }
+        [field: SerializeField] public StatImpactType ImpactType { get; set; }
+        [field: SerializeField] public int Value { get; private set; }
     }
 }
