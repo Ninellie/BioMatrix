@@ -20,20 +20,20 @@ namespace Assets.Scripts.SourceStatSystem
         {
             if (_newFlatStatSource != null)
             {
-                StatSources.Add(new StatSourceData(_newFlatStatSource, StatImpactType.Flat));
+                StatSources.Add(new StatSourceData(_newFlatStatSource, ImpactType.Flat));
                 _newFlatStatSource = null;
             }
 
             if (_newPercentageStatSource!= null)
             {
-                StatSources.Add(new StatSourceData(_newPercentageStatSource, StatImpactType.Percentage));
+                StatSources.Add(new StatSourceData(_newPercentageStatSource, ImpactType.Percentage));
                 _newPercentageStatSource = null;
             }
 
             foreach (var baseStatSource in StatSources)
             {
                 baseStatSource.Type = _type;
-                baseStatSource.Id = $"{_id.ToLower()}_base_{baseStatSource.StatId.Id}_{baseStatSource.ImpactType.ToString().ToLower()}";
+                baseStatSource.Id = $"{_id.ToLower()}_base_{baseStatSource.StatId.Id}_{baseStatSource.SourceImpactType.ToString().ToLower()}";
             }
         }
     }

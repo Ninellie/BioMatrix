@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb1b0fb485f50439cfd2c7aad10afb, type: 3}
   m_Name: UnitBase
   m_EditorClassIdentifier: 
-  _id: 
+  _id: Unit
   _type: 1
   _newFlatStatSource: {fileID: 0}
   _newPercentageStatSource: {fileID: 0}
-  <StatSources>k__BackingField: []
+  <StatSources>k__BackingField:
+  - <Id>k__BackingField: unit_base_size_multiplier_flat
+    <Type>k__BackingField: 1
+    <StatId>k__BackingField: {fileID: 11400000, guid: 222f696b57d0df34bbda44d01e526e78, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 0

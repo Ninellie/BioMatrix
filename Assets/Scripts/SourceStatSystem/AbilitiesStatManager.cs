@@ -6,8 +6,17 @@ namespace Assets.Scripts.SourceStatSystem
     [AddComponentMenu("Source Stat System/Abilities Stat Manager")]
     public class AbilitiesStatManager : MonoBehaviour
     {
+        // Один менеджер на одну способность?
         [field: SerializeField] public StatsHandler UnitStats { get; set; }
         [field: SerializeField] public List<StatsHandler> AbilityStats { get; set; }
+
+        public void AddAbilityStats(StatsHandler abilityStatHandler)
+        {
+            if (!AbilityStats.Contains(abilityStatHandler))
+            {
+                AbilityStats.Add(abilityStatHandler);
+            }
+        }
 
         [ContextMenu("Add Ability Stat Sources")]
         private void AddAbilityStatSources()
@@ -19,7 +28,7 @@ namespace Assets.Scripts.SourceStatSystem
         }
 
         // Эта штука подписана на стат лист героя и реагирует на его изменения. Принимая в параметре статСурс который добавляется или удаляется
-        private void AddStatSourceToAbilities(StatSourceData statSourceData)
+        public void AddStatSourceToAbilities(StatSourceData statSourceData)
         {
             foreach (var abilityStatsHandler in AbilityStats)
             {
