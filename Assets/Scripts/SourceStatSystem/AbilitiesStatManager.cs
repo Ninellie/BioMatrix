@@ -21,7 +21,7 @@ namespace Assets.Scripts.SourceStatSystem
         [ContextMenu("Add Ability Stat Sources")]
         private void AddAbilityStatSources()
         {
-            foreach (var unitStatsHandler in UnitStats.BaseStatSources.StatSources)
+            foreach (var unitStatsHandler in UnitStats.StatSources)
             {
                 AddStatSourceToAbilities(unitStatsHandler);
             }

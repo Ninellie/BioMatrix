@@ -8,23 +8,22 @@ namespace Assets.Scripts.SourceStatSystem
     [AddComponentMenu("Source Stat System/Stats Handler")]
     public class StatsHandler : MonoBehaviour, ISerializationCallbackReceiver
     {
-        // Отдельный хендлер для каждого стата
-
-        // Или отдельный хендлер для каждого ТИПА стата. Стат может иметь свои зависимости и может зависеть от определённых событий 
-        // К временных эффектам добавить повышение стата если за последнее время персонаж делал что-то. 
-        // Эта логика может выполняться как эффектом: эффект отслеживает события и добавляет-убавляет стат-сурс (модификатор), как оно есть сейчас
-        // Так и заведением нового стата, например "+2% скорости эффекта если за последние 4 секунды было совершено убийство" - стат хендлер уже подписан на нужные эффекты и знает сколько было совершено убийств за последние 5 секунд и вернёт нужное значение (не лучшая идея, но интересная)
-
-        [field: SerializeField] public BaseStatSources BaseStatSources { get; private set; }
         [field: SerializeField] public List<StatSourceData> StatSources { get; private set; } = new List<StatSourceData>();
         [field: SerializeField] public List<StatData> Stats { get; private set; } = new List<StatData>();
 
+        [field: SerializeField] public StatSourcePack BaseStatSources { get; set; }
+
+#if UNITY_EDITOR
         void ISerializationCallbackReceiver.OnBeforeSerialize() { }
         void ISerializationCallbackReceiver.OnAfterDeserialize() => ConstructStats();
-
+#endif
         private void ConstructStats()
         {
-            Stats = StatSources.Where(baseStatSource => baseStatSource.StatId != null).
+            var completeStatSourcesList = new List<StatSourceData>();
+            completeStatSourcesList.AddRange(BaseStatSources.StatSources);
+            completeStatSourcesList.AddRange(StatSources);
+
+            Stats = completeStatSourcesList.Where(baseStatSource => baseStatSource.StatId != null).
                 GroupBy(statSource => statSource.StatId).
                 Select(group => new StatData
                 {
@@ -38,5 +37,6 @@ namespace Assets.Scripts.SourceStatSystem
                 statData.inspectorValue = $"{statData.Value} - {statData.Id}";
             }
         }
+
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.SourceStatSystem
 {
-    [CreateAssetMenu(fileName = "New Stat Source Pack", menuName = "Source Stat System/Stat Source Pack", order = 53)]
+    [CreateAssetMenu(fileName = "New Stat Source Pack", menuName = "Source Stat System/Stat Source Pack", order = 52)]
     public class StatSourcePack : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField] private string _id = "";
