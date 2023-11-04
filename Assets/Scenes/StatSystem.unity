@@ -248,11 +248,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 753392269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 014c4dfce98807f4db6e7de7ab552a0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 591ed7bca3aee0c44b7a4f9beb5ee0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <UnitStats>k__BackingField: {fileID: 753392272}
-  <AbilityStats>k__BackingField: []
+  <Stats>k__BackingField:
+  - inspectorValue: 310 - cooldown_time
+    <Id>k__BackingField: {fileID: 11400000, guid: 698ec34fd3ab822489b2e86062a87231, type: 2}
+    <Value>k__BackingField: 310
+  _statSourcesComponent: {fileID: 753392272}
 --- !u!114 &753392272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,28 +265,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 753392269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 591ed7bca3aee0c44b7a4f9beb5ee0bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 264f4bd308926b2408f85bbfae4ba253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BaseStatSources>k__BackingField: {fileID: 0}
   <StatSources>k__BackingField:
   - <Id>k__BackingField: 
-    <Type>k__BackingField: 1
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 698ec34fd3ab822489b2e86062a87231, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 150
+  - <Id>k__BackingField: 
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 698ec34fd3ab822489b2e86062a87231, type: 2}
+    <ImpactType>k__BackingField: 2
+    <Value>k__BackingField: 150
+  - <Id>k__BackingField: 
+    <Type>k__BackingField: 0
     <StatId>k__BackingField: {fileID: 11400000, guid: 4ab1f9f5c63c2a94d9175bde092e4cb0, type: 2}
     <ImpactType>k__BackingField: 1
-    <Value>k__BackingField: 10
-  - <Id>k__BackingField: 
-    <Type>k__BackingField: 1
-    <StatId>k__BackingField: {fileID: 11400000, guid: 222f696b57d0df34bbda44d01e526e78, type: 2}
-    <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 100
-  <Stats>k__BackingField:
-  - inspectorValue: 10 - collision_damage
-    <Id>k__BackingField: collision_damage
-    <Value>k__BackingField: 10
-  - inspectorValue: 0 - health_regeneration_per_minute
-    <Id>k__BackingField: health_regeneration_per_minute
-    <Value>k__BackingField: 0
+    <Value>k__BackingField: 5
+  <BaseStatSources>k__BackingField: {fileID: 11400000, guid: ae85c936df97be945b321040ecede9cb, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

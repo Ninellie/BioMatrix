@@ -10,32 +10,40 @@ namespace Assets.Scripts.SourceStatSystem
         [SerializeField] private StatSourceType _type = StatSourceType.Base;
         [Space]
         [Header("Drop stat here for creating new Stat Source")]
-        [SerializeField] private Stat _newFlatStatSource;
-        [SerializeField] private Stat _newPercentageStatSource;
+        [SerializeField] private StatId _newFlatStatIdSource;
+        [SerializeField] private StatId _newPercentageStatIdSource;
         [field: Space]
         [field: SerializeField] public List<StatSourceData> StatSources { get; private set; } = new List<StatSourceData>();
 #if UNITY_EDITOR
         void ISerializationCallbackReceiver.OnBeforeSerialize() { }
         void ISerializationCallbackReceiver.OnAfterDeserialize()
         {
-            if (_newFlatStatSource != null)
+            if (_newFlatStatIdSource != null)
             {
-                StatSources.Add(new StatSourceData(_newFlatStatSource, ImpactType.Flat));
-                _newFlatStatSource = null;
+                StatSources.Add(new StatSourceData(_newFlatStatIdSource, ImpactType.Flat));
+                _newFlatStatIdSource = null;
             }
 
-            if (_newPercentageStatSource!= null)
+            if (_newPercentageStatIdSource!= null)
             {
-                StatSources.Add(new StatSourceData(_newPercentageStatSource, ImpactType.Percentage));
-                _newPercentageStatSource = null;
+                StatSources.Add(new StatSourceData(_newPercentageStatIdSource, ImpactType.Percentage));
+                _newPercentageStatIdSource = null;
             }
 
             foreach (var baseStatSource in StatSources)
             {
                 baseStatSource.Type = _type;
-                baseStatSource.Id = $"{_id.ToLower()}_base_{baseStatSource.StatId.Id}_{baseStatSource.SourceImpactType.ToString().ToLower()}";
+                var sourceId = _id.ToLower();
+                var baseStatSourceStatId = "nullStat";
+                if (baseStatSource.StatId != null)
+                {
+                    baseStatSourceStatId = baseStatSource.StatId.Value.ToLower();
+                }
+                var sourceImpactType = baseStatSource.ImpactType.ToString().ToLower();
+                var sourceType = _type.ToString().ToLower();
+                baseStatSource.Id = $"{sourceId}_{sourceType}_{baseStatSourceStatId}_{sourceImpactType}_{baseStatSource.Value}";
             }
         }
-    }
 #endif
+    }
 }

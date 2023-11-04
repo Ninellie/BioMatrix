@@ -12,7 +12,7 @@ namespace Assets.Scripts.SourceStatSystem
         [HideInInspector]
         [field: SerializeField]
         public string inspectorValue;
-        [field: SerializeField] public string Id { get; set; } = string.Empty;
+        [field: SerializeField] public StatId Id { get; set; }
         [field: SerializeField] public float Value { get; set; } = 0;
     }
 }

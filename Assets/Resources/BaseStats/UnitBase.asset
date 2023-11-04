@@ -13,12 +13,17 @@ MonoBehaviour:
   m_Name: UnitBase
   m_EditorClassIdentifier: 
   _id: Unit
-  _type: 1
-  _newFlatStatSource: {fileID: 0}
-  _newPercentageStatSource: {fileID: 0}
+  _type: 0
+  _newFlatStatIdSource: {fileID: 0}
+  _newPercentageStatIdSource: {fileID: 0}
   <StatSources>k__BackingField:
-  - <Id>k__BackingField: unit_base_size_multiplier_flat
-    <Type>k__BackingField: 1
-    <StatId>k__BackingField: {fileID: 11400000, guid: 222f696b57d0df34bbda44d01e526e78, type: 2}
+  - <Id>k__BackingField: unit_base_cooldown_time_flat_5
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 698ec34fd3ab822489b2e86062a87231, type: 2}
     <ImpactType>k__BackingField: 1
-    <Value>k__BackingField: 0
+    <Value>k__BackingField: 5
+  - <Id>k__BackingField: unit_base_cooldown_time_percentage_100
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 698ec34fd3ab822489b2e86062a87231, type: 2}
+    <ImpactType>k__BackingField: 2
+    <Value>k__BackingField: 100
