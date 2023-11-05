@@ -5,20 +5,34 @@ namespace Assets.Scripts.GameSession.Camera
 {
     public class MainCameraPlayerSeek : MonoBehaviour
     {
-        public Vector2 PlayerPosition
+        private Transform _playerTransform;
+        private Transform _mainCameraTransform;
+
+        private void Start()
         {
-            get
-            {
-                if (!IsPlayerExists) return Vector2.zero;
-                Vector2 playerPos = GameObject.FindObjectOfType<Player>().transform.position;
-                return playerPos;
-            }
+            FindPlayer();
+            _mainCameraTransform = UnityEngine.Camera.main.transform;
         }
-        private bool IsPlayerExists => GameObject.FindObjectOfType<Player>() != null;
-        private void Update()
+
+        private void FixedUpdate()
         {
-            if (IsPlayerExists)
-                transform.position = new Vector3(PlayerPosition.x, PlayerPosition.y, -100.0f);
+            SetMainCameraOnPlayer();
+        }
+
+        private void SetMainCameraOnPlayer()
+        {
+            if (_playerTransform == null)
+            {
+                FindPlayer();
+                return;
+            }
+            _mainCameraTransform.position = new Vector3(_playerTransform.position.x, _playerTransform.position.y, -100.0f);
+        }
+
+        private void FindPlayer()
+        {
+            if (FindObjectOfType<Player>() == null) return;
+            _playerTransform = FindObjectOfType<Player>().transform;
         }
     }
 }
