@@ -1,6 +1,7 @@
 using Assets.Scripts.Core.Render;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.SourceStatSystem;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -9,6 +10,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
     public class Enemy : MonoBehaviour
     {
         [SerializeField] private EnemyType _enemyType;
+        [Space]
+        [Header("Stats settings")]
+        private StatSourcesComponent _statSources;
+        private StatListComponent _statList;
 
         public bool IsAlive { get; private set; }
 
@@ -18,19 +23,19 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private Rigidbody2D _rigidbody2D;
         private SpriteOutline _spriteOutline;
-        private StatList _stats;
         private ResourceList _resources;
-
         private bool _isSubscribed;
+
 
         private void Awake()
         {
             Debug.Log($"Enemy {gameObject.name} Awake");
             IsAlive = true;
-            _stats = GetComponent<StatList>();
             _resources = GetComponent<ResourceList>();
             _spriteOutline = GetComponent<SpriteOutline>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            if (_statSources == null) _statSources = GetComponent<StatSourcesComponent>();
+            if (_statList == null) _statList = GetComponent<StatListComponent>();
             _rarity.Value = RarityEnum.Normal;
         }
 
@@ -78,30 +83,34 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             _spriteOutline.color = color;
         
             var statMod = new StatMod(OperationType.Multiplication, multiplier);
-            _stats.GetStat(StatName.MaximumHealth).AddModifier(statMod);
+            //_stats.GetStat(StatName.MaximumHealth).AddModifier(statMod);
+
+            //var s = new StatSourceData()
+            //_statSources.AddStatSource();
+
             _resources.GetResource(ResourceName.Health).Fill();
         }
 
         private void Subscribe()
         {
             if (_isSubscribed) return;
-            var sizeStat = _stats.GetStat(StatName.Size);
-            if (sizeStat is null) return;
-            _stats.GetStat(StatName.Size).valueChangedEvent.AddListener(UpdateCurrentSize);
+            //var sizeStat = _stats.GetStat(StatName.Size);
+            //if (sizeStat is null) return;
+            //_stats.GetStat(StatName.Size).valueChangedEvent.AddListener(UpdateCurrentSize);
             _isSubscribed = true;
         }
 
         private void Unsubscribe()
         {
             if (!_isSubscribed) return;
-            _stats.GetStat(StatName.Size).valueChangedEvent.RemoveListener(UpdateCurrentSize);
+            //_stats.GetStat(StatName.Size).valueChangedEvent.RemoveListener(UpdateCurrentSize);
             _isSubscribed = false;
         }
 
         private void UpdateCurrentSize()
         {
-            var sizeValue = _stats.GetStat(StatName.Size).Value;
-            transform.localScale = new Vector3(sizeValue, sizeValue, 1);
+            //var sizeValue = _stats.GetStat(StatName.Size).Value;
+            //transform.localScale = new Vector3(sizeValue, sizeValue, 1);
         }
     }
 }

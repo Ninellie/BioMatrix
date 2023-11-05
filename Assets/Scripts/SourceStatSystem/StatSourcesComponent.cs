@@ -1,43 +1,35 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets.Scripts.SourceStatSystem
 {
     [DisallowMultipleComponent]
     public class StatSourcesComponent : MonoBehaviour
     {
-        [field: SerializeField] public List<StatSourceData> StatSources { get; private set; } = new List<StatSourceData>();
-        [field: SerializeField] public StatSourcePack BaseStatSources { get; private set; }
-
-        [HideInInspector, NonSerialized] public UnityEvent<StatId> valueChangedEvent = new();
+        [SerializeField] private List<StatSourceData> _statSources = new();
+        [SerializeField] private StatSourcePack _baseStatSources;
 
         public List<StatSourceData> GetStatSources()
         {
             var statSourceDataList = new List<StatSourceData>();
-            statSourceDataList.AddRange(StatSources);
-            if (BaseStatSources == null)
+            statSourceDataList.AddRange(_statSources);
+            if (_baseStatSources == null)
             {
                 Debug.LogWarning($"Base Stat Sources is null");
                 return statSourceDataList;
             }
-            statSourceDataList.AddRange(BaseStatSources.StatSources);
+            statSourceDataList.AddRange(_baseStatSources.StatSources);
             return statSourceDataList;
         }
 
         public void AddStatSource(StatSourceData statSourceData)
         {
-            StatSources.Add(statSourceData);
-            var statId = statSourceData.StatId;
-            valueChangedEvent.Invoke(statId);
+            _statSources.Add(statSourceData);
         }
 
         public void RemoveStatSource(StatSourceData statSourceData)
         {
-            StatSources.Remove(statSourceData);
-            var statId = statSourceData.StatId;
-            valueChangedEvent.Invoke(statId);
+            _statSources.Remove(statSourceData);
         }
     }
 }
