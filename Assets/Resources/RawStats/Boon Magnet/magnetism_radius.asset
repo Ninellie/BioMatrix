@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe87847409217044a03a12ceb060f43, type: 3}
   m_Name: magnetism_radius
   m_EditorClassIdentifier: 
-  <Value>k__BackingField: 
+  <Value>k__BackingField: magnetism_radius
