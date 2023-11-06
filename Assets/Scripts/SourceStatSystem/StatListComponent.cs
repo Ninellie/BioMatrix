@@ -29,17 +29,11 @@ namespace Assets.Scripts.SourceStatSystem
         {
             _stats = statSources.Where(baseStatSource => baseStatSource.StatId != null).
                 GroupBy(statSource => statSource.StatId).
-                Select(group => new StatData
-                {
-                    Id = group.Key,
-                    Value = group.Where(statSource => statSource.ImpactType == ImpactType.Flat).Sum(statSource => statSource.Value)
-                            * (1 + group.Where(statSource => statSource.ImpactType == ImpactType.Percentage).Sum(statSource => statSource.Value) * 0.01f),
-                }).ToList();
-
-            foreach (var statData in _stats)
-            {
-                statData.inspectorValue = $"{statData.Value} - {statData.Id.Value}";
-            }
+                Select(group => new StatData(group.Key,
+                    group.Where(statSource => statSource.ImpactType == ImpactType.Flat).Sum(statSource => statSource.Value)
+                    * (1 + group.Where(statSource => statSource.ImpactType == ImpactType.Percentage).Sum(statSource => statSource.Value)
+                        * 0.01f))).
+                ToList();
         }
     }
 }

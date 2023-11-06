@@ -10,9 +10,26 @@ namespace Assets.Scripts.SourceStatSystem
     public class StatData
     {
         [HideInInspector]
-        [field: SerializeField]
-        public string inspectorValue;
-        [field: SerializeField] public StatId Id { get; set; }
-        [field: SerializeField] public float Value { get; set; } = 0;
+        [field: SerializeField] private string _inspectorValue;
+        [field: SerializeField] public StatId Id { get; private set; }
+
+        [SerializeField] private float _value = 0;
+
+        public float Value
+        {
+            get => _value;
+            set
+            {
+                _value = value;
+                _inspectorValue = $"{Id.Value} - {_value}";
+            }
+        }
+
+        public StatData(StatId id, float value)
+        {
+            _inspectorValue = $"{id.Value} - {value}";
+            Id = id;
+            _value = value;
+        }
     }
 }
