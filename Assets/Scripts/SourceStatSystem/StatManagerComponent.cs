@@ -1,24 +1,20 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets.Scripts.SourceStatSystem
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(StatListComponent))]
-    [RequireComponent(typeof(StatSubjectComponent))]
     [RequireComponent(typeof(StatSourcesComponent))]
     [AddComponentMenu("Source Stat System/Stats Manager")]
     public class StatManagerComponent : MonoBehaviour, ISerializationCallbackReceiver
     {
         [field: SerializeField] public StatListComponent StatList { get; private set; }
         [field: SerializeField] public StatSourcesComponent StatSourcesList { get; private set; }
-        [field: SerializeField] public StatSubjectComponent StatSubject { get; private set; }
 
         private void Awake()
         {
             if (StatList == null) StatList = GetComponent<StatListComponent>();
             if (StatSourcesList == null) StatSourcesList = GetComponent<StatSourcesComponent>();
-            if (StatSubject == null) StatSubject = GetComponent<StatSubjectComponent>();
         }
 
         private void Start()
@@ -49,16 +45,6 @@ namespace Assets.Scripts.SourceStatSystem
             return StatList.GetStatValue(statId);
         }
 
-        public void AddStatListener(StatId statId, UnityAction<float> listener)
-        {
-            StatSubject.AddStatListener(statId, listener);
-        }
-
-        public void RemoveStatListener(StatId statId, UnityAction<float> listener)
-        {
-            StatSubject.RemoveStatListener(statId, listener);
-        }
-
         private void HandleStatChanges(StatId statId)
         {
             // Запомнить значение стата
@@ -74,7 +60,7 @@ namespace Assets.Scripts.SourceStatSystem
             if (!(oldStatValue > newStatValue) && !(oldStatValue < newStatValue)) return;
 
             // Вызвать обсерверы
-            StatSubject.CallObservers(statId, newStatValue);
+            StatOverseerSystem.Instance.NotifyObservers(gameObject.GetInstanceID(), statId, newStatValue);
         }
     }
 }
