@@ -21,13 +21,13 @@ namespace Assets.Scripts.SourceStatSystem
             set
             {
                 _value = value;
-                _inspectorValue = $"{Id.Value} - {_value}";
+                _inspectorValue = $"{_value}_{Id.Value}";
             }
         }
 
         public StatData(StatId id, float value)
         {
-            _inspectorValue = $"{id.Value} - {value}";
+            _inspectorValue = $"{value}_{id.Value}";
             Id = id;
             _value = value;
         }
