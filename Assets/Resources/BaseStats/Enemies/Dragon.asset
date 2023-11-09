@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bb1b0fb485f50439cfd2c7aad10afb, type: 3}
+  m_Name: Dragon
+  m_EditorClassIdentifier: 
+  _id: Bombardier
+  _type: 0
+  _newFlatStatSource: {fileID: 0}
+  _newPercentageStatSource: {fileID: 0}
+  <StatSources>k__BackingField:
+  - <Id>k__BackingField: bombardier_base_size_flat_1
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 1
+  - <Id>k__BackingField: bombardier_base_maximum_health_flat_20
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 0056aaa4eb48b6d458c89adf5bcf6f83, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 20
+  - <Id>k__BackingField: bombardier_base_movement_speed_flat_140
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 140
+  - <Id>k__BackingField: bombardier_base_knockback_power_flat_150
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 54986c30c0fc01145b7f70f9a5275ab2, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 150
+  - <Id>k__BackingField: bombardier_base_collision_damage_flat_1
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 4ab1f9f5c63c2a94d9175bde092e4cb0, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 1
+  - <Id>k__BackingField: bombardier_base_size_percentage_-30
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
+    <ImpactType>k__BackingField: 2
+    <Value>k__BackingField: -30
+  _statsPreview:
+  - _inspectorValue: 0,7_size
+    <Id>k__BackingField: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
+    _value: 0.7
+  - _inspectorValue: 20_maximum_health
+    <Id>k__BackingField: {fileID: 11400000, guid: 0056aaa4eb48b6d458c89adf5bcf6f83, type: 2}
+    _value: 20
+  - _inspectorValue: 140_movement_speed
+    <Id>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
+    _value: 140
+  - _inspectorValue: 150_knockback_power
+    <Id>k__BackingField: {fileID: 11400000, guid: 54986c30c0fc01145b7f70f9a5275ab2, type: 2}
+    _value: 150
+  - _inspectorValue: 1_collision_damage
+    <Id>k__BackingField: {fileID: 11400000, guid: 4ab1f9f5c63c2a94d9175bde092e4cb0, type: 2}
+    _value: 1

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bb1b0fb485f50439cfd2c7aad10afb, type: 3}
+  m_Name: Player_shield
+  m_EditorClassIdentifier: 
+  _id: Player_shield
+  _type: 0
+  _newFlatStatSource: {fileID: 0}
+  _newPercentageStatSource: {fileID: 0}
+  <StatSources>k__BackingField:
+  - <Id>k__BackingField: player_shield_base_maximum_layers_flat_3
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 97fa34824b46a8e499f964d334c3f02e, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 3
+  - <Id>k__BackingField: player_shield_base_maximum_rechargable_layers_flat_0
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 73d5ba7dd5ca03e41b6a2b38f1fbff8b, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 0
+  - <Id>k__BackingField: player_shield_base_recharge_rate_per_minute_flat_1
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 1527b88ddc7bd9a46869a1a94628689e, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 1
+  - <Id>k__BackingField: player_shield_base_repulse_force_flat_200
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 4199dd40c3eb9c045871617b3519377d, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 200
+  - <Id>k__BackingField: player_shield_base_repulce_radius_flat_250
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 51ac485bf9a7b084a900a242aca405bd, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 250
+  _statsPreview:
+  - _inspectorValue: 3_maximum_layers
+    <Id>k__BackingField: {fileID: 11400000, guid: 97fa34824b46a8e499f964d334c3f02e, type: 2}
+    _value: 3
+  - _inspectorValue: 0_maximum_rechargable_layers
+    <Id>k__BackingField: {fileID: 11400000, guid: 73d5ba7dd5ca03e41b6a2b38f1fbff8b, type: 2}
+    _value: 0
+  - _inspectorValue: 1_recharge_rate_per_minute
+    <Id>k__BackingField: {fileID: 11400000, guid: 1527b88ddc7bd9a46869a1a94628689e, type: 2}
+    _value: 1
+  - _inspectorValue: 200_repulse_force
+    <Id>k__BackingField: {fileID: 11400000, guid: 4199dd40c3eb9c045871617b3519377d, type: 2}
+    _value: 200
+  - _inspectorValue: 250_repulce_radius
+    <Id>k__BackingField: {fileID: 11400000, guid: 51ac485bf9a7b084a900a242aca405bd, type: 2}
+    _value: 250

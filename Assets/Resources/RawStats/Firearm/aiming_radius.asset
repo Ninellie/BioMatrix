@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efe87847409217044a03a12ceb060f43, type: 3}
-  m_Name: hit_damage
+  m_Name: aiming_radius
   m_EditorClassIdentifier: 
-  <Value>k__BackingField: hit_damage
+  <Value>k__BackingField: magazine_capacity

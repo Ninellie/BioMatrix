@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bb1b0fb485f50439cfd2c7aad10afb, type: 3}
+  m_Name: Bourgeon
+  m_EditorClassIdentifier: 
+  _id: Bourgeon
+  _type: 0
+  _newFlatStatSource: {fileID: 0}
+  _newPercentageStatSource: {fileID: 0}
+  <StatSources>k__BackingField:
+  - <Id>k__BackingField: bourgeon_base_size_flat_1
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 1
+  - <Id>k__BackingField: bourgeon_base_size_percentage_130
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
+    <ImpactType>k__BackingField: 2
+    <Value>k__BackingField: 130
+  - <Id>k__BackingField: bourgeon_base_maximum_health_flat_3
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 0056aaa4eb48b6d458c89adf5bcf6f83, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 3
+  - <Id>k__BackingField: bourgeon_base_movement_speed_flat_300
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 300
+  - <Id>k__BackingField: bourgeon_base_magnetism_radius_flat_60
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: ab68be734ef4e284d8c10fc21ef91dd4, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 60
+  - <Id>k__BackingField: bourgeon_base_experience_gain_multiplier_flat_1
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 1
+  - <Id>k__BackingField: bourgeon_base_experience_to_new_level_flat_32
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 32
+  _statsPreview:
+  - _inspectorValue: 2,3_size
+    <Id>k__BackingField: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
+    _value: 2.3
+  - _inspectorValue: 3_maximum_health
+    <Id>k__BackingField: {fileID: 11400000, guid: 0056aaa4eb48b6d458c89adf5bcf6f83, type: 2}
+    _value: 3
+  - _inspectorValue: 300_movement_speed
+    <Id>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
+    _value: 300
+  - _inspectorValue: 60_magnetism_radius
+    <Id>k__BackingField: {fileID: 11400000, guid: ab68be734ef4e284d8c10fc21ef91dd4, type: 2}
+    _value: 60
+  - _inspectorValue: 1_experience_gain_multiplier
+    <Id>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
+    _value: 1
+  - _inspectorValue: 32_experience_to_new_level
+    <Id>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
+    _value: 32

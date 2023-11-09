@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bb1b0fb485f50439cfd2c7aad10afb, type: 3}
+  m_Name: Boon_magnet
+  m_EditorClassIdentifier: 
+  _id: Boon_magnet
+  _type: 0
+  _newFlatStatSource: {fileID: 0}
+  _newPercentageStatSource: {fileID: 0}
+  <StatSources>k__BackingField:
+  - <Id>k__BackingField: boon_magnet_base_magnetism_radius_flat_250
+    <StatId>k__BackingField: {fileID: 11400000, guid: ab68be734ef4e284d8c10fc21ef91dd4, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 250
+  _statsPreview:
+  - _inspectorValue: 250_magnetism_radius
+    <Id>k__BackingField: {fileID: 11400000, guid: ab68be734ef4e284d8c10fc21ef91dd4, type: 2}
+    _value: 250

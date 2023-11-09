@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efe87847409217044a03a12ceb060f43, type: 3}
-  m_Name: cooldown_time
+  m_Name: projectile_count
   m_EditorClassIdentifier: 
-  <Value>k__BackingField: cooldown_time
+  <Value>k__BackingField: projectile_count
