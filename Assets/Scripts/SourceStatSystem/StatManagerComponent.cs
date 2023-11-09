@@ -8,53 +8,53 @@ namespace Assets.Scripts.SourceStatSystem
     [AddComponentMenu("Source Stat System/Stats Manager")]
     public class StatManagerComponent : MonoBehaviour, ISerializationCallbackReceiver
     {
-        [field: SerializeField] public StatListComponent StatList { get; private set; }
-        [field: SerializeField] public StatSourcesComponent StatSourcesList { get; private set; }
+        [SerializeField] private StatListComponent _statList;
+        [SerializeField] private StatSourcesComponent _statSourcesList;
 
         private void Awake()
         {
-            if (StatList == null) StatList = GetComponent<StatListComponent>();
-            if (StatSourcesList == null) StatSourcesList = GetComponent<StatSourcesComponent>();
+            if (_statList == null) _statList = GetComponent<StatListComponent>();
+            if (_statSourcesList == null) _statSourcesList = GetComponent<StatSourcesComponent>();
         }
 
         private void Start()
         {
-            StatList.ConstructStats(StatSourcesList.GetStatSources());
+            _statList.ConstructStats(_statSourcesList.GetStatSources());
         }
 
         void ISerializationCallbackReceiver.OnBeforeSerialize() { }
         void ISerializationCallbackReceiver.OnAfterDeserialize()
         {
-            if (StatList != null) StatList.ConstructStats(StatSourcesList.GetStatSources());
+            if (_statList != null) _statList.ConstructStats(_statSourcesList.GetStatSources());
         }
 
         public void AddStatSource(StatSourceData statSourceData)
         {
-            StatSourcesList.GetStatSources().Add(statSourceData);
+            _statSourcesList.GetStatSources().Add(statSourceData);
             HandleStatChanges(statSourceData.StatId);
         }
 
         public void RemoveStatSource(StatSourceData statSourceData)
         {
-            StatSourcesList.GetStatSources().Remove(statSourceData);
+            _statSourcesList.GetStatSources().Remove(statSourceData);
             HandleStatChanges(statSourceData.StatId);
         }
 
         public float GetStatValue(StatId statId)
         {
-            return StatList.GetStatValue(statId);
+            return _statList.GetStatValue(statId);
         }
 
         private void HandleStatChanges(StatId statId)
         {
             // Запомнить значение стата
-            var oldStatValue = StatList.GetStatValue(statId);
+            var oldStatValue = _statList.GetStatValue(statId);
 
             // Пересчитать стат
-            StatList.UpdateStat(statId, StatSourcesList.GetStatSources());
+            _statList.UpdateStat(statId, _statSourcesList.GetStatSources());
 
             // Получить новое значение после пересчёта
-            var newStatValue = StatList.GetStatValue(statId);
+            var newStatValue = _statList.GetStatValue(statId);
 
             // Проверить не изменилось ли значение стата
             if (!(oldStatValue > newStatValue) && !(oldStatValue < newStatValue)) return;
