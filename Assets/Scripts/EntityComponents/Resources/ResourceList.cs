@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.SourceStatSystem;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.Resources
@@ -11,13 +12,16 @@ namespace Assets.Scripts.EntityComponents.Resources
     {
         [SerializeField] private bool _usePreset;
         [SerializeField] private ResourcePreset _preset;
-        [SerializeField] private StatList _statList;
+        [SerializeField] private StatManagerComponent _statManagerComponent;
         [SerializeField] private List<Resource> _resources;
 
         private void Awake()
         {
-            TryGetComponent<StatList>(out var statList);
-            _statList = statList;
+            if (_statManagerComponent == null)
+            {
+                TryGetComponent<StatManagerComponent>(out var statManager);
+                _statManagerComponent = statManager;
+            }
             if (!_usePreset) return;
             FillListFromPreset();
         }
@@ -34,13 +38,11 @@ namespace Assets.Scripts.EntityComponents.Resources
 
             foreach (var data in _preset.resources)
             {
-                var isLimited = data.maxValueStatName != StatName.None;
+                var isLimited = data.isLimited;
 
                 if (isLimited)
                 {
-                    var maxValueStat = _statList.GetStat(data.maxValueStatName);
-                    var resource = new Resource(data.name, data.baseValue, data.minValue, data.edgeValue,
-                        maxValueStat);
+                    var resource = new Resource(data.name, data.baseValue, data.minValue, data.edgeValue, data.maxValueStatId, _statManagerComponent);
                     _resources.Add(resource);
                 }
                 else
@@ -51,7 +53,8 @@ namespace Assets.Scripts.EntityComponents.Resources
             }
         }
 
-        public void OnBeforeSerialize()
+        void ISerializationCallbackReceiver.OnBeforeSerialize() { }
+        void ISerializationCallbackReceiver.OnAfterDeserialize()
         {
             if (_resources is null) return;
             if (_resources.Count == 0) return;
@@ -60,9 +63,6 @@ namespace Assets.Scripts.EntityComponents.Resources
             {
                 resource.stringName = $"{resource.Name}: {resource.GetValue()}";
             }
-        }
-        public void OnAfterDeserialize()
-        {
         }
     }
 }

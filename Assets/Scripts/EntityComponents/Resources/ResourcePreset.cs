@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.SourceStatSystem;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.Resources
@@ -11,7 +11,8 @@ namespace Assets.Scripts.EntityComponents.Resources
         [HideInInspector]
         public string stringName;
         public ResourceName name;
-        public StatName maxValueStatName;
+        public StatId maxValueStatId;
+        public bool isLimited;
         public int baseValue;
         public int minValue;
         public int edgeValue;

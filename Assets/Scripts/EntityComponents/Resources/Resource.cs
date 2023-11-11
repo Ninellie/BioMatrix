@@ -1,5 +1,6 @@
 using System;
 using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.SourceStatSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -25,7 +26,7 @@ namespace Assets.Scripts.EntityComponents.Resources
     {
         [HideInInspector] public string stringName;
         public ResourceName Name => _name;
-        public bool IsFull => _isLimited && !(_value < _maxValueStat.Value);
+        public bool IsFull => _isLimited && !(_value < MaxValue);
         public bool IsEmpty => _value == _minValue;
         public bool IsNotEmpty => _value > _minValue;
         public bool IsOnEdge => _value == _edgeValue;
@@ -37,7 +38,23 @@ namespace Assets.Scripts.EntityComponents.Resources
         [SerializeField] private int _minValue;
         [SerializeField] private int _edgeValue;
 
-        [SerializeReference] private Stat _maxValueStat;
+        private int MaxValue
+        {
+            get
+            {
+                if (_isLimited)
+                {
+                    return (int)_statManager.GetStatValue(_maxValueStatId);
+                }
+                else
+                {
+                    return int.MaxValue;
+                }
+            }
+        }
+
+        [SerializeField] private StatId _maxValueStatId;
+        [SerializeField] private StatManagerComponent _statManager;
 
         [HideInInspector, NonSerialized] public UnityEvent onValueChanged = new();
         [HideInInspector, NonSerialized] public UnityEvent onIncrease = new();
@@ -68,19 +85,19 @@ namespace Assets.Scripts.EntityComponents.Resources
         /// Creates infinite resource
         /// </summary>
         /// <param name="name"></param>
-        public Resource(ResourceName name)
-        {
-            _name = name;
-            _isLimited = false;
-            _minValue = 0;
-            _edgeValue = 1;
-            _maxValueStat = new Stat();
-            _maxValueStat.SetSettings();
-            _maxValueStat.SetBaseValue(float.PositiveInfinity);
-            _value = int.MaxValue;
-            _isInfinite = true;
-            InitializeEvents();
-        }
+        //public Resource(ResourceName name)
+        //{
+        //    _name = name;
+        //    _isLimited = false;
+        //    _minValue = 0;
+        //    _edgeValue = 1;
+        //    _maxValueStat = new Stat();
+        //    _maxValueStat.SetSettings();
+        //    _maxValueStat.SetBaseValue(float.PositiveInfinity);
+        //    _value = int.MaxValue;
+        //    _isInfinite = true;
+        //    InitializeEvents();
+        //}
 
         /// <summary>
         /// Creates unlimited empty resource
@@ -88,18 +105,18 @@ namespace Assets.Scripts.EntityComponents.Resources
         /// <param name="name"></param>
         /// <param name="minValue"></param>
         /// <param name="edgeValue"></param>
-        public Resource(ResourceName name, int minValue, int edgeValue)
-        {
-            _name = name;
-            _isLimited = false;
-            _minValue = minValue;
-            _edgeValue = edgeValue;
-            _maxValueStat = new Stat();
-            _maxValueStat.SetSettings();
-            _maxValueStat.SetBaseValue(float.PositiveInfinity);
-            _value = _minValue;
-            InitializeEvents();
-        }
+        //public Resource(ResourceName name, int minValue, int edgeValue)
+        //{
+        //    _name = name;
+        //    _isLimited = false;
+        //    _minValue = minValue;
+        //    _edgeValue = edgeValue;
+        //    _maxValueStat = new Stat();
+        //    _maxValueStat.SetSettings();
+        //    _maxValueStat.SetBaseValue(float.PositiveInfinity);
+        //    _value = _minValue;
+        //    InitializeEvents();
+        //}
 
         /// <summary>
         /// Creates unlimited resource
@@ -108,15 +125,25 @@ namespace Assets.Scripts.EntityComponents.Resources
         /// <param name="value"></param>
         /// <param name="minValue"></param>
         /// <param name="edgeValue"></param>
+        //public Resource(ResourceName name, int value, int minValue, int edgeValue)
+        //{
+        //    _name = name;
+        //    _isLimited = false;
+        //    _minValue = minValue;
+        //    _edgeValue = edgeValue;
+        //    _maxValueStat = new Stat();
+        //    _maxValueStat.SetSettings();
+        //    _maxValueStat.SetBaseValue(float.PositiveInfinity);
+        //    _value = value < minValue ? minValue : value;
+        //    InitializeEvents();
+        //}
+        
         public Resource(ResourceName name, int value, int minValue, int edgeValue)
         {
             _name = name;
             _isLimited = false;
             _minValue = minValue;
             _edgeValue = edgeValue;
-            _maxValueStat = new Stat();
-            _maxValueStat.SetSettings();
-            _maxValueStat.SetBaseValue(float.PositiveInfinity);
             _value = value < minValue ? minValue : value;
             InitializeEvents();
         }
@@ -128,29 +155,33 @@ namespace Assets.Scripts.EntityComponents.Resources
         /// <param name="value"></param>
         /// <param name="minValue"></param>
         /// <param name="edgeValue"></param>
-        /// <param name="maxValueStat"></param>
-        public Resource(ResourceName name, int value, int minValue, int edgeValue, Stat maxValueStat)
+        /// <param name="maxValueStatId"></param>
+        /// <param name="statManager"></param>
+        public Resource(ResourceName name, int value, int minValue, int edgeValue, StatId maxValueStatId, StatManagerComponent statManager)
         {
             _name = name;
             _isLimited = true;
             _minValue = minValue;
             _edgeValue = edgeValue;
-            _maxValueStat = maxValueStat;
+            _statManager = statManager;
+            _maxValueStatId = maxValueStatId;
 
-            if (value > maxValueStat.Value) _value = (int)maxValueStat.Value;
+            var maxValue = (int)statManager.GetStatValue(maxValueStatId);
+
+            if (value > maxValue) _value = maxValue;
             else if (value < minValue) _value = minValue;
             else _value = value;
 
             InitializeEvents();
         }
-        
+
         public void Set(int value)
         {
             if (_isInfinite) value = Mathf.Min(value, _value);
             var oldValue = _value;
             if (_isLimited)
             {
-                var maxValue = (int)_maxValueStat.Value;
+                var maxValue = MaxValue;
                 if (value >= maxValue) _value = maxValue;
                 if (value > _minValue && value < maxValue) _value = value;
                 if (value <= _minValue) _value = _minValue;
@@ -163,19 +194,18 @@ namespace Assets.Scripts.EntityComponents.Resources
             InvokeEvents(oldValue, newValue);
         }
 
-        public void Fill() => Set((int)_maxValueStat.Value);
+        public void Fill() => Set(MaxValue);
         public void Empty() => Set(_minValue);
         public void Increase(int value = 1) => Set(_value + value);
         public void Decrease(int value = 1) => Set(_value - value);
         public int GetValue() => _value;
         public int GetMinValue() => _minValue;
-        public float GetMaxValue() => _isLimited ? (int)_maxValueStat.Value : Single.PositiveInfinity;
-        public int GetLackValue() => (int)_maxValueStat.Value - _value;
+        public float GetMaxValue() => _isLimited ? MaxValue : float.PositiveInfinity;
+        public int GetLackValue() => MaxValue - _value;
         public float GetPercentValue()
         {
-            if (!_isLimited) return Single.NaN;
-            var maxValue = _maxValueStat.Value;
-            var percent = maxValue / 100;
+            if (!_isLimited) return float.NaN;
+            var percent = MaxValue / 100;
             var currentPercent = _value / percent;
             return currentPercent;
         }
@@ -265,7 +295,7 @@ namespace Assets.Scripts.EntityComponents.Resources
 
             if (_isLimited)
             {
-                var maxValue = (int)_maxValueStat.Value;
+                var maxValue = MaxValue;
 
                 if (newValue == maxValue)
                 {
