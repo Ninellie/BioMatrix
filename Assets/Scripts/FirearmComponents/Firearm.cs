@@ -50,9 +50,9 @@ namespace Assets.Scripts.FirearmComponents
         private ResourceList _resources;
         private StatList _stats;
 
-        private Enemy _currentEnemyTarget;
+        private PlayerTarget _currentEnemyTarget;
 
-        public Enemy GetCurrentTarget()
+        public PlayerTarget GetCurrentTarget()
         {
             return _currentEnemyTarget;
         }
@@ -267,7 +267,7 @@ namespace Assets.Scripts.FirearmComponents
 
             if (!IsForPlayer || nearestCol == null) return directionToNearestCollider;
 
-            var target = nearestCol.GetComponent<Enemy>();
+            var target = nearestCol.GetComponent<PlayerTarget>();
 
             if (_currentEnemyTarget == null)
             {
