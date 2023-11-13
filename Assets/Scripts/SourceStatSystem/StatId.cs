@@ -6,5 +6,6 @@ namespace Assets.Scripts.SourceStatSystem
     public class StatId : ScriptableObject
     {
         [field: SerializeField] public string Value { get; private set; } = string.Empty;
+        [field: SerializeField] public string Description { get; private set; } = string.Empty;
     }
 }
