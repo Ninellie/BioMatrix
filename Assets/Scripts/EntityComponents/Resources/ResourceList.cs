@@ -8,7 +8,7 @@ namespace Assets.Scripts.EntityComponents.Resources
 {
     [AddComponentMenu("Entity/ResourceList")]
     [RequireComponent(typeof(StatList))]
-    public class ResourceList : MonoBehaviour, ISerializationCallbackReceiver
+    public class ResourceList : MonoBehaviour
     {
         [SerializeField] private bool _usePreset;
         [SerializeField] private ResourcePreset _preset;
@@ -24,6 +24,17 @@ namespace Assets.Scripts.EntityComponents.Resources
             }
             if (!_usePreset) return;
             FillListFromPreset();
+        }
+
+        private void OnValidate()
+        {
+            if (_resources is null) return;
+            if (_resources.Count == 0) return;
+
+            foreach (var resource in _resources)
+            {
+                resource.stringName = $"{resource.Name}: {resource.GetValue()}";
+            }
         }
 
         public Resource GetResource(ResourceName resourceName)
@@ -50,18 +61,6 @@ namespace Assets.Scripts.EntityComponents.Resources
                     var resource = new Resource(data.name, data.baseValue, data.minValue, data.edgeValue);
                     _resources.Add(resource);
                 }
-            }
-        }
-
-        void ISerializationCallbackReceiver.OnBeforeSerialize() { }
-        void ISerializationCallbackReceiver.OnAfterDeserialize()
-        {
-            if (_resources is null) return;
-            if (_resources.Count == 0) return;
-
-            foreach (var resource in _resources)
-            {
-                resource.stringName = $"{resource.Name}: {resource.GetValue()}";
             }
         }
     }
