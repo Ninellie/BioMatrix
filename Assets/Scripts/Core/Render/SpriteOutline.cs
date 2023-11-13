@@ -5,31 +5,47 @@ namespace Assets.Scripts.Core.Render
     [ExecuteInEditMode]
     public class SpriteOutline : MonoBehaviour
     {
-        public Color color = Color.white;
-        private SpriteRenderer _spriteRenderer;
+        [SerializeField] private Color _color = Color.white;
+        [SerializeField] private bool _showOutline;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
 
-        void OnEnable()
+        private void OnEnable()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            UpdateOutline(true);
+            if (_spriteRenderer == null)
+            { 
+                _spriteRenderer = GetComponent<SpriteRenderer>();
+            }
+            UpdateOutline();
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
-            UpdateOutline(false);
+            UpdateOutline();
         }
 
-        void Update()
+        private void Update()
         {
-            UpdateOutline(true);
+            UpdateOutline();
         }
 
-        void UpdateOutline(bool outline)
+        public void SetShowOutline(bool value)
+        {
+            _showOutline = value;
+            UpdateOutline();
+        }
+
+        public void SetColor(Color value)
+        {
+            _color = value;
+            UpdateOutline();
+        }
+
+        private void UpdateOutline()
         {
             var mpb = new MaterialPropertyBlock();
             _spriteRenderer.GetPropertyBlock(mpb);
-            mpb.SetFloat("_Outline", outline ? 1f : 0);
-            mpb.SetColor("_OutlineColor", color);
+            mpb.SetFloat("_Outline", _showOutline ? 1f : 0);
+            mpb.SetColor("_OutlineColor", _color);
             _spriteRenderer.SetPropertyBlock(mpb);
         }
     }
