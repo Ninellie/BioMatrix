@@ -3,9 +3,14 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Flip
 {
+    public enum GazeDirection
+    {
+        Left, Right,
+    }
+
     public class FlipController : MonoBehaviour
     {
-        [SerializeField] private bool _isLooksToRight;
+        [SerializeField] private GazeDirection _gazeDirection = GazeDirection.Left;
 
         private IMovementController _movementController;
         private SpriteRenderer _spriteRenderer;
@@ -18,12 +23,18 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Flip
 
         private void Update()
         {
-            _spriteRenderer.flipX = _movementController.GetRawMovementDirection().x switch
+            switch (_movementController.GetRawMovementDirection().x)
             {
-                < 0 => _isLooksToRight,
-                > 0 => !_isLooksToRight,
-                _ => _spriteRenderer.flipX
-            };
+                case < 0:
+                    _spriteRenderer.flipX = _gazeDirection == GazeDirection.Right;
+                    break;
+                case > 0:
+                    _spriteRenderer.flipX = _gazeDirection == GazeDirection.Left;
+                    break;
+                default:
+                    _spriteRenderer.flipX = _spriteRenderer.flipX;
+                    break;
+            }
         }
     }
 }
