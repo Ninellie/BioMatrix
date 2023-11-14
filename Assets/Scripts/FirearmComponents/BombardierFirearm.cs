@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
-using Assets.Scripts.EntityComponents.UnitComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using UnityEngine;
 
 namespace Assets.Scripts.FirearmComponents
 {
-    public class BombardierFirearm : MonoBehaviour, IAbility, ITargeted
+    public class BombardierFirearm : MonoBehaviour, IAbility
     {
         [Header("Ammo prefab")]
         [SerializeField] private GameObject _ammo;
@@ -18,7 +17,7 @@ namespace Assets.Scripts.FirearmComponents
         [SerializeField] private StatList _statList;
         [Space]
         [Header("Outer References")]
-        [SerializeField] private GameObject _target;
+        [SerializeField] private GameObjectReference _target;
         [SerializeField] private Transform _firePoint;
         [Space]
         [Header("Info Indication")]
@@ -46,11 +45,6 @@ namespace Assets.Scripts.FirearmComponents
             StartCoroutine(WaitForReload());
         }
 
-        public void SetTarget(GameObject target)
-        {
-            _target = target;
-        }
-
         private void Shoot()
         {
             var projectiles = CreateProjectiles();
@@ -71,7 +65,7 @@ namespace Assets.Scripts.FirearmComponents
 
         private Vector2 GetShootDirection()
         {
-            return _target.transform.position - transform.position;
+            return _target.Value.transform.position - transform.position;
         }
 
         private void LaunchProjectiles(IReadOnlyCollection<GameObject> projectiles, Vector2 direction)

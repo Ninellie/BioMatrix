@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
-    public class DistanceKeeperMovementController : MovementController, ITargeted
+    public class DistanceKeeperMovementController : MovementController
     {
-        [SerializeField] private GameObject _target;
+        [SerializeField] private GameObjectReference _target;
         [SerializeField] private float _distance;
 
         protected override float Speed
@@ -13,7 +13,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             {
                 if (_target == null) return speedStat.Value * SpeedScale;
 
-                var currentDistance = Vector2.Distance(transform.position, _target.transform.position);
+                var currentDistance = Vector2.Distance(transform.position, _target.Value.transform.position);
                 
                 if (currentDistance < _distance)
                 {
@@ -37,9 +37,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
                 {
                     return Vector2.zero;
                 }
-                if (_target.activeInHierarchy)
+                if (_target.Value.activeInHierarchy)
                 {
-                    return (_target.transform.position - transform.position).normalized;
+                    return (_target.Value.transform.position - transform.position).normalized;
                 }
                 else
                 {
@@ -47,11 +47,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
                 }
             }
             set => throw new System.NotImplementedException();
-        }
-
-        public void SetTarget(GameObject target)
-        {
-            _target = target;
         }
     }
 }

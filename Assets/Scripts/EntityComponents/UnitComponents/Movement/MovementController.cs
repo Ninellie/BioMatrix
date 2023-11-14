@@ -1,4 +1,3 @@
-using Assets.Scripts.EntityComponents.Stats;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
@@ -40,7 +39,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         }
 
         private Vector2 AddedVelocity { get; set; } = Vector2.zero;
-        protected Stat speedStat;
+        public FloatReference speedStat;
         protected abstract float Speed { get; }
         protected abstract Vector2 MovementDirection { get; set; }
         protected abstract Vector2 RawMovementDirection { get; set; }
@@ -54,11 +53,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             SpeedScale = _baseSpeedScale;
-        }
-
-        protected void Start()
-        {
-            speedStat = GetComponent<StatList>().GetStat(StatName.MovementSpeed);
         }
 
         protected void FixedUpdate()

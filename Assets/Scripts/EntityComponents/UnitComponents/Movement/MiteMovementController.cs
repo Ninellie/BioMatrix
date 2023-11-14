@@ -2,13 +2,13 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
-    public class MiteMovementController : MovementController, ITargeted
+    public class MiteMovementController : MovementController
     {
         [SerializeField]
         private Direction _viewDirection;
 
         [SerializeField]
-        private GameObject _target;
+        private GameObjectReference _target;
 
         protected override float Speed => speedStat.Value * SpeedScale;
 
@@ -36,19 +36,14 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
                 {
                     return Vector2.zero;
                 }
-                if (_target.activeInHierarchy)
+                if (_target.Value.activeInHierarchy)
                 {
-                    return (_target.transform.position - transform.position).normalized;
+                    return (_target.Value.transform.position - transform.position).normalized;
                 }
 
                 return Vector2.zero;
             }
             set => throw new System.NotImplementedException();
-        }
-
-        public void SetTarget(GameObject target)
-        {
-            _target = target;
         }
     }
 }
