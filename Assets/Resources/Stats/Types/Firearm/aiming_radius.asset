@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe87847409217044a03a12ceb060f43, type: 3}
   m_Name: aiming_radius
   m_EditorClassIdentifier: 
-  <Value>k__BackingField: magazine_capacity
+  <Value>k__BackingField: aiming_radius
+  <Description>k__BackingField: 
