@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New GameEvent", menuName = "ScriptableObjects/Events/Parameterless Event")]
+[CreateAssetMenu(fileName = "New GameEvent", menuName = "GameEvents/Simple event", order = 51)]
 public class GameEvent : ScriptableObject
 {
     /// <summary>
