@@ -144,20 +144,29 @@ namespace Assets.Scripts.GameSession.Spawner
         {
             foreach (var enemy in enemies)
             {
-                var e = enemy.GetComponent<Enemy>();
+                //foreach (var targeted in enemy.GetComponentsInChildren<ITargeted>())
+                //{
+                //    targeted.SetTarget(_player);
+                //}
 
-                foreach (var targeted in enemy.GetComponentsInChildren<ITargeted>())
-                {
-                    targeted.SetTarget(_player);
-                }
-                PrepareEnemy(e, playerPosition);
+                PrepareEnemy(enemy, playerPosition);
             }
         }
 
-        private void PrepareEnemy(Enemy enemy, Vector2 playerPosition)
+        private void PrepareEnemy(GameObject enemy, Vector2 playerPosition)
         {
-            if (enemy.EnemyType != EnemyType.AboveView) return;
-            enemy.LookAt2D(playerPosition);
+            var e = enemy.GetComponent<Enemy>();
+            if (e.EnemyType != EnemyType.AboveView) return;
+            var rb2D = enemy.gameObject.GetComponent<Rigidbody2D>();
+            RotateEnemyToPlayer(playerPosition, rb2D);
+        }
+
+        public void RotateEnemyToPlayer(Vector2 targetPosition, Rigidbody2D rigidbody2D)
+        {
+            var direction = (Vector2)rigidbody2D.transform.position - targetPosition;
+            var angle = (Mathf.Atan2(direction.y, direction.x) + Mathf.PI / 2) * Mathf.Rad2Deg;
+            rigidbody2D.rotation = angle;
+            rigidbody2D.SetRotation(angle);
         }
     }
 }
