@@ -13,7 +13,7 @@ namespace Assets.Scripts.EntityComponents.Stats
         public float baseValue;
     }
 
-    [CreateAssetMenu]
+    //[CreateAssetMenu]
     public class StatsPreset : ScriptableObject, ISerializationCallbackReceiver
     {
         public List<StatPresetData> stats;

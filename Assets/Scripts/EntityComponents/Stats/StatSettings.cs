@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.Stats
 {
-    [CreateAssetMenu]
     public class StatSettings : ScriptableObject
     {
         [SerializeField]
