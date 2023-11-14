@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.GameSession.Spawner
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "New wave data", menuName = "Spawner/Wave data")]
     public class EnemyWaveDataPreset : ScriptableObject
     {
         [SerializeField] private AnimationCurve _maxWaveSizeCurve;

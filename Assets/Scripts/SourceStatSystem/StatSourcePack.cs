@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace Assets.Scripts.SourceStatSystem
 {
-    
-    [CreateAssetMenu(fileName = "New Stat Source Pack", menuName = "Source Stat System/Stat Source Pack", order = 52)]
-    public class StatSourcePack : ScriptableObject, ISerializationCallbackReceiver
+    [CreateAssetMenu(fileName = "New stat sources pack", menuName = "Source stat system/Stat source pack", order = 51)]
+    public class StatSourcePack : ScriptableObject
     {
         [SerializeField] private string _id = "";
         [SerializeField] private StatSourceType _type = StatSourceType.Base;
@@ -16,11 +15,16 @@ namespace Assets.Scripts.SourceStatSystem
         [SerializeField] private StatId _newPercentageStatSource;
         [field: Space]
         [field: SerializeField] public List<StatSourceData> StatSources { get; private set; } = new();
-#if UNITY_EDITOR
         [field: Space]
         [SerializeField] private List<StatData> _statsPreview = new();
-        void ISerializationCallbackReceiver.OnBeforeSerialize() { }
-        void ISerializationCallbackReceiver.OnAfterDeserialize()
+
+        private void OnValidate()
+        {
+            ValidateStatSource();
+            ConstructStats();
+        }
+
+        private void ValidateStatSource()
         {
             if (_newFlatStatSource != null)
             {
@@ -28,7 +32,7 @@ namespace Assets.Scripts.SourceStatSystem
                 _newFlatStatSource = null;
             }
 
-            if (_newPercentageStatSource!= null)
+            if (_newPercentageStatSource != null)
             {
                 StatSources.Add(new StatSourceData(_newPercentageStatSource, ImpactType.Percentage));
                 _newPercentageStatSource = null;
@@ -47,11 +51,9 @@ namespace Assets.Scripts.SourceStatSystem
                 var sourceType = _type.ToString().ToLower();
                 baseStatSource.Id = $"{sourceId}_{sourceType}_{baseStatSourceStatId}_{sourceImpactType}_{baseStatSource.Value}";
             }
-
-            ConstructStats();
         }
 
-        public void ConstructStats()
+        private void ConstructStats()
         {
             _statsPreview = StatSources.Where(baseStatSource => baseStatSource.StatId != null).
                 GroupBy(statSource => statSource.StatId).
@@ -61,6 +63,5 @@ namespace Assets.Scripts.SourceStatSystem
                         * 0.01f))).
                 ToList();
         }
-#endif
     }
 }

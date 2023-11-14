@@ -15,16 +15,18 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         [SerializeField] private bool _dieOnPlayerCollision;
         [SerializeField] private Color _takeDamageColor;
 
+        [SerializeField] private FloatReference currentHealth;
+        [field: SerializeField] public FloatReference CollisionDamage { get; private set; }
+
         private bool _isAlive;
         private int _dropCount = 1;
         private readonly Rarity _rarity = new();
         private bool _deathFromProjectile;
-
+        
         private KnockbackController _knockbackController;
         private Rigidbody2D _rigidbody2D;
         private CircleCollider2D _circleCollider;
         private SpriteRenderer _spriteRenderer;
-        private ResourceList _resources;
 
         private Color _spriteColor;
         private const float ReturnToDefaultColorSpeed = 5f;
@@ -39,7 +41,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         {
             _isAlive = true;
 
-            _resources = GetComponent<ResourceList>();
             _knockbackController = GetComponent<KnockbackController>();
             _circleCollider = GetComponent<CircleCollider2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -91,7 +92,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             force *= projectileStats.GetStat(StatName.KnockbackPower).Value;
             _knockbackController.Knockback(force);
 
-            if (!_resources.GetResource(ResourceName.Health).IsEmpty) return;
+            if (currentHealth == 0) return;
             _isAlive = false;
         }
 
@@ -104,11 +105,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             Death();
         }
 
-        private void TakeDamage(int damageAmount)
+        private void TakeDamage(int damage)
         {
-            var health = _resources.GetResource(ResourceName.Health);
-            health.Decrease(damageAmount);
-            if (health.IsNotEmpty) return;
+            currentHealth.constantValue -= damage;
+            if (currentHealth != 0) return;
             Death();
         }
 

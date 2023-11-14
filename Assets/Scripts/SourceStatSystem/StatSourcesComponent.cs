@@ -1,9 +1,9 @@
 using System.Collections.Generic;
+using PlasticGui.WorkspaceWindow.Home.Repositories;
 using UnityEngine;
 
 namespace Assets.Scripts.SourceStatSystem
 {
-    [DisallowMultipleComponent]
     public class StatSourcesComponent : MonoBehaviour
     {
         [SerializeField] private List<StatSourceData> _statSources = new();
