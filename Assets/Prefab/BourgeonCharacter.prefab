@@ -95,6 +95,10 @@ MonoBehaviour:
   _speedScaleRestoreSpeed: 1
   _restoreSpeedScale: 1
   _staticSpeedScale: 1
+  speedStat:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   _aimingSpeedMultiplier: 0.5
 --- !u!114 &6184172464766941476
 MonoBehaviour:
@@ -5235,11 +5239,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _usePreset: 1
   _preset: {fileID: 11400000, guid: f6d53f77e5e96684e86f2ea2bb0a35a9, type: 2}
-  _statList: {fileID: 4013630423983573852}
+  _statManagerComponent: {fileID: 0}
   _resources: []
-  references:
-    version: 2
-    RefIds: []
 --- !u!114 &6842002535895687529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5418,11 +5419,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _usePreset: 1
   _preset: {fileID: 11400000, guid: a14f3d1a183893e4a99ba286c9b8f005, type: 2}
-  _statList: {fileID: 0}
+  _statManagerComponent: {fileID: 0}
   _resources: []
-  references:
-    version: 2
-    RefIds: []
 --- !u!114 &5072275712465827581
 MonoBehaviour:
   m_ObjectHideFlags: 0

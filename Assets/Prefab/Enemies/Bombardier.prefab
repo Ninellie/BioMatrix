@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6042837996286799121}
   - component: {fileID: 8165684587596004793}
+  - component: {fileID: -484809733745568781}
   - component: {fileID: -7540060648430052599}
   - component: {fileID: 4540966149982126123}
   - component: {fileID: 2673435760891721348}
@@ -49,8 +50,6 @@ GameObject:
   - component: {fileID: -2167475189181900128}
   - component: {fileID: 1878492662911867408}
   - component: {fileID: 3774024594271913881}
-  - component: {fileID: -4600533595376686882}
-  - component: {fileID: 2223636589693057765}
   - component: {fileID: 4325304352408894705}
   - component: {fileID: -1608896377650550763}
   - component: {fileID: 6733662615248835558}
@@ -90,6 +89,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyType: 0
+--- !u!114 &-484809733745568781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01468158b4899aa41a8c5e6e9b8e77bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHealth:
+    useConstant: 1
+    constantValue: 50
+    variable: {fileID: 0}
+  _maximumHealth:
+    useConstant: 1
+    constantValue: 50
+    variable: {fileID: 0}
+  _edgeValue: 1
+  onDeath: {fileID: 11400000, guid: 22f856f72a78d924aa8ccf08cbd6e6c5, type: 2}
+  onEdge: {fileID: 0}
+  onDecrease: {fileID: 0}
 --- !u!114 &-7540060648430052599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7711465a83c3624f969e582d951e1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isLooksToRight: 0
+  _gazeDirection: 0
 --- !u!114 &2673435760891721348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +219,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b7cba45c5ad02489e4178a669a3bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 1, b: 1, a: 1}
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _showOutline: 0
+  _spriteRenderer: {fileID: 0}
 --- !u!58 &1878492662911867408
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -259,40 +284,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-4600533595376686882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8954189743293124748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25437cf037f85d04b9c499f44afbe3e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _usePreset: 1
-  _preset: {fileID: 11400000, guid: 6a3a7d13177e1d542a42df0b06094c8d, type: 2}
-  _stats: []
---- !u!114 &2223636589693057765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8954189743293124748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9c9f584044c0bd4695584b5e1405f21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _usePreset: 1
-  _preset: {fileID: 11400000, guid: 81756dcdc5a89314f990db97287ad849, type: 2}
-  _statList: {fileID: -4600533595376686882}
-  _resources: []
-  references:
-    version: 2
-    RefIds: []
 --- !u!114 &4325304352408894705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +300,14 @@ MonoBehaviour:
   _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
   _dieOnPlayerCollision: 0
   _takeDamageColor: {r: 1, g: 0, b: 0, a: 1}
+  currentHealth:
+    useConstant: 1
+    constantValue: 50
+    variable: {fileID: 0}
+  <CollisionDamage>k__BackingField:
+    useConstant: 1
+    constantValue: 1
+    variable: {fileID: 0}
 --- !u!114 &-1608896377650550763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,7 +327,14 @@ MonoBehaviour:
   _speedScaleRestoreSpeed: 1
   _restoreSpeedScale: 1
   _staticSpeedScale: 0
-  _target: {fileID: 0}
+  speedStat:
+    useConstant: 1
+    constantValue: 140
+    variable: {fileID: 0}
+  _target:
+    useConstant: 0
+    constantValue: {fileID: 0}
+    variable: {fileID: 11400000, guid: 63741af3fecd2dd40bcc502ca62eeead, type: 2}
   _distance: 400
 --- !u!114 &6733662615248835558
 MonoBehaviour:
@@ -342,7 +348,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a758149a8b545941901d723cd42609a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
+  _target:
+    useConstant: 0
+    constantValue: {fileID: 0}
+    variable: {fileID: 11400000, guid: 63741af3fecd2dd40bcc502ca62eeead, type: 2}
   _distance: 450
   _firearm: {fileID: 6364828357948728245}
 --- !u!1001 &2396631660057037754
