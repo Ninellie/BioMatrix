@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: player_projectile_knockback
   m_EditorClassIdentifier: 
   developerDescription: 
-  value: 0
-  onChanged: {fileID: 11400000, guid: 64707426501812e4683bfb0458433c80, type: 2}
-  id: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
+  value: 30
+  id: {fileID: 11400000, guid: c6ca83613dcb08b4fbfaae2b620f5437, type: 2}
