@@ -1,22 +1,22 @@
 using System;
 
 [Serializable]
-public class FloatReference
+public class IntReference
 {
     public bool useConstant;
-    public float constantValue;
-    public FloatVariable variable;
+    public int constantValue;
+    public IntVariable variable;
 
-    public FloatReference()
+    public IntReference()
     { }
 
-    public FloatReference(float value)
+    public IntReference(int value)
     {
         useConstant = true;
         constantValue = value;
     }
 
-    public float Value
+    public int Value
     {
         get => useConstant ? constantValue : variable.value;
         set
@@ -32,7 +32,7 @@ public class FloatReference
         }
     }
 
-    public static implicit operator float(FloatReference reference)
+    public static implicit operator int(IntReference reference)
     {
         return reference.Value;
     }

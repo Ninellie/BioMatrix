@@ -1,8 +1,8 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(FloatReference))]
-public class FloatReferenceDrawer : PropertyDrawer
+[CustomPropertyDrawer(typeof(IntReference))]
+public class IntReferenceDrawer : PropertyDrawer
 {
     /// <summary>
     /// Options to display in the popup to select constant or variable.

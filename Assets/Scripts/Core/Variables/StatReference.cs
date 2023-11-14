@@ -1,16 +1,16 @@
 using System;
 
 [Serializable]
-public class FloatReference
+public class StatReference
 {
     public bool useConstant;
     public float constantValue;
-    public FloatVariable variable;
+    public StatVariable variable;
 
-    public FloatReference()
+    public StatReference()
     { }
 
-    public FloatReference(float value)
+    public StatReference(float value)
     {
         useConstant = true;
         constantValue = value;
@@ -27,12 +27,12 @@ public class FloatReference
             }
             else
             {
-                variable.value = value;
+                variable.SetValue(value);
             }
         }
     }
 
-    public static implicit operator float(FloatReference reference)
+    public static implicit operator float(StatReference reference)
     {
         return reference.Value;
     }
