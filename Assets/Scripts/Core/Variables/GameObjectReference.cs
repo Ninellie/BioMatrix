@@ -17,7 +17,21 @@ public class GameObjectReference
         constantValue = value;
     }
 
-    public GameObject Value => useConstant ? constantValue : variable.value;
+    public GameObject Value
+    {
+        get => useConstant ? constantValue : variable.value;
+        set
+        {
+            if (useConstant)
+            {
+                constantValue = value;
+            }
+            else
+            {
+                variable.value = value;
+            }
+        }
+    }
 
     public static implicit operator GameObject(GameObjectReference reference)
     {
