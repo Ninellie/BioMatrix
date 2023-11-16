@@ -1,8 +1,6 @@
 using System;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
-using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
-using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using Assets.Scripts.FirearmComponents;
 using Assets.Scripts.GameSession.UIScripts;
@@ -31,6 +29,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
     public class Player : MonoBehaviour, IWeaponBearer, IPlayableCharacter, ISlayer, ISource, IAiming
     {
+        [SerializeField] private GameObjectVariable _selfVariable;
         [SerializeField] private Transform _firePoint;
         [SerializeField] private Shield _shield;
 
@@ -60,7 +59,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private void Awake()
         {
             Debug.Log($"{gameObject.name} {nameof(Player)} Awake");
-
+            _selfVariable.value = gameObject;
             _stats = GetComponent<StatList>();
             _resources = GetComponent<ResourceList>();
             _circleCollider = GetComponent<CircleCollider2D>();
