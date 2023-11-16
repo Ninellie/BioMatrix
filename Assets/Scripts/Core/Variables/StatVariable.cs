@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Stat Variable", menuName = "Variables/Stat")]
-public class StatVariable : ScriptableObject
+public class StatVariable : FloatVariable
 {
-#if UNITY_EDITOR
-    [Multiline]
-    public string developerDescription = "";
-#endif
-    public float value;
     public StatId id;
 
     /// <summary>
@@ -40,28 +35,42 @@ public class StatVariable : ScriptableObject
             _eventListeners.Remove(listener);
     }
 
-    public void SetValue(float value)
+    public new void SetValue(float value)
     {
         var oldValue = this.value;
         this.value = value;
         TryRaiseEvent(oldValue);
     }
 
-    public void SetValue(FloatVariable value)
+    public new void SetValue(FloatVariable value)
     {
         var oldValue = this.value;
         this.value = value.value;
         TryRaiseEvent(oldValue);
     }
 
-    public void ApplyChange(float amount)
+    public void SetValue(StatVariable value)
+    {
+        var oldValue = this.value;
+        this.value = value.value;
+        TryRaiseEvent(oldValue);
+    }
+
+    public new void ApplyChange(float amount)
     {
         var oldValue = value;
         value += amount;
         TryRaiseEvent(oldValue);
     }
 
-    public void ApplyChange(FloatVariable amount)
+    public new void ApplyChange(FloatVariable amount)
+    {
+        var oldValue = value;
+        value += amount.value;
+        TryRaiseEvent(oldValue);
+    }
+
+    public void ApplyChange(StatVariable amount)
     {
         var oldValue = value;
         value += amount.value;
