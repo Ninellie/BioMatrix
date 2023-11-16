@@ -99,7 +99,7 @@ MonoBehaviour:
   speedStat:
     useConstant: 0
     constantValue: 0
-    variable: {fileID: 0}
+    variable: {fileID: 11400000, guid: 2e1a752507bdd354f976d465c7e9cdef, type: 2}
   _aimingSpeedMultiplier: 0.5
 --- !u!114 &6184172464766941476
 MonoBehaviour:
