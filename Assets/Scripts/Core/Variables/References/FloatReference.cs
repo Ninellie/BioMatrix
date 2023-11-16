@@ -16,21 +16,7 @@ public class FloatReference
         constantValue = value;
     }
 
-    public float Value
-    {
-        get => useConstant ? constantValue : variable.value;
-        set
-        {
-            if (useConstant)
-            {
-                constantValue = value;
-            }
-            else
-            {
-                variable.value = value;
-            }
-        }
-    }
+    public float Value => useConstant ? constantValue : variable.value;
 
     public static implicit operator float(FloatReference reference)
     {

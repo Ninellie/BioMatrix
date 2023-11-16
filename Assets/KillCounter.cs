@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class KillCounter : MonoBehaviour
 {
-    [SerializeField] private IntReference _playerKills;
+    [SerializeField] private IntVariable _playerKills;
     [SerializeField] private bool _resetOnAwake;
 
     private void Awake()
     {
-        _playerKills.Value = 0;
+        if (!_resetOnAwake) return;
+        _playerKills.SetValue(0);
     }
 
     public void IncreaseKillCounter()
     {
-        _playerKills.Value++;
+        _playerKills.ApplyChange(1);
     }
 }

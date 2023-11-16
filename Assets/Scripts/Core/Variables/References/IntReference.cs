@@ -16,21 +16,7 @@ public class IntReference
         constantValue = value;
     }
 
-    public int Value
-    {
-        get => useConstant ? constantValue : variable.value;
-        set
-        {
-            if (useConstant)
-            {
-                constantValue = value;
-            }
-            else
-            {
-                variable.value = value;
-            }
-        }
-    }
+    public int Value => useConstant ? constantValue : variable.value;
 
     public static implicit operator int(IntReference reference)
     {
