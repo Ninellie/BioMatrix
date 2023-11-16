@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d608d0387591429429c4f44477dba9d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _selfVariable: {fileID: 11400000, guid: 63741af3fecd2dd40bcc502ca62eeead, type: 2}
   _firePoint: {fileID: 766516748403551923}
   _shield: {fileID: 6875561572371950145}
   aimMode: 0
@@ -96,9 +97,9 @@ MonoBehaviour:
   _restoreSpeedScale: 1
   _staticSpeedScale: 1
   speedStat:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _aimingSpeedMultiplier: 0.5
 --- !u!114 &6184172464766941476
 MonoBehaviour:
@@ -141,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7711465a83c3624f969e582d951e1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isLooksToRight: 0
+  _gazeDirection: 0
 --- !u!114 &818376738777939163
 MonoBehaviour:
   m_ObjectHideFlags: 0

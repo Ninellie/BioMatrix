@@ -105,7 +105,7 @@ MonoBehaviour:
   _target:
     useConstant: 0
     constantValue: {fileID: 0}
-    variable: {fileID: 0}
+    variable: {fileID: 11400000, guid: 63741af3fecd2dd40bcc502ca62eeead, type: 2}
 --- !u!114 &-7540060648430052599
 MonoBehaviour:
   m_ObjectHideFlags: 0
