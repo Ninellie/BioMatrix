@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Float Variable", menuName = "Variables/Float")]
+[CreateAssetMenu(fileName = "New Float Variable", menuName = "Variables/Float", order = 51)]
 public class FloatVariable : ScriptableObject
 {
 #if UNITY_EDITOR

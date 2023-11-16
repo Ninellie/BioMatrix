@@ -2,7 +2,7 @@ using Assets.Scripts.SourceStatSystem;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Stat Variable", menuName = "Variables/Stat")]
+[CreateAssetMenu(fileName = "New Stat Variable", menuName = "Variables/Stat", order = 51)]
 public class StatVariable : FloatVariable
 {
     public StatId id;
