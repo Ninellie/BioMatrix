@@ -18,7 +18,17 @@ namespace Assets.Scripts.EntityComponents
         public void TakeDamage(int damage)
         {
             var oldValue = _currentHealth.Value;
-            var newValue = _currentHealth.Value -= damage;
+            
+            if (_currentHealth.useConstant)
+            {
+                _currentHealth.constantValue -= damage;
+            }
+            else
+            {
+                _currentHealth.variable.ApplyChange(-damage);
+            }
+
+            var newValue = _currentHealth.Value;
             
             if (onDecrease != null)
             {
