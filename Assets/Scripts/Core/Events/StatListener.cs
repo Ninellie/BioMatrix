@@ -2,14 +2,16 @@ using Assets.Scripts.Core.Variables;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class StatListener : MonoBehaviour
+namespace Assets.Scripts.Core.Events
 {
-    [Tooltip("Event to register with")]
-    public StatVariable statChangedEvent;
+    public class StatListener : MonoBehaviour
+    {
+        [Tooltip("Event to register with")]
+        public StatVariable statChangedEvent;
 
-    [Tooltip("Response to invoke when stat value changes")]
-    public UnityEvent<StatVariable> response;
-    /*
+        [Tooltip("Response to invoke when stat value changes")]
+        public UnityEvent<StatVariable> response;
+        /*
      * Size
      * MagnetismRadius
      *
@@ -21,18 +23,19 @@ public class StatListener : MonoBehaviour
      * Last ammo
      */
 
-    private void OnEnable()
-    {
-        statChangedEvent.RegisterListener(this);
-    }
+        private void OnEnable()
+        {
+            statChangedEvent.RegisterListener(this);
+        }
 
-    private void OnDisable()
-    {
-        statChangedEvent.UnregisterListener(this);
-    }
+        private void OnDisable()
+        {
+            statChangedEvent.UnregisterListener(this);
+        }
 
-    public void OnEventRaised(StatVariable stat)
-    {
-        response.Invoke(stat);
+        public void OnEventRaised(StatVariable stat)
+        {
+            response.Invoke(stat);
+        }
     }
 }

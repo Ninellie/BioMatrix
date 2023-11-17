@@ -1,5 +1,7 @@
-using UnityEditor;
+#if UNITY_EDITOR
+using Assets.Scripts.Core.Events;
 using UnityEngine;
+using UnityEditor;
 
 [CustomEditor(typeof(GameEvent), editorForChildClasses: true)]
 public class EventEditor : Editor
@@ -15,3 +17,4 @@ public class EventEditor : Editor
             e.Raise();
     }
 }
+#endif

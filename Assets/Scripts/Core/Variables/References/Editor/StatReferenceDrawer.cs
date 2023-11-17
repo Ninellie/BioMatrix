@@ -1,5 +1,7 @@
-using UnityEditor;
+#if UNITY_EDITOR
+using Assets.Scripts.Core.Variables.References;
 using UnityEngine;
+using UnityEditor;
 
 [CustomPropertyDrawer(typeof(StatReference))]
 public class StatReferenceDrawer : PropertyDrawer
@@ -56,3 +58,4 @@ public class StatReferenceDrawer : PropertyDrawer
         EditorGUI.EndProperty();
     }
 }
+#endif

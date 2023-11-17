@@ -1,27 +1,30 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[AddComponentMenu("EventListener/GameEventListener")]
-public class GameEventListener : MonoBehaviour
+namespace Assets.Scripts.Core.Events
 {
-    [Tooltip("Event to register with.")]
-    public GameEvent gameEvent;
-
-    [Tooltip("Response to invoke when Event is raised.")]
-    public UnityEvent response;
-
-    private void OnEnable()
+    [AddComponentMenu("EventListener/GameEventListener")]
+    public class GameEventListener : MonoBehaviour
     {
-        gameEvent.RegisterListener(this);
-    }
+        [Tooltip("Event to register with.")]
+        public GameEvent gameEvent;
 
-    private void OnDisable()
-    {
-        gameEvent.UnregisterListener(this);
-    }
+        [Tooltip("Response to invoke when Event is raised.")]
+        public UnityEvent response;
 
-    public void OnEventRaised()
-    {
-        response.Invoke();
+        private void OnEnable()
+        {
+            gameEvent.RegisterListener(this);
+        }
+
+        private void OnDisable()
+        {
+            gameEvent.UnregisterListener(this);
+        }
+
+        public void OnEventRaised()
+        {
+            response.Invoke();
+        }
     }
 }

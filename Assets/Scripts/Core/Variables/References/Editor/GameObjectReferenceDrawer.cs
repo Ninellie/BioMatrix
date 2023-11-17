@@ -1,8 +1,10 @@
-using UnityEditor;
+#if UNITY_EDITOR
+using Assets.Scripts.Core.Variables.References;
 using UnityEngine;
+using UnityEditor;
 
-[CustomPropertyDrawer(typeof(FloatReference))]
-public class FloatReferenceDrawer : PropertyDrawer
+[CustomPropertyDrawer(typeof(GameObjectReference))]
+public class GameObjectReferenceDrawer : PropertyDrawer
 {
     /// <summary>
     /// Options to display in the popup to select constant or variable.
@@ -56,3 +58,4 @@ public class FloatReferenceDrawer : PropertyDrawer
         EditorGUI.EndProperty();
     }
 }
+#endif

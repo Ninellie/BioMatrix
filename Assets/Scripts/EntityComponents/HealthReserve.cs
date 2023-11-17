@@ -1,3 +1,4 @@
+using Assets.Scripts.Core.Events;
 using Assets.Scripts.Core.Variables.References;
 using UnityEngine;
 
