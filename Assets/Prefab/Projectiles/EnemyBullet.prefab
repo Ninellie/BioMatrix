@@ -52,6 +52,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyTag: Player
+  damage:
+    useConstant: 1
+    constantValue: 1
+    variable: {fileID: 0}
 --- !u!114 &-5652939125271565065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +75,10 @@ MonoBehaviour:
   _speedScaleRestoreSpeed: 1
   _restoreSpeedScale: 0
   _staticSpeedScale: 1
+  speedStat:
+    useConstant: 1
+    constantValue: 300
+    variable: {fileID: 0}
 --- !u!50 &2316403284215167119
 Rigidbody2D:
   serializedVersion: 4
@@ -327,8 +335,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _usePreset: 1
   _preset: {fileID: 11400000, guid: b1f1e538b619c3144a63482aa413b8a6, type: 2}
-  _statList: {fileID: 1949819608208524623}
+  _statManagerComponent: {fileID: 0}
   _resources: []
-  references:
-    version: 2
-    RefIds: []

@@ -53,6 +53,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyTag: Enemy
+  damage:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 2e821920e2bdd4e4481e27dea0c67ed6, type: 2}
 --- !u!114 &-5652939125271565065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +76,10 @@ MonoBehaviour:
   _speedScaleRestoreSpeed: 0.7
   _restoreSpeedScale: 1
   _staticSpeedScale: 0
+  speedStat:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 93cb3ad6358f5194aa6583e201079a2b, type: 2}
 --- !u!50 &2316403284215167119
 Rigidbody2D:
   serializedVersion: 4
@@ -346,8 +354,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _usePreset: 1
   _preset: {fileID: 11400000, guid: b1f1e538b619c3144a63482aa413b8a6, type: 2}
-  _statList: {fileID: 1949819608208524623}
+  _statManagerComponent: {fileID: 0}
   _resources: []
-  references:
-    version: 2
-    RefIds: []

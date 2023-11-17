@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteOutline: {fileID: -2167475189181900128}
-  _targetOutlineColor: {r: 1, g: 0, b: 0, a: 0}
+  _targetOutlineColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &2396631660057037754
 PrefabInstance:
   m_ObjectHideFlags: 0
