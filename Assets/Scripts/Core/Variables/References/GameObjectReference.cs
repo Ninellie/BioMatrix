@@ -1,40 +1,43 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public class GameObjectReference
+namespace Assets.Scripts.Core.Variables.References
 {
-    public bool useConstant;
-    public GameObject constantValue;
-    public GameObjectVariable variable;
-
-    public GameObjectReference()
-    { }
-
-    public GameObjectReference(GameObject value)
+    [Serializable]
+    public class GameObjectReference
     {
-        useConstant = true;
-        constantValue = value;
-    }
+        public bool useConstant;
+        public GameObject constantValue;
+        public GameObjectVariable variable;
 
-    public GameObject Value
-    {
-        get => useConstant ? constantValue : variable.value;
-        set
+        public GameObjectReference()
+        { }
+
+        public GameObjectReference(GameObject value)
         {
-            if (useConstant)
+            useConstant = true;
+            constantValue = value;
+        }
+
+        public GameObject Value
+        {
+            get => useConstant ? constantValue : variable.value;
+            set
             {
-                constantValue = value;
-            }
-            else
-            {
-                variable.value = value;
+                if (useConstant)
+                {
+                    constantValue = value;
+                }
+                else
+                {
+                    variable.value = value;
+                }
             }
         }
-    }
 
-    public static implicit operator GameObject(GameObjectReference reference)
-    {
-        return reference.Value;
+        public static implicit operator GameObject(GameObjectReference reference)
+        {
+            return reference.Value;
+        }
     }
 }

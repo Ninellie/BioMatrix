@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
@@ -19,17 +20,19 @@ namespace Assets.Scripts.FirearmComponents
         [SerializeField] private GameObject _ammo;
         [SerializeField] private LayerMask _enemyLayer;
         public bool IsForPlayer { get; private set; }
-        public Stat Damage { get; private set; }
-        public Stat ShootForce { get; private set; }
-        public Stat ShootsPerSecond { get; private set; }
-        public Stat MaxShootDeflectionAngle { get; private set; }
-        public Stat MagazineCapacity { get; private set; }
-        public Stat ReloadSpeed { get; private set; }
-        public Stat SingleShootProjectile { get; private set; }
-        public Stat ProjectileSizeMultiplier { get; private set; }
-        public Stat ProjectilePierceCount { get; private set; }
-        public Stat AddedProjectileKnockback { get; private set; }
-        public Stat TurretAimingRadius { get; private set; }
+
+
+        public FloatReference Damage;
+        public FloatReference ShootForce;
+        public FloatReference ShootsPerSecond;
+        public FloatReference MaxShootDeflectionAngle;
+        public FloatReference MagazineCapacity;
+        public FloatReference ReloadSpeed;
+        public FloatReference SingleShootProjectile;
+        public FloatReference ProjectileSizeMultiplier;
+        public FloatReference ProjectilePierceCount;
+        public FloatReference AddedProjectileKnockback;
+        public FloatReference TurretAimingRadius;
         
         public Resource Magazine { get; private set; }
 
@@ -44,7 +47,7 @@ namespace Assets.Scripts.FirearmComponents
         public Reload Reload { get; private set; }
         private Player _player;
         private float _previousShootTimer;
-        private float MinShootInterval => 1f / ShootsPerSecond.Value;
+        private float MinShootInterval => 1f / ShootsPerSecond;
 
         private ISlayer _source;
         private ResourceList _resources;

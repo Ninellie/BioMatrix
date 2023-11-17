@@ -1,3 +1,4 @@
+using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.FirearmComponents;
 using UnityEngine;
 

@@ -1,3 +1,4 @@
+using Assets.Scripts.Core.Variables.References;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
@@ -5,32 +6,14 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
     public abstract class MovementController : MonoBehaviour, IMovementController
     {
         [Header("Speed scale settings")]
-
-        [SerializeField]
-        [Min(0)]
-        private float _baseSpeedScale;
-
-        [SerializeField]
-        [Min(0)]
-        private float _minSpeedScale;
-
-        [SerializeField]
-        [Min(0)]
-        private float _maxSpeedScale;
-
-        [SerializeField]
-        [Min(0)]
-        private float _tendSpeedScale;
-
-        [SerializeField]
+        [SerializeField] [Min(0)] private float _baseSpeedScale;
+        [SerializeField] [Min(0)] private float _minSpeedScale;
+        [SerializeField] [Min(0)] private float _maxSpeedScale;
+        [SerializeField] [Min(0)] private float _tendSpeedScale;
         [Tooltip("Time in seconds for which the SpeedScale value unit will be restored")]
-        private float _speedScaleRestoreSpeed;
-
-        [SerializeField]
-        private bool _restoreSpeedScale;
-
-        [SerializeField]
-        private bool _staticSpeedScale;
+        [SerializeField] private float _speedScaleRestoreSpeed;
+        [SerializeField] private bool _restoreSpeedScale;
+        [SerializeField] private bool _staticSpeedScale;
 
         protected float SpeedScale
         {
@@ -39,7 +22,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         }
 
         private Vector2 AddedVelocity { get; set; } = Vector2.zero;
-        public FloatReference speedStat;
+        [SerializeField] protected FloatReference speedStat;
         protected abstract float Speed { get; }
         protected abstract Vector2 MovementDirection { get; set; }
         protected abstract Vector2 RawMovementDirection { get; set; }

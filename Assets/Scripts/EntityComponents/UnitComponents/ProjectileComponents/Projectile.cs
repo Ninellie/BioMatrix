@@ -1,6 +1,5 @@
-using Assets.Scripts.EntityComponents.Resources;
+using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.Stats;
-using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;

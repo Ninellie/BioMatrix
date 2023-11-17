@@ -1,3 +1,4 @@
+using Assets.Scripts.Core.Variables;
 using UnityEngine;
 
 public class KillCounter : MonoBehaviour

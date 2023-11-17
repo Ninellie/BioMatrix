@@ -1,25 +1,28 @@
 using System;
 
-[Serializable]
-public class StatReference
+namespace Assets.Scripts.Core.Variables.References
 {
-    public bool useConstant;
-    public float constantValue;
-    public StatVariable variable;
-
-    public StatReference()
-    { }
-
-    public StatReference(float value)
+    [Serializable]
+    public class StatReference
     {
-        useConstant = true;
-        constantValue = value;
-    }
+        public bool useConstant;
+        public float constantValue;
+        public StatVariable variable;
 
-    public float Value => useConstant ? constantValue : variable.value;
+        public StatReference()
+        { }
 
-    public static implicit operator float(StatReference reference)
-    {
-        return reference.Value;
+        public StatReference(float value)
+        {
+            useConstant = true;
+            constantValue = value;
+        }
+
+        public float Value => useConstant ? constantValue : variable.value;
+
+        public static implicit operator float(StatReference reference)
+        {
+            return reference.Value;
+        }
     }
 }

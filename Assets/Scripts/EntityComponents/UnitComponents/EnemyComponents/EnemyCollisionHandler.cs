@@ -1,4 +1,4 @@
-using Assets.Scripts.EntityComponents.Resources;
+using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;

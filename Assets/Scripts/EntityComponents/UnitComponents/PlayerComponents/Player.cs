@@ -1,4 +1,5 @@
 using System;
+using Assets.Scripts.Core.Variables;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;

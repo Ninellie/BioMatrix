@@ -1,3 +1,4 @@
+using Assets.Scripts.Core.Variables.References;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents
