@@ -1,68 +1,46 @@
 using System.Collections;
-using Assets.Scripts.EntityComponents.Resources;
+using Assets.Scripts.Core.Events;
+using Assets.Scripts.Core.Variables;
+using Assets.Scripts.Core.Variables.References;
 using UnityEngine;
 
 namespace Assets.Scripts.FirearmComponents
 {
+    // Герой жмёт на кнопку стрельбы
+    // Отсылается ивент стрельбы
+    // Оружие начинает реагировать на ивент с DoAction
+    // Выстрел
+    // Минус 1 патрон
+    // Подождать дилей скорости атаки
+    // Если в магазине не осталось патронов, то запустить перезарядку
+
     public class Reload : MonoBehaviour
     {
         [SerializeField] private GameObject _plateUi;
         [SerializeField] private bool _isInProgress;
-        private ResourceList _resourceList;
-        private Resource _magazine;
+
+        public GameEvent onReloadStart;
+        public GameEvent onReloadComplete;
+
+        public FloatReference reloadSpeedStat;
+        public FloatReference maxMagazineAmountStat;
+        public IntVariable magazine;
         public bool IsInProcess => _isInProgress;
 
-        private Firearm _firearm;
         private bool _isSubscribed;
-        private void Awake()
-        {
-            _resourceList = GetComponent<ResourceList>();
-            _firearm = GetComponent<Firearm>();
-
-            if (_firearm.IsForPlayer) _plateUi?.SetActive(false);
-        }
-
-        private void Start()
-        {
-            _magazine = _resourceList.GetResource(ResourceName.Ammo);
-            Subscribe();
-        }
-
-        private void OnEnable() => Subscribe();
-
-        private void OnDisable() => Unsubscribe();
-
-        private void Subscribe()
-        {
-            if (_isSubscribed) return;
-            if (_magazine is null) return;
-            _magazine.AddListenerToEvent(ResourceEventType.Empty, Initiate);
-            _isSubscribed = true;
-        }
-
-        private void Unsubscribe()
-        {
-            if (!_isSubscribed) return;
-            if (_magazine is null) return;
-            _magazine.RemoveListenerToEvent(ResourceEventType.Empty, Initiate);
-            _isSubscribed = false;
-        }
 
         private void Initiate()
         {
             _isInProgress = true;
-            _firearm.OnReload();
+            onReloadStart.Raise();
 
-            if (_firearm.IsForPlayer)
-                _plateUi.SetActive(true);
-
-            var reloadTime = 1 / _firearm.ReloadSpeed.Value;
+            var reloadTime = 1 / reloadSpeedStat.Value;
             var isInstant = !(reloadTime > 0);
 
             switch (isInstant)
             {
                 case false:
-                    StartCoroutine(CoReload(reloadTime));
+                    Invoke(nameof(Complete), reloadTime);
                     break;
                 case true:
                     Complete();
@@ -70,20 +48,11 @@ namespace Assets.Scripts.FirearmComponents
             }
         }
 
-        private IEnumerator CoReload(float time)
-        {
-            yield return new WaitForSeconds(time);
-            Complete();
-        }
-
         private void Complete()
         {
             _isInProgress = false;
-            _magazine.Fill();
-            _firearm.OnReloadEnd();
-
-            if (_firearm.IsForPlayer)
-                _plateUi.SetActive(false);
+            magazine.SetValue((int)maxMagazineAmountStat.Value);
+            onReloadComplete.Raise();
         }
     }
 }
