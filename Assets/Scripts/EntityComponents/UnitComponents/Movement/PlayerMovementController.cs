@@ -13,7 +13,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         {
             get
             {
-                if (_player.Firearm.Reload.IsInProcess) // Кнопка не нажата, оружие на перезарядке
+                if (_player.Firearm.MagazineReserve.OnReload) // Кнопка не нажата, оружие на перезарядке
                     return NoAimingSpeed;
 
                 if (_player.IsFireButtonPressed)
