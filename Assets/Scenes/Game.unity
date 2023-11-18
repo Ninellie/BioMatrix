@@ -2157,10 +2157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ab7468fc3de4d458bdafc626c2b5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerKills:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: 172ee91b73dc7dd44891dc0bebde51cb, type: 2}
+  _playerKills: {fileID: 11400000, guid: 172ee91b73dc7dd44891dc0bebde51cb, type: 2}
   _resetOnAwake: 1
 --- !u!1 &569704433 stripped
 GameObject:

@@ -1,14 +1,20 @@
 using System.Collections.Generic;
+using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using UnityEngine;
 using UnityEngine.UI;
+
+//[CreateAssetMenu(order = 51)]
+//public class VisibleThingRuntimeSet : RuntimeSet<VisibleThing>
+//{ }
+
+[CreateAssetMenu(order = 51)]
+public class PlayerTargetRuntimeSet : RuntimeSet<PlayerTarget>
+{ }
 
 [CreateAssetMenu(order = 51)]
 public class ThingRuntimeSet : RuntimeSet<Thing>
 { }
 
-[CreateAssetMenu(order = 51)]
-public class VisibleThingRuntimeSet : RuntimeSet<VisibleThing>
-{ }
 
 public abstract class RuntimeSet<T> : ScriptableObject
 {
@@ -27,20 +33,20 @@ public abstract class RuntimeSet<T> : ScriptableObject
     }
 }
 
-public class VisibleThing : MonoBehaviour
-{
-    public VisibleThingRuntimeSet runtimeSet;
+//public class VisibleThing : MonoBehaviour
+//{
+//    public VisibleThingRuntimeSet runtimeSet;
 
-    private void OnBecameVisible()
-    {
-        runtimeSet.Add(this);
-    }
+//    private void OnBecameVisible()
+//    {
+//        runtimeSet.Add(this);
+//    }
 
-    private void OnBecameInvisible()
-    {
-        runtimeSet.Remove(this);
-    }
-}
+//    private void OnBecameInvisible()
+//    {
+//        runtimeSet.Remove(this);
+//    }
+//}
 
 public class Thing : MonoBehaviour
 {

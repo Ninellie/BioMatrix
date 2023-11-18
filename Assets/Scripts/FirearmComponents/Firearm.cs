@@ -21,7 +21,6 @@ namespace Assets.Scripts.FirearmComponents
         [SerializeField] private LayerMask _enemyLayer;
         public bool IsForPlayer { get; private set; }
 
-
         public FloatReference Damage;
         public FloatReference ShootForce;
         public FloatReference ShootsPerSecond;

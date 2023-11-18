@@ -16,22 +16,18 @@ namespace Assets.Scripts.FirearmComponents
 
     public class Reload : MonoBehaviour
     {
-        [SerializeField] private GameObject _plateUi;
-        [SerializeField] private bool _isInProgress;
-
-        public GameEvent onReloadStart;
-        public GameEvent onReloadComplete;
-
-        public FloatReference reloadSpeedStat;
-        public FloatReference maxMagazineAmountStat;
-        public IntVariable magazine;
-        public bool IsInProcess => _isInProgress;
-
-        private bool _isSubscribed;
+        [field: SerializeField] public bool IsInProcess { get; private set; }
+        [Space]
+        [SerializeField] private GameEvent onReloadStart;
+        [SerializeField] private GameEvent onReloadComplete;
+        [Space]
+        [SerializeField] private FloatReference reloadSpeedStat;
+        [SerializeField] private FloatReference maxMagazineAmountStat;
+        [SerializeField] private IntVariable magazine;
 
         private void Initiate()
         {
-            _isInProgress = true;
+            IsInProcess = true;
             onReloadStart.Raise();
 
             var reloadTime = 1 / reloadSpeedStat.Value;
@@ -50,7 +46,7 @@ namespace Assets.Scripts.FirearmComponents
 
         private void Complete()
         {
-            _isInProgress = false;
+            IsInProcess = false;
             magazine.SetValue((int)maxMagazineAmountStat.Value);
             onReloadComplete.Raise();
         }

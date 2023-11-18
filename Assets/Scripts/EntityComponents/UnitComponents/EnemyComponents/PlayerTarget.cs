@@ -7,13 +7,24 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
     {
         [SerializeField] private SpriteOutline _spriteOutline;
         [SerializeField] private Color _targetOutlineColor;
+        [SerializeField] private PlayerTargetRuntimeSet _runtimeSet;
+
+        public Transform Transform { get; private set; }
 
         private void Awake()
         {
-            if (_spriteOutline == null)
-            {
-                _spriteOutline = GetComponent<SpriteOutline>();
-            }
+            if (_spriteOutline == null) _spriteOutline = GetComponent<SpriteOutline>();
+            if (Transform == null) Transform = transform;
+        }
+
+        private void OnBecameVisible()
+        {
+            _runtimeSet.Add(this);
+        }
+
+        private void OnBecameInvisible()
+        {
+            _runtimeSet.Remove(this);
         }
 
         public void TakeAsTarget()
