@@ -15,14 +15,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             {
                 if (_player.Firearm.MagazineReserve.OnReload) // Кнопка не нажата, оружие на перезарядке
                     return NoAimingSpeed;
-
                 if (_player.IsFireButtonPressed)
                     return AimingSpeed;
-
                 if (_player.Firearm.CanShoot) // Кнопка не нажата, оружие готово к стрельбе
                     return NoAimingSpeed;
-
-
                 return AimingSpeed; // Кнопка не нажата, оружие не на перезарядке, но совсем недавно стреляло и ещё не готово к стрельбе
             }
         }
