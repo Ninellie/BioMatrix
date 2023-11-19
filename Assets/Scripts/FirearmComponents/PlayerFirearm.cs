@@ -18,6 +18,7 @@ namespace Assets.Scripts.FirearmComponents
         [SerializeField] private FloatReference _attackSpeed;
         [SerializeField] private FloatReference _projectilesPerAttack;
         [SerializeField] private FloatReference _maxShootDeflectionAngle;
+        [SerializeField] private FloatReference _shootForce;
         public bool CanShoot => _coolDownTimer <= 0
                                 && _magazineReserve.Value > 0
                                 && !_magazineReserve.OnReload;
@@ -71,7 +72,7 @@ namespace Assets.Scripts.FirearmComponents
             foreach (var projectile in projectiles)
             {
                 var proj = projectile.GetComponent<Projectile>();
-                proj.Launch(actualShotDirection, ShootForce.Value);
+                proj.Launch(actualShotDirection, _shootForce.Value);
                 //proj.SetDirection();
                 var launchAngle = _maxShootDeflectionAngle * Mathf.Deg2Rad;
                 actualShotDirection = MathFirearm.Rotate(actualShotDirection, launchAngle);
@@ -79,8 +80,6 @@ namespace Assets.Scripts.FirearmComponents
 
             _coolDownTimer = 1f / _attackSpeed;
         }
-
-
 
         private Vector2 GetShotDirection()
         {
