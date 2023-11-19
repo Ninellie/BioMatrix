@@ -33,6 +33,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private GameObjectVariable _selfVariable;
         [SerializeField] private Transform _firePoint;
         [SerializeField] private Shield _shield;
+        
+        public Vector2Variable aimDirection;
 
         public event Action GamePausedEvent;
         public event Action FireEvent;
@@ -210,9 +212,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
             if (aimMode == AimMode.AutoAim)
             {
-                if (CurrentAimDirection.Equals(Vector2.zero)) return;
                 CurrentAimDirection = Vector2.zero;
                 return;
+            }
+
+            if (aimDirection != null)
+            {
+                aimDirection.SetValue(direction);
             }
 
             CurrentAimDirection = direction;
