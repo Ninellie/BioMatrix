@@ -1,4 +1,6 @@
+using Assets.Scripts.Core.Variables;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
+using Assets.Scripts.FirearmComponents;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,23 +10,26 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
     public class PlayerMovementController : MovementController
     {
         [SerializeField] private float _aimingSpeedMultiplier = 0.5f;
+        [SerializeField] private PlayerFirearm _firearm;// Convert to bool variable
+        [SerializeField] private MagazineReserve _magazine;
+        [SerializeField] private Player _player;
 
         protected override float Speed
         {
             get
             {
-                if (_player.Firearm.MagazineReserve.OnReload) // Кнопка не нажата, оружие на перезарядке
+                if (_magazine.OnReload) // Не важно нажата ли кнопка, ведь оружие на перезарядке
                     return NoAimingSpeed;
-                if (_player.IsFireButtonPressed)
+                if (_player.IsFireButtonPressed) // Кнопка нажата, оружие не на перезарядке
                     return AimingSpeed;
-                if (_player.Firearm.CanShoot) // Кнопка не нажата, оружие готово к стрельбе
+                if (_firearm.CanShoot) // Кнопка не нажата, оружие не на перезарядке и не на кд
                     return NoAimingSpeed;
-                return AimingSpeed; // Кнопка не нажата, оружие не на перезарядке, но совсем недавно стреляло и ещё не готово к стрельбе
+                return AimingSpeed; // Кнопка не нажата, оружие не на перезарядке, но совсем недавно стреляло и ещё не готово к стрельбе, потому что на кд
             }
         }
         protected float NoAimingSpeed => speedStat.Value * SpeedScale;
         protected float AimingSpeed => NoAimingSpeed * _aimingSpeedMultiplier;
-
+        [SerializeField] private Vector2Variable _movementDirection;
         protected override Vector2 MovementDirection { get; set; }
         protected override Vector2 RawMovementDirection
         {
@@ -32,11 +37,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             set => throw new System.NotImplementedException();
         }
 
-        private Player _player;
-
         private new void Awake()
         {
-            _player = GetComponent<Player>();
             base.Awake();
         }
 
