@@ -14,7 +14,7 @@ using Time = UnityEngine.Time;
 
 namespace Assets.Scripts.FirearmComponents
 {
-    [RequireComponent(typeof(Reload))]
+    [RequireComponent(typeof(MagazineReserve))]
     public class Firearm : MonoBehaviour, ISource, IDerivative, ISlayer, IWeapon
     {
         [SerializeField] private GameObject _ammo;
@@ -41,9 +41,9 @@ namespace Assets.Scripts.FirearmComponents
         public bool IsEnable { get; set; } = true;
         public bool CanShoot => _previousShootTimer <= 0
                                 && !Magazine.IsEmpty
-                                && !Reload.IsInProcess;
+                                && !MagazineReserve.OnReload;
 
-        public Reload Reload { get; private set; }
+        public MagazineReserve MagazineReserve { get; private set; }
         private Player _player;
         private float _previousShootTimer;
         private float MinShootInterval => 1f / ShootsPerSecond;
@@ -63,7 +63,7 @@ namespace Assets.Scripts.FirearmComponents
         {
             _stats = GetComponent<StatList>();
             _resources = GetComponent<ResourceList>();
-            Reload = GetComponent<Reload>();
+            MagazineReserve = GetComponent<MagazineReserve>();
             _player = FindObjectOfType<Player>();
         }
 

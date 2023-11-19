@@ -1,8 +1,11 @@
-using Assets.Scripts.Core.Events;
 using Assets.Scripts.Core.Variables.References;
+using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
+using Assets.Scripts.EntityComponents.UnitComponents.Movement;
+using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using Assets.Scripts.GameSession.UIScripts;
 using UnityEngine;
+using UnityEngine.InputSystem.Processors;
 
 namespace Assets.Scripts.FirearmComponents
 {
@@ -10,24 +13,88 @@ namespace Assets.Scripts.FirearmComponents
     {
         [SerializeField] private GameObject _ammo; // TODO convert to object pool
         [SerializeField] private PlayerTargetRuntimeSet _visibleEnemies;
-
-        [SerializeField] private  AimMode _aimMode; // TODO Сделать ивент, который передаст bool переменную и подписать на неё соответствующий метод
-
-        // TODO в том же компоненте есть 
-
-        public GameEvent onShoot; // TODO В том же префабе оружия сделать EventListener который подпишется на этот ивент
-
-        [SerializeField] private Reload reload;
-        public bool CanShoot => _coolDownTimer <= 0
-                                && magazine.Value > 0
-                                && !reload.IsInProcess;
-
-        [SerializeField] private IntReference magazine;
-
+        [SerializeField] private AimMode _aimMode;
+        [SerializeField] private MagazineReserve _magazineReserve;
+        [SerializeField] private Vector2Reference _selfAimDirection;
+        [Space]
+        [Header("Stats")]
+        [SerializeField] private FloatReference _attackSpeed;
+        [SerializeField] private FloatReference _projectilesPerAttack;
+        [SerializeField] private FloatReference _maxShootDeflectionAngle;
+        private bool CanShoot => _coolDownTimer <= 0
+                                && _magazineReserve.Value > 0
+                                && !_magazineReserve.OnReload;
         private float _coolDownTimer;
         private PlayerTarget _currentTarget;
-
         private Transform _myTransform;
+
+        private void Awake()
+        {
+            if (_myTransform == null) _myTransform = transform;
+            if (_magazineReserve == null) _magazineReserve = GetComponent<MagazineReserve>();
+        }
+
+        private void FixedUpdate()
+        {
+            _coolDownTimer -= Time.fixedDeltaTime;
+            UpdateTarget();
+        }
+
+        public void DoAction()
+        {
+            if (!CanShoot) return;
+            Shoot();
+        }
+
+
+        public GameObject[] CreateProjectiles(int singleShotProjectiles, GameObject ammo, Transform firingPoint)
+        {
+            var projectiles = new GameObject[singleShotProjectiles];
+
+            for (var i = 0; i < projectiles.Length; i++)
+            {
+                projectiles[i] = Instantiate(ammo, firingPoint.position, firingPoint.rotation);
+            }
+            return projectiles;
+        }
+
+        public void Shoot()
+        {
+            _magazineReserve.Pop();
+
+            var projectiles = CreateProjectiles((int)_projectilesPerAttack.Value, _ammo, gameObject.transform);
+            var direction = GetShotDirection();
+            var projSpread = _maxShootDeflectionAngle;
+            var projCount = projectiles.Length;
+            var fireAngle = projSpread * (projCount - 1);
+            var halfFireAngleRad = fireAngle * 0.5f * Mathf.Deg2Rad;
+            var leftDirection = MathFirearm.Rotate(direction, -halfFireAngleRad);
+            var actualShotDirection = leftDirection;
+
+            foreach (var projectile in projectiles)
+            {
+                var proj = projectile.GetComponent<Projectile>();
+                proj.Launch(actualShotDirection, ShootForce.Value);
+                //proj.SetDirection();
+                var launchAngle = _maxShootDeflectionAngle * Mathf.Deg2Rad;
+                actualShotDirection = MathFirearm.Rotate(actualShotDirection, launchAngle);
+            }
+
+            _coolDownTimer = 1f / _attackSpeed;
+        }
+
+
+
+        private Vector2 GetShotDirection()
+        {
+            if (_aimMode == AimMode.SelfAim)
+            {
+                return _selfAimDirection.Value;
+            }
+            Vector2 direction = _currentTarget.Transform.position - _myTransform.position;
+            direction.Normalize();
+            return direction;
+        }
 
         public void SetAutoAim(bool value)
         {
@@ -39,14 +106,17 @@ namespace Assets.Scripts.FirearmComponents
             _aimMode = AimMode.SelfAim;
         }
 
-        private void Awake()
+        private void UpdateTarget()
         {
-            if (_myTransform == null) _myTransform = transform;
-        }
-
-        private void FixedUpdate()
-        {
-            _coolDownTimer -= Time.fixedDeltaTime;
+            if (_aimMode == AimMode.SelfAim)
+            {
+                if (_currentTarget == null) return;
+                _currentTarget.RemoveFromTarget();
+                _currentTarget = null;
+                return;
+            }
+            var nearestTarget = GetNearestPlayerTarget();
+            TakeAsTarget(nearestTarget);
         }
 
         private void TakeAsTarget(PlayerTarget target)
@@ -57,34 +127,19 @@ namespace Assets.Scripts.FirearmComponents
             _currentTarget.TakeAsTarget();
         }
 
-
-        private Vector2 GetDirectionToNearestPlayerTarget()
+        private PlayerTarget GetNearestPlayerTarget()
         {
-            var directionToNearestTarget = Vector2.zero;
             var distanceToNearestTarget = Mathf.Infinity;
             var targets = _visibleEnemies.items.ToArray();
             PlayerTarget nearestTarget = null;
-
-            if (targets.Length > 0)
-            {
-                nearestTarget = targets[0];
-            }
-
             foreach (var target in targets)
             {
                 var distance = Vector2.Distance(_myTransform.position, target.transform.position);
-
                 if (!(distance < distanceToNearestTarget)) continue;
-
                 distanceToNearestTarget = distance;
-                Vector2 direction = (target.transform.position - transform.position).normalized;
-                directionToNearestTarget = direction;
                 nearestTarget = target;
             }
-
-            if (nearestTarget == null) return directionToNearestTarget;
-            TakeAsTarget(nearestTarget);
-            return directionToNearestTarget;
+            return nearestTarget == null ? null : nearestTarget;
         }
     }
 }
