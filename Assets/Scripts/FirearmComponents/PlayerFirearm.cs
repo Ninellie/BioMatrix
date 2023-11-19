@@ -1,11 +1,8 @@
 using Assets.Scripts.Core.Variables.References;
-using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
-using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using Assets.Scripts.GameSession.UIScripts;
 using UnityEngine;
-using UnityEngine.InputSystem.Processors;
 
 namespace Assets.Scripts.FirearmComponents
 {
@@ -21,7 +18,7 @@ namespace Assets.Scripts.FirearmComponents
         [SerializeField] private FloatReference _attackSpeed;
         [SerializeField] private FloatReference _projectilesPerAttack;
         [SerializeField] private FloatReference _maxShootDeflectionAngle;
-        private bool CanShoot => _coolDownTimer <= 0
+        public bool CanShoot => _coolDownTimer <= 0
                                 && _magazineReserve.Value > 0
                                 && !_magazineReserve.OnReload;
         private float _coolDownTimer;
