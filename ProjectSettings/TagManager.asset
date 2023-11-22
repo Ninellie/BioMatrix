@@ -11,6 +11,7 @@ TagManager:
   - Enclosure
   - Cage
   - EnemyProjectile
+  - PlayerProjectile
   layers:
   - Default
   - TransparentFX
