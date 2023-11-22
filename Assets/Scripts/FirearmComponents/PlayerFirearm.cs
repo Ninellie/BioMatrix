@@ -1,5 +1,6 @@
 using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
+using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using Assets.Scripts.GameSession.UIScripts;
 using UnityEngine;
@@ -71,9 +72,8 @@ namespace Assets.Scripts.FirearmComponents
 
             foreach (var projectile in projectiles)
             {
-                var proj = projectile.GetComponent<Projectile>();
-                proj.Launch(actualShotDirection, _shootForce.Value);
-                //proj.SetDirection();
+                var proj = projectile.GetComponent<ProjectileMovementController>();
+                proj.SetDirection(actualShotDirection);
                 var launchAngle = _maxShootDeflectionAngle * Mathf.Deg2Rad;
                 actualShotDirection = MathFirearm.Rotate(actualShotDirection, launchAngle);
             }

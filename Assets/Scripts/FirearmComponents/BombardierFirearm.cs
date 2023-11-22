@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
+using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using UnityEngine;
 
@@ -76,13 +77,12 @@ namespace Assets.Scripts.FirearmComponents
             var halfFireAngleRad = fireAngle * 0.5f * Mathf.Deg2Rad;
             var leftDirection = MathFirearm.Rotate(direction, -halfFireAngleRad);
             var actualShotDirection = leftDirection;
-            var shootForce = _statList.GetStat(StatName.ShootForce);
             foreach (var projectile in projectiles)
             {
                 var projStats = projectile.GetComponent<StatList>();
-                var proj = projectile.GetComponent<Projectile>();
+                var proj = projectile.GetComponent<ProjectileMovementController>();
                 ImproveProjectile(projStats);
-                proj.Launch(actualShotDirection, shootForce.Value);
+                proj.SetDirection(actualShotDirection);
                 actualShotDirection = MathFirearm.Rotate(actualShotDirection, projSpread * Mathf.Deg2Rad);
             }
         }

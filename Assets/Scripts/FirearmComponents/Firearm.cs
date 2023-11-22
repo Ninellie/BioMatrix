@@ -5,6 +5,7 @@ using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
+using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using Assets.Scripts.GameSession.UIScripts;
@@ -157,13 +158,9 @@ namespace Assets.Scripts.FirearmComponents
             foreach (var projectile in projectiles)
             {
                 var projStats = projectile.GetComponent<StatList>();
-                var proj = projectile.GetComponent<Projectile>();
-
+                var proj = projectile.GetComponent<ProjectileMovementController>();
                 ImproveProjectile(projStats);
-
-                proj.SetSource(this);
-
-                proj.Launch(actualShotDirection, ShootForce.Value);
+                proj.SetDirection(actualShotDirection);
                 actualShotDirection = MathFirearm.Rotate(actualShotDirection, projSpread * Mathf.Deg2Rad);
             }
 

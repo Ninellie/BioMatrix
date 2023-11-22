@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
-    public class ProjectileMovementController : MovementController, IProjectileMovementController
+    public class ProjectileMovementController : MovementController
     {
         protected override float Speed => speedStat.Value * SpeedScale;
         protected override Vector2 MovementDirection
