@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de07b0703f40c014db9884ac7f392eb7, type: 3}
-  m_Name: player_turret_projectile_damage
+  m_Name: turret_projectile_damage
   m_EditorClassIdentifier: 
   developerDescription: 
   value: 1
