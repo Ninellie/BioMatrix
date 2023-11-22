@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5058406891993574356}
+  - component: {fileID: 6281086272866892743}
   - component: {fileID: -5652939125271565065}
   - component: {fileID: -4393171953202857815}
   - component: {fileID: 7686889894837535780}
@@ -38,6 +39,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6281086272866892743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741946790039367102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01468158b4899aa41a8c5e6e9b8e77bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _disableObjectOnEmpty: 1
+  _refillOnStart: 1
+  _currentHealth:
+    useConstant: 1
+    constantValue: 1
+    variable: {fileID: 0}
+  _maximumHealth:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: b06407719bcb34f4890d94cb36e28ee2, type: 2}
+  _edgeValue: 1
+  _onEmpty: {fileID: 0}
+  _onEmptyUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _onEdge: {fileID: 0}
+  _onDecrease: {fileID: 0}
+  _onDecreaseUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-5652939125271565065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +94,22 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _onStopped:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6281086272866892743}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
+          Scripts
+        m_MethodName: Empty
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-4393171953202857815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,18 +123,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyTag: Enemy
-  _health: 1
-  _maxHealth:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 0}
-  _onDeath:
+  _onBecomeInvisible:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 8b05d123195981543827c7c70691cc73, type: 2}
-        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
-        m_MethodName: Raise
+      - m_Target: {fileID: 6281086272866892743}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
+          Scripts
+        m_MethodName: Empty
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6281086272866892743}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
+          Scripts
+        m_MethodName: TakeDamage
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -109,7 +170,7 @@ MonoBehaviour:
   _size:
     useConstant: 0
     constantValue: 0
-    variable: {fileID: 0}
+    variable: {fileID: 11400000, guid: c3d545ab68211884293b6139a47ffaa8, type: 2}
   _trail: {fileID: 156745283301569288}
   _circleCollider: {fileID: 401081946869708339}
   _transform: {fileID: 5058406891993574356}
