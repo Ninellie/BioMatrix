@@ -11,7 +11,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         [SerializeField]
         private GameObjectReference _target;
 
-        protected override float Speed => speedStat.Value * SpeedScale;
+        protected override float Speed => speed.Value * SpeedScale;
 
         protected override Vector2 MovementDirection
         {

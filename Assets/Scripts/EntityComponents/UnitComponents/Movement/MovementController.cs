@@ -14,6 +14,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         [SerializeField] private float _speedScaleRestoreSpeed;
         [SerializeField] private bool _restoreSpeedScale;
         [SerializeField] private bool _staticSpeedScale;
+        [SerializeField] protected FloatReference speed;
 
         protected float SpeedScale
         {
@@ -22,7 +23,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         }
 
         private Vector2 AddedVelocity { get; set; } = Vector2.zero;
-        [SerializeField] protected FloatReference speedStat;
         protected abstract float Speed { get; }
         protected abstract Vector2 MovementDirection { get; set; }
         protected abstract Vector2 RawMovementDirection { get; set; }
@@ -48,7 +48,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 
         protected void OnDrawGizmos()
         {
-            if (speedStat == null) return;
+            if (speed == null) return;
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, Velocity + (Vector2)transform.position);
             Gizmos.color = Color.magenta;

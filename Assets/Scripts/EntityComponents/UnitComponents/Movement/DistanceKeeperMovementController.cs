@@ -12,7 +12,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         {
             get
             {
-                if (_target == null) return speedStat.Value * SpeedScale;
+                if (_target == null) return speed.Value * SpeedScale;
 
                 var currentDistance = Vector2.Distance(transform.position, _target.Value.transform.position);
                 
@@ -20,7 +20,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
                 {
                     return 0f;
                 }
-                return speedStat.Value * SpeedScale;
+                return speed.Value * SpeedScale;
             }
         }
 

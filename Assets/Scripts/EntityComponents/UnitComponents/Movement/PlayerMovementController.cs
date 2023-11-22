@@ -27,7 +27,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
                 return AimingSpeed; // Кнопка не нажата, оружие не на перезарядке, но совсем недавно стреляло и ещё не готово к стрельбе, потому что на кд
             }
         }
-        protected float NoAimingSpeed => speedStat.Value * SpeedScale;
+        protected float NoAimingSpeed => speed.Value * SpeedScale;
         protected float AimingSpeed => NoAimingSpeed * _aimingSpeedMultiplier;
         [SerializeField] private Vector2Variable _movementDirection;
         protected override Vector2 MovementDirection { get; set; }
