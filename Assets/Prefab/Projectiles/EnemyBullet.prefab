@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5058406891993574356}
-  - component: {fileID: 5703302999806875184}
   - component: {fileID: -5652939125271565065}
   - component: {fileID: 2316403284215167119}
   - component: {fileID: 401081946869708339}
@@ -39,23 +38,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5703302999806875184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2741946790039367102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b57a2a00642ad84892aa8d396643e54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyTag: Player
-  damage:
-    useConstant: 1
-    constantValue: 1
-    variable: {fileID: 0}
 --- !u!114 &-5652939125271565065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,10 +57,13 @@ MonoBehaviour:
   _speedScaleRestoreSpeed: 1
   _restoreSpeedScale: 0
   _staticSpeedScale: 1
-  speedStat:
-    useConstant: 1
-    constantValue: 300
+  speed:
+    useConstant: 0
+    constantValue: 0
     variable: {fileID: 0}
+  _onStopped:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &2316403284215167119
 Rigidbody2D:
   serializedVersion: 4
