@@ -119,7 +119,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             force.Normalize();
             force *= _playerProjectileKnockback;
             _knockbackController.Knockback(force);
-            if (!_healthReserve.Empty) return;
+            if (!_healthReserve.IsEmpty) return;
             _isAlive = false;
         }
 
@@ -151,7 +151,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             force.Normalize();
             force *= _turretProjectileKnockback;
             _knockbackController.Knockback(force);
-            if (!_healthReserve.Empty) return;
+            if (!_healthReserve.IsEmpty) return;
             _isAlive = false;
         }
 
@@ -166,7 +166,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         private void TakeDamage(int damageAmount)
         {
             _healthReserve.TakeDamage(damageAmount);
-            if (!_healthReserve.Empty) return;
+            if (!_healthReserve.IsEmpty) return;
             Death();
         }
 
