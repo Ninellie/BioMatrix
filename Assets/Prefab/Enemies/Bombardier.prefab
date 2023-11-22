@@ -102,6 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01468158b4899aa41a8c5e6e9b8e77bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _disableObjectOnEmpty: 0
+  _refillOnStart: 0
   _currentHealth:
     useConstant: 1
     constantValue: 50
@@ -111,9 +113,15 @@ MonoBehaviour:
     constantValue: 50
     variable: {fileID: 0}
   _edgeValue: 1
-  onDeath: {fileID: 11400000, guid: 22f856f72a78d924aa8ccf08cbd6e6c5, type: 2}
-  onEdge: {fileID: 0}
-  onDecrease: {fileID: 0}
+  _onEmpty: {fileID: 0}
+  _onEmptyUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _onEdge: {fileID: 0}
+  _onDecrease: {fileID: 0}
+  _onDecreaseUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-7540060648430052599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +269,7 @@ MonoBehaviour:
   _speedScaleRestoreSpeed: 1
   _restoreSpeedScale: 1
   _staticSpeedScale: 0
-  speedStat:
+  speed:
     useConstant: 1
     constantValue: 140
     variable: {fileID: 0}
@@ -369,6 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteOutline: {fileID: -2167475189181900128}
   _targetOutlineColor: {r: 1, g: 0, b: 0, a: 1}
+  _runtimeSet: {fileID: 0}
 --- !u!1001 &2396631660057037754
 PrefabInstance:
   m_ObjectHideFlags: 0
