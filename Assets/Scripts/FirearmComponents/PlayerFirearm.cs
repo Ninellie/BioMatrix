@@ -1,7 +1,6 @@
 using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
-using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using Assets.Scripts.GameSession.UIScripts;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ namespace Assets.Scripts.FirearmComponents
 {
     public class PlayerFirearm : MonoBehaviour
     {
-        [SerializeField] private GameObject _ammo; // TODO convert to object pool
+        [SerializeField] private GameObject _ammo; // TODO convert to object pool: get disabled projectile and reuse it
         [SerializeField] private PlayerTargetRuntimeSet _visibleEnemies;
         [SerializeField] private AimMode _aimMode;
         [SerializeField] private MagazineReserve _magazineReserve;
@@ -19,7 +18,6 @@ namespace Assets.Scripts.FirearmComponents
         [SerializeField] private FloatReference _attackSpeed;
         [SerializeField] private FloatReference _projectilesPerAttack;
         [SerializeField] private FloatReference _maxShootDeflectionAngle;
-        [SerializeField] private FloatReference _shootForce;
         public bool CanShoot => _coolDownTimer <= 0
                                 && _magazineReserve.Value > 0
                                 && !_magazineReserve.OnReload;
@@ -45,23 +43,21 @@ namespace Assets.Scripts.FirearmComponents
             Shoot();
         }
 
-
-        public GameObject[] CreateProjectiles(int singleShotProjectiles, GameObject ammo, Transform firingPoint)
+        public void SetAutoAim(bool value)
         {
-            var projectiles = new GameObject[singleShotProjectiles];
-
-            for (var i = 0; i < projectiles.Length; i++)
+            if (value)
             {
-                projectiles[i] = Instantiate(ammo, firingPoint.position, firingPoint.rotation);
+                _aimMode = AimMode.AutoAim;
+                return;
             }
-            return projectiles;
+            _aimMode = AimMode.SelfAim;
         }
 
-        public void Shoot()
+        private void Shoot()
         {
             _magazineReserve.Pop();
 
-            var projectiles = CreateProjectiles((int)_projectilesPerAttack.Value, _ammo, gameObject.transform);
+            var projectiles = GetProjectiles();
             var direction = GetShotDirection();
             var projSpread = _maxShootDeflectionAngle;
             var projCount = projectiles.Length;
@@ -81,6 +77,16 @@ namespace Assets.Scripts.FirearmComponents
             _coolDownTimer = 1f / _attackSpeed;
         }
 
+        private GameObject[] GetProjectiles()
+        {
+            var projectiles = new GameObject[(int)_projectilesPerAttack];
+            for (var i = 0; i < projectiles.Length; i++)
+            {
+                projectiles[i] = Instantiate(_ammo, _myTransform.position, _myTransform.rotation);
+            }
+            return projectiles;
+        }
+
         private Vector2 GetShotDirection()
         {
             if (_aimMode == AimMode.SelfAim)
@@ -90,16 +96,6 @@ namespace Assets.Scripts.FirearmComponents
             Vector2 direction = _currentTarget.Transform.position - _myTransform.position;
             direction.Normalize();
             return direction;
-        }
-
-        public void SetAutoAim(bool value)
-        {
-            if (value)
-            {
-                _aimMode = AimMode.AutoAim;
-                return;
-            }
-            _aimMode = AimMode.SelfAim;
         }
 
         private void UpdateTarget()
