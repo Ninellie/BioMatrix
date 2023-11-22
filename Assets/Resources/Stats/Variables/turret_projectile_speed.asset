@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: turret_projectile_speed
   m_EditorClassIdentifier: 
   developerDescription: 
-  value: 0
-  id: {fileID: 11400000, guid: 811031dbfaf88094da5f069c0cb17717, type: 2}
+  value: 1800
+  id: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}

@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efe87847409217044a03a12ceb060f43, type: 3}
-  m_Name: shoot_force
+  m_Script: {fileID: 11500000, guid: de07b0703f40c014db9884ac7f392eb7, type: 3}
+  m_Name: turret_projectile_size
   m_EditorClassIdentifier: 
-  <Value>k__BackingField: shoot_force
+  developerDescription: 
+  value: 1
+  id: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}

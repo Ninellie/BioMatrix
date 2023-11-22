@@ -10,11 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 398d76ed9a41c9144ae3720c71b6891b, type: 3}
-  m_Name: Player Firearm
+  m_Name: player_firearm
   m_EditorClassIdentifier: 
   _statSources: []
   _baseStatSources: {fileID: 11400000, guid: 69b216f47259cf344ac398d65a3cdf17, type: 2}
-  _stats:
-  - {fileID: 11400000, guid: 2e821920e2bdd4e4481e27dea0c67ed6, type: 2}
-  - {fileID: 11400000, guid: 7d952413cf4dbc142b651bbb4a095522, type: 2}
-  - {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _stats: []

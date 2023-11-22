@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 398d76ed9a41c9144ae3720c71b6891b, type: 3}
-  m_Name: Player Turret Firearm
+  m_Name: turret_projectile
   m_EditorClassIdentifier: 
   _statSources: []
-  _baseStatSources: {fileID: 11400000, guid: c2a10e6f41637724f8590c4e36a151b6, type: 2}
+  _baseStatSources: {fileID: 11400000, guid: 7c9e5b05b79881a4c87a30089b836323, type: 2}
   _stats:
   - {fileID: 11400000, guid: 25f1536b99e71bc45b05013a713bbea2, type: 2}
+  - {fileID: 11400000, guid: 51517a81f53420b48b89e399b44feb03, type: 2}
+  - {fileID: 11400000, guid: 7796fa1c3ab82dc4eae3050278205cdd, type: 2}
   - {fileID: 11400000, guid: a62e351b440c2b04382d038cceadb209, type: 2}
   - {fileID: 11400000, guid: 93cb3ad6358f5194aa6583e201079a2b, type: 2}

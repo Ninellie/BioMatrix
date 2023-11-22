@@ -10,29 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4bb1b0fb485f50439cfd2c7aad10afb, type: 3}
-  m_Name: Revolver_firearm
+  m_Name: player_firearm
   m_EditorClassIdentifier: 
   _id: Revolver_firearm
   _type: 0
   _newFlatStatSource: {fileID: 0}
   _newPercentageStatSource: {fileID: 0}
   <StatSources>k__BackingField:
-  - <Id>k__BackingField: revolver_firearm_base_projectile_damage_flat_10
-    <StatId>k__BackingField: {fileID: 11400000, guid: 279d88e5b6949a54c99ee2a59d88d114, type: 2}
-    <ImpactType>k__BackingField: 1
-    <Value>k__BackingField: 10
   - <Id>k__BackingField: revolver_firearm_base_projectile_count_flat_1
     <StatId>k__BackingField: {fileID: 11400000, guid: 669ba26595dba81409387c1b0e1e91ac, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 1
-  - <Id>k__BackingField: revolver_firearm_base_projectile_knockback_flat_30
-    <StatId>k__BackingField: {fileID: 11400000, guid: c6ca83613dcb08b4fbfaae2b620f5437, type: 2}
-    <ImpactType>k__BackingField: 1
-    <Value>k__BackingField: 30
-  - <Id>k__BackingField: revolver_firearm_base_shoot_force_flat_1500
-    <StatId>k__BackingField: {fileID: 11400000, guid: 811031dbfaf88094da5f069c0cb17717, type: 2}
-    <ImpactType>k__BackingField: 1
-    <Value>k__BackingField: 1500
   - <Id>k__BackingField: revolver_firearm_base_shoots_per_second_flat_3
     <StatId>k__BackingField: {fileID: 11400000, guid: 33316e8cac88b9f4b995b4847b8d7ccc, type: 2}
     <ImpactType>k__BackingField: 1
@@ -50,18 +38,9 @@ MonoBehaviour:
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 1
   _statsPreview:
-  - _inspectorValue: 10_projectile_damage
-    <Id>k__BackingField: {fileID: 11400000, guid: 279d88e5b6949a54c99ee2a59d88d114, type: 2}
-    _value: 10
   - _inspectorValue: 1_projectile_count
     <Id>k__BackingField: {fileID: 11400000, guid: 669ba26595dba81409387c1b0e1e91ac, type: 2}
     _value: 1
-  - _inspectorValue: 30_projectile_knockback
-    <Id>k__BackingField: {fileID: 11400000, guid: c6ca83613dcb08b4fbfaae2b620f5437, type: 2}
-    _value: 30
-  - _inspectorValue: 1500_shoot_force
-    <Id>k__BackingField: {fileID: 11400000, guid: 811031dbfaf88094da5f069c0cb17717, type: 2}
-    _value: 1500
   - _inspectorValue: 3_shoots_per_second
     <Id>k__BackingField: {fileID: 11400000, guid: 33316e8cac88b9f4b995b4847b8d7ccc, type: 2}
     _value: 3
