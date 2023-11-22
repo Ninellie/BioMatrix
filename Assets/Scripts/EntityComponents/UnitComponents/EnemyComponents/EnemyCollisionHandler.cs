@@ -1,8 +1,6 @@
 using Assets.Scripts.Core.Variables.References;
-using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
-using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
 using Assets.Scripts.View;
 using UnityEngine;
 
@@ -15,8 +13,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         [SerializeField] private bool _dieOnPlayerCollision;
         [SerializeField] private Color _takeDamageColor;
 
-        [SerializeField] private FloatReference currentHealth;
-        [field: SerializeField] public FloatReference CollisionDamage { get; private set; }
+        [SerializeField] private FloatReference _currentHealth;
+
+        [SerializeField] private FloatReference _playerProjectileDamage;
+        [SerializeField] private FloatReference _playerProjectileKnockBack;
 
         private bool _isAlive;
         private int _dropCount = 1;
@@ -57,9 +57,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             if (!_isAlive) return;
             switch (collision2D.collider.tag)
             {
-                case "Projectile":
-                    var projectile = collision2D.gameObject.GetComponent<Projectile>();
-                    CollideWithProjectile(projectile);
+                case "PlayerProjectile":
+                    CollideWithProjectile(collision2D);
                     break;
                 case "Player":
                     var player = collision2D.gameObject.GetComponent<Player>();
@@ -74,25 +73,23 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private void OnBecameVisible() => StopDeathTimer();
 
-        private void CollideWithProjectile(Projectile projectile)
+        private void CollideWithProjectile(Collision2D collision2D)
         {
-            var projectileStats = projectile.GetComponent<StatList>();
-            var projectileDamage = (int)projectileStats.GetStat(StatName.Damage).Value;
-            if (projectileDamage > 0) _lastDamageSource = projectile;
+            var damage = (int)_playerProjectileDamage;
             _deathFromProjectile = true;
-            TakeDamage(projectileDamage);
+            TakeDamage(damage);
 
-            var dropPosition = GetClosestPointOnCircle(projectileStats.transform.position);
-            DropDamagePopup(projectileDamage, dropPosition);
+            var dropPosition = GetClosestPointOnCircle(collision2D.transform.position);
+            DropDamagePopup(damage, dropPosition);
 
             ChangeColorOnDamageTaken();
 
             Vector2 force = transform.position - _player.transform.position;
             force.Normalize();
-            force *= projectileStats.GetStat(StatName.KnockbackPower).Value;
+            force *= _playerProjectileKnockBack;
             _knockbackController.Knockback(force);
 
-            if (currentHealth == 0) return;
+            if (_currentHealth == 0) return;
             _isAlive = false;
         }
 
@@ -107,8 +104,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private void TakeDamage(int damage)
         {
-            currentHealth.constantValue -= damage;
-            if (currentHealth != 0) return;
+            _currentHealth.constantValue -= damage;
+            if (_currentHealth != 0) return;
             Death();
         }
 
