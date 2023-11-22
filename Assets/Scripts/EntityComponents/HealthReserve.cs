@@ -7,6 +7,8 @@ namespace Assets.Scripts.EntityComponents
 {
     public class HealthReserve : MonoBehaviour
     {
+        [SerializeField] private bool _disableObjectOnEmpty;
+        [SerializeField] private bool _refillOnStart;
         [SerializeField] private IntReference _currentHealth;
         [SerializeField] private StatReference _maximumHealth;
         [SerializeField] private int _edgeValue;
@@ -20,13 +22,19 @@ namespace Assets.Scripts.EntityComponents
         [SerializeField] private GameEvent _onDecrease;
         [SerializeField] private UnityEvent<int> _onDecreaseUnityEvent;
 
+        private void Start()
+        {
+            if (!_refillOnStart) return;
+            Fill();
+        }
+
         public void TakeDamage(int damage)
         {
             var nextValue = _currentHealth - damage;
             SetValue(nextValue);
         }
 
-        public void Fill()
+        private void Fill()
         {
             SetValue((int)_maximumHealth);
         }
@@ -34,6 +42,7 @@ namespace Assets.Scripts.EntityComponents
         public void Empty()
         {
             SetValue(0);
+            gameObject.SetActive(false);
         }
 
         private void SetValue(int value)
