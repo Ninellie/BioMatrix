@@ -17,7 +17,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
             if (_transform == null) _transform = transform;
         }
 
-        private void Start()
+        private void OnEnable()
         {
             _transform.localScale = new Vector3(_size, _size, 1);
             _trail.startWidth = _circleCollider.radius * 2 * _size;
