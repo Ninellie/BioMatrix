@@ -10,7 +10,9 @@ namespace Assets.Scripts.Core.Events
         public StatVariable statChangedEvent;
 
         [Tooltip("Response to invoke when stat value changes")]
-        public UnityEvent<StatVariable> response;
+        public UnityEvent<float> statValueResponse;
+        public UnityEvent response;
+
         /*
      * Size
      * MagnetismRadius
@@ -33,9 +35,10 @@ namespace Assets.Scripts.Core.Events
             statChangedEvent.UnregisterListener(this);
         }
 
-        public void OnEventRaised(StatVariable stat)
+        public void OnEventRaised()
         {
-            response.Invoke(stat);
+            response.Invoke();
+            statValueResponse.Invoke(statChangedEvent.value);
         }
     }
 }

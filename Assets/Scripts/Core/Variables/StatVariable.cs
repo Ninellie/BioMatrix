@@ -23,7 +23,7 @@ namespace Assets.Scripts.Core.Variables
         public void Raise()
         {
             for (int i = _eventListeners.Count - 1; i >= 0; i--)
-                _eventListeners[i].OnEventRaised(this);
+                _eventListeners[i].OnEventRaised();
         }
 
         public void RegisterListener(StatListener listener)
