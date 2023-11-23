@@ -542,7 +542,7 @@ GameObject:
   m_Layer: 0
   m_Name: Extra Tiles Floor
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 99c3717808acc0f43b394ab3e10da8bb, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

@@ -6,7 +6,6 @@ using Assets.Scripts.GameSession.UIScripts.SessionModel;
 using Assets.Scripts.GameSession.Upgrades.Deck;
 using Assets.Scripts.View;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
@@ -21,7 +20,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
     public class PlayerCreator : MonoBehaviour
     {
         [SerializeField] private GameObject _playerPrefab;
-        [SerializeField] private GameObject _playerWeapon;
         [SerializeField] private GameObject _turretHub;
         [SerializeField] private OldDisplayedResourceData[] _displayedResources;
         //[SerializeField] private LevelUp _levelUp;
@@ -38,9 +36,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private IHand _hand;
         private OverUnitDataAggregator _playerDataAggregator;
 
-        private ResourceListenerData levelUpListener;
-        private ResourceListenerData loseListener;
-        private ResourceListenerData unsubscriptionListener;
+        //private ResourceListenerData levelUpListener;
+        //private ResourceListenerData loseListener;
+        //private ResourceListenerData unsubscriptionListener;
 
         private void Awake()
         {
@@ -52,18 +50,15 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _effectsRepository = FindObjectOfType<EffectsRepository>();
             _deckRepository = FindObjectOfType<PatternDeckRepository>();
 
-            levelUpListener = new ResourceListenerData(_gameSessionController.LevelUpEvent,
-                TargetName.Player, ResourceName.Level, ResourceEventType.Increment);
-            loseListener = new ResourceListenerData(_gameSessionController.Lose,
-                TargetName.Player, ResourceName.Health, ResourceEventType.Empty);
-            unsubscriptionListener = new ResourceListenerData(Unsubscription,
-                TargetName.Player, ResourceName.Health, ResourceEventType.Empty);
+            //levelUpListener = new ResourceListenerData(_gameSessionController.LevelUpEvent, TargetName.Player, ResourceName.Level, ResourceEventType.Increment);
+            //loseListener = new ResourceListenerData(_gameSessionController.Lose, TargetName.Player, ResourceName.Health, ResourceEventType.Empty);
+            //unsubscriptionListener = new ResourceListenerData(Unsubscription, TargetName.Player, ResourceName.Health, ResourceEventType.Empty);
 
             CreatePlayer(_playerPrefab);
-            CreatePlayerFirearm();
+            //CreatePlayerFirearm();
             CreateTurretHub();
 
-            _gameSessionController.AwakeController(_player.GetComponent<PlayerInput>());
+            //_gameSessionController.AwakeController(_player.GetComponent<PlayerInput>());
             Subscription();
             SetupIndicators();
         }
@@ -89,13 +84,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             //
             _player.Shield.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
             _playerDataAggregator.ReadInfoFromTarget(_player.Shield.gameObject, TargetName.Shield);
-        }
-
-        private void CreatePlayerFirearm()
-        {
-            var firearm = _player.CreateWeapon(_playerWeapon);
-            firearm.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
-            _playerDataAggregator.ReadInfoFromTarget(firearm, TargetName.Firearm);
         }
 
         private void CreateTurretHub()
@@ -133,9 +121,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _optionsMenu.onBackToMainMenu += Unsubscription;
             _player.GamePausedEvent += _gameSessionController.Menu;
 
-            _playerDataAggregator.AddListener(levelUpListener);
-            _playerDataAggregator.AddListener(loseListener);
-            _playerDataAggregator.AddListener(unsubscriptionListener);
+            //_playerDataAggregator.AddListener(levelUpListener);
+            //_playerDataAggregator.AddListener(loseListener);
+            //_playerDataAggregator.AddListener(unsubscriptionListener);
         }
 
         private void Unsubscription()
@@ -145,9 +133,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _optionsMenu.onBackToMainMenu -= Unsubscription;
             _player.GamePausedEvent -= _gameSessionController.Menu;
 
-            _playerDataAggregator.RemoveListener(levelUpListener);
-            _playerDataAggregator.RemoveListener(loseListener);
-            _playerDataAggregator.RemoveListener(unsubscriptionListener);
+            //_playerDataAggregator.RemoveListener(levelUpListener);
+            //_playerDataAggregator.RemoveListener(loseListener);
+            //_playerDataAggregator.RemoveListener(unsubscriptionListener);
         }
     }
 }

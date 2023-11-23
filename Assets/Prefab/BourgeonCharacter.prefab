@@ -25,9 +25,6 @@ GameObject:
   - component: {fileID: 6882027957998666689}
   - component: {fileID: 3820900862706131342}
   - component: {fileID: -1257760533783762766}
-  - component: {fileID: 4013630423983573852}
-  - component: {fileID: -5954339166794116234}
-  - component: {fileID: 6842002535895687529}
   - component: {fileID: -9195608851856029835}
   - component: {fileID: 5175443557757980242}
   - component: {fileID: -6870944697616545243}
@@ -5216,52 +5213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4690db0db157e49a2bbd0c97864734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4013630423983573852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671026415413744665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25437cf037f85d04b9c499f44afbe3e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _usePreset: 1
-  _preset: {fileID: 11400000, guid: 480b5b60630e22f4e94cb3264c8983a3, type: 2}
-  _stats: []
---- !u!114 &-5954339166794116234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671026415413744665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9c9f584044c0bd4695584b5e1405f21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _usePreset: 1
-  _preset: {fileID: 11400000, guid: f6d53f77e5e96684e86f2ea2bb0a35a9, type: 2}
-  _statManagerComponent: {fileID: 0}
-  _resources: []
---- !u!114 &6842002535895687529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671026415413744665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1229dcb63a13f0d47ab813de3461fcb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _preset: {fileID: 11400000, guid: 734748a3db3525d46967659ae3f29889, type: 2}
-  _recoveringResources: []
-  _updateRateInSeconds: 1
 --- !u!114 &-9195608851856029835
 MonoBehaviour:
   m_ObjectHideFlags: 0
