@@ -116,8 +116,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Subscription()
         {
-            _gameSessionTimer.onGameWinning += _gameSessionController.Win;
-            _gameSessionTimer.onGameWinning += Unsubscription;
+            //_gameSessionTimer.onGameWinning += _gameSessionController.Win;
+            //_gameSessionTimer.onGameWinning += Unsubscription;
             _optionsMenu.onBackToMainMenu += Unsubscription;
             _player.GamePausedEvent += _gameSessionController.Menu;
 
@@ -128,8 +128,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void Unsubscription()
         {
-            _gameSessionTimer.onGameWinning -= _gameSessionController.Win;
-            _gameSessionTimer.onGameWinning -= Unsubscription;
+            //_gameSessionTimer.onGameWinning -= _gameSessionController.Win;
+            //_gameSessionTimer.onGameWinning -= Unsubscription;
             _optionsMenu.onBackToMainMenu -= Unsubscription;
             _player.GamePausedEvent -= _gameSessionController.Menu;
 
