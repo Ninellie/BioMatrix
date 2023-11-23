@@ -1,4 +1,4 @@
-using System;
+using Assets.Scripts.Core.Events;
 using TMPro;
 using UnityEngine;
 
@@ -6,37 +6,22 @@ namespace Assets.Scripts.View
 {
     public class GameSessionTimer : MonoBehaviour
     {
-        public TMP_Text textTimer;
-        public Action onGameWinning;
-    
         [SerializeField] private float _winTime = 300;
+        [SerializeField] private TMP_Text _textTimer;
+        [SerializeField] private GameEvent _onVictory;
 
-        //private void Update()
-        //{
-        //    var mins = (int)Time.timeSinceLevelLoad / 60;
-        //    var secs = (int)Time.timeSinceLevelLoad % 60;
-
-        //    textTimer.text = $"{mins:D2}:{secs:D2}";
-
-        //    if (Time.timeSinceLevelLoad >= _winTime)
-        //    {
-        //        onGameWinning?.Invoke();
-        //    }
-        //}
         private void Update()
         {
             var t = _winTime - Time.timeSinceLevelLoad;
 
+            var minutes = (int)t / 60;
+            var seconds = (int)t % 60;
 
-
-            var mins = (int)t / 60;
-            var secs = (int)t % 60;
-
-            textTimer.text = $"{mins:D2}:{secs:D2}";
+            _textTimer.text = $"{minutes:D2}:{seconds:D2}";
 
             if (Time.timeSinceLevelLoad >= _winTime)
             {
-                onGameWinning?.Invoke();
+                _onVictory.Raise();
             }
         }
     }
