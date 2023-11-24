@@ -43,14 +43,16 @@ namespace Assets.Scripts.FirearmComponents
             Shoot();
         }
 
-        public void SetAutoAim(bool value)
+        public void ChangeAimMode()
         {
-            if (value)
+            if (_aimMode == AimMode.AutoAim)
+            {
+                _aimMode = AimMode.SelfAim;
+            }
+            else
             {
                 _aimMode = AimMode.AutoAim;
-                return;
             }
-            _aimMode = AimMode.SelfAim;
         }
 
         private void Shoot()

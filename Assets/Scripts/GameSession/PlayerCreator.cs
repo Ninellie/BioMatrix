@@ -14,7 +14,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
     {
         public ResourceName resourceName;
         public TargetName targetName;
-        public ReserveCounter reserveCounter;
+        public Counter counter;
     }
 
     public class PlayerCreator : MonoBehaviour
@@ -90,7 +90,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             var turretHubPrefab = Instantiate(_turretHub);
             var turretHub = turretHubPrefab.GetComponent<TurretHub>();
-            turretHub.SetSource(_player);
+            //turretHub.SetSource(_player);
             //_player.TurretHub = turretHub;
             turretHubPrefab.transform.SetParent(_player.transform);
             turretHubPrefab.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
@@ -119,7 +119,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             //_gameSessionTimer.onGameWinning += _gameSessionController.Win;
             //_gameSessionTimer.onGameWinning += Unsubscription;
             _optionsMenu.onBackToMainMenu += Unsubscription;
-            _player.GamePausedEvent += _gameSessionController.Menu;
+            //_player.GamePausedEvent += _gameSessionController.Menu;
 
             //_playerDataAggregator.AddListener(levelUpListener);
             //_playerDataAggregator.AddListener(loseListener);
@@ -131,7 +131,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             //_gameSessionTimer.onGameWinning -= _gameSessionController.Win;
             //_gameSessionTimer.onGameWinning -= Unsubscription;
             _optionsMenu.onBackToMainMenu -= Unsubscription;
-            _player.GamePausedEvent -= _gameSessionController.Menu;
+            //_player.GamePausedEvent -= _gameSessionController.Menu;
 
             //_playerDataAggregator.RemoveListener(levelUpListener);
             //_playerDataAggregator.RemoveListener(loseListener);

@@ -9,7 +9,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
     public class Turret : MonoBehaviour, ISlayer, ISource, IDerivative
     {
         [SerializeField] private Transform _firePoint;
-        public Firearm Firearm { get; private set; }
+        //public Firearm Firearm { get; private set; }
 
         private ISlayer _source;
         private ResourceList _resources;
@@ -23,7 +23,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 
         private void FixedUpdate()
         {
-            Firearm.DoAction();
+            //Firearm.DoAction();
         }
 
         public void CreateWeapon(GameObject weapon)
@@ -31,9 +31,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             var w = Instantiate(weapon);
             w.transform.SetParent(_firePoint);
             w.transform.position = _firePoint.transform.position;
-            var firearm = w.GetComponent<Firearm>();
-            firearm.SetSource(this);
-            Firearm = firearm;
+            //var firearm = w.GetComponent<Firearm>();
+            //firearm.SetSource(this);
+            //Firearm = firearm;
         }
 
         public void Death()

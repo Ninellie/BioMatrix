@@ -61,8 +61,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
                     CollideWithProjectile(collision2D);
                     break;
                 case "Player":
-                    var player = collision2D.gameObject.GetComponent<Player>();
-                    CollideWithPlayer(player);
+                    CollideWithPlayer();
                     break;
             }
         }
@@ -93,12 +92,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             _isAlive = false;
         }
 
-        private void CollideWithPlayer(ISlayer player)
+        private void CollideWithPlayer()
         {
             if (!_isAlive) return;
             if (!_dieOnPlayerCollision) return;
             _deathFromProjectile = false;
-            _lastDamageSource = player;
             Death();
         }
 

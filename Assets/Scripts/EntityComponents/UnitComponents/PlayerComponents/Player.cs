@@ -1,59 +1,73 @@
 using System;
 using Assets.Scripts.Core.Variables;
-using Assets.Scripts.EntityComponents.Resources;
-using Assets.Scripts.EntityComponents.Stats;
-using Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents;
-using Assets.Scripts.FirearmComponents;
-using Assets.Scripts.GameSession.UIScripts;
+using Assets.Scripts.Core.Variables.References;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
-    public interface IWeaponBearer
+    public class PlayerAnimationController : MonoBehaviour
     {
-        Transform GetFirePoint();
-        GameObject CreateWeapon(GameObject weapon);
-        IWeapon GetWeapon();
-        void Shoot();
+        [SerializeField] private Animator _animator;
+        [SerializeField] private string _currentState;
+        [SerializeField] private float _shootingAnimationSpeed = 0.5f;
+        [SerializeField] private float _firearmCooldown = 0.2f;
+
+        private void Awake()
+        {
+            if (_animator == null) _animator = GetComponent<Animator>();
+        }
+
+        private void PlayShootAnimation()
+        {
+            _animator.speed = _shootingAnimationSpeed;
+            CancelInvoke(nameof(RestoreAnimationSpeed));
+            Invoke(nameof(RestoreAnimationSpeed), _firearmCooldown);
+        }
+
+        private void RestoreAnimationSpeed()
+        {
+            _animator.speed = 1f;
+        }
+
+        private void ChangeAnimationState(string newState)
+        {
+            if (_currentState == newState) return;
+            _animator.Play(newState);
+        }
     }
 
-    public interface IAiming
+    public class ColliderRadiusUpdater : MonoBehaviour
     {
-        void SetAimMode(AimMode mode);
+        [SerializeField] private CircleCollider2D _circleCollider;
+        [SerializeField] private FloatReference _radius;
+
+        private void Awake()
+        {
+            if (_circleCollider == null) _circleCollider = GetComponent<CircleCollider2D>();
+        }
+
+        public void UpdateRadius()
+        {
+            _circleCollider.radius = Math.Max(_radius, 0);
+        }
     }
 
-    public interface IPlayableCharacter
+    public class ExperienceForNewLevelUpdater : MonoBehaviour
     {
 
     }
 
-    public class Player : MonoBehaviour, IWeaponBearer, IPlayableCharacter, ISlayer, ISource, IAiming
+    public class Player : MonoBehaviour
     {
         [SerializeField] private GameObjectVariable _selfVariable;
         [SerializeField] private Transform _firePoint;
         [SerializeField] private Shield _shield;
-        
-        public Vector2Variable aimDirection;
-
-        public event Action GamePausedEvent;
-        public event Action FireEvent;
-        public event Action FireOffEvent;
-
-        public AimMode aimMode = AimMode.AutoAim;
-
         public Shield Shield => _shield;
-        public Firearm Firearm { get; private set; }
         public bool IsFireButtonPressed { get; private set; }
-        public Vector2 CurrentAimDirection { get; private set; }
         private const int ExperienceAmountIncreasingPerLevel = 16;
 
         private CircleCollider2D _circleCollider;
-        private Animator _animator;
 
-        private StatList _stats;
-        private ResourceList _resources;
-        private string _currentState;
         private bool _isSubscribed;
 
         private bool _isCaged;
@@ -63,219 +77,18 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             Debug.Log($"{gameObject.name} {nameof(Player)} Awake");
             _selfVariable.value = gameObject;
-            _stats = GetComponent<StatList>();
-            _resources = GetComponent<ResourceList>();
-            _circleCollider = GetComponent<CircleCollider2D>();
-            _animator = GetComponent<Animator>();
-
-            aimMode = AimMode.AutoAim;
-            CurrentAimDirection = Vector2.zero;
         }
-
-        private void Start()
-        {
-            Subscribe();
-            UpdateMagnetismRadius();
-            UpdateSize();
-        }
-
-        private void OnEnable() => Subscribe();
-
-        private void OnDisable() => Unsubscribe();
-
-        private void Subscribe()
-        {
-            if (_isSubscribed) return;
-
-            var sizeStat = _stats.GetStat(StatName.Size);
-            var magnetismRadiusStat = _stats.GetStat(StatName.MagnetismRadius);
-            var healthResource = _resources.GetResource(ResourceName.Health);
-            var experienceResource = _resources.GetResource(ResourceName.Experience);
-
-            if (sizeStat is null) return;
-            if (magnetismRadiusStat is null) return;
-            if (healthResource is null) return;
-            if (experienceResource is null) return;
-
-            sizeStat.valueChangedEvent.AddListener(UpdateSize);
-            magnetismRadiusStat.valueChangedEvent.AddListener(UpdateMagnetismRadius);
-
-            _resources.GetResource(ResourceName.Health).AddListenerToEvent(ResourceEventType.Empty, Death);
-            _resources.GetResource(ResourceName.Experience).onFill.AddListener(LevelUp);
-
-            _isSubscribed = true;
-        }
-
-        private void Unsubscribe()
-        {
-            if (!_isSubscribed) return;
-
-            _stats.GetStat(StatName.Size).valueChangedEvent.RemoveListener(UpdateSize);
-            _stats.GetStat(StatName.MagnetismRadius).valueChangedEvent.RemoveListener(UpdateMagnetismRadius);
-            _resources.GetResource(ResourceName.Health).RemoveListenerToEvent(ResourceEventType.Empty, Death);
-            _resources.GetResource(ResourceName.Experience).RemoveListenerToEvent(ResourceEventType.Fill, LevelUp);
-
-            _isSubscribed = false;
-        }
-
-        private void FixedUpdate()
-        {
-            if (IsFireButtonPressed) Shoot();
-        }
-
-        public Transform GetFirePoint() => _firePoint;
-
-        public GameObject CreateWeapon(GameObject weapon)
-        {
-            var firePoint = GetFirePoint();
-            var w = Instantiate(weapon);
-            w.transform.SetParent(firePoint);
-            w.transform.position = firePoint.transform.position;
-            var firearm = w.GetComponent<Firearm>();
-            firearm.SetSource(this);
-            Firearm = firearm;
-            return w;
-        }
-
-        public IWeapon GetWeapon() => Firearm;
 
         [ContextMenu(nameof(LevelUp))]
         private void LevelUp()
         {
-            Debug.LogWarning("Level up");
-
-            var statMod = new StatMod(OperationType.Addition, ExperienceAmountIncreasingPerLevel); // TODO add this value to stats as stat
-
-            _stats.GetStat(StatName.ExperienceToNewLevel).AddModifier(statMod);
-            _resources.GetResource(ResourceName.Level).Increase();
-            _resources.GetResource(ResourceName.Experience).Empty();
+            Debug.LogWarning("Level up"); 
+            //var statMod = new StatMod(OperationType.Addition, ExperienceAmountIncreasingPerLevel); // TODO add this value to stats as stat
+            //_stats.GetStat(StatName.ExperienceToNewLevel).AddModifier(statMod);
+            //_resources.GetResource(ResourceName.Level).Increase();
+            //_resources.GetResource(ResourceName.Experience).Empty();
             IsFireButtonPressed = false;
         }
 
-        private void Death()
-        {
-            gameObject.SetActive(false);
-            Destroy(gameObject);
-        }
-
-        private void UpdateSize()
-        {
-            var sizeValue = _stats.GetStat(StatName.Size).Value;
-            transform.localScale = new Vector3(sizeValue, sizeValue, 1);
-        }
-
-        private void UpdateMagnetismRadius()
-        {
-            _circleCollider.radius = Math.Max(_stats.GetStat(StatName.MagnetismRadius).Value, 0);
-        }
-
-        private void ChangeAnimationState(string newState)
-        {
-            if (_currentState == newState) return;
-            _animator.Play(newState);
-        }
-
-        public void OnMove(InputValue input)
-        {
-            ChangeAnimationState("Run");
-            if (input.Get<Vector2>() == Vector2.zero)
-                ChangeAnimationState("Idle");
-        }
-
-        public void Shoot()
-        {
-            Firearm.DoAction();
-            const float animationFireSpeed = 0.5f;
-            _animator.speed = animationFireSpeed;
-            CancelInvoke(nameof(RestoreAnimationSpeed));
-            Invoke(nameof(RestoreAnimationSpeed), 0.2f);
-        }
-
-        private void RestoreAnimationSpeed()
-        {
-            _animator.speed = 1f;
-        }
-
-        public void OnFireStart()
-        {
-            IsFireButtonPressed = true;
-        }
-
-        public void OnFireEnd()
-        {
-            IsFireButtonPressed = false;
-        }
-
-        private void TakeAim(Vector2 direction)
-        {
-            direction.Normalize();
-
-            if (aimMode == AimMode.AutoAim)
-            {
-                CurrentAimDirection = Vector2.zero;
-                return;
-            }
-
-            if (aimDirection != null)
-            {
-                aimDirection.SetValue(direction);
-            }
-
-            CurrentAimDirection = direction;
-        }
-
-        public void OnMouseAiming(InputValue input)
-        {
-            var mousePosition = Camera.main.ScreenToWorldPoint(input.Get<Vector2>());
-            var directionToMousePos = mousePosition - gameObject.transform.position;
-            TakeAim(directionToMousePos);
-        }
-
-        public void OnJoystickAimingFire(InputValue input)
-        {
-            TakeAim(input.Get<Vector2>());
-            IsFireButtonPressed = !CurrentAimDirection.Equals(Vector2.zero);
-        }
-
-        public void OnChangeAimMode()
-        {
-            switch (aimMode)
-            {
-                case AimMode.AutoAim:
-                    aimMode = AimMode.SelfAim;
-                    break;
-                case AimMode.SelfAim:
-                    {
-                        aimMode = AimMode.AutoAim;
-                        var t = Firearm.GetCurrentTarget();
-                        if (t != null) t.RemoveFromTarget();
-                        break;
-                    }
-            }
-
-            Debug.Log($"Aim mode changes to {aimMode}");
-        }
-
-        public void OnPause()
-        {
-            GamePausedEvent?.Invoke();
-            Debug.Log("Game on pause");
-        }
-
-        public void OnUnpause()
-        {
-            GamePausedEvent?.Invoke();
-            Debug.Log("Game is active");
-        }
-
-        public void IncreaseKills()
-        {
-            _resources.GetResource(ResourceName.Kills).Increase();
-        }
-
-        public void SetAimMode(AimMode mode)
-        {
-            aimMode = mode;
-        }
     }
 }

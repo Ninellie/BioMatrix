@@ -12,7 +12,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
         [SerializeField] private GameObject _turretPrefab;
         [SerializeField] private GameObject _turretWeaponPrefab;
 
-        private Firearm _firearm;
+        //private Firearm _firearm;
         private readonly Stack<Turret> _currentTurrets = new();
         private IOrbitRotationController _orbitRotationController;
         private ISlayer _source;
@@ -55,9 +55,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             var w = Instantiate(_turretWeaponPrefab);
             w.transform.SetParent(gameObject.transform);
             w.transform.position = gameObject.transform.position;
-            var firearm = w.GetComponent<Firearm>();
-            firearm.IsEnable = false;
-            _firearm = firearm;
+            //var firearm = w.GetComponent<Firearm>();
+            //firearm.IsEnable = false;
+            //_firearm = firearm;
             return w;
         }
 
@@ -92,7 +92,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             var createdTurret = turretGameObject.GetComponent<Turret>();
             createdTurret.SetSource(this);
             createdTurret.CreateWeapon(_turretWeaponPrefab);
-            createdTurret.Firearm.SetStatList(_firearm.GetStatList());
+            //createdTurret.Firearm.SetStatList(_firearm.GetStatList());
             _currentTurrets.Push(createdTurret);
         }
 
