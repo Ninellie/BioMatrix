@@ -5,25 +5,20 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.View
 {
-    [AddComponentMenu("UI/Resource/Bar")]
-    public class ResourceBar : ResourceCounter
+    [AddComponentMenu("UI/Indicator/Reserve bar")]
+    public class ReserveBar : ReserveCounter
     {
+        [Space]
         [Header("Bar settings")]
-        [SerializeField]
-        private BarDisplayFormat _barDisplayFormat;
-
-        [SerializeField]
-        private float _limit;
-
-        [SerializeField]
-        [Range(0, 1)]
-        private float _valueStepPerResourceUnit;
-
-        [Header("Background settings")]
+        [SerializeField] private BarDisplayFormat _barDisplayFormat;
+        [SerializeField] private float _limit;
+        [SerializeField] [Range(0, 1)] private float _valueStepPerResourceUnit;
+        [Space]
+        [Header("background")]
         [SerializeField] private Image _backgroundImage;
         [SerializeField] private TMP_ColorGradient _backgroundColor;
-
-        [Header("Value slider settings")]
+        [Space]
+        [Header("Value slider")]
         [SerializeField] private TMP_ColorGradient _valueColor;
         [SerializeField] private Image _valueImage;
         [SerializeField] private RectTransform _sliderRectTransform;
@@ -34,7 +29,7 @@ namespace Assets.Scripts.View
             SetBackgroundImageColor(_backgroundColor);
         }
 
-        protected override void UpdateCounter()
+        public override void UpdateCounter()
         {
             UpdateBarValue();
             base.UpdateCounter();
@@ -44,9 +39,9 @@ namespace Assets.Scripts.View
         {
             var value = _barDisplayFormat switch
             {
-                BarDisplayFormat.Percent => targetResource.GetPercentValue() / 100f,
-                BarDisplayFormat.LimitedToNumber => Mathf.Min(targetResource.GetValue(), _limit),
-                BarDisplayFormat.Unlimited => targetResource.GetValue() * _valueStepPerResourceUnit,
+                BarDisplayFormat.Percent => GetPercentCurrentValue() / 100f,
+                BarDisplayFormat.LimitedToNumber => Mathf.Min(_reserve.Value, _limit),
+                BarDisplayFormat.Unlimited => _reserve.Value * _valueStepPerResourceUnit,
                 _ => throw new ArgumentOutOfRangeException()
             };
             _sliderRectTransform.anchorMax = new Vector2(value, 1);

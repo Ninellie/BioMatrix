@@ -14,7 +14,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
     {
         public ResourceName resourceName;
         public TargetName targetName;
-        public ResourceCounter resourceCounter;
+        public ReserveCounter reserveCounter;
     }
 
     public class PlayerCreator : MonoBehaviour
@@ -109,8 +109,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 var resourceName = displayedResourceData.resourceName;
                 var resource = _playerDataAggregator.Resources[key].GetResource(resourceName);
                 if (resource == null) continue;
-                displayedResourceData.resourceCounter.SetResource(resource);
-                displayedResourceData.resourceCounter.SetLabel(resourceName.ToString());
+                //displayedResourceData.reserveCounter.SetResource(resource);
+                //displayedResourceData.reserveCounter.SetLabel(resourceName.ToString());
             }
         }
 
