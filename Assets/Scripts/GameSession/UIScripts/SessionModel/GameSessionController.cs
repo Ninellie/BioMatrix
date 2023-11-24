@@ -1,3 +1,4 @@
+using Assets.Scripts.Core.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,9 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
     public class GameSessionController : MonoBehaviour
     {
         [SerializeField] private PlayerInput _playerInput;
+        [Space]
+        [Header("Game events")]
+        [SerializeField] private GameEvent _repulseEvent;
         [Space]
         [Header("Interface objects")]
         [SerializeField] private GameObject _menuUi;
@@ -24,7 +28,7 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 
         private void AwakeController()
         {
-            var viewController = new SimpleViewController(_playerInput, _menuUi, _optionsUi, _levelUpUi, _winScreenUi, _loseScreenUi, _startScreenUi);
+            var viewController = new SimpleViewController(_playerInput, _repulseEvent, _menuUi, _optionsUi, _levelUpUi, _winScreenUi, _loseScreenUi, _startScreenUi);
             _viewModel = new ViewModel(viewController);
             Time.timeScale = 0f;
             _playerInput.SwitchCurrentActionMap("Menu");

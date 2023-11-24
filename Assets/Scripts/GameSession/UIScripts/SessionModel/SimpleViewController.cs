@@ -1,5 +1,5 @@
 using System;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
+using Assets.Scripts.Core.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,18 +8,18 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
     public class SimpleViewController : IViewController
     {
         private readonly PlayerInput _playerInput;
-        private readonly Player _player;
+        private readonly GameEvent _repulseEvent;
+        private ILevelUpController _levelUpController;
         private GameObject _menuUI;
         private GameObject _optionsUI;
         private GameObject _levelUpUI;
-        private ILevelUpController _levelUpController;
         private GameObject _winScreenUI;
         private GameObject _loseScreenUI;
         private GameObject _startScreenUI;
 
-        public SimpleViewController(PlayerInput playerInput, GameObject menuUI, GameObject optionsUI, GameObject levelUpUI, GameObject winScreenUI, GameObject loseScreenUI, GameObject startScreenUI)
+        public SimpleViewController(PlayerInput playerInput, GameEvent repulseEvent, GameObject menuUI, GameObject optionsUI, GameObject levelUpUI, GameObject winScreenUI, GameObject loseScreenUI, GameObject startScreenUI)
         {
-            _player = playerInput.gameObject.GetComponent<Player>();
+            _repulseEvent = repulseEvent;
             _playerInput = playerInput ?? throw new ArgumentNullException(nameof(playerInput));
             _menuUI = menuUI ?? throw new ArgumentNullException(nameof(menuUI));
             _optionsUI = optionsUI ?? throw new ArgumentNullException(nameof(optionsUI));
@@ -41,8 +41,9 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         }
         public void Repulse()
         {
-            _player.Shield.Layers.Increase();
-            _player.Shield.Layers.Decrease();
+            _repulseEvent.Raise();
+            //_player.Shield.Layers.Increase();
+            //_player.Shield.Layers.Decrease();
         }
         public void OpenMenu() => _menuUI.SetActive(true);
         public void CloseMenu() => _menuUI.SetActive(false);

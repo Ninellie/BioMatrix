@@ -1476,6 +1476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 370495362}
   - component: {fileID: 370495363}
+  - component: {fileID: 370495364}
   m_Layer: 0
   m_Name: Player Input Controller
   m_TagString: Untagged
@@ -1524,11 +1525,35 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 370495364}
+        m_TargetAssemblyTypeName: InputEventsHandler, Scripts
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b8821f1f-3dba-452d-9ade-9d34be131933
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 2c241d66c3124e84dbde625bee24044b, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1d0c1ced-a2fa-42ad-b958-b1072852ffca
     m_ActionName: Player/ChangeAimMode[/Keyboard/x]
   - m_PersistentCalls:
@@ -1556,23 +1581,83 @@ MonoBehaviour:
     m_ActionId: 49592831-1262-4945-b873-0f2b3d7b4db6
     m_ActionName: Player/JoystickAimingFire
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 370495364}
+        m_TargetAssemblyTypeName: InputEventsHandler, Scripts
+        m_MethodName: OnFireEnd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2edcac9a-aeb4-4877-a626-79d859d27b80
     m_ActionName: Player/FireEnd[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 370495364}
+        m_TargetAssemblyTypeName: InputEventsHandler, Scripts
+        m_MethodName: OnFireStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: be761a1a-ba1b-4f86-b3c4-3c2b361d1394
     m_ActionName: Player/FireStart[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 05d7132dbb2e1244e8a30fb505a4f831, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9b4fc8cc-420e-4383-a9a4-e4519be252e3
     m_ActionName: Menu/Unpause[/Keyboard/space,/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 05d7132dbb2e1244e8a30fb505a4f831, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 00eb4261-1dae-424a-9913-bcb7ebb403ec
     m_ActionName: LevelUpScreen/Pause[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3d5fd3d1-9919-4fd9-b8a0-ec506002cd7c
     m_ActionName: LevelUpScreen/LevelUp[/Keyboard/space]
   - m_PersistentCalls:
@@ -1588,6 +1673,27 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &370495364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370495361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afc8309aac1d1f45aa61dd56673104d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onFire: {fileID: 11400000, guid: f71d355b6bb17104c81695117e40da62, type: 2}
+  onRun: {fileID: 11400000, guid: 5a8243aa26cb2b24f809bd177facc3cb, type: 2}
+  onIdle: {fileID: 11400000, guid: 59cc9c1c8b9de4c4b8243146d28faf7b, type: 2}
+  playerMovementDirection: {fileID: 11400000, guid: 9aeaa0b1a8027f24cbc705b6d4817d3d, type: 2}
+  playerAimDirection: {fileID: 0}
+  playerPosition:
+    useConstant: 0
+    constantValue: {x: 0, y: 0}
+    variable: {fileID: 0}
 --- !u!1 &370682327
 GameObject:
   m_ObjectHideFlags: 0
@@ -4208,6 +4314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerInput: {fileID: 370495363}
+  _repulseEvent: {fileID: 11400000, guid: 343b375f23c4a744d87eea8d7d81e1bc, type: 2}
   _menuUi: {fileID: 786324380}
   _optionsUi: {fileID: 2315530206895122506}
   _levelUpUi: {fileID: 2025358890}
