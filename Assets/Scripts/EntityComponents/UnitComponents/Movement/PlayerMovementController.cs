@@ -2,15 +2,13 @@ using Assets.Scripts.Core.Variables;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.FirearmComponents;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
-    [RequireComponent(typeof(Player))]
     public class PlayerMovementController : MovementController
     {
         [SerializeField] private float _aimingSpeedMultiplier = 0.5f;
-        [SerializeField] private PlayerFirearm _firearm;// Convert to bool variable
+        [SerializeField] private PlayerFirearm _firearm; 
         [SerializeField] private MagazineReserve _magazine;
         [SerializeField] private Player _player;
 
@@ -40,24 +38,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         private new void Awake()
         {
             base.Awake();
-        }
-
-        public void OnMove(InputValue input)
-        {
-            MovementDirection = input.Get<Vector2>();
-        }
-
-        public void OnFire()
-        {
-        }
-
-        public void OnAimingFire()
-        {
-        }
-
-        private void RestoreMultiplier()
-        {
-            _aimingSpeedMultiplier = 1;
         }
     }
 }

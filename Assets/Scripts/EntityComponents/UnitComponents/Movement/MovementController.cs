@@ -15,6 +15,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         [SerializeField] private bool _restoreSpeedScale;
         [SerializeField] private bool _staticSpeedScale;
         [SerializeField] protected FloatReference speed;
+        [Space]
+        [SerializeField] private Rigidbody2D _rigidbody2D;
+        [SerializeField] private Transform _transform;
 
         protected float SpeedScale
         {
@@ -28,13 +31,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         protected abstract Vector2 RawMovementDirection { get; set; }
         private Vector2 MovementVelocity => MovementDirection * Speed;
         private Vector2 Velocity => MovementVelocity + AddedVelocity;
-        private Vector2 MyPosition => transform.position;
-        private Rigidbody2D _rigidbody2D;
+        private Vector2 MyPosition => _transform.position;
         private float _speedScale;
 
         protected void Awake()
         {
-            _rigidbody2D = GetComponent<Rigidbody2D>();
+            if (_transform == null) _transform = transform;
+            if (_rigidbody2D == null) _rigidbody2D = GetComponent<Rigidbody2D>();
             SpeedScale = _baseSpeedScale;
         }
 
@@ -48,11 +51,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 
         protected void OnDrawGizmos()
         {
-            if (speed == null) return;
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, Velocity + (Vector2)transform.position);
+            Gizmos.DrawLine(_transform.position, Velocity + (Vector2)_transform.position);
             Gizmos.color = Color.magenta;
-            Gizmos.DrawLine(transform.position, MovementVelocity + (Vector2)transform.position);
+            Gizmos.DrawLine(_transform.position, MovementVelocity + (Vector2)_transform.position);
         }
 
         public Vector2 GetRawMovementDirection() => RawMovementDirection;
