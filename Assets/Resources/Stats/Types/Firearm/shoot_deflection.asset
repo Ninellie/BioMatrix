@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efe87847409217044a03a12ceb060f43, type: 3}
-  m_Name: max_shoot_deflection_angle
+  m_Name: shoot_deflection
   m_EditorClassIdentifier: 
-  <Value>k__BackingField: max_shoot_deflection_angle
+  <Value>k__BackingField: shoot_deflection
+  <Description>k__BackingField: 
