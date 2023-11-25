@@ -1,3 +1,4 @@
+using Assets.Scripts.Core.Events;
 using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
@@ -8,22 +9,27 @@ namespace Assets.Scripts.FirearmComponents
 {
     public class PlayerFirearm : MonoBehaviour
     {
-        [SerializeField] private GameObject _ammo; // TODO convert to object pool: get disabled projectile and reuse it
-        [SerializeField] private PlayerTargetRuntimeSet _visibleEnemies;
-        [SerializeField] private AimMode _aimMode;
+        [Space] [Header("Inner components")]
+        [SerializeField] private Transform _myTransform;
         [SerializeField] private MagazineReserve _magazineReserve;
+        [Space] [Header("Settings")]
+        [SerializeField] private GameObject _ammo; // TODO convert to object pool: get disabled projectile and reuse it
+        [SerializeField] private AimMode _aimMode;
         [SerializeField] private Vector2Reference _selfAimDirection;
-        [Space]
-        [Header("Stats")]
+        [SerializeField] private PlayerTargetRuntimeSet _visibleEnemies;
+        [Space] [Header("Stats")]
         [SerializeField] private FloatReference _attackSpeed;
         [SerializeField] private FloatReference _projectilesPerAttack;
         [SerializeField] private FloatReference _maxShootDeflectionAngle;
+        [Space] [Header("Events")]
+        [SerializeField] private GameEvent _onShoot;
+
+        public bool OnCoolDown => _coolDownTimer > 0;
         public bool CanShoot => _coolDownTimer <= 0
                                 && _magazineReserve.Value > 0
                                 && !_magazineReserve.OnReload;
         private float _coolDownTimer;
         private PlayerTarget _currentTarget;
-        private Transform _myTransform;
 
         private void Awake()
         {
