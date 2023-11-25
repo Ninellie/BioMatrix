@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2073174384341714352}
   - component: {fileID: -7155211607656120217}
   - component: {fileID: -5980736197263884605}
+  - component: {fileID: 4251805756999822822}
   m_Layer: 7
   m_Name: PlayerFirearm
   m_TagString: Player
@@ -47,18 +48,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71f96002dbc58f4d958fa6f2d81fcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsInProcess>k__BackingField: 0
-  onReloadStart: {fileID: 0}
-  onReloadComplete: {fileID: 0}
-  reloadSpeedStat:
+  <OnReload>k__BackingField: 0
+  _value:
     useConstant: 0
     constantValue: 0
-    variable: {fileID: 0}
-  maxMagazineAmountStat:
+    variable: {fileID: 11400000, guid: 0f9eb4d27a6f6ac47b8d64c6e9daae18, type: 2}
+  _onReloadStart: {fileID: 11400000, guid: 0180571736f828348ba62db4984f8f49, type: 2}
+  _onReloadComplete: {fileID: 11400000, guid: 54cdf10a608708c42b09866142d2f48a, type: 2}
+  _reloadSpeedStat:
     useConstant: 0
     constantValue: 0
-    variable: {fileID: 0}
-  magazine: {fileID: 0}
+    variable: {fileID: 11400000, guid: 9d137883541a51a4f8f36a641926cbaf, type: 2}
+  _maxMagazineCapacity:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: df581dd996bef424391786e1a146ec3d, type: 2}
 --- !u!114 &-7155211607656120217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,15 +75,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e421a47b9a3d754db0fbdf83aefa328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammo: {fileID: 0}
-  _visibleEnemies: {fileID: 0}
+  _ammo: {fileID: 2741946790039367102, guid: 62ab6d6883f51534595dccca64c6bacb, type: 3}
+  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
   _aimMode: 0
-  onShoot: {fileID: 0}
-  reload: {fileID: 0}
-  magazine:
+  _magazineReserve: {fileID: 2073174384341714352}
+  _selfAimDirection:
+    useConstant: 0
+    constantValue: {x: 0, y: 0}
+    variable: {fileID: 11400000, guid: 66e11b9ff01b09c49b55ea0ba661b204, type: 2}
+  _myTransform: {fileID: 9126805039593386211}
+  _attackSpeed:
     useConstant: 0
     constantValue: 0
-    variable: {fileID: 0}
+    variable: {fileID: 11400000, guid: 37753c086d1d0874e918b12ae583e507, type: 2}
+  _projectilesPerAttack:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 93cf7070419d7f6488e0a7670ec21f9d, type: 2}
+  _maxShootDeflectionAngle:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 777113e2cedbc024e814f3e689b9691d, type: 2}
 --- !u!114 &-5980736197263884605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +116,35 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.PlayerFirearm,
           Scripts
         m_MethodName: DoAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4251805756999822822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3233653779076600719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 2c241d66c3124e84dbde625bee24044b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7155211607656120217}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.PlayerFirearm,
+          Scripts
+        m_MethodName: ChangeAimMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
