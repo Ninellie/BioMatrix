@@ -1,5 +1,4 @@
-using Assets.Scripts.Core.Variables;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
+using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.FirearmComponents;
 using UnityEngine;
 
@@ -10,7 +9,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         [SerializeField] private float _aimingSpeedMultiplier = 0.5f;
         [SerializeField] private PlayerFirearm _firearm; 
         [SerializeField] private MagazineReserve _magazine;
-        [SerializeField] private Player _player;
 
         protected override float Speed
         {
@@ -18,7 +16,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             {
                 if (_magazine.OnReload) // Не важно нажата ли кнопка, ведь оружие на перезарядке
                     return NoAimingSpeed;
-                if (_player.IsFireButtonPressed) // Кнопка нажата, оружие не на перезарядке
+                if (_firearm.OnCoolDown) // Кнопка нажата, оружие не на перезарядке
                     return AimingSpeed;
                 if (_firearm.CanShoot) // Кнопка не нажата, оружие не на перезарядке и не на кд
                     return NoAimingSpeed;
@@ -27,8 +25,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         }
         protected float NoAimingSpeed => speed.Value * SpeedScale;
         protected float AimingSpeed => NoAimingSpeed * _aimingSpeedMultiplier;
-        [SerializeField] private Vector2Variable _movementDirection;
-        protected override Vector2 MovementDirection { get; set; }
+        [SerializeField] private Vector2Reference _movementDirection;
+        protected override Vector2 MovementDirection
+        {
+            get => _movementDirection;
+            set {}
+        }
+
         protected override Vector2 RawMovementDirection
         {
             get => MovementDirection;
