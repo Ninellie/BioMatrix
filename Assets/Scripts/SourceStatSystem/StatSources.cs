@@ -9,11 +9,17 @@ namespace Assets.Scripts.SourceStatSystem
     public class StatSources : ScriptableObject
     {
         [SerializeField] private List<StatSourceData> _statSources = new();
+        [SerializeField] private bool _clearOnPlay;
         [SerializeField] private StatSourcePack _baseStatSources;
         [SerializeField] private List<StatVariable> _stats;
 
         private void Awake()
         {
+            if (_clearOnPlay)
+            {
+                _statSources.Clear();
+            }
+
             ConstructStats(GetStatSources());
         }
 
