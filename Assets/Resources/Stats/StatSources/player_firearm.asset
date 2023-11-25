@@ -14,4 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _statSources: []
   _baseStatSources: {fileID: 11400000, guid: 69b216f47259cf344ac398d65a3cdf17, type: 2}
-  _stats: []
+  _stats:
+  - {fileID: 11400000, guid: 93cf7070419d7f6488e0a7670ec21f9d, type: 2}
+  - {fileID: 11400000, guid: 37753c086d1d0874e918b12ae583e507, type: 2}
+  - {fileID: 11400000, guid: 777113e2cedbc024e814f3e689b9691d, type: 2}
+  - {fileID: 11400000, guid: df581dd996bef424391786e1a146ec3d, type: 2}
+  - {fileID: 11400000, guid: 9d137883541a51a4f8f36a641926cbaf, type: 2}
