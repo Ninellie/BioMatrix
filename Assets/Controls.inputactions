@@ -33,40 +33,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MouseAiming",
+                    "name": "Shoot",
                     "type": "Value",
-                    "id": "872f0115-4e3f-4426-9bce-f343ba33ea1d",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "JoystickAimingFire",
-                    "type": "Value",
-                    "id": "49592831-1262-4945-b873-0f2b3d7b4db6",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "FireEnd",
-                    "type": "Button",
-                    "id": "2edcac9a-aeb4-4877-a626-79d859d27b80",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "FireStart",
-                    "type": "Button",
                     "id": "be761a1a-ba1b-4f86-b3c4-3c2b361d1394",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -171,17 +144,6 @@
                 },
                 {
                     "name": "",
-                    "id": "f1203b9a-4dd2-4ad8-8993-ee322df6ec91",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC_Control_scheme",
-                    "action": "MouseAiming",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "64d8f853-546b-4589-9c2a-08c3e9193961",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "Press(behavior=2)",
@@ -203,59 +165,70 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "fa6cceb5-020b-4561-89ba-5392285b6f02",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Press(behavior=1)",
+                    "name": "Aim and Shoot",
+                    "id": "17fd540d-5a6a-4916-a2ab-18a102fd6425",
+                    "path": "OneModifier",
+                    "interactions": "",
                     "processors": "",
-                    "groups": "PC_Control_scheme",
-                    "action": "FireEnd",
-                    "isComposite": false,
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "c1ce68f4-32b3-430d-b94e-47eb3bc7dbd7",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Press",
+                    "name": "modifier",
+                    "id": "e6910d45-81ea-4ee7-9a73-279f01d695e9",
+                    "path": "<Pointer>/press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "PC_Control_scheme",
-                    "action": "FireStart",
+                    "action": "Shoot",
                     "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "926c5861-acf6-4552-aa97-e7f55847f9b3",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC_Control_scheme",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Gamepad_One Modifier",
+                    "id": "8bcbb22f-d0b7-4bbe-ad4b-ce655ba147b6",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "ced9a0cf-c135-4dea-8c20-5d872418e311",
+                    "name": "modifier",
+                    "id": "1176548e-ce49-4166-97bb-8b09fd3bb90d",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "257aee6d-9e71-455d-9d28-869cb27295d1",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mobile",
-                    "action": "JoystickAimingFire",
+                    "action": "Shoot",
                     "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5187eb2b-6228-468b-98a1-22a4361c5042",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "Mobile",
-                    "action": "FireEnd",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6f4c1537-3163-4e68-9037-5e184f9dca0c",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "Mobile",
-                    "action": "FireStart",
-                    "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 }
             ]
         },
