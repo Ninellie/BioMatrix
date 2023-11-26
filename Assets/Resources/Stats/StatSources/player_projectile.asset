@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: player_projectile
   m_EditorClassIdentifier: 
   _statSources: []
+  _clearOnPlay: 1
   _baseStatSources: {fileID: 11400000, guid: 8bac07cf3317d4c499e3e655bbfd6b09, type: 2}
   _stats:
   - {fileID: 11400000, guid: 2e821920e2bdd4e4481e27dea0c67ed6, type: 2}

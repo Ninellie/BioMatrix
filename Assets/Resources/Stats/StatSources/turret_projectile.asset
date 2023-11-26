@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: turret_projectile
   m_EditorClassIdentifier: 
   _statSources: []
+  _clearOnPlay: 1
   _baseStatSources: {fileID: 11400000, guid: 7c9e5b05b79881a4c87a30089b836323, type: 2}
   _stats:
   - {fileID: 11400000, guid: 25f1536b99e71bc45b05013a713bbea2, type: 2}

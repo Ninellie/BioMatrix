@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: player
   m_EditorClassIdentifier: 
   _statSources: []
+  _clearOnPlay: 1
   _baseStatSources: {fileID: 11400000, guid: 38cb1638499ece741b0e9a1844ec1907, type: 2}
   _stats:
   - {fileID: 11400000, guid: 2e1a752507bdd354f976d465c7e9cdef, type: 2}

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: player_firearm
   m_EditorClassIdentifier: 
   _statSources: []
+  _clearOnPlay: 1
   _baseStatSources: {fileID: 11400000, guid: 69b216f47259cf344ac398d65a3cdf17, type: 2}
   _stats:
   - {fileID: 11400000, guid: 93cf7070419d7f6488e0a7670ec21f9d, type: 2}
