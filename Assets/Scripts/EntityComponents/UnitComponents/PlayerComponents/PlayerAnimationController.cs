@@ -22,7 +22,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             _animator.speed = _shootingAnimationSpeed;
             CancelInvoke(nameof(RestoreAnimationSpeed));
-            //Invoke(nameof(RestoreAnimationSpeed), FirearmCooldown);
+            Invoke(nameof(RestoreAnimationSpeed), FirearmCooldown);
         }
 
         // on Move

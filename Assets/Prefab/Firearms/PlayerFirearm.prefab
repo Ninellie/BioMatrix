@@ -53,6 +53,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 0f9eb4d27a6f6ac47b8d64c6e9daae18, type: 2}
+  _fillOnStart: 0
   _onReloadStart: {fileID: 11400000, guid: 0180571736f828348ba62db4984f8f49, type: 2}
   _onReloadComplete: {fileID: 11400000, guid: 54cdf10a608708c42b09866142d2f48a, type: 2}
   _reloadSpeedStat:
@@ -63,6 +64,10 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: df581dd996bef424391786e1a146ec3d, type: 2}
+  _ammoPerShoot:
+    useConstant: 1
+    constantValue: 1
+    variable: {fileID: 0}
 --- !u!114 &-7155211607656120217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,15 +80,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e421a47b9a3d754db0fbdf83aefa328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammo: {fileID: 2741946790039367102, guid: 62ab6d6883f51534595dccca64c6bacb, type: 3}
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
-  _aimMode: 0
+  _myTransform: {fileID: 9126805039593386211}
   _magazineReserve: {fileID: 2073174384341714352}
+  _ammo: {fileID: 2741946790039367102, guid: 62ab6d6883f51534595dccca64c6bacb, type: 3}
+  _aimMode: 0
   _selfAimDirection:
     useConstant: 0
     constantValue: {x: 0, y: 0}
     variable: {fileID: 11400000, guid: 66e11b9ff01b09c49b55ea0ba661b204, type: 2}
-  _myTransform: {fileID: 9126805039593386211}
+  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
   _attackSpeed:
     useConstant: 0
     constantValue: 0
@@ -96,6 +101,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 777113e2cedbc024e814f3e689b9691d, type: 2}
+  _onShoot: {fileID: 11400000, guid: 7b001a7b09e37294cae7ae2de99a2014, type: 2}
 --- !u!114 &-5980736197263884605
 MonoBehaviour:
   m_ObjectHideFlags: 0

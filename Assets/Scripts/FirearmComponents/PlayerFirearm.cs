@@ -39,7 +39,10 @@ namespace Assets.Scripts.FirearmComponents
 
         private void FixedUpdate()
         {
-            _coolDownTimer -= Time.fixedDeltaTime;
+            if (_coolDownTimer > 0)
+            {
+                _coolDownTimer -= Time.fixedDeltaTime;
+            }
             UpdateTarget();
         }
 
