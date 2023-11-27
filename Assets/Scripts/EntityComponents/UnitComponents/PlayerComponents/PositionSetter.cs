@@ -3,9 +3,19 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
+    public class GameObjectSetter : MonoBehaviour
+    {
+        [SerializeField] private GameObjectVariable _variable;
+
+        private void Awake()
+        {
+            _variable.SetValue(gameObject);
+        }
+    }
+
     public class PositionSetter : MonoBehaviour
     {
-        [SerializeField] private Vector2Variable _myPosition;
+        [SerializeField] private Vector2Variable _variable;
         [SerializeField] private Transform _transform;
         private void Awake()
         {
@@ -14,8 +24,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void FixedUpdate()
         {
-            if (_myPosition == null) return;
-            _myPosition.SetValue(_transform.position);
+            if (_variable == null) return;
+            _variable.SetValue(_transform.position);
         }
     }
 }

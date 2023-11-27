@@ -6,19 +6,23 @@ using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Core.Input
 {
+    public class ShootInputActionsHandler : MonoBehaviour
+    {
+    }
+
     public class ShootInputHandler : MonoBehaviour
     {
         public GameEvent onFire;
+        public GameEvent onAimModeChange;
         public Vector2Variable playerAimDirection;
         public Vector2 rawAimDirection;
         [Header("Settings")]
-        public Vector2Reference playerPosition;
+        public Vector2Reference firePoint;
         public bool stickMode;
-        [Header("Platform")]
-        public bool platformCheck;
-        public bool isMobile;
         public Camera mainCamera;
-
+        public bool platformCheck;
+        [Header("Dynamic")]
+        public bool isMobile;
         public bool fireButtonPressed;
 
         private void Awake()
@@ -35,7 +39,7 @@ namespace Assets.Scripts.Core.Input
             if (!stickMode)
             {
                 Vector2 value = Camera.main.ScreenToWorldPoint(rawAimDirection);
-                value -= playerPosition;
+                value -= firePoint;
                 value.Normalize();
                 playerAimDirection.SetValue(value);
             }
@@ -55,6 +59,14 @@ namespace Assets.Scripts.Core.Input
             Debug.LogWarning($"On Shoot");
             rawAimDirection = context.ReadValue<Vector2>();
             fireButtonPressed = context.action.IsPressed();
+        }
+
+        public void OnAimModeChange(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                onAimModeChange.Raise();
+            }
         }
     }
 }

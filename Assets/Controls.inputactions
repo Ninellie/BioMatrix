@@ -15,13 +15,13 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ChangeAimMode",
-                    "type": "Value",
+                    "name": "AimModeChange",
+                    "type": "Button",
                     "id": "1d0c1ced-a2fa-42ad-b958-b1072852ffca",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Pause",
@@ -29,7 +29,7 @@
                     "id": "c9f77d15-8592-4713-83fd-bd905b007b9c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
@@ -149,7 +149,7 @@
                     "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "Mobile",
-                    "action": "ChangeAimMode",
+                    "action": "AimModeChange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -160,7 +160,7 @@
                     "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "PC_Control_scheme",
-                    "action": "ChangeAimMode",
+                    "action": "AimModeChange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -237,12 +237,12 @@
             "id": "ed9dbdba-c4f4-46d2-b883-d9a88ba8b454",
             "actions": [
                 {
-                    "name": "Unpause",
+                    "name": "Pause",
                     "type": "Button",
                     "id": "9b4fc8cc-420e-4383-a9a4-e4519be252e3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 }
             ],
@@ -254,7 +254,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PC_Control_scheme",
-                    "action": "Unpause",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -265,7 +265,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PC_Control_scheme",
-                    "action": "Unpause",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -276,7 +276,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mobile",
-                    "action": "Unpause",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -298,7 +298,7 @@
                     "id": "00eb4261-1dae-424a-9913-bcb7ebb403ec",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
