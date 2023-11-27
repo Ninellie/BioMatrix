@@ -104,6 +104,8 @@ namespace Assets.Scripts.FirearmComponents
             {
                 return _selfAimDirection.Value;
             }
+
+            if (_currentTarget == null) return Random.insideUnitCircle;
             Vector2 direction = _currentTarget.Transform.position - _myTransform.position;
             direction.Normalize();
             return direction;
