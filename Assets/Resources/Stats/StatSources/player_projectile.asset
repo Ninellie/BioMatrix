@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398d76ed9a41c9144ae3720c71b6891b, type: 3}
   m_Name: player_projectile
   m_EditorClassIdentifier: 
-  _statSources: []
+  _statSources:
+  - <Id>k__BackingField: 
+    <StatId>k__BackingField: {fileID: 0}
+    <ImpactType>k__BackingField: 0
+    <Value>k__BackingField: 0
   _clearOnPlay: 1
   _baseStatSources: {fileID: 11400000, guid: 8bac07cf3317d4c499e3e655bbfd6b09, type: 2}
   _stats:
