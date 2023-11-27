@@ -20,7 +20,7 @@
                     "id": "1d0c1ced-a2fa-42ad-b958-b1072852ffca",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -29,7 +29,7 @@
                     "id": "c9f77d15-8592-4713-83fd-bd905b007b9c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -146,7 +146,7 @@
                     "name": "",
                     "id": "64d8f853-546b-4589-9c2a-08c3e9193961",
                     "path": "<Gamepad>/leftTrigger",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Mobile",
                     "action": "AimModeChange",
@@ -157,7 +157,7 @@
                     "name": "",
                     "id": "23acd770-ac88-4ef4-809b-da5db6806ded",
                     "path": "<Keyboard>/x",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "PC_Control_scheme",
                     "action": "AimModeChange",
@@ -242,7 +242,7 @@
                     "id": "9b4fc8cc-420e-4383-a9a4-e4519be252e3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -298,11 +298,11 @@
                     "id": "00eb4261-1dae-424a-9913-bcb7ebb403ec",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LevelUp",
+                    "name": "Accept Card",
                     "type": "Button",
                     "id": "3d5fd3d1-9919-4fd9-b8a0-ec506002cd7c",
                     "expectedControlType": "Button",
@@ -320,9 +320,27 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Next Deck Scroll",
+                    "type": "Value",
+                    "id": "ed208ed9-c665-4d9f-bfd1-b8a34e894883",
+                    "expectedControlType": "Delta",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Previous Deck",
                     "type": "Value",
                     "id": "034c155f-79ad-416e-80f3-7716bbcfb5af",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Previous Deck Scroll",
+                    "type": "Value",
+                    "id": "b53f0a1a-dc1e-4180-a3e8-27b675e6b42b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -367,7 +385,7 @@
                     "name": "",
                     "id": "9257d9e3-bc4a-435e-a77a-339f927d5761",
                     "path": "<Mouse>/scroll/down",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "PC_Control_scheme",
                     "action": "Next Deck",
@@ -403,7 +421,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PC_Control_scheme",
-                    "action": "LevelUp",
+                    "action": "Accept Card",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "315392bd-893c-4499-a389-eb392caddd53",
+                    "path": "<Keyboard>/s",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "PC_Control_scheme",
+                    "action": "Next Deck Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5741a9dd-fb73-44a0-9fcc-e18032ad423f",
+                    "path": "<Mouse>/scroll/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC_Control_scheme",
+                    "action": "Next Deck Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc4e1002-1049-4fca-8395-87d4e707cf0f",
+                    "path": "<Keyboard>/w",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "PC_Control_scheme",
+                    "action": "Previous Deck Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4330cc11-83f7-471d-97be-9181c622e1bf",
+                    "path": "<Mouse>/scroll/up",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "PC_Control_scheme",
+                    "action": "Previous Deck Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

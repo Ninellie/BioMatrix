@@ -6,10 +6,6 @@ using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Core.Input
 {
-    public class ShootInputActionsHandler : MonoBehaviour
-    {
-    }
-
     public class ShootInputHandler : MonoBehaviour
     {
         public GameEvent onFire;
@@ -63,10 +59,9 @@ namespace Assets.Scripts.Core.Input
 
         public void OnAimModeChange(InputAction.CallbackContext context)
         {
-            if (context.performed)
-            {
-                onAimModeChange.Raise();
-            }
+            if (!context.performed) return;
+            Debug.LogWarning($"On Aim Mode Changed");
+            onAimModeChange.Raise();
         }
     }
 }
