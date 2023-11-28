@@ -8,17 +8,18 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Flip
         Left, Right,
     }
 
+    [RequireComponent(typeof(SpriteRenderer))]
     public class FlipController : MonoBehaviour
     {
+        [Header("Inner components")]
+        [SerializeField] private MovementController _movementController;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private GazeDirection _gazeDirection = GazeDirection.Left;
-
-        private IMovementController _movementController;
-        private SpriteRenderer _spriteRenderer;
 
         private void Awake()
         {
-            _movementController = GetComponent<IMovementController>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            if (_movementController == null) _movementController = GetComponent<MovementController>();
+            if (_spriteRenderer == null) _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void Update()
