@@ -91,7 +91,7 @@ namespace Assets.Scripts.EntityComponents
             {
                 if (newValue == 0)
                 {
-                    _onEmpty.Raise(gameObject);
+                    _onEmpty.Raise();
                     _onEmptyUnityEvent.Invoke();
                 }
             }
