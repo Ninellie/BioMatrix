@@ -12,6 +12,7 @@ namespace Assets.Scripts.SourceStatSystem
         [SerializeField] private bool _clearOnPlay;
         [SerializeField] private StatSourcePack _baseStatSources;
         [SerializeField] private List<StatVariable> _stats;
+        [SerializeField] private List<StatData> _preview;
 
         private void Awake()
         {
@@ -57,6 +58,18 @@ namespace Assets.Scripts.SourceStatSystem
             { 
                 statVariable.SetValue(updatedStatValue);
             }
+
+#if UNITY_EDITOR
+            UpdatePreviewStat(statId, updatedStatValue);
+#endif
+        }
+
+        private void UpdatePreviewStat(StatId id, float updatedValue)
+        {
+            foreach (var statData in _preview.Where(s => s.Id == id))
+            {
+                statData.Value = updatedValue;
+            }
         }
 
         public void ConstructStats(IEnumerable<StatSourceData> statSources)
@@ -80,6 +93,10 @@ namespace Assets.Scripts.SourceStatSystem
                     statVariable.SetValue(statData.Value);
                 }
             }
+
+#if UNITY_EDITOR
+            _preview = statDatas;
+#endif
         }
 
         private List<StatSourceData> GetStatSources()
