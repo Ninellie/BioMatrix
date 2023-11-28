@@ -16,7 +16,7 @@ namespace Assets.Scripts.EntityComponents
         public bool IsEmpty => _currentHealth.Value == 0;
         public bool IsFull => _currentHealth.Value == (int)_maximumHealth.Value;
 
-        [SerializeField] private GameObjectGameEvent _onEmpty;
+        [SerializeField] private GameEvent _onEmpty;
         [SerializeField] private UnityEvent _onEmptyUnityEvent;
         [SerializeField] private GameEvent _onEdge;
         [SerializeField] private GameEvent _onDecrease;
