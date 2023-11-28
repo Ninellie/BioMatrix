@@ -1,3 +1,4 @@
+using PlasticPipe.PlasticProtocol.Messages;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents
@@ -5,13 +6,14 @@ namespace Assets.Scripts.EntityComponents
     [RequireComponent(typeof(SpriteRenderer))]
     public class SpriteFlashController : MonoBehaviour
     {
+        [Header("Inner components")]
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Color _originalColor;
         [Header("Settings")]
         [SerializeField] private float _baseFlashingDuration = 1f;
         [SerializeField] private float _flashDuration = 0.1f;
         [SerializeField] private float _flashAlpha = 0.3f;
-
+        [Header("Indicators")]
         [SerializeField] private float _flashingStopwatch;
         [SerializeField] private bool _isFlashing = false;
 
@@ -31,6 +33,7 @@ namespace Assets.Scripts.EntityComponents
             _spriteRenderer.color = new Color(_originalColor.r, _originalColor.g, _originalColor.b, alpha);
         }
 
+        [ContextMenu("Start flashing", false, 51)]
         public void StartFlashing()
         {
             _isFlashing = true;
