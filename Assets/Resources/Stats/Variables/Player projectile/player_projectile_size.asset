@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: player_projectile_size
   m_EditorClassIdentifier: 
   developerDescription: 
-  value: 10
+  value: 1
   id: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
