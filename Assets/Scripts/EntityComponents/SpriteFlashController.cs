@@ -27,7 +27,7 @@ namespace Assets.Scripts.EntityComponents
         private void Update()
         {
             if (!_isFlashing) return;
-            _flashingStopwatch -= Time.time;
+            _flashingStopwatch -= Time.deltaTime;
             var t = Mathf.PingPong(_flashingStopwatch / _flashDuration, 1f);
             var alpha = Mathf.Lerp(1f, _flashAlpha, t);
             _spriteRenderer.color = new Color(_originalColor.r, _originalColor.g, _originalColor.b, alpha);
