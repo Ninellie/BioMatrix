@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 156745283301569288}
   m_Layer: 10
   m_Name: PlayerFirearmBullet
-  m_TagString: PlayerProjectile
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,6 +52,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _disableObjectOnEmpty: 1
+  _selfGameObject:
+    useConstant: 1
+    constantValue: {fileID: 2741946790039367102}
+    variable: {fileID: 0}
   _refillOnStart: 1
   _currentHealth:
     useConstant: 1
@@ -124,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb988da066310544bd218ab5264fecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyTag: Enemy
+  _otherTag: Enemy
   _onBecomeInvisible:
     m_PersistentCalls:
       m_Calls:
@@ -141,18 +145,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _onCollision:
+  _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6281086272866892743}
         m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
           Scripts
         m_MethodName: TakeDamage
-        m_Mode: 0
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -279,8 +283,8 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 1, g: 0.50980395, b: 0.45490196, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

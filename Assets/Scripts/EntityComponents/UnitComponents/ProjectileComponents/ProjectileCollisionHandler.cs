@@ -5,15 +5,14 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
 {
     public class ProjectileCollisionHandler : MonoBehaviour
     {
-        [SerializeField] private string _enemyTag;
+        [SerializeField] private string _otherTag;
         [SerializeField] private UnityEvent _onBecomeInvisible;
-        [SerializeField] private UnityEvent<int> _onCollision;
+        [SerializeField] private UnityEvent _onCollisionEnter2D;
 
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
-            var otherCollider2D = collision2D.collider;
-            if (!otherCollider2D.gameObject.CompareTag(_enemyTag)) return;
-            _onCollision.Invoke(1);
+            if (!collision2D.gameObject.CompareTag(_otherTag)) return;
+            _onCollisionEnter2D.Invoke();
         }
 
         private void OnBecameInvisible()
