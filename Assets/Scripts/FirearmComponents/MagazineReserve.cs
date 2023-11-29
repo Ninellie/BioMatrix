@@ -34,7 +34,7 @@ namespace Assets.Scripts.FirearmComponents
                 return;
             }
             if (OnReload) return;
-            ApplyChange(-_ammoPerShoot);
+            ApplyChange(_ammoPerShoot * -1);
 
             if (_value == 0)
             {
