@@ -45,12 +45,14 @@ SpriteAtlas:
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-    - {fileID: -8328923581568760697, guid: 3fdb0a60d64ddc043805cbb5c37d77fa, type: 3}
-    - {fileID: 2800000, guid: 127af07b54a3c014eb6a9987d8f8441a, type: 3}
     - {fileID: 2800000, guid: a493cb95aae29af46b1cba06c929ada2, type: 3}
-    - {fileID: 2800000, guid: b141692ef63beeb4cbfc028ec3192468, type: 3}
+    - {fileID: 2800000, guid: 127af07b54a3c014eb6a9987d8f8441a, type: 3}
     - {fileID: -8328923581568760697, guid: 1ea43a4077f5ca04883948b5f538e1ba, type: 3}
+    - {fileID: -8328923581568760697, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+    - {fileID: -8328923581568760697, guid: 3fdb0a60d64ddc043805cbb5c37d77fa, type: 3}
+    - {fileID: 2800000, guid: b141692ef63beeb4cbfc028ec3192468, type: 3}
+    - {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+    - {fileID: 2800000, guid: e79f71df4eb9a5e4d989334a6b9fe78d, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -137,8 +139,9 @@ SpriteAtlas:
     - 127af07b54a3c014eb6a9987d8f8441a: -1896641965
     - 127af07b54a3c014eb6a9987d8f8441a: -2097042108
     - 127af07b54a3c014eb6a9987d8f8441a: -1230191618
+    - 18e94ffbea029ec4db5063bf39670286: -8582105753250322470
     - b141692ef63beeb4cbfc028ec3192468: 21300000
-    - 80d81b4e34197e24b9300e6857e5ae84: 21300000
+    - e79f71df4eb9a5e4d989334a6b9fe78d: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: -5276368667299669577, guid: 1ea43a4077f5ca04883948b5f538e1ba, type: 3}
@@ -223,8 +226,9 @@ SpriteAtlas:
   - {fileID: -1896641965, guid: 127af07b54a3c014eb6a9987d8f8441a, type: 3}
   - {fileID: -2097042108, guid: 127af07b54a3c014eb6a9987d8f8441a, type: 3}
   - {fileID: -1230191618, guid: 127af07b54a3c014eb6a9987d8f8441a, type: 3}
+  - {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
   - {fileID: 21300000, guid: b141692ef63beeb4cbfc028ec3192468, type: 3}
-  - {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
+  - {fileID: 21300000, guid: e79f71df4eb9a5e4d989334a6b9fe78d, type: 3}
   m_PackedSpriteNamesToIndex:
   - bourgeon_Frame_18
   - bourgeon_Frame_21
@@ -308,8 +312,9 @@ SpriteAtlas:
   - ExpCrystalIdle2_2
   - ExpCrystalIdle2_1
   - ExpCrystalIdle2_0
+  - simple white bullet
   - dragon_32
-  - SimpleBullet
+  - RockyGround_32
   m_RenderDataMap: {}
   m_Tag: BioMatrix
   m_IsVariant: 0
