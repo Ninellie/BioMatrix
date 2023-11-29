@@ -46,8 +46,12 @@ namespace Assets.Scripts.EntityComponents
 
         public void Empty()
         {
+            Debug.Log($"Health is empty. Disable: {_disableObjectOnEmpty}", this);
             SetValue(0);
-            gameObject.SetActive(false);
+            if (_disableObjectOnEmpty)
+            {
+                _selfGameObject.Value.SetActive(false);
+            }
         }
 
         private void SetValue(int value)
@@ -75,33 +79,36 @@ namespace Assets.Scripts.EntityComponents
 
             var newValue = _currentHealth.Value;
 
-            if (_onDecrease != null)
+            if (oldValue > newValue)
             {
-                if (oldValue > newValue)
+                if (_onDecrease != null)
                 {
                     _onDecrease.Raise();
                     _onDecreaseUnityEvent.Invoke(value);
                 }
             }
 
-            if (_onEdge != null)
+            if (newValue == _edgeValue)
             {
-                if (newValue == _edgeValue)
+                if (_onEdge != null)
                 {
                     _onEdge.Raise();
                 }
             }
 
-            if (_onEmpty != null)
+            if (newValue == 0)
             {
-                if (newValue == 0)
-                {
-                    _onEmpty.Raise();
+                Debug.Log($"Health is empty. Disable: {_disableObjectOnEmpty}", this);
+
+                if (_onEmpty != null)
+                { 
+                    _onEmpty.Raise(); 
                     _onEmptyUnityEvent.Invoke();
-                    if (_disableObjectOnEmpty)
-                    {
-                        _selfGameObject.Value.SetActive(false);
-                    }
+                }
+
+                if (_disableObjectOnEmpty)
+                {
+                    _selfGameObject.Value.SetActive(false);
                 }
             }
         }
