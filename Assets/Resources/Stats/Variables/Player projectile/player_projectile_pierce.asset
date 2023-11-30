@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: player_projectile_pierce
   m_EditorClassIdentifier: 
   developerDescription: 
-  value: 0
+  value: 1
   id: {fileID: 11400000, guid: 0056aaa4eb48b6d458c89adf5bcf6f83, type: 2}
