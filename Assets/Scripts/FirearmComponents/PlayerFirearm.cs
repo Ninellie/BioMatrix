@@ -1,4 +1,5 @@
 using Assets.Scripts.Core.Events;
+using Assets.Scripts.Core.Sets;
 using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
@@ -121,30 +122,25 @@ namespace Assets.Scripts.FirearmComponents
                 return;
             }
             var nearestTarget = GetNearestPlayerTarget();
-            TakeAsTarget(nearestTarget);
-        }
-
-        private void TakeAsTarget(PlayerTarget target)
-        {
-            if (_currentTarget == target) return;
+            if (_currentTarget == nearestTarget) return;
             _currentTarget.RemoveFromTarget();
-            _currentTarget = target;
+            _currentTarget = nearestTarget;
             _currentTarget.TakeAsTarget();
         }
 
         private PlayerTarget GetNearestPlayerTarget()
         {
             var distanceToNearestTarget = Mathf.Infinity;
-            var targets = _visibleEnemies.items.ToArray();
             PlayerTarget nearestTarget = null;
-            foreach (var target in targets)
+            foreach (var target in _visibleEnemies.items)
             {
                 var distance = Vector2.Distance(_myTransform.position, target.transform.position);
                 if (!(distance < distanceToNearestTarget)) continue;
                 distanceToNearestTarget = distance;
                 nearestTarget = target;
             }
-            return nearestTarget == null ? null : nearestTarget;
+
+            return nearestTarget;
         }
     }
 }
