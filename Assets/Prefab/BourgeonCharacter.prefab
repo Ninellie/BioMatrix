@@ -5356,6 +5356,8 @@ GameObject:
   - component: {fileID: 5416372509465238313}
   - component: {fileID: 1827721105701566796}
   - component: {fileID: 7431717142928496639}
+  - component: {fileID: 636865496543555221}
+  - component: {fileID: 7502460772162316173}
   m_Layer: 7
   m_Name: Body
   m_TagString: Player
@@ -5488,11 +5490,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transform: {fileID: 885779190258261260}
-  _otherTag: Enemy
-  _otherKnockbackPower:
+  _tag: Enemy
+  _distanceLength:
     useConstant: 1
     constantValue: 150
     variable: {fileID: 0}
+  _useSeparatePosition: 0
+  _position:
+    useConstant: 1
+    constantValue: {x: 0, y: 0}
+    variable: {fileID: 0}
+  _inverseDirection: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -5522,6 +5530,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &5416372509465238313
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5604,6 +5615,104 @@ MonoBehaviour:
           Scripts
         m_MethodName: ApplyInvulnerability
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &636865496543555221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9019196127712340890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc0fd153cec460478db3e56fb77fb20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 885779190258261260}
+  _tag: Cage
+  _distanceLength:
+    useConstant: 1
+    constantValue: 50
+    variable: {fileID: 0}
+  _useSeparatePosition: 1
+  _position:
+    useConstant: 0
+    constantValue: {x: 0, y: 0}
+    variable: {fileID: 11400000, guid: 388da9426b617a14f824f381b14395f7, type: 2}
+  _inverseDirection: 1
+  _onCollisionEnter2D:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7418636644495033864}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.Knockback.KnockbackController,
+          Scripts
+        m_MethodName: Knockback
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3615954563773887058}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
+          Scripts
+        m_MethodName: TakeDamage
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7502460772162316173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9019196127712340890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc0fd153cec460478db3e56fb77fb20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 885779190258261260}
+  _tag: Cage
+  _distanceLength:
+    useConstant: 1
+    constantValue: 10
+    variable: {fileID: 0}
+  _useSeparatePosition: 1
+  _position:
+    useConstant: 0
+    constantValue: {x: 0, y: 0}
+    variable: {fileID: 11400000, guid: 388da9426b617a14f824f381b14395f7, type: 2}
+  _inverseDirection: 1
+  _onCollisionEnter2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 885779190258261260}
+        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
+        m_MethodName: Translate
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
