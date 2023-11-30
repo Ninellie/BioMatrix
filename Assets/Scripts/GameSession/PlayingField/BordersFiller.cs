@@ -1,5 +1,5 @@
 using System.Collections;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
+using Assets.Scripts.Core.Variables;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static Assets.Scripts.GameSession.PlayingField.TilesCameraHelper;
@@ -14,16 +14,16 @@ namespace Assets.Scripts.GameSession.PlayingField
         [SerializeField] [Range(-5, 5)] private int _boundsOffset;
         [SerializeField] [Range(0, 5)] private int _fillingFramesCount;
         [SerializeField] [Range(0, 5)] private float _delayBetweenFills;
+        [SerializeField] private Vector2Variable _cageCenter;
+        [Header("Inner components")]
         [SerializeField] private Tilemap _tilemap;
         [SerializeField] private Tilemap _otherTilemap;
         [SerializeField] private TilemapRenderer _tilemapRenderer;
-        private UnityEngine.Camera _mainCamera;
+        [SerializeField] private UnityEngine.Camera _mainCamera;
 
         private void Awake()
         {
             _mainCamera = UnityEngine.Camera.main;
-            //_tilemap = GetComponentInChildren<Tilemap>();
-            //_tilemapRenderer = GetComponentInChildren<TilemapRenderer>();
         }
 
         private void Start()
@@ -36,7 +36,7 @@ namespace Assets.Scripts.GameSession.PlayingField
         {
             yield return new WaitForSeconds(_fillingDelay);
             var boundsInt = GetBoundsIntFromCamera(_mainCamera, _tilemap, _tilemapRenderer.chunkCullingBounds);
-            FindFirstObjectByType<PlayerCollisionHandler>().SetCageCenter(_mainCamera.transform.position);
+            _cageCenter.SetValue(_mainCamera.transform.position);
             StartCoroutine(FillBounds(boundsInt));
         }
 
