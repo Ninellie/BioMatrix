@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7711465a83c3624f969e582d951e1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementController: {fileID: 0}
+  _movementController: {fileID: 5264264128143633131}
   _spriteRenderer: {fileID: 1911803333440424254}
   _gazeDirection: 0
 --- !u!198 &301056829175102997
@@ -5173,7 +5173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3465433056705521361
 Transform:
   m_ObjectHideFlags: 0
@@ -5242,6 +5242,7 @@ GameObject:
   - component: {fileID: 4318183895119016108}
   - component: {fileID: 8021525112388424157}
   - component: {fileID: 316283260720876180}
+  - component: {fileID: 1667914962160971424}
   m_Layer: 7
   m_Name: Health
   m_TagString: Player
@@ -5296,7 +5297,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _onEdge: {fileID: 11400000, guid: 5a985d16de85f1041be06b294f7b6ff1, type: 2}
-  _onDecrease: {fileID: 11400000, guid: 3ba236ac47a16fe438e8d356ef5ac37e, type: 2}
+  _onDecrease: {fileID: 11400000, guid: 6af7ceca5efe21a4f9a28d99d78a2263, type: 2}
   _onDecreaseUnityEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5354,6 +5355,35 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
           Scripts
         m_MethodName: Increase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1667914962160971424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435236541584315004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 3ba236ac47a16fe438e8d356ef5ac37e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4318183895119016108}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
+          Scripts
+        m_MethodName: TakeDamage
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5738,7 +5768,6 @@ GameObject:
   - component: {fileID: 8854697713405319302}
   - component: {fileID: 5416372509465238313}
   - component: {fileID: 1827721105701566796}
-  - component: {fileID: 7431717142928496639}
   - component: {fileID: 3387974843945516234}
   - component: {fileID: 636865496543555221}
   - component: {fileID: 7502460772162316173}
@@ -5825,35 +5854,6 @@ MonoBehaviour:
   _invulnerabilityDuration: 1
   <IsInvulnerable>k__BackingField: 0
   _invulnerabilityTimer: 0
---- !u!114 &7431717142928496639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9019196127712340890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 3ba236ac47a16fe438e8d356ef5ac37e, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1827721105701566796}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.Invulnerability,
-          Scripts
-        m_MethodName: ApplyInvulnerability
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &3387974843945516234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5898,6 +5898,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.Invulnerability,
           Scripts
         m_MethodName: ApplyInvulnerability
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 3ba236ac47a16fe438e8d356ef5ac37e, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
+        m_MethodName: Raise
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
