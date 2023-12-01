@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb1b0fb485f50439cfd2c7aad10afb, type: 3}
   m_Name: boon_magnet
   m_EditorClassIdentifier: 
-  _id: Boon_magnet
+  _id: boon_magnet
   _type: 0
   _newFlatStatSource: {fileID: 0}
   _newPercentageStatSource: {fileID: 0}

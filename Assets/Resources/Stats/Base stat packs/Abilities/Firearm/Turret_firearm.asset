@@ -12,28 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bb1b0fb485f50439cfd2c7aad10afb, type: 3}
   m_Name: turret_firearm
   m_EditorClassIdentifier: 
-  _id: Revolver_firearm
+  _id: turret_firearm
   _type: 0
   _newFlatStatSource: {fileID: 0}
   _newPercentageStatSource: {fileID: 0}
   <StatSources>k__BackingField:
-  - <Id>k__BackingField: revolver_firearm_base_projectile_count_flat_1
+  - <Id>k__BackingField: turret_firearm_base_projectile_count_flat_1
     <StatId>k__BackingField: {fileID: 11400000, guid: 669ba26595dba81409387c1b0e1e91ac, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 1
-  - <Id>k__BackingField: revolver_firearm_base_shoots_per_second_flat_100
+  - <Id>k__BackingField: turret_firearm_base_shoots_per_second_flat_100
     <StatId>k__BackingField: {fileID: 11400000, guid: 33316e8cac88b9f4b995b4847b8d7ccc, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 100
-  - <Id>k__BackingField: revolver_firearm_base_max_shoot_deflection_angle_flat_15
+  - <Id>k__BackingField: turret_firearm_base_shoot_deflection_flat_15
     <StatId>k__BackingField: {fileID: 11400000, guid: dedfaeaa6846fef4a9e93113cf99547d, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 15
-  - <Id>k__BackingField: revolver_firearm_base_magazine_capacity_flat_1
+  - <Id>k__BackingField: turret_firearm_base_magazine_capacity_flat_1
     <StatId>k__BackingField: {fileID: 11400000, guid: 2d195fe096bf5ff499afcf563c41e311, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 1
-  - <Id>k__BackingField: revolver_firearm_base_reload_time_flat_3
+  - <Id>k__BackingField: turret_firearm_base_reload_time_flat_3
     <StatId>k__BackingField: {fileID: 11400000, guid: 32348d0ee0a618b4081601b8fa05fe17, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 3
@@ -44,7 +44,7 @@ MonoBehaviour:
   - _inspectorValue: 100_shoots_per_second
     <Id>k__BackingField: {fileID: 11400000, guid: 33316e8cac88b9f4b995b4847b8d7ccc, type: 2}
     _value: 100
-  - _inspectorValue: 15_max_shoot_deflection_angle
+  - _inspectorValue: 15_shoot_deflection
     <Id>k__BackingField: {fileID: 11400000, guid: dedfaeaa6846fef4a9e93113cf99547d, type: 2}
     _value: 15
   - _inspectorValue: 1_magazine_capacity
