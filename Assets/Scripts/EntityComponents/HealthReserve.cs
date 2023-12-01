@@ -23,6 +23,9 @@ namespace Assets.Scripts.EntityComponents
         [SerializeField] private GameEvent _onDecrease;
         [SerializeField] private UnityEvent<int> _onDecreaseUnityEvent;
 
+        [SerializeField] private GameEvent _onIncrease;
+        [SerializeField] private UnityEvent<int> _onIncreaseUnityEvent;
+
         public int Value => _currentHealth.Value;
         public bool IsEmpty => _currentHealth.Value == 0;
         public bool IsFull => _currentHealth.Value == (int)_maximumHealth.Value;
@@ -33,9 +36,17 @@ namespace Assets.Scripts.EntityComponents
             Fill();
         }
 
-        public void TakeDamage(int damage)
+        public void Increase(int amount)
         {
-            var nextValue = _currentHealth - damage;
+            if (amount <= 0) return;
+            var nextValue = _currentHealth + amount;
+            SetValue(nextValue);
+        }
+
+        public void TakeDamage(int amount)
+        {
+            if (amount <= 0) return;
+            var nextValue = _currentHealth - amount;
             SetValue(nextValue);
         }
 
@@ -81,10 +92,19 @@ namespace Assets.Scripts.EntityComponents
 
             if (oldValue > newValue)
             {
+                _onDecreaseUnityEvent.Invoke(value);
                 if (_onDecrease != null)
                 {
                     _onDecrease.Raise();
-                    _onDecreaseUnityEvent.Invoke(value);
+                }
+            }
+
+            if (oldValue < newValue)
+            {
+                _onIncreaseUnityEvent.Invoke(value);
+                if (_onIncrease != null)
+                {
+                    _onIncrease.Raise();
                 }
             }
 
@@ -100,10 +120,11 @@ namespace Assets.Scripts.EntityComponents
             {
                 Debug.Log($"Health is empty. Disable: {_disableObjectOnEmpty}", this);
 
+                _onEmptyUnityEvent.Invoke();
+
                 if (_onEmpty != null)
                 { 
                     _onEmpty.Raise(); 
-                    _onEmptyUnityEvent.Invoke();
                 }
 
                 if (_disableObjectOnEmpty)
