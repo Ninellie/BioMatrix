@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398d76ed9a41c9144ae3720c71b6891b, type: 3}
+  m_Name: player_shield
+  m_EditorClassIdentifier: 
+  _statSources: []
+  _clearOnPlay: 1
+  _baseStatSources: {fileID: 11400000, guid: 38cb1638499ece741b0e9a1844ec1907, type: 2}
+  _stats:
+  - {fileID: 11400000, guid: 2e1a752507bdd354f976d465c7e9cdef, type: 2}
+  - {fileID: 11400000, guid: e997a0bcf74268144a613c96fca5a2ee, type: 2}
+  - {fileID: 11400000, guid: e997a0bcf74268144a613c96fca5a2ee, type: 2}
+  _preview:
+  - _inspectorValue: 3_maximum_health
+    <Id>k__BackingField: {fileID: 11400000, guid: 0056aaa4eb48b6d458c89adf5bcf6f83, type: 2}
+    _value: 3
+  - _inspectorValue: 300_movement_speed
+    <Id>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
+    _value: 300
+  - _inspectorValue: 60_magnetism_radius
+    <Id>k__BackingField: {fileID: 11400000, guid: ab68be734ef4e284d8c10fc21ef91dd4, type: 2}
+    _value: 60
+  - _inspectorValue: 1_experience_gain_multiplier
+    <Id>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
+    _value: 1
+  - _inspectorValue: 32_experience_to_new_level
+    <Id>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
+    _value: 32
