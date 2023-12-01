@@ -14,24 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _statSources: []
   _clearOnPlay: 1
-  _baseStatSources: {fileID: 11400000, guid: 38cb1638499ece741b0e9a1844ec1907, type: 2}
+  _baseStatSources: {fileID: 11400000, guid: 076f046dbf5783c45bdb78c17ec47bfd, type: 2}
   _stats:
-  - {fileID: 11400000, guid: 2e1a752507bdd354f976d465c7e9cdef, type: 2}
-  - {fileID: 11400000, guid: e997a0bcf74268144a613c96fca5a2ee, type: 2}
-  - {fileID: 11400000, guid: e997a0bcf74268144a613c96fca5a2ee, type: 2}
+  - {fileID: 11400000, guid: 248715d4cf4403b4f90edc4d038260f8, type: 2}
+  - {fileID: 11400000, guid: edce6b12855c9764190af9b5e42faa7a, type: 2}
+  - {fileID: 11400000, guid: f0dfd3e2d3dec044faddff411d16dab6, type: 2}
   _preview:
-  - _inspectorValue: 3_maximum_health
-    <Id>k__BackingField: {fileID: 11400000, guid: 0056aaa4eb48b6d458c89adf5bcf6f83, type: 2}
+  - _inspectorValue: 3_maximum_layers
+    <Id>k__BackingField: {fileID: 11400000, guid: 97fa34824b46a8e499f964d334c3f02e, type: 2}
     _value: 3
-  - _inspectorValue: 300_movement_speed
-    <Id>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
-    _value: 300
-  - _inspectorValue: 60_magnetism_radius
-    <Id>k__BackingField: {fileID: 11400000, guid: ab68be734ef4e284d8c10fc21ef91dd4, type: 2}
-    _value: 60
-  - _inspectorValue: 1_experience_gain_multiplier
-    <Id>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
+  - _inspectorValue: 0_maximum_rechargable_layers
+    <Id>k__BackingField: {fileID: 11400000, guid: 73d5ba7dd5ca03e41b6a2b38f1fbff8b, type: 2}
+    _value: 0
+  - _inspectorValue: 1_recharge_rate_per_minute
+    <Id>k__BackingField: {fileID: 11400000, guid: 1527b88ddc7bd9a46869a1a94628689e, type: 2}
     _value: 1
-  - _inspectorValue: 32_experience_to_new_level
-    <Id>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
-    _value: 32
+  - _inspectorValue: 200_repulse_force
+    <Id>k__BackingField: {fileID: 11400000, guid: 4199dd40c3eb9c045871617b3519377d, type: 2}
+    _value: 200
+  - _inspectorValue: 250_repulce_radius
+    <Id>k__BackingField: {fileID: 11400000, guid: 51ac485bf9a7b084a900a242aca405bd, type: 2}
+    _value: 250
