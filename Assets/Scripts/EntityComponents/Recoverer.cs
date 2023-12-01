@@ -10,7 +10,6 @@ namespace Assets.Scripts.EntityComponents.Resources
     /// Посылает ивент каждый определённый промежуток времени. Промежуток времени определяется переменными speed и rate.
     /// Отсчёт до восстановления начинается как только currentValue станет меньше чем limiter.
     /// Speed - значение восстановления в минуту. Это то, за сколько минут восстановится 1 единица value.
-    /// 
     /// </summary>
     public class Recoverer : MonoBehaviour
     {
@@ -25,9 +24,19 @@ namespace Assets.Scripts.EntityComponents.Resources
         [Header("Indicator")]
         [SerializeField] private float _recoverValue;
 
-        private void Start()
+        private void OnEnable()
         {
             StartCoroutine(Recover());
+        }
+
+        private void OnDisable()
+        {
+            StopCoroutine(Recover());
+        }
+
+        private void OnDestroy()
+        {
+            StopCoroutine(Recover());
         }
 
         private IEnumerator Recover()
