@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b331492e464563c4897c754d415d94ba, type: 3}
-  m_Name: on_player_enemy_collision
+  m_Name: on_player_body_enemy_collision
   m_EditorClassIdentifier: 
