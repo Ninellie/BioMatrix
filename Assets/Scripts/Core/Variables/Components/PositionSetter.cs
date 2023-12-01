@@ -1,18 +1,7 @@
-using Assets.Scripts.Core.Variables;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
+namespace Assets.Scripts.Core.Variables.Components
 {
-    public class GameObjectSetter : MonoBehaviour
-    {
-        [SerializeField] private GameObjectVariable _variable;
-
-        private void Awake()
-        {
-            _variable.SetValue(gameObject);
-        }
-    }
-
     public class PositionSetter : MonoBehaviour
     {
         [SerializeField] private Vector2Variable _variable;
