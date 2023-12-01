@@ -2,7 +2,7 @@ using Assets.Scripts.Core.Variables.References;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
+namespace Assets.Scripts.EntityComponents.Collisions
 {
     public class CollisionEventHandler : MonoBehaviour
     {
