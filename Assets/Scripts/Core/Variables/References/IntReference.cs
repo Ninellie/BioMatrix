@@ -24,5 +24,10 @@ namespace Assets.Scripts.Core.Variables.References
         {
             return reference.Value;
         }
+
+        public static implicit operator float(IntReference reference)
+        {
+            return reference.Value;
+        }
     }
 }
