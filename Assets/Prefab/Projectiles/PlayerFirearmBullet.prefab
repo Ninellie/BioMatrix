@@ -57,22 +57,28 @@ MonoBehaviour:
     constantValue: {fileID: 2741946790039367102}
     variable: {fileID: 0}
   _refillOnStart: 1
-  _currentHealth:
+  _currentValue:
     useConstant: 1
     constantValue: 1
     variable: {fileID: 0}
-  _maximumHealth:
+  _maximumValue:
     useConstant: 0
-    constantValue: 0
+    constantValue: 1
     variable: {fileID: 11400000, guid: b06407719bcb34f4890d94cb36e28ee2, type: 2}
   _edgeValue: 1
-  _onEmpty: {fileID: 0}
-  _onEmptyUnityEvent:
+  _onChanged:
     m_PersistentCalls:
       m_Calls: []
-  _onEdge: {fileID: 0}
-  _onDecrease: {fileID: 0}
-  _onDecreaseUnityEvent:
+  _onEmpty:
+    m_PersistentCalls:
+      m_Calls: []
+  _onEdge:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDecrease:
+    m_PersistentCalls:
+      m_Calls: []
+  _onIncrease:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &-5652939125271565065
