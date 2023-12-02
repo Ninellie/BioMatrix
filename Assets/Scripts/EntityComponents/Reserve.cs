@@ -4,14 +4,14 @@ using UnityEngine.Events;
 
 namespace Assets.Scripts.EntityComponents
 {
-    public class HealthReserve : MonoBehaviour
+    public class Reserve : MonoBehaviour
     {
         [Header("Settings")]
         [SerializeField] private bool _disableObjectOnEmpty;
         [SerializeField] private GameObjectReference _selfGameObject;
         [SerializeField] private bool _refillOnStart;
-        [SerializeField] private IntReference _currentHealth;
-        [SerializeField] private StatReference _maximumHealth;
+        [SerializeField] private IntReference _currentValue;
+        [SerializeField] private StatReference _maximumValue;
         [SerializeField] private int _edgeValue;
         [Header("Events")]
         [SerializeField] private UnityEvent<int> _onChanged;
@@ -20,9 +20,9 @@ namespace Assets.Scripts.EntityComponents
         [SerializeField] private UnityEvent<int> _onDecrease;
         [SerializeField] private UnityEvent<int> _onIncrease;
 
-        public int Value => _currentHealth;
-        public bool IsEmpty => _currentHealth == 0;
-        public bool IsFull => _currentHealth == _maximumHealth;
+        public int Value => _currentValue;
+        public bool IsEmpty => _currentValue == 0;
+        public bool IsFull => _currentValue == _maximumValue;
 
         private void Start()
         {
@@ -33,20 +33,20 @@ namespace Assets.Scripts.EntityComponents
         public void Increase(int amount)
         {
             if (amount <= 0) return;
-            var nextValue = _currentHealth + amount;
+            var nextValue = _currentValue + amount;
             SetValue(nextValue);
         }
 
         public void TakeDamage(int amount)
         {
             if (amount <= 0) return;
-            var nextValue = _currentHealth - amount;
+            var nextValue = _currentValue - amount;
             SetValue(nextValue);
         }
 
         private void Fill()
         {
-            SetValue((int)_maximumHealth);
+            SetValue((int)_maximumValue);
         }
 
         public void Empty()
@@ -57,20 +57,20 @@ namespace Assets.Scripts.EntityComponents
 
         private void SetValue(int value)
         {
-            var oldValue = _currentHealth.Value;
+            var oldValue = _currentValue.Value;
 
-            if (value > _maximumHealth)
-                value = (int)_maximumHealth;
+            if (value > _maximumValue)
+                value = (int)_maximumValue;
 
             if (value < 0)
                 value = 0;
 
-            if (_currentHealth.useConstant)
-                _currentHealth.constantValue = value;
+            if (_currentValue.useConstant)
+                _currentValue.constantValue = value;
             else
-                _currentHealth.variable.SetValue(value);
+                _currentValue.variable.SetValue(value);
 
-            var newValue = _currentHealth.Value;
+            var newValue = _currentValue.Value;
 
             if (oldValue != newValue)
                 _onChanged.Invoke(newValue - oldValue);
