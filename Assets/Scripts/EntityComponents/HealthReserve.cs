@@ -1,4 +1,3 @@
-using Assets.Scripts.Core.Events;
 using Assets.Scripts.Core.Variables.References;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,20 +14,15 @@ namespace Assets.Scripts.EntityComponents
         [SerializeField] private StatReference _maximumHealth;
         [SerializeField] private int _edgeValue;
         [Header("Events")]
-        [SerializeField] private GameEvent _onEmpty;
-        [SerializeField] private UnityEvent _onEmptyUnityEvent;
+        [SerializeField] private UnityEvent<int> _onChanged;
+        [SerializeField] private UnityEvent _onEmpty;
+        [SerializeField] private UnityEvent _onEdge;
+        [SerializeField] private UnityEvent<int> _onDecrease;
+        [SerializeField] private UnityEvent<int> _onIncrease;
 
-        [SerializeField] private GameEvent _onEdge;
-
-        [SerializeField] private GameEvent _onDecrease;
-        [SerializeField] private UnityEvent<int> _onDecreaseUnityEvent;
-
-        [SerializeField] private GameEvent _onIncrease;
-        [SerializeField] private UnityEvent<int> _onIncreaseUnityEvent;
-
-        public int Value => _currentHealth.Value;
-        public bool IsEmpty => _currentHealth.Value == 0;
-        public bool IsFull => _currentHealth.Value == (int)_maximumHealth.Value;
+        public int Value => _currentHealth;
+        public bool IsEmpty => _currentHealth == 0;
+        public bool IsFull => _currentHealth == _maximumHealth;
 
         private void Start()
         {
@@ -59,10 +53,6 @@ namespace Assets.Scripts.EntityComponents
         {
             Debug.Log($"Health is empty. Disable: {_disableObjectOnEmpty}", this);
             SetValue(0);
-            if (_disableObjectOnEmpty)
-            {
-                _selfGameObject.Value.SetActive(false);
-            }
         }
 
         private void SetValue(int value)
@@ -70,67 +60,36 @@ namespace Assets.Scripts.EntityComponents
             var oldValue = _currentHealth.Value;
 
             if (value > _maximumHealth)
-            {
                 value = (int)_maximumHealth;
-            }
 
             if (value < 0)
-            {
                 value = 0;
-            }
 
             if (_currentHealth.useConstant)
-            {
                 _currentHealth.constantValue = value;
-            }
             else
-            {
                 _currentHealth.variable.SetValue(value);
-            }
 
             var newValue = _currentHealth.Value;
 
+            if (oldValue != newValue)
+                _onChanged.Invoke(newValue - oldValue);
+
             if (oldValue > newValue)
-            {
-                _onDecreaseUnityEvent.Invoke(value);
-                if (_onDecrease != null)
-                {
-                    _onDecrease.Raise();
-                }
-            }
+                _onDecrease.Invoke(value);
 
             if (oldValue < newValue)
-            {
-                _onIncreaseUnityEvent.Invoke(value);
-                if (_onIncrease != null)
-                {
-                    _onIncrease.Raise();
-                }
-            }
+                _onIncrease.Invoke(value);
 
             if (newValue == _edgeValue)
-            {
-                if (_onEdge != null)
-                {
-                    _onEdge.Raise();
-                }
-            }
+                _onEdge.Invoke();
 
             if (newValue == 0)
             {
                 Debug.Log($"Health is empty. Disable: {_disableObjectOnEmpty}", this);
-
-                _onEmptyUnityEvent.Invoke();
-
-                if (_onEmpty != null)
-                { 
-                    _onEmpty.Raise(); 
-                }
-
-                if (_disableObjectOnEmpty)
-                {
-                    _selfGameObject.Value.SetActive(false);
-                }
+                _onEmpty.Invoke();
+                if (!_disableObjectOnEmpty) return;
+                _selfGameObject.Value.SetActive(false);
             }
         }
     }
