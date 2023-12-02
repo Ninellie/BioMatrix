@@ -6,12 +6,11 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 {
-    public class Turret : MonoBehaviour, ISlayer, ISource, IDerivative
+    public class Turret : MonoBehaviour
     {
         [SerializeField] private Transform _firePoint;
         //public Firearm Firearm { get; private set; }
 
-        private ISlayer _source;
         private ResourceList _resources;
 
         private void Awake()
@@ -40,18 +39,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
         {
             gameObject.SetActive(false);
             Destroy(gameObject);
-        }
-
-        public void IncreaseKills()
-        {
-            _resources.GetResource(ResourceName.Kills).Increase();
-            _source.IncreaseKills();
-        }
-
-        public void SetSource(ISource source)
-        {
-            if (source is ISlayer slayer)
-                _source = slayer;
         }
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 {
-    public class TurretHub : MonoBehaviour, ISource, IDerivative, ISlayer
+    public class TurretHub : MonoBehaviour
     {
         [SerializeField] private GameObject _turretPrefab;
         [SerializeField] private GameObject _turretWeaponPrefab;
@@ -15,7 +15,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
         //private Firearm _firearm;
         private readonly Stack<Turret> _currentTurrets = new();
         private IOrbitRotationController _orbitRotationController;
-        private ISlayer _source;
         private ResourceList _resources;
 
         private bool _isSubscribed;
@@ -37,18 +36,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
         private void OnEnable() => Subscribe();
 
         private void OnDisable() => Unsubscribe();
-
-        public void SetSource(ISource source)
-        {
-            if (source is ISlayer slayer)
-                _source = slayer;
-        }
-
-        public void IncreaseKills()
-        {
-            _resources.GetResource(ResourceName.Kills).Increase();
-            _source.IncreaseKills();
-        }
 
         public GameObject CreateTurretWeapon()
         {
@@ -90,7 +77,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             var turretGameObject = Instantiate(_turretPrefab, transform.position, new Quaternion(), transform);
             //turretGameObject.transform.SetParent(gameObject.transform);
             var createdTurret = turretGameObject.GetComponent<Turret>();
-            createdTurret.SetSource(this);
             createdTurret.CreateWeapon(_turretWeaponPrefab);
             //createdTurret.Firearm.SetStatList(_firearm.GetStatList());
             _currentTurrets.Push(createdTurret);
@@ -111,7 +97,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             {
                 while (dif != 0)
                 {
-                    CreateTurret();
+                    CreateTurret(); //todo заменить на enable turret
                     dif--;
                 }
             }
@@ -119,7 +105,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             {
                 while (dif != 0)
                 {
-                    DestroyTurret();
+                    DestroyTurret(); //todo заменить на disable turret
                     dif++;
                 }
             }
