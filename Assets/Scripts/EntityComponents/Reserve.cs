@@ -86,7 +86,7 @@ namespace Assets.Scripts.EntityComponents
 
             if (newValue == 0)
             {
-                Debug.Log($"Health is empty. Disable: {_disableObjectOnEmpty}", this);
+                Debug.Log($"Reserve is empty. Disable: {_disableObjectOnEmpty}", this);
                 _onEmpty.Invoke();
                 if (!_disableObjectOnEmpty) return;
                 _selfGameObject.Value.SetActive(false);
