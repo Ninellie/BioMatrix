@@ -175,9 +175,9 @@ GameObject:
   - component: {fileID: 4527967170109878041}
   - component: {fileID: 5854097239496226598}
   - component: {fileID: 1313338470902835096}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Experience
-  m_TagString: Magnet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5380,9 +5380,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3465433056705521361}
   - component: {fileID: 4683596646665624519}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Shield
-  m_TagString: Shield
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5868,7 +5868,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9200682735784113171}
   - component: {fileID: 4670619524682703992}
-  - component: {fileID: 2075793205181466309}
+  - component: {fileID: 4256533014902651362}
   m_Layer: 7
   m_Name: Magnet
   m_TagString: Magnet
@@ -5926,7 +5926,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 50
---- !u!114 &2075793205181466309
+--- !u!114 &4256533014902651362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5935,38 +5935,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5533861175268521056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfc0fd153cec460478db3e56fb77fb20, type: 3}
+  m_Script: {fileID: 11500000, guid: ad490a97179ae414d861dd1cdc668e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transform: {fileID: 9200682735784113171}
-  _tag: Boon
-  _distanceLength:
-    useConstant: 1
-    constantValue: 0
-    variable: {fileID: 0}
-  _useSeparatePosition: 0
-  _position:
-    useConstant: 1
-    constantValue: {x: 0, y: 0}
-    variable: {fileID: 0}
-  _inverseDirection: 0
-  _onCollisionEnter2D:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5854097239496226598}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.Experience,
-          Scripts
-        m_MethodName: IncreaseExperience
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onCollisionStay2D:
+  _tag: 
+  _onTriggerEnter2D:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &6131040616743987141
@@ -6180,9 +6153,9 @@ GameObject:
   - component: {fileID: 5826966394212182491}
   - component: {fileID: 8123516518896129667}
   - component: {fileID: 2997938106615297590}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Collision
-  m_TagString: Shield
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
