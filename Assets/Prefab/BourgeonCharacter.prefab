@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2993852589747607844}
   - component: {fileID: 9116068723348252374}
   - component: {fileID: 7352069562652594148}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,68 +173,121 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4527967170109878041}
-  - component: {fileID: 1450150322158907265}
+  - component: {fileID: 5854097239496226598}
+  - component: {fileID: 1313338470902835096}
   m_Layer: 7
-  m_Name: Experience magnet
-  m_TagString: Untagged
+  m_Name: Experience
+  m_TagString: Magnet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &4527967170109878041
-RectTransform:
+  m_IsActive: 1
+--- !u!4 &4527967170109878041
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345549649931436096}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9200682735784113171}
   m_Father: {fileID: 885779190258261260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!58 &1450150322158907265
-CircleCollider2D:
+--- !u!114 &5854097239496226598
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345549649931436096}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 50
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d86fb8b3225c344ea460ce60351e1c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _experienceMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 9d5d99e91603bba408a7a7770f847b10, type: 2}
+  _experiencePerShard:
+    useConstant: 1
+    constantValue: 4
+    variable: {fileID: 0}
+  _experienceReserve: {fileID: 1313338470902835096}
+--- !u!114 &1313338470902835096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345549649931436096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01468158b4899aa41a8c5e6e9b8e77bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _disableObjectOnEmpty: 0
+  _selfGameObject:
+    useConstant: 1
+    constantValue: {fileID: 1345549649931436096}
+    variable: {fileID: 0}
+  _refillOnStart: 0
+  _currentValue:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 2d2873e22151aea448e49111fb7f624c, type: 2}
+  _maximumValue:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 260f5401ad83ca143934d2e547365b05, type: 2}
+  _edgeValue: 1
+  _onChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a0087ae9d7b8fd041b5aea51b339251e, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onEmpty:
+    m_PersistentCalls:
+      m_Calls: []
+  _onEdge:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFill:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4314544219503152380}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.Reserve, Scripts
+        m_MethodName: Increase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onDecrease:
+    m_PersistentCalls:
+      m_Calls: []
+  _onIncrease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2595094624643722788
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,20 +308,21 @@ GameObject:
   - component: {fileID: 1837082692120435219}
   - component: {fileID: 8948798738533001676}
   - component: {fileID: 7027115012690215889}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Sprite and animation
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &6913100079162704986
-RectTransform:
+--- !u!4 &6913100079162704986
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2595094624643722788}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -276,11 +330,6 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 885779190258261260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1911803333440424254
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5333,7 +5382,7 @@ GameObject:
   - component: {fileID: 4683596646665624519}
   m_Layer: 7
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5405,6 +5454,9 @@ MonoBehaviour:
   _onEdge:
     m_PersistentCalls:
       m_Calls: []
+  _onFill:
+    m_PersistentCalls:
+      m_Calls: []
   _onDecrease:
     m_PersistentCalls:
       m_Calls: []
@@ -5424,9 +5476,9 @@ GameObject:
   - component: {fileID: 8021525112388424157}
   - component: {fileID: 316283260720876180}
   - component: {fileID: 1667914962160971424}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Health
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5518,6 +5570,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _onFill:
+    m_PersistentCalls:
+      m_Calls: []
   _onDecrease:
     m_PersistentCalls:
       m_Calls:
@@ -5647,9 +5702,9 @@ GameObject:
   - component: {fileID: 2910988257345340547}
   - component: {fileID: 5264264128143633131}
   - component: {fileID: 2496740860404874703}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Movement
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5714,6 +5769,206 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _knockbackSpeed: 1500
+--- !u!1 &5456599853802512105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4561670327453171260}
+  - component: {fileID: 4314544219503152380}
+  m_Layer: 0
+  m_Name: Level
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4561670327453171260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5456599853802512105}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 885779190258261260}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4314544219503152380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5456599853802512105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01468158b4899aa41a8c5e6e9b8e77bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _disableObjectOnEmpty: 0
+  _selfGameObject:
+    useConstant: 1
+    constantValue: {fileID: 5456599853802512105}
+    variable: {fileID: 0}
+  _refillOnStart: 0
+  _currentValue:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 5b926ebcc329d6a428b1448671f22a0d, type: 2}
+  _maximumValue:
+    useConstant: 1
+    constantValue: 100
+    variable: {fileID: 0}
+  _edgeValue: 1
+  _onChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _onEmpty:
+    m_PersistentCalls:
+      m_Calls: []
+  _onEdge:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFill:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDecrease:
+    m_PersistentCalls:
+      m_Calls: []
+  _onIncrease:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 8b05d123195981543827c7c70691cc73, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &5533861175268521056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9200682735784113171}
+  - component: {fileID: 4670619524682703992}
+  - component: {fileID: 2075793205181466309}
+  m_Layer: 7
+  m_Name: Magnet
+  m_TagString: Magnet
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9200682735784113171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5533861175268521056}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4527967170109878041}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &4670619524682703992
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5533861175268521056}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 50
+--- !u!114 &2075793205181466309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5533861175268521056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc0fd153cec460478db3e56fb77fb20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 9200682735784113171}
+  _tag: Boon
+  _distanceLength:
+    useConstant: 1
+    constantValue: 0
+    variable: {fileID: 0}
+  _useSeparatePosition: 0
+  _position:
+    useConstant: 1
+    constantValue: {x: 0, y: 0}
+    variable: {fileID: 0}
+  _inverseDirection: 0
+  _onCollisionEnter2D:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5854097239496226598}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.Experience,
+          Scripts
+        m_MethodName: IncreaseExperience
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6131040616743987141
 GameObject:
   m_ObjectHideFlags: 0
@@ -5725,7 +5980,7 @@ GameObject:
   - component: {fileID: 9184125461883335642}
   - component: {fileID: 5468754606302234528}
   - component: {fileID: 2542817309981127310}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Repulser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5832,6 +6087,7 @@ Transform:
   - {fileID: 5123957160498517559}
   - {fileID: 766516748403551923}
   - {fileID: 4527967170109878041}
+  - {fileID: 4561670327453171260}
   - {fileID: 3465433056705521361}
   - {fileID: 8854697713405319302}
   - {fileID: 2910988257345340547}
@@ -5876,9 +6132,9 @@ GameObject:
   m_Component:
   - component: {fileID: 766516748403551923}
   - component: {fileID: 4424195094563741497}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FirePoint
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5922,11 +6178,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5826966394212182491}
-  - component: {fileID: 2997938106615297590}
   - component: {fileID: 8123516518896129667}
+  - component: {fileID: 2997938106615297590}
   m_Layer: 7
   m_Name: Collision
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5946,41 +6202,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3465433056705521361}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &2997938106615297590
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8302333705149338035}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 16
 --- !u!114 &8123516518896129667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6023,6 +6244,41 @@ MonoBehaviour:
   _onCollisionStay2D:
     m_PersistentCalls:
       m_Calls: []
+--- !u!58 &2997938106615297590
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8302333705149338035}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 16
 --- !u!1 &9019196127712340890
 GameObject:
   m_ObjectHideFlags: 0
@@ -6346,6 +6602,14 @@ PrefabInstance:
     - target: {fileID: 3233653779076600719, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_Name
       value: PlayerFirearm
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233653779076600719, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233653779076600719, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 9126805039593386211, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_LocalPosition.x
