@@ -17,9 +17,9 @@ GameObject:
   - component: {fileID: 401081946869708339}
   - component: {fileID: 5384938256212642916}
   - component: {fileID: 156745283301569288}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: PlayerFirearmBullet
-  m_TagString: Projectile
+  m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,6 +73,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _onEdge:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFill:
     m_PersistentCalls:
       m_Calls: []
   _onDecrease:
