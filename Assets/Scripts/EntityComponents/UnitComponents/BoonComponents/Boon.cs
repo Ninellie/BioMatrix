@@ -1,48 +1,41 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.BoonComponents
 {
     public class Boon : MonoBehaviour
     {
-        [SerializeField] private int _experienceAmount = 4;
-        [SerializeField] private float speed = 1500;
-        private Rigidbody2D _rigidbody2D;
+        [SerializeField] private Rigidbody2D _rigidbody2D;
+        [SerializeField] private Transform _transform;
+        [SerializeField] private float _speed = 1500;
+        [SerializeField] private string _playerTag;
+        [SerializeField] private string _magnetTag;
 
         private void Awake()
         {
-            Debug.Log($"{gameObject.name} Boon Awake");
-            _rigidbody2D = GetComponent<Rigidbody2D>();
+            if (_transform == null) _transform = transform;
+            if (_rigidbody2D == null) _rigidbody2D = GetComponent<Rigidbody2D>();
         }
 
         private void OnTriggerStay2D(Collider2D collider2D)
         {
-            if (!collider2D.gameObject.CompareTag("Player")) return;
-            Vector2 nextPosition = transform.position;
-            Vector2 direction = collider2D.transform.position - transform.position;
+            if (!collider2D.gameObject.CompareTag(_magnetTag)) return;
+            Vector2 nextPosition = _transform.position;
+            Vector2 direction = collider2D.transform.position - _transform.position;
             direction.Normalize();
-            nextPosition += direction * speed * Time.fixedDeltaTime;
+            nextPosition += direction * _speed * Time.fixedDeltaTime;
             _rigidbody2D.MovePosition(nextPosition);
         }
 
         private void OnTriggerEnter2D(Collider2D collider2D)
         {
-            var isBoxCollider = collider2D is BoxCollider2D;
-            if (!isBoxCollider) return;
-            if (!collider2D.gameObject.CompareTag("Player")) return;
-
+            if (!collider2D.gameObject.CompareTag(_playerTag)) return;
             Invoke(nameof(Death), 0.1f);
-        }
-
-        public int GetExperience()
-        {
-            return _experienceAmount;
         }
 
         private void Death()
         {
-            Debug.Log($"Boon {gameObject.name} has been destroyed");
             gameObject.SetActive(false);
-            Destroy(gameObject);
         }
     }
 }
