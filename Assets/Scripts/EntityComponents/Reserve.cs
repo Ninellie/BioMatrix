@@ -17,6 +17,7 @@ namespace Assets.Scripts.EntityComponents
         [SerializeField] private UnityEvent<int> _onChanged;
         [SerializeField] private UnityEvent _onEmpty;
         [SerializeField] private UnityEvent _onEdge;
+        [SerializeField] private UnityEvent _onFill;
         [SerializeField] private UnityEvent<int> _onDecrease;
         [SerializeField] private UnityEvent<int> _onIncrease;
 
@@ -46,7 +47,7 @@ namespace Assets.Scripts.EntityComponents
 
         private void Fill()
         {
-            SetValue((int)_maximumValue);
+            SetValue(_maximumValue);
         }
 
         public void Empty()
@@ -58,13 +59,8 @@ namespace Assets.Scripts.EntityComponents
         private void SetValue(int value)
         {
             var oldValue = _currentValue.Value;
-
-            if (value > _maximumValue)
-                value = (int)_maximumValue;
-
-            if (value < 0)
-                value = 0;
-
+            value = Mathf.Clamp(value, 0, _maximumValue);
+            
             if (_currentValue.useConstant)
                 _currentValue.constantValue = value;
             else
@@ -83,6 +79,9 @@ namespace Assets.Scripts.EntityComponents
 
             if (newValue == _edgeValue)
                 _onEdge.Invoke();
+
+            if (newValue == _maximumValue)
+                _onFill.Invoke();
 
             if (newValue == 0)
             {
