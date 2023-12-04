@@ -12,6 +12,8 @@ TagManager:
   - Cage
   - EnemyProjectile
   - PlayerProjectile
+  - Shield
+  - Magnet
   layers:
   - Default
   - TransparentFX
