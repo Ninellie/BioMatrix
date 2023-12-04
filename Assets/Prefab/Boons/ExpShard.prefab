@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 2316403284215167119}
   _transform: {fileID: 5058406891993574356}
-  _speed: 1500
+  _speed: 800
   _playerTag: Player
   _magnetTag: Magnet
 --- !u!50 &2316403284215167119
