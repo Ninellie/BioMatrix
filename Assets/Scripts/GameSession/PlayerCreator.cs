@@ -32,7 +32,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         private EffectsRepository _effectsRepository;
         private IDeckRepository _deckRepository;
 
-        private Player _player;
+        //private Player _player;
         private IHand _hand;
         private OverUnitDataAggregator _playerDataAggregator;
 
@@ -73,7 +73,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         {
             var player = Instantiate(playerPrefab, new Vector2(0, 0), Quaternion.identity);
             player.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
-            _player = player.GetComponent<Player>();
+            //_player = player.GetComponent<Player>();
             _playerDataAggregator = player.GetComponent<OverUnitDataAggregator>();
             _hand = player.GetComponent<IHand>();
             _hand.SetDeckRepository(_deckRepository);
@@ -82,8 +82,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _levelUpController.SetHand(_hand);
             _playerDataAggregator.ReadInfoFromTarget(player, TargetName.Player);
             //
-            _player.Shield.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
-            _playerDataAggregator.ReadInfoFromTarget(_player.Shield.gameObject, TargetName.Shield);
+            //_player.Shield.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
+            //_playerDataAggregator.ReadInfoFromTarget(_player.Shield.gameObject, TargetName.Shield);
         }
 
         private void CreateTurretHub()
@@ -92,7 +92,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             var turretHub = turretHubPrefab.GetComponent<TurretHub>();
             //turretHub.SetSource(_player);
             //_player.TurretHub = turretHub;
-            turretHubPrefab.transform.SetParent(_player.transform);
+            //turretHubPrefab.transform.SetParent(_player.transform);
             turretHubPrefab.GetComponent<EffectsList>().GameTimeScheduler = _gameTimeScheduler;
             _playerDataAggregator.ReadInfoFromTarget(turretHubPrefab, TargetName.TurretHub);
 
