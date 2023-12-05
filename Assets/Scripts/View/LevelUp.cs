@@ -1,50 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
-using Assets.Scripts.GameSession.UIScripts.SessionModel;
-using Assets.Scripts.GameSession.Upgrades.Deck;
-using UnityEngine;
-using Button = UnityEngine.UI.Button;
-using Image = UnityEngine.UI.Image;
+//using System.Collections;
+//using System.Collections.Generic;
+//using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
+//using Assets.Scripts.GameSession.UIScripts.SessionModel;
+//using Assets.Scripts.GameSession.Upgrades.Deck;
+//using UnityEngine;
+//using Button = UnityEngine.UI.Button;
+//using Image = UnityEngine.UI.Image;
 
 namespace Assets.Scripts.View
 {
-    public class LevelUp : MonoBehaviour
-    {
-        [SerializeField] private GameObject[] _cardsView;
-        [SerializeField] private DeckPanel[] _deckView;
-        [SerializeField] private TMPro.TMP_Text[] _cardsNameText;
-        [SerializeField] private TMPro.TMP_Text[] _cardsDescriptionText;
-        [SerializeField] private GameSessionController _gameSessionController;
-        [SerializeField] private readonly int _givenCardsCount = 3;
-        [SerializeField] private float _delayBeforeClickableCardsInSeconds;
-        [SerializeField] private float _pixelsPerStep;
-        [SerializeField] private float _cardsImageSize;
+    //public class LevelUp : MonoBehaviour
+    //{
+    //    [SerializeField] private GameObject[] _cardsView;
+    //    [SerializeField] private DeckPanel[] _deckView;
+    //    [SerializeField] private TMPro.TMP_Text[] _cardsNameText;
+    //    [SerializeField] private TMPro.TMP_Text[] _cardsDescriptionText;
+    //    [SerializeField] private GameSessionController _gameSessionController;
+    //    [SerializeField] private readonly int _givenCardsCount = 3;
+    //    [SerializeField] private float _delayBeforeClickableCardsInSeconds;
+    //    [SerializeField] private float _pixelsPerStep;
+    //    [SerializeField] private float _cardsImageSize;
 
-        [SerializeField]
-        [Range(0, 1)]
-        private float _initialAlpha;
+    //    [SerializeField]
+    //    [Range(0, 1)]
+    //    private float _initialAlpha;
         
-        [SerializeField]
-        [Range(0, 1)]
-        private float _finalAlpha;
+    //    [SerializeField]
+    //    [Range(0, 1)]
+    //    private float _finalAlpha;
 
-        [SerializeField]
-        private List<Card> _selectedCards = new();
+    //    [SerializeField]
+    //    private List<Card> _selectedCards = new();
 
-        [SerializeField]
-        private DeckRepository _deckRepository;
+    //    [SerializeField]
+    //    private DeckRepository _deckRepository;
 
-        [SerializeField]
-        private EffectsRepository _effectsRepository;
+    //    [SerializeField]
+    //    private EffectsRepository _effectsRepository;
 
-        public OverUnitDataAggregator EffectsAggregator { get; set; }
+    //    public OverUnitDataAggregator EffectsAggregator { get; set; }
 
-        [ContextMenu("DisplayDecks")]
-        public void DisplayDecks()
-        {
+    //    [ContextMenu("DisplayDecks")]
+    //    public void DisplayDecks()
+    //    {
 
-        }
+    //    }
 
         //[ContextMenu("DisplayCards")]
         //public void DisplayCards()
@@ -80,30 +80,30 @@ namespace Assets.Scripts.View
         //    }
         //}
 
-        public void Improve(int index)
-        {
-            if (index < 0)
-            {
-                return;
-            }
+        //public void Improve(int index)
+        //{
+        //    if (index < 0)
+        //    {
+        //        return;
+        //    }
 
-            if (_selectedCards == null)
-            {
-                return;
-            }
+        //    if (_selectedCards == null)
+        //    {
+        //        return;
+        //    }
 
-            if (_selectedCards.Count <= index)
-            {
-                return;
-            }
+        //    if (_selectedCards.Count <= index)
+        //    {
+        //        return;
+        //    }
 
-            if (_selectedCards[index] == null)
-            {
-                return;
-            }
+        //    if (_selectedCards[index] == null)
+        //    {
+        //        return;
+        //    }
 
             //TakeCard(_selectedCards[index]);
-        }
+        //}
 
         //private void TakeCard(Card card)
         //{
@@ -125,36 +125,36 @@ namespace Assets.Scripts.View
         //    }
         //}
 
-        private IEnumerator ActivateCard(GameObject card)
-        {
-            var cardButton = card.GetComponent<Button>();
-            var transitionController = card.GetComponent<SelectableTransitionController>();
-            cardButton.interactable = false;
+    //    private IEnumerator ActivateCard(GameObject card)
+    //    {
+    //        var cardButton = card.GetComponent<Button>();
+    //        var transitionController = card.GetComponent<SelectableTransitionController>();
+    //        cardButton.interactable = false;
             
-            var cardImage = card.GetComponent<Image>();
-            cardImage.fillAmount = 0;
-            var cardImageAlpha = 0f;
-            cardImage.color = new Color(1, 1, 1, cardImageAlpha);
+    //        var cardImage = card.GetComponent<Image>();
+    //        cardImage.fillAmount = 0;
+    //        var cardImageAlpha = 0f;
+    //        cardImage.color = new Color(1, 1, 1, cardImageAlpha);
 
-            var stepCount = _cardsImageSize / _pixelsPerStep;
+    //        var stepCount = _cardsImageSize / _pixelsPerStep;
 
-            var fillingStep = 1 / stepCount;
+    //        var fillingStep = 1 / stepCount;
             
-            var alphaStep = _finalAlpha / stepCount;
+    //        var alphaStep = _finalAlpha / stepCount;
 
-            card.SetActive(true);
+    //        card.SetActive(true);
 
-            while (cardImage.fillAmount < 1)
-            {
-                var timeBetweenSteps = _delayBeforeClickableCardsInSeconds / stepCount;
-                yield return new WaitForSecondsRealtime(timeBetweenSteps);
-                cardImage.fillAmount += fillingStep;
-                cardImageAlpha += alphaStep;
-                cardImage.color = new Color(1, 1, 1, cardImageAlpha);
-            }
+    //        while (cardImage.fillAmount < 1)
+    //        {
+    //            var timeBetweenSteps = _delayBeforeClickableCardsInSeconds / stepCount;
+    //            yield return new WaitForSecondsRealtime(timeBetweenSteps);
+    //            cardImage.fillAmount += fillingStep;
+    //            cardImageAlpha += alphaStep;
+    //            cardImage.color = new Color(1, 1, 1, cardImageAlpha);
+    //        }
 
-            cardButton.interactable = true;
-            transitionController.UpdateColor();
-        }
-    }
+    //        cardButton.interactable = true;
+    //        transitionController.UpdateColor();
+    //    }
+    //}
 }
