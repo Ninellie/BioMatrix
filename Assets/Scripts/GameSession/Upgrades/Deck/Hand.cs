@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
-
     public enum CardStatus
     {
         Opened,
