@@ -4,27 +4,27 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
-    public class DeckRepository : MonoBehaviour
-    {
-        [SerializeField]
-        private bool _usePreset;
+    //public class DeckRepository : MonoBehaviour
+    //{
+    //    [SerializeField]
+    //    private bool _usePreset;
 
-        [SerializeField]
-        private PatternDeckPreset _preset;
+    //    [SerializeField]
+    //    private PatternDeckPreset _preset;
 
-        [SerializeField]
-        private List<PatternDeck> _patternDeckList;
+    //    [SerializeField]
+    //    private List<PatternDeck> _patternDeckList;
 
-        [SerializeField]
-        private List<Deck> _deckList;
+    //    [SerializeField]
+    //    private List<Deck> _deckList;
 
-        [SerializeField]
-        private List<Card> _obtainedCards;
+    //    [SerializeField]
+    //    private List<Card> _obtainedCards;
 
-        private void Awake()
-        {
+        //private void Awake()
+        //{
             //FillDeckListFromPattern(_usePreset ? _preset.patternDeckList : _patternDeckList);
-        }
+        //}
 
         //public void ObtainCard(Card card)
         //{
@@ -86,5 +86,5 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         //    }
         //    throw new InvalidOperationException("");
         //}
-    }
+    //}
 }
