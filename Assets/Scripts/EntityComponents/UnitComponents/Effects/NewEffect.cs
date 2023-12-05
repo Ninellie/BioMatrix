@@ -3,22 +3,13 @@ using System.Collections.Generic;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
+using Assets.Scripts.SourceStatSystem;
 using UnityEngine;
-
-public enum TargetName
-{
-    Player,
-    Shield,
-    TurretHub,
-    TurretHubWeapon,
-    Firearm,
-}
 
 public interface IEffect
 {
     string Name { get; }
     string Description { get; }
-    TargetName TargetName { get; }
     void Activate();
     void Deactivate();
 }
@@ -72,7 +63,6 @@ public class StatModData
 
 public interface IStatModifier
 {
-    public List<StatModData> StatModList { get; }
-
-    public void SetStatList(StatList statList);
+    StatSources StatSources { get; }
+    List<StatSourceData> StatSourceList { get; }
 }

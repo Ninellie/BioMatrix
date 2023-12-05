@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using Assets.Scripts.Core.Variables;
 using Assets.Scripts.EntityComponents.Resources;
-using Assets.Scripts.EntityComponents.Stats;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
+using Assets.Scripts.SourceStatSystem;
 using UnityEngine;
 
 [Serializable]
 public class ResourceIncreaserEffect : Effect, IResourceOperator, IStackableEffect
 {
     [Header("Incremental resource settings")]
-    [SerializeField] private ResourceName _resourceName;
+    [SerializeField] private IntVariable _variable;
     [SerializeField, Min(0)] private int _value;
 
     [Header("Stacks settings")]
@@ -21,19 +22,17 @@ public class ResourceIncreaserEffect : Effect, IResourceOperator, IStackableEffe
     public int MaxStacks => _maxStacks;
     public int InitialStacks => _initialStacks;
 
-    private ResourceList _resources;
-
     public void AddStack()
     {
         if (_currentStackCount == _maxStacks) return;
-        _resources.GetResource(_resourceName).Increase(_value);
+        //_resources.GetResource(_resourceName).Increase(_value);
         _currentStackCount++;
     }
 
     public void RemoveStack()
     {
         if (_currentStackCount == 0) return;
-        _resources.GetResource(_resourceName).Decrease(_value);
+        //_resources.GetResource(_resourceName).Decrease(_value);
         _currentStackCount--;
     }
 
@@ -54,7 +53,7 @@ public class ResourceIncreaserEffect : Effect, IResourceOperator, IStackableEffe
     }
     public void SetResourceList(ResourceList resourceList)
     {
-        _resources = resourceList;
+        //_resources = resourceList;
     }
 }
 
@@ -158,45 +157,32 @@ public class StatModifierEffect : Effect, IStatModifier
 {
     [SerializeField]
     protected List<StatModData> statModList;
-
-    [SerializeField]
-    protected StatList statList;
-    public List<StatModData> StatModList => statModList;
+    public StatSources StatSources { get; }
+    public List<StatSourceData> StatSourceList { get; }
 
     public new void Activate()
     {
-        foreach (var statModData in statModList)
-        {
-            statList.GetStat(statModData.statName).AddModifier(statModData.mod);
-        }
+        AddMods();
     }
 
     public new void Deactivate()
     {
-        foreach (var statModData in statModList)
-        {
-            statList.GetStat(statModData.statName).RemoveModifier(statModData.mod);
-        }
-    }
-
-    public void SetStatList(StatList statList)
-    {
-        this.statList = statList;
+        RemoveMods();
     }
 
     protected void AddMods()
     {
-        foreach (var statModData in statModList)
+        foreach (var statSource in StatSourceList)
         {
-            statList.GetStat(statModData.statName).AddModifier(statModData.mod);
+            StatSources.AddStatSource(statSource);
         }
     }
 
     protected void RemoveMods()
     {
-        foreach (var statModData in statModList)
+        foreach (var statSource in StatSourceList)
         {
-            statList.GetStat(statModData.statName).RemoveModifier(statModData.mod);
+            StatSources.RemoveStatSource(statSource);
         }
     }
 }

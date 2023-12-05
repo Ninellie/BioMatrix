@@ -1,9 +1,6 @@
 using Assets.Scripts.GameSession.Events;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.EntityComponents.Resources;
-using Assets.Scripts.EntityComponents.Stats;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
 [AddComponentMenu("Entity/Effects/EffectsList")]
@@ -20,28 +17,6 @@ public class EffectsList : MonoBehaviour
         set => _gameTimeScheduler = value;
     }
 
-    public OverUnitDataAggregator OverUnitDataAggregator
-    {
-        get => _effectsAggregator;
-        set => _effectsAggregator = value;
-    }
-
-    [SerializeField]
-    private OverUnitDataAggregator _effectsAggregator;
-
-    private StatList _stats;
-    private ResourceList _resources;
-
-    private void Awake()
-    {
-        _stats = GetComponent<StatList>();
-        _resources = GetComponent<ResourceList>();
-
-        TryGetComponent(out OverUnitDataAggregator dataAggregator);
-
-        _effectsAggregator = dataAggregator == null ? GetComponentInParent<OverUnitDataAggregator>() : dataAggregator;
-    }
-
     public void AddEffect(IEffect effect)
     {
         var e = _effects.FirstOrDefault(ef => ef.Name.Equals(effect.Name));
@@ -54,12 +29,6 @@ public class EffectsList : MonoBehaviour
         {
             AdjustEffect(_effects.Find(eff => eff.Name.Equals(e.Name)));
         }
-
-        //var first = _effects.FirstOrDefault(e => e.Name.Equals(effect.Name));
-        //if (first == null)
-        //    AddNewEffect(effect);
-        //else
-        //    AdjustEffect(first);
     }
 
     private void AdjustEffect(IEffect effect)
@@ -84,14 +53,8 @@ public class EffectsList : MonoBehaviour
     {
         _effects.Add(effect);
 
-        if (effect is IStatModifier st)
-            st.SetStatList(_stats);
-
-        if (effect is IResourceOperator ro)
-            ro.SetResourceList(_resources);
-
-        if (effect is IEffectAdder ad)
-            ad.SetEffectsManager(_effectsAggregator);
+        //if (effect is IEffectAdder ad)
+        //    ad.SetEffectsManager(_effectsAggregator);
 
         if (effect is IRespondingEffect re)
             re.Subscribe();

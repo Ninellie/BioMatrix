@@ -24,9 +24,7 @@ public class EffectsRepository : MonoBehaviour
             foreach (var preset in _presets)
             {
                 var effectList = new List<IEffect>();
-                
                 effectList = preset.GetEffects();
-
                 _effects.AddRange(effectList);
             }
         else
