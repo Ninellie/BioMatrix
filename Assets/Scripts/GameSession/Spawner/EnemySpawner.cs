@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.EntityComponents.UnitComponents;
+using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -18,7 +17,7 @@ namespace Assets.Scripts.GameSession.Spawner
         private readonly Grouping _grouping = new();
         //private readonly Rarity _rarity = new();
         private readonly Circle _circle = new();
-        private GameObject _player;
+        private Vector2Reference _player;
         private const int DefaultComplicationValue = 60;
 
         private int TimerBonus
@@ -40,12 +39,6 @@ namespace Assets.Scripts.GameSession.Spawner
 
         private void Start()
         {
-            if (FindObjectOfType<Player>() is null)
-            {
-                Debug.Log("Player script is null in scene");
-                return;
-            }
-            _player = FindObjectOfType<Player>().gameObject;
             SpawnFirstWave();
             InvokeRepeating(nameof(SpawnNormalWave), _secondsBetweenWaves, _secondsBetweenWaves);
         }
@@ -58,15 +51,13 @@ namespace Assets.Scripts.GameSession.Spawner
         {
             if(_player is null) return;
             if (IsSpawnBlocked()) return;
-
-            var playerPosition = (Vector2)_player.transform.position;
             var waveSize = _waveDataPreset.GetSize(waveType);
             var spawn = CreateWave(waveSize);
             if (spawn is null) return;
             var mode = _grouping.GetRandomMode();
 
-            PlaceEnemies(spawn, mode, playerPosition);
-            PrepareEnemies(spawn, playerPosition);
+            PlaceEnemies(spawn, mode, _player);
+            PrepareEnemies(spawn, _player);
         }
 
         private GameObject[] CreateWave(int waveSize)
@@ -144,11 +135,6 @@ namespace Assets.Scripts.GameSession.Spawner
         {
             foreach (var enemy in enemies)
             {
-                //foreach (var targeted in enemy.GetComponentsInChildren<ITargeted>())
-                //{
-                //    targeted.SetTarget(_player);
-                //}
-
                 PrepareEnemy(enemy, playerPosition);
             }
         }
