@@ -66,7 +66,7 @@ public class RespondingEffectAdderEffect : Effect, IResourceOperator, IEffectAdd
     [SerializeField] private ResourceEventType _event;
     [SerializeField] private EffectsRepositoryPreset _effectPreset;
 
-    private OverUnitDataAggregator _effectsAggregator;
+    //private OverUnitDataAggregator _effectsAggregator;
     private Resource _resource;
 
     public void SetResourceList(ResourceList resourceList)
@@ -74,10 +74,10 @@ public class RespondingEffectAdderEffect : Effect, IResourceOperator, IEffectAdd
         _resource = resourceList.GetResource(_resourceName);
     }
 
-    public void SetEffectsManager(OverUnitDataAggregator effectsAggregator)
-    {
-        _effectsAggregator = effectsAggregator;
-    }
+    //public void SetEffectsManager(OverUnitDataAggregator effectsAggregator)
+    //{
+    //    _effectsAggregator = effectsAggregator;
+    //}
 
     public void Subscribe()
     {
@@ -88,7 +88,7 @@ public class RespondingEffectAdderEffect : Effect, IResourceOperator, IEffectAdd
     {
         foreach (var effectName in _effectNames)
         {
-            _effectsAggregator.AddEffect(_effectPreset.GetEffectByName(effectName));
+            //_effectsAggregator.AddEffect(_effectPreset.GetEffectByName(effectName));
         }
     }
 }

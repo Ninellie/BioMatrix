@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Assets.Scripts.EntityComponents.Resources;
 using Assets.Scripts.EntityComponents.Stats;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.SourceStatSystem;
 using UnityEngine;
 
@@ -16,7 +15,7 @@ public interface IEffect
 
 public interface IEffectAdder : IEffect
 {
-    void SetEffectsManager(OverUnitDataAggregator effectsAggregator);
+    //void SetEffectsManager(OverUnitDataAggregator effectsAggregator);
     //void SetEffectsRepository(EffectsRepository effectsRepository);
 }
 
