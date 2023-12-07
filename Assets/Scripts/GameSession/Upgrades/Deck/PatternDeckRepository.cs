@@ -1,78 +1,38 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Core.Events;
 using UnityEngine;
 
 namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
-    public interface IDeckRepository
-    {
-        List<Deck> GetDecks();
-        Deck GetDeck(string deckName);
-    }
-
     public class PatternDeckRepository : MonoBehaviour
     {
         [SerializeField]
         private PatternDeckPreset _preset;
-        
-        [SerializeField]
-        private PatternDeckPreset _usedDecks;
-
-        
-        private void Awake()
-        {
-            _usedDecks = Instantiate(_preset);
-        }
 
         public List<Deck> GetDecks()
         {
-            var deckList = new List<Deck>();
-
-            foreach (var patternDeck in _usedDecks.patternDeckList)
-            {
-                var deck = new Deck
-                {
-                    cardsInspectorList = new List<Card>(patternDeck.capacity),
-                    name = patternDeck.name,
-                    description = patternDeck.description,
-                };
-
-                for (var index = 0; index < deck.cardsInspectorList.Capacity; index++)
-                {
-                    var card = new Card
-                    {
-                        effectNames = new List<string>()
-                    };
-
-                    deck.cardsInspectorList.Add(card);
-                }
-
-                foreach (var patternCard in patternDeck.cardsArray)
-                {
-                    FillDeckWithPatternCard(deck, patternCard);
-                }
-
-                deck.cardsInspectorList.Reverse();
-                deck.cards = new Stack<Card>(deck.cardsInspectorList);
-                deck.cardsInspectorList.Reverse();
-                deckList.Add(deck);
-            }
-            return deckList;
+            return _preset.patternDeckList.Select(patternDeck => GetDeck(patternDeck.name)).ToList();
         }
 
         public Deck GetDeck(string deckName)
         {
             var patternDeck = _preset.patternDeckList.First(patternDeck => patternDeck.name == deckName);
 
-            var deck = new Deck();
-            deck.cardsInspectorList = new List<Card>(patternDeck.capacity);
-            deck.name = patternDeck.name;
-            deck.description = patternDeck.description;
+            var deck = new Deck
+            {
+                cardsInspectorList = new List<Card>(patternDeck.capacity),
+                name = patternDeck.name,
+                description = patternDeck.description
+            };
 
             for (var index = 0; index < deck.cardsInspectorList.Capacity; index++)
             {
-                var card = new Card();
-                card.effectNames = new List<string>();
+                var card = new Card
+                {
+                    effectNames = new List<string>(),
+                    onTaken = new List<GameEvent>(3)
+                };
                 deck.cardsInspectorList.Add(card);
             }
 
@@ -109,7 +69,10 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
 
                 deck.cardsInspectorList[i].dropWeight = patternCard.card.dropWeight;
                 deck.cardsInspectorList[i].effectNames.AddRange(patternCard.card.effectNames);
-                deck.cardsInspectorList[i].onTaken.AddRange(patternCard.card.onTaken);
+                deck.
+                    cardsInspectorList[i].
+                    onTaken.
+                    AddRange(patternCard.card.onTaken);
             }
         }
     }
