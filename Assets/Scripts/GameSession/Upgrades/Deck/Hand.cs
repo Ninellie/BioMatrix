@@ -1,24 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
+using Assets.Scripts.Core.Events;
 using UnityEngine;
 
 namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
-    public enum CardStatus
-    {
-        Opened,
-        Closed,
-        Obtained
-    }
-
     [Serializable]
     public class Card
     {
         [HideInInspector] public string inspectorName;
         public string title;
         [Multiline] public string description;
+        public GameEvent onTaken;
         public float dropWeight;
         public List<string> effectNames;
         public CardStatus status;
@@ -64,35 +58,21 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
     public interface IHand
     {
         List<HandDeckData> GetHandData();
-        //int GetOpenedCardPositionInDeck(string deckName);
         void TakeCardFromDeck(string deckName);
-        void SetEffectRepository(EffectsRepository effectRepository);
         void SetDeckRepository(IDeckRepository deckRepository);
     }
 
     public class Hand : MonoBehaviour, IHand
     {
         [SerializeField] private List<HandDeckData> _hand;
-        [SerializeField] private OverUnitDataAggregator _dataAggregator;
         [SerializeField] private List<Deck> _decks;
-
-        [SerializeField] private EffectsRepository _effectsRepository;
-        private IDeckRepository _deckRepository;
-
-        private void Awake()
-        {
-            _dataAggregator = GetComponent<OverUnitDataAggregator>();
-        }
+        [SerializeReference] private IDeckRepository _deckRepository;
+        
         private void Start()
         {
             _decks = _deckRepository.GetDecks();
             Identify();
         }
-
-        //public int GetOpenedCardPositionInDeck(string deckName)
-        //{
-        //    return _hand.Where(data => data.name == deckName).Select(data => data.openedCardPosition).FirstOrDefault();
-        //}
 
         public List<HandDeckData> GetHandData()
         {
@@ -112,17 +92,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
 
             var deck = _decks.First(d => d.name.Equals(deckName));
             deck.cards.ToArray()[cardPos].status = CardStatus.Obtained;
-
-            foreach (var effectName in deck.cards.ToArray()[cardPos].effectNames)
-            {
-                var effect = _effectsRepository.GetEffectByName(effectName);
-                _dataAggregator.AddEffect(effect);
-            }
-        }
-
-        public void SetEffectRepository(EffectsRepository effectRepository)
-        {
-            _effectsRepository = effectRepository;
+            deck.cards.ToArray()[cardPos].onTaken.Raise();
         }
 
         public void SetDeckRepository(IDeckRepository deckRepository)
