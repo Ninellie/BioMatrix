@@ -12,7 +12,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         [HideInInspector] public string inspectorName;
         public string title;
         [Multiline] public string description;
-        public GameEvent onTaken;
+        public List<GameEvent> onTaken;
         public float dropWeight;
         public List<string> effectNames;
         public CardStatus status;
@@ -55,18 +55,11 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         }
     }
 
-    public interface IHand
+    public class Hand : MonoBehaviour
     {
-        List<HandDeckData> GetHandData();
-        void TakeCardFromDeck(string deckName);
-        void SetDeckRepository(IDeckRepository deckRepository);
-    }
-
-    public class Hand : MonoBehaviour, IHand
-    {
-        [SerializeField] private List<HandDeckData> _hand;
+        [SerializeField] private PatternDeckRepository _deckRepository;
         [SerializeField] private List<Deck> _decks;
-        [SerializeReference] private IDeckRepository _deckRepository;
+        [SerializeField] private List<HandDeckData> _hand;
         
         private void Start()
         {
@@ -92,12 +85,11 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
 
             var deck = _decks.First(d => d.name.Equals(deckName));
             deck.cards.ToArray()[cardPos].status = CardStatus.Obtained;
-            deck.cards.ToArray()[cardPos].onTaken.Raise();
-        }
 
-        public void SetDeckRepository(IDeckRepository deckRepository)
-        {
-            _deckRepository = deckRepository;
+            foreach (var onTakenEvent in deck.cards.ToArray()[cardPos].onTaken)
+            {
+                onTakenEvent.Raise();
+            }
         }
 
         private void Identify()

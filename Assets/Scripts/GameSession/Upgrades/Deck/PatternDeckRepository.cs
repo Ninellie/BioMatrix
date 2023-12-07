@@ -1,38 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
-
-    [Serializable]
-    public class PatternCard
-    {
-        [HideInInspector]
-        public string name;
-
-        [Min(0)]
-        public int occurrenceFrequency;
-        public Card card;
-    }
-
-    [Serializable]
-    public class PatternDeck
-    {
-        public string name;
-        public string description;
-        public int capacity;
-        public PatternCard[] cardsArray;
-    }
-
     public interface IDeckRepository
     {
         List<Deck> GetDecks();
         Deck GetDeck(string deckName);
     }
 
-    public class PatternDeckRepository : MonoBehaviour, IDeckRepository
+    public class PatternDeckRepository : MonoBehaviour
     {
         [SerializeField]
         private PatternDeckPreset _preset;
@@ -130,8 +108,8 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                         : "\r\n" + patternCard.card.description;
 
                 deck.cardsInspectorList[i].dropWeight = patternCard.card.dropWeight;
-
                 deck.cardsInspectorList[i].effectNames.AddRange(patternCard.card.effectNames);
+                deck.cardsInspectorList[i].onTaken.AddRange(patternCard.card.onTaken);
             }
         }
     }
