@@ -1,6 +1,5 @@
 using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.View;
 using UnityEngine;
 
@@ -13,8 +12,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         [SerializeField] private bool _dieOnPlayerCollision;
         [SerializeField] private Color _takeDamageColor;
 
-        [SerializeField] private FloatReference _currentHealth;
-
+        [SerializeField] private Vector2Reference _playerPosition;
+        [SerializeField] private Reserve _health;
         [SerializeField] private FloatReference _playerProjectileDamage;
         [SerializeField] private FloatReference _playerProjectileKnockBack;
 
@@ -32,21 +31,17 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         private const float ReturnToDefaultColorSpeed = 5f;
         private const float OffscreenDieSeconds = 5f;
 
-        private ISlayer _lastDamageSource;
-        private Player _player;
-
         private bool _isSubscribed;
+        private Transform _transform;
 
         private void Awake()
         {
+            _transform = transform;
             _isAlive = true;
-
             _knockbackController = GetComponent<KnockbackController>();
             _circleCollider = GetComponent<CircleCollider2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
-
-            _player = FindObjectOfType<Player>();
 
             _spriteColor = _spriteRenderer.color;
             _rarity.Value = RarityEnum.Normal;
@@ -76,19 +71,19 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         {
             var damage = (int)_playerProjectileDamage;
             _deathFromProjectile = true;
-            TakeDamage(damage);
+            _health.TakeDamage(damage);
 
             var dropPosition = GetClosestPointOnCircle(collision2D.transform.position);
             DropDamagePopup(damage, dropPosition);
 
             ChangeColorOnDamageTaken();
 
-            Vector2 force = transform.position - _player.transform.position;
+            Vector2 force = (Vector2)_transform.position - _playerPosition.Value;
             force.Normalize();
             force *= _playerProjectileKnockBack;
             _knockbackController.Knockback(force);
 
-            if (_currentHealth == 0) return;
+            if (!_health.IsEmpty) return;
             _isAlive = false;
         }
 
@@ -97,13 +92,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             if (!_isAlive) return;
             if (!_dieOnPlayerCollision) return;
             _deathFromProjectile = false;
-            Death();
-        }
-
-        private void TakeDamage(int damage)
-        {
-            _currentHealth.constantValue -= damage;
-            if (_currentHealth != 0) return;
             Death();
         }
 
@@ -164,7 +152,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         {
             Debug.Log($"Enemy {gameObject.name} died. From projectile: {_deathFromProjectile}");
             if (_deathFromProjectile) DropBonus();
-            _lastDamageSource?.IncreaseKills();
             gameObject.SetActive(false);
             Destroy(gameObject);
         }

@@ -24,7 +24,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         [Space]
         [SerializeField] private MovementController _movementController;
         [SerializeField] private KnockbackController _knockbackController;
-        [SerializeField] private HealthReserve _healthReserve;
+        [SerializeField] private Reserve _reserve;
         [Space]
         [SerializeField] private StatReference _playerProjectileDamage;
         [SerializeField] private StatReference _playerProjectileKnockback;
@@ -49,7 +49,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             if (_spriteRenderer == null) _spriteRenderer = GetComponent<SpriteRenderer>();
             if (_movementController == null) _movementController = GetComponent<MovementController>();
             if (_knockbackController == null) _knockbackController = GetComponent<KnockbackController>();
-            if (_healthReserve == null) _healthReserve = GetComponent<HealthReserve>();
+            if (_reserve == null) _reserve = GetComponent<Reserve>();
 
             _spriteColor = _spriteRenderer.color;
         }
@@ -119,7 +119,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             force.Normalize();
             force *= _playerProjectileKnockback;
             _knockbackController.Knockback(force);
-            if (!_healthReserve.IsEmpty) return;
+            if (!_reserve.IsEmpty) return;
             _isAlive = false;
         }
 
@@ -151,7 +151,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             force.Normalize();
             force *= _turretProjectileKnockback;
             _knockbackController.Knockback(force);
-            if (!_healthReserve.IsEmpty) return;
+            if (!_reserve.IsEmpty) return;
             _isAlive = false;
         }
 
@@ -165,8 +165,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private void TakeDamage(int damageAmount)
         {
-            _healthReserve.TakeDamage(damageAmount);
-            if (!_healthReserve.IsEmpty) return;
+            _reserve.TakeDamage(damageAmount);
+            if (!_reserve.IsEmpty) return;
             Death();
         }
 
