@@ -5,14 +5,13 @@ public interface ILevelUpController
 {
     void Initiate();
     void LevelUp();
-    void SetHand(IHand hand);
 }
 
 public class LevelUpController : MonoBehaviour, ILevelUpController
 {
     [SerializeField] private int _baseDeckAmount = 3;
     private ILevelUpDisplay _levelUpDisplay;
-    private IHand _hand;
+    [SerializeField] private Hand _hand;
 
     private void Awake()
     {
@@ -30,10 +29,5 @@ public class LevelUpController : MonoBehaviour, ILevelUpController
         var deckName = _levelUpDisplay.GetActiveDeckName();
         _hand.TakeCardFromDeck(deckName);
         _levelUpDisplay.DestroyAllDecks();
-    }
-
-    public void SetHand(IHand hand)
-    {
-        _hand = hand;
     }
 }
