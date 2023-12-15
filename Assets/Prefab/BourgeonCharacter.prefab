@@ -5631,7 +5631,19 @@ MonoBehaviour:
   _onRecover: {fileID: 11400000, guid: af77f143ac5116943a884b6259d370af, type: 2}
   _onRecoverUnityEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4318183895119016108}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.Reserve, Scripts
+        m_MethodName: Increase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _recoverValue: 0
 --- !u!114 &316283260720876180
 MonoBehaviour:
@@ -5645,7 +5657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: af77f143ac5116943a884b6259d370af, type: 2}
+  gameEvent: {fileID: 11400000, guid: 0b7b03a9110fc3446b8eac8be2637c78, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
