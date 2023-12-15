@@ -47,13 +47,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc7c9b776cbd41479da78e434004c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _size: 1
+  _size: 25
   _active: 0
   _stack: {fileID: 7649357156036210538, guid: eb9b863768f72004d9ec970c6b1f6142, type: 3}
   _transform: {fileID: 1507020806091443200}
   _enabled: []
   _disabled:
   - {fileID: 5819674225745364314}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &3647623100740320189
 MonoBehaviour:
   m_ObjectHideFlags: 0
