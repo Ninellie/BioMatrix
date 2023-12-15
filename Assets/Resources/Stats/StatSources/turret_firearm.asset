@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398d76ed9a41c9144ae3720c71b6891b, type: 3}
+  m_Name: turret_firearm
+  m_EditorClassIdentifier: 
+  _statSources: []
+  _clearOnPlay: 1
+  _baseStatSources: {fileID: 11400000, guid: c2a10e6f41637724f8590c4e36a151b6, type: 2}
+  _stats:
+  - {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  - {fileID: 11400000, guid: 9cc20938674dac64b836a0a578713704, type: 2}
+  - {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  - {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  - {fileID: 11400000, guid: 630a90bd5eea23c42ace97ae4298d11c, type: 2}
+  _preview:
+  - _inspectorValue: 1_projectile_count
+    <Id>k__BackingField: {fileID: 11400000, guid: 669ba26595dba81409387c1b0e1e91ac, type: 2}
+    _value: 1
+  - _inspectorValue: 100_shoots_per_second
+    <Id>k__BackingField: {fileID: 11400000, guid: 33316e8cac88b9f4b995b4847b8d7ccc, type: 2}
+    _value: 100
+  - _inspectorValue: 15_shoot_deflection
+    <Id>k__BackingField: {fileID: 11400000, guid: dedfaeaa6846fef4a9e93113cf99547d, type: 2}
+    _value: 15
+  - _inspectorValue: 1_magazine_capacity
+    <Id>k__BackingField: {fileID: 11400000, guid: 2d195fe096bf5ff499afcf563c41e311, type: 2}
+    _value: 1
+  - _inspectorValue: 3_reload_time
+    <Id>k__BackingField: {fileID: 11400000, guid: 32348d0ee0a618b4081601b8fa05fe17, type: 2}
+    _value: 3
