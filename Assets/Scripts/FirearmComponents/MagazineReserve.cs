@@ -1,6 +1,7 @@
 using Assets.Scripts.Core.Events;
 using Assets.Scripts.Core.Variables.References;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.FirearmComponents
 {
@@ -13,6 +14,7 @@ namespace Assets.Scripts.FirearmComponents
         [Space]
         [SerializeField] private GameEvent _onReloadStart;
         [SerializeField] private GameEvent _onReloadComplete;
+        [SerializeField] private UnityEvent _onChange;
         [Space]
         [SerializeField] private FloatReference _reloadSpeedStat;
         [SerializeField] private FloatReference _maxMagazineCapacity;
@@ -35,7 +37,7 @@ namespace Assets.Scripts.FirearmComponents
             }
             if (OnReload) return;
             ApplyChange(_ammoPerShoot * -1);
-
+            _onChange.Invoke();
             if (_value == 0)
             {
                 InitiateReload();
