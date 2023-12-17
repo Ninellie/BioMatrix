@@ -55,6 +55,21 @@ MonoBehaviour:
   _fillOnStart: 1
   _onReloadStart: {fileID: 11400000, guid: 0180571736f828348ba62db4984f8f49, type: 2}
   _onReloadComplete: {fileID: 11400000, guid: 54cdf10a608708c42b09866142d2f48a, type: 2}
+  _onChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 7fcd3e3cf49dcf64689c571622d9fdfe, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _reloadSpeedStat:
     useConstant: 0
     constantValue: 0
