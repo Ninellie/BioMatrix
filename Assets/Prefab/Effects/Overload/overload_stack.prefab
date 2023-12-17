@@ -51,10 +51,6 @@ MonoBehaviour:
     <StatId>k__BackingField: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 100
-  - <Id>k__BackingField: 
-    <StatId>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
-    <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 50
 --- !u!114 &1306131880076597803
 MonoBehaviour:
   m_ObjectHideFlags: 0
