@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5472728059450105852}
   - component: {fileID: 3938624036813413908}
+  - component: {fileID: 1146068446634594509}
   m_Layer: 0
   m_Name: blood_2_stack
   m_TagString: Untagged
@@ -48,9 +49,10 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 0f9eb4d27a6f6ac47b8d64c6e9daae18, type: 2}
-        m_TargetAssemblyTypeName: Assets.Scripts.Core.Variables.IntVariable, Scripts
-        m_MethodName: ApplyChange
+      - m_Target: {fileID: 1146068446634594509}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.VariableIncreaser,
+          Scripts
+        m_MethodName: Increase
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -60,6 +62,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1146068446634594509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7649357156036210538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3988599f83c0352429965da9da5ac742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _variable: {fileID: 11400000, guid: 0f9eb4d27a6f6ac47b8d64c6e9daae18, type: 2}
+  _maxVariable:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: df581dd996bef424391786e1a146ec3d, type: 2}
+  _onChanged:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 11400000, guid: 7fcd3e3cf49dcf64689c571622d9fdfe, type: 2}
         m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
         m_MethodName: Raise
@@ -72,3 +94,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _onIncrease:
+    m_PersistentCalls:
+      m_Calls: []
