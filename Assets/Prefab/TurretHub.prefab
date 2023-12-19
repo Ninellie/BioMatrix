@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5641934294514202483}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9034957501157506180}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9206584794608382483
 GameObject:
@@ -40,12 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9034957501157506180}
-  - component: {fileID: -497711196860966798}
-  - component: {fileID: -9047308907296507604}
   - component: {fileID: -8906158504319753904}
-  - component: {fileID: 5986424607426530457}
-  - component: {fileID: 7887913964525145941}
-  - component: {fileID: -5373451152742501804}
   m_Layer: 0
   m_Name: TurretHub
   m_TagString: Untagged
@@ -60,6 +55,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9206584794608382483}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
@@ -67,49 +63,7 @@ Transform:
   m_Children:
   - {fileID: 3307108730159776810}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &-497711196860966798
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9206584794608382483}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &-9047308907296507604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9206584794608382483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35306f3b013aad94fa98124d4ca50940, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _turretPrefab: {fileID: 9206584794608382483, guid: e4b56dd8ab154984597f19cc0101b423, type: 3}
-  _turretWeaponPrefab: {fileID: 3233653779076600719, guid: fc06b7e8f38d50e48892e3fde399d532, type: 3}
 --- !u!114 &-8906158504319753904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,55 +78,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _orbitRadius: 80
   _orbitalSpeed: 15
---- !u!114 &5986424607426530457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9206584794608382483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25437cf037f85d04b9c499f44afbe3e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _usePreset: 1
-  _preset: {fileID: 11400000, guid: b589406355a3e934b901a3ffe4fec710, type: 2}
-  _stats: []
---- !u!114 &7887913964525145941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9206584794608382483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9c9f584044c0bd4695584b5e1405f21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _usePreset: 1
-  _preset: {fileID: 11400000, guid: 48f6d8ac2be26644690ef6576f54e35b, type: 2}
-  _resources: []
-  _statList: {fileID: 0}
-  references:
-    version: 2
-    RefIds: []
---- !u!114 &-5373451152742501804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9206584794608382483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa509718787c27409773cda7bcf8e0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _effects: []
-  _gameTimeScheduler: {fileID: 0}
-  _effectsAggregator: {fileID: 0}
-  references:
-    version: 2
-    RefIds: []
+  _pool: {fileID: 0}
