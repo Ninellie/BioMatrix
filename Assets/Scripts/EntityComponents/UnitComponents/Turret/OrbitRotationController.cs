@@ -11,7 +11,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
         [SerializeField] private TransformRuntimeSet _pool;
 
         private readonly Circle _circle = new();
-        private float _currentAngle = Random.Range(0f, 360f);
+        private float _currentAngle;
         private float CurrentAngle
         {
             get => _currentAngle;
@@ -27,7 +27,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 
         private Transform _attractionPoint;
 
-        private void Awake() => _attractionPoint = transform;
+        private void Awake()
+        {
+            _attractionPoint = transform;
+            _currentAngle = Random.Range(0f, 360f);
+        }
 
         private void FixedUpdate() => OrbitalStep(Time.fixedDeltaTime);
 
