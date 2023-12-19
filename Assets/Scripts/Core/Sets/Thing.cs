@@ -23,7 +23,7 @@ namespace Assets.Scripts.Core.Sets
 //    }
 //}
 
-    public class Thing : MonoBehaviour
+public class Thing : MonoBehaviour
     {
         public ThingRuntimeSet runtimeSet;
 
