@@ -1,23 +1,17 @@
-using System.Collections.Generic;
+using Assets.Scripts.Core.Sets;
 using Assets.Scripts.GameSession.Spawner;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
 {
-    public class OrbitRotationController : MonoBehaviour, IOrbitRotationController
+    public class OrbitRotator : MonoBehaviour
     {
-        [SerializeField]
-        private float _orbitRadius = 80;
+        [SerializeField] private float _orbitRadius = 80;
+        [SerializeField] [Tooltip("In degrees per second")] private float _orbitalSpeed;
+        [SerializeField] private TransformRuntimeSet _pool;
 
-        [SerializeField] 
-        [Tooltip("In degrees per second")]
-        private float _orbitalSpeed;
-
-        private Stack<Turret> _objects;
-
-        private float OrbitRadius => _orbitRadius;
         private readonly Circle _circle = new();
-        private float _currentAngle;
+        private float _currentAngle = Random.Range(0f, 360f);
         private float CurrentAngle
         {
             get => _currentAngle;
@@ -31,29 +25,21 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             }
         }
 
-        private GameObject _attractor;
-        private Vector2 Center => _attractor.transform.position;
+        private Transform _attractionPoint;
 
-        private void Awake() => _currentAngle = Random.Range(0f, 360f);
+        private void Awake() => _attractionPoint = transform;
 
         private void FixedUpdate() => OrbitalStep(Time.fixedDeltaTime);
 
-        public void SetObjects(Stack<Turret> objects) => _objects = objects;
-
-        public void SetAttractor(GameObject attractor) => _attractor = attractor;
-
         private void OrbitalStep(float time)
         {
-            var gap = 360f / _objects.Count;
-
+            var gap = 360f / _pool.items.Count;
             CurrentAngle += _orbitalSpeed * time;
-
-            foreach (var o in _objects)
+            foreach (var o in _pool.items)
             {
                 var fi = CurrentAngle * Mathf.Deg2Rad;
-                var nextPosition = _circle.GetPointOn(OrbitRadius, Center, fi);
-                o.transform.position = nextPosition;
-
+                var nextPosition = _circle.GetPointOn(_orbitRadius, _attractionPoint.position, fi);
+                o.myTransform.position = nextPosition;
                 CurrentAngle += gap;
             }
         }
