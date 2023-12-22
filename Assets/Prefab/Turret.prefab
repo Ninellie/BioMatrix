@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
-  _mode: 0
+  _mode: 1
   _selfAimDirection:
     useConstant: 0
     constantValue: {x: 0, y: 0}
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammo: {fileID: 2741946790039367102, guid: b80e23b7f795d9c4b949d80c75fc8433, type: 3}
+  _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
   _attackSpeed:
     useConstant: 0
     constantValue: 0
