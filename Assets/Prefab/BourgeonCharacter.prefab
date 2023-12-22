@@ -282,6 +282,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1313338470902835096}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.Reserve, Scripts
+        m_MethodName: Empty
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onDecrease:
     m_PersistentCalls:
       m_Calls: []
@@ -5950,10 +5962,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad490a97179ae414d861dd1cdc668e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tag: 
+  _tag: Boon
   _onTriggerEnter2D:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5854097239496226598}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.Experience,
+          Scripts
+        m_MethodName: IncreaseExperience
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6131040616743987141
 GameObject:
   m_ObjectHideFlags: 0
