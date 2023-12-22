@@ -21,3 +21,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7796fa1c3ab82dc4eae3050278205cdd, type: 2}
   - {fileID: 11400000, guid: a62e351b440c2b04382d038cceadb209, type: 2}
   - {fileID: 11400000, guid: 93cb3ad6358f5194aa6583e201079a2b, type: 2}
+  _preview:
+  - _inspectorValue: 1_damage
+    <Id>k__BackingField: {fileID: 11400000, guid: 4ab1f9f5c63c2a94d9175bde092e4cb0, type: 2}
+    _value: 1
+  - _inspectorValue: 1_maximum_health
+    <Id>k__BackingField: {fileID: 11400000, guid: 0056aaa4eb48b6d458c89adf5bcf6f83, type: 2}
+    _value: 1
+  - _inspectorValue: 5_knockback_power
+    <Id>k__BackingField: {fileID: 11400000, guid: 54986c30c0fc01145b7f70f9a5275ab2, type: 2}
+    _value: 5
+  - _inspectorValue: 1800_movement_speed
+    <Id>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
+    _value: 1800
+  - _inspectorValue: 0,75_size
+    <Id>k__BackingField: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
+    _value: 0.75

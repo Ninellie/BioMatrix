@@ -17,16 +17,12 @@ MonoBehaviour:
   _newFlatStatSource: {fileID: 0}
   _newPercentageStatSource: {fileID: 0}
   <StatSources>k__BackingField:
-  - <Id>k__BackingField: turret_projectile_base_damage_flat_10
+  - <Id>k__BackingField: turret_projectile_base_damage_flat_1
     <StatId>k__BackingField: {fileID: 11400000, guid: 4ab1f9f5c63c2a94d9175bde092e4cb0, type: 2}
     <ImpactType>k__BackingField: 1
-    <Value>k__BackingField: 10
+    <Value>k__BackingField: 1
   - <Id>k__BackingField: turret_projectile_base_maximum_health_flat_1
     <StatId>k__BackingField: {fileID: 11400000, guid: 0056aaa4eb48b6d458c89adf5bcf6f83, type: 2}
-    <ImpactType>k__BackingField: 1
-    <Value>k__BackingField: 1
-  - <Id>k__BackingField: turret_projectile_base_size_flat_1
-    <StatId>k__BackingField: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 1
   - <Id>k__BackingField: turret_projectile_base_knockback_power_flat_5
@@ -37,15 +33,20 @@ MonoBehaviour:
     <StatId>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 1800
+  - <Id>k__BackingField: turret_projectile_base_size_flat_1
+    <StatId>k__BackingField: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 1
+  - <Id>k__BackingField: turret_projectile_base_size_percentage_-25
+    <StatId>k__BackingField: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
+    <ImpactType>k__BackingField: 2
+    <Value>k__BackingField: -25
   _statsPreview:
-  - _inspectorValue: 10_damage
+  - _inspectorValue: 1_damage
     <Id>k__BackingField: {fileID: 11400000, guid: 4ab1f9f5c63c2a94d9175bde092e4cb0, type: 2}
-    _value: 10
+    _value: 1
   - _inspectorValue: 1_maximum_health
     <Id>k__BackingField: {fileID: 11400000, guid: 0056aaa4eb48b6d458c89adf5bcf6f83, type: 2}
-    _value: 1
-  - _inspectorValue: 1_size
-    <Id>k__BackingField: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
     _value: 1
   - _inspectorValue: 5_knockback_power
     <Id>k__BackingField: {fileID: 11400000, guid: 54986c30c0fc01145b7f70f9a5275ab2, type: 2}
@@ -53,3 +54,6 @@ MonoBehaviour:
   - _inspectorValue: 1800_movement_speed
     <Id>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
     _value: 1800
+  - _inspectorValue: 0,75_size
+    <Id>k__BackingField: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
+    _value: 0.75
