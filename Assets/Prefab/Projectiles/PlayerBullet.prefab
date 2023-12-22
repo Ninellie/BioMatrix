@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5384938256212642916}
   - component: {fileID: 156745283301569288}
   m_Layer: 7
-  m_Name: PlayerFirearmBullet
+  m_Name: PlayerBullet
   m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
