@@ -4,18 +4,19 @@ namespace Assets.Scripts.Core.Sets
 {
     public class TransformThing : MonoBehaviour
     {
+        public Transform Transform { get; private set; }
+
         public TransformRuntimeSet runtimeSet;
-        public Transform myTransform;
 
         private void OnEnable()
         {
-            if (myTransform == null) myTransform = transform;
+            if (Transform == null) Transform = transform;
             runtimeSet.Add(this);
         }
 
         private void OnDisable()
         {
-            if (myTransform == null) myTransform = transform;
+            if (Transform == null) Transform = transform;
             runtimeSet.Remove(this);
         }
     }

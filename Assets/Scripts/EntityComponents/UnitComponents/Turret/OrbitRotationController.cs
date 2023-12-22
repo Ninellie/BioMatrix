@@ -43,7 +43,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Turret
             {
                 var fi = CurrentAngle * Mathf.Deg2Rad;
                 var nextPosition = _circle.GetPointOn(_orbitRadius, _attractionPoint.position, fi);
-                o.myTransform.position = nextPosition;
+                o.Transform.position = nextPosition;
                 CurrentAngle += gap;
             }
         }
