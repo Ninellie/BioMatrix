@@ -121,26 +121,11 @@ namespace Assets.Scripts.FirearmComponents
                 _currentTarget = null;
                 return;
             }
-            var nearestTarget = GetNearestPlayerTarget();
+            var nearestTarget = _visibleEnemies.GetNearestToPosition(_myTransform.position);
             if (_currentTarget == nearestTarget) return;
             _currentTarget.RemoveFromTarget();
             _currentTarget = nearestTarget;
             _currentTarget.TakeAsTarget();
-        }
-
-        private PlayerTarget GetNearestPlayerTarget()
-        {
-            var distanceToNearestTarget = Mathf.Infinity;
-            PlayerTarget nearestTarget = null;
-            foreach (var target in _visibleEnemies.items)
-            {
-                var distance = Vector2.Distance(_myTransform.position, target.transform.position);
-                if (!(distance < distanceToNearestTarget)) continue;
-                distanceToNearestTarget = distance;
-                nearestTarget = target;
-            }
-
-            return nearestTarget;
         }
     }
 }
