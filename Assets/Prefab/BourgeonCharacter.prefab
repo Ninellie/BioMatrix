@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3413330488195407646}
   - component: {fileID: 202481230114101479}
   - component: {fileID: 8757258444490810664}
+  - component: {fileID: 5776432676032978040}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -245,10 +246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -270,6 +267,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &5776432676032978040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44642755910075257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &313183262811288912
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +313,7 @@ GameObject:
   - component: {fileID: 6623400843924591646}
   - component: {fileID: 4080034774276538195}
   - component: {fileID: 2038190637845162277}
+  - component: {fileID: 8802121266782349679}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -515,10 +545,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -540,6 +566,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &8802121266782349679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313183262811288912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &487578052626847900
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,6 +776,7 @@ GameObject:
   - component: {fileID: 5313460231051451112}
   - component: {fileID: 5630270187191962382}
   - component: {fileID: 76251792716728202}
+  - component: {fileID: 2393289914487622858}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -949,10 +1008,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -974,6 +1029,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &2393289914487622858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576757564335746692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1032199579801405084
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,6 +1075,7 @@ GameObject:
   - component: {fileID: 4559069996748387565}
   - component: {fileID: 4484546327341782024}
   - component: {fileID: 8376562732469794394}
+  - component: {fileID: 4908969987412549520}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -1219,10 +1307,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -1244,6 +1328,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &4908969987412549520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032199579801405084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1193785505335798865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,6 +1374,7 @@ GameObject:
   - component: {fileID: 274753270156676504}
   - component: {fileID: 6631146959955022898}
   - component: {fileID: 6530734687728909913}
+  - component: {fileID: 4798213991460892226}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -1489,10 +1606,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -1514,6 +1627,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &4798213991460892226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193785505335798865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1345549649931436096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1664,6 +1809,7 @@ GameObject:
   - component: {fileID: 248095697071827148}
   - component: {fileID: 9031415861721937951}
   - component: {fileID: 4104796962233296460}
+  - component: {fileID: 1797999263368073796}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -1895,10 +2041,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -1920,6 +2062,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &1797999263368073796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510421566835544052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2396013557919642239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,6 +2108,7 @@ GameObject:
   - component: {fileID: 8648181075427539844}
   - component: {fileID: 1163984949006956145}
   - component: {fileID: 4448301837244258267}
+  - component: {fileID: 5341166086908965566}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -2165,10 +2340,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -2190,6 +2361,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &5341166086908965566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2396013557919642239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2416516072460972642
 GameObject:
   m_ObjectHideFlags: 0
@@ -2204,6 +2407,7 @@ GameObject:
   - component: {fileID: 7586934690198390731}
   - component: {fileID: 6227941358143855126}
   - component: {fileID: 3960135466400415859}
+  - component: {fileID: 3674966282371875995}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -2435,10 +2639,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -2460,6 +2660,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &3674966282371875995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2416516072460972642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2547536245516312478
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,6 +2706,7 @@ GameObject:
   - component: {fileID: 3206122046398338424}
   - component: {fileID: 6890080076751605182}
   - component: {fileID: 5161124975622592140}
+  - component: {fileID: 3356589116459218664}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -2705,10 +2938,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -2730,6 +2959,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &3356589116459218664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2547536245516312478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2595094624643722788
 GameObject:
   m_ObjectHideFlags: 0
@@ -8159,6 +8420,7 @@ GameObject:
   - component: {fileID: 7862581786915339073}
   - component: {fileID: 8616509542925770353}
   - component: {fileID: 7801868291671450202}
+  - component: {fileID: 7549137389479661235}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -8390,10 +8652,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -8415,6 +8673,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &7549137389479661235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4597207308789088821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4923967404165153473
 GameObject:
   m_ObjectHideFlags: 0
@@ -8429,6 +8719,7 @@ GameObject:
   - component: {fileID: 383208767017045513}
   - component: {fileID: 7013447888810616087}
   - component: {fileID: 2407408738774022876}
+  - component: {fileID: 8382165957950149851}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -8660,10 +8951,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -8685,6 +8972,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &8382165957950149851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4923967404165153473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5003585331910008766
 GameObject:
   m_ObjectHideFlags: 0
@@ -8963,6 +9282,7 @@ GameObject:
   - component: {fileID: 5331070952515067138}
   - component: {fileID: 6129247255390200093}
   - component: {fileID: 96935808742709246}
+  - component: {fileID: 8713222359486288338}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -9194,10 +9514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -9219,6 +9535,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &8713222359486288338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5682290518634560308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6131040616743987141
 GameObject:
   m_ObjectHideFlags: 0
@@ -9318,6 +9666,7 @@ GameObject:
   - component: {fileID: 4318938078668574876}
   - component: {fileID: 130169378838999202}
   - component: {fileID: 460807759810811991}
+  - component: {fileID: 1601663003133363570}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -9549,10 +9898,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -9574,6 +9919,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &1601663003133363570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6379216023277502344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6671026415413744665
 GameObject:
   m_ObjectHideFlags: 0
@@ -9657,6 +10034,7 @@ GameObject:
   - component: {fileID: 9181375563741527207}
   - component: {fileID: 1396565434505894665}
   - component: {fileID: 3238279934873688460}
+  - component: {fileID: 6876763002817202286}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -9888,10 +10266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -9913,6 +10287,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &6876763002817202286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7340959751002419236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7527155186391727686
 GameObject:
   m_ObjectHideFlags: 0
@@ -9927,6 +10333,7 @@ GameObject:
   - component: {fileID: 5798762186253123657}
   - component: {fileID: 5917531990491897326}
   - component: {fileID: 3071435351095440575}
+  - component: {fileID: 308273717064212731}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -10158,10 +10565,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -10183,6 +10586,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &308273717064212731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7527155186391727686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4484546327341782024}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7539270031280201737
 GameObject:
   m_ObjectHideFlags: 0
