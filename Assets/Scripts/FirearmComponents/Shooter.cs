@@ -1,17 +1,15 @@
-using System.Collections;
 using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using UnityEngine;
 
 namespace Assets.Scripts.FirearmComponents
 {
-    public class TurretFirearm : MonoBehaviour
+    public class Shooter : MonoBehaviour
     {
         [Header("Ammo")]
         [SerializeField] private GameObject _ammo;
         [Space]
         [Header("Stats")]
-        [SerializeField] private FloatReference _attackSpeed;
         [SerializeField] private FloatReference _projectilesPerAttack;
         [SerializeField] private FloatReference _projectileSpread;
 
@@ -37,36 +35,22 @@ namespace Assets.Scripts.FirearmComponents
         private Transform _transform;
         private Aim _aim;
 
-        private void OnEnable()
+        public void Shoot()
         {
-            StartCoroutine(Co_Shoot());
-        }
+            var projectiles = GetProjectiles();
+            var shootDirection = Aim.GetDirection();
+            var projCount = projectiles.Length;
+            var fireAngle = _projectileSpread * (projCount - 1);
+            var halfFireAngleRad = fireAngle * 0.5f * Mathf.Deg2Rad;
+            var leftDirection = MathFirearm.Rotate(shootDirection, -halfFireAngleRad);
+            var actualShotDirection = leftDirection;
 
-        private void OnDisable()
-        {
-            StopAllCoroutines();
-        }
-
-        private IEnumerator Co_Shoot()
-        {
-            while (true)
+            foreach (var projectile in projectiles)
             {
-                yield return new WaitForSeconds(1f / _attackSpeed);
-                var projectiles = GetProjectiles();
-                var shootDirection = Aim.GetDirection();
-                var projCount = projectiles.Length;
-                var fireAngle = _projectileSpread * (projCount - 1);
-                var halfFireAngleRad = fireAngle * 0.5f * Mathf.Deg2Rad;
-                var leftDirection = MathFirearm.Rotate(shootDirection, -halfFireAngleRad);
-                var actualShotDirection = leftDirection;
-
-                foreach (var projectile in projectiles)
-                {
-                    var proj = projectile.GetComponent<ProjectileMovementController>();
-                    proj.SetDirection(actualShotDirection);
-                    var launchAngle = _projectileSpread * Mathf.Deg2Rad;
-                    actualShotDirection = MathFirearm.Rotate(actualShotDirection, launchAngle);
-                }
+                var proj = projectile.GetComponent<ProjectileMovementController>();
+                proj.SetDirection(actualShotDirection);
+                var launchAngle = _projectileSpread * Mathf.Deg2Rad;
+                actualShotDirection = MathFirearm.Rotate(actualShotDirection, launchAngle);
             }
         }
 
