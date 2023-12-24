@@ -77,15 +77,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &1999913890069923387
@@ -130,11 +130,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -347,15 +347,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &8465864199369718990
@@ -400,11 +400,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -781,15 +781,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &4530034406785253186
@@ -834,11 +834,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1051,15 +1051,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &562645122565177552
@@ -1104,11 +1104,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1321,15 +1321,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &4132956120469187182
@@ -1374,11 +1374,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1727,15 +1727,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &3233860681172641698
@@ -1780,11 +1780,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1997,15 +1997,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &3296892217711217112
@@ -2050,11 +2050,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -2267,15 +2267,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &3222240533948389793
@@ -2320,11 +2320,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -2537,15 +2537,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &1355570826392896252
@@ -2590,11 +2590,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -8222,15 +8222,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &7166849898017744635
@@ -8275,11 +8275,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -8492,15 +8492,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &3329822309128491836
@@ -8545,11 +8545,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -9026,15 +9026,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &6158567070475245787
@@ -9079,11 +9079,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -9381,15 +9381,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &971001528786980250
@@ -9434,11 +9434,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -9720,15 +9720,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &6795364219330184846
@@ -9773,11 +9773,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -9990,15 +9990,15 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80d81b4e34197e24b9300e6857e5ae84, type: 3}
-  m_Color: {r: 1, g: 0.54660994, b: 0, a: 0.7058824}
+  m_Sprite: {fileID: -8582105753250322470, guid: 18e94ffbea029ec4db5063bf39670286, type: 3}
+  m_Color: {r: 0, g: 0.60586303, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!96 &9170072427811266085
@@ -10043,11 +10043,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -10641,6 +10641,10 @@ PrefabInstance:
     - target: {fileID: 6515404101765844687, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798056590901079273, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
+      propertyPath: orthographic size
+      value: 280
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
