@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -2438047304560794583}
   - component: {fileID: 2120831584645213085}
   - component: {fileID: -2428173502289445794}
+  - component: {fileID: 2300236971345187424}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -98,7 +99,7 @@ TrailRenderer:
   m_GameObject: {fileID: 9206584794608382483}
   m_Enabled: 1
   m_CastShadows: 0
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 0
@@ -130,11 +131,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: -1
-  m_Time: 0.7
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 25
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -245,10 +246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
-  _attackSpeed:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -270,3 +267,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &2300236971345187424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206584794608382483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2120831584645213085}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
