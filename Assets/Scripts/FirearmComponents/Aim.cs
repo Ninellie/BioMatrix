@@ -29,6 +29,11 @@ namespace Assets.Scripts.FirearmComponents
         private void OnDrawGizmos()
         {
             Gizmos.DrawRay(Transform.position, _direction);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawRay(_transform.position, Vector2.up * _radius);
+            Gizmos.DrawRay(_transform.position, Vector2.left * _radius);
+            Gizmos.DrawRay(_transform.position, Vector2.right * _radius);
+            Gizmos.DrawRay(_transform.position, Vector2.down * _radius);
         }
 
         public Vector2 GetDirection()
