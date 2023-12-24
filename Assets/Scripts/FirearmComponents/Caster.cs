@@ -37,8 +37,8 @@ namespace Assets.Scripts.FirearmComponents
                 switch (_mode)
                 {
                     case CastMode.BeforeDelay:
-                        yield return new WaitForSeconds(1f / _castsPerSecond);
                         _onCast.Invoke();
+                        yield return new WaitForSeconds(1f / _castsPerSecond);
                         break;
                     case CastMode.AfterDelay:
                         yield return new WaitForSeconds(1f / _castsPerSecond);
