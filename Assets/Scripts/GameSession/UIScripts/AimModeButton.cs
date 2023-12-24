@@ -1,5 +1,4 @@
 using System;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using TMPro;
 using UnityEngine;
 
