@@ -17,8 +17,8 @@ MonoBehaviour:
   _baseStatSources: {fileID: 11400000, guid: 076f046dbf5783c45bdb78c17ec47bfd, type: 2}
   _stats:
   - {fileID: 11400000, guid: 248715d4cf4403b4f90edc4d038260f8, type: 2}
-  - {fileID: 11400000, guid: edce6b12855c9764190af9b5e42faa7a, type: 2}
   - {fileID: 11400000, guid: f0dfd3e2d3dec044faddff411d16dab6, type: 2}
+  - {fileID: 11400000, guid: edce6b12855c9764190af9b5e42faa7a, type: 2}
   _preview:
   - _inspectorValue: 3_maximum_layers
     <Id>k__BackingField: {fileID: 11400000, guid: 97fa34824b46a8e499f964d334c3f02e, type: 2}
