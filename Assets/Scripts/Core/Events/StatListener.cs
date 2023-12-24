@@ -10,20 +10,8 @@ namespace Assets.Scripts.Core.Events
         public StatVariable statChangedEvent;
 
         [Tooltip("Response to invoke when stat value changes")]
-        public UnityEvent<float> statValueResponse;
-        public UnityEvent response;
+        public UnityEvent<float> onChange;
 
-        /*
-     * Size
-     * MagnetismRadius
-     *
-     * Player reserves
-     * Life onEdge
-     * Life decrease
-     * Life on zero
-     *
-     * Last ammo
-     */
 
         private void OnEnable()
         {
@@ -37,8 +25,7 @@ namespace Assets.Scripts.Core.Events
 
         public void OnEventRaised()
         {
-            response.Invoke();
-            statValueResponse.Invoke(statChangedEvent.value);
+            onChange.Invoke(statChangedEvent.value);
         }
     }
 }
