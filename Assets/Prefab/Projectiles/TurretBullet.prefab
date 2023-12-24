@@ -57,6 +57,7 @@ MonoBehaviour:
     constantValue: {fileID: 2741946790039367102}
     variable: {fileID: 0}
   _refillOnStart: 1
+  _refillOnEnable: 1
   _currentValue:
     useConstant: 1
     constantValue: 1
