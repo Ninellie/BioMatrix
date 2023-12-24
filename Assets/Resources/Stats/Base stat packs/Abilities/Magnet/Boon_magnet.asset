@@ -17,11 +17,11 @@ MonoBehaviour:
   _newFlatStatSource: {fileID: 0}
   _newPercentageStatSource: {fileID: 0}
   <StatSources>k__BackingField:
-  - <Id>k__BackingField: boon_magnet_base_magnetism_radius_flat_250
+  - <Id>k__BackingField: boon_magnet_base_magnetism_radius_flat_50
     <StatId>k__BackingField: {fileID: 11400000, guid: ab68be734ef4e284d8c10fc21ef91dd4, type: 2}
     <ImpactType>k__BackingField: 1
-    <Value>k__BackingField: 250
+    <Value>k__BackingField: 50
   _statsPreview:
-  - _inspectorValue: 250_magnetism_radius
+  - _inspectorValue: 50_magnetism_radius
     <Id>k__BackingField: {fileID: 11400000, guid: ab68be734ef4e284d8c10fc21ef91dd4, type: 2}
-    _value: 250
+    _value: 50
