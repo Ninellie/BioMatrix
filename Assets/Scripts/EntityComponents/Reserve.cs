@@ -10,6 +10,7 @@ namespace Assets.Scripts.EntityComponents
         [SerializeField] private bool _disableObjectOnEmpty;
         [SerializeField] private GameObjectReference _selfGameObject;
         [SerializeField] private bool _refillOnStart;
+        [SerializeField] private bool _refillOnEnable;
         [SerializeField] private IntReference _currentValue;
         [SerializeField] private StatReference _maximumValue;
         [SerializeField] private int _edgeValue;
@@ -28,6 +29,12 @@ namespace Assets.Scripts.EntityComponents
         private void Start()
         {
             if (!_refillOnStart) return;
+            Fill();
+        }
+
+        private void OnEnable()
+        {
+            if (!_refillOnEnable) return;
             Fill();
         }
 

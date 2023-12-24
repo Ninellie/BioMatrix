@@ -19,7 +19,6 @@ namespace Assets.Scripts.EntityComponents.Resources
         [SerializeField] [Tooltip("Recovering speed in seconds")]private FloatReference _speed;
         [SerializeField] [Min(0)] private float _rate = 1;
         [Header("Response")]
-        [SerializeField] private GameEvent _onRecover;
         [SerializeField] private UnityEvent _onRecoverUnityEvent;
         [Header("Indicator")]
         [SerializeField] private float _recoverValue;
@@ -49,10 +48,6 @@ namespace Assets.Scripts.EntityComponents.Resources
                 if (!(_recoverValue > 1)) continue;
                 _recoverValue = 0f;
                 _onRecoverUnityEvent.Invoke();
-                if (_onRecover != null)
-                {
-                    _onRecover.Raise();
-                }
             }
         }
     }

@@ -15,12 +15,16 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public void Repulse()
         {
             var nearbyEnemies = GetNearbyEnemiesKnockbackControllerList(_radius, _resistancePhysLayer);
-            foreach (var enemy in nearbyEnemies)
+            foreach (var knockbackController in nearbyEnemies)
             {
-                var force = (Vector2)enemy.transform.position - (Vector2)gameObject.transform.position;
+                if (knockbackController == null)
+                {
+                    return;
+                }
+                var force = (Vector2)knockbackController.transform.position - (Vector2)gameObject.transform.position;
                 force.Normalize();
                 force *= _force;
-                enemy.Knockback(force);
+                knockbackController.Knockback(force);
             }
         }
 
