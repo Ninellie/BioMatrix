@@ -25,10 +25,10 @@ MonoBehaviour:
     <StatId>k__BackingField: {fileID: 11400000, guid: dedfaeaa6846fef4a9e93113cf99547d, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 15
-  - <Id>k__BackingField: turret_firearm_base_aiming_radius_flat_300
+  - <Id>k__BackingField: turret_firearm_base_aiming_radius_flat_50
     <StatId>k__BackingField: {fileID: 11400000, guid: 600904a1a8e1267408fc978431776421, type: 2}
     <ImpactType>k__BackingField: 1
-    <Value>k__BackingField: 300
+    <Value>k__BackingField: 50
   - <Id>k__BackingField: turret_firearm_base_shoots_per_second_flat_1
     <StatId>k__BackingField: {fileID: 11400000, guid: 33316e8cac88b9f4b995b4847b8d7ccc, type: 2}
     <ImpactType>k__BackingField: 1
@@ -44,9 +44,9 @@ MonoBehaviour:
   - _inspectorValue: 15_shoot_deflection
     <Id>k__BackingField: {fileID: 11400000, guid: dedfaeaa6846fef4a9e93113cf99547d, type: 2}
     _value: 15
-  - _inspectorValue: 300_aiming_radius
+  - _inspectorValue: 50_aiming_radius
     <Id>k__BackingField: {fileID: 11400000, guid: 600904a1a8e1267408fc978431776421, type: 2}
-    _value: 300
+    _value: 50
   - _inspectorValue: 0,3_shoots_per_second
     <Id>k__BackingField: {fileID: 11400000, guid: 33316e8cac88b9f4b995b4847b8d7ccc, type: 2}
     _value: 0.3
