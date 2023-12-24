@@ -6588,6 +6588,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3465433056705521361}
   - component: {fileID: 4683596646665624519}
+  - component: {fileID: 8280180350120482510}
+  - component: {fileID: 2679880499316441621}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -6656,9 +6658,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 3457769d5bd5ded498c19d37a0aebd5f, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onEmpty:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8302333705149338035}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onEdge:
     m_PersistentCalls:
       m_Calls: []
@@ -6667,10 +6693,104 @@ MonoBehaviour:
       m_Calls: []
   _onDecrease:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5468754606302234528}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.ShieldRepulse,
+          Scripts
+        m_MethodName: Repulse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onIncrease:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8302333705149338035}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &8280180350120482510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3237445613608167782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1806e536365ca554ba8a820c9dd14edc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentValue:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: da63114074c9f624094009a4934fdfac, type: 2}
+  _limiter:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: f0dfd3e2d3dec044faddff411d16dab6, type: 2}
+  _speed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: edce6b12855c9764190af9b5e42faa7a, type: 2}
+  _rate: 1
+  _onRecoverUnityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4683596646665624519}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.Reserve, Scripts
+        m_MethodName: Increase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _recoverValue: 0
+--- !u!114 &2679880499316441621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3237445613608167782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 5108ffc3d2d544d4ea517326ecc59add, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4683596646665624519}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.Reserve, Scripts
+        m_MethodName: Increase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3338516228018739699
 GameObject:
   m_ObjectHideFlags: 0
@@ -7135,7 +7255,6 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 11400000, guid: 3835a6a4b005a24419426e8834c6c267, type: 2}
   _rate: 1
-  _onRecover: {fileID: 11400000, guid: af77f143ac5116943a884b6259d370af, type: 2}
   _onRecoverUnityEvent:
     m_PersistentCalls:
       m_Calls:
@@ -7143,6 +7262,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.Reserve, Scripts
         m_MethodName: Increase
         m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: af77f143ac5116943a884b6259d370af, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
+        m_MethodName: Raise
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8883,6 +9014,7 @@ GameObject:
   - component: {fileID: 9200682735784113171}
   - component: {fileID: 4670619524682703992}
   - component: {fileID: 4256533014902651362}
+  - component: {fileID: 4026748137534962410}
   m_Layer: 7
   m_Name: Magnet
   m_TagString: Magnet
@@ -8901,7 +9033,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4527967170109878041}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8969,6 +9101,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4026748137534962410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5533861175268521056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376f95b5a7f844d41bef4dae1347cfa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statChangedEvent: {fileID: 11400000, guid: b1dc266dbc30b024d9334ac6a3ca1cbb, type: 2}
+  onChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4670619524682703992}
+        m_TargetAssemblyTypeName: UnityEngine.CircleCollider2D, UnityEngine
+        m_MethodName: set_radius
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6131040616743987141
 GameObject:
   m_ObjectHideFlags: 0
@@ -8979,7 +9139,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9184125461883335642}
   - component: {fileID: 5468754606302234528}
-  - component: {fileID: 2542817309981127310}
   m_Layer: 0
   m_Name: Repulser
   m_TagString: Untagged
@@ -9025,35 +9184,6 @@ MonoBehaviour:
     useConstant: 1
     constantValue: 250
     variable: {fileID: 0}
---- !u!114 &2542817309981127310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6131040616743987141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 807aa4bf1d05ffe4583e47d0dd4e57b6, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5468754606302234528}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.ShieldRepulse,
-          Scripts
-        m_MethodName: Repulse
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6356040711029729050
 GameObject:
   m_ObjectHideFlags: 0
