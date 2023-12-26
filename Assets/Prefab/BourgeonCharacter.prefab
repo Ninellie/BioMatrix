@@ -237,6 +237,7 @@ MonoBehaviour:
     constantValue: {fileID: 1345549649931436096}
     variable: {fileID: 0}
   _refillOnStart: 0
+  _refillOnEnable: 0
   _currentValue:
     useConstant: 0
     constantValue: 0
@@ -6633,6 +6634,7 @@ MonoBehaviour:
     constantValue: {fileID: 8302333705149338035}
     variable: {fileID: 0}
   _refillOnStart: 1
+  _refillOnEnable: 0
   _currentValue:
     useConstant: 0
     constantValue: 0
@@ -6698,6 +6700,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.ShieldRepulse,
           Scripts
         m_MethodName: Repulse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 807aa4bf1d05ffe4583e47d0dd4e57b6, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
+        m_MethodName: Raise
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7143,6 +7157,7 @@ MonoBehaviour:
     constantValue: {fileID: 6671026415413744665}
     variable: {fileID: 0}
   _refillOnStart: 1
+  _refillOnEnable: 0
   _currentValue:
     useConstant: 0
     constantValue: 0
@@ -8964,6 +8979,7 @@ MonoBehaviour:
     constantValue: {fileID: 5456599853802512105}
     variable: {fileID: 0}
   _refillOnStart: 0
+  _refillOnEnable: 0
   _currentValue:
     useConstant: 0
     constantValue: 0
