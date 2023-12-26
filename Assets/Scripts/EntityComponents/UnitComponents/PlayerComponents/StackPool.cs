@@ -34,24 +34,42 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private void OnValidate()
         {
-            _active = Mathf.Min(_active, _size);
             if (_transform == null) _transform = transform;
             if (_stack == null) return;
             UpdateSize();
+            _active = Mathf.Clamp(_active, 0, _size);
+            if (_active == _enabled.Count) return;
+            UpdateEnabled();
+        }
+
+        public void DisableAll()
+        {
+            foreach (var activeStack in _enabled)
+            {
+                activeStack.SetActive(false);
+            }
+            _disabled.AddRange(_enabled);
+            _enabled.Clear();
+        }
+
+        public void SetActiveAmount(int amount)
+        {
+            _active = Mathf.Clamp(amount, 0, _size);
+            UpdateEnabled();
         }
 
         public void TryAdd()
         {
-            var stack = _disabled.FirstOrDefault();
-            if (stack == null) return;
-            Add(stack);
+            var disabledObject = _disabled.FirstOrDefault();
+            if (disabledObject == null) return;
+            Add(disabledObject);
         }
 
         public void TryRelease()
         {
-            var stack = _enabled.FirstOrDefault();
-            if (stack == null) return;
-            Release(stack);
+            var enabledObject = _enabled.FirstOrDefault();
+            if (enabledObject == null) return;
+            Release(enabledObject);
         }
 
         private void Add(GameObject stack)
@@ -68,14 +86,32 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             _disabled.Add(stack);
         }
 
-        public void DisableAll()
+        private void UpdateEnabled()
         {
-            foreach (var activeStack in _enabled)
+            var diff = _active - _enabled.Count;
+
+            switch (diff)
             {
-                activeStack.SetActive(false);
+                case 0: return;
+                case > 0:
+                {
+                    while (diff != 0)
+                    {
+                        TryAdd();
+                        diff--;
+                    }
+                    return;
+                }
+                case < 0:
+                {
+                    while (diff != 0)
+                    {
+                        TryRelease();
+                        diff++;
+                    }
+                    return;
+                }
             }
-            _disabled.AddRange(_enabled);
-            _enabled.Clear();
         }
 
         private void UpdateSize()
