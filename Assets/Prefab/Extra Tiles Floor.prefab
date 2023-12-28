@@ -615,9 +615,11 @@ MonoBehaviour:
   _boundsOffset: 1
   _fillingFramesCount: 2
   _delayBetweenFills: 0.5
+  _cageCenter: {fileID: 11400000, guid: 388da9426b617a14f824f381b14395f7, type: 2}
   _tilemap: {fileID: 8708019946152709390}
   _otherTilemap: {fileID: 6331195735364219168}
   _tilemapRenderer: {fileID: 2392754225421575271}
+  _mainCamera: {fileID: 0}
 --- !u!114 &912793447245826550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,6 +641,8 @@ MonoBehaviour:
   _boundsOffset: 0
   _fillingFramesCount: 1
   _delayBetweenFills: 0
+  _cageCenter: {fileID: 11400000, guid: 388da9426b617a14f824f381b14395f7, type: 2}
   _tilemap: {fileID: 8708019946152709390}
   _otherTilemap: {fileID: 6331195735364219168}
   _tilemapRenderer: {fileID: 2392754225421575271}
+  _mainCamera: {fileID: 0}
