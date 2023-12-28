@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1507020806091443200}
-  - component: {fileID: 152214671597476308}
-  - component: {fileID: 3647623100740320189}
   - component: {fileID: 6190751615238500525}
+  - component: {fileID: 152214671597476308}
+  - component: {fileID: 2229368517103696167}
   m_Layer: 0
   m_Name: overload_effect
   m_TagString: Untagged
@@ -35,6 +35,48 @@ Transform:
   - {fileID: 7376492992472968616}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6190751615238500525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713927504165121268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 0135f85defd183047b4287e95ca421c7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 152214671597476308}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.StackPool,
+          Scripts
+        m_MethodName: TryAdd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2229368517103696167}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.CastDelayer,
+          Scripts
+        m_MethodName: Delay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &152214671597476308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,7 +96,7 @@ MonoBehaviour:
   _enabled: []
   _disabled:
   - {fileID: 3525956489131351185}
---- !u!114 &3647623100740320189
+--- !u!114 &2229368517103696167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,31 +105,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 713927504165121268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88c41943cedbfa74b805418dfefc7297, type: 3}
+  m_Script: {fileID: 11500000, guid: ce603147eafc60841b5d0a63f42a419e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pool: {fileID: 152214671597476308}
-  _duration: 3
---- !u!114 &6190751615238500525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 713927504165121268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 0135f85defd183047b4287e95ca421c7, type: 2}
-  response:
+  _time:
+    useConstant: 1
+    constantValue: 3
+    variable: {fileID: 0}
+  _mode: 0
+  _onCast:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3647623100740320189}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.TemporalEffect,
+      - m_Target: {fileID: 152214671597476308}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.StackPool,
           Scripts
-        m_MethodName: TryAdd
+        m_MethodName: DisableAll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
