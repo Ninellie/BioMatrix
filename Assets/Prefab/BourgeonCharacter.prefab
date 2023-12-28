@@ -9529,7 +9529,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5123957160498517559}
   - {fileID: 766516748403551923}
   - {fileID: 4527967170109878041}
   - {fileID: 4561670327453171260}
@@ -9539,6 +9538,7 @@ Transform:
   - {fileID: 4673611999224442329}
   - {fileID: 6913100079162704986}
   - {fileID: 2534296028433598571}
+  - {fileID: 7073313566131968503}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &7452234380026767843
@@ -11171,7 +11171,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1001 &2121387156499142904
+--- !u!1001 &4053847372237575992
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11223,47 +11223,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6798056590901079273, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
-      propertyPath: orthographic size
-      value: 280
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 381442720280931422, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6199953463668126990}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
---- !u!1 &1746136902902609062 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 381442720280931422, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
-  m_PrefabInstance: {fileID: 2121387156499142904}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6199953463668126990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746136902902609062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AssetsPPU: 2
-  m_RefResolutionX: 1920
-  m_RefResolutionY: 1080
-  m_UpscaleRT: 0
-  m_PixelSnapping: 1
-  m_CropFrameX: 0
-  m_CropFrameY: 0
-  m_StretchFill: 0
---- !u!4 &5123957160498517559 stripped
+--- !u!4 &7073313566131968503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6515404101765844687, guid: c97abc87fa32bd841832fc18b6850458, type: 3}
-  m_PrefabInstance: {fileID: 2121387156499142904}
+  m_PrefabInstance: {fileID: 4053847372237575992}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5276462657670466870
 PrefabInstance:
