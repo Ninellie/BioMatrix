@@ -9,7 +9,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         Reset, // Каждый Delay сбрасывает время до _time
         Additive, // Каждый Delay добавляет _time времени до вызова Cast
         Singular, // Пока Cast отложен, Delay ничего не делает
-        All // Каждый Delay ведёт вызывает Cast через время _time
+        Separate // Каждый Delay ведёт вызывает Cast через время _time
     }
     public class CastDelayer : MonoBehaviour // TODO Переместить файл скрипта в более общую директорию
     {
@@ -17,7 +17,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private DelayMode _mode;
         [SerializeField] private UnityEvent _onCast;
 
-        private float _delayTimeSinceLevelLoad;
+        private float _lastDelayTimeSinceLevelLoad;
         private float _delayTime;
 
         /// <summary>
@@ -34,13 +34,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 case DelayMode.Additive:
                     if (!IsInvoking(nameof(Cast)))
                     {
-                        _delayTimeSinceLevelLoad = Time.timeSinceLevelLoad;
+                        _lastDelayTimeSinceLevelLoad = Time.timeSinceLevelLoad;
                         _delayTime = _time;
                         Invoke(nameof(Cast), _delayTime);
                         break;
                     }
-                    var timeDifference = Time.timeSinceLevelLoad - _delayTimeSinceLevelLoad;
-                    _delayTimeSinceLevelLoad = Time.timeSinceLevelLoad;
+                    var timeDifference = Time.timeSinceLevelLoad - _lastDelayTimeSinceLevelLoad;
+                    _lastDelayTimeSinceLevelLoad = Time.timeSinceLevelLoad;
                     _delayTime -= timeDifference;
                     _delayTime += _time;
                     CancelInvoke(nameof(Cast));
@@ -51,7 +51,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                     CancelInvoke(nameof(Cast)); 
                     Invoke(nameof(Cast), _time);
                     break;
-                case DelayMode.All:
+                case DelayMode.Separate:
                     Invoke(nameof(Cast), _time);
                     break;
             }
