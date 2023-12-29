@@ -49,6 +49,11 @@ namespace Assets.Scripts.View
         [Header("Counter text")]
         [SerializeField] private TMP_Text _text;
 
+        private void Start()
+        {
+            UpdateCounter();
+        }
+
         public virtual void UpdateCounter()
         {
             UpdateLabel();

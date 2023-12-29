@@ -29,6 +29,11 @@ namespace Assets.Scripts.View
             SetBackgroundImageColor(_backgroundColor);
         }
 
+        private void Start()
+        {
+            UpdateCounter();
+        }
+
         private void OnValidate()
         {
             SetValueImageColor(_valueColor);
