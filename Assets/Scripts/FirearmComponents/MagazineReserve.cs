@@ -84,6 +84,8 @@ namespace Assets.Scripts.FirearmComponents
                 _value.constantValue = (int)_maxMagazineCapacity.Value;
             else
                 _value.variable.SetValue((int)_maxMagazineCapacity.Value);
+
+            _onChange.Invoke();
         }
     }
 }
