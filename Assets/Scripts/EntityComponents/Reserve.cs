@@ -4,15 +4,24 @@ using UnityEngine.Events;
 
 namespace Assets.Scripts.EntityComponents
 {
+    public enum ReserveAction
+    {
+        None,
+        Empty,
+        Fill,
+        UseInitialValue
+    }
+
     public class Reserve : MonoBehaviour
     {
         [Header("Settings")]
         [SerializeField] private bool _disableObjectOnEmpty;
         [SerializeField] private GameObjectReference _selfGameObject;
-        [SerializeField] private bool _refillOnStart;
-        [SerializeField] private bool _refillOnEnable;
+        [SerializeField] private ReserveAction _startAction;
+        [SerializeField] private ReserveAction _enableAction;
         [SerializeField] private IntReference _currentValue;
         [SerializeField] private StatReference _maximumValue;
+        [SerializeField] private IntReference _initialValue;
         [SerializeField] private int _edgeValue;
         [Header("Events")]
         [SerializeField] private UnityEvent<int> _onChanged;
@@ -28,14 +37,30 @@ namespace Assets.Scripts.EntityComponents
 
         private void Start()
         {
-            if (!_refillOnStart) return;
-            Fill();
+            DoAction(_startAction);
         }
 
         private void OnEnable()
         {
-            if (!_refillOnEnable) return;
-            Fill();
+            DoAction(_enableAction);
+        }
+
+        private void DoAction(ReserveAction action)
+        {
+            switch (action)
+            {
+                case ReserveAction.None:
+                    break;
+                case ReserveAction.Empty:
+                    Empty();
+                    break;
+                case ReserveAction.Fill:
+                    Fill();
+                    break;
+                case ReserveAction.UseInitialValue:
+                    SetValue(_initialValue);
+                    break;
+            }
         }
 
         public void Increase(int amount)
@@ -59,7 +84,7 @@ namespace Assets.Scripts.EntityComponents
 
         public void Empty()
         {
-            Debug.Log($"Health is empty. Disable: {_disableObjectOnEmpty}", this);
+            Debug.Log($"Reserve is empty. Disable: {_disableObjectOnEmpty}", this);
             SetValue(0);
         }
 
@@ -92,7 +117,6 @@ namespace Assets.Scripts.EntityComponents
 
             if (newValue == 0)
             {
-                Debug.Log($"Reserve is empty. Disable: {_disableObjectOnEmpty}", this);
                 _onEmpty.Invoke();
                 if (!_disableObjectOnEmpty) return;
                 _selfGameObject.Value.SetActive(false);
