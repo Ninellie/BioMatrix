@@ -34,11 +34,6 @@ public class CardInfoUIPanel : MonoBehaviour
         var decks = _deckRepository.GetDecks();
         var deck = decks.First(d => d.name.Equals(deckName));
         deck.cards.ToArray()[cardPosition].status = CardStatus.Obtained;
-        var effectNames = deck.cards.ToArray()[cardPosition].effectNames;
-
-        foreach (var effectDescription in effectNames.Select(effectName => _effectsRepository.GetEffectDescriptionByName(effectName)))
-        {
-            _activeCardDescription.text += effectDescription + "\r\n" + "\r\n";
-        }
+        _activeCardDescription.text = deck.cards.ToArray()[cardPosition].description;
     }
 }
