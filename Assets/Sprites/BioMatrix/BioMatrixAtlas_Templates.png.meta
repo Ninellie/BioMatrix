@@ -3,7 +3,7 @@ guid: c533ce4049a478f4db7e253cd8706c49
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -74,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -86,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -98,6 +103,46 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -1101,56 +1146,55 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BioMatrixAtlas_Templates_33: 1350637865
-      BioMatrixAtlas_Templates_42: 1766921868
-      BioMatrixAtlas_Templates_20: 453074581
-      BioMatrixAtlas_Templates_24: 338673666
-      BioMatrixAtlas_Templates_25: 194702863
-      BioMatrixAtlas_Templates_45: -9684152
-      BioMatrixAtlas_Templates_39: 98367004
-      BioMatrixAtlas_Templates_17: -84896693
-      BioMatrixAtlas_Templates_46: -695513332
-      BioMatrixAtlas_Templates_41: 434985045
-      BioMatrixAtlas_Templates_14: -853922781
-      BioMatrixAtlas_Templates_16: 427234957
-      BioMatrixAtlas_Templates_40: -861325128
-      BioMatrixAtlas_Templates_10: 56799511
-      BioMatrixAtlas_Templates_43: 808462548
-      BioMatrixAtlas_Templates_15: 212485721
-      BioMatrixAtlas_Templates_22: 1849749354
-      BioMatrixAtlas_Templates_12: -1219504954
-      BioMatrixAtlas_Templates_11: 1350558129
-      BioMatrixAtlas_Templates_8: -613862419
-      BioMatrixAtlas_Templates_34: 2027208333
-      BioMatrixAtlas_Templates_4: -20553195
-      BioMatrixAtlas_Templates_29: 1050321428
-      BioMatrixAtlas_Templates_23: -1259011906
-      BioMatrixAtlas_Templates_31: 327794856
-      BioMatrixAtlas_Templates_2: 1634604317
       BioMatrixAtlas_Templates_0: 1814699333
-      BioMatrixAtlas_Templates_3: 2084962688
-      BioMatrixAtlas_Templates_30: 1555467130
-      BioMatrixAtlas_Templates_26: -951312699
-      BioMatrixAtlas_Templates_36: -782432698
-      BioMatrixAtlas_Templates_28: 1156644679
-      BioMatrixAtlas_Templates_7: -1726105392
-      BioMatrixAtlas_Templates_13: 756096759
-      BioMatrixAtlas_Templates_38: -1988200932
-      BioMatrixAtlas_Templates_35: -1761634708
-      BioMatrixAtlas_Templates_27: 993212780
-      BioMatrixAtlas_Templates_6: -1077592996
-      BioMatrixAtlas_Templates_37: -1873407904
-      BioMatrixAtlas_Templates_44: 766081336
-      BioMatrixAtlas_Templates_21: -1495242440
-      BioMatrixAtlas_Templates_9: -1172177044
       BioMatrixAtlas_Templates_1: 1146437398
+      BioMatrixAtlas_Templates_10: 56799511
+      BioMatrixAtlas_Templates_11: 1350558129
+      BioMatrixAtlas_Templates_12: -1219504954
+      BioMatrixAtlas_Templates_13: 756096759
+      BioMatrixAtlas_Templates_14: -853922781
+      BioMatrixAtlas_Templates_15: 212485721
+      BioMatrixAtlas_Templates_16: 427234957
+      BioMatrixAtlas_Templates_17: -84896693
       BioMatrixAtlas_Templates_18: -520230436
       BioMatrixAtlas_Templates_19: 147473066
-      BioMatrixAtlas_Templates_5: 871605672
+      BioMatrixAtlas_Templates_2: 1634604317
+      BioMatrixAtlas_Templates_20: 453074581
+      BioMatrixAtlas_Templates_21: -1495242440
+      BioMatrixAtlas_Templates_22: 1849749354
+      BioMatrixAtlas_Templates_23: -1259011906
+      BioMatrixAtlas_Templates_24: 338673666
+      BioMatrixAtlas_Templates_25: 194702863
+      BioMatrixAtlas_Templates_26: -951312699
+      BioMatrixAtlas_Templates_27: 993212780
+      BioMatrixAtlas_Templates_28: 1156644679
+      BioMatrixAtlas_Templates_29: 1050321428
+      BioMatrixAtlas_Templates_3: 2084962688
+      BioMatrixAtlas_Templates_30: 1555467130
+      BioMatrixAtlas_Templates_31: 327794856
       BioMatrixAtlas_Templates_32: 103198890
-  spritePackingTag: 
+      BioMatrixAtlas_Templates_33: 1350637865
+      BioMatrixAtlas_Templates_34: 2027208333
+      BioMatrixAtlas_Templates_35: -1761634708
+      BioMatrixAtlas_Templates_36: -782432698
+      BioMatrixAtlas_Templates_37: -1873407904
+      BioMatrixAtlas_Templates_38: -1988200932
+      BioMatrixAtlas_Templates_39: 98367004
+      BioMatrixAtlas_Templates_4: -20553195
+      BioMatrixAtlas_Templates_40: -861325128
+      BioMatrixAtlas_Templates_41: 434985045
+      BioMatrixAtlas_Templates_42: 1766921868
+      BioMatrixAtlas_Templates_43: 808462548
+      BioMatrixAtlas_Templates_44: 766081336
+      BioMatrixAtlas_Templates_45: -9684152
+      BioMatrixAtlas_Templates_46: -695513332
+      BioMatrixAtlas_Templates_5: 871605672
+      BioMatrixAtlas_Templates_6: -1077592996
+      BioMatrixAtlas_Templates_7: -1726105392
+      BioMatrixAtlas_Templates_8: -613862419
+      BioMatrixAtlas_Templates_9: -1172177044
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
