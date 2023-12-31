@@ -15,6 +15,12 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         }
         protected override Vector2 RawMovementDirection { get; set; }
 
+        private new void OnEnable()
+        {
+            base.OnEnable();
+            _onStoppedEventSended = false;
+        }
+
         private new void FixedUpdate()
         {
             base.FixedUpdate();

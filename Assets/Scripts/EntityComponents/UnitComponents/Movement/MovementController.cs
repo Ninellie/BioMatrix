@@ -41,6 +41,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
             SpeedScale = _baseSpeedScale;
         }
 
+        protected void OnEnable()
+        {
+            SpeedScale = _baseSpeedScale;
+        }
+
         protected void FixedUpdate()
         {
             var t = Time.fixedDeltaTime;
