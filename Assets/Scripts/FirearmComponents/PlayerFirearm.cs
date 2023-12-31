@@ -3,6 +3,7 @@ using Assets.Scripts.Core.Sets;
 using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
+using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Assets.Scripts.GameSession.UIScripts;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace Assets.Scripts.FirearmComponents
         [SerializeField] private Transform _myTransform;
         [SerializeField] private MagazineReserve _magazineReserve;
         [Space] [Header("Settings")]
-        [SerializeField] private GameObject _ammo; // TODO convert to object pool: get disabled projectile and reuse it
+        [SerializeField] private StackPool _ammoPool;
         [SerializeField] private AimMode _aimMode;
         [SerializeField] private Vector2Reference _selfAimDirection;
         [SerializeField] private PlayerTargetRuntimeSet _visibleEnemies;
@@ -69,19 +70,20 @@ namespace Assets.Scripts.FirearmComponents
         {
             _magazineReserve.Pop();
 
-            var projectiles = GetProjectiles();
             var direction = GetShotDirection();
             var projSpread = _maxShootDeflectionAngle;
-            var projCount = projectiles.Length;
+            var projCount = (int)_projectilesPerAttack;
             var fireAngle = projSpread * (projCount - 1);
             var halfFireAngleRad = fireAngle * 0.5f * Mathf.Deg2Rad;
             var leftDirection = MathFirearm.Rotate(direction, -halfFireAngleRad);
             var actualShotDirection = leftDirection;
 
-            foreach (var projectile in projectiles)
+            for (int i = 0; i < projCount; i++)
             {
-                var proj = projectile.GetComponent<ProjectileMovementController>();
-                proj.SetDirection(actualShotDirection);
+                var projectile = _ammoPool.Get();
+                projectile.transform.SetPositionAndRotation(_myTransform.position, _myTransform.rotation);
+                var projectileMovementController = projectile.GetComponent<ProjectileMovementController>();
+                projectileMovementController.SetDirection(actualShotDirection);
                 var launchAngle = _maxShootDeflectionAngle * Mathf.Deg2Rad;
                 actualShotDirection = MathFirearm.Rotate(actualShotDirection, launchAngle);
             }
@@ -94,7 +96,8 @@ namespace Assets.Scripts.FirearmComponents
             var projectiles = new GameObject[(int)_projectilesPerAttack];
             for (var i = 0; i < projectiles.Length; i++)
             {
-                projectiles[i] = Instantiate(_ammo, _myTransform.position, _myTransform.rotation);
+                projectiles[i] = _ammoPool.Get();
+                projectiles[i].transform.SetPositionAndRotation(_myTransform.position, _myTransform.rotation);
             }
             return projectiles;
         }

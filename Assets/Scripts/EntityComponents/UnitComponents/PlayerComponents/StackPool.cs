@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
@@ -13,6 +14,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         [SerializeField] private Transform _transform;
         [SerializeField] private List<GameObject> _enabled;
         [SerializeField] private List<GameObject> _disabled;
+        [SerializeField] private bool _allowGettingActiveObjects;
 
         private void Awake()
         {
@@ -58,6 +60,22 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             UpdateEnabled();
         }
 
+        public GameObject Get()
+        {
+            var disabledObject = _disabled.FirstOrDefault();
+            if (disabledObject == null)
+            {
+                if (_allowGettingActiveObjects)
+                {
+                    var enabledObject = _enabled.FirstOrDefault();
+                    return enabledObject != null ? enabledObject : null;
+                }
+            }
+
+            Add(disabledObject);
+            return disabledObject;
+        }
+
         public void TryAdd()
         {
             var disabledObject = _disabled.FirstOrDefault();
@@ -72,18 +90,18 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             Release(enabledObject);
         }
 
+        public void Release(GameObject stack)
+        {
+            _enabled.Remove(stack);
+            stack.SetActive(false);
+            _disabled.Add(stack);
+        }
+
         private void Add(GameObject stack)
         {
             _disabled.Remove(stack);
             stack.SetActive(true);
             _enabled.Add(stack);
-        }
-
-        private void Release(GameObject stack)
-        {
-            _enabled.Remove(stack);
-            stack.SetActive(false);
-            _disabled.Add(stack);
         }
 
         private void UpdateEnabled()
