@@ -65,11 +65,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             var disabledObject = _disabled.FirstOrDefault();
             if (disabledObject == null)
             {
-                if (_allowGettingActiveObjects)
-                {
-                    var enabledObject = _enabled.FirstOrDefault();
-                    return enabledObject != null ? enabledObject : null;
-                }
+                if (!_allowGettingActiveObjects) return null;
+                var enabledObject = _enabled.FirstOrDefault();
+                return enabledObject != null ? enabledObject : null;
             }
 
             Add(disabledObject);
@@ -92,6 +90,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         public void Release(GameObject stack)
         {
+            if (stack == null) return;
+            if (!stack.activeInHierarchy) return;
             _enabled.Remove(stack);
             stack.SetActive(false);
             _disabled.Add(stack);

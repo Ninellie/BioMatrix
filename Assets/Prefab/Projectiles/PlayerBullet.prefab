@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 401081946869708339}
   - component: {fileID: 5384938256212642916}
   - component: {fileID: 156745283301569288}
+  - component: {fileID: 1466138366467077526}
   m_Layer: 7
   m_Name: PlayerBullet
   m_TagString: PlayerProjectile
@@ -51,13 +52,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01468158b4899aa41a8c5e6e9b8e77bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _disableObjectOnEmpty: 1
+  _disableObjectOnEmpty: 0
   _selfGameObject:
     useConstant: 1
     constantValue: {fileID: 2741946790039367102}
     variable: {fileID: 0}
-  _refillOnStart: 1
-  _refillOnEnable: 1
+  _startAction: 0
+  _enableAction: 2
   _currentValue:
     useConstant: 1
     constantValue: 1
@@ -66,13 +67,30 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 1
     variable: {fileID: 11400000, guid: b06407719bcb34f4890d94cb36e28ee2, type: 2}
+  _initialValue:
+    useConstant: 1
+    constantValue: 0
+    variable: {fileID: 0}
   _edgeValue: 1
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
   _onEmpty:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 72b15cf5bea689e4b841d016f7e5e631, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameObjectGameEvent,
+          Scripts
+        m_MethodName: Raise
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2741946790039367102}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onEdge:
     m_PersistentCalls:
       m_Calls: []
@@ -417,3 +435,22 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 0
+--- !u!114 &1466138366467077526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741946790039367102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d17f67afbd69d844692b329850d3afa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 0
+  onEnable:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisable:
+    m_PersistentCalls:
+      m_Calls: []

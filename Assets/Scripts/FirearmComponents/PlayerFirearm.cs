@@ -91,17 +91,6 @@ namespace Assets.Scripts.FirearmComponents
             _coolDownTimer = 1f / _attackSpeed;
         }
 
-        private GameObject[] GetProjectiles()
-        {
-            var projectiles = new GameObject[(int)_projectilesPerAttack];
-            for (var i = 0; i < projectiles.Length; i++)
-            {
-                projectiles[i] = _ammoPool.Get();
-                projectiles[i].transform.SetPositionAndRotation(_myTransform.position, _myTransform.rotation);
-            }
-            return projectiles;
-        }
-
         private Vector2 GetShotDirection()
         {
             if (_aimMode == AimMode.SelfAim)
