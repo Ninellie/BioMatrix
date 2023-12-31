@@ -44,8 +44,9 @@ namespace Assets.Scripts.SourceStatSystem
         public void UpdateStat(StatId statId, List<StatSourceData> statSources)
         {
             // Считаем значение стата
-            var flatStatSources = statSources.Where(s => s.ImpactType == ImpactType.Flat);
-            var multiplierStatSources = statSources.Where(s => s.ImpactType == ImpactType.Percentage);
+            var sources = statSources.Where(s => s.StatId == statId);
+            var flatStatSources = sources.Where(s => s.ImpactType == ImpactType.Flat);
+            var multiplierStatSources = sources.Where(s => s.ImpactType == ImpactType.Percentage);
             var flatSum = flatStatSources.Sum(s => s.Value);
             var multiplierSum = multiplierStatSources.Sum(s => s.Value);
             var updatedStatValue = flatSum * (1 + multiplierSum * 0.01f);
