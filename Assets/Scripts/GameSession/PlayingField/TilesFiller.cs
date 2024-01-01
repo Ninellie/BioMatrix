@@ -39,6 +39,20 @@ namespace Assets.Scripts.GameSession.PlayingField
             StopCoroutine(Fill());
         }
 
+        public void FillImmediately(IEnumerable<Vector3Int> positionsToFill)
+        {
+            foreach (var position in positionsToFill)
+            {
+                if (_alwaysFill)
+                {
+                    _tilemap.SetTile(position, _tile);
+                    continue;
+                }
+                if (_random.Next(0, 100) > _fillingPercent) continue;
+                _tilemap.SetTile(position, _tile);
+            }
+        }
+
         private IEnumerator Fill()
         {
             while (true)

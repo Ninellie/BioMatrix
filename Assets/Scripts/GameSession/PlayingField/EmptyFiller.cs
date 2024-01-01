@@ -94,9 +94,9 @@ namespace Assets.Scripts.GameSession.PlayingField
                 j < expandedBounds.size.y - 1 && j > 1) return;
 
             var position = new Vector3Int(i + expandedBounds.x, j + expandedBounds.y);
-            //if (_filledPositions.Contains(position)) return;
-            //_filledPositions.Add(position);
+
             if (_tilemap.GetTile(position) != null) return;
+
             foreach (var tilesFiller in _fillers)
             {
                 tilesFiller.PositionsToFill.Enqueue(position);
@@ -109,19 +109,20 @@ namespace Assets.Scripts.GameSession.PlayingField
             Debug.Log($"FILL BOUNDS {bounds}");
             Debug.Log($"positions {bounds.allPositionsWithin}");
 
+            var positions = new List<Vector3Int>();
+
             foreach (var position in bounds.allPositionsWithin)
             {
                 Debug.Log($"Each");
-                //if (_filledPositions.Contains(position)) continue;
-                //Debug.Log($"new pos");
-                //_filledPositions.Add(position);
                 if (_tilemap.GetTile(position) != null) continue;
                 Debug.Log($"null tile pos");
-                foreach (var tilesFiller in _fillers)
-                {
-                    Debug.Log($"Send");
-                    tilesFiller.PositionsToFill.Enqueue(position);
-                }
+                positions.Add(position);
+            }
+
+            foreach (var tilesFiller in _fillers)
+            {
+                Debug.Log($"Send");
+                tilesFiller.FillImmediately(positions);
             }
         }
     }

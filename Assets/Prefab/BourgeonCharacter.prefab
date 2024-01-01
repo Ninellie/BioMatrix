@@ -8984,7 +8984,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.07450981, g: 0.007843138, b: 0.03137255, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -9641,6 +9641,7 @@ GameObject:
   m_Component:
   - component: {fileID: 885779190258261260}
   - component: {fileID: 7452234380026767843}
+  - component: {fileID: 6259478188467257432}
   m_Layer: 7
   m_Name: BourgeonCharacter
   m_TagString: Player
@@ -9700,6 +9701,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &6259478188467257432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671026415413744665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57454ad7f9757574bba71751fd0b58d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _variable: {fileID: 11400000, guid: 18fcfc9320061484aa6999e6fc37ba7f, type: 2}
+  _transform: {fileID: 885779190258261260}
 --- !u!1 &7331461903607211565
 GameObject:
   m_ObjectHideFlags: 0
