@@ -6,9 +6,12 @@ namespace Assets.Scripts.Core.Variables.Components
     {
         [SerializeField] private Vector2Variable _variable;
         [SerializeField] private Transform _transform;
+
         private void Awake()
         {
             if (_transform == null) _transform = transform;
+            if (_variable == null) return;
+            _variable.SetValue(_transform.position);
         }
 
         private void FixedUpdate()

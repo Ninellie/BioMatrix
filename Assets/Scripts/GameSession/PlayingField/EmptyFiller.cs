@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Core.Variables.References;
-using UnityEditor.Build;
+using Unity.Collections;
+using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -13,29 +15,32 @@ namespace Assets.Scripts.GameSession.PlayingField
         [SerializeField] private int _margins = 6;
 
         [SerializeField] private Tilemap _tilemap;
-        [SerializeField] private TilesFiller _filler;
+        [SerializeField] private TilesFiller[] _fillers;
 
         [SerializeField] private List<Vector3Int> _passedPositions;
         [SerializeField] private Vector3Int _cellInCenterOfCam;
 
-        private List<Vector3Int> _filledPositions;
+        //private List<Vector3Int> _filledPositions;
         private Vector3Int _boundsSize;
 
         private void Awake()
         {
-            _filledPositions = new List<Vector3Int>();
+            //_filledPositions = new List<Vector3Int>();
             _passedPositions = new List<Vector3Int>();
         }
 
         private void Start()
         {
             _cellInCenterOfCam = _tilemap.WorldToCell(_cameraCenter.Value);
-            SendEmptyTilesInCameraBoundsToFillingQueue();
+            SendBoundsToFilling();
         }
 
         private void FixedUpdate()
         {
-            FindEmptyTiles();
+            if (IsFillingRequired())
+            {
+                SendEmptyTilePositionsToFilling();
+            }
         }
 
         private void OnValidate()
@@ -45,21 +50,21 @@ namespace Assets.Scripts.GameSession.PlayingField
 
         private void DefineBounds()
         {
-            var width = _screenPixelSize.x /= (int)_tilemap.cellSize.x;
-            var height = _screenPixelSize.y /= (int)_tilemap.cellSize.y;
+            var width = _screenPixelSize.x / (int)_tilemap.cellSize.x;
+            var height = _screenPixelSize.y / (int)_tilemap.cellSize.y;
             width += _margins;
             height += _margins;
             _boundsSize = new Vector3Int(width, height, 1);
         }
 
-        private void FindEmptyTiles()
+        private bool IsFillingRequired()
         {
             var currentCell = _tilemap.WorldToCell(_cameraCenter.Value);
-            if (_cellInCenterOfCam == currentCell) return;
+            if (_cellInCenterOfCam == currentCell) return false;
             _cellInCenterOfCam = currentCell;
-            if (_passedPositions.Contains(_cellInCenterOfCam)) return;
+            if (_passedPositions.Contains(_cellInCenterOfCam)) return false;
             _passedPositions.Add(_cellInCenterOfCam);
-            SendEmptyTilesInFrameCameraToFillingQueue();
+            return true;
         }
 
         private BoundsInt GetBounds()
@@ -70,7 +75,7 @@ namespace Assets.Scripts.GameSession.PlayingField
             return new BoundsInt(boundsIntOrigin, _boundsSize);
         }
 
-        private void SendEmptyTilesInFrameCameraToFillingQueue()
+        private void SendEmptyTilePositionsToFilling()
         {
             var expandedBounds = GetBounds();
 
@@ -78,29 +83,45 @@ namespace Assets.Scripts.GameSession.PlayingField
             {
                 for (int j = 0; j < expandedBounds.size.y; j++)
                 {
-                    if (i < expandedBounds.size.x - 1
-                     && i > 1
-                     && j < expandedBounds.size.y - 1
-                     && j > 1) continue;
-                    var position = new Vector3Int(i + (int)expandedBounds.center.x, j + (int)expandedBounds.center.y);
-                    if (_filledPositions.Contains(position)) continue;
-                    _filledPositions.Add(position);
-                    if (_tilemap.GetTile(position) != null) continue;
-                    _filler.PositionsToFill.Enqueue(position);
+                    TrySendPositionToFill(i, expandedBounds, j);
                 }
             }
         }
 
-        private void SendEmptyTilesInCameraBoundsToFillingQueue()
+        private void TrySendPositionToFill(int i, BoundsInt expandedBounds, int j)
+        {
+            if (i < expandedBounds.size.x - 1 && i > 1 &&
+                j < expandedBounds.size.y - 1 && j > 1) return;
+
+            var position = new Vector3Int(i + expandedBounds.x, j + expandedBounds.y);
+            //if (_filledPositions.Contains(position)) return;
+            //_filledPositions.Add(position);
+            if (_tilemap.GetTile(position) != null) return;
+            foreach (var tilesFiller in _fillers)
+            {
+                tilesFiller.PositionsToFill.Enqueue(position);
+            }
+        }
+
+        private void SendBoundsToFilling()
         {
             var bounds = GetBounds();
+            Debug.Log($"FILL BOUNDS {bounds}");
+            Debug.Log($"positions {bounds.allPositionsWithin}");
 
             foreach (var position in bounds.allPositionsWithin)
             {
-                if (_filledPositions.Contains(position)) continue;
-                _filledPositions.Add(position);
+                Debug.Log($"Each");
+                //if (_filledPositions.Contains(position)) continue;
+                //Debug.Log($"new pos");
+                //_filledPositions.Add(position);
                 if (_tilemap.GetTile(position) != null) continue;
-                _filler.PositionsToFill.Enqueue(position);
+                Debug.Log($"null tile pos");
+                foreach (var tilesFiller in _fillers)
+                {
+                    Debug.Log($"Send");
+                    tilesFiller.PositionsToFill.Enqueue(position);
+                }
             }
         }
     }

@@ -15,9 +15,14 @@ namespace Assets.Scripts.GameSession.PlayingField
         [SerializeField] private int _tilesPerStep;
 
         [SerializeField] private Vector3Int[] _positionsToFill;
-        public Queue<Vector3Int> PositionsToFill { get; } = new();
+        public Queue<Vector3Int> PositionsToFill { get; set; }
 
         private readonly System.Random _random = new();
+
+        private void Awake()
+        {
+            PositionsToFill = new Queue<Vector3Int>();
+        }
 
         private void OnGUI()
         {
@@ -45,12 +50,10 @@ namespace Assets.Scripts.GameSession.PlayingField
                     var nextPosition = PositionsToFill.Dequeue();
                     if (_alwaysFill)
                     {
-                        Debug.Log("tile set", this);
                         _tilemap.SetTile(nextPosition, _tile);
                         continue;
                     }
                     if (_random.Next(0, 100) > _fillingPercent) continue;
-                    Debug.Log("tile set", this);
                     _tilemap.SetTile(nextPosition, _tile);
                 }
             }
