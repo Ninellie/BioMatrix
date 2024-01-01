@@ -6,7 +6,7 @@ namespace Assets.Scripts.GameSession.PlayingField
 {
     public static class TilesCameraHelper
     {
-        private const int CellBoundsPadding = 5;
+        private const int CellBoundsPadding = 6;
 
         public static TileBase GetRandomTile(TileData[] tiles)
         {
@@ -28,9 +28,12 @@ namespace Assets.Scripts.GameSession.PlayingField
 
         public static BoundsInt GetBoundsIntFromCamera(UnityEngine.Camera camera, GridLayout tilemap, Vector3 chunkCullingBounds)
         {
+            var width = 960;
+            var height = 540;
+
             var boundsIntSize = new Vector3Int(
-                (((int)camera.pixelRect.width + (int)chunkCullingBounds.x) / (int)tilemap.cellSize.x) + CellBoundsPadding,
-                (((int)camera.pixelRect.height + (int)chunkCullingBounds.y) / (int)tilemap.cellSize.y) + CellBoundsPadding,
+                ((width + (int)chunkCullingBounds.x) / (int)tilemap.cellSize.x) + CellBoundsPadding,
+                ((height + (int)chunkCullingBounds.y) / (int)tilemap.cellSize.y) + CellBoundsPadding,
                 1);
             var camCenterWorld = camera.ScreenToWorldPoint(camera.pixelRect.center);
             var cellInCenterOfCam = tilemap.WorldToCell(camCenterWorld);

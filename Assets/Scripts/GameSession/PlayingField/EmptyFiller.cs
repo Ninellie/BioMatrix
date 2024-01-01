@@ -1,81 +1,106 @@
 using System.Collections.Generic;
+using Assets.Scripts.Core.Variables.References;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static Assets.Scripts.GameSession.PlayingField.TilesCameraHelper;
 
 namespace Assets.Scripts.GameSession.PlayingField
 {
     public class EmptyFiller : MonoBehaviour
     {
-        [SerializeField]
-        private TileData[] _tiles;
-        
-        [SerializeField]
-        [Range(0, 100)]
-        private float _fillingPercent;
+        [SerializeField] private Vector2Reference _cameraCenter;
+        [SerializeField] private Vector2Int _screenPixelSize = new(960, 540);
+        [SerializeField] private int _margins = 6;
 
         [SerializeField] private Tilemap _tilemap;
-        [SerializeField] private TilemapRenderer _tilemapRenderer;
+        [SerializeField] private TilesFiller _filler;
 
-        private UnityEngine.Camera _mainCamera;
-        private Vector3Int _cellInCenterOfCam;
-        private List<Vector3Int>_filledPositions;
+        [SerializeField] private List<Vector3Int> _passedPositions;
+        [SerializeField] private Vector3Int _cellInCenterOfCam;
+
+        private List<Vector3Int> _filledPositions;
+        private Vector3Int _boundsSize;
 
         private void Awake()
         {
-            _mainCamera = UnityEngine.Camera.main;
-            //_tilemap = GetComponentInChildren<Tilemap>();
-            //_tilemapRenderer = GetComponentInChildren<TilemapRenderer>();
             _filledPositions = new List<Vector3Int>();
+            _passedPositions = new List<Vector3Int>();
         }
 
         private void Start()
         {
-            var camCenterWorld = _mainCamera.ScreenToWorldPoint(_mainCamera.pixelRect.center);
-            _cellInCenterOfCam = _tilemap.WorldToCell(camCenterWorld);
-            FillEmptyTilesInCameraBounds();
+            _cellInCenterOfCam = _tilemap.WorldToCell(_cameraCenter.Value);
+            SendEmptyTilesInCameraBoundsToFillingQueue();
         }
-        
-        private void Update()
+
+        private void FixedUpdate()
         {
-            var camCenterWorld = _mainCamera.ScreenToWorldPoint(_mainCamera.pixelRect.center);
-            var currentCell = _tilemap.WorldToCell(camCenterWorld);
-            if (_cellInCenterOfCam != currentCell)
+            FindEmptyTiles();
+        }
+
+        private void OnValidate()
+        {
+            DefineBounds();
+        }
+
+        private void DefineBounds()
+        {
+            var width = _screenPixelSize.x /= (int)_tilemap.cellSize.x;
+            var height = _screenPixelSize.y /= (int)_tilemap.cellSize.y;
+            width += _margins;
+            height += _margins;
+            _boundsSize = new Vector3Int(width, height, 1);
+        }
+
+        private void FindEmptyTiles()
+        {
+            var currentCell = _tilemap.WorldToCell(_cameraCenter.Value);
+            if (_cellInCenterOfCam == currentCell) return;
+            _cellInCenterOfCam = currentCell;
+            if (_passedPositions.Contains(_cellInCenterOfCam)) return;
+            _passedPositions.Add(_cellInCenterOfCam);
+            SendEmptyTilesInFrameCameraToFillingQueue();
+        }
+
+        private BoundsInt GetBounds()
+        {
+            var width = _cellInCenterOfCam.x - _boundsSize.x / 2;
+            var height = _cellInCenterOfCam.y - _boundsSize.y / 2;
+            Vector3Int boundsIntOrigin = new(width, height, 0);
+            return new BoundsInt(boundsIntOrigin, _boundsSize);
+        }
+
+        private void SendEmptyTilesInFrameCameraToFillingQueue()
+        {
+            var expandedBounds = GetBounds();
+
+            for (int i = 0; i < expandedBounds.size.x; i++)
             {
-                FillEmptyTilesInCameraBounds();
+                for (int j = 0; j < expandedBounds.size.y; j++)
+                {
+                    if (i < expandedBounds.size.x - 1
+                     && i > 1
+                     && j < expandedBounds.size.y - 1
+                     && j > 1) continue;
+                    var position = new Vector3Int(i + (int)expandedBounds.center.x, j + (int)expandedBounds.center.y);
+                    if (_filledPositions.Contains(position)) continue;
+                    _filledPositions.Add(position);
+                    if (_tilemap.GetTile(position) != null) continue;
+                    _filler.PositionsToFill.Enqueue(position);
+                }
             }
-            _cellInCenterOfCam = _tilemap.WorldToCell(camCenterWorld);
         }
 
-        private void FillEmptyTilesInCameraBounds()
+        private void SendEmptyTilesInCameraBoundsToFillingQueue()
         {
-            var boundsInt = GetBoundsIntFromCamera(_mainCamera, _tilemap, _tilemapRenderer.chunkCullingBounds);
-            FillEmptyTiles(_tilemap, boundsInt);
-        }
-
-        private void FillEmptyTiles(Tilemap tilemap, BoundsInt bounds)
-        {
-            var emptyTilePositions = new List<Vector3Int>();
+            var bounds = GetBounds();
 
             foreach (var position in bounds.allPositionsWithin)
             {
-                if (tilemap.GetTile(position) == null && !_filledPositions.Contains(position))
-                {
-                    emptyTilePositions.Add(position);
-                }
-            }
-
-            _filledPositions.AddRange(emptyTilePositions);
-
-            foreach (var position in emptyTilePositions)
-            {
-                var randomTile = GetRandomTile(_tiles);
-
-                var r = Random.Range(0f, 100f);
-                if (r <= _fillingPercent)
-                {
-                    tilemap.SetTile(position, randomTile);
-                }
+                if (_filledPositions.Contains(position)) continue;
+                _filledPositions.Add(position);
+                if (_tilemap.GetTile(position) != null) continue;
+                _filler.PositionsToFill.Enqueue(position);
             }
         }
     }
