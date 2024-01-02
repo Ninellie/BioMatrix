@@ -1,8 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
 using Assets.Scripts.Core.Variables.References;
-using Unity.Collections;
-using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -20,12 +17,10 @@ namespace Assets.Scripts.GameSession.PlayingField
         [SerializeField] private List<Vector3Int> _passedPositions;
         [SerializeField] private Vector3Int _cellInCenterOfCam;
 
-        //private List<Vector3Int> _filledPositions;
         private Vector3Int _boundsSize;
 
         private void Awake()
         {
-            //_filledPositions = new List<Vector3Int>();
             _passedPositions = new List<Vector3Int>();
         }
 
@@ -106,22 +101,17 @@ namespace Assets.Scripts.GameSession.PlayingField
         private void SendBoundsToFilling()
         {
             var bounds = GetBounds();
-            Debug.Log($"FILL BOUNDS {bounds}");
-            Debug.Log($"positions {bounds.allPositionsWithin}");
 
             var positions = new List<Vector3Int>();
 
             foreach (var position in bounds.allPositionsWithin)
             {
-                Debug.Log($"Each");
                 if (_tilemap.GetTile(position) != null) continue;
-                Debug.Log($"null tile pos");
                 positions.Add(position);
             }
 
             foreach (var tilesFiller in _fillers)
             {
-                Debug.Log($"Send");
                 tilesFiller.FillImmediately(positions);
             }
         }
