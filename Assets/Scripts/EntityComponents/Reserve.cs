@@ -84,7 +84,7 @@ namespace Assets.Scripts.EntityComponents
 
         public void Empty()
         {
-            Debug.Log($"Reserve is empty. Disable: {_disableObjectOnEmpty}", this);
+            Debug.Log($"Reserve is empty. Disable: {_disableObjectOnEmpty}");
             SetValue(0);
         }
 
