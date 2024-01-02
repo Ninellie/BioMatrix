@@ -20,23 +20,23 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         }
         public void Resume()
         {
-            Debug.LogWarning("Massage");
+            Debug.LogWarning("Resume in Game End State");
         }
         public void Options()
         {
-            Debug.LogWarning("Massage");
+            Debug.LogWarning("Options in Game End State");
         }
         public void LevelUp()
         {
-            Debug.LogWarning("Massage");
+            Debug.LogWarning("LevelUp in Game End State");
         }
         public void Win()
         {
-            Debug.LogWarning("Massage");
+            Debug.LogWarning("Win in Game End State");
         }
         public void Lose()
         {
-            Debug.LogWarning("Massage");
+            Debug.LogWarning("Lose in Game End State");
         }
     }
 }
