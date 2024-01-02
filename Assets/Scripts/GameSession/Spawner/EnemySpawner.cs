@@ -13,23 +13,23 @@ namespace Assets.Scripts.GameSession.Spawner
         [SerializeField] private EnemyWaveDataPreset _waveDataPreset;
         [SerializeField] private List<EnemySpawnData> _enemiesSpawnData;
         [SerializeField] private int _secondsBetweenWaves;
+        [SerializeField] private Vector2Reference _player;
 
         private readonly Grouping _grouping = new();
         //private readonly Rarity _rarity = new();
         private readonly Circle _circle = new();
-        private Vector2Reference _player;
-        private const int DefaultComplicationValue = 60;
+        //private const int DefaultComplicationValue = 60;
 
-        private int TimerBonus
-        {
-            get
-            {
-                var seconds = Time.timeSinceLevelLoad;
-                if (seconds < DefaultComplicationValue) return 0;
-                var remainder = seconds % DefaultComplicationValue;
-                return (int)(seconds - remainder) / DefaultComplicationValue;
-            }
-        }
+        //private int TimerBonus
+        //{
+        //    get
+        //    {
+        //        var seconds = Time.timeSinceLevelLoad;
+        //        if (seconds < DefaultComplicationValue) return 0;
+        //        var remainder = seconds % DefaultComplicationValue;
+        //        return (int)(seconds - remainder) / DefaultComplicationValue;
+        //    }
+        //}
 
         private void Awake()
         {
