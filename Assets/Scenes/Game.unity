@@ -3864,6 +3864,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 168898427267405455, guid: 9220246068dbc814b83d476f03916742, type: 3}
+      propertyPath: _allowGettingActiveObjects
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 250161591810683187, guid: 9220246068dbc814b83d476f03916742, type: 3}
       propertyPath: _invokeOnCollisionEnter2D
       value: 1
@@ -4530,6 +4534,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 737220736389588004, guid: 1bc987c6695435940887c3ede1b9f640, type: 3}
+      propertyPath: _player.variable
+      value: 
+      objectReference: {fileID: 11400000, guid: 18fcfc9320061484aa6999e6fc37ba7f, type: 2}
     - target: {fileID: 5359229345271194115, guid: 1bc987c6695435940887c3ede1b9f640, type: 3}
       propertyPath: m_Name
       value: Spawner
@@ -9503,7 +9511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649112389834138286, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5837459802621187704, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_Name
