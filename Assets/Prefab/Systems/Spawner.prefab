@@ -48,3 +48,7 @@ MonoBehaviour:
   _waveDataPreset: {fileID: 11400000, guid: 71404f963dce78749b739ad16a30bd27, type: 2}
   _enemiesSpawnData: []
   _secondsBetweenWaves: 3
+  _player:
+    useConstant: 0
+    constantValue: {x: 0, y: 0}
+    variable: {fileID: 11400000, guid: 18fcfc9320061484aa6999e6fc37ba7f, type: 2}
