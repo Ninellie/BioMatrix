@@ -115,7 +115,7 @@ namespace Assets.Scripts.GameSession.Spawner
 
         private bool IsSpawnBlocked()
         {
-            var enemyCount = FindObjectsOfType<Enemy>().Length;
+            var enemyCount = FindObjectsOfType<SpriteType>().Length;
             var maxEnemies = _waveDataPreset.GetMaxEnemiesInScene();
             return enemyCount >= maxEnemies;
         }
@@ -141,7 +141,7 @@ namespace Assets.Scripts.GameSession.Spawner
 
         private void PrepareEnemy(GameObject enemy, Vector2 playerPosition)
         {
-            var e = enemy.GetComponent<Enemy>();
+            var e = enemy.GetComponent<SpriteType>();
             if (e.EnemyType != EnemyType.AboveView) return;
             var rb2D = enemy.gameObject.GetComponent<Rigidbody2D>();
             RotateEnemyToPlayer(playerPosition, rb2D);
