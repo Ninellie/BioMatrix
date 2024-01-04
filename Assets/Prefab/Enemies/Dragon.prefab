@@ -68,24 +68,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01468158b4899aa41a8c5e6e9b8e77bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _disableObjectOnEmpty: 0
-  _refillOnStart: 0
-  _currentHealth:
+  _disableObjectOnEmpty: 1
+  _selfGameObject:
+    useConstant: 1
+    constantValue: {fileID: 8954189743293124748}
+    variable: {fileID: 0}
+  _startAction: 0
+  _enableAction: 2
+  _currentValue:
     useConstant: 1
     constantValue: 20
     variable: {fileID: 0}
-  _maximumHealth:
+  _maximumValue:
+    useConstant: 1
+    constantValue: 20
+    variable: {fileID: 0}
+  _initialValue:
     useConstant: 1
     constantValue: 20
     variable: {fileID: 0}
   _edgeValue: 1
-  _onEmpty: {fileID: 0}
-  _onEmptyUnityEvent:
+  _onChanged:
     m_PersistentCalls:
       m_Calls: []
-  _onEdge: {fileID: 0}
-  _onDecrease: {fileID: 0}
-  _onDecreaseUnityEvent:
+  _onEmpty:
+    m_PersistentCalls:
+      m_Calls: []
+  _onEdge:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFill:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDecrease:
+    m_PersistentCalls:
+      m_Calls: []
+  _onIncrease:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &-1246950854706297088
@@ -111,10 +129,12 @@ MonoBehaviour:
     useConstant: 1
     constantValue: 140
     variable: {fileID: 0}
-  _target:
+  _transform: {fileID: 6042837996286799121}
+  _rigidbody2D: {fileID: 3774024594271913881}
+  _targetPosition:
     useConstant: 0
-    constantValue: {fileID: 0}
-    variable: {fileID: 11400000, guid: 63741af3fecd2dd40bcc502ca62eeead, type: 2}
+    constantValue: {x: 0, y: 0}
+    variable: {fileID: 11400000, guid: 18fcfc9320061484aa6999e6fc37ba7f, type: 2}
 --- !u!114 &-7540060648430052599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,14 +164,30 @@ MonoBehaviour:
   _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
   _dieOnPlayerCollision: 0
   _takeDamageColor: {r: 1, g: 0, b: 0, a: 1}
-  currentHealth:
-    useConstant: 1
-    constantValue: 20
-    variable: {fileID: 0}
-  <CollisionDamage>k__BackingField:
-    useConstant: 1
-    constantValue: 1
-    variable: {fileID: 0}
+  _playerPosition:
+    useConstant: 0
+    constantValue: {x: 0, y: 0}
+    variable: {fileID: 11400000, guid: 9aeaa0b1a8027f24cbc705b6d4817d3d, type: 2}
+  _health: {fileID: -5541471882585941238}
+  _projectileCollisionData:
+  - tag: FirearmProjectile
+    damage:
+      useConstant: 0
+      constantValue: 0
+      variable: {fileID: 11400000, guid: 2e821920e2bdd4e4481e27dea0c67ed6, type: 2}
+    knockbackPower:
+      useConstant: 0
+      constantValue: 0
+      variable: {fileID: 11400000, guid: 7d952413cf4dbc142b651bbb4a095522, type: 2}
+  - tag: TurretProjectile
+    damage:
+      useConstant: 0
+      constantValue: 0
+      variable: {fileID: 11400000, guid: 25f1536b99e71bc45b05013a713bbea2, type: 2}
+    knockbackPower:
+      useConstant: 0
+      constantValue: 0
+      variable: {fileID: 11400000, guid: a62e351b440c2b04382d038cceadb209, type: 2}
 --- !u!114 &4540966149982126123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7711465a83c3624f969e582d951e1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _movementController: {fileID: -1246950854706297088}
+  _spriteRenderer: {fileID: 3572984765799172596}
   _gazeDirection: 0
 --- !u!114 &2673435760891721348
 MonoBehaviour:
@@ -323,5 +361,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteOutline: {fileID: -2167475189181900128}
-  _targetOutlineColor: {r: 1, g: 0, b: 0, a: 1}
-  _runtimeSet: {fileID: 0}
+  _outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  _runtimeSet: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  <IsCurrent>k__BackingField: 0
