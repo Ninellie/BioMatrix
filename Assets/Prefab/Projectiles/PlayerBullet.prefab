@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 1466138366467077526}
   m_Layer: 7
   m_Name: PlayerBullet
-  m_TagString: PlayerProjectile
+  m_TagString: FirearmProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,22 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6281086272866892743}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -189,6 +174,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7686889894837535780
 MonoBehaviour:
   m_ObjectHideFlags: 0

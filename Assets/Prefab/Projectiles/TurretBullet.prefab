@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 156745283301569288}
   m_Layer: 7
   m_Name: TurretBullet
-  m_TagString: PlayerProjectile
+  m_TagString: TurretProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,8 +56,8 @@ MonoBehaviour:
     useConstant: 1
     constantValue: {fileID: 2741946790039367102}
     variable: {fileID: 0}
-  _refillOnStart: 1
-  _refillOnEnable: 1
+  _startAction: 0
+  _enableAction: 0
   _currentValue:
     useConstant: 1
     constantValue: 1
@@ -66,6 +66,10 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 1
     variable: {fileID: 11400000, guid: 51517a81f53420b48b89e399b44feb03, type: 2}
+  _initialValue:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _edgeValue: 1
   _onChanged:
     m_PersistentCalls:
@@ -139,22 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6281086272866892743}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -171,6 +160,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7686889894837535780
 MonoBehaviour:
   m_ObjectHideFlags: 0
