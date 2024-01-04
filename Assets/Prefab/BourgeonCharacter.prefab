@@ -8620,8 +8620,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 2e1a752507bdd354f976d465c7e9cdef, type: 2}
-  _rigidbody2D: {fileID: 7452234380026767843}
   _transform: {fileID: 885779190258261260}
+  _rigidbody2D: {fileID: 7452234380026767843}
   _aimingSpeedMultiplier: 0.5
   _firearm: {fileID: 6163833766149623121}
   _magazine: {fileID: 6196011676017313926}
@@ -11326,6 +11326,102 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 766516748403551923}
     m_Modifications:
+    - target: {fileID: 437361504672162770, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 501776341921214960, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 684086981330068899, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 850962946721656533, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 953755531868900376, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1003429821754521261, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076399043442763524, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147615454726211104, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174324861263748377, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1185440080763045124, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1212886380654551211, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416706780342332756, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555533704912849734, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677149400872595735, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842871185321002736, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929647007491812441, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000858513432583205, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210815957249215431, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2464539265981299635, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2501542605114077783, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561059940650565985, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2679075752088987039, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2702815256879953231, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192226550488893894, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
     - target: {fileID: 3233653779076600719, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_Name
       value: PlayerFirearm
@@ -11337,6 +11433,230 @@ PrefabInstance:
     - target: {fileID: 3233653779076600719, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469548099794023006, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527582636458345879, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733488755459700475, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871245899069391225, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3972140293380393416, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4007091443978154270, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124530766954219749, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4367169423946847595, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503101271755235343, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513598125465602955, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634946286857011296, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649068003019958195, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660865423097750359, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4709474826416379975, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896022238721452046, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5030507433890589310, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069239099565555783, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289105472499907435, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5350560515529489413, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5431850144052714425, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _allowGettingActiveObjects
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525265994374555329, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631166500505187730, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766605241416003953, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898915042145493548, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155278358189478920, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190764137530788258, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 6248765326147095069, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412391128212780629, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6510044471732442287, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634178364075098854, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643759912956119266, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711353275639297148, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6760528246191222086, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6862298722906516025, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904462116624342013, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003331886630402046, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122389110502394375, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134119175012295659, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134437946570580371, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141276750434755451, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476142395473651222, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7636375556532600865, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7724290976931253920, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773848825262988712, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795393690842870149, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7849566617114699248, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8227603886561711803, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245743069727794312, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325209600964688755, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390102392654484258, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391956999756449664, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438670479876542760, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_TagString
+      value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487849006827954232, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8649394750966955544, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662091841476375472, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8781180558616150382, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9126805039593386211, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11378,7 +11698,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9149968329050391186, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _invokeOnCollisionEnter2D
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2070041497501792826, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 3235001252467279, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 4472159997219557653, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 6940222143928159814, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 8564671410844365831, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 408365113404137580, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 4563015698008583222, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 1473377974859416596, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 132207447505617734, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 569631394123411367, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 8262661253941514183, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 4499949383986088512, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 6381742175822527937, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 7301668918385744581, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 4748551395613409587, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 3270266714940616195, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 5738296165574494364, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 3111880248605799374, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 890481030087297003, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 4241347018760133048, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 1804398385229983715, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 567404110309407398, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 8806997090452262323, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 8215826774730752780, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 835029799152831942, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 4938982165710236734, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 8757333297234573586, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 1985005689143820962, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 6380755918497505435, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 4873930870539293270, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 6078183887462878403, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 2242243887305780673, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 3960514838746488598, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 4779900308709818635, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 2314544189520226072, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 8825212095156589916, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 6533724023429259895, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 621619073899757855, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 1591414440117044644, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 793334577589761128, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6522579874615979406, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
     m_AddedGameObjects: []
