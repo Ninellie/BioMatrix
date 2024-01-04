@@ -5,8 +5,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 {
     public class DragonMovementController : MovementController
     {
-        [SerializeField]
-        private GameObjectReference _target;
+        [SerializeField] private Vector2Reference _targetPosition;
+        //[SerializeField] private GameObjectReference _target;
 
         protected override float Speed => speed.Value * SpeedScale;
 
@@ -18,21 +18,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
 
         protected override Vector2 RawMovementDirection
         {
-            get
-            {
-                if (_target == null)
-                {
-                    return Vector2.zero;
-                }
-                if (_target.Value.activeInHierarchy)
-                {
-                    return (_target.Value.transform.position - transform.position).normalized;
-                }
-                else
-                {
-                    return Vector2.zero;
-                }
-            }
+            get => (_targetPosition - (Vector2)_transform.position).normalized;
             set => throw new System.NotImplementedException();
         }
     }

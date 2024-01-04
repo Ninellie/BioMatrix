@@ -16,8 +16,9 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         [SerializeField] private bool _staticSpeedScale;
         [SerializeField] protected FloatReference speed;
         [Space]
+        [SerializeField] protected Transform _transform;
         [SerializeField] private Rigidbody2D _rigidbody2D;
-        [SerializeField] private Transform _transform;
+        public Vector2 MyPosition => _transform.position;
 
         protected float SpeedScale
         {
@@ -31,7 +32,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         protected abstract Vector2 RawMovementDirection { get; set; }
         private Vector2 MovementVelocity => MovementDirection * Speed;
         private Vector2 Velocity => MovementVelocity + AddedVelocity;
-        private Vector2 MyPosition => _transform.position;
         private float _speedScale;
 
         protected void Awake()
