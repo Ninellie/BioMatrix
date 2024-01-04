@@ -1,3 +1,4 @@
+using System;
 using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Assets.Scripts.View;
@@ -5,6 +6,14 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 {
+    [Serializable]
+    public class ProjectileCollisionData
+    {
+        public string tag;
+        public FloatReference damage;
+        public FloatReference knockbackPower;
+    }
+
     public class EnemyCollisionHandler : MonoBehaviour
     {
         [SerializeField] private GameObject _onDeathDrop;
@@ -14,24 +23,20 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         [SerializeField] private Vector2Reference _playerPosition;
         [SerializeField] private Reserve _health;
-        [SerializeField] private FloatReference _playerProjectileDamage;
-        [SerializeField] private FloatReference _playerProjectileKnockBack;
+
+        [SerializeField] private ProjectileCollisionData[] _projectileCollisionData;
 
         private bool _isAlive;
         private int _dropCount = 1;
-        private readonly Rarity _rarity = new();
         private bool _deathFromProjectile;
-        
-        private KnockbackController _knockbackController;
-        private Rigidbody2D _rigidbody2D;
-        private CircleCollider2D _circleCollider;
-        private SpriteRenderer _spriteRenderer;
 
         private Color _spriteColor;
         private const float ReturnToDefaultColorSpeed = 5f;
         private const float OffscreenDieSeconds = 5f;
 
-        private bool _isSubscribed;
+        private KnockbackController _knockbackController;
+        private CircleCollider2D _circleCollider;
+        private SpriteRenderer _spriteRenderer;
         private Transform _transform;
 
         private void Awake()
@@ -41,23 +46,20 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             _knockbackController = GetComponent<KnockbackController>();
             _circleCollider = GetComponent<CircleCollider2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _rigidbody2D = GetComponent<Rigidbody2D>();
 
             _spriteColor = _spriteRenderer.color;
-            _rarity.Value = RarityEnum.Normal;
         }
 
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
             if (!_isAlive) return;
-            switch (collision2D.collider.tag)
+            var otherTag = collision2D.collider.tag;
+            if (otherTag == "Player") CollideWithPlayer();
+            foreach (var projectileCollisionData in _projectileCollisionData)
             {
-                case "PlayerProjectile":
-                    CollideWithProjectile(collision2D);
-                    break;
-                case "Player":
-                    CollideWithPlayer();
-                    break;
+                if (otherTag != projectileCollisionData.tag) continue;
+                CollideWithProjectile(collision2D, projectileCollisionData.damage, projectileCollisionData.knockbackPower);
+                return;
             }
         }
 
@@ -67,20 +69,17 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private void OnBecameVisible() => StopDeathTimer();
 
-        private void CollideWithProjectile(Collision2D collision2D)
+        private void CollideWithProjectile(Collision2D collision2D, int damage, float knockbackPower)
         {
-            var damage = (int)_playerProjectileDamage;
             _deathFromProjectile = true;
             _health.TakeDamage(damage);
-
             var dropPosition = GetClosestPointOnCircle(collision2D.transform.position);
             DropDamagePopup(damage, dropPosition);
 
             ChangeColorOnDamageTaken();
-
-            Vector2 force = (Vector2)_transform.position - _playerPosition.Value;
+            var force = ((Vector2)_transform.position - _playerPosition.Value); // Сложность в том, что враг отталкивается в противоположную сторону от игрока, а не от пули с которой он столкнулся
             force.Normalize();
-            force *= _playerProjectileKnockBack;
+            force *= knockbackPower;
             _knockbackController.Knockback(force);
 
             if (!_health.IsEmpty) return;
@@ -128,7 +127,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         {
             if (_dropCount <= 0) return;
             _dropCount--;
-            Instantiate(_onDeathDrop, _rigidbody2D.position, new Quaternion(0, 0, 0, 0));
+            Instantiate(_onDeathDrop, _transform.position, new Quaternion(0, 0, 0, 0));
         }
 
         private void DropDamagePopup(int damageValue, Vector2 position)
@@ -143,8 +142,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             Vector2 center = _circleCollider.transform.position;
             var direction = otherCircleColliderCenter - center;
             direction.Normalize();
-            var radius = _circleCollider.radius;
-            var offset = radius * direction.normalized;
+            var offset = _circleCollider.radius * direction.normalized;
             return center + offset;
         }
 
