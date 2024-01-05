@@ -5,15 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Projectile
   - Boon
   - Canvas
   - Enclosure
   - Cage
   - EnemyProjectile
-  - PlayerProjectile
   - Shield
   - Magnet
+  - TurretProjectile
+  - FirearmProjectile
   layers:
   - Default
   - TransparentFX
