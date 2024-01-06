@@ -16,23 +16,16 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
     public class EnemyCollisionHandler : MonoBehaviour
     {
-        [SerializeField] private GameObject _onDeathDrop;
         [SerializeField] private GameObject _damagePopup;
         [SerializeField] private bool _dieOnPlayerCollision;
         [SerializeField] private Color _takeDamageColor;
-
         [SerializeField] private Vector2Reference _playerPosition;
         [SerializeField] private Reserve _health;
-
         [SerializeField] private ProjectileCollisionData[] _projectileCollisionData;
 
         private bool _isAlive;
-        private int _dropCount = 1;
-        private bool _deathFromProjectile;
-
         private Color _spriteColor;
         private const float ReturnToDefaultColorSpeed = 5f;
-        private const float OffscreenDieSeconds = 5f;
 
         private KnockbackController _knockbackController;
         private CircleCollider2D _circleCollider;
@@ -46,7 +39,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             _knockbackController = GetComponent<KnockbackController>();
             _circleCollider = GetComponent<CircleCollider2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-
             _spriteColor = _spriteRenderer.color;
         }
 
@@ -54,7 +46,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         {
             if (!_isAlive) return;
             var otherTag = collision2D.collider.tag;
-            if (otherTag == "Player") CollideWithPlayer();
             foreach (var projectileCollisionData in _projectileCollisionData)
             {
                 if (otherTag != projectileCollisionData.tag) continue;
@@ -65,13 +56,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         private void Update() => BackToNormalColor();
 
-        private void OnBecameInvisible() => StartDeathTimer();
-
-        private void OnBecameVisible() => StopDeathTimer();
-
         private void CollideWithProjectile(Collision2D collision2D, int damage, float knockbackPower)
         {
-            _deathFromProjectile = true;
             _health.TakeDamage(damage);
             var dropPosition = GetClosestPointOnCircle(collision2D.transform.position);
             DropDamagePopup(damage, dropPosition);
@@ -84,27 +70,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
             if (!_health.IsEmpty) return;
             _isAlive = false;
-        }
-
-        private void CollideWithPlayer()
-        {
-            if (!_isAlive) return;
-            if (!_dieOnPlayerCollision) return;
-            _deathFromProjectile = false;
-            Death();
-        }
-
-        private void StartDeathTimer()
-        {
-            Debug.LogWarning(nameof(StartDeathTimer));
-            _deathFromProjectile = false;
-            Invoke(nameof(Death), OffscreenDieSeconds);
-        }
-
-        private void StopDeathTimer()
-        {
-            Debug.LogWarning(nameof(StopDeathTimer));
-            CancelInvoke(nameof(Death));
         }
 
         private void BackToNormalColor()
@@ -123,13 +88,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             _spriteRenderer.color = _takeDamageColor;
         }
 
-        private void DropBonus()
-        {
-            if (_dropCount <= 0) return;
-            _dropCount--;
-            Instantiate(_onDeathDrop, _transform.position, new Quaternion(0, 0, 0, 0));
-        }
-
         private void DropDamagePopup(int damageValue, Vector2 position)
         {
             var droppedDamagePopup = Instantiate(_damagePopup);
@@ -144,14 +102,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             direction.Normalize();
             var offset = _circleCollider.radius * direction.normalized;
             return center + offset;
-        }
-
-        private void Death()
-        {
-            Debug.Log($"Enemy {gameObject.name} died. From projectile: {_deathFromProjectile}");
-            if (_deathFromProjectile) DropBonus();
-            gameObject.SetActive(false);
-            Destroy(gameObject);
         }
     }
 }
