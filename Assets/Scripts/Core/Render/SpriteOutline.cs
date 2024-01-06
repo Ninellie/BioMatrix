@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Assets.Scripts.Core.Render
 {
-    [ExecuteInEditMode]
     public class SpriteOutline : MonoBehaviour
     {
         [SerializeField] private Color _color = Color.white;
@@ -11,10 +10,7 @@ namespace Assets.Scripts.Core.Render
 
         private void OnEnable()
         {
-            if (_spriteRenderer == null)
-            { 
-                _spriteRenderer = GetComponent<SpriteRenderer>();
-            }
+            if (_spriteRenderer == null) _spriteRenderer = GetComponent<SpriteRenderer>();
             UpdateOutline();
         }
 
@@ -23,12 +19,7 @@ namespace Assets.Scripts.Core.Render
             UpdateOutline();
         }
 
-        private void Update()
-        {
-            UpdateOutline();
-        }
-
-        public void SetShowOutline(bool value)
+        public void SetEnable(bool value)
         {
             _showOutline = value;
             UpdateOutline();
