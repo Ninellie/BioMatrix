@@ -128,7 +128,7 @@ MonoBehaviour:
   _staticSpeedScale: 0
   speed:
     useConstant: 1
-    constantValue: 240
+    constantValue: 120
     variable: {fileID: 0}
   _transform: {fileID: 6042837996286799121}
   _rigidbody2D: {fileID: 3774024594271913881}
