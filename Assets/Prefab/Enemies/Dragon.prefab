@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3340212031863332331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6664187249408031399}
+  - component: {fileID: 5462681296612556506}
+  m_Layer: 6
+  m_Name: Drop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6664187249408031399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3340212031863332331}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6042837996286799121}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5462681296612556506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3340212031863332331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f609d00f7e08a34f81472cbddfed949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _drop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
+  <CanDrop>k__BackingField: 1
 --- !u!1 &8954189743293124748
 GameObject:
   m_ObjectHideFlags: 0
@@ -19,8 +65,9 @@ GameObject:
   - component: {fileID: 1878492662911867408}
   - component: {fileID: 3774024594271913881}
   - component: {fileID: 3572984765799172596}
-  - component: {fileID: -2167475189181900128}
   - component: {fileID: 149049967022019995}
+  - component: {fileID: -7152677025009850446}
+  - component: {fileID: 7137808863787102815}
   m_Layer: 6
   m_Name: Dragon
   m_TagString: Enemy
@@ -40,7 +87,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 6664187249408031399}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8165684587596004793
@@ -93,7 +141,20 @@ MonoBehaviour:
       m_Calls: []
   _onEmpty:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5462681296612556506}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents.Dumper,
+          Scripts
+        m_MethodName: DropBonus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onEdge:
     m_PersistentCalls:
       m_Calls: []
@@ -160,7 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69480e5252f8e924db9dbb89a33a8882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onDeathDrop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
   _damagePopup: {fileID: 7464875859528242389, guid: 7aa9052d81b23354aaa04edc52f7d4e8, type: 3}
   _dieOnPlayerCollision: 0
   _takeDamageColor: {r: 1, g: 0, b: 0, a: 1}
@@ -333,21 +393,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-2167475189181900128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8954189743293124748}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24b7cba45c5ad02489e4178a669a3bcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _color: {r: 1, g: 1, b: 1, a: 1}
-  _showOutline: 0
-  _spriteRenderer: {fileID: 3572984765799172596}
 --- !u!114 &149049967022019995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,7 +405,97 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39977c9b4f8da8f4e82d64de25af4442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteOutline: {fileID: -2167475189181900128}
-  _outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  _outlineColor: {fileID: 11400000, guid: ae5450f565479c745a012704cd0b41ca, type: 2}
   _runtimeSet: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
   <IsCurrent>k__BackingField: 0
+--- !u!114 &-7152677025009850446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce603147eafc60841b5d0a63f42a419e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _time:
+    useConstant: 1
+    constantValue: 5
+    variable: {fileID: 0}
+  _mode: 0
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5462681296612556506}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents.Dumper,
+          Scripts
+        m_MethodName: set_CanDrop
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -5541471882585941238}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.Reserve, Scripts
+        m_MethodName: Empty
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7137808863787102815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb647cda1f5654043b2558c23ea52ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _invokeOnBecameInvisible: 1
+  _onCollisionEnter2D:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7152677025009850446}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.CastDelayer,
+          Scripts
+        m_MethodName: Delay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _invokeOnBecameVisible: 1
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7152677025009850446}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.CastDelayer,
+          Scripts
+        m_MethodName: Cancel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
