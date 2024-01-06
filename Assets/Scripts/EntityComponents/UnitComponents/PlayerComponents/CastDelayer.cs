@@ -57,6 +57,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             }
         }
 
+        public void Cancel()
+        {
+            CancelInvoke(nameof(Cast));
+        }
+
         private void Cast()
         {
             _onCast.Invoke();
