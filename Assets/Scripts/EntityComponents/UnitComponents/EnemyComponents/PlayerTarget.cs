@@ -1,20 +1,30 @@
 using Assets.Scripts.Core.Render;
 using Assets.Scripts.Core.Sets;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 {
     public class PlayerTarget : MonoBehaviour
     {
-        [SerializeField] private SpriteOutline _spriteOutline;
-        [SerializeField] private Color _outlineColor;
+        [SerializeField] private TMP_ColorGradient _outlineColor;
         [SerializeField] private PlayerTargetRuntimeSet _runtimeSet;
         [field: SerializeField] public bool IsCurrent { get; private set; }
         public Transform Transform { get; private set; }
 
+        private SpriteRenderer SpriteRenderer
+        {
+            get
+            {
+                if (_spriteRenderer != null) return _spriteRenderer;
+                _spriteRenderer = GetComponent<SpriteRenderer>();
+                return _spriteRenderer;
+            }
+        }
+        private SpriteRenderer _spriteRenderer;
+
         private void Awake()
         {
-            if (_spriteOutline == null) _spriteOutline = GetComponent<SpriteOutline>();
             if (Transform == null) Transform = transform;
         }
 
@@ -32,14 +42,21 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         public void TakeAsTarget()
         {
-            _spriteOutline.SetColor(_outlineColor);
-            _spriteOutline.SetShowOutline(true);
+            var mpb = new MaterialPropertyBlock();
+            SpriteRenderer.GetPropertyBlock(mpb);
+            mpb.SetFloat("_Outline", 1f);
+            mpb.SetColor("_OutlineColor", _outlineColor.topLeft);
+            SpriteRenderer.SetPropertyBlock(mpb);
             IsCurrent = true;
         }
 
         public void RemoveFromTarget()
         {
-            _spriteOutline.SetColor(_outlineColor);
+            var mpb = new MaterialPropertyBlock();
+            SpriteRenderer.GetPropertyBlock(mpb);
+            mpb.SetFloat("_Outline", 0f);
+            mpb.SetColor("_OutlineColor", _outlineColor.topLeft);
+            SpriteRenderer.SetPropertyBlock(mpb);
             IsCurrent = false;
         }
     }
