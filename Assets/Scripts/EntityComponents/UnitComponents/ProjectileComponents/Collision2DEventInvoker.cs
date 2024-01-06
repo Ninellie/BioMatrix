@@ -18,21 +18,21 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
 
         private void OnCollisionEnter2D(Collision2D collision2D)
         {
-            if (_invokeOnCollisionEnter2D) return;
+            if (!_invokeOnCollisionEnter2D) return;
             if (!collision2D.gameObject.CompareTag(_otherTag)) return;
             _onCollisionEnter2D.Invoke(collision2D);
         }
 
         private void OnCollisionExit2D(Collision2D collision2D)
         {
-            if (_invokeOnCollisionExit2D) return;
+            if (!_invokeOnCollisionExit2D) return;
             if (!collision2D.gameObject.CompareTag(_otherTag)) return;
             _onCollisionExit2D.Invoke(collision2D);
         }
 
         private void OnCollisionStay2D(Collision2D collision2D)
         {
-            if (_invokeOnCollisionStay2D) return;
+            if (!_invokeOnCollisionStay2D) return;
             if (!collision2D.gameObject.CompareTag(_otherTag)) return;
             _onCollisionStay2D.Invoke(collision2D);
         }
