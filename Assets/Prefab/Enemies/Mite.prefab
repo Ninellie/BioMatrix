@@ -182,7 +182,7 @@ MonoBehaviour:
   _playerPosition:
     useConstant: 0
     constantValue: {x: 0, y: 0}
-    variable: {fileID: 11400000, guid: 9aeaa0b1a8027f24cbc705b6d4817d3d, type: 2}
+    variable: {fileID: 11400000, guid: 18fcfc9320061484aa6999e6fc37ba7f, type: 2}
   _health: {fileID: -7267643933718427432}
   _projectileCollisionData:
   - tag: FirearmProjectile
