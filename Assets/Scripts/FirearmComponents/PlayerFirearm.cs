@@ -114,6 +114,11 @@ namespace Assets.Scripts.FirearmComponents
                 return;
             }
             var nearestTarget = _visibleEnemies.GetNearestToPosition(_myTransform.position);
+            if (nearestTarget == null)
+            {
+                _currentTarget = null;
+                return;
+            }
             if (_currentTarget != null)
             {
                 if (_currentTarget == nearestTarget) return;
