@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 401081946869708339}
   - component: {fileID: 5384938256212642916}
   - component: {fileID: 156745283301569288}
-  - component: {fileID: 1466138366467077526}
   m_Layer: 7
   m_Name: PlayerBullet
   m_TagString: FirearmProjectile
@@ -126,8 +125,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 2316403284215167119}
   _transform: {fileID: 5058406891993574356}
+  _rigidbody2D: {fileID: 2316403284215167119}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -428,22 +427,3 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 0
---- !u!114 &1466138366467077526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2741946790039367102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d17f67afbd69d844692b329850d3afa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeTime: 0
-  onEnable:
-    m_PersistentCalls:
-      m_Calls: []
-  onDisable:
-    m_PersistentCalls:
-      m_Calls: []

@@ -51,13 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01468158b4899aa41a8c5e6e9b8e77bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _disableObjectOnEmpty: 1
+  _disableObjectOnEmpty: 0
   _selfGameObject:
     useConstant: 1
     constantValue: {fileID: 2741946790039367102}
     variable: {fileID: 0}
   _startAction: 0
-  _enableAction: 0
+  _enableAction: 2
   _currentValue:
     useConstant: 1
     constantValue: 1
@@ -67,7 +67,7 @@ MonoBehaviour:
     constantValue: 1
     variable: {fileID: 11400000, guid: 51517a81f53420b48b89e399b44feb03, type: 2}
   _initialValue:
-    useConstant: 0
+    useConstant: 1
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
@@ -76,7 +76,20 @@ MonoBehaviour:
       m_Calls: []
   _onEmpty:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: f4d0574e026a20442bade7ff1f752b78, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameObjectGameEvent,
+          Scripts
+        m_MethodName: Raise
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2741946790039367102}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onEdge:
     m_PersistentCalls:
       m_Calls: []
@@ -112,8 +125,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 93cb3ad6358f5194aa6583e201079a2b, type: 2}
-  _rigidbody2D: {fileID: 2316403284215167119}
   _transform: {fileID: 5058406891993574356}
+  _rigidbody2D: {fileID: 2316403284215167119}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -143,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _invokeOnCollisionEnter2D: 0
+  _invokeOnCollisionEnter2D: 1
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
