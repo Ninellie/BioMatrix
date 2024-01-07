@@ -33,10 +33,10 @@ MonoBehaviour:
     <StatId>k__BackingField: {fileID: 11400000, guid: 54986c30c0fc01145b7f70f9a5275ab2, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 15
-  - <Id>k__BackingField: player_projectile_base_movement_speed_flat_750
+  - <Id>k__BackingField: player_projectile_base_movement_speed_flat_650
     <StatId>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
     <ImpactType>k__BackingField: 1
-    <Value>k__BackingField: 750
+    <Value>k__BackingField: 650
   _statsPreview:
   - _inspectorValue: 10_damage
     <Id>k__BackingField: {fileID: 11400000, guid: 4ab1f9f5c63c2a94d9175bde092e4cb0, type: 2}
@@ -50,6 +50,6 @@ MonoBehaviour:
   - _inspectorValue: 15_knockback_power
     <Id>k__BackingField: {fileID: 11400000, guid: 54986c30c0fc01145b7f70f9a5275ab2, type: 2}
     _value: 15
-  - _inspectorValue: 750_movement_speed
+  - _inspectorValue: 650_movement_speed
     <Id>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
-    _value: 750
+    _value: 650
