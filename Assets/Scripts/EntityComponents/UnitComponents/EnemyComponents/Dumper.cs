@@ -9,6 +9,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         public void DropBonus()
         {
+            if (!CanDrop) return;
             Instantiate(_drop, transform.position, Quaternion.identity);
         }
     }

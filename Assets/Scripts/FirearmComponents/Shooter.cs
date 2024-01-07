@@ -1,5 +1,6 @@
 using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
+using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
 namespace Assets.Scripts.FirearmComponents
@@ -7,7 +8,7 @@ namespace Assets.Scripts.FirearmComponents
     public class Shooter : MonoBehaviour
     {
         [Header("Ammo")]
-        [SerializeField] private GameObject _ammo;
+        [SerializeField] private StackPool _ammoPool;
         [Space]
         [Header("Stats")]
         [SerializeField] private FloatReference _projectilesPerAttack;
@@ -37,31 +38,22 @@ namespace Assets.Scripts.FirearmComponents
 
         public void Shoot()
         {
-            var projectiles = GetProjectiles();
             var shootDirection = Aim.GetDirection();
-            var projCount = projectiles.Length;
+            var projCount = (int)_projectilesPerAttack;
             var fireAngle = _projectileSpread * (projCount - 1);
             var halfFireAngleRad = fireAngle * 0.5f * Mathf.Deg2Rad;
             var leftDirection = MathFirearm.Rotate(shootDirection, -halfFireAngleRad);
             var actualShotDirection = leftDirection;
 
-            foreach (var projectile in projectiles)
+            for (int i = 0; i < projCount; i++)
             {
-                var proj = projectile.GetComponent<ProjectileMovementController>();
-                proj.SetDirection(actualShotDirection);
+                var projectile = _ammoPool.Get();
+                projectile.transform.SetPositionAndRotation(Transform.position, Transform.rotation);
+                var projectileMovementController = projectile.GetComponent<ProjectileMovementController>();
+                projectileMovementController.SetDirection(actualShotDirection);
                 var launchAngle = _projectileSpread * Mathf.Deg2Rad;
                 actualShotDirection = MathFirearm.Rotate(actualShotDirection, launchAngle);
             }
-        }
-
-        private GameObject[] GetProjectiles()
-        {
-            var projectiles = new GameObject[(int)_projectilesPerAttack];
-            for (var i = 0; i < projectiles.Length; i++)
-            {
-                projectiles[i] = Instantiate(_ammo, Transform.position, Transform.rotation);
-            }
-            return projectiles;
         }
     }
 }

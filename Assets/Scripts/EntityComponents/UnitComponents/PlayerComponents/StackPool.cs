@@ -7,7 +7,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
     [ExecuteInEditMode]
     public class StackPool : MonoBehaviour
     {
-        [SerializeField] [Range(0, 50)] private int _size;
+        [SerializeField] [Range(0, 100)] private int _size;
         [SerializeField] [Range(0, 50)] private int _active;
         [SerializeField] private GameObject _stack;
         [SerializeField] private Transform _transform;

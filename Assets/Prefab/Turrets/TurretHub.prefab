@@ -1,5 +1,132 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1785819568117180162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5218627659422222759}
+  - component: {fileID: 3638045301944461143}
+  - component: {fileID: 7006046227286731421}
+  - component: {fileID: 4916441894928229653}
+  - component: {fileID: 5786093775013850615}
+  m_Layer: 0
+  m_Name: TurretHub
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5218627659422222759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785819568117180162}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9034957501157506180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3638045301944461143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785819568117180162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f33d09c33dfb7d44963c22058b79f70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _orbitRadius: 50
+  _orbitalSpeed: 15
+  _pool: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &7006046227286731421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785819568117180162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc7c9b776cbd41479da78e434004c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _size: 0
+  _active: 0
+  _stack: {fileID: 9206584794608382483, guid: e4b56dd8ab154984597f19cc0101b423, type: 3}
+  _transform: {fileID: 5218627659422222759}
+  _enabled: []
+  _disabled: []
+  _allowGettingActiveObjects: 0
+--- !u!114 &4916441894928229653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785819568117180162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: b6e623374d1cba249b9ea175c5d342ef, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7006046227286731421}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.StackPool,
+          Scripts
+        m_MethodName: TryAdd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5786093775013850615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785819568117180162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 040ae071ec3732443bba64edd1010ab7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7006046227286731421}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.StackPool,
+          Scripts
+        m_MethodName: TryRelease
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9206584794608382483
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,10 +136,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9034957501157506180}
-  - component: {fileID: -8906158504319753904}
-  - component: {fileID: -8692902594264446844}
-  - component: {fileID: 7644047857237733353}
-  - component: {fileID: 709115789234705401}
   m_Layer: 0
   m_Name: TurretHub
   m_TagString: Untagged
@@ -32,97 +155,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5218627659422222759}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8906158504319753904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9206584794608382483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f33d09c33dfb7d44963c22058b79f70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _orbitRadius: 50
-  _orbitalSpeed: 15
-  _pool: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &-8692902594264446844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9206584794608382483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bc7c9b776cbd41479da78e434004c88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _size: 0
-  _active: 0
-  _stack: {fileID: 9206584794608382483, guid: e4b56dd8ab154984597f19cc0101b423, type: 3}
-  _transform: {fileID: 9034957501157506180}
-  _enabled: []
-  _disabled: []
---- !u!114 &7644047857237733353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9206584794608382483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: b6e623374d1cba249b9ea175c5d342ef, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -8692902594264446844}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.StackPool,
-          Scripts
-        m_MethodName: TryAdd
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &709115789234705401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9206584794608382483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 040ae071ec3732443bba64edd1010ab7, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -8692902594264446844}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.StackPool,
-          Scripts
-        m_MethodName: TryRelease
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
