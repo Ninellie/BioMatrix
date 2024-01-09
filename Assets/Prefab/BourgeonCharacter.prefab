@@ -8052,7 +8052,7 @@ GameObject:
   - component: {fileID: 7284866493855688815}
   - component: {fileID: 205993244033427786}
   - component: {fileID: 3878061058078150585}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: PlayerBullet(Clone)
   m_TagString: FirearmProjectile
   m_Icon: {fileID: 0}
@@ -17168,7 +17168,7 @@ GameObject:
   - component: {fileID: 3781129739107523700}
   - component: {fileID: 91090616163427113}
   - component: {fileID: 3811837433068224487}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: PlayerBullet(Clone)
   m_TagString: FirearmProjectile
   m_Icon: {fileID: 0}
@@ -19287,7 +19287,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   _onEdge:
     m_PersistentCalls:
@@ -28570,6 +28570,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5468754606302234528}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.ShieldRepulse,
+          Scripts
+        m_MethodName: Repulse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5533861175268521056
 GameObject:
   m_ObjectHideFlags: 0
@@ -30003,11 +30016,11 @@ MonoBehaviour:
     m_Bits: 64
   _radius:
     useConstant: 1
-    constantValue: 200
+    constantValue: 100
     variable: {fileID: 0}
   _force:
     useConstant: 1
-    constantValue: 250
+    constantValue: 100
     variable: {fileID: 0}
 --- !u!1 &6141435555079893456
 GameObject:
@@ -45244,6 +45257,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 501776341921214960, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 501776341921214960, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
       objectReference: {fileID: 0}
@@ -45256,6 +45273,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 953755531868900376, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 953755531868900376, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
       objectReference: {fileID: 0}
@@ -45264,8 +45285,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1076399043442763524, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076399043442763524, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147615454726211104, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1147615454726211104, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
@@ -45284,6 +45313,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1416706780342332756, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416706780342332756, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
       objectReference: {fileID: 0}
@@ -45300,12 +45333,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1929647007491812441, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929647007491812441, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
       objectReference: {fileID: 0}
     - target: {fileID: 2000858513432583205, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000858513432583205, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210815957249215431, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2210815957249215431, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
@@ -45324,8 +45369,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2561059940650565985, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561059940650565985, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2679075752088987039, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2679075752088987039, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
@@ -45334,6 +45387,10 @@ PrefabInstance:
     - target: {fileID: 2702815256879953231, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: _invokeOnCollisionEnter2D
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192226550488893894, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3192226550488893894, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
@@ -45356,24 +45413,48 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3527582636458345879, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527582636458345879, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733488755459700475, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3733488755459700475, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
       objectReference: {fileID: 0}
     - target: {fileID: 3871245899069391225, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871245899069391225, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3972140293380393416, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3972140293380393416, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
       objectReference: {fileID: 0}
     - target: {fileID: 4007091443978154270, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4007091443978154270, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124530766954219749, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4124530766954219749, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
@@ -45388,8 +45469,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4513598125465602955, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513598125465602955, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634946286857011296, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4634946286857011296, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
@@ -45400,12 +45489,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4660865423097750359, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660865423097750359, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
       objectReference: {fileID: 0}
     - target: {fileID: 4709474826416379975, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: _invokeOnCollisionEnter2D
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896022238721452046, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4896022238721452046, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
@@ -45416,8 +45513,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5069239099565555783, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069239099565555783, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289105472499907435, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5289105472499907435, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
@@ -45440,8 +45545,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5766605241416003953, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766605241416003953, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898915042145493548, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5898915042145493548, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
@@ -45452,8 +45565,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6190764137530788258, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190764137530788258, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 6248765326147095069, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6248765326147095069, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
@@ -45464,8 +45585,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6510044471732442287, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6510044471732442287, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634178364075098854, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6634178364075098854, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
@@ -45484,6 +45613,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6862298722906516025, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6862298722906516025, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
       objectReference: {fileID: 0}
@@ -45496,8 +45629,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7122389110502394375, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122389110502394375, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134119175012295659, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7134119175012295659, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
@@ -45512,8 +45653,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7476142395473651222, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476142395473651222, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7636375556532600865, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7636375556532600865, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
@@ -45524,8 +45673,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7773848825262988712, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7773848825262988712, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795393690842870149, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7795393690842870149, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
@@ -45540,6 +45697,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8245743069727794312, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245743069727794312, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
       objectReference: {fileID: 0}
@@ -45548,12 +45709,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8390102392654484258, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390102392654484258, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
       objectReference: {fileID: 0}
     - target: {fileID: 8391956999756449664, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391956999756449664, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString
       value: FirearmProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438670479876542760, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8438670479876542760, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_TagString

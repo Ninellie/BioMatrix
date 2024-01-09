@@ -126,8 +126,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 424212778447726374}
   _transform: {fileID: 8340108188437998582}
+  _rigidbody2D: {fileID: 424212778447726374}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -157,22 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1963030496291340403}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -189,6 +174,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3999153073007786024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,8 +573,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 7459054499268615026}
   _transform: {fileID: 8316499704754792627}
+  _rigidbody2D: {fileID: 7459054499268615026}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -611,22 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6521833501241708167}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -643,6 +621,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2633613898843720602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,8 +1020,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 7988654422650422909}
   _transform: {fileID: 8228875917414573528}
+  _rigidbody2D: {fileID: 7988654422650422909}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -1065,22 +1051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7576518956198340670}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -1097,6 +1068,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8366753999673875440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1488,8 +1467,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 500288172616191676}
   _transform: {fileID: 2730793638668990085}
+  _rigidbody2D: {fileID: 500288172616191676}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -1519,22 +1498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8464654689510794078}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -1551,6 +1515,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7123299067157874686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1942,8 +1914,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 7229272843986914828}
   _transform: {fileID: 6286510480737722346}
+  _rigidbody2D: {fileID: 7229272843986914828}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -1973,22 +1945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5435143117050633834}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -2005,6 +1962,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7195605420171787843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2396,8 +2361,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 563755660527101094}
   _transform: {fileID: 9063963016925719966}
+  _rigidbody2D: {fileID: 563755660527101094}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -2427,22 +2392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7501050479087071189}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -2459,6 +2409,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &18684783071761275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2850,8 +2808,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 3131689853633542089}
   _transform: {fileID: 3830194528308583998}
+  _rigidbody2D: {fileID: 3131689853633542089}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -2881,22 +2839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6978189929498262735}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -2913,6 +2856,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2023552812306335049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3304,8 +3255,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 7838173481492533244}
   _transform: {fileID: 8420316178664083138}
+  _rigidbody2D: {fileID: 7838173481492533244}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -3335,22 +3286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5212787128250311800}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -3367,6 +3303,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1549395567856957797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3919,8 +3863,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 4895308888511184995}
   _transform: {fileID: 6566384357591704837}
+  _rigidbody2D: {fileID: 4895308888511184995}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -3950,22 +3894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 153250808028877600}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -3982,6 +3911,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &9138392459517865916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4373,8 +4310,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 4071073076131200487}
   _transform: {fileID: 4043855542175655711}
+  _rigidbody2D: {fileID: 4071073076131200487}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -4404,22 +4341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8093339077381672458}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -4436,6 +4358,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6792175158093727592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4827,8 +4757,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 6655244604507534639}
   _transform: {fileID: 2260818367392588955}
+  _rigidbody2D: {fileID: 6655244604507534639}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -4858,22 +4788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7934767480304957639}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -4890,6 +4805,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &107768019750364772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5206,7 +5129,7 @@ MonoBehaviour:
   _myTransform: {fileID: 9126805039593386211}
   _magazineReserve: {fileID: 2073174384341714352}
   _ammoPool: {fileID: 5431850144052714425}
-  _aimMode: 0
+  _aimMode: 1
   _selfAimDirection:
     useConstant: 0
     constantValue: {x: 0, y: 0}
@@ -5456,8 +5379,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 2745268414179184595}
   _transform: {fileID: 1355196852679645799}
+  _rigidbody2D: {fileID: 2745268414179184595}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -5487,22 +5410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8014236365410446030}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -5519,6 +5427,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4782634519092959086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5910,8 +5826,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 7163879248632852413}
   _transform: {fileID: 6023000793771947538}
+  _rigidbody2D: {fileID: 7163879248632852413}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -5941,22 +5857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4174311895801883557}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -5973,6 +5874,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4474219373735203879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6364,8 +6273,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 2128270465566518682}
   _transform: {fileID: 4958945051023839377}
+  _rigidbody2D: {fileID: 2128270465566518682}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -6395,22 +6304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7845194754374523963}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -6427,6 +6321,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4426373439711558428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6818,8 +6720,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 3731512391352357169}
   _transform: {fileID: 3803898465621616526}
+  _rigidbody2D: {fileID: 3731512391352357169}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -6849,22 +6751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7914003408585793104}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -6881,6 +6768,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3944042959349779926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7272,8 +7167,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 1262438854344543583}
   _transform: {fileID: 2887247766454570981}
+  _rigidbody2D: {fileID: 1262438854344543583}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -7303,22 +7198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 988794496243100723}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -7335,6 +7215,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2221180139614370354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7726,8 +7614,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 6074965997442411852}
   _transform: {fileID: 9044458771863163026}
+  _rigidbody2D: {fileID: 6074965997442411852}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -7757,22 +7645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 704988644968317011}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -7789,6 +7662,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8024929708025626254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8180,8 +8061,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 3713575689357576750}
   _transform: {fileID: 3814163276207235377}
+  _rigidbody2D: {fileID: 3713575689357576750}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -8211,22 +8092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4251847430601293581}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -8243,6 +8109,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1996166421250743898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8634,8 +8508,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 5133100035548669878}
   _transform: {fileID: 6725734486975746775}
+  _rigidbody2D: {fileID: 5133100035548669878}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -8665,22 +8539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8131204471162612440}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -8697,6 +8556,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2027544274198460728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9088,8 +8955,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 3610254638451408052}
   _transform: {fileID: 7200302894521047306}
+  _rigidbody2D: {fileID: 3610254638451408052}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -9119,22 +8986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6556187169249050541}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -9151,6 +9003,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8135637119578929392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9542,8 +9402,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 1060800262338609265}
   _transform: {fileID: 5087871200043692882}
+  _rigidbody2D: {fileID: 1060800262338609265}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -9573,22 +9433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 538668098472658161}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -9605,6 +9450,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3356541518904582464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9996,8 +9849,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 4408490276779237945}
   _transform: {fileID: 5177975529066880260}
+  _rigidbody2D: {fileID: 4408490276779237945}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -10027,22 +9880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5445171315387560251}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -10059,6 +9897,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &9208575883140052775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10450,8 +10296,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 7272630271841493976}
   _transform: {fileID: 4286038991107593391}
+  _rigidbody2D: {fileID: 7272630271841493976}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -10481,22 +10327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8827209832806581643}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -10513,6 +10344,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5601812321282428984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10904,8 +10743,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 5715671753596361113}
   _transform: {fileID: 657494871886479561}
+  _rigidbody2D: {fileID: 5715671753596361113}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -10935,22 +10774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5784820286919468582}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -10967,6 +10791,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4000079966237363067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11358,8 +11190,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 7202068202742135359}
   _transform: {fileID: 2307465712366633058}
+  _rigidbody2D: {fileID: 7202068202742135359}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -11389,22 +11221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4421362548277549898}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -11421,6 +11238,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3603525174410039747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11812,8 +11637,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 4869982839448174126}
   _transform: {fileID: 4399462001204150264}
+  _rigidbody2D: {fileID: 4869982839448174126}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -11843,22 +11668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9037792850711423904}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -11875,6 +11685,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6088452104895406389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12266,8 +12084,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 8422302917617862058}
   _transform: {fileID: 3571092852449822786}
+  _rigidbody2D: {fileID: 8422302917617862058}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -12297,22 +12115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8362297488518095804}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -12329,6 +12132,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5103834774855121388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12720,8 +12531,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 412283438863314508}
   _transform: {fileID: 5088879222313967516}
+  _rigidbody2D: {fileID: 412283438863314508}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -12751,22 +12562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6211866066722173891}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -12783,6 +12579,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1005628891364997062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13174,8 +12978,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 5571512998786154266}
   _transform: {fileID: 8044506238891227027}
+  _rigidbody2D: {fileID: 5571512998786154266}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -13205,22 +13009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3202374995988985869}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -13237,6 +13026,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &32960426925727328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13628,8 +13425,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 146220937685807275}
   _transform: {fileID: 5654608911882949466}
+  _rigidbody2D: {fileID: 146220937685807275}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -13659,22 +13456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1293254886567363602}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -13691,6 +13473,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2736187596335166624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14082,8 +13872,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 8767252211819039600}
   _transform: {fileID: 6129073207816863728}
+  _rigidbody2D: {fileID: 8767252211819039600}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -14113,22 +13903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2790966362306735356}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -14145,6 +13920,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5574386675170341807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14536,8 +14319,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 503238234296051857}
   _transform: {fileID: 4295357580765235441}
+  _rigidbody2D: {fileID: 503238234296051857}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -14567,22 +14350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2953832200722351667}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -14599,6 +14367,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4687420125779213727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14990,8 +14766,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 6212186228528899698}
   _transform: {fileID: 4836617080863515545}
+  _rigidbody2D: {fileID: 6212186228528899698}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -15021,22 +14797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7523301304405997792}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -15053,6 +14814,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6798518139788352793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15444,8 +15213,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 3745054053008132352}
   _transform: {fileID: 4257111557605162279}
+  _rigidbody2D: {fileID: 3745054053008132352}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -15475,22 +15244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4018870066724233433}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -15507,6 +15261,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &110406827824133576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15898,8 +15660,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 2795036217794316055}
   _transform: {fileID: 7688488075181789545}
+  _rigidbody2D: {fileID: 2795036217794316055}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -15929,22 +15691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4323635219173418854}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -15961,6 +15708,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &447206707400299236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16352,8 +16107,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 5114508397666158534}
   _transform: {fileID: 4653603250477739326}
+  _rigidbody2D: {fileID: 5114508397666158534}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -16383,22 +16138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 291246798289412342}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -16415,6 +16155,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1578359903311172600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16806,8 +16554,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 5525873232805781091}
   _transform: {fileID: 8003437017748867593}
+  _rigidbody2D: {fileID: 5525873232805781091}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -16837,22 +16585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5572539729548355994}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -16869,6 +16602,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6108494971641597484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17260,8 +17001,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 801218740340608246}
   _transform: {fileID: 7295189282905720542}
+  _rigidbody2D: {fileID: 801218740340608246}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -17291,22 +17032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6430770458920566255}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -17323,6 +17049,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6509437256304775549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17714,8 +17448,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 7919163384092540325}
   _transform: {fileID: 4495078801433830950}
+  _rigidbody2D: {fileID: 7919163384092540325}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -17745,22 +17479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6425177069486089762}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -17777,6 +17496,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7629935165695934689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18168,8 +17895,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
-  _rigidbody2D: {fileID: 3525116459116740484}
   _transform: {fileID: 6220538501965508518}
+  _rigidbody2D: {fileID: 3525116459116740484}
   _onStopped:
     m_PersistentCalls:
       m_Calls:
@@ -18199,22 +17926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _onBecomeInvisible:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6751911851814027777}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.HealthReserve,
-          Scripts
-        m_MethodName: Empty
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _invokeOnCollisionEnter2D: 0
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -18231,6 +17943,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _invokeOnCollisionExit2D: 0
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _invokeOnCollisionStay2D: 0
+  _onCollisionStay2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7265073001647433156
 MonoBehaviour:
   m_ObjectHideFlags: 0
