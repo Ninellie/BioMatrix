@@ -86,6 +86,7 @@ MonoBehaviour:
   - {fileID: 4434837025887562176}
   - {fileID: 10009703863633282}
   - {fileID: 1617888592285098376}
+  _allowGettingActiveObjects: 0
 --- !u!1 &10009703863633282
 GameObject:
   m_ObjectHideFlags: 0
@@ -1937,6 +1938,7 @@ MonoBehaviour:
   - {fileID: 6920195961143377466}
   - {fileID: 7994501284355961303}
   - {fileID: 4146345064298633913}
+  _allowGettingActiveObjects: 0
 --- !u!1 &1644660952451865800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3963,6 +3965,7 @@ MonoBehaviour:
   - {fileID: 8564331502018328303}
   - {fileID: 8110401725485879752}
   - {fileID: 8956523224297226697}
+  _allowGettingActiveObjects: 0
 --- !u!1 &3200434912548930751
 GameObject:
   m_ObjectHideFlags: 0
@@ -4099,6 +4102,7 @@ MonoBehaviour:
   - {fileID: 3912646070264470236}
   - {fileID: 6498941511092999863}
   - {fileID: 1892369061719257297}
+  _allowGettingActiveObjects: 0
 --- !u!1 &3300460308265404352
 GameObject:
   m_ObjectHideFlags: 0
@@ -4179,6 +4183,7 @@ MonoBehaviour:
   - {fileID: 3673751279644073142}
   - {fileID: 7884506208992477509}
   - {fileID: 6970594143691971103}
+  _allowGettingActiveObjects: 0
 --- !u!1 &3303829969087466308
 GameObject:
   m_ObjectHideFlags: 0
@@ -4401,18 +4406,6 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4623149419078257391}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1139123764469492195}
         m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.StackPool,
           Scripts
@@ -4442,17 +4435,18 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8791528952035207331}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 8969044947425449472}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.StackPool,
+          Scripts
+        m_MethodName: TryAdd
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &7318448890921452330
 MonoBehaviour:
@@ -4470,10 +4464,11 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8909638025692769265}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 832363961390309759}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.StackPool,
+          Scripts
+        m_MethodName: TryAdd
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4542,6 +4537,7 @@ MonoBehaviour:
   - {fileID: 505849604658396188}
   - {fileID: 7997125045826423448}
   - {fileID: 3581316315485826562}
+  _allowGettingActiveObjects: 0
 --- !u!1 &3581316315485826562
 GameObject:
   m_ObjectHideFlags: 0
@@ -4922,6 +4918,7 @@ MonoBehaviour:
   - {fileID: 1708975822142743214}
   - {fileID: 9193468932605650627}
   - {fileID: 8493483042512583900}
+  _allowGettingActiveObjects: 0
 --- !u!1 &3912646070264470236
 GameObject:
   m_ObjectHideFlags: 0
@@ -5128,6 +5125,7 @@ MonoBehaviour:
   - {fileID: 8006248880098702153}
   - {fileID: 4527997965419690685}
   - {fileID: 4596731160929125000}
+  _allowGettingActiveObjects: 0
 --- !u!1 &4136351811372675282
 GameObject:
   m_ObjectHideFlags: 0
@@ -5905,6 +5903,7 @@ MonoBehaviour:
   - {fileID: 7813407488650039770}
   - {fileID: 7397346558259685228}
   - {fileID: 1159090785377424523}
+  _allowGettingActiveObjects: 0
 --- !u!1 &4623149419078257391
 GameObject:
   m_ObjectHideFlags: 0
@@ -5921,7 +5920,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1446329850551637037
 Transform:
   m_ObjectHideFlags: 0
@@ -5985,6 +5984,7 @@ MonoBehaviour:
   - {fileID: 1312911354836250693}
   - {fileID: 9081022350087840200}
   - {fileID: 1542013383856573155}
+  _allowGettingActiveObjects: 0
 --- !u!1 &4640526538873816150
 GameObject:
   m_ObjectHideFlags: 0
@@ -6387,6 +6387,7 @@ MonoBehaviour:
   - {fileID: 2091438828935449480}
   - {fileID: 1019122492621604339}
   - {fileID: 4583539257029836761}
+  _allowGettingActiveObjects: 0
 --- !u!1 &5028017159646918456
 GameObject:
   m_ObjectHideFlags: 0
@@ -6697,6 +6698,7 @@ MonoBehaviour:
   - {fileID: 6964592163964514907}
   - {fileID: 4255209740094669799}
   - {fileID: 2286440500588570003}
+  _allowGettingActiveObjects: 0
 --- !u!1 &5528231144878984897
 GameObject:
   m_ObjectHideFlags: 0
@@ -6750,10 +6752,10 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7692090646844534888}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 11400000, guid: 0b7b03a9110fc3446b8eac8be2637c78, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
+        m_MethodName: Raise
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6762,9 +6764,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 0b7b03a9110fc3446b8eac8be2637c78, type: 2}
-        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
-        m_MethodName: Raise
+      - m_Target: {fileID: 8001910675770967140}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.StackPool,
+          Scripts
+        m_MethodName: TryAdd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6890,6 +6893,7 @@ MonoBehaviour:
   - {fileID: 6697832231198038379}
   - {fileID: 5684644858967845131}
   - {fileID: 3792562570369424705}
+  _allowGettingActiveObjects: 0
 --- !u!1 &5606406773671710314
 GameObject:
   m_ObjectHideFlags: 0
@@ -7638,6 +7642,7 @@ MonoBehaviour:
   - {fileID: 2690490847147782961}
   - {fileID: 8247174299113429455}
   - {fileID: 7467212570172680192}
+  _allowGettingActiveObjects: 0
 --- !u!1 &6292357650727878350
 GameObject:
   m_ObjectHideFlags: 0
@@ -8101,6 +8106,7 @@ MonoBehaviour:
   - {fileID: 4646627653125547626}
   - {fileID: 234878380892612325}
   - {fileID: 2134922990675170538}
+  _allowGettingActiveObjects: 0
 --- !u!1 &6505889587980281146
 GameObject:
   m_ObjectHideFlags: 0
@@ -9459,6 +9465,7 @@ MonoBehaviour:
   - {fileID: 3421137366565283710}
   - {fileID: 2782837515702093689}
   - {fileID: 1709341545848380596}
+  _allowGettingActiveObjects: 0
 --- !u!1 &7456538741010648896
 GameObject:
   m_ObjectHideFlags: 0
@@ -9739,6 +9746,7 @@ MonoBehaviour:
   - {fileID: 1517124662859523889}
   - {fileID: 6841514601713212094}
   - {fileID: 1164366071928306745}
+  _allowGettingActiveObjects: 0
 --- !u!1 &7629690013766293083
 GameObject:
   m_ObjectHideFlags: 0
@@ -9855,7 +9863,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2241977601360579017
 Transform:
   m_ObjectHideFlags: 0
@@ -9919,6 +9927,7 @@ MonoBehaviour:
   - {fileID: 879395151806656623}
   - {fileID: 5326653824083960778}
   - {fileID: 5727497378560957266}
+  _allowGettingActiveObjects: 0
 --- !u!1 &7692845628079644459
 GameObject:
   m_ObjectHideFlags: 0
@@ -11397,7 +11406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6982186062454321949
 Transform:
   m_ObjectHideFlags: 0
@@ -11441,6 +11450,7 @@ MonoBehaviour:
   - {fileID: 924510901715139268}
   - {fileID: 5625291096742910919}
   - {fileID: 3063758302492086324}
+  _allowGettingActiveObjects: 0
 --- !u!1 &8845771838712421408
 GameObject:
   m_ObjectHideFlags: 0
@@ -11497,6 +11507,7 @@ MonoBehaviour:
   - {fileID: 7415561806418928833}
   - {fileID: 2911075823457591059}
   - {fileID: 7192468373390228971}
+  _allowGettingActiveObjects: 0
 --- !u!1 &8850015624658302901
 GameObject:
   m_ObjectHideFlags: 0
@@ -11650,7 +11661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5782050073950840999
 Transform:
   m_ObjectHideFlags: 0
@@ -11690,6 +11701,7 @@ MonoBehaviour:
   - {fileID: 6754423559610550832}
   - {fileID: 7537053531985466007}
   - {fileID: 2566658986961540790}
+  _allowGettingActiveObjects: 0
 --- !u!1 &8956523224297226697
 GameObject:
   m_ObjectHideFlags: 0
