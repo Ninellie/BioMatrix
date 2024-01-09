@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4631976109929986652}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Center top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 678106895428592970}
   - component: {fileID: 3720119088866172726}
   - component: {fileID: 3447787300572891404}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MenuButtonArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 8042745928416457251}
   - component: {fileID: 7046740091248607028}
   - component: {fileID: 1758828816875691577}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Change Aim Mode Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1138706873350751331}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3303581273683219317}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 9210604964072494335}
   - component: {fileID: 7104002377918874521}
   - component: {fileID: 4717946580583755223}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +677,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8014705548506943337}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Top center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -784,7 +784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8609503740053063972}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -966,7 +966,7 @@ GameObject:
   - component: {fileID: 4386513756372545590}
   - component: {fileID: 471982352997500868}
   - component: {fileID: 3913542021782848964}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: RightButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1054,7 +1054,7 @@ GameObject:
   - component: {fileID: 5041949617024885676}
   - component: {fileID: 7853028751877395718}
   - component: {fileID: 8052094769979844048}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1186,7 +1186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 891464435688980451}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}

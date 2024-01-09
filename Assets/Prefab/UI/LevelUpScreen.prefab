@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4537554755661165175}
   - component: {fileID: 2419837841338823563}
   - component: {fileID: 6385872664224231156}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Flap Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 137242964371797235}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 7065658863045996377}
   - component: {fileID: 1655792792739836689}
   - component: {fileID: 2336473630828722576}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Card Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 498006357948388266}
   - component: {fileID: 3421917174744302685}
   - component: {fileID: 2262478757831973684}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelUp Screen Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 3129149426581619799}
   - component: {fileID: 1772883334339894268}
   - component: {fileID: 1723975125504038376}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Card Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,7 +525,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4043887605964892620}
   - component: {fileID: 2492373757205253625}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Decks Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,7 +596,7 @@ GameObject:
   - component: {fileID: 429109272575145758}
   - component: {fileID: 6749931563609368108}
   - component: {fileID: 3635430418361595875}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: AcceptButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 4093878207824112058}
   - component: {fileID: 7127483075235673287}
   - component: {fileID: 3596143258680570563}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -829,7 +829,7 @@ GameObject:
   - component: {fileID: 6092762578697356003}
   - component: {fileID: 3033517341128327317}
   - component: {fileID: 3133558060310017634}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Flap Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -904,7 +904,7 @@ GameObject:
   - component: {fileID: 664205212993627407}
   - component: {fileID: 9076647856404656276}
   - component: {fileID: 1447002114828619153}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Deck Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1037,7 +1037,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6785773718854168948}
   - component: {fileID: 3285558890161709958}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1082,7 +1082,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9120442821202998103}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1119,7 +1119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4549923214624655301}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Middle Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1157,7 +1157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3160568939752271986}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1196,7 +1196,7 @@ GameObject:
   - component: {fileID: 1246920315265391299}
   - component: {fileID: 2718538567560567310}
   - component: {fileID: 364203032448409690}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Decks Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1285,7 +1285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2886239510502832276}
   - component: {fileID: 3569476570626599207}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Card Info Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1342,7 +1342,7 @@ GameObject:
   - component: {fileID: 2409062710121880645}
   - component: {fileID: 521976070807628414}
   - component: {fileID: 6749319217351790485}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Level Up Tutorial Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1479,7 +1479,7 @@ GameObject:
   - component: {fileID: 1999654540602344447}
   - component: {fileID: 2361362707511087346}
   - component: {fileID: 994821342652152960}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Level Up Tutorial Text Mobile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1615,7 +1615,7 @@ GameObject:
   - component: {fileID: 5658390308140261614}
   - component: {fileID: 7173495590917780858}
   - component: {fileID: 6134230452671136130}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: AcceptButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1770,7 +1770,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 192854721727883537}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1807,7 +1807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3669596300585570387}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1844,7 +1844,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3413481273687623821}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1883,7 +1883,7 @@ GameObject:
   - component: {fileID: 5836086177654696998}
   - component: {fileID: 8889056593457687338}
   - component: {fileID: 2173690689389957653}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Card2NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2017,13 +2017,13 @@ GameObject:
   - component: {fileID: 7391377192208848215}
   - component: {fileID: 7195721735441491596}
   - component: {fileID: 5400231852864158886}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelUpScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7391377192208848215
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2058,6 +2058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _baseDeckAmount: 3
+  _hand: {fileID: 0}
 --- !u!114 &5400231852864158886
 MonoBehaviour:
   m_ObjectHideFlags: 0
