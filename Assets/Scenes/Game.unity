@@ -2346,6 +2346,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 764700161}
   m_CullTransparentMesh: 1
+--- !u!20 &771697510 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 228867646345533429, guid: 90540f6d8e877f64bac7ee0bb7533b31, type: 3}
+  m_PrefabInstance: {fileID: 797330979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &782512252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2436,7 +2441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 160716915706038188, guid: 90540f6d8e877f64bac7ee0bb7533b31, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 160716915706038188, guid: 90540f6d8e877f64bac7ee0bb7533b31, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3290,10 +3295,10 @@ Canvas:
   m_GameObject: {fileID: 1239585256}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_RenderMode: 0
+  m_Camera: {fileID: 771697510}
   m_PlaneDistance: 1
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -3302,7 +3307,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -2103483131
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1239585261
 RectTransform:
