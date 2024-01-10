@@ -17,12 +17,17 @@ namespace Assets.Scripts.EntityComponents
         [Header("Settings")]
         [SerializeField] private bool _disableObjectOnEmpty;
         [SerializeField] private GameObjectReference _selfGameObject;
+        [Space]
         [SerializeField] private ReserveAction _startAction;
         [SerializeField] private ReserveAction _enableAction;
+        [Space]
         [SerializeField] private IntReference _currentValue;
         [SerializeField] private StatReference _maximumValue;
         [SerializeField] private IntReference _initialValue;
         [SerializeField] private int _edgeValue;
+        [Space]
+        [SerializeField] private FloatReference _gainMultiplier;
+        [SerializeField] private bool _useMultiplier;
         [Header("Events")]
         [SerializeField] private UnityEvent<int> _onChanged;
         [SerializeField] private UnityEvent _onEmpty;
@@ -66,6 +71,12 @@ namespace Assets.Scripts.EntityComponents
         public void Increase(int amount)
         {
             if (amount <= 0) return;
+            if (_useMultiplier)
+            {
+                var multiplier = _gainMultiplier.Value;
+                float baseValue = amount;
+                amount = (int)(baseValue * multiplier);
+            }
             var nextValue = _currentValue + amount;
             SetValue(nextValue);
         }
