@@ -1,4 +1,3 @@
-using PlasticPipe.PlasticProtocol.Messages;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents
