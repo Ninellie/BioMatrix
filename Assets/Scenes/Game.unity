@@ -2003,7 +2003,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 48.85
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2057,11 +2057,6 @@ CanvasRenderer:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9016830554816967858, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
   m_PrefabInstance: {fileID: 5045109490971836435}
-  m_PrefabAsset: {fileID: 0}
---- !u!1839735485 &632446042 stripped
-Tilemap:
-  m_CorrespondingSourceObject: {fileID: 4125056308902268561, guid: 0382619a9280d184a85f56eb4ff5eeeb, type: 3}
-  m_PrefabInstance: {fileID: 3546113040322407131}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &635316893
 GameObject:
@@ -2296,7 +2291,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 30.5
   m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2441,7 +2436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 160716915706038188, guid: 90540f6d8e877f64bac7ee0bb7533b31, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 160716915706038188, guid: 90540f6d8e877f64bac7ee0bb7533b31, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2470,6 +2465,18 @@ PrefabInstance:
     - target: {fileID: 160716915706038188, guid: 90540f6d8e877f64bac7ee0bb7533b31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 228867646345533429, guid: 90540f6d8e877f64bac7ee0bb7533b31, type: 3}
+      propertyPath: m_ForceIntoRT
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 228867646345533429, guid: 90540f6d8e877f64bac7ee0bb7533b31, type: 3}
+      propertyPath: orthographic size
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827948860325967683, guid: 90540f6d8e877f64bac7ee0bb7533b31, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8482431663039588686, guid: 90540f6d8e877f64bac7ee0bb7533b31, type: 3}
       propertyPath: m_Name
@@ -7124,7 +7131,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.55
+  m_fontSize: 16.25
   m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8795,10 +8802,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7038445815432115736, guid: 0382619a9280d184a85f56eb4ff5eeeb, type: 3}
-      propertyPath: _tilemap
-      value: 
-      objectReference: {fileID: 632446042}
     - target: {fileID: 8554277198165889980, guid: 0382619a9280d184a85f56eb4ff5eeeb, type: 3}
       propertyPath: m_Name
       value: Floor
@@ -9401,7 +9404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649112389834138286, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4955487594067877925, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_Layer

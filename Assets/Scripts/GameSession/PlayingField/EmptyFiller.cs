@@ -8,7 +8,7 @@ namespace Assets.Scripts.GameSession.PlayingField
     public class EmptyFiller : MonoBehaviour
     {
         [SerializeField] private Vector2Reference _cameraCenter;
-        [SerializeField] private Vector2Int _screenPixelSize = new(960, 540);
+        [SerializeField] private Vector2Int _screenPixelSize;
         [SerializeField] private int _margins = 6;
 
         [SerializeField] private Tilemap _tilemap;
@@ -21,7 +21,9 @@ namespace Assets.Scripts.GameSession.PlayingField
 
         private void Awake()
         {
+            //= new(960, 540);
             _passedPositions = new List<Vector3Int>();
+            DefineBounds();
         }
 
         private void Start()

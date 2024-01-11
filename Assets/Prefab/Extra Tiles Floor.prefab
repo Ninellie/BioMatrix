@@ -751,7 +751,7 @@ GameObject:
   - component: {fileID: 7038445815432115736}
   - component: {fileID: 7591444909339643193}
   - component: {fileID: 912793447245826550}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Extra Tiles Floor
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 99c3717808acc0f43b394ab3e10da8bb, type: 3}
@@ -806,7 +806,7 @@ MonoBehaviour:
     variable: {fileID: 11400000, guid: 18fcfc9320061484aa6999e6fc37ba7f, type: 2}
   _screenPixelSize: {x: 960, y: 540}
   _margins: 6
-  _tilemap: {fileID: 6331195735364219168}
+  _tilemap: {fileID: 4125056308902268561}
   _fillers:
   - {fileID: 3438112504911121530}
   - {fileID: 3876978150130396463}
