@@ -138,6 +138,11 @@ MonoBehaviour:
     constantValue: 1
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -541,7 +546,7 @@ MonoBehaviour:
       - m_Target: {fileID: 7621664837990063909}
         m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents.Dumper,
           Scripts
-        m_MethodName: set_DropOnDisable
+        m_MethodName: set_CanDrop
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
