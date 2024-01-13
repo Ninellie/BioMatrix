@@ -363,7 +363,7 @@ MonoBehaviour:
       card:
         inspectorName: 
         title: Each 3 lvl
-        description: Gain 1 Ammo when you kill an enemy
+        description: Gain 1 Ammo when you picking up experience
         onTaken:
         - {fileID: 11400000, guid: 8cc7e3c527d88fe419e8e6ac3d13ed2b, type: 2}
         dropWeight: 1
