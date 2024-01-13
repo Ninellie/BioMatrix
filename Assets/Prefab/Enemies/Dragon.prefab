@@ -136,6 +136,11 @@ MonoBehaviour:
     constantValue: 20
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -188,7 +193,7 @@ MonoBehaviour:
   _staticSpeedScale: 0
   speed:
     useConstant: 1
-    constantValue: 70
+    constantValue: 50
     variable: {fileID: 0}
   _transform: {fileID: 6042837996286799121}
   _rigidbody2D: {fileID: 3774024594271913881}
@@ -275,10 +280,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0390a211e5d5e0b4bb535708aa195495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _repulseForce: 0.4
+  _repulseForce: 0.6
   _penetrationDistanceMultiplier: 1.1
+  _considerPenetrationDepth: 1
   _layerName: Enemy
-  _simpleRepulse: 0
 --- !u!58 &1878492662911867408
 CircleCollider2D:
   m_ObjectHideFlags: 0
