@@ -1,5 +1,4 @@
 using System.Collections;
-using Assets.Scripts.Core.Events;
 using Assets.Scripts.Core.Variables.References;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,7 +15,7 @@ namespace Assets.Scripts.EntityComponents.Resources
         [Header("Settings")]
         [SerializeField] private IntReference _currentValue;
         [SerializeField] private FloatReference _limiter;
-        [SerializeField] [Tooltip("Recovering speed in seconds")]private FloatReference _speed;
+        [SerializeField] [Tooltip("Recovering speed value per minute")]private FloatReference _speed;
         [SerializeField] [Min(0)] private float _rate = 1;
         [Header("Response")]
         [SerializeField] private UnityEvent _onRecoverUnityEvent;
@@ -33,17 +32,12 @@ namespace Assets.Scripts.EntityComponents.Resources
             StopCoroutine(Recover());
         }
 
-        private void OnDestroy()
-        {
-            StopCoroutine(Recover());
-        }
-
         private IEnumerator Recover()
         {
             while (true)
             {
-                yield return new WaitWhile(() => !(_currentValue < _limiter));
-                _recoverValue += _speed / 60 * _rate;
+                yield return new WaitWhile(() => !(_currentValue.Value < _limiter.Value));
+                _recoverValue += _speed.Value / 60 * _rate;
                 yield return new WaitForSeconds(_rate);
                 if (!(_recoverValue > 1)) continue;
                 _recoverValue = 0f;
