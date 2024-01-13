@@ -1291,7 +1291,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
   m_PrefabInstance: {fileID: 7845937654429248470}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 972550727}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
@@ -2003,7 +2003,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.85
+  m_fontSize: 50
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2291,7 +2291,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.5
+  m_fontSize: 50
   m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2866,6 +2866,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915594263}
   m_CullTransparentMesh: 1
+--- !u!1 &972550727 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8936996738513542146, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+  m_PrefabInstance: {fileID: 7845937654429248470}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &972550732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972550727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a8ba37c42865c47bf6144f4789a798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onNextDeck:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2025358892}
+        m_TargetAssemblyTypeName: ComplexLevelUpDisplay, Scripts
+        m_MethodName: ActivateNextDeck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onPreviousDeck:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2025358892}
+        m_TargetAssemblyTypeName: ComplexLevelUpDisplay, Scripts
+        m_MethodName: ActivatePreviousDeck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onDeckAccept:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1239585266}
+        m_TargetAssemblyTypeName: Assets.Scripts.GameSession.UIScripts.SessionModel.GameSessionController,
+          Scripts
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2025358893}
+        m_TargetAssemblyTypeName: LevelUpController, Scripts
+        m_MethodName: LevelUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &976794160
 GameObject:
   m_ObjectHideFlags: 0
@@ -6901,6 +6976,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7391377192208848215, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
   m_PrefabInstance: {fileID: 7235177087036547072}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2025358892 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5400231852864158886, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+  m_PrefabInstance: {fileID: 7235177087036547072}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025358890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb495f60febb4c841a0e5809c5fecd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2025358893 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7195721735441491596, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+  m_PrefabInstance: {fileID: 7235177087036547072}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025358890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a6b1baf072c48645912ae25c040569c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2043662794
 GameObject:
   m_ObjectHideFlags: 0
@@ -7131,7 +7228,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.25
+  m_fontSize: 32.55
   m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10358,6 +10455,135 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_ActionId
+      value: ed208ed9-c665-4d9f-bfd1-b8a34e894883
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
+      value: b53f0a1a-dc1e-4180-a3e8-27b675e6b42b
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[9].m_ActionName
+      value: LevelUpScreen/Next Deck Scroll[/Keyboard/s,/Mouse/scroll/down]
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionName
+      value: LevelUpScreen/Previous Deck Scroll[/Keyboard/w,/Mouse/scroll/up]
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 972550732}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1239585266}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 972550732}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 972550732}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDeckAccept
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnNextDeck
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPreviousDeck
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Assets.Scripts.Core.Input.LevelUpInputHandler, Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Assets.Scripts.GameSession.UIScripts.SessionModel.GameSessionController,
+        Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Assets.Scripts.Core.Input.LevelUpInputHandler, Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Assets.Scripts.Core.Input.LevelUpInputHandler, Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 794071196379316838, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10405,7 +10631,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8936996738513542146, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 972550732}
   m_SourcePrefab: {fileID: 100100000, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
 --- !u!114 &7852545379403273296
 MonoBehaviour:

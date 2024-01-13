@@ -312,39 +312,21 @@
                 },
                 {
                     "name": "Next Deck",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "c18e5375-167f-435a-82f7-41bdd7c9062c",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Next Deck Scroll",
-                    "type": "Value",
-                    "id": "ed208ed9-c665-4d9f-bfd1-b8a34e894883",
-                    "expectedControlType": "Delta",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Previous Deck",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "034c155f-79ad-416e-80f3-7716bbcfb5af",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Previous Deck Scroll",
-                    "type": "Value",
-                    "id": "b53f0a1a-dc1e-4180-a3e8-27b675e6b42b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -352,18 +334,7 @@
                     "name": "",
                     "id": "cd8d04ac-b7a3-4117-8c28-2598282087cd",
                     "path": "<Keyboard>/w",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "PC_Control_scheme",
-                    "action": "Previous Deck",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fcffc913-9f58-47ee-82b7-7594234e9f80",
-                    "path": "<Mouse>/scroll/up",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "PC_Control_scheme",
                     "action": "Previous Deck",
@@ -374,17 +345,6 @@
                     "name": "",
                     "id": "14f93b34-0075-45f3-9a75-5d6f4de10483",
                     "path": "<Keyboard>/s",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "PC_Control_scheme",
-                    "action": "Next Deck",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9257d9e3-bc4a-435e-a77a-339f927d5761",
-                    "path": "<Mouse>/scroll/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC_Control_scheme",
@@ -422,50 +382,6 @@
                     "processors": "",
                     "groups": "PC_Control_scheme",
                     "action": "Accept Card",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "315392bd-893c-4499-a389-eb392caddd53",
-                    "path": "<Keyboard>/s",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "PC_Control_scheme",
-                    "action": "Next Deck Scroll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5741a9dd-fb73-44a0-9fcc-e18032ad423f",
-                    "path": "<Mouse>/scroll/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC_Control_scheme",
-                    "action": "Next Deck Scroll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cc4e1002-1049-4fca-8395-87d4e707cf0f",
-                    "path": "<Keyboard>/w",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "PC_Control_scheme",
-                    "action": "Previous Deck Scroll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4330cc11-83f7-471d-97be-9181c622e1bf",
-                    "path": "<Mouse>/scroll/up",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": "PC_Control_scheme",
-                    "action": "Previous Deck Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
