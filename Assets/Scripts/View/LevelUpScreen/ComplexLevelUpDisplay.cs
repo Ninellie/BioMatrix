@@ -46,12 +46,40 @@ public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
 
     public void ActivateNextDeck()
     {
-        if (_activeDeck.Next != null) ActivateDeck(_activeDeck.Next.Value);
+        if (_activeDeck.Next != null)
+        {
+            ActivateDeck(_activeDeck.Next.Value);
+        }
+        else
+        {
+            var deck = _activeDeck.Previous;
+            if (deck == null) return;
+            while (deck.Previous != null)
+            {
+                deck = deck.Previous;
+            }
+
+            ActivateDeck(deck.Value);
+        }
     }
 
     public void ActivatePreviousDeck()
     {
-        if (_activeDeck.Previous != null) ActivateDeck(_activeDeck.Previous.Value);
+        if (_activeDeck.Previous != null)
+        {
+            ActivateDeck(_activeDeck.Previous.Value);
+        }
+        else
+        {
+            var deck = _activeDeck.Next;
+            if (deck == null) return;
+            while (deck.Next != null)
+            {
+                deck = deck.Next;
+            }
+
+            ActivateDeck(deck.Value);
+        }
     }
 
     public void DisplayRandomDecks(List<HandDeckData> decksData, int amount)
