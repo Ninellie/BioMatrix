@@ -50,6 +50,11 @@ namespace Assets.Scripts.Core.Input
             }
         }
 
+        public void SetFireButtonPressed(bool isPressed)
+        {
+            fireButtonPressed = isPressed;
+        }
+
         public void OnShoot(InputAction.CallbackContext context)
         {
             Debug.LogWarning($"On Shoot");

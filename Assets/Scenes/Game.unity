@@ -2871,6 +2871,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8936996738513542146, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
   m_PrefabInstance: {fileID: 7845937654429248470}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &972550729 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4044032953447736284, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+  m_PrefabInstance: {fileID: 7845937654429248470}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972550727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afc8309aac1d1f45aa61dd56673104d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &972550732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2933,6 +2944,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: LevelUpController, Scripts
         m_MethodName: LevelUp
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &972550733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972550727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 8b05d123195981543827c7c70691cc73, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 972550729}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Input.ShootInputHandler, Scripts
+        m_MethodName: SetFireButtonPressed
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10493,7 +10532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -10510,7 +10549,7 @@ PrefabInstance:
     - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1239585266}
+      objectReference: {fileID: 972550729}
     - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -10541,7 +10580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Resume
+      value: OnShoot
       objectReference: {fileID: 0}
     - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -10557,8 +10596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
       propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Assets.Scripts.GameSession.UIScripts.SessionModel.GameSessionController,
-        Scripts
+      value: Assets.Scripts.Core.Input.ShootInputHandler, Scripts
       objectReference: {fileID: 0}
     - target: {fileID: 754426596741731135, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
       propertyPath: m_ActionEvents.Array.data[7].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -10624,6 +10662,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4044032953447736284, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      propertyPath: isMobile
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8936996738513542146, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
       propertyPath: m_Name
       value: Player Input Controller
@@ -10635,6 +10677,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8936996738513542146, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
       insertIndex: -1
       addedObject: {fileID: 972550732}
+    - targetCorrespondingSourceObject: {fileID: 8936996738513542146, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 972550733}
   m_SourcePrefab: {fileID: 100100000, guid: 32fc8630a3fa8de4298e795cca6e3c64, type: 3}
 --- !u!114 &7852545379403273296
 MonoBehaviour:
