@@ -7,8 +7,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Repulse
     {
         [SerializeField] private float _repulseForce;
         [SerializeField] private float _penetrationDistanceMultiplier;
+        [SerializeField] private bool _considerPenetrationDepth;
         [SerializeField] private string _layerName;
-        [SerializeField] private bool _simpleRepulse;
 
         private CircleCollider2D _circleCollider;
         private Collider2D _collider;
@@ -27,15 +27,15 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Repulse
 
         private void OnCollisionStay2D(Collision2D collision)
         {
+            if (!enabled) return;
             var otherCollider2D = collision.collider;
-
             if (otherCollider2D.gameObject.layer != LayerMask.NameToLayer(_layerName)) return;
-            if (_simpleRepulse)
+            if (_considerPenetrationDepth)
             {
-                SimpleRepulse(otherCollider2D, collision);
+                RepulseFrom(otherCollider2D, collision);
                 return;
             }
-            RepulseFrom(otherCollider2D, collision);
+            SimpleRepulse(collision);
         }
 
         private void RepulseFrom(Collider2D otherCollider2D, Collision2D collision2D)
@@ -86,7 +86,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Repulse
             return penetrationDepth;
         }
 
-        private void SimpleRepulse(Collider2D otherCollider2D, Collision2D collision)
+        private void SimpleRepulse(Collision2D collision)
         {
             var repulseVector = collision.contacts[0].normal * _repulseForce;
             transform.Translate(repulseVector * Time.fixedDeltaTime, Space.World);
