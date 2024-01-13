@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 2316403284215167119}
   _transform: {fileID: 5058406891993574356}
-  _speed: 800
+  _speed: 500
   _playerTag: Player
   _magnetTag: Magnet
 --- !u!50 &2316403284215167119
@@ -231,11 +231,11 @@ TrailRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Time: 0.4
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 6
+    widthMultiplier: 4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -262,8 +262,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.64509016, g: 0.23853551, b: 0.19320042, a: 1}
-      key1: {r: 0.885, g: 0.07696488, b: 0, a: 0}
+      key0: {r: 0.48627454, g: 0.09411766, b: 0.23529413, a: 1}
+      key1: {r: 0.48627454, g: 0.09411766, b: 0.23529413, a: 0}
       key2: {r: 0.885, g: 0.07696488, b: 0, a: 0}
       key3: {r: 0.8352942, g: 0.23529413, b: 0.4156863, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -287,7 +287,7 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 1
