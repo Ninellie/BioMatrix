@@ -69,6 +69,7 @@ GameObject:
   - component: {fileID: 2467569490339447555}
   - component: {fileID: 2546532958165173739}
   - component: {fileID: 1595548610954337363}
+  - component: {fileID: -6347357820061795237}
   m_Layer: 6
   m_Name: Mite
   m_TagString: Enemy
@@ -559,3 +560,19 @@ MonoBehaviour:
   _onCollisionStay2D:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-6347357820061795237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954189743293124748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0390a211e5d5e0b4bb535708aa195495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _repulseForce: 0.6
+  _penetrationDistanceMultiplier: 1.1
+  _considerPenetrationDepth: 1
+  _layerName: Enemy
