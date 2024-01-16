@@ -1,24 +1,34 @@
+using Assets.Scripts.Core.Variables.References;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.Collisions
 {
     public class Boid : MonoBehaviour
     {
-        public List<Transform> neighbours;
-        [Range(-10,  10)] public float cohesionPower;
-        [Range(-10,  10)] public float separationPower;
-        public Vector2 velocity;
-        public Transform movingTransform;
+        public MovementController controller;
 
+        public List<Transform> neighbours;
+        public bool applyCohesion;
+        public FloatReference cohesionPower;
+        public bool applySeparation;
+        public FloatReference separationPower;
+
+        public Vector2 velocity;
+        public Transform myTransform;
         private void Awake()
         {
-            movingTransform = ((Component)this).transform;
+            velocity = Vector2.zero;
+            neighbours = new List<Transform>();
+            if (myTransform != null) return;
+            myTransform = transform;
         }
 
         private void OnTriggerEnter2D(Collider2D collider2D)
         {
+            if (collider2D.isTrigger) return;
             if (collider2D.tag != tag) return;
             if (neighbours.Contains(collider2D.transform)) return;
             neighbours.Add(collider2D.gameObject.transform);
@@ -26,6 +36,7 @@ namespace Assets.Scripts.EntityComponents.Collisions
 
         private void OnTriggerExit2D(Collider2D collider2D)
         {
+            if (collider2D.isTrigger) return;
             if (collider2D.tag != tag) return;
             if (!neighbours.Contains(collider2D.transform)) return;
             neighbours.Remove(collider2D.transform);
@@ -33,23 +44,36 @@ namespace Assets.Scripts.EntityComponents.Collisions
 
         private void FixedUpdate()
         {
-            UpdateVelocity();
-            Debug.DrawRay(movingTransform.position, velocity, Color.magenta);
-            movingTransform.Translate(velocity);
+            controller.AddVelocity(velocity * -1);
+            if (neighbours.Count == 0)
+            {
+                velocity = Vector2.zero;
+            }
+            else
+            {
+                UpdateVelocity();
+            }
+            controller.AddVelocity(velocity);
+            Debug.DrawRay(myTransform.position, velocity, Color.red);
         }
 
         private void UpdateVelocity()
         {
-            var cohesion = GetCohesionVelocity();
-            var separation = GetSeparationVelocity();
-            velocity = cohesion + separation;
+            if (applyCohesion)
+            {
+                velocity += GetCohesionVelocity();
+            }
+            if (applySeparation)
+            {
+                velocity += GetSeparationVelocity();
+            }
         }
 
         private Vector2 GetCohesionVelocity()
         {
             var center = neighbours.Aggregate(Vector2.zero, (current, neighbour) => current + (Vector2)neighbour.position);
             center /= neighbours.Count;
-            var cohesionVelocity = center - (Vector2)movingTransform.position;
+            var cohesionVelocity = center - (Vector2)myTransform.position;
             cohesionVelocity *= cohesionPower;
             return cohesionVelocity;
         }
@@ -59,8 +83,8 @@ namespace Assets.Scripts.EntityComponents.Collisions
             var separationVelocity = Vector2.zero;
             foreach (var neighbour in neighbours)
             {
-                var distance = Vector2.Distance(movingTransform.position, neighbour.position);
-                separationVelocity += (Vector2)(movingTransform.position - neighbour.position) / distance;
+                var distance = Vector2.Distance(myTransform.position, neighbour.position);
+                separationVelocity += (Vector2)(myTransform.position - neighbour.position) / distance;
             }
             separationVelocity /= neighbours.Count;
             separationVelocity *= separationPower;
