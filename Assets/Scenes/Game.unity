@@ -832,6 +832,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stat effects
       objectReference: {fileID: 0}
+    - target: {fileID: 2508806264785467996, guid: ad517419ec3577d4c9d06e4984cae768, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370104348815996691, guid: ad517419ec3577d4c9d06e4984cae768, type: 3}
+      propertyPath: _statSources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370104348815996691, guid: ad517419ec3577d4c9d06e4984cae768, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370104348815996691, guid: ad517419ec3577d4c9d06e4984cae768, type: 3}
+      propertyPath: _statSources.Array.data[0].<StatId>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 33316e8cac88b9f4b995b4847b8d7ccc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
