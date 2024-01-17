@@ -11,7 +11,6 @@ public class CardInfoUIPanel : MonoBehaviour
     [SerializeField] private TMP_Text _activeCardDescription;
 
     [SerializeField] private PatternDeckRepository _deckRepository;
-    [SerializeField] private EffectsRepository _effectsRepository;
 
     private List<HandDeckData> _handData;
 
