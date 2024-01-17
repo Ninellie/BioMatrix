@@ -7900,6 +7900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 672187048304297184}
   - component: {fileID: 7047758454614312974}
+  - component: {fileID: 6232257873337141979}
   m_Layer: 0
   m_Name: 3
   m_TagString: Untagged
@@ -7935,6 +7936,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 807aa4bf1d05ffe4583e47d0dd4e57b6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 0135f85defd183047b4287e95ca421c7, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6232257873337141979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6382935020092382539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 8b05d123195981543827c7c70691cc73, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
