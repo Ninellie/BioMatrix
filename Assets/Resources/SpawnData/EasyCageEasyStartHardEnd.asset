@@ -128,3 +128,29 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     currentWeight: 0
+  - enemyPrefab: {fileID: 8954189743293124748, guid: 32c81111a0eb9494a9067c60d7335023, type: 3}
+    spawnWeightCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.00016666666
+        outSlope: 0.00016666666
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 300
+        value: 0.05
+        inSlope: 0.00016666666
+        outSlope: 0.00016666666
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 1
+      m_RotationOrder: 4
+    currentWeight: 0
