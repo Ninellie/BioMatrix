@@ -126,19 +126,19 @@ MonoBehaviour:
   _enableAction: 2
   _currentValue:
     useConstant: 1
-    constantValue: 20
+    constantValue: 100
     variable: {fileID: 0}
   _maximumValue:
     useConstant: 1
-    constantValue: 20
+    constantValue: 100
     variable: {fileID: 0}
   _initialValue:
     useConstant: 1
-    constantValue: 20
+    constantValue: 100
     variable: {fileID: 0}
   _edgeValue: 1
   _gainMultiplier:
-    useConstant: 0
+    useConstant: 1
     constantValue: 0
     variable: {fileID: 0}
   _useMultiplier: 0
@@ -303,7 +303,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 42
 --- !u!50 &3774024594271913881
 Rigidbody2D:
   serializedVersion: 4
@@ -372,7 +372,7 @@ SpriteRenderer:
   m_SortingLayerID: -1703297517
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b141692ef63beeb4cbfc028ec3192468, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4784a3e297868654998b6429cf5ae4e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -499,7 +499,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2360074374533074571, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
       propertyPath: m_Radius
-      value: 25
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2360074374533074571, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
       propertyPath: m_Enabled
