@@ -7701,6 +7701,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1674921353801053146, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2029835761297858801, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7740,6 +7744,62 @@ PrefabInstance:
     - target: {fileID: 2029835761297858801, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2177397414613305956, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2747082859193218236, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979336228021288713, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3542202472669018770, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619500199257697909, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869390561460578607, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5080385928837521443, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5867794715456665782, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6352785319011883686, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6420009746396182047, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7193680377300796015, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012539402464370711, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467162519683709295, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587291668440011911, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8882774122047703159, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
       propertyPath: m_Name

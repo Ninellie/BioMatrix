@@ -311,12 +311,12 @@ MonoBehaviour:
       card:
         inspectorName: 
         title: Each 1 lvl
-        description: +25% Experience Multiplier
+        description: +10% Experience Multiplier
         onTaken:
         - {fileID: 11400000, guid: 8a4c20114954e2d4182c27eec7da634a, type: 2}
         dropWeight: 1
         effectNames:
-        - +25% Experience Multiplier
+        - +10% Experience Multiplier
         status: 0
     - name: Each 3 lvl
       occurrenceFrequency: 3
