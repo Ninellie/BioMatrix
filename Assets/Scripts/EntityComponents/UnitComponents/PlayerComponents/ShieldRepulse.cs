@@ -19,7 +19,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             {
                 if (knockbackController == null)
                 {
-                    return;
+                    continue;
                 }
                 var force = (Vector2)knockbackController.transform.position - (Vector2)gameObject.transform.position;
                 force.Normalize();
