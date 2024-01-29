@@ -2273,6 +2273,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: overload_effect
       objectReference: {fileID: 0}
+    - target: {fileID: 1263379874470211065, guid: 2f09b8b29be40904ab8d1e0c34195dea, type: 3}
+      propertyPath: _statSources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263379874470211065, guid: 2f09b8b29be40904ab8d1e0c34195dea, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263379874470211065, guid: 2f09b8b29be40904ab8d1e0c34195dea, type: 3}
+      propertyPath: _statSources.Array.data[0].<StatId>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 33316e8cac88b9f4b995b4847b8d7ccc, type: 2}
     - target: {fileID: 1507020806091443200, guid: 2f09b8b29be40904ab8d1e0c34195dea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2316,6 +2328,10 @@ PrefabInstance:
     - target: {fileID: 2133715840486236342, guid: 2f09b8b29be40904ab8d1e0c34195dea, type: 3}
       propertyPath: _statSources.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133715840486236342, guid: 2f09b8b29be40904ab8d1e0c34195dea, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3525956489131351185, guid: 2f09b8b29be40904ab8d1e0c34195dea, type: 3}
       propertyPath: m_IsActive
