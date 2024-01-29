@@ -305,7 +305,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &234878380892612325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,7 +1519,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &1312911354836250693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1888,7 +1888,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &1644660952451865800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3466,7 +3466,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &2782837515702093689
 GameObject:
   m_ObjectHideFlags: 0
@@ -3685,7 +3685,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &2911075823457591059
 GameObject:
   m_ObjectHideFlags: 0
@@ -4476,7 +4476,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &3556792273730316522
 GameObject:
   m_ObjectHideFlags: 0
@@ -4837,7 +4837,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &3864097983386062196
 GameObject:
   m_ObjectHideFlags: 0
@@ -6356,7 +6356,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &4990476261229147508
 GameObject:
   m_ObjectHideFlags: 0
@@ -7212,7 +7212,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &5826399547039869299
 GameObject:
   m_ObjectHideFlags: 0
@@ -7839,7 +7839,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &6350445071994773032
 GameObject:
   m_ObjectHideFlags: 0
@@ -8078,7 +8078,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &6455241285304565089
 GameObject:
   m_ObjectHideFlags: 0
@@ -8535,7 +8535,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &6651664298474318048
 GameObject:
   m_ObjectHideFlags: 0
@@ -10356,7 +10356,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &7994501284355961303
 GameObject:
   m_ObjectHideFlags: 0
@@ -10606,7 +10606,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &8110401725485879752
 GameObject:
   m_ObjectHideFlags: 0
@@ -11733,7 +11733,7 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: 25
+    <Value>k__BackingField: 10
 --- !u!1 &8882774122047703159
 GameObject:
   m_ObjectHideFlags: 0
