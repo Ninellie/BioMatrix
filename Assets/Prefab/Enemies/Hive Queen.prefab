@@ -196,6 +196,11 @@ MonoBehaviour:
     useConstant: 1
     constantValue: 50
     variable: {fileID: 0}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 6042837996286799121}
   _rigidbody2D: {fileID: 3774024594271913881}
   _targetPosition:
@@ -643,9 +648,17 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 2360074374533074571, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2519329738673173237, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
       propertyPath: cohesion
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2519329738673173237, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2519329738673173237, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
       propertyPath: controller
@@ -738,6 +751,10 @@ PrefabInstance:
     - target: {fileID: 4578484750964155147, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578484750964155147, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4578484750964155147, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
       propertyPath: m_TagString
