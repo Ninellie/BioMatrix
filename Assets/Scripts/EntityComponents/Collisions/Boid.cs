@@ -12,8 +12,10 @@ namespace Assets.Scripts.EntityComponents.Collisions
 
         public List<Transform> neighbours;
         public bool applyCohesion;
+        public bool normalizeCohesion;
         public FloatReference cohesionPower;
         public bool applySeparation;
+        public bool normalizeSeparation;
         public FloatReference separationPower;
 
         public Vector2 velocity;
@@ -75,6 +77,10 @@ namespace Assets.Scripts.EntityComponents.Collisions
             center /= neighbours.Count;
             var cohesionVelocity = center - (Vector2)myTransform.position;
             cohesionVelocity *= cohesionPower;
+            if (normalizeCohesion)
+            {
+                cohesionVelocity.Normalize();
+            }
             return cohesionVelocity;
         }
 
@@ -88,6 +94,10 @@ namespace Assets.Scripts.EntityComponents.Collisions
             }
             separationVelocity /= neighbours.Count;
             separationVelocity *= separationPower;
+            if (normalizeSeparation)
+            {
+                separationVelocity.Normalize();
+            }
             return separationVelocity;
         }
     }
