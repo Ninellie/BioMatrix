@@ -15,7 +15,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         [SerializeField] private bool _restoreSpeedScale;
         [SerializeField] private bool _staticSpeedScale;
         [SerializeField] protected FloatReference speed;
-        [SerializeField] private bool _useMaxSpeed;
+        [SerializeField] private bool _clampToMaxSpeed;
         [SerializeField] protected FloatReference _maxSpeed;
         [Space]
         [SerializeField] protected Transform _transform;
@@ -37,11 +37,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         {
             get
             {
-                if (_useMaxSpeed)
-                {
-                    return MovementVelocity + AddedVelocity;
+                if (_clampToMaxSpeed)
+                { 
+                    return Vector2.ClampMagnitude(MovementVelocity + AddedVelocity, _maxSpeed);
                 }
-                return Vector2.ClampMagnitude(MovementVelocity + AddedVelocity, _maxSpeed);
+                return MovementVelocity + AddedVelocity;
             }
         }
 
