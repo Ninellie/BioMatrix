@@ -126,15 +126,15 @@ MonoBehaviour:
   _enableAction: 2
   _currentValue:
     useConstant: 1
-    constantValue: 100
+    constantValue: 250
     variable: {fileID: 0}
   _maximumValue:
     useConstant: 1
-    constantValue: 100
+    constantValue: 250
     variable: {fileID: 0}
   _initialValue:
     useConstant: 1
-    constantValue: 100
+    constantValue: 250
     variable: {fileID: 0}
   _edgeValue: 1
   _gainMultiplier:
