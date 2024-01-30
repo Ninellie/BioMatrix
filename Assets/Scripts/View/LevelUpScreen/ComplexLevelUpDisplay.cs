@@ -125,6 +125,7 @@ public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
             deckPanel.UpdateContentPositionToOpenedCard();
             Debug.Log($"Displayed deck with name: {deckData.name}, size: {deckData.size}, opened card position in deck is: {deckData.openedCardPosition}");
             var deckNode = _deckPanels.AddLast(deckPanel);
+            deckNode.Value.Deactivate();
             if (deckCount == middleDeckIndex) _activeDeck = deckNode;
             deckCount++;
         }
