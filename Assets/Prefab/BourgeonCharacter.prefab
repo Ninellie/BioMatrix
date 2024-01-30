@@ -31505,11 +31505,11 @@ MonoBehaviour:
     m_Bits: 64
   _radius:
     useConstant: 1
-    constantValue: 250
+    constantValue: 175
     variable: {fileID: 0}
   _force:
     useConstant: 1
-    constantValue: 100
+    constantValue: 75
     variable: {fileID: 0}
 --- !u!1 &6141435555079893456
 GameObject:
