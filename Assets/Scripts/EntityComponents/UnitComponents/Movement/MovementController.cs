@@ -15,6 +15,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         [SerializeField] private bool _restoreSpeedScale;
         [SerializeField] private bool _staticSpeedScale;
         [SerializeField] protected FloatReference speed;
+        [SerializeField] private bool _useMaxSpeed;
+        [SerializeField] protected FloatReference _maxSpeed;
         [Space]
         [SerializeField] protected Transform _transform;
         [SerializeField] private Rigidbody2D _rigidbody2D;
@@ -31,7 +33,18 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         protected abstract Vector2 MovementDirection { get; set; }
         protected abstract Vector2 RawMovementDirection { get; set; }
         private Vector2 MovementVelocity => MovementDirection * Speed;
-        private Vector2 Velocity => MovementVelocity + AddedVelocity;
+        private Vector2 Velocity
+        {
+            get
+            {
+                if (_useMaxSpeed)
+                {
+                    return MovementVelocity + AddedVelocity;
+                }
+                return Vector2.ClampMagnitude(MovementVelocity + AddedVelocity, _maxSpeed);
+            }
+        }
+
         private float _speedScale;
 
         protected void Awake()
