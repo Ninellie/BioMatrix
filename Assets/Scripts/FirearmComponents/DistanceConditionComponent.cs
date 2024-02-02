@@ -3,11 +3,6 @@ using UnityEngine;
 
 namespace Assets.Scripts.FirearmComponents
 {
-    public abstract class ConditionComponent : MonoBehaviour
-    {
-        public abstract bool IsMet();
-    }
-
     public class DistanceConditionComponent : ConditionComponent
     {
         public Vector2Reference vectorA;
