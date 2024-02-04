@@ -28,6 +28,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             pool.Release(item);
         }
 
+        public void Release(GameObject item)
+        {
+            pool.Release(item.GetComponent<T>());
+        }
+
         private T CreateItem()
         {
             return Instantiate(itemPrefab, _transform).GetComponent<T>();
