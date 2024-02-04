@@ -3,21 +3,19 @@ using UnityEngine.Pool;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
-    /// <summary>
-    /// Game Mode Component Only
-    /// </summary>
-    public class GameObjectPool : MonoBehaviour
+    public class Pool<T> : MonoBehaviour where T : Component
     {
         public GameObject itemPrefab;
         public uint size;
         public uint maxSize;
+        public ObjectPool<T> pool;
 
         private Transform _transform;
-        private ObjectPool<GameObject> _pool;
 
         private void Awake()
         {
-            _pool = new ObjectPool<GameObject>(
+            _transform = transform;
+            pool = new ObjectPool<T>(
                 CreateItem,
                 OnGetFromPool,
                 OnReleaseFromPool,
@@ -25,24 +23,29 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 true, (int)size, (int)maxSize);
         }
 
-        private GameObject CreateItem()
+        public void Release(T item)
         {
-            return Instantiate(itemPrefab, _transform);
+            pool.Release(item);
         }
 
-        private void OnItemDestroy(GameObject item)
+        private T CreateItem()
+        {
+            return Instantiate(itemPrefab, _transform).GetComponent<T>();
+        }
+
+        private void OnItemDestroy(T item)
         {
             Destroy(item);
         }
 
-        private void OnGetFromPool(GameObject item)
+        private void OnGetFromPool(T item)
         {
-            item.SetActive(true);
+            item.gameObject.SetActive(true);
         }
 
-        private void OnReleaseFromPool(GameObject item)
+        private void OnReleaseFromPool(T item)
         {
-            item.SetActive(false);
+            item.gameObject.SetActive(false);
         }
     }
 }
