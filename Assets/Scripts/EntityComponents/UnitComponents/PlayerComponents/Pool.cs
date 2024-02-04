@@ -23,6 +23,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 true, (int)size, (int)maxSize);
         }
 
+        public T Get()
+        {
+            return pool.Get();
+        }
+
         public void Release(T item)
         {
             pool.Release(item);

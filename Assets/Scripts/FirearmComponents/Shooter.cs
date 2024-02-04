@@ -8,7 +8,7 @@ namespace Assets.Scripts.FirearmComponents
     public class Shooter : MonoBehaviour
     {
         [Header("Ammo")]
-        [SerializeField] private StackPool _ammoPool;
+        [SerializeField] private ProjectilePool _ammoPool;
         [Space]
         [Header("Stats")]
         [SerializeField] private FloatReference _projectilesPerAttack;
@@ -49,8 +49,8 @@ namespace Assets.Scripts.FirearmComponents
             {
                 var projectile = _ammoPool.Get();
                 projectile.transform.SetPositionAndRotation(Transform.position, Transform.rotation);
-                var projectileMovementController = projectile.GetComponent<ProjectileMovementController>();
-                projectileMovementController.SetDirection(actualShotDirection);
+                //var projectileMovementController = projectile.GetComponent<ProjectileMovementController>();
+                projectile.SetDirection(actualShotDirection);
                 var launchAngle = _projectileSpread * Mathf.Deg2Rad;
                 actualShotDirection = MathFirearm.Rotate(actualShotDirection, launchAngle);
             }
