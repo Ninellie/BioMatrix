@@ -18,6 +18,7 @@ namespace Assets.Scripts.FirearmComponents
     /// </summary>
     public class Caster : MonoBehaviour
     {
+        [field:SerializeField] public bool Suspended { get; set; }
         [SerializeField] private FloatReference _castsPerSecond;
         [SerializeField] private CastMode _mode;
         [SerializeField] private List<ConditionComponent> _conditions;
@@ -38,6 +39,10 @@ namespace Assets.Scripts.FirearmComponents
         {
             while (true)
             {
+                if (Suspended)
+                {
+                    yield return new WaitWhile(() => Suspended);
+                }
                 switch (_mode)
                 {
                     case CastMode.BeforeDelay:
