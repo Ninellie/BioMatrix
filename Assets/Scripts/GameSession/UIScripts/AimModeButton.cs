@@ -18,12 +18,6 @@ namespace Assets.Scripts.GameSession.UIScripts
         [SerializeField] private GameObject _selfAimModeController;
         [SerializeField] private GameObject _autoAimModeController;
 
-        private void Awake()
-        {
-            _buttonText = GetComponentInChildren<TMP_Text>();
-            _aimMode = AimMode.AutoAim;
-        }
-
         public void ChangeAimMode()
         {
             switch (_aimMode)

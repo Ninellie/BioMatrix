@@ -293,7 +293,6 @@ GameObject:
   - component: {fileID: 2945651289899835124}
   - component: {fileID: 8042745928416457251}
   - component: {fileID: 7046740091248607028}
-  - component: {fileID: 1758828816875691577}
   m_Layer: 5
   m_Name: Change Aim Mode Button
   m_TagString: Untagged
@@ -386,7 +385,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1758828816875691577}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Assets.Scripts.GameSession.UIScripts.AimModeButton,
           Scripts
         m_MethodName: ChangeAimMode
@@ -443,22 +442,6 @@ MonoBehaviour:
   _style: {fileID: 11400000, guid: 7f8d6096d236282408dd4a97ec23a02c, type: 2}
   _currentState: 0
   _posState: 0
---- !u!114 &1758828816875691577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493075470515616257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab0a536f6d921344eaf04024aa3e9eb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _aimMode: 0
-  _buttonText: {fileID: 4717946580583755223}
-  _selfAimModeController: {fileID: 362846822949774657}
-  _autoAimModeController: {fileID: 5701144356699407866}
 --- !u!1 &2796295243888570620
 GameObject:
   m_ObjectHideFlags: 0

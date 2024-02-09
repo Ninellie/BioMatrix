@@ -199,6 +199,7 @@ MonoBehaviour:
   platformCheck: 1
   isMobile: 0
   fireButtonPressed: 0
+  aimMode: 1
 --- !u!114 &4647258421082679635
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using Assets.Scripts.Core.Events;
 using Assets.Scripts.Core.Variables;
 using Assets.Scripts.Core.Variables.References;
+using Assets.Scripts.GameSession.UIScripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +21,7 @@ namespace Assets.Scripts.Core.Input
         [Header("Dynamic")]
         public bool isMobile;
         public bool fireButtonPressed;
+        public bool autoAim;
 
         private void Awake()
         {
@@ -58,7 +60,12 @@ namespace Assets.Scripts.Core.Input
         public void OnShoot(InputAction.CallbackContext context)
         {
             Debug.LogWarning($"On Shoot");
-            rawAimDirection = context.ReadValue<Vector2>();
+
+            if (!autoAim)
+            {
+                rawAimDirection = context.ReadValue<Vector2>();
+            }
+
             fireButtonPressed = context.action.IsPressed();
         }
 
@@ -66,6 +73,7 @@ namespace Assets.Scripts.Core.Input
         {
             if (!context.performed) return;
             Debug.LogWarning($"On Aim Mode Changed");
+            autoAim = !autoAim;
             onAimModeChange.Raise();
         }
     }

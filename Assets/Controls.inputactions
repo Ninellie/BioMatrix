@@ -198,37 +198,26 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Gamepad_One Modifier",
-                    "id": "8bcbb22f-d0b7-4bbe-ad4b-ce655ba147b6",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shoot",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "1176548e-ce49-4166-97bb-8b09fd3bb90d",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mobile",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "257aee6d-9e71-455d-9d28-869cb27295d1",
+                    "name": "",
+                    "id": "bb350049-4623-44a1-98cf-c147ea5fd941",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mobile",
                     "action": "Shoot",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34903a9f-32ca-496b-b3fb-afd4b61e0ae0",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
