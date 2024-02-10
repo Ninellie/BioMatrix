@@ -2688,50 +2688,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &913383152
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 913383154}
-  - component: {fileID: 913383153}
-  m_Layer: 0
-  m_Name: Scheduler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &913383153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913383152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09673194e55aae14bb696eeff6eff87b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &913383154
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913383152}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &915594263
 GameObject:
   m_ObjectHideFlags: 0
@@ -5778,9 +5734,10 @@ GameObject:
   - component: {fileID: 1708984287}
   - component: {fileID: 1708984286}
   - component: {fileID: 1708984288}
+  - component: {fileID: 1708984289}
   m_Layer: 5
   m_Name: Mobile Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5861,6 +5818,29 @@ MonoBehaviour:
   _buttonText: {fileID: 1102138553}
   _selfAimModeController: {fileID: 333088006}
   _autoAimModeController: {fileID: 1239679480}
+--- !u!114 &1708984289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708984284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 1
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 1
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!1 &1717963856
 GameObject:
   m_ObjectHideFlags: 0
@@ -9964,23 +9944,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6351270102476345515, guid: 5f6c1cf58cd06a541907569a25eb5ea9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -960
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6351270102476345515, guid: 5f6c1cf58cd06a541907569a25eb5ea9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -540
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6351270102476345515, guid: 5f6c1cf58cd06a541907569a25eb5ea9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6351270102476345515, guid: 5f6c1cf58cd06a541907569a25eb5ea9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6351270102476345515, guid: 5f6c1cf58cd06a541907569a25eb5ea9, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6351270102476345515, guid: 5f6c1cf58cd06a541907569a25eb5ea9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11630,7 +11610,6 @@ SceneRoots:
   - {fileID: 1987610204}
   - {fileID: 990761598}
   - {fileID: 835886044}
-  - {fileID: 913383154}
   - {fileID: 2103284665}
   - {fileID: 281020117}
   - {fileID: 282507448}
