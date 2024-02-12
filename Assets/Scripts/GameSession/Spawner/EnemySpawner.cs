@@ -16,20 +16,7 @@ namespace Assets.Scripts.GameSession.Spawner
         [SerializeField] private Vector2Reference _player;
 
         private readonly Grouping _grouping = new();
-        //private readonly Rarity _rarity = new();
         private readonly Circle _circle = new();
-        //private const int DefaultComplicationValue = 60;
-
-        //private int TimerBonus
-        //{
-        //    get
-        //    {
-        //        var seconds = Time.timeSinceLevelLoad;
-        //        if (seconds < DefaultComplicationValue) return 0;
-        //        var remainder = seconds % DefaultComplicationValue;
-        //        return (int)(seconds - remainder) / DefaultComplicationValue;
-        //    }
-        //}
 
         private void Awake()
         {

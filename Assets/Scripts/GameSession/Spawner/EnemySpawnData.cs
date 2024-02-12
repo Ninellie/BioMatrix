@@ -8,7 +8,6 @@ namespace Assets.Scripts.GameSession.Spawner
     {
         public GameObject enemyPrefab;
         public AnimationCurve spawnWeightCurve;
-        //public AnimationCurve healthIncreaseCurve;
-        public float currentWeight;
+        public float currentWeight; // Readonly, only for editor indication
     }
 }
