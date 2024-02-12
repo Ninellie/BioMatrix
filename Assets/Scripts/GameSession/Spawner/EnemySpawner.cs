@@ -111,11 +111,16 @@ namespace Assets.Scripts.GameSession.Spawner
         {
             float padding = 0;
             if (mode == GroupingMode.Group)
+            {
                 padding = enemies.Sum(enemy => enemy.GetComponent<CircleCollider2D>().radius) / 2;
+            }
 
             var positions = _circle.GetPositions(enemies.Count, mode, playerPosition, padding);
+
             for (int i = 0; i < enemies.Count; i++)
+            {
                 enemies[i].transform.position = positions[i];
+            }
         }
 
         private void PrepareEnemies(IEnumerable<GameObject> enemies, Vector2 playerPosition)
