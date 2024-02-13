@@ -1,7 +1,6 @@
 using Assets.Scripts.Core.Events;
 using Assets.Scripts.Core.Variables;
 using Assets.Scripts.Core.Variables.References;
-using Assets.Scripts.GameSession.UIScripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
