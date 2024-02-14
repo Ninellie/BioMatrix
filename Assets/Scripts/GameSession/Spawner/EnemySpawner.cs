@@ -2,11 +2,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
+using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.GameSession.Spawner
 {
+    public class SpawnPool : MonoBehaviour
+    {
+
+    }
+
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] private EnemySpawnDataListPreset _spawnDataPreset;
@@ -22,6 +28,18 @@ namespace Assets.Scripts.GameSession.Spawner
         {
             var preset = Instantiate(_spawnDataPreset);
             _enemiesSpawnData = preset.enemiesSpawnData;
+            var pools = GetComponents<EnemyPool>();
+            // Кринж, но что поделать
+            foreach (var pool in pools)
+            {
+                foreach (var enemySpawnData in _enemiesSpawnData)
+                {
+                    if (pool.itemPrefab == enemySpawnData.enemyPrefab)
+                    {
+                        enemySpawnData.pool = pool;
+                    }
+                }
+            }
         }
 
         private void Start()
@@ -47,19 +65,21 @@ namespace Assets.Scripts.GameSession.Spawner
             PrepareEnemies(spawn, _player);
         }
 
-        private GameObject[] CreateWave(int waveSize)
+        private List<GameObject> CreateWave(int waveSize)
         {
             var spawn = GetWeighedEnemyListByTime(waveSize);
             if (spawn is null) return null;
             if (spawn.Count == 0) return null;
-            var spawnedEnemies = new List<GameObject>();
-            foreach (var enemy in spawn)
-            {
-                if (enemy is null) return null;
-                var e = Instantiate(enemy);
-                spawnedEnemies.Add(e);
-            }
-            return spawnedEnemies.ToArray();
+            return spawn;
+
+            //var spawnedEnemies = new List<GameObject>();
+            //foreach (var enemy in spawn)
+            //{
+            //    if (enemy is null) return null;
+            //    var e = Instantiate(enemy);
+            //    spawnedEnemies.Add(e);
+            //}
+            //return spawnedEnemies;
         }
 
         private List<GameObject> GetWeighedEnemyListByTime(int numberOfEnemies)
@@ -80,7 +100,8 @@ namespace Assets.Scripts.GameSession.Spawner
             // Отбор множества врагов по их весу
             for (int i = 0; i < enemyList.Capacity; i++)
             {
-                enemyList.Add(GetWeighedEnemyByTime(weightSum, currentTime));
+                var enemy = GetWeighedEnemyByTime(weightSum, currentTime);
+                enemyList.Add(enemy);
             }
 
             return enemyList;
@@ -130,6 +151,10 @@ namespace Assets.Scripts.GameSession.Spawner
                 PrepareEnemy(enemy, playerPosition);
             }
         }
+
+        // Transform
+        // Rigidbody2D
+        // SpriteType
 
         private void PrepareEnemy(GameObject enemy, Vector2 playerPosition)
         {
