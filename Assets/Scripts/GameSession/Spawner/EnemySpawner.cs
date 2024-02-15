@@ -10,12 +10,12 @@ namespace Assets.Scripts.GameSession.Spawner
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [SerializeField] private EnemySpawnDataListPreset _spawnDataPreset;
         [SerializeField] private EnemyWaveDataPreset _waveDataPreset;
-        [SerializeField] private List<EnemySpawnData> _enemiesSpawnData;
         [SerializeField] private int _secondsBetweenWaves;
         [SerializeField] private Vector2Reference _player;
+
         public List<EnemyPool> enemyPools = new();
+
         private readonly Grouping _grouping = new();
         private readonly Circle _circle = new();
 
@@ -23,9 +23,6 @@ namespace Assets.Scripts.GameSession.Spawner
         {
             enemyPools.Clear();
             enemyPools = GetComponentsInChildren<EnemyPool>().ToList();
-
-            var preset = Instantiate(_spawnDataPreset);
-            _enemiesSpawnData = preset.enemiesSpawnData;
         }
 
         private void Start()
@@ -61,16 +58,7 @@ namespace Assets.Scripts.GameSession.Spawner
 
         private List<EnemyData> GetWeighedEnemyListByTime(int numberOfEnemies)
         {
-            var currentTime = Time.timeSinceLevelLoad;
             var weightSum = 0f;
-
-            //foreach (var enemySpawnData in _enemiesSpawnData)
-            //{
-            //    var currentEnemyWeight = enemySpawnData.spawnWeightCurve.Evaluate(currentTime);
-            //    enemySpawnData.currentWeight = currentEnemyWeight;
-            //    if (!(currentEnemyWeight > 0)) continue;
-            //    weightSum += currentEnemyWeight;
-            //}
 
             foreach(var pool in enemyPools)
             {
@@ -82,15 +70,14 @@ namespace Assets.Scripts.GameSession.Spawner
             // Отбор множества врагов по их весу
             for (int i = 0; i < enemyList.Capacity; i++)
             {
-
-                var enemy = GetWeighedEnemyByTime(weightSum, currentTime);
+                var enemy = GetWeighedEnemyByTime(weightSum);
                 enemyList.Add(enemy);
             }
 
             return enemyList;
         }
 
-        private EnemyData GetWeighedEnemyByTime(float weightSum, float time)
+        private EnemyData GetWeighedEnemyByTime(float weightSum)
         {
             var next = Random.Range(0, weightSum);
             var limit = 0f;
