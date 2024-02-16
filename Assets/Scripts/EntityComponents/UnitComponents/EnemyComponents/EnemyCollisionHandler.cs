@@ -32,6 +32,8 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         private SpriteRenderer _spriteRenderer;
         private Transform _transform;
 
+        #region UnityMessages
+
         private void Awake()
         {
             _transform = transform;
@@ -40,6 +42,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
             _circleCollider = GetComponent<CircleCollider2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _spriteColor = _spriteRenderer.color;
+        }
+
+        private void OnEnable()
+        {
+            Revive();
         }
 
         private void OnCollisionEnter2D(Collision2D collision2D)
@@ -55,6 +62,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         }
 
         private void Update() => BackToNormalColor();
+
+        #endregion
+
+        public void Revive()
+        {
+            _isAlive = true;
+        }
 
         private void CollideWithProjectile(Collision2D collision2D, int damage, float knockbackPower)
         {

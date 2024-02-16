@@ -134,12 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01468158b4899aa41a8c5e6e9b8e77bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _disableObjectOnEmpty: 1
+  _disableObjectOnEmpty: 0
   _selfGameObject:
     useConstant: 1
     constantValue: {fileID: 8954189743293124748}
     variable: {fileID: 0}
-  _startAction: 0
+  _startAction: 2
   _enableAction: 2
   _currentValue:
     useConstant: 1
