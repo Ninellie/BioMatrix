@@ -5,11 +5,20 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
     public class EnemyPool : Pool<EnemyData>
     {
-        public EnemySpawnData spawnData;
-
+        //public EnemySpawnData spawnData;
+        public EnemySpawnDataListPreset preset;
+        
         public float GetWeigth()
         {
-            return spawnData.spawnWeightCurve.Evaluate(Time.timeSinceLevelLoad);
+            foreach (var data in preset.enemiesSpawnData)
+            {
+                if(data.enemyPrefab == itemPrefab)
+                {
+                    return data.spawnWeightCurve.Evaluate(Time.timeSinceLevelLoad);
+                }
+            }
+
+            return default;
         }
     }
 }
