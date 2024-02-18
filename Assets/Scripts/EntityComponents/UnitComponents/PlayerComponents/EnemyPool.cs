@@ -5,7 +5,6 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 {
     public class EnemyPool : Pool<EnemyData>
     {
-        //public EnemySpawnData spawnData;
         public EnemySpawnDataListPreset preset;
         
         public float GetWeigth()
