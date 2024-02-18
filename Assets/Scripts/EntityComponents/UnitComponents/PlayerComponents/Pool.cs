@@ -9,6 +9,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         public uint size;
         public uint maxSize;
         public ObjectPool<T> pool;
+        public bool collectionCheck;
 
         private Transform _transform;
 
@@ -20,7 +21,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 OnGetFromPool,
                 OnReleaseFromPool,
                 OnItemDestroy,
-                true, (int)size, (int)maxSize);
+                collectionCheck, (int)size, (int)maxSize);
         }
 
         public T Get()
