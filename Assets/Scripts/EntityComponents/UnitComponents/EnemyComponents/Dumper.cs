@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
@@ -9,6 +10,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         public void DropBonus()
         {
+            if (_drop == null) throw new NullReferenceException();
             if (!CanDrop) return;
             Instantiate(_drop, transform.position, Quaternion.identity);
         }
