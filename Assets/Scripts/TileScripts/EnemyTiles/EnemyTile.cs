@@ -10,44 +10,29 @@ namespace Assets.Scripts.TileScripts.EnemyTiles
 
         [SerializeField]
         [Tooltip("In minutes")]
-        [Range(0, 5)]
-        private float _activationTime;
+        [Range(0, 5)] private float _activationTime;
     
         [SerializeField]
         [Tooltip("In minutes")]
-        [Range(0, 5)]
-        private float _activationDuration;
+        [Range(0, 5)] private float _activationDuration;
     
         [SerializeField]
         [Tooltip("Time in seconds after activation before it starts to become damaging")]
-        [Range(0, 30)]
-        private float _activationDelay;
+        [Range(0, 30)] private float _activationDelay;
 
         [SerializeField]
         [Tooltip("In seconds")]
-        [Range(0, 1)]
-        private float _blinkingTime;
+        [Range(0, 1)] private float _blinkingTime;
     
         [SerializeField]
         [Tooltip("In seconds")]
-        [Range(0, 1)]
-        private float _blinkTime;
+        [Range(0, 1)] private float _blinkTime;
 
-        [SerializeField]
-        [ColorUsage(true)]
-        private Color _activatedColor;
-
-        [SerializeField]
-        [ColorUsage(true)]
-        private Color _deactivatedColor;
-
-        [SerializeField]
-        [ColorUsage(true)]
-        private Color _blinkingColor;
+        [SerializeField] [ColorUsage(true)] private Color _activatedColor;
+        [SerializeField] [ColorUsage(true)] private Color _deactivatedColor;
+        [SerializeField] [ColorUsage(true)] private Color _blinkingColor;
 
         [Header("Indicators")]
-    
-        //[SerializeField] private bool _isActive;
         [SerializeField] private bool _isCharging;
         [SerializeField] private bool _isBlinking;
         [SerializeField] private float _alphaPerSecondCharging;
@@ -55,6 +40,8 @@ namespace Assets.Scripts.TileScripts.EnemyTiles
         private TilemapRenderer _tilemapRenderer;
         private Rigidbody2D _rb;
         private float _blinkTimer;
+
+        #region UnityMassages
 
         private void Awake()
         {
@@ -89,6 +76,8 @@ namespace Assets.Scripts.TileScripts.EnemyTiles
             StartCoroutine(InitActivation());
         }
 
+        #endregion
+
         private IEnumerator InitActivation()
         {
             yield return new WaitForSeconds(_activationTime * 60);
@@ -107,14 +96,12 @@ namespace Assets.Scripts.TileScripts.EnemyTiles
 
         private void Activate()
         {
-            //_isActive = true;
             _tilemapRenderer.material.color = _activatedColor;
             _rb.simulated = true;
         }
 
         private void Deactivate()
         {
-            //_isActive = false;
             _tilemapRenderer.material.color = _deactivatedColor;
             _rb.simulated = false;
         }
