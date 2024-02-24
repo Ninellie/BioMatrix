@@ -8,6 +8,11 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
         [SerializeField] private GameObject _drop;
         [field: SerializeField] public bool CanDrop { get; set; }
 
+        private void OnEnable()
+        {
+            CanDrop = true;
+        }
+
         public void DropBonus()
         {
             if (_drop == null) throw new NullReferenceException();
