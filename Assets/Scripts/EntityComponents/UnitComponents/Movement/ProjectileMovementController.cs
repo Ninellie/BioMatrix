@@ -7,6 +7,22 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
     {
         [SerializeField] private UnityEvent _onStopped;
         private bool _onStoppedEventSended;
+
+        public TrailRenderer Trail
+        {
+            get
+            {
+                if (_trail == null)
+                {
+                    _trail = GetComponent<TrailRenderer>();
+                }
+                return _trail;
+            }
+        }
+
+        private TrailRenderer _trail;
+
+
         protected override float Speed => speed.Value * SpeedScale;
         protected override Vector2 MovementDirection
         {

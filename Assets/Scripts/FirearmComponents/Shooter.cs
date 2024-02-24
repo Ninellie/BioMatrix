@@ -48,6 +48,7 @@ namespace Assets.Scripts.FirearmComponents
             {
                 var projectile = _ammoPool.Get();
                 projectile.transform.SetPositionAndRotation(Transform.position, Transform.rotation);
+                projectile.Trail.Clear();
                 projectile.SetDirection(actualShotDirection);
                 var launchAngle = _projectileSpread * Mathf.Deg2Rad;
                 actualShotDirection = MathFirearm.Rotate(actualShotDirection, launchAngle);
