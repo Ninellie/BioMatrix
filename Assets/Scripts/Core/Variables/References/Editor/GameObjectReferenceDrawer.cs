@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomPropertyDrawer(typeof(GameObjectReference))]
+[CustomPropertyDrawer(typeof(TransformPoolReference))]
 public class GameObjectReferenceDrawer : PropertyDrawer
 {
     /// <summary>
