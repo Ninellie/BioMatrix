@@ -11,7 +11,7 @@ namespace Assets.Scripts.Core.Events
         /// </summary>
         private readonly List<TransformGameEventListener> _eventListeners = new();
 
-        public void Raise(GameObject gameObject)
+        public void Raise(Transform gameObject)
         {
             for (int i = _eventListeners.Count - 1; i >= 0; i--)
                 _eventListeners[i].OnEventRaised(gameObject);
