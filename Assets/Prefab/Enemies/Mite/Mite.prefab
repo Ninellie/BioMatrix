@@ -45,6 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _drop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
+  _drops:
+    useConstant: 0
+    constantValue: {fileID: 0}
+    variable: {fileID: 11400000, guid: 7e087fc287ba95e40b3b9b34d573f2e8, type: 2}
   <CanDrop>k__BackingField: 1
 --- !u!1 &8954189743293124748
 GameObject:

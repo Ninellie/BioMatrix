@@ -1,11 +1,11 @@
-using System;
+using Assets.Scripts.Core.Variables.References;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 {
     public class Dumper : MonoBehaviour
     {
-        [SerializeField] private GameObject _drop;
+        [SerializeField] private TransformPoolReference _drops;
         [field: SerializeField] public bool CanDrop { get; set; }
 
         private void OnEnable()
@@ -15,9 +15,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 
         public void DropBonus()
         {
-            if (_drop == null) throw new NullReferenceException();
             if (!CanDrop) return;
-            Instantiate(_drop, transform.position, Quaternion.identity);
+            var drop = _drops.Value.Get(); // TODO Поменять TransformPool на BoonDataPool или типа того
+            drop.SetPositionAndRotation(transform.position, Quaternion.identity);
+            drop.gameObject.GetComponent<TrailRenderer>().Clear();
         }
     }
 }
