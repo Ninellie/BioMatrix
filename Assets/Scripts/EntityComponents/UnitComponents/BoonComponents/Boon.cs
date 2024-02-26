@@ -1,5 +1,5 @@
+using Assets.Scripts.Core.Events;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.BoonComponents
 {
@@ -10,11 +10,20 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.BoonComponents
         [SerializeField] private float _speed = 1500;
         [SerializeField] private string _playerTag;
         [SerializeField] private string _magnetTag;
+        [SerializeField] private TransformGameEvent _onTaken;
+
+        private TrailRenderer _trailRenderer;
 
         private void Awake()
         {
             if (_transform == null) _transform = transform;
             if (_rigidbody2D == null) _rigidbody2D = GetComponent<Rigidbody2D>();
+            _trailRenderer = GetComponent<TrailRenderer>();
+        }
+
+        private void OnEnable()
+        {
+            _trailRenderer.Clear();
         }
 
         private void OnTriggerStay2D(Collider2D collider2D)
@@ -35,7 +44,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.BoonComponents
 
         private void Death()
         {
-            gameObject.SetActive(false);
+            _onTaken.Raise(_transform);
         }
     }
 }
