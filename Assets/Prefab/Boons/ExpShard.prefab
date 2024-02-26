@@ -54,6 +54,7 @@ MonoBehaviour:
   _speed: 500
   _playerTag: Player
   _magnetTag: Magnet
+  _onTaken: {fileID: 11400000, guid: 611b16ad89d33064abe9ee63e6abcded, type: 2}
 --- !u!50 &2316403284215167119
 Rigidbody2D:
   serializedVersion: 4
