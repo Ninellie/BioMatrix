@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bb1b0fb485f50439cfd2c7aad10afb, type: 3}
+  m_Name: player_blood_base
+  m_EditorClassIdentifier: 
+  _id: player_blood_base
+  _type: 0
+  _newFlatStatSource: {fileID: 0}
+  _newPercentageStatSource: {fileID: 0}
+  <StatSources>k__BackingField:
+  - <Id>k__BackingField: player_blood_base_base_blood_flat_20
+    <StatId>k__BackingField: {fileID: 11400000, guid: 6b6787d845f22bf42be875066ec742ff, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 20
+  - <Id>k__BackingField: player_blood_base_base_projectile_count_flat_0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 669ba26595dba81409387c1b0e1e91ac, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 0
+  _statsPreview:
+  - _inspectorValue: 20_blood
+    <Id>k__BackingField: {fileID: 11400000, guid: 6b6787d845f22bf42be875066ec742ff, type: 2}
+    _value: 20
+  - _inspectorValue: 0_projectile_count
+    <Id>k__BackingField: {fileID: 11400000, guid: 669ba26595dba81409387c1b0e1e91ac, type: 2}
+    _value: 0

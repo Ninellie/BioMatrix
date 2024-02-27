@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398d76ed9a41c9144ae3720c71b6891b, type: 3}
+  m_Name: player_blood
+  m_EditorClassIdentifier: 
+  _statSources: []
+  _clearOnPlay: 1
+  _baseStatSources: {fileID: 11400000, guid: c0bf62dc05afb894abd418d9b6555487, type: 2}
+  _stats:
+  - {fileID: 11400000, guid: e8ee65d106b09ea40abe1d9f3327e79c, type: 2}
+  _preview:
+  - _inspectorValue: 20_blood
+    <Id>k__BackingField: {fileID: 11400000, guid: 6b6787d845f22bf42be875066ec742ff, type: 2}
+    _value: 20
+  - _inspectorValue: 0_projectile_count
+    <Id>k__BackingField: {fileID: 11400000, guid: 669ba26595dba81409387c1b0e1e91ac, type: 2}
+    _value: 0
