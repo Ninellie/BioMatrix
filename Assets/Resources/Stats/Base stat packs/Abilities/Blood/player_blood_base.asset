@@ -21,14 +21,14 @@ MonoBehaviour:
     <StatId>k__BackingField: {fileID: 11400000, guid: 6b6787d845f22bf42be875066ec742ff, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 20
-  - <Id>k__BackingField: player_blood_base_base_projectile_count_flat_0
-    <StatId>k__BackingField: {fileID: 11400000, guid: 669ba26595dba81409387c1b0e1e91ac, type: 2}
+  - <Id>k__BackingField: player_blood_base_base_blood_per_kill_flat_0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 0d269d93f461f194784959c76d23b5a2, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 0
   _statsPreview:
   - _inspectorValue: 20_blood
     <Id>k__BackingField: {fileID: 11400000, guid: 6b6787d845f22bf42be875066ec742ff, type: 2}
     _value: 20
-  - _inspectorValue: 0_projectile_count
-    <Id>k__BackingField: {fileID: 11400000, guid: 669ba26595dba81409387c1b0e1e91ac, type: 2}
+  - _inspectorValue: 0_blood_per_kill
+    <Id>k__BackingField: {fileID: 11400000, guid: 0d269d93f461f194784959c76d23b5a2, type: 2}
     _value: 0

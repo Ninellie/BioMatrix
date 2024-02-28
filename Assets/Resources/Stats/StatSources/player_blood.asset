@@ -17,10 +17,11 @@ MonoBehaviour:
   _baseStatSources: {fileID: 11400000, guid: c0bf62dc05afb894abd418d9b6555487, type: 2}
   _stats:
   - {fileID: 11400000, guid: e8ee65d106b09ea40abe1d9f3327e79c, type: 2}
+  - {fileID: 11400000, guid: 4ec87ef54fd50274b99c68249e882ad6, type: 2}
   _preview:
   - _inspectorValue: 20_blood
     <Id>k__BackingField: {fileID: 11400000, guid: 6b6787d845f22bf42be875066ec742ff, type: 2}
     _value: 20
-  - _inspectorValue: 0_projectile_count
-    <Id>k__BackingField: {fileID: 11400000, guid: 669ba26595dba81409387c1b0e1e91ac, type: 2}
+  - _inspectorValue: 0_blood_per_kill
+    <Id>k__BackingField: {fileID: 11400000, guid: 0d269d93f461f194784959c76d23b5a2, type: 2}
     _value: 0
