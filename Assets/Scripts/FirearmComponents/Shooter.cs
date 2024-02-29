@@ -12,6 +12,8 @@ namespace Assets.Scripts.FirearmComponents
         [Header("Stats")]
         [SerializeField] private FloatReference _projectilesPerAttack;
         [SerializeField] private FloatReference _projectileSpread;
+        [SerializeField] private bool _roundShoot;
+        [SerializeField] private bool _randomAimDirection;
 
         private Transform Transform
         {
@@ -31,18 +33,23 @@ namespace Assets.Scripts.FirearmComponents
                 return _aim;
             }
         }
-
+        
         private Transform _transform;
         private Aim _aim;
 
+        private Vector2 _shootDirection;
+
         public void Shoot()
         {
-            var shootDirection = Aim.GetDirection();
+            _shootDirection = _randomAimDirection ? Random.onUnitSphere : Aim.GetDirection();
             var projCount = (int)_projectilesPerAttack;
-            var fireAngle = _projectileSpread * (projCount - 1);
+            var projSpread = _roundShoot ? 360f : _projectileSpread.Value;
+            var fireAngle = projSpread * (projCount - 1);
             var halfFireAngleRad = fireAngle * 0.5f * Mathf.Deg2Rad;
-            var leftDirection = MathFirearm.Rotate(shootDirection, -halfFireAngleRad);
+            var leftDirection = MathFirearm.Rotate(_shootDirection, -halfFireAngleRad);
             var actualShotDirection = leftDirection;
+            var launchAngle = _roundShoot ? (360f / projCount) : _projectileSpread;
+            launchAngle *= Mathf.Deg2Rad;
 
             for (int i = 0; i < projCount; i++)
             {
@@ -50,7 +57,6 @@ namespace Assets.Scripts.FirearmComponents
                 projectile.transform.SetPositionAndRotation(Transform.position, Transform.rotation);
                 projectile.Trail.Clear();
                 projectile.SetDirection(actualShotDirection);
-                var launchAngle = _projectileSpread * Mathf.Deg2Rad;
                 actualShotDirection = MathFirearm.Rotate(actualShotDirection, launchAngle);
             }
         }
