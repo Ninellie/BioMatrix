@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f609d00f7e08a34f81472cbddfed949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _drop: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
   _drops:
     useConstant: 0
     constantValue: {fileID: 0}
     variable: {fileID: 11400000, guid: 7e087fc287ba95e40b3b9b34d573f2e8, type: 2}
   <CanDrop>k__BackingField: 1
+  _onBonusDrop: {fileID: 11400000, guid: 0e920dc00c555f941b331c16e2cb6681, type: 2}
 --- !u!1 &8954189743293124748
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +287,15 @@ MonoBehaviour:
     damage:
       useConstant: 0
       constantValue: 0
+      variable: {fileID: 11400000, guid: 25f1536b99e71bc45b05013a713bbea2, type: 2}
+    knockbackPower:
+      useConstant: 0
+      constantValue: 0
+      variable: {fileID: 11400000, guid: a62e351b440c2b04382d038cceadb209, type: 2}
+  - tag: BloodShard
+    damage:
+      useConstant: 1
+      constantValue: 20
       variable: {fileID: 11400000, guid: 25f1536b99e71bc45b05013a713bbea2, type: 2}
     knockbackPower:
       useConstant: 0
