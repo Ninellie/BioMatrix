@@ -48,7 +48,7 @@ namespace Assets.Scripts.FirearmComponents
             var halfFireAngleRad = fireAngle * 0.5f * Mathf.Deg2Rad;
             var leftDirection = MathFirearm.Rotate(_shootDirection, -halfFireAngleRad);
             var actualShotDirection = leftDirection;
-            var launchAngle = _roundShoot ? (360f / projCount) : _projectileSpread;
+            var launchAngle = _roundShoot ? 360f / projCount : _projectileSpread;
             launchAngle *= Mathf.Deg2Rad;
 
             for (int i = 0; i < projCount; i++)
