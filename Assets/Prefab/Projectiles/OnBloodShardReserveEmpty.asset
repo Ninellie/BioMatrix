@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de07b0703f40c014db9884ac7f392eb7, type: 3}
-  m_Name: max_player_blood
+  m_Script: {fileID: 11500000, guid: 169a44c30c5bf8649a8b73bef0b8198d, type: 3}
+  m_Name: OnBloodShardReserveEmpty
   m_EditorClassIdentifier: 
-  developerDescription: 
-  value: 22
-  id: {fileID: 11400000, guid: 6b6787d845f22bf42be875066ec742ff, type: 2}
