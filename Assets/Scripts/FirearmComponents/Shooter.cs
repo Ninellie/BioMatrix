@@ -39,19 +39,18 @@ namespace Assets.Scripts.FirearmComponents
 
         private Vector2 _shootDirection;
 
-        public void Shoot()
+        public void Shoot(int projectileNumber)
         {
             _shootDirection = _randomAimDirection ? Random.onUnitSphere : Aim.GetDirection();
-            var projCount = (int)_projectilesPerAttack;
             var projSpread = _roundShoot ? 360f : _projectileSpread.Value;
-            var fireAngle = projSpread * (projCount - 1);
+            var fireAngle = projSpread * (projectileNumber - 1);
             var halfFireAngleRad = fireAngle * 0.5f * Mathf.Deg2Rad;
             var leftDirection = MathFirearm.Rotate(_shootDirection, -halfFireAngleRad);
             var actualShotDirection = leftDirection;
-            var launchAngle = _roundShoot ? 360f / projCount : _projectileSpread;
+            var launchAngle = _roundShoot ? 360f / projectileNumber : _projectileSpread;
             launchAngle *= Mathf.Deg2Rad;
 
-            for (int i = 0; i < projCount; i++)
+            for (int i = 0; i < projectileNumber; i++)
             {
                 var projectile = _ammoPool.Get();
                 projectile.transform.SetPositionAndRotation(Transform.position, Transform.rotation);
@@ -59,6 +58,11 @@ namespace Assets.Scripts.FirearmComponents
                 projectile.SetDirection(actualShotDirection);
                 actualShotDirection = MathFirearm.Rotate(actualShotDirection, launchAngle);
             }
+        }
+
+        public void Shoot()
+        {
+            Shoot(_projectilesPerAttack);
         }
     }
 }
