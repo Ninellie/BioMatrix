@@ -30,7 +30,7 @@ namespace Assets.Scripts.EntityComponents
         [SerializeField] private bool _useMultiplier;
         [Header("Events")]
         [SerializeField] private UnityEvent<int> _onChanged;
-        [SerializeField] private UnityEvent _onEmpty;
+        [SerializeField] private UnityEvent<int> _onEmpty;
         [SerializeField] private UnityEvent _onEdge;
         [SerializeField] private UnityEvent _onFill;
         [SerializeField] private UnityEvent<int> _onDecrease;
@@ -128,7 +128,7 @@ namespace Assets.Scripts.EntityComponents
 
             if (newValue == 0)
             {
-                _onEmpty.Invoke();
+                _onEmpty.Invoke(oldValue);
                 if (!_disableObjectOnEmpty) return;
                 _selfGameObject.Value.SetActive(false);
             }
