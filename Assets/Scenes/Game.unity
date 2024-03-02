@@ -751,6 +751,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hive Queen Spawn Pool
       objectReference: {fileID: 0}
+    - target: {fileID: 2400085741264495484, guid: c76ac6767753e0a46a61230267367352, type: 3}
+      propertyPath: collectionCheck
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5969282730144296541, guid: c76ac6767753e0a46a61230267367352, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -845,6 +849,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1385251095}
     m_Modifications:
+    - target: {fileID: 1410115763370095155, guid: 60fc96bd9f6191742becf0998f45167c, type: 3}
+      propertyPath: collectionCheck
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3083193709272504021, guid: 60fc96bd9f6191742becf0998f45167c, type: 3}
       propertyPath: m_Name
       value: Dragon SpawnPool
@@ -5669,6 +5677,9 @@ MonoBehaviour:
   size: 50
   maxSize: 300
   collectionCheck: 0
+  all: 0
+  active: 0
+  inactive: 0
 --- !u!4 &1504962616
 Transform:
   m_ObjectHideFlags: 0
@@ -6194,6 +6205,9 @@ MonoBehaviour:
   size: 15
   maxSize: 15
   collectionCheck: 0
+  all: 0
+  active: 0
+  inactive: 0
 --- !u!114 &1617929005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7736,6 +7750,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1385251095}
     m_Modifications:
+    - target: {fileID: 2161274487183389196, guid: 0826ea5ded9089a40bc78ee9e3dbc9f3, type: 3}
+      propertyPath: collectionCheck
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2640916115191781098, guid: 0826ea5ded9089a40bc78ee9e3dbc9f3, type: 3}
       propertyPath: m_Name
       value: Mite Spawn Pool
@@ -10775,7 +10793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649112389834138286, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 4955487594067877925, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_Layer
