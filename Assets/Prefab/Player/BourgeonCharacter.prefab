@@ -254,6 +254,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &6292447855681012581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1045,6 +1047,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &6593757590757853820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1347,6 +1351,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &129265945995448714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2206,6 +2212,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &8226640946191581754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7840,6 +7848,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &8993003864858618072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8699,6 +8709,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &2867782528164496266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9424,6 +9436,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &2734682397234340998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9895,6 +9909,61 @@ MonoBehaviour:
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
+--- !u!1 &3895582044443580923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1481515122006151455}
+  - component: {fileID: 3097826340352028212}
+  m_Layer: 7
+  m_Name: Blood Shard Shooter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1481515122006151455
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3895582044443580923}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6729125769173357559}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3097826340352028212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3895582044443580923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ammoPool: {fileID: 0}
+  _projectilesPerAttack:
+    useConstant: 1
+    constantValue: 0
+    variable: {fileID: 0}
+  _projectileSpread:
+    useConstant: 1
+    constantValue: 0
+    variable: {fileID: 0}
+  _roundShoot: 1
+  _randomAimDirection: 0
 --- !u!1 &4087560601498059914
 GameObject:
   m_ObjectHideFlags: 0
@@ -10149,6 +10218,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &8329111495248946244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10206,6 +10277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6729125769173357559}
+  - component: {fileID: 5224135093961330046}
   m_Layer: 7
   m_Name: Blood
   m_TagString: Untagged
@@ -10225,9 +10297,65 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1481515122006151455}
   m_Father: {fileID: 885779190258261260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5224135093961330046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4256712257638294691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01468158b4899aa41a8c5e6e9b8e77bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _disableObjectOnEmpty: 0
+  _selfGameObject:
+    useConstant: 1
+    constantValue: {fileID: 4256712257638294691}
+    variable: {fileID: 0}
+  _startAction: 1
+  _enableAction: 0
+  _currentValue:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 109c81cf894a2914faf37370f8bdfb74, type: 2}
+  _maximumValue:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: e8ee65d106b09ea40abe1d9f3327e79c, type: 2}
+  _initialValue:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _edgeValue: 0
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
+  _onChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _onEmpty:
+    m_PersistentCalls:
+      m_Calls: []
+  _onEdge:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFill:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDecrease:
+    m_PersistentCalls:
+      m_Calls: []
+  _onIncrease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4440277962539956246
 GameObject:
   m_ObjectHideFlags: 0
@@ -11105,6 +11233,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &1781087204193763531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11407,6 +11537,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &4957820753887117228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12366,6 +12498,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &8197468015630453936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12668,6 +12802,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &767166898352027331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13020,6 +13156,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &1533110956520886227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13432,6 +13570,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &6798600760176999616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14134,6 +14274,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &1630206095925922504
 MonoBehaviour:
   m_ObjectHideFlags: 0
