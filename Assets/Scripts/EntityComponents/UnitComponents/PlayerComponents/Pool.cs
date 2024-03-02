@@ -13,6 +13,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
 
         private Transform _transform;
 
+        public int all;
+        public int active;
+        public int inactive;
+
         private void Awake()
         {
             _transform = transform;
@@ -22,6 +26,13 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 OnReleaseFromPool,
                 OnItemDestroy,
                 collectionCheck, (int)size, (int)maxSize);
+        }
+
+        private void FixedUpdate()
+        {
+            all = pool.CountAll;
+            active = pool.CountActive;
+            inactive = pool.CountInactive;
         }
 
         public T Get()
