@@ -17,18 +17,18 @@ MonoBehaviour:
   _newFlatStatSource: {fileID: 0}
   _newPercentageStatSource: {fileID: 0}
   <StatSources>k__BackingField:
-  - <Id>k__BackingField: player_blood_base_base_blood_flat_20
+  - <Id>k__BackingField: player_blood_base_base_max_blood_flat_0
     <StatId>k__BackingField: {fileID: 11400000, guid: 6b6787d845f22bf42be875066ec742ff, type: 2}
     <ImpactType>k__BackingField: 1
-    <Value>k__BackingField: 20
+    <Value>k__BackingField: 0
   - <Id>k__BackingField: player_blood_base_base_blood_per_kill_flat_0
     <StatId>k__BackingField: {fileID: 11400000, guid: 0d269d93f461f194784959c76d23b5a2, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 0
   _statsPreview:
-  - _inspectorValue: 20_blood
+  - _inspectorValue: 0_max_blood
     <Id>k__BackingField: {fileID: 11400000, guid: 6b6787d845f22bf42be875066ec742ff, type: 2}
-    _value: 20
+    _value: 0
   - _inspectorValue: 0_blood_per_kill
     <Id>k__BackingField: {fileID: 11400000, guid: 0d269d93f461f194784959c76d23b5a2, type: 2}
     _value: 0
