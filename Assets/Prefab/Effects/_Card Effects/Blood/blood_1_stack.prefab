@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5472728059450105852}
   - component: {fileID: 5398246131599048777}
+  - component: {fileID: 5608343773876500350}
   m_Layer: 0
   m_Name: blood_1_stack
   m_TagString: Untagged
@@ -50,3 +51,21 @@ MonoBehaviour:
     <StatId>k__BackingField: {fileID: 11400000, guid: 222f696b57d0df34bbda44d01e526e78, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 1
+--- !u!114 &5608343773876500350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7649357156036210538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f7da11f6a731646b102bd7c6d83c14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _list: {fileID: 11400000, guid: 75de3e04ddabe724b8c77ec79f92e90b, type: 2}
+  _statSources:
+  - <Id>k__BackingField: 
+    <StatId>k__BackingField: {fileID: 11400000, guid: 6b6787d845f22bf42be875066ec742ff, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 2
