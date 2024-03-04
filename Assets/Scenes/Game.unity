@@ -4446,6 +4446,10 @@ PrefabInstance:
       propertyPath: _roundShoot
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3737921147843680892, guid: 9220246068dbc814b83d476f03916742, type: 3}
+      propertyPath: collectionCheck
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4016297392149652350, guid: 9220246068dbc814b83d476f03916742, type: 3}
       propertyPath: _roundShoot
       value: 0
@@ -5655,7 +5659,7 @@ GameObject:
   - component: {fileID: 1504962617}
   - component: {fileID: 1504962618}
   m_Layer: 0
-  m_Name: Boons
+  m_Name: Boons Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5676,7 +5680,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 2741946790039367102, guid: 5e010d6901bd0e5429ee2c1adcb5a74c, type: 3}
   size: 50
   maxSize: 300
-  collectionCheck: 0
+  collectionCheck: 1
   all: 0
   active: 0
   inactive: 0
@@ -6204,7 +6208,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 2741946790039367102, guid: 7f22e4c5557ffad448fc328bb3066891, type: 3}
   size: 15
   maxSize: 15
-  collectionCheck: 0
+  collectionCheck: 1
   all: 0
   active: 0
   inactive: 0
@@ -12786,5 +12790,5 @@ SceneRoots:
   - {fileID: 1504962616}
   - {fileID: 2032328647}
   - {fileID: 1323216386}
-  - {fileID: 555733602}
   - {fileID: 80268049}
+  - {fileID: 555733602}

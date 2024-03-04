@@ -343,7 +343,7 @@ MonoBehaviour:
         - +1 Health On Level Up
         status: 0
   - name: Blood
-    description: Improves your health and regeneration
+    description: Improves your health and regeneration and gives blood abilities
     capacity: 15
     cardsArray:
     - name: Each 1 lvl
@@ -351,7 +351,9 @@ MonoBehaviour:
       card:
         inspectorName: 
         title: Each 1 lvl
-        description: +0.25 Health Regeneration per minute
+        description: '+0.25 HP Regen per min.
+
+          +1 Max Blood Reserve'
         onTaken:
         - {fileID: 11400000, guid: 35e50aca4b8cbbb4d990ec9a59e174bb, type: 2}
         dropWeight: 1
