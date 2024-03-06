@@ -1,6 +1,8 @@
+using System;
 using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.FirearmComponents
 {
@@ -53,6 +55,10 @@ namespace Assets.Scripts.FirearmComponents
             for (int i = 0; i < projectileNumber; i++)
             {
                 var projectile = _ammoPool.Get();
+                if (projectile == null)
+                {
+                    throw new NullReferenceException("cannot get any projectile");
+                }
                 projectile.transform.SetPositionAndRotation(Transform.position, Transform.rotation);
                 projectile.Trail.Clear();
                 projectile.SetDirection(actualShotDirection);
