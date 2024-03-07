@@ -10,6 +10,7 @@ namespace Assets.Scripts.FirearmComponents
     {
         [Header("Ammo")]
         [SerializeField] private ProjectilePool _ammoPool;
+        [SerializeField] private Magazine _magazine;
         [Space]
         [Header("Stats")]
         [SerializeField] private FloatReference _projectilesPerAttack;
@@ -33,6 +34,16 @@ namespace Assets.Scripts.FirearmComponents
                 if(_aim != null) return _aim;
                 _aim = GetComponent<Aim>();
                 return _aim;
+            }
+        }
+
+        private Magazine Magazine
+        {
+            get
+            {
+                if(_magazine != null) return _magazine;
+                _magazine = GetComponent<Magazine>();
+                return _magazine;
             }
         }
         

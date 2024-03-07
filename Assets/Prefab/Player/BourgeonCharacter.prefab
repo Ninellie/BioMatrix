@@ -10929,6 +10929,9 @@ MonoBehaviour:
   size: 75
   maxSize: 200
   collectionCheck: 0
+  all: 0
+  active: 0
+  inactive: 0
 --- !u!1 &5547020183540749783
 GameObject:
   m_ObjectHideFlags: 0
@@ -11297,7 +11300,6 @@ GameObject:
   - component: {fileID: 228329134118864438}
   - component: {fileID: 9082206856163440249}
   - component: {fileID: 4957820753887117228}
-  - component: {fileID: 1369007439890273243}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -11552,41 +11554,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &1369007439890273243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5911442729056771370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9082206856163440249}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &5961318230163301009
 GameObject:
   m_ObjectHideFlags: 0
