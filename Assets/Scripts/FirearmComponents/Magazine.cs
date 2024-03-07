@@ -1,19 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
 namespace Assets.Scripts.FirearmComponents
 {
     /// <summary>
-    /// Выдаёт случайный ProjectileMovementController по принципу суммы весов пулов снарядов из массива ammoData
+    /// Выдаёт объекты снарядов по весовому алгоритму из массива боеприпасов
     /// </summary>
     public class Magazine : MonoBehaviour
     {
         public List<AmmoData> ammoData;
 
-        public ProjectileMovementController GetAmmo()
+        public ProjectileMovementController Get()
         {
             var weightSum = ammoData.Sum(data => data.weight);
             var rand = Random.Range(0, weightSum);
@@ -25,24 +24,31 @@ namespace Assets.Scripts.FirearmComponents
                 if (limit < rand) continue;
                 return data.ammoPool.Get();
             }
+
             return null;
         }
 
-        public void AddAmmoData(ProjectilePool pool, int weight)
+        public void AddAmmoData(AmmoData ammo)
         {
-            foreach (var currentData in ammoData.Where(currentData => currentData.ammoPool == pool))
+            ammoData.Add(ammo);
+        }
+
+        public void AddAmmoData(IEnumerable<AmmoData> ammo)
+        {
+            ammoData.AddRange(ammo);
+        }
+
+        public void RemoveAmmoData(AmmoData ammo)
+        {
+            ammoData.Remove(ammo);
+        }
+
+        public void RemoveAmmoData(IEnumerable<AmmoData> ammo)
+        {
+            foreach (var data in ammo)
             {
-                currentData.weight = weight;
-                return;
+                ammoData.Remove(data);
             }
-
-            var data = new AmmoData()
-            {
-                ammoPool = pool,
-                weight = weight
-            };
-
-            ammoData.Add(data);
         }
     }
 }
