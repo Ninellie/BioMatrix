@@ -9,8 +9,11 @@ namespace Assets.Scripts.FirearmComponents
     public class Shooter : MonoBehaviour
     {
         [Header("Ammo")]
-        [SerializeField] private ProjectilePool _ammoPool;
         [SerializeField] private Magazine _magazine;
+
+        [Header("Aim")]
+        [SerializeField] private Aim _aim;
+
         [Space]
         [Header("Stats")]
         [SerializeField] private FloatReference _projectilesPerAttack;
@@ -46,9 +49,8 @@ namespace Assets.Scripts.FirearmComponents
                 return _magazine;
             }
         }
-        
         private Transform _transform;
-        private Aim _aim;
+        
 
         private Vector2 _shootDirection;
 
@@ -65,7 +67,7 @@ namespace Assets.Scripts.FirearmComponents
 
             for (int i = 0; i < projectileNumber; i++)
             {
-                var projectile = _ammoPool.Get();
+                var projectile = Magazine.Get();
                 if (projectile == null)
                 {
                     throw new NullReferenceException("cannot get any projectile");
