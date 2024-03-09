@@ -72,6 +72,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -126,6 +131,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 8340108188437998582}
   _rigidbody2D: {fileID: 424212778447726374}
   _onStopped:
@@ -519,6 +529,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -573,6 +588,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 8316499704754792627}
   _rigidbody2D: {fileID: 7459054499268615026}
   _onStopped:
@@ -966,6 +986,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1020,6 +1045,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 8228875917414573528}
   _rigidbody2D: {fileID: 7988654422650422909}
   _onStopped:
@@ -1413,6 +1443,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1467,6 +1502,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 2730793638668990085}
   _rigidbody2D: {fileID: 500288172616191676}
   _onStopped:
@@ -1860,6 +1900,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1914,6 +1959,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 6286510480737722346}
   _rigidbody2D: {fileID: 7229272843986914828}
   _onStopped:
@@ -2307,6 +2357,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2361,6 +2416,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 9063963016925719966}
   _rigidbody2D: {fileID: 563755660527101094}
   _onStopped:
@@ -2754,6 +2814,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2808,6 +2873,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 3830194528308583998}
   _rigidbody2D: {fileID: 3131689853633542089}
   _onStopped:
@@ -3201,6 +3271,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3255,6 +3330,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 8420316178664083138}
   _rigidbody2D: {fileID: 7838173481492533244}
   _onStopped:
@@ -3585,8 +3665,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4907604782842063794}
-  - component: {fileID: 5431850144052714425}
-  - component: {fileID: 311152232390701937}
   m_Layer: 0
   m_Name: Porjectile Pool
   m_TagString: Untagged
@@ -3649,94 +3727,6 @@ Transform:
   - {fileID: 1355196852679645799}
   m_Father: {fileID: 9126805039593386211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5431850144052714425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2220685057596603898}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bc7c9b776cbd41479da78e434004c88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _size: 40
-  _active: 0
-  _stack: {fileID: 2741946790039367102, guid: 62ab6d6883f51534595dccca64c6bacb, type: 3}
-  _transform: {fileID: 4907604782842063794}
-  _enabled: []
-  _disabled:
-  - {fileID: 4896022238721452046}
-  - {fileID: 4634946286857011296}
-  - {fileID: 5289105472499907435}
-  - {fileID: 4513598125465602955}
-  - {fileID: 7636375556532600865}
-  - {fileID: 2561059940650565985}
-  - {fileID: 6510044471732442287}
-  - {fileID: 1076399043442763524}
-  - {fileID: 8390102392654484258}
-  - {fileID: 3192226550488893894}
-  - {fileID: 3972140293380393416}
-  - {fileID: 1416706780342332756}
-  - {fileID: 8438670479876542760}
-  - {fileID: 8391956999756449664}
-  - {fileID: 8245743069727794312}
-  - {fileID: 4660865423097750359}
-  - {fileID: 2000858513432583205}
-  - {fileID: 3733488755459700475}
-  - {fileID: 7476142395473651222}
-  - {fileID: 2679075752088987039}
-  - {fileID: 7773848825262988712}
-  - {fileID: 1147615454726211104}
-  - {fileID: 7134119175012295659}
-  - {fileID: 6862298722906516025}
-  - {fileID: 501776341921214960}
-  - {fileID: 5898915042145493548}
-  - {fileID: 6634178364075098854}
-  - {fileID: 4124530766954219749}
-  - {fileID: 6248765326147095069}
-  - {fileID: 7122389110502394375}
-  - {fileID: 5069239099565555783}
-  - {fileID: 1929647007491812441}
-  - {fileID: 953755531868900376}
-  - {fileID: 5766605241416003953}
-  - {fileID: 2210815957249215431}
-  - {fileID: 7795393690842870149}
-  - {fileID: 3871245899069391225}
-  - {fileID: 6190764137530788258}
-  - {fileID: 4007091443978154270}
-  - {fileID: 3527582636458345879}
-  _allowGettingActiveObjects: 0
---- !u!114 &311152232390701937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2220685057596603898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86f24b8e5748d764eb572f732612dd8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 72b15cf5bea689e4b841d016f7e5e631, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5431850144052714425}
-        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.StackPool,
-          Scripts
-        m_MethodName: Release
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &2561059940650565985
 GameObject:
   m_ObjectHideFlags: 0
@@ -3809,6 +3799,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3863,6 +3858,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 6566384357591704837}
   _rigidbody2D: {fileID: 4895308888511184995}
   _onStopped:
@@ -4256,6 +4256,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4310,6 +4315,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 4043855542175655711}
   _rigidbody2D: {fileID: 4071073076131200487}
   _onStopped:
@@ -4703,6 +4713,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4757,6 +4772,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 2260818367392588955}
   _rigidbody2D: {fileID: 6655244604507534639}
   _onStopped:
@@ -5128,7 +5148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _myTransform: {fileID: 9126805039593386211}
   _magazineReserve: {fileID: 2073174384341714352}
-  _ammoPool: {fileID: 5431850144052714425}
+  _ammoPool: {fileID: 0}
   _aimMode: 1
   _selfAimDirection:
     useConstant: 0
@@ -5325,6 +5345,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5379,6 +5404,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 1355196852679645799}
   _rigidbody2D: {fileID: 2745268414179184595}
   _onStopped:
@@ -5772,6 +5802,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5826,6 +5861,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 6023000793771947538}
   _rigidbody2D: {fileID: 7163879248632852413}
   _onStopped:
@@ -6219,6 +6259,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6273,6 +6318,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 4958945051023839377}
   _rigidbody2D: {fileID: 2128270465566518682}
   _onStopped:
@@ -6666,6 +6716,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6720,6 +6775,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 3803898465621616526}
   _rigidbody2D: {fileID: 3731512391352357169}
   _onStopped:
@@ -7113,6 +7173,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7167,6 +7232,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 2887247766454570981}
   _rigidbody2D: {fileID: 1262438854344543583}
   _onStopped:
@@ -7560,6 +7630,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7614,6 +7689,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 9044458771863163026}
   _rigidbody2D: {fileID: 6074965997442411852}
   _onStopped:
@@ -8007,6 +8087,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -8061,6 +8146,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 3814163276207235377}
   _rigidbody2D: {fileID: 3713575689357576750}
   _onStopped:
@@ -8454,6 +8544,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -8508,6 +8603,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 6725734486975746775}
   _rigidbody2D: {fileID: 5133100035548669878}
   _onStopped:
@@ -8901,6 +9001,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -8955,6 +9060,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 7200302894521047306}
   _rigidbody2D: {fileID: 3610254638451408052}
   _onStopped:
@@ -9348,6 +9458,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9402,6 +9517,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 5087871200043692882}
   _rigidbody2D: {fileID: 1060800262338609265}
   _onStopped:
@@ -9795,6 +9915,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9849,6 +9974,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 5177975529066880260}
   _rigidbody2D: {fileID: 4408490276779237945}
   _onStopped:
@@ -10242,6 +10372,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10296,6 +10431,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 4286038991107593391}
   _rigidbody2D: {fileID: 7272630271841493976}
   _onStopped:
@@ -10689,6 +10829,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10743,6 +10888,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 657494871886479561}
   _rigidbody2D: {fileID: 5715671753596361113}
   _onStopped:
@@ -11136,6 +11286,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11190,6 +11345,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 2307465712366633058}
   _rigidbody2D: {fileID: 7202068202742135359}
   _onStopped:
@@ -11583,6 +11743,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11637,6 +11802,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 4399462001204150264}
   _rigidbody2D: {fileID: 4869982839448174126}
   _onStopped:
@@ -12030,6 +12200,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12084,6 +12259,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 3571092852449822786}
   _rigidbody2D: {fileID: 8422302917617862058}
   _onStopped:
@@ -12477,6 +12657,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12531,6 +12716,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 5088879222313967516}
   _rigidbody2D: {fileID: 412283438863314508}
   _onStopped:
@@ -12924,6 +13114,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12978,6 +13173,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 8044506238891227027}
   _rigidbody2D: {fileID: 5571512998786154266}
   _onStopped:
@@ -13371,6 +13571,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13425,6 +13630,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 5654608911882949466}
   _rigidbody2D: {fileID: 146220937685807275}
   _onStopped:
@@ -13818,6 +14028,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13872,6 +14087,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 6129073207816863728}
   _rigidbody2D: {fileID: 8767252211819039600}
   _onStopped:
@@ -14265,6 +14485,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -14319,6 +14544,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 4295357580765235441}
   _rigidbody2D: {fileID: 503238234296051857}
   _onStopped:
@@ -14712,6 +14942,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -14766,6 +15001,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 4836617080863515545}
   _rigidbody2D: {fileID: 6212186228528899698}
   _onStopped:
@@ -15159,6 +15399,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -15213,6 +15458,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 4257111557605162279}
   _rigidbody2D: {fileID: 3745054053008132352}
   _onStopped:
@@ -15606,6 +15856,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -15660,6 +15915,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 7688488075181789545}
   _rigidbody2D: {fileID: 2795036217794316055}
   _onStopped:
@@ -16053,6 +16313,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16107,6 +16372,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 4653603250477739326}
   _rigidbody2D: {fileID: 5114508397666158534}
   _onStopped:
@@ -16500,6 +16770,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16554,6 +16829,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 8003437017748867593}
   _rigidbody2D: {fileID: 5525873232805781091}
   _onStopped:
@@ -16947,6 +17227,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -17001,6 +17286,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 7295189282905720542}
   _rigidbody2D: {fileID: 801218740340608246}
   _onStopped:
@@ -17394,6 +17684,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -17448,6 +17743,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 4495078801433830950}
   _rigidbody2D: {fileID: 7919163384092540325}
   _onStopped:
@@ -17841,6 +18141,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -17895,6 +18200,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 6220538501965508518}
   _rigidbody2D: {fileID: 3525116459116740484}
   _onStopped:
