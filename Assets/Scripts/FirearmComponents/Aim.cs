@@ -1,5 +1,6 @@
 using Assets.Scripts.Core.Sets;
 using Assets.Scripts.Core.Variables.References;
+using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.GameSession.UIScripts;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Assets.Scripts.FirearmComponents
         [Space]
         [Header("Stats")]
         [SerializeField] private FloatReference _radius;
+        [SerializeField] private bool _inCamBounds;
 
         private Vector2 _direction;
 
@@ -26,6 +28,9 @@ namespace Assets.Scripts.FirearmComponents
                 return _transform;
             }
         }
+
+        private PlayerTarget _target;
+
         private void OnDrawGizmos()
         {
             Gizmos.DrawRay(Transform.position, _direction);
@@ -39,13 +44,23 @@ namespace Assets.Scripts.FirearmComponents
         public Vector2 GetDirection()
         {
             if (_mode == AimMode.SelfAim) return _selfAimDirection.Value;
-            var target = _visibleEnemies.GetNearestToCenterInCircle(Transform.position, _radius);
-            if (target == null)
+
+            if (_inCamBounds)
+            {
+                _target = _visibleEnemies.GetNearestToPosition(Transform.position);
+            }
+            else
+            {
+                _target = _visibleEnemies.GetNearestToCenterInCircle(Transform.position, _radius);
+            }
+
+            if (_target == null)
             {
                 _direction = Random.onUnitSphere;
                 return _direction.normalized;
             }
-            _direction = target!.Transform.position - Transform.position;
+
+            _direction = _target!.Transform.position - Transform.position;
             return _direction.normalized;
         }
 
