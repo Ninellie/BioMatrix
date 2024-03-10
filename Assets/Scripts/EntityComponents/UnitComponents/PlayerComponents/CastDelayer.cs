@@ -13,9 +13,14 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
     }
     public class CastDelayer : MonoBehaviour // TODO Переместить файл скрипта в более общую директорию
     {
+        [field: SerializeField] public bool Suspended { get; set; }
         [SerializeField] private FloatReference _time;
+        [SerializeField] private bool _timeAsSpeed;
         [SerializeField] private DelayMode _mode;
+        [SerializeField] private UnityEvent _onCastDelayed; // Only for Singular mode
         [SerializeField] private UnityEvent _onCast;
+
+        public bool IsCasting => IsInvoking();
 
         private float _lastDelayTimeSinceLevelLoad;
         private float _delayTime;
@@ -25,34 +30,45 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
         /// </summary>
         public void Delay()
         {
+            if (Suspended)
+            {
+                return;
+            }
+            var time = _time.Value;
+            if (_timeAsSpeed)
+            {
+                time = 1 / time;
+            }
+            
             switch (_mode)
             {
                 case DelayMode.Reset:
                     CancelInvoke(nameof(Cast));
-                    Invoke(nameof(Cast), _time);
+                    Invoke(nameof(Cast), time);
                     break;
                 case DelayMode.Additive:
                     if (!IsInvoking(nameof(Cast)))
                     {
                         _lastDelayTimeSinceLevelLoad = Time.timeSinceLevelLoad;
-                        _delayTime = _time;
+                        _delayTime = time;
                         Invoke(nameof(Cast), _delayTime);
                         break;
                     }
                     var timeDifference = Time.timeSinceLevelLoad - _lastDelayTimeSinceLevelLoad;
                     _lastDelayTimeSinceLevelLoad = Time.timeSinceLevelLoad;
                     _delayTime -= timeDifference;
-                    _delayTime += _time;
+                    _delayTime += time;
                     CancelInvoke(nameof(Cast));
                     Invoke(nameof(Cast), _delayTime);
                     break;
                 case DelayMode.Singular:
                     if (IsInvoking(nameof(Cast))) break;
+                    _onCastDelayed.Invoke();
                     CancelInvoke(nameof(Cast)); 
-                    Invoke(nameof(Cast), _time);
+                    Invoke(nameof(Cast), time);
                     break;
                 case DelayMode.Separate:
-                    Invoke(nameof(Cast), _time);
+                    Invoke(nameof(Cast), time);
                     break;
             }
         }
