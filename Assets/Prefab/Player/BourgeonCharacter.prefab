@@ -233,6 +233,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &7101806617008118740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,8 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -1108,6 +1109,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &3384520817400435171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1120,8 +1122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -1413,6 +1415,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &6451374336746843341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1425,8 +1428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -1818,6 +1821,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &5539332167958830409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1830,8 +1834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -7455,6 +7459,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &1772934337134239737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7467,8 +7472,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -7860,6 +7865,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &8857424710368894338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7872,8 +7878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -8588,6 +8594,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &6616375239483987394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8600,8 +8607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -9127,8 +9134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 0}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 1
     constantValue: 0
@@ -9372,6 +9379,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &7222572702158062584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9384,8 +9392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -9747,8 +9755,8 @@ MonoBehaviour:
   _transform: {fileID: 885779190258261260}
   _rigidbody2D: {fileID: 7452234380026767843}
   _aimingSpeedMultiplier: 0.5
-  _firearm: {fileID: 6163833766149623121}
-  _magazine: {fileID: 6196011676017313926}
+  _firearm: {fileID: 0}
+  _magazine: {fileID: 0}
   _movementDirection:
     useConstant: 0
     constantValue: {x: 0, y: 0}
@@ -10392,6 +10400,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &2430883341586106367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10404,8 +10413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -10696,6 +10705,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &9082206856163440249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10708,8 +10718,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -11623,6 +11633,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &1105012755141683505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11635,8 +11646,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -11928,6 +11939,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &9220430939314163390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11940,8 +11952,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -12283,6 +12295,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &4016297392149652350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12295,8 +12308,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -12698,6 +12711,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &4117793777923994382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12710,8 +12724,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -13403,6 +13417,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &7833483164191573240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13415,8 +13430,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3737921147843680892}
   _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -13483,10 +13498,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 766516748403551923}
     m_Modifications:
-    - target: {fileID: -5980736197263884605, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
-      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 5339389316461929150}
     - target: {fileID: -5980736197263884605, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Shoot
@@ -14076,6 +14087,7 @@ PrefabInstance:
     - {fileID: 621619073899757855, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
     - {fileID: 1591414440117044644, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
     - {fileID: 793334577589761128, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+    - {fileID: 2073174384341714352, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6522579874615979406, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
     - {fileID: 3527582636458345879, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
@@ -14120,12 +14132,6 @@ PrefabInstance:
     - {fileID: 4896022238721452046, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3233653779076600719, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 5339389316461929150}
-    - targetCorrespondingSourceObject: {fileID: 3233653779076600719, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7994037515635077674}
     - targetCorrespondingSourceObject: {fileID: 2220685057596603898, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3994563617762731744}
@@ -14138,28 +14144,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9126805039593386211, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
   m_PrefabInstance: {fileID: 5276462657670466870}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6163833766149623121 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -7155211607656120217, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
-  m_PrefabInstance: {fileID: 5276462657670466870}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7339174344179457721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e421a47b9a3d754db0fbdf83aefa328, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6196011676017313926 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2073174384341714352, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
-  m_PrefabInstance: {fileID: 5276462657670466870}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7339174344179457721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71f96002dbc58f4d958fa6f2d81fcf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6334514772060401868 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2220685057596603898, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
@@ -14213,50 +14197,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &7339174344179457721 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3233653779076600719, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
-  m_PrefabInstance: {fileID: 5276462657670466870}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5339389316461929150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7339174344179457721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ammoPool: {fileID: 3994563617762731744}
-  _magazine: {fileID: 0}
-  _projectilesPerAttack:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: 93cf7070419d7f6488e0a7670ec21f9d, type: 2}
-  _projectileSpread:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: 777113e2cedbc024e814f3e689b9691d, type: 2}
-  _roundShoot: 0
-  _randomAimDirection: 0
---- !u!114 &7994037515635077674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7339174344179457721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f718c19cb04b7f74a93651eb9fff276b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoData:
-  - ammoPool: {fileID: 3994563617762731744}
-    weight: 1
 --- !u!1001 &6794028814520923375
 PrefabInstance:
   m_ObjectHideFlags: 0

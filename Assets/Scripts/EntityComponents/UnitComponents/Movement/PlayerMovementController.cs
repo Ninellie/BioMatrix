@@ -1,5 +1,5 @@
 using Assets.Scripts.Core.Variables.References;
-using Assets.Scripts.FirearmComponents;
+using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
@@ -7,19 +7,23 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
     public class PlayerMovementController : MovementController
     {
         [SerializeField] private float _aimingSpeedMultiplier = 0.5f;
-        [SerializeField] private PlayerFirearm _firearm; 
-        [SerializeField] private MagazineReserve _magazine;
+        //[SerializeField] private Shooter _firearm;
+        [SerializeField] private CastDelayer _reload;
+        [SerializeField] private CastDelayer _coolDown;
 
         protected override float Speed
         {
             get
             {
-                if (_magazine.OnReload) // Не важно нажата ли кнопка, ведь оружие на перезарядке
+                if (_reload.IsCasting) // Не важно нажата ли кнопка, ведь оружие на перезарядке
                     return NoAimingSpeed;
-                if (_firearm.OnCoolDown) // Кнопка нажата, оружие не на перезарядке
+
+                if (_coolDown.IsCasting) // Кнопка нажата, оружие не на перезарядке
                     return AimingSpeed;
-                if (_firearm.CanShoot) // Кнопка не нажата, оружие не на перезарядке и не на кд
-                    return NoAimingSpeed;
+
+                //if (_firearm.CanShoot) // Кнопка не нажата, оружие не на перезарядке и не на кд
+                    //return NoAimingSpeed;
+
                 return AimingSpeed; // Кнопка не нажата, оружие не на перезарядке, но совсем недавно стреляло и ещё не готово к стрельбе, потому что на кд
             }
         }
