@@ -88,7 +88,7 @@ namespace Assets.Scripts.EntityComponents
             SetValue(nextValue);
         }
 
-        private void Fill()
+        public void Fill()
         {
             SetValue(_maximumValue);
         }
