@@ -75,5 +75,10 @@ namespace Assets.Scripts.FirearmComponents
                 _mode = AimMode.AutoAim;
             }
         }
+
+        public void SetAutoMode(bool autoAim)
+        {
+            _mode = autoAim ? AimMode.AutoAim : AimMode.SelfAim;
+        }
     }
 }
