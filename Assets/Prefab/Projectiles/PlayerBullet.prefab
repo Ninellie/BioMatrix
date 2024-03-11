@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01468158b4899aa41a8c5e6e9b8e77bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _disableObjectOnEmpty: 0
+  _disableObjectOnEmpty: 1
   _selfGameObject:
     useConstant: 1
     constantValue: {fileID: 2741946790039367102}
@@ -68,9 +68,14 @@ MonoBehaviour:
     variable: {fileID: 11400000, guid: b06407719bcb34f4890d94cb36e28ee2, type: 2}
   _initialValue:
     useConstant: 1
-    constantValue: 0
+    constantValue: 1
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -125,6 +130,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 5058406891993574356}
   _rigidbody2D: {fileID: 2316403284215167119}
   _onStopped:
@@ -156,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _otherTag: Enemy
-  _invokeOnCollisionEnter2D: 0
+  _invokeOnCollisionEnter2D: 1
   _onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
