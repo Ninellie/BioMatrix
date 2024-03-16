@@ -8,7 +8,7 @@ namespace Assets.Scripts.FirearmComponents
 {
     public class Aim : MonoBehaviour
     {
-        [SerializeField] private PlayerTargetRuntimeSet _visibleEnemies; // TODO заменить на что-то нейтральное
+        [SerializeField] private PlayerTargetRuntimeSet _targets; // TODO заменить на что-то нейтральное
         [SerializeField] private AimMode _mode;
         [SerializeField] private Vector2Reference _selfAimDirection;
         [Space]
@@ -47,11 +47,11 @@ namespace Assets.Scripts.FirearmComponents
 
             if (_inCamBounds)
             {
-                _target = _visibleEnemies.GetNearestToPosition(Transform.position);
+                _target = _targets.GetNearestToPosition(Transform.position);
             }
             else
             {
-                _target = _visibleEnemies.GetNearestToCenterInCircle(Transform.position, _radius);
+                _target = _targets.GetNearestToCenterInCircle(Transform.position, _radius);
             }
 
             if (_target == null)
