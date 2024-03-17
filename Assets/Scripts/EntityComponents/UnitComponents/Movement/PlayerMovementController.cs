@@ -15,16 +15,16 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
         {
             get
             {
-                if (_reload.IsCasting) // Не важно нажата ли кнопка, ведь оружие на перезарядке
+                if (_reload.IsCasting) // Оружие на перезарядке
                     return NoAimingSpeed;
 
-                if (_coolDown.IsCasting) // Кнопка нажата, оружие не на перезарядке
+                if (_coolDown.IsCasting) // Оружие на кулдауне, но не на перезарядке
                     return AimingSpeed;
 
                 //if (_firearm.CanShoot) // Кнопка не нажата, оружие не на перезарядке и не на кд
                     //return NoAimingSpeed;
 
-                return AimingSpeed; // Кнопка не нажата, оружие не на перезарядке, но совсем недавно стреляло и ещё не готово к стрельбе, потому что на кд
+                return NoAimingSpeed; // Кнопка не нажата, оружие не на перезарядке, но совсем недавно стреляло и ещё не готово к стрельбе, потому что на кд
             }
         }
         protected float NoAimingSpeed => speed.Value * SpeedScale;

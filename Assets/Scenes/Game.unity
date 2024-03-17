@@ -4735,6 +4735,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6191125721126953290, guid: 9220246068dbc814b83d476f03916742, type: 3}
+      propertyPath: _targets
+      value: 
+      objectReference: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
     - target: {fileID: 6451374336746843341, guid: 9220246068dbc814b83d476f03916742, type: 3}
       propertyPath: _magazine
       value: 
@@ -11051,7 +11055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649112389834138286, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.25
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 4955487594067877925, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_Layer
