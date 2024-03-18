@@ -14,20 +14,25 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.BoonComponents
 
         private TrailRenderer _trailRenderer;
 
+        private bool _isReleased;
+
         private void Awake()
         {
             if (_transform == null) _transform = transform;
             if (_rigidbody2D == null) _rigidbody2D = GetComponent<Rigidbody2D>();
             _trailRenderer = GetComponent<TrailRenderer>();
+            _isReleased = false;
         }
 
         private void OnEnable()
         {
+            _isReleased = false;
             _trailRenderer.Clear();
         }
 
         private void OnTriggerStay2D(Collider2D collider2D)
         {
+            if (_isReleased) return;
             if (!collider2D.gameObject.CompareTag(_magnetTag)) return;
             Vector2 nextPosition = _transform.position;
             Vector2 direction = collider2D.transform.position - _transform.position;
@@ -38,12 +43,15 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.BoonComponents
 
         private void OnTriggerEnter2D(Collider2D collider2D)
         {
+            if (_isReleased) return;
             if (!collider2D.gameObject.CompareTag(_playerTag)) return;
+            _isReleased = true;
             Invoke(nameof(Death), 0.1f);
         }
 
         private void Death()
         {
+            if (IsInvoking()) return;
             _onTaken.Raise(_transform);
         }
     }
