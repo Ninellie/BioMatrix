@@ -70,6 +70,11 @@ namespace Assets.Scripts.EntityComponents
 
         public void Increase(int amount)
         {
+            if (IsFull)
+            {
+                Debug.Log($"Cannot increase, reserve is already full");
+                return;
+            }
             if (amount <= 0) return;
             if (_useMultiplier)
             {
@@ -83,6 +88,11 @@ namespace Assets.Scripts.EntityComponents
 
         public void TakeDamage(int amount)
         {
+            if (IsEmpty)
+            {
+                Debug.Log($"Cannot take more damage, reserve is already empty");
+                return;
+            }
             if (amount <= 0) return;
             var nextValue = _currentValue - amount;
             SetValue(nextValue);
@@ -90,11 +100,21 @@ namespace Assets.Scripts.EntityComponents
 
         public void Fill()
         {
+            if (IsFull)
+            {
+                Debug.Log($"Reserve is already full");
+                return;
+            }
             SetValue(_maximumValue);
         }
 
         public void Empty()
         {
+            if (IsEmpty) 
+            {
+                Debug.Log($"Reserve is already empty");
+                return;
+            }
             Debug.Log($"Reserve is empty. Disable: {_disableObjectOnEmpty}");
             SetValue(0);
         }
