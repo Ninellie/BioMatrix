@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FloatSeparationNear
   m_EditorClassIdentifier: 
   developerDescription: 
-  value: 0.07
+  value: 4

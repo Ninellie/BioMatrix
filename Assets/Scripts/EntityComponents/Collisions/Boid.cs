@@ -1,3 +1,4 @@
+using System.Collections;
 using Assets.Scripts.Core.Variables.References;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,9 @@ namespace Assets.Scripts.EntityComponents.Collisions
         public bool applySeparation;
         public bool normalizeSeparation;
         public FloatReference separationPower;
+
+        public float checkPeriod;
+
 
         public Vector2 velocity;
         public Transform myTransform;
@@ -44,19 +48,33 @@ namespace Assets.Scripts.EntityComponents.Collisions
             neighbours.Remove(collider2D.transform);
         }
 
-        private void FixedUpdate()
+        private void OnEnable()
         {
-            controller.AddVelocity(velocity * -1);
-            if (neighbours.Count == 0)
+            StartCoroutine(UpdateVelocityCheck());
+        }
+
+        private void OnDisable()
+        {
+            StopCoroutine(UpdateVelocityCheck());
+        }
+
+        private IEnumerator UpdateVelocityCheck()
+        {
+            while (true)
             {
-                velocity = Vector2.zero;
+                controller.AddVelocity(velocity * -1);
+                if (neighbours.Count == 0)
+                {
+                    velocity = Vector2.zero;
+                }
+                else
+                {
+                    UpdateVelocity();
+                }
+                controller.AddVelocity(velocity);
+                Debug.DrawRay(myTransform.position, velocity, Color.blue);
+                yield return new WaitForSeconds(checkPeriod);
             }
-            else
-            {
-                UpdateVelocity();
-            }
-            controller.AddVelocity(velocity);
-            Debug.DrawRay(myTransform.position, velocity, Color.red);
         }
 
         private void UpdateVelocity()

@@ -478,11 +478,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce603147eafc60841b5d0a63f42a419e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Suspended>k__BackingField: 0
   _time:
     useConstant: 1
     constantValue: 5
     variable: {fileID: 0}
+  _timeAsSpeed: 0
   _mode: 0
+  _onCastDelayed:
+    m_PersistentCalls:
+      m_Calls: []
   _onCast:
     m_PersistentCalls:
       m_Calls:
@@ -623,6 +628,10 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: -7174485722683278531}
+    - target: {fileID: 2519329738673173237, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
+      propertyPath: checkPeriod
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2519329738673173237, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
       propertyPath: myTransform
       value: 
