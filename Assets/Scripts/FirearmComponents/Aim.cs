@@ -9,6 +9,7 @@ namespace Assets.Scripts.FirearmComponents
     public class Aim : MonoBehaviour
     {
         [SerializeField] private PlayerTargetRuntimeSet _targets; // TODO заменить на что-то нейтральное
+        [SerializeField] private bool _displayTarget;
         [SerializeField] private AimMode _mode;
         [SerializeField] private Vector2Reference _selfAimDirection;
         [Space]
@@ -31,6 +32,11 @@ namespace Assets.Scripts.FirearmComponents
 
         private PlayerTarget _target;
 
+        private void FixedUpdate()
+        {
+            UpdateTarget();
+        }
+
         private void OnDrawGizmos()
         {
             Gizmos.DrawRay(Transform.position, _direction);
@@ -44,36 +50,48 @@ namespace Assets.Scripts.FirearmComponents
         public Vector2 GetDirection()
         {
             if (_mode == AimMode.SelfAim) return _selfAimDirection.Value;
-
-            if (_inCamBounds)
-            {
-                _target = _targets.GetNearestToPosition(Transform.position);
-            }
-            else
-            {
-                _target = _targets.GetNearestToCenterInCircle(Transform.position, _radius);
-            }
-
             if (_target == null)
             {
                 _direction = Random.onUnitSphere;
                 return _direction.normalized;
             }
-
             _direction = _target!.Transform.position - Transform.position;
             return _direction.normalized;
         }
 
+        private void UpdateTarget()
+        {
+            if (_mode == AimMode.SelfAim)
+            {
+                if (_target == null) return;
+                
+                if (_displayTarget) _target.RemoveFromTarget();
+                _target = null;
+                return;
+            }
+
+            var nearestTarget = _inCamBounds ?
+                _targets.GetNearestToPosition(Transform.position) :
+                _targets.GetNearestToCenterInCircle(Transform.position, _radius);
+
+            if (nearestTarget == null)
+            {
+                _target = null;
+                return;
+            }
+            if (_target != null)
+            {
+                if (_target == nearestTarget) return;
+                if (_displayTarget) _target.RemoveFromTarget();
+            }
+            _target = nearestTarget;
+            if (_displayTarget) _target.TakeAsTarget();
+        }
+
+
         public void ToggleMode()
         {
-            if (_mode == AimMode.AutoAim)
-            {
-                _mode = AimMode.SelfAim;
-            }
-            else
-            {
-                _mode = AimMode.AutoAim;
-            }
+            _mode = _mode == AimMode.AutoAim ? AimMode.SelfAim : AimMode.AutoAim;
         }
 
         public void SetAutoMode(bool autoAim)
