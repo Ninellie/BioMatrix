@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7192622839969233473}
   - component: {fileID: 7101806617008118740}
   - component: {fileID: 6292447855681012581}
-  - component: {fileID: 8244892374880100172}
+  - component: {fileID: 1787514708233808491}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -223,7 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -246,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -271,7 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &8244892374880100172
+--- !u!114 &1787514708233808491
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,32 +281,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 38123070719424151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7101806617008118740}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1 &487578052626847900
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,7 +869,7 @@ GameObject:
   - component: {fileID: 3387433952538379367}
   - component: {fileID: 3384520817400435171}
   - component: {fileID: 6593757590757853820}
-  - component: {fileID: 1972938386600988100}
+  - component: {fileID: 3818427783107753322}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -1099,7 +1078,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -1122,7 +1102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -1147,7 +1127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &1972938386600988100
+--- !u!114 &3818427783107753322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1156,32 +1136,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1454590899961082113}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3384520817400435171}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1 &1573101510210310979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,7 +1154,7 @@ GameObject:
   - component: {fileID: 2510376528740370}
   - component: {fileID: 6451374336746843341}
   - component: {fileID: 129265945995448714}
-  - component: {fileID: 1074767686199179536}
+  - component: {fileID: 3474153020758635398}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -1405,7 +1363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -1428,7 +1387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -1453,7 +1412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &1074767686199179536
+--- !u!114 &3474153020758635398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1462,32 +1421,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1573101510210310979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6451374336746843341}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1 &1886367390602875203
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,7 +1539,7 @@ GameObject:
   - component: {fileID: 8057257699255760949}
   - component: {fileID: 5539332167958830409}
   - component: {fileID: 8226640946191581754}
-  - component: {fileID: 3263699385477026681}
+  - component: {fileID: 4124606407553145860}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -1811,7 +1748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -1834,7 +1772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -1859,7 +1797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &3263699385477026681
+--- !u!114 &4124606407553145860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1868,32 +1806,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1965170148078039655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5539332167958830409}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1 &1975577421630258371
 GameObject:
   m_ObjectHideFlags: 0
@@ -7240,7 +7156,7 @@ GameObject:
   - component: {fileID: 3499931294671480696}
   - component: {fileID: 1772934337134239737}
   - component: {fileID: 8993003864858618072}
-  - component: {fileID: 8185306081599639582}
+  - component: {fileID: 7749093783271990857}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -7449,7 +7365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -7472,7 +7389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -7497,7 +7414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &8185306081599639582
+--- !u!114 &7749093783271990857
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7506,32 +7423,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2595766489460448412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1772934337134239737}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1 &2608428176307191913
 GameObject:
   m_ObjectHideFlags: 0
@@ -7646,7 +7541,7 @@ GameObject:
   - component: {fileID: 3088452270935519296}
   - component: {fileID: 8857424710368894338}
   - component: {fileID: 2867782528164496266}
-  - component: {fileID: 4700059249932587348}
+  - component: {fileID: 8145826155541570409}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -7855,7 +7750,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -7878,7 +7774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -7903,7 +7799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &4700059249932587348
+--- !u!114 &8145826155541570409
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7912,32 +7808,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2818933900923045959}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8857424710368894338}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1 &2865120988420647822
 GameObject:
   m_ObjectHideFlags: 0
@@ -8375,7 +8249,7 @@ GameObject:
   - component: {fileID: 2645158299290256373}
   - component: {fileID: 6616375239483987394}
   - component: {fileID: 2734682397234340998}
-  - component: {fileID: 8575433085044427219}
+  - component: {fileID: 7881774975169964258}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -8584,7 +8458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -8607,7 +8482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -8632,7 +8507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &8575433085044427219
+--- !u!114 &7881774975169964258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8641,32 +8516,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3389595451637218262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6616375239483987394}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1 &3435236541584315004
 GameObject:
   m_ObjectHideFlags: 0
@@ -9100,6 +8953,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1481515122006151455}
   - component: {fileID: 3097826340352028212}
+  - component: {fileID: 1277368134359404532}
   m_Layer: 7
   m_Name: Blood Shard Shooter
   m_TagString: Untagged
@@ -9134,7 +8988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 1277368134359404532}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 1
@@ -9145,7 +8999,22 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _roundShoot: 1
-  _randomAimDirection: 0
+  _randomAimDirection: 1
+--- !u!114 &1277368134359404532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3895582044443580923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f718c19cb04b7f74a93651eb9fff276b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoData:
+  - ammoPool: {fileID: 4673450771146038078}
+    weight: 1
 --- !u!1 &4087560601498059914
 GameObject:
   m_ObjectHideFlags: 0
@@ -9160,7 +9029,7 @@ GameObject:
   - component: {fileID: 7273421419006907058}
   - component: {fileID: 7222572702158062584}
   - component: {fileID: 8329111495248946244}
-  - component: {fileID: 4121128602759523132}
+  - component: {fileID: 2263082692194419288}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -9369,7 +9238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -9392,7 +9262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -9417,7 +9287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &4121128602759523132
+--- !u!114 &2263082692194419288
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9426,32 +9296,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4087560601498059914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7222572702158062584}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1 &4256712257638294691
 GameObject:
   m_ObjectHideFlags: 0
@@ -9462,6 +9310,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6729125769173357559}
   - component: {fileID: 5224135093961330046}
+  - component: {fileID: 5428630068273367844}
+  - component: {fileID: 4148149308239620294}
   m_Layer: 7
   m_Name: Blood
   m_TagString: Untagged
@@ -9514,13 +9364,13 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 11400000, guid: e8ee65d106b09ea40abe1d9f3327e79c, type: 2}
   _initialValue:
-    useConstant: 0
+    useConstant: 1
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 0
   _gainMultiplier:
-    useConstant: 0
-    constantValue: 0
+    useConstant: 1
+    constantValue: 1
     variable: {fileID: 0}
   _useMultiplier: 0
   _onChanged:
@@ -9528,7 +9378,19 @@ MonoBehaviour:
       m_Calls: []
   _onEmpty:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3097826340352028212}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onEdge:
     m_PersistentCalls:
       m_Calls: []
@@ -9541,6 +9403,62 @@ MonoBehaviour:
   _onIncrease:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5428630068273367844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4256712257638294691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 54cdf10a608708c42b09866142d2f48a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5224135093961330046}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.Reserve, Scripts
+        m_MethodName: Empty
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4148149308239620294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4256712257638294691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 0e920dc00c555f941b331c16e2cb6681, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5224135093961330046}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.Reserve, Scripts
+        m_MethodName: Increase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4440277962539956246
 GameObject:
   m_ObjectHideFlags: 0
@@ -9755,8 +9673,8 @@ MonoBehaviour:
   _transform: {fileID: 885779190258261260}
   _rigidbody2D: {fileID: 7452234380026767843}
   _aimingSpeedMultiplier: 0.5
-  _firearm: {fileID: 0}
-  _magazine: {fileID: 0}
+  _reload: {fileID: 1666954510965485078}
+  _coolDown: {fileID: 7328919804877240690}
   _movementDirection:
     useConstant: 0
     constantValue: {x: 0, y: 0}
@@ -10047,6 +9965,7 @@ GameObject:
   - component: {fileID: 2126907732317395760}
   - component: {fileID: 6201780679394713986}
   - component: {fileID: 3737921147843680892}
+  - component: {fileID: 25260923914528530}
   m_Layer: 0
   m_Name: Projectile pool
   m_TagString: Untagged
@@ -10113,10 +10032,25 @@ MonoBehaviour:
   itemPrefab: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
   size: 75
   maxSize: 200
-  collectionCheck: 0
+  collectionCheck: 1
   all: 0
   active: 0
   inactive: 0
+--- !u!114 &25260923914528530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5539340411587042217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f718c19cb04b7f74a93651eb9fff276b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoData:
+  - ammoPool: {fileID: 3737921147843680892}
+    weight: 1
 --- !u!1 &5547020183540749783
 GameObject:
   m_ObjectHideFlags: 0
@@ -10181,7 +10115,7 @@ GameObject:
   - component: {fileID: 2446894437957747953}
   - component: {fileID: 2430883341586106367}
   - component: {fileID: 1781087204193763531}
-  - component: {fileID: 7482440111622397145}
+  - component: {fileID: 5639043988465160729}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -10390,7 +10324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -10413,7 +10348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -10438,7 +10373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &7482440111622397145
+--- !u!114 &5639043988465160729
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10447,32 +10382,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5552903237254791421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2430883341586106367}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1 &5911442729056771370
 GameObject:
   m_ObjectHideFlags: 0
@@ -10487,6 +10400,7 @@ GameObject:
   - component: {fileID: 228329134118864438}
   - component: {fileID: 9082206856163440249}
   - component: {fileID: 4957820753887117228}
+  - component: {fileID: 3745458438763027843}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -10695,7 +10609,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -10718,7 +10633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -10743,6 +10658,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+--- !u!114 &3745458438763027843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5911442729056771370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1 &5961318230163301009
 GameObject:
   m_ObjectHideFlags: 0
@@ -11414,7 +11342,7 @@ GameObject:
   - component: {fileID: 711518878720796669}
   - component: {fileID: 1105012755141683505}
   - component: {fileID: 8197468015630453936}
-  - component: {fileID: 5254221459104788953}
+  - component: {fileID: 6397766645597920215}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -11623,7 +11551,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -11646,7 +11575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -11671,7 +11600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &5254221459104788953
+--- !u!114 &6397766645597920215
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11680,32 +11609,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7764339157941454555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1105012755141683505}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1 &7884162603152992368
 GameObject:
   m_ObjectHideFlags: 0
@@ -11720,7 +11627,7 @@ GameObject:
   - component: {fileID: 6670225326140172525}
   - component: {fileID: 9220430939314163390}
   - component: {fileID: 767166898352027331}
-  - component: {fileID: 7528683349095252049}
+  - component: {fileID: 585699595032186577}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -11929,7 +11836,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -11952,7 +11860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -11977,7 +11885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &7528683349095252049
+--- !u!114 &585699595032186577
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11986,32 +11894,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7884162603152992368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9220430939314163390}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1 &7980210721668029926
 GameObject:
   m_ObjectHideFlags: 0
@@ -12076,7 +11962,7 @@ GameObject:
   - component: {fileID: 7980943976531986808}
   - component: {fileID: 4016297392149652350}
   - component: {fileID: 1533110956520886227}
-  - component: {fileID: 2146864784905130353}
+  - component: {fileID: 135019334017958332}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -12285,7 +12171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -12308,7 +12195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -12333,7 +12220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &2146864784905130353
+--- !u!114 &135019334017958332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12342,32 +12229,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8068929102303309224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4016297392149652350}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1 &8302333705149338035
 GameObject:
   m_ObjectHideFlags: 0
@@ -12492,7 +12357,7 @@ GameObject:
   - component: {fileID: 7309507266884036386}
   - component: {fileID: 4117793777923994382}
   - component: {fileID: 6798600760176999616}
-  - component: {fileID: 7135624791529192156}
+  - component: {fileID: 1453172463307025845}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -12701,7 +12566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -12724,7 +12590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -12749,7 +12615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &7135624791529192156
+--- !u!114 &1453172463307025845
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12758,32 +12624,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8369801268562007422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4117793777923994382}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1 &8889772789890469085
 GameObject:
   m_ObjectHideFlags: 0
@@ -13198,7 +13042,7 @@ GameObject:
   - component: {fileID: 434439183996242926}
   - component: {fileID: 7833483164191573240}
   - component: {fileID: 1630206095925922504}
-  - component: {fileID: 5063861871053663294}
+  - component: {fileID: 428640978554292497}
   m_Layer: 0
   m_Name: Turret(Clone)
   m_TagString: Untagged
@@ -13407,7 +13251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -13430,7 +13275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _magazine: {fileID: 0}
+  _magazine: {fileID: 25260923914528530}
   _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
@@ -13455,7 +13300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &5063861871053663294
+--- !u!114 &428640978554292497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13464,32 +13309,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9196057870197566160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Suspended>k__BackingField: 0
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _conditions: []
-  _allConditionsAreMet: 0
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7833483164191573240}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
 --- !u!1001 &5276462657670466870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13538,6 +13361,10 @@ PrefabInstance:
       propertyPath: _invokeOnCollisionEnter2D
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1057223951671377957, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: ammoData.Array.data[0].ammoPool
+      value: 
+      objectReference: {fileID: 3994563617762731744}
     - target: {fileID: 1076399043442763524, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -13774,6 +13601,19 @@ PrefabInstance:
       propertyPath: m_TagString
       value: FirearmProjectile
       objectReference: {fileID: 0}
+    - target: {fileID: 5087428820841568953, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7328919804877240690}
+    - target: {fileID: 5087428820841568953, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Delay
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087428820841568953, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.CastDelayer,
+        Scripts
+      objectReference: {fileID: 0}
     - target: {fileID: 5289105472499907435, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -13865,6 +13705,68 @@ PrefabInstance:
     - target: {fileID: 6760528246191222086, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: _invokeOnCollisionEnter2D
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCast.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCastDelayed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCast.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCast.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7328919804877240690}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCast.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCast.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: set_Suspended
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCastDelayed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCastDelayed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7328919804877240690}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCastDelayed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCastDelayed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_Suspended
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCast.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.CastDelayer,
+        Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCastDelayed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.CastDelayer,
+        Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCastDelayed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCast.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: _onCastDelayed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6862298722906516025, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_Layer
@@ -14138,7 +14040,87 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2220685057596603898, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3096505540214571259}
+    - targetCorrespondingSourceObject: {fileID: 9022478731311413247, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7328919804877240690}
   m_SourcePrefab: {fileID: 100100000, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+--- !u!114 &1666954510965485078 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6781282629684224800, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+  m_PrefabInstance: {fileID: 5276462657670466870}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce603147eafc60841b5d0a63f42a419e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &3751369084656859849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9022478731311413247, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+  m_PrefabInstance: {fileID: 5276462657670466870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7328919804877240690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3751369084656859849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce603147eafc60841b5d0a63f42a419e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Suspended>k__BackingField: 0
+  _time:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 37753c086d1d0874e918b12ae583e507, type: 2}
+  _timeAsSpeed: 1
+  _mode: 2
+  _onCastDelayed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6830595480118971914}
+        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 7b001a7b09e37294cae7ae2de99a2014, type: 2}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Events.GameEvent, Scripts
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8800192796683626798}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.Reserve, Scripts
+        m_MethodName: TakeDamage
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onCast:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &4004032151614569941 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9126805039593386211, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
@@ -14197,6 +14179,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6830595480118971914 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1725693064182137660, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+  m_PrefabInstance: {fileID: 5276462657670466870}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3751369084656859849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8800192796683626798 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3682064802421187608, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+  m_PrefabInstance: {fileID: 5276462657670466870}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01468158b4899aa41a8c5e6e9b8e77bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6794028814520923375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14212,6 +14216,64 @@ PrefabInstance:
     - target: {fileID: -8692902594264446844, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
       propertyPath: _disabled.Array.size
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4916441894928229653, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4916441894928229653, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4916441894928229653, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 306573703434735931}
+    - target: {fileID: 4916441894928229653, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4916441894928229653, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ReShoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4916441894928229653, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.TurretShootDelaySetter,
+        Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 4916441894928229653, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786093775013850615, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786093775013850615, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786093775013850615, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 306573703434735931}
+    - target: {fileID: 5786093775013850615, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786093775013850615, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ReShoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786093775013850615, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.TurretShootDelaySetter,
+        Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786093775013850615, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
       propertyPath: _size
@@ -14376,7 +14438,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5218627659422222759, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1944865985676776944}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1785819568117180162, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1419390023657111420}
+    - targetCorrespondingSourceObject: {fileID: 1785819568117180162, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 306573703434735931}
   m_SourcePrefab: {fileID: 100100000, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
 --- !u!4 &1595812489380658504 stripped
 Transform:
@@ -14388,3 +14456,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9034957501157506180, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
   m_PrefabInstance: {fileID: 6794028814520923375}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5080548952031974381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1785819568117180162, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
+  m_PrefabInstance: {fileID: 6794028814520923375}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1419390023657111420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5080548952031974381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Suspended>k__BackingField: 0
+  _castsPerSecond:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  _mode: 1
+  _conditions: []
+  _allConditionsAreMet: 0
+  _onCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 306573703434735931}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents.TurretShootDelaySetter,
+          Scripts
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &306573703434735931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5080548952031974381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe98ab511854e14f9e9e018e3a5b9d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretAttackSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
+  turretShooters: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
+  timeBetweenShoots: 0

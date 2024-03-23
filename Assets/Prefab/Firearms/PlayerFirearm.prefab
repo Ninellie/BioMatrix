@@ -13452,7 +13452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 1
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -14125,6 +14126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce603147eafc60841b5d0a63f42a419e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Suspended>k__BackingField: 0
   _time:
     useConstant: 0
     constantValue: 0
