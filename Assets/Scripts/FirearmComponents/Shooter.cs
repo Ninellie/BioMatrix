@@ -1,6 +1,5 @@
 using System;
 using Assets.Scripts.Core.Variables.References;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
