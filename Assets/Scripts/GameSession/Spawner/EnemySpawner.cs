@@ -19,6 +19,8 @@ namespace Assets.Scripts.GameSession.Spawner
         private readonly Grouping _grouping = new();
         private readonly Circle _circle = new();
 
+        #region UnityMessages
+
         private void Awake()
         {
             enemyPools.Clear();
@@ -30,6 +32,8 @@ namespace Assets.Scripts.GameSession.Spawner
             SpawnFirstWave();
             InvokeRepeating(nameof(SpawnNormalWave), _secondsBetweenWaves, _secondsBetweenWaves);
         }
+
+        #endregion
 
         private void SpawnFirstWave() => SpawnWave(WaveType.First);
 
@@ -129,10 +133,6 @@ namespace Assets.Scripts.GameSession.Spawner
                 RotateEnemyToPlayer(playerPosition, enemy.rigidbody2D, enemy.transform.position);
             }
         }
-
-        // Transform
-        // Rigidbody2D
-        // SpriteType
 
         public void RotateEnemyToPlayer(Vector2 targetPosition, Rigidbody2D rigidbody2D, Vector2 position)
         {
