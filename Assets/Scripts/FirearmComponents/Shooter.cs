@@ -5,6 +5,9 @@ using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.FirearmComponents
 {
+    /// <summary>
+    /// Берёт из Magazine _magazine снаряды и направляет их по принципу определённому в Aim _aim
+    /// </summary>
     public class Shooter : MonoBehaviour
     {
         [Header("Ammo")]
