@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e919ee59592c6a8489d1002a8505cadd, type: 3}
-  m_Name: BasicPatternDeck
+  m_Name: BasicPatternDeck 1
   m_EditorClassIdentifier: 
   patternDeckList:
   - name: Agility
     description: Improves agility mastery
-    capacity: 5
+    capacity: 15
     cardsArray:
     - name: Each 1 lvl
       occurrenceFrequency: 1
@@ -55,7 +55,7 @@ MonoBehaviour:
         status: 0
   - name: Gun
     description: Improves gun
-    capacity: 5
+    capacity: 15
     cardsArray:
     - name: Each 1 lvl
       occurrenceFrequency: 1
@@ -98,7 +98,7 @@ MonoBehaviour:
         status: 0
   - name: Turrets
     description: Improves turrets
-    capacity: 5
+    capacity: 15
     cardsArray:
     - name: Each 1 lvl
       occurrenceFrequency: 1
@@ -138,7 +138,7 @@ MonoBehaviour:
         status: 0
   - name: Projectiles
     description: Improves Projectiles of main firearm
-    capacity: 5
+    capacity: 15
     cardsArray:
     - name: Each 1 lvl
       occurrenceFrequency: 1
@@ -178,7 +178,7 @@ MonoBehaviour:
         status: 0
   - name: Epithelium
     description: Improves survivability
-    capacity: 5
+    capacity: 15
     cardsArray:
     - name: Each 1 lvl
       occurrenceFrequency: 1
@@ -219,7 +219,7 @@ MonoBehaviour:
         status: 0
   - name: Nerves
     description: Improves your nerves
-    capacity: 5
+    capacity: 15
     cardsArray:
     - name: Each 1 lvl
       occurrenceFrequency: 1
@@ -260,7 +260,7 @@ MonoBehaviour:
         status: 0
   - name: Plasma
     description: Improves your turrets and shield
-    capacity: 5
+    capacity: 15
     cardsArray:
     - name: Each 1 lvl
       occurrenceFrequency: 1
@@ -304,7 +304,7 @@ MonoBehaviour:
         status: 0
   - name: Adaptation
     description: Improves your adaptation ability
-    capacity: 5
+    capacity: 15
     cardsArray:
     - name: Each 1 lvl
       occurrenceFrequency: 1
@@ -344,7 +344,7 @@ MonoBehaviour:
         status: 0
   - name: Blood
     description: Improves your health and regeneration and gives blood abilities
-    capacity: 5
+    capacity: 15
     cardsArray:
     - name: Each 1 lvl
       occurrenceFrequency: 1
