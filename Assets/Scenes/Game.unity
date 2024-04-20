@@ -10002,7 +10002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649112389834138286, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 4955487594067877925, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_Layer
@@ -10846,6 +10846,10 @@ PrefabInstance:
     - target: {fileID: 994821342652152960, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
       propertyPath: m_text
       value: Choose an aspect
+      objectReference: {fileID: 0}
+    - target: {fileID: 2173690689389957653, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3569476570626599207, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
       propertyPath: _deckRepository
