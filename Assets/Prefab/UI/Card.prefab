@@ -173,7 +173,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 100
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
@@ -457,7 +457,7 @@ MonoBehaviour:
   _status: 0
   _deckName: 
   _index: 0
-  _isSelected: 0
+  _isOpened: 0
 --- !u!114 &8998671477039742877
 MonoBehaviour:
   m_ObjectHideFlags: 0

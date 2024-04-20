@@ -991,7 +991,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 0
   m_fontSizeMax: 50
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
@@ -1330,7 +1330,6 @@ MonoBehaviour:
   _activeCardTitle: {fileID: 2336473630828722576}
   _activeCardDescription: {fileID: 1723975125504038376}
   _deckRepository: {fileID: 0}
-  _effectsRepository: {fileID: 0}
 --- !u!1 &7241970062454620731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,7 +1968,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 0
   m_fontSizeMax: 50
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
