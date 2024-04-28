@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Core.Variables.References;
@@ -12,12 +14,22 @@ namespace Assets.Scripts.GameSession.Spawner
     {
         [SerializeField] private EnemyWaveDataPreset _waveDataPreset;
         [SerializeField] private int _secondsBetweenWaves;
+
+        [SerializeField] private int _maxSpawnAmount;
+        [SerializeField] private float _secondsBetweenSpawns;
+
         [SerializeField] private Vector2Reference _player;
 
         public List<EnemyPool> enemyPools = new();
 
+        [Header("Enemy in spawn queue")]
+        [SerializeField, Tooltip("Only for editor")] private EnemyData[] _spawnQueue;
+
         private readonly Grouping _grouping = new();
         private readonly Circle _circle = new();
+        private Queue<EnemyData> EnemiesToSpawn { get; } = new();
+
+        public int spawnQueue;
 
         #region UnityMessages
 
@@ -31,25 +43,42 @@ namespace Assets.Scripts.GameSession.Spawner
         {
             SpawnFirstWave();
             InvokeRepeating(nameof(SpawnNormalWave), _secondsBetweenWaves, _secondsBetweenWaves);
+            StartCoroutine(Co_Spawn());
+        }
+
+        private void OnGUI()
+        {
+            _spawnQueue = EnemiesToSpawn.ToArray();
         }
 
         #endregion
+
+        private IEnumerator Co_Spawn()
+        {
+            // todo yield return WaitUntil сложность живыых противников не превышает максимальную сложность для этого времени
+
+            while (true)
+            {
+                yield return new WaitForSeconds(_secondsBetweenSpawns);
+                yield return new WaitUntil(() => spawnQueue > 0);
+                var min = Mathf.Min(spawnQueue, _maxSpawnAmount);
+                var amount = Random.Range(1, min);
+                var spawn = CreateWave(amount);
+                PlaceEnemies(spawn, _grouping.GetRandomMode(), _player);
+                PrepareEnemies(spawn, _player);
+                spawnQueue -= amount;
+            }
+        }
 
         private void SpawnFirstWave() => SpawnWave(WaveType.First);
 
         private void SpawnNormalWave() => SpawnWave(WaveType.Normal);
 
-        private void SpawnWave(WaveType waveType)
+        private void SpawnWave(WaveType waveType) // add enemies to queue
         {
             if(_player is null) return;
             if (IsSpawnBlocked()) return;
-            var waveSize = _waveDataPreset.GetSize(waveType);
-            var spawn = CreateWave(waveSize);
-            if (spawn is null) return;
-            var mode = _grouping.GetRandomMode();
-
-            PlaceEnemies(spawn, mode, _player);
-            PrepareEnemies(spawn, _player);
+            spawnQueue += _waveDataPreset.GetSize(waveType);
         }
 
         private List<EnemyData> CreateWave(int waveSize)
@@ -62,12 +91,7 @@ namespace Assets.Scripts.GameSession.Spawner
 
         private List<EnemyData> GetWeighedEnemyListByTime(int numberOfEnemies)
         {
-            var weightSum = 0f;
-
-            foreach(var pool in enemyPools)
-            {
-                weightSum += pool.GetWeigth();
-            }
+            var weightSum = enemyPools.Sum(pool => pool.GetWeigth());
 
             var enemyList = new List<EnemyData>(numberOfEnemies);
 
@@ -89,7 +113,7 @@ namespace Assets.Scripts.GameSession.Spawner
             foreach (var pool in enemyPools)
             {
                 limit += pool.GetWeigth();
-                if (next < limit) return pool.Get();
+                if (next < limit) return pool.Get(); // GET FROM POOL HERE!!!
             }
 
             Debug.LogWarning("No enemies available for current time");
@@ -130,16 +154,17 @@ namespace Assets.Scripts.GameSession.Spawner
             foreach (var enemy in enemies)
             {
                 if (enemy.spriteType.EnemyType != EnemyType.AboveView) return;
-                RotateEnemyToPlayer(playerPosition, enemy.rigidbody2D, enemy.transform.position);
+                RotateEnemyToTarget(playerPosition, enemy.rigidbody2D, enemy.transform.position);
+                enemy.enabled = true;
             }
         }
 
-        public void RotateEnemyToPlayer(Vector2 targetPosition, Rigidbody2D rigidbody2D, Vector2 position)
+        private void RotateEnemyToTarget(Vector2 targetPosition, Rigidbody2D enemyRb2D, Vector2 enemyPosition)
         {
-            var direction = position - targetPosition;
+            var direction = enemyPosition - targetPosition;
             var angle = (Mathf.Atan2(direction.y, direction.x) + Mathf.PI / 2) * Mathf.Rad2Deg;
-            rigidbody2D.rotation = angle;
-            rigidbody2D.SetRotation(angle);
+            enemyRb2D.rotation = angle;
+            enemyRb2D.SetRotation(angle);
         }
     }
 }
