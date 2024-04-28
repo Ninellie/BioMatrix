@@ -9,7 +9,7 @@ namespace Assets.Scripts.GameSession.PlayingField
     {
         [SerializeField] private TileBase _tile;
         [SerializeField] [Range(0, 100)] private int _fillingPercent;
-        [SerializeField] private bool _alwaysFill;
+        [SerializeField, Tooltip("Makes filler ignore the filling percent and makes it 100%"), ]  private bool _alwaysFill;
         
         [SerializeField] private Tilemap _tilemap;
         [SerializeField] private int _tilesPerStep;
