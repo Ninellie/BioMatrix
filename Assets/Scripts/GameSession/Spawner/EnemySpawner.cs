@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,85 +12,108 @@ namespace Assets.Scripts.GameSession.Spawner
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] private EnemyWaveDataPreset _waveDataPreset;
-        [SerializeField] private int _secondsBetweenWaves;
+        [SerializeField] private float _secondsBetweenWaves;
+        [SerializeField] private float _minSecondsBetweenSpawns;
+        
 
-        [SerializeField] private int _maxSpawnAmount;
+        [SerializeField] private int _maxSpawnSize;
         [SerializeField] private float _secondsBetweenSpawns;
 
         [SerializeField] private Vector2Reference _player;
 
-        public List<EnemyPool> enemyPools = new();
-
-        [Header("Enemy in spawn queue")]
-        [SerializeField, Tooltip("Only for editor")] private EnemyData[] _spawnQueue;
-
+        public EnemyPool enemyPool;
         private readonly Grouping _grouping = new();
         private readonly Circle _circle = new();
-        private Queue<EnemyData> EnemiesToSpawn { get; } = new();
 
-        public int spawnQueue;
+        [SerializeField] private int _spawnQueueSize;
 
         #region UnityMessages
 
         private void Awake()
         {
-            enemyPools.Clear();
-            enemyPools = GetComponentsInChildren<EnemyPool>().ToList();
+            enemyPool = GetComponentInChildren<EnemyPool>();
         }
 
         private void Start()
         {
-            SpawnFirstWave();
-            InvokeRepeating(nameof(SpawnNormalWave), _secondsBetweenWaves, _secondsBetweenWaves);
+            EnqueueToSpawnInitial();
+            InvokeRepeating(nameof(EnqueueToSpawnNormal), _secondsBetweenWaves, _secondsBetweenWaves);
             StartCoroutine(Co_Spawn());
         }
 
-        private void OnGUI()
+        private void OnDestroy()
         {
-            _spawnQueue = EnemiesToSpawn.ToArray();
+            StopAllCoroutines();
         }
 
         #endregion
 
-        private IEnumerator Co_Spawn()
+        private bool IsSpawnBlocked()
         {
-            // todo yield return WaitUntil сложность живыых противников не превышает максимальную сложность для этого времени
-
-            while (true)
+            if (enemyPool.GetWeight() > 0 && 
+                enemyPool.pool.CountActive < _waveDataPreset.GetMaxEnemiesInScene())
             {
-                yield return new WaitForSeconds(_secondsBetweenSpawns);
-                yield return new WaitUntil(() => spawnQueue > 0);
-                var min = Mathf.Min(spawnQueue, _maxSpawnAmount);
-                var amount = Random.Range(1, min);
-                var spawn = CreateWave(amount);
-                PlaceEnemies(spawn, _grouping.GetRandomMode(), _player);
-                PrepareEnemies(spawn, _player);
-                spawnQueue -= amount;
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
-        private void SpawnFirstWave() => SpawnWave(WaveType.First);
+        private IEnumerator Co_Spawn()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(_secondsBetweenSpawns);
+                yield return new WaitUntil(() => _spawnQueueSize > 0);
+                yield return new WaitWhile(IsSpawnBlocked);
+                Spawn();
+            }
+        }
 
-        private void SpawnNormalWave() => SpawnWave(WaveType.Normal);
+        private void Spawn()
+        {
+            var min = Mathf.Min(_spawnQueueSize, _maxSpawnSize);
+            var amount = Random.Range(1, min);
+            var spawn = CreateWave(amount);
+            if (spawn == null)
+            {
+                return;
+            }
 
-        private void SpawnWave(WaveType waveType) // add enemies to queue
+            if (spawn.Count == 0)
+            {
+                return;
+            }
+
+            PlaceEnemies(spawn, _grouping.GetRandomMode(), _player);
+            PrepareEnemies(spawn, _player);
+            _spawnQueueSize -= amount;
+        }
+
+        private void EnqueueToSpawnInitial() => EnqueueToSpawn(WaveType.First);
+
+        private void EnqueueToSpawnNormal() => EnqueueToSpawn(WaveType.Normal);
+
+        private void EnqueueToSpawn(WaveType waveType) // add enemies to queue
         {
             if(_player is null) return;
             if (IsSpawnBlocked()) return;
-            spawnQueue += _waveDataPreset.GetSize(waveType);
+            _spawnQueueSize += _waveDataPreset.GetSize(waveType);
         }
 
         private List<EnemyData> CreateWave(int waveSize)
         {
             var spawn = GetWeighedEnemyListByTime(waveSize);
-            if (spawn is null) return null;
+            if (spawn == null) return null;
             if (spawn.Count == 0) return null;
             return spawn;
         }
 
         private List<EnemyData> GetWeighedEnemyListByTime(int numberOfEnemies)
         {
-            var weightSum = enemyPools.Sum(pool => pool.GetWeigth());
+            var weightSum = enemyPool.GetWeight();
 
             var enemyList = new List<EnemyData>(numberOfEnemies);
 
@@ -99,6 +121,7 @@ namespace Assets.Scripts.GameSession.Spawner
             for (int i = 0; i < enemyList.Capacity; i++)
             {
                 var enemy = GetWeighedEnemyByTime(weightSum);
+                if (enemy == null) continue;
                 enemyList.Add(enemy);
             }
 
@@ -109,32 +132,19 @@ namespace Assets.Scripts.GameSession.Spawner
         {
             var next = Random.Range(0, weightSum);
             var limit = 0f;
-
-            foreach (var pool in enemyPools)
-            {
-                limit += pool.GetWeigth();
-                if (next < limit) return pool.Get(); // GET FROM POOL HERE!!!
-            }
-
+            limit += enemyPool.GetWeight();
+            if (next < limit) return enemyPool.Get(); // GET FROM POOL HERE!!!
             Debug.LogWarning("No enemies available for current time");
             return null;
         }
 
-        private bool IsSpawnBlocked()
-        {
-            var enemyCount = 0;
-
-            foreach (var pool in enemyPools)
-            {
-                enemyCount += pool.pool.CountActive;
-            }
-            
-            var maxEnemies = _waveDataPreset.GetMaxEnemiesInScene();
-            return enemyCount >= maxEnemies;
-        }
-
         private void PlaceEnemies(IReadOnlyList<EnemyData> enemies, GroupingMode mode, Vector2 playerPosition)
         {
+            if (enemies.Count == 0)
+            {
+                return;
+            }
+
             float padding = 0;
             if (mode == GroupingMode.Group)
             {
