@@ -6,16 +6,18 @@ namespace Assets.Scripts.GameSession.Spawner
     {
         public float GetRadiusInscribedAroundTheCamera()
         {
-            var camHeight = UnityEngine.Camera.main.orthographicSize * 2;
-            var camWidth = camHeight * UnityEngine.Camera.main.aspect;
+            var camHeight = Camera.main.orthographicSize * 2;
+            var camWidth = camHeight * Camera.main.aspect;
             return GetHypotenuseLength(camHeight, camWidth) / 2;
         }
+
         public Vector2 GetPointOn(float radius, Vector2 circleCenter, float fi)
         {
             var pointOnBaseCircle = new Vector2(Mathf.Cos(fi) * radius, Mathf.Sin(fi) * radius);
             var pointOnActualCircle = circleCenter + pointOnBaseCircle;
             return pointOnActualCircle;
         }
+
         /// <summary>
         /// Moves position, along the circle, with center in circleCentre and radius radius, by angular speed and interval.
         /// </summary>
@@ -33,10 +35,12 @@ namespace Assets.Scripts.GameSession.Spawner
             var nextPosition = GetPointOn(radius, circleCentre, nextAngle);
             return nextPosition;
         }
+
         public float GetRandomAngle()
         {
             return Random.Range(0, Mathf.PI * 2);
         }
+
         public Vector2[] GetPositions(int count, GroupingMode mode, Vector2 center, float padding)
         {
             var positions = new Vector2[count];

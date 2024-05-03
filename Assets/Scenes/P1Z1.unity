@@ -4584,16 +4584,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f28df27bdbbdb4cb55f6538ec3d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveDataPreset: {fileID: 11400000, guid: 71404f963dce78749b739ad16a30bd27, type: 2}
-  _secondsBetweenWaves: 3
-  _minSecondsBetweenSpawns: 0
-  _maxSpawnSize: 0
-  _secondsBetweenSpawns: 0.2
-  _player:
+  _playerPosition:
     useConstant: 0
     constantValue: {x: 0, y: 0}
     variable: {fileID: 11400000, guid: 18fcfc9320061484aa6999e6fc37ba7f, type: 2}
-  enemyPool: {fileID: 0}
+  _enemyPool: {fileID: 0}
+  _fulfillSeconds: 5
+  _intervalMultiplier: 1
+  _firstWaveSizeMultiplier: 10
+  _maxEnemiesOnScreen:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 5
+      inSlope: 0.31666666
+      outSlope: 0.31666666
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 300
+      value: 100
+      inSlope: 0.31666666
+      outSlope: 0.31666666
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _maxEnemies: 0
+  _waveIntervalPerEnemyInSeconds: 0
   _spawnQueueSize: 0
 --- !u!1 &1396410633
 GameObject:
@@ -8024,16 +8048,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f28df27bdbbdb4cb55f6538ec3d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveDataPreset: {fileID: 11400000, guid: 7cfd5daca59737e4ba091ee0e82ec602, type: 2}
-  _secondsBetweenWaves: 3
-  _minSecondsBetweenSpawns: 0
-  _maxSpawnSize: 0
-  _secondsBetweenSpawns: 0.2
-  _player:
+  _playerPosition:
     useConstant: 0
     constantValue: {x: 0, y: 0}
     variable: {fileID: 11400000, guid: 18fcfc9320061484aa6999e6fc37ba7f, type: 2}
-  enemyPool: {fileID: 0}
+  _enemyPool: {fileID: 0}
+  _fulfillSeconds: 10
+  _intervalMultiplier: 1
+  _firstWaveSizeMultiplier: 1
+  _maxEnemiesOnScreen:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 300
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 1
+    m_RotationOrder: 4
+  _maxEnemies: 0
+  _waveIntervalPerEnemyInSeconds: 0
   _spawnQueueSize: 0
 --- !u!1 &2138481914
 GameObject:
@@ -8535,30 +8583,6 @@ MonoBehaviour:
   all: 0
   active: 0
   inactive: 0
-  _spawnWeightCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!222 &1538058293187780161
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8759,30 +8783,6 @@ MonoBehaviour:
   all: 0
   active: 0
   inactive: 0
-  _spawnWeightCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!224 &2176921440509114760
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10006,16 +10006,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f28df27bdbbdb4cb55f6538ec3d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveDataPreset: {fileID: 11400000, guid: 7cfd5daca59737e4ba091ee0e82ec602, type: 2}
-  _secondsBetweenWaves: 3
-  _minSecondsBetweenSpawns: 0
-  _maxSpawnSize: 0
-  _secondsBetweenSpawns: 0.2
-  _player:
+  _playerPosition:
     useConstant: 0
     constantValue: {x: 0, y: 0}
     variable: {fileID: 11400000, guid: 18fcfc9320061484aa6999e6fc37ba7f, type: 2}
-  enemyPool: {fileID: 0}
+  _enemyPool: {fileID: 0}
+  _fulfillSeconds: 1
+  _intervalMultiplier: 1
+  _firstWaveSizeMultiplier: 1
+  _maxEnemiesOnScreen:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 20
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.4504828
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 20.1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 300
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _maxEnemies: 0
+  _waveIntervalPerEnemyInSeconds: 0
   _spawnQueueSize: 0
 --- !u!1 &4724684281276524659
 GameObject:
@@ -10139,7 +10181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649112389834138286, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 2.25
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4955487594067877925, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_Layer
@@ -10816,30 +10858,6 @@ MonoBehaviour:
   all: 0
   active: 0
   inactive: 0
-  _spawnWeightCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &6172676074474348294
 GameObject:
   m_ObjectHideFlags: 0
