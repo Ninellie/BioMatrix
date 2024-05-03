@@ -19,10 +19,8 @@ namespace Assets.Scripts.GameSession.Spawner
         [SerializeField] private Vector2Reference _playerPosition;
         [SerializeField] private EnemyPool _enemyPool;
         [Header("Spawn pattern settings")]
-        [SerializeField, Min(1)] private int _fulfillSeconds;
-        [SerializeField, Min(1), Tooltip("Управляет величиной интервала и количеством врагов в волне")] private int _intervalMultiplier;
-        [SerializeField] private int _firstWaveSizeMultiplier;
-        [SerializeField] private AnimationCurve _maxEnemiesOnScreen;
+        [SerializeField] private SpawnDataPreset _spawnData;
+        [SerializeField] private float _spawnInterval;
         [Header("Readonly Indicators")]
         [SerializeField] private int _maxEnemies;
         [SerializeField] private float _waveIntervalPerEnemyInSeconds;
@@ -41,10 +39,21 @@ namespace Assets.Scripts.GameSession.Spawner
         {
             if (!IsSpawnBlocked())
             {
-                _spawnQueueSize += _maxEnemies / _fulfillSeconds * _intervalMultiplier * _firstWaveSizeMultiplier;
+                _spawnQueueSize += _maxEnemies
+                                   / _spawnData.FulfillSeconds
+                                   * _spawnData.IntervalMultiplier
+                                   * _spawnData.FirstWaveSizeMultiplier;
             }
-            StartCoroutine(EnqueueToSpawn());
-            StartCoroutine(Co_Spawn());
+        }
+
+        private void OnEnable()
+        {
+            Invoke(nameof(StartWork), 0.2f);
+        }
+
+        private void OnDisable()
+        {
+            StopAllCoroutines();
         }
 
         private void OnDestroy()
@@ -54,9 +63,15 @@ namespace Assets.Scripts.GameSession.Spawner
 
         #endregion
 
+        private void StartWork()
+        {
+            StartCoroutine(EnqueueToSpawn());
+            StartCoroutine(Co_Spawn());
+        }
+
         private bool IsSpawnBlocked()
         {
-            _maxEnemies = (int)_maxEnemiesOnScreen.Evaluate(Time.timeSinceLevelLoad);
+            _maxEnemies = (int)_spawnData.MaxEnemiesOnScreen.Evaluate(Time.timeSinceLevelLoad);
             return !(_enemyPool.pool.CountActive < _maxEnemies);
         }
 
@@ -69,19 +84,35 @@ namespace Assets.Scripts.GameSession.Spawner
             while (true)
             {
                 yield return new WaitWhile(IsSpawnBlocked);
-                yield return new WaitForSeconds(_intervalMultiplier);
-                _spawnQueueSize += _maxEnemies / (float)_fulfillSeconds * _intervalMultiplier;
+                yield return new WaitForSeconds(_spawnData.IntervalMultiplier);
+                _spawnQueueSize += _maxEnemies / (float)_spawnData.FulfillSeconds * _spawnData.IntervalMultiplier;
             }
         }
 
+        // Эта корутина является лишь оптимизацией спавна. Она медленно спавнит врага минимально возможными группами.
         private IEnumerator Co_Spawn()
         {
             while (true)
             {
                 yield return new WaitUntil(() => _spawnQueueSize >= 1);
-                _waveIntervalPerEnemyInSeconds = (float)_fulfillSeconds / _maxEnemies;
-                yield return new WaitForSeconds(_waveIntervalPerEnemyInSeconds);
-                Spawn();
+
+                var spawnsCount = (int)(_waveIntervalPerEnemyInSeconds * _spawnQueueSize);
+                spawnsCount = Mathf.Clamp(spawnsCount, 1, _maxEnemies);
+                
+                for (int i = 0; i < spawnsCount; i++)
+                { 
+                    Spawn();
+                }
+
+                if (_maxEnemies >= 1)
+                {
+                    _waveIntervalPerEnemyInSeconds = (float)_spawnData.FulfillSeconds / _maxEnemies;
+                    yield return new WaitForSeconds(_waveIntervalPerEnemyInSeconds);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(_spawnInterval);
+                }
             }
         }
 
@@ -95,15 +126,15 @@ namespace Assets.Scripts.GameSession.Spawner
             enemy.transform.position = enemyPos;
             _spawnQueueSize--;
             if (enemy.spriteType.EnemyType != EnemyType.AboveView) return;
-            RotateEnemyToTarget(_playerPosition, enemy.rigidbody2D, enemy.transform.position);
+            RotateRigidbody2DToTarget(_playerPosition, enemy.rigidbody2D);
         }
 
-        private void RotateEnemyToTarget(Vector2 targetPosition, Rigidbody2D enemyRb2D, Vector2 enemyPosition)
+        private void RotateRigidbody2DToTarget(Vector2 targetPosition, Rigidbody2D rb2D)
         {
-            var direction = enemyPosition - targetPosition;
+            var direction = rb2D.position - targetPosition;
             var angle = (Mathf.Atan2(direction.y, direction.x) + Mathf.PI / 2) * Mathf.Rad2Deg;
-            enemyRb2D.rotation = angle;
-            enemyRb2D.SetRotation(angle);
+            rb2D.rotation = angle;
+            rb2D.SetRotation(angle);
         }
     }
 }

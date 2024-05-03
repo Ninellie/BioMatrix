@@ -4589,33 +4589,8 @@ MonoBehaviour:
     constantValue: {x: 0, y: 0}
     variable: {fileID: 11400000, guid: 18fcfc9320061484aa6999e6fc37ba7f, type: 2}
   _enemyPool: {fileID: 0}
-  _fulfillSeconds: 5
-  _intervalMultiplier: 1
-  _firstWaveSizeMultiplier: 10
-  _maxEnemiesOnScreen:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 5
-      inSlope: 0.31666666
-      outSlope: 0.31666666
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 300
-      value: 100
-      inSlope: 0.31666666
-      outSlope: 0.31666666
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  _spawnData: {fileID: 11400000, guid: c91d158721c0cdf4ca13af7472464d07, type: 2}
+  _spawnInterval: 0.2
   _maxEnemies: 0
   _waveIntervalPerEnemyInSeconds: 0
   _spawnQueueSize: 0
@@ -8011,6 +7986,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3265531028932376111, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: -35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429973092765065921, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: -35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4802008854223728647, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: -35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932465930803599089, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: -35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217377139456253339, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
+      propertyPath: _statSources.Array.data[0].<Value>k__BackingField
+      value: -35
+      objectReference: {fileID: 0}
     - target: {fileID: 8882774122047703159, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
       propertyPath: m_Name
       value: Card effects
@@ -8053,33 +8048,8 @@ MonoBehaviour:
     constantValue: {x: 0, y: 0}
     variable: {fileID: 11400000, guid: 18fcfc9320061484aa6999e6fc37ba7f, type: 2}
   _enemyPool: {fileID: 0}
-  _fulfillSeconds: 10
-  _intervalMultiplier: 1
-  _firstWaveSizeMultiplier: 1
-  _maxEnemiesOnScreen:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 300
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 1
-    m_RotationOrder: 4
+  _spawnData: {fileID: 11400000, guid: 7cfd5daca59737e4ba091ee0e82ec602, type: 2}
+  _spawnInterval: 0.2
   _maxEnemies: 0
   _waveIntervalPerEnemyInSeconds: 0
   _spawnQueueSize: 0
@@ -9592,7 +9562,7 @@ GameObject:
   - component: {fileID: 2220538561278730099}
   - component: {fileID: 4713405599704160599}
   m_Layer: 0
-  m_Name: Spawner [Hive Queen]
+  m_Name: Spawner [Queen]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10011,51 +9981,8 @@ MonoBehaviour:
     constantValue: {x: 0, y: 0}
     variable: {fileID: 11400000, guid: 18fcfc9320061484aa6999e6fc37ba7f, type: 2}
   _enemyPool: {fileID: 0}
-  _fulfillSeconds: 1
-  _intervalMultiplier: 1
-  _firstWaveSizeMultiplier: 1
-  _maxEnemiesOnScreen:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 20
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.4504828
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 20.1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 300
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  _spawnData: {fileID: 11400000, guid: 7a150f9f3f42e564793979c4436a38a7, type: 2}
+  _spawnInterval: 0.2
   _maxEnemies: 0
   _waveIntervalPerEnemyInSeconds: 0
   _spawnQueueSize: 0
@@ -10181,7 +10108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649112389834138286, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.25
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 4955487594067877925, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_Layer

@@ -24,7 +24,7 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
                 CreateItem,
                 OnGetFromPool,
                 OnReleaseFromPool,
-                Destroy,
+                OnItemDestroy,
                 collectionCheck, (int)size, (int)maxSize);
         }
 
@@ -55,10 +55,10 @@ namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
             return Instantiate(itemPrefab, _transform).GetComponent<T>();
         }
 
-        //private void OnItemDestroy(T item)
-        //{
-        //    Destroy(item);
-        //}
+        private void OnItemDestroy(T item)
+        {
+            Destroy(item);
+        }
 
         private void OnGetFromPool(T item)
         {

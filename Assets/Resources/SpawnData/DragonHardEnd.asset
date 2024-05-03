@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d17ca7843ebbfd47a85076228980a84, type: 3}
+  m_Name: DragonHardEnd
+  m_EditorClassIdentifier: 
+  _description: 
+  _fulfillSeconds: 5
+  _intervalMultiplier: 1
+  _firstWaveSizeMultiplier: 10
+  _maxEnemiesOnScreen:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 10
+      inSlope: 0.026718745
+      outSlope: 0.026718745
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.29629624
+    - serializedVersion: 3
+      time: 250
+      value: 100
+      inSlope: 0.7616091
+      outSlope: 0.7616091
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.15193537
+      outWeight: 0
+    - serializedVersion: 3
+      time: 270
+      value: 0
+      inSlope: -Infinity
+      outSlope: 1.089999
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.35005707
+    - serializedVersion: 3
+      time: 300
+      value: 900
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 1
+    m_RotationOrder: 4
