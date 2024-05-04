@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d17ca7843ebbfd47a85076228980a84, type: 3}
   m_Name: DragonHardEnd
   m_EditorClassIdentifier: 
-  _description: 
+  _description: "\u041C\u0435\u0434\u043B\u0435\u043D\u043D\u044B\u0439 \u0440\u043E\u0441\u0442
+    \u0434\u043E 100\n\u041F\u0435\u0440\u0435\u0434\u044B\u0448\u043A\u0430\n\u0418
+    \u0431\u044B\u0441\u0442\u0440\u044B\u0439 \u0440\u043E\u0441\u0442 \u0434\u043E
+    200."
   _fulfillSeconds: 5
   _intervalMultiplier: 1
   _firstWaveSizeMultiplier: 10
@@ -48,7 +51,7 @@ MonoBehaviour:
       outWeight: 0.35005707
     - serializedVersion: 3
       time: 300
-      value: 900
+      value: 150
       inSlope: 0
       outSlope: 0
       tangentMode: 1

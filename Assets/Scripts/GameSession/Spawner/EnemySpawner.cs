@@ -14,8 +14,6 @@ namespace Assets.Scripts.GameSession.Spawner
     /// </summary>
     public class EnemySpawner : MonoBehaviour
     {
-        //private float EnemiesPerSecond => _maxEnemiesOnScreen.Evaluate(Time.timeSinceLevelLoad) / _fulfillSeconds;
-        //private float WaveInterval => _fulfillSeconds / _maxEnemiesOnScreen.Evaluate(Time.timeSinceLevelLoad) * _intervalMultiplier;
         [SerializeField] private Vector2Reference _playerPosition;
         [SerializeField] private EnemyPool _enemyPool;
         [Header("Spawn pattern settings")]
@@ -23,12 +21,22 @@ namespace Assets.Scripts.GameSession.Spawner
         [SerializeField] private float _spawnInterval;
         [Header("Readonly Indicators")]
         [SerializeField] private int _maxEnemies;
-        [SerializeField] private float _waveIntervalPerEnemyInSeconds;
         [SerializeField] private float _spawnQueueSize;
 
+        private float EnemiesPerSecond => _spawnData.MaxEnemiesOnScreen.Evaluate(Time.timeSinceLevelLoad) / _spawnData.FulfillSeconds;
+        private float EnemiesPerSpawn => EnemiesPerSecond * _spawnInterval;
         private readonly Circle _circle = new();
 
+        [SerializeField] private float _enemiesPerSecond;
+        [SerializeField] private float _enemiesPerSpawn;
+
         #region UnityMessages
+
+        private void OnGUI()
+        {
+            _enemiesPerSecond = EnemiesPerSecond;
+            _enemiesPerSpawn = EnemiesPerSpawn;
+        }
 
         private void Awake()
         {
@@ -48,7 +56,7 @@ namespace Assets.Scripts.GameSession.Spawner
 
         private void OnEnable()
         {
-            Invoke(nameof(StartWork), 0.2f);
+            Invoke(nameof(StartWork), _spawnInterval);
         }
 
         private void OnDisable()
@@ -75,7 +83,7 @@ namespace Assets.Scripts.GameSession.Spawner
             return !(_enemyPool.pool.CountActive < _maxEnemies);
         }
 
-        private IEnumerator EnqueueToSpawn() // add enemies to queue
+        private IEnumerator EnqueueToSpawn() // add enemies to spawn queue
         {
             if (_playerPosition is null)
             {
@@ -96,23 +104,14 @@ namespace Assets.Scripts.GameSession.Spawner
             {
                 yield return new WaitUntil(() => _spawnQueueSize >= 1);
 
-                var spawnsCount = (int)(_waveIntervalPerEnemyInSeconds * _spawnQueueSize);
-                spawnsCount = Mathf.Clamp(spawnsCount, 1, _maxEnemies);
+                var spawnAmount = Mathf.Clamp(EnemiesPerSpawn, 1, _maxEnemies);
                 
-                for (int i = 0; i < spawnsCount; i++)
+                for (int i = 0; i < spawnAmount; i++)
                 { 
                     Spawn();
                 }
 
-                if (_maxEnemies >= 1)
-                {
-                    _waveIntervalPerEnemyInSeconds = (float)_spawnData.FulfillSeconds / _maxEnemies;
-                    yield return new WaitForSeconds(_waveIntervalPerEnemyInSeconds);
-                }
-                else
-                {
-                    yield return new WaitForSeconds(_spawnInterval);
-                }
+                yield return new WaitForSeconds(_spawnInterval);
             }
         }
 
