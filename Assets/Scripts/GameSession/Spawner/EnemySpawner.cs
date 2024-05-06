@@ -22,13 +22,12 @@ namespace Assets.Scripts.GameSession.Spawner
         [Header("Readonly Indicators")]
         [SerializeField] private int _maxEnemies;
         [SerializeField] private float _spawnQueueSize;
+        [SerializeField] private float _enemiesPerSecond;
+        [SerializeField] private float _enemiesPerSpawn;
 
         private float EnemiesPerSecond => _spawnData.MaxEnemiesOnScreen.Evaluate(Time.timeSinceLevelLoad) / _spawnData.FulfillSeconds;
         private float EnemiesPerSpawn => EnemiesPerSecond * _spawnInterval;
         private readonly Circle _circle = new();
-
-        [SerializeField] private float _enemiesPerSecond;
-        [SerializeField] private float _enemiesPerSpawn;
 
         #region UnityMessages
 
