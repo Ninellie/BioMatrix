@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de07b0703f40c014db9884ac7f392eb7, type: 3}
-  m_Name: player_firearm_reload_time
+  m_Name: player_firearm_reload_speed
   m_EditorClassIdentifier: 
-  developerDescription: "\u0412\u0440\u0435\u043C\u044F \u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0438"
+  developerDescription: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0438.\n1/reload_speed
+    = reload_time"
   value: 1
   id: {fileID: 11400000, guid: 32348d0ee0a618b4081601b8fa05fe17, type: 2}

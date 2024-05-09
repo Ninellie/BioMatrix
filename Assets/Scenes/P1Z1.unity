@@ -4138,6 +4138,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1666954510965485078, guid: 9220246068dbc814b83d476f03916742, type: 3}
+      propertyPath: _timeAsSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6671026415413744665, guid: 9220246068dbc814b83d476f03916742, type: 3}
       propertyPath: m_Name
       value: BourgeonCharacter
@@ -4592,8 +4596,9 @@ MonoBehaviour:
   _spawnData: {fileID: 11400000, guid: c91d158721c0cdf4ca13af7472464d07, type: 2}
   _spawnInterval: 0.2
   _maxEnemies: 0
-  _waveIntervalPerEnemyInSeconds: 0
   _spawnQueueSize: 0
+  _enemiesPerSecond: 0
+  _enemiesPerSpawn: 0
 --- !u!1 &1396410633
 GameObject:
   m_ObjectHideFlags: 0
@@ -7988,23 +7993,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3265531028932376111, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
       propertyPath: _statSources.Array.data[0].<Value>k__BackingField
-      value: -35
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3429973092765065921, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
       propertyPath: _statSources.Array.data[0].<Value>k__BackingField
-      value: -35
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 4802008854223728647, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
       propertyPath: _statSources.Array.data[0].<Value>k__BackingField
-      value: -35
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 4932465930803599089, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
       propertyPath: _statSources.Array.data[0].<Value>k__BackingField
-      value: -35
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5217377139456253339, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
       propertyPath: _statSources.Array.data[0].<Value>k__BackingField
-      value: -35
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 8882774122047703159, guid: de339b5c9fc96894cad6dcb27c2691e9, type: 3}
       propertyPath: m_Name
@@ -8051,8 +8056,9 @@ MonoBehaviour:
   _spawnData: {fileID: 11400000, guid: 7cfd5daca59737e4ba091ee0e82ec602, type: 2}
   _spawnInterval: 0.2
   _maxEnemies: 0
-  _waveIntervalPerEnemyInSeconds: 0
   _spawnQueueSize: 0
+  _enemiesPerSecond: 0
+  _enemiesPerSpawn: 0
 --- !u!1 &2138481914
 GameObject:
   m_ObjectHideFlags: 0
@@ -9984,8 +9990,9 @@ MonoBehaviour:
   _spawnData: {fileID: 11400000, guid: 7a150f9f3f42e564793979c4436a38a7, type: 2}
   _spawnInterval: 0.2
   _maxEnemies: 0
-  _waveIntervalPerEnemyInSeconds: 0
   _spawnQueueSize: 0
+  _enemiesPerSecond: 0
+  _enemiesPerSpawn: 0
 --- !u!1 &4724684281276524659
 GameObject:
   m_ObjectHideFlags: 0
@@ -10108,7 +10115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649112389834138286, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 2.25
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 4955487594067877925, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_Layer
