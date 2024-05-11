@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 401081946869708339}
   - component: {fileID: 5384938256212642916}
   - component: {fileID: 156745283301569288}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: BloodShard
   m_TagString: BloodShard
   m_Icon: {fileID: 0}

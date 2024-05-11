@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 401081946869708339}
   - component: {fileID: 5384938256212642916}
   - component: {fileID: 156745283301569288}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: TurretBullet
   m_TagString: TurretProjectile
   m_Icon: {fileID: 0}
@@ -71,6 +71,11 @@ MonoBehaviour:
     constantValue: 0
     variable: {fileID: 0}
   _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
   _onChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -125,6 +130,11 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 93cb3ad6358f5194aa6583e201079a2b, type: 2}
+  _clampToMaxSpeed: 0
+  _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
   _transform: {fileID: 5058406891993574356}
   _rigidbody2D: {fileID: 2316403284215167119}
   _onStopped:
