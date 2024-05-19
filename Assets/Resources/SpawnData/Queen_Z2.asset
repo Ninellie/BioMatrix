@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d17ca7843ebbfd47a85076228980a84, type: 3}
-  m_Name: Dragon
+  m_Name: Queen_Z2
   m_EditorClassIdentifier: 
   _description: 
   _fulfillSeconds: 5
   _intervalMultiplier: 1
-  _firstWaveSizeMultiplier: 10
+  _firstWaveSizeMultiplier: 0
   _maxEnemiesOnScreen:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 10
+      time: 30
+      value: 0
       inSlope: 0.026718745
-      outSlope: 0.026718745
-      tangentMode: 0
+      outSlope: 0.010204081
+      tangentMode: 69
       weightedMode: 0
       inWeight: 0
       outWeight: 0.29629624
     - serializedVersion: 3
-      time: 300
-      value: 100
-      inSlope: 0.7616091
+      time: 1500
+      value: 15
+      inSlope: 0.010204081
       outSlope: 0.7616091
-      tangentMode: 0
+      tangentMode: 69
       weightedMode: 0
       inWeight: 0.15193537
       outWeight: 0
