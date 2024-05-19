@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,10 +6,19 @@ namespace Assets.Scripts.View
 {
     public class MainMenu : MonoBehaviour
     {
-        public void PlayGame()
+        [SerializeField] private SceneAsset _zone1;
+        [SerializeField] private SceneAsset _zone2;
+
+        public void PlayZone1()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(_zone1.name);
         }
+
+        public void PlayZone2()
+        {
+            SceneManager.LoadScene(_zone2.name);
+        }
+
         public void QuitGame()
         {
             Debug.Log("Quit!");

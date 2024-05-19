@@ -1198,6 +1198,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 362846822949774657, guid: 5f6c1cf58cd06a541907569a25eb5ea9, type: 3}
   m_PrefabInstance: {fileID: 5501320849157548644}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &347481417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 347481418}
+  m_Layer: 0
+  m_Name: ---------------------------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &347481418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347481417}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &351367122
 GameObject:
   m_ObjectHideFlags: 0
@@ -6253,6 +6284,63 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls: []
+--- !u!1 &1719653753
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1719653755}
+  - component: {fileID: 1719653754}
+  m_Layer: 0
+  m_Name: Game Event Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1719653754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719653753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce603147eafc60841b5d0a63f42a419e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Suspended>k__BackingField: 0
+  _time:
+    useConstant: 1
+    constantValue: 0
+    variable: {fileID: 0}
+  _timeAsSpeed: 0
+  _mode: 0
+  _onCastDelayed:
+    m_PersistentCalls:
+      m_Calls: []
+  _onCast:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1719653755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719653753}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1725299528
 GameObject:
   m_ObjectHideFlags: 0
@@ -7759,7 +7847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c396d665bd1ceb640ace544247f41516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _winTime: 300
+  _winTime: 1500
   _textTimer: {fileID: 764700163}
   _onVictory: {fileID: 11400000, guid: 021c27d9e2d764e4bbbaedea2209a3ee, type: 2}
 --- !u!1 &2055218589
@@ -8672,7 +8760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 8954189743293124748, guid: 9719345d2ddcc4a4ea8ab441315bf454, type: 3}
   size: 100
-  maxSize: 100
+  maxSize: 250
   collectionCheck: 1
   all: 0
   active: 0
@@ -10105,7 +10193,7 @@ MonoBehaviour:
     constantValue: {x: 0, y: 0}
     variable: {fileID: 11400000, guid: 18fcfc9320061484aa6999e6fc37ba7f, type: 2}
   _enemyPool: {fileID: 0}
-  _spawnData: {fileID: 11400000, guid: 7a150f9f3f42e564793979c4436a38a7, type: 2}
+  _spawnData: {fileID: 11400000, guid: 71404f963dce78749b739ad16a30bd27, type: 2}
   _spawnInterval: 0.2
   _maxEnemies: 0
   _spawnQueueSize: 0
@@ -12272,6 +12360,8 @@ SceneRoots:
   - {fileID: 282507448}
   - {fileID: 147539001}
   - {fileID: 651501009}
+  - {fileID: 1719653755}
+  - {fileID: 347481418}
   - {fileID: 3546113040322407131}
   - {fileID: 124967528}
   - {fileID: 1385251095}
