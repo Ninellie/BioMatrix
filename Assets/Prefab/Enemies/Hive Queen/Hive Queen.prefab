@@ -576,6 +576,14 @@ PrefabInstance:
       propertyPath: cohesionPower.useConstant
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2519329738673173237, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
+      propertyPath: separationPower.useConstant
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2519329738673173237, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
+      propertyPath: separationPower.constantValue
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4050261593634215856, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -621,8 +629,16 @@ PrefabInstance:
       value: Separation controller
       objectReference: {fileID: 0}
     - target: {fileID: 4578484750964155147, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578484750964155147, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578484750964155147, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

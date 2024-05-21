@@ -624,6 +624,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 2360074374533074571, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2519329738673173237, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
       propertyPath: controller
       value: 
@@ -666,7 +670,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2519329738673173237, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
       propertyPath: separationPower.constantValue
-      value: 0.15
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4050261593634215856, guid: 61ceed67489a0d849a436a7f6e9609b3, type: 3}
       propertyPath: m_LocalPosition.x
