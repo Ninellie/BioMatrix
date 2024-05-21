@@ -1605,6 +1605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 393cfc1300fe8384dbdf272332e78359, type: 2}
+  _mainMenu: 
 --- !u!114 &776779093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1617,8 +1618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c5cd4703de344b4fb27e24659f00fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _zone1: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
-  _zone2: {fileID: 102900000, guid: 2cc70c1bf2bcaee498e6ab9925d4463f, type: 3}
+  _zone1: P1Z1
+  _zone2: P1Z2
 --- !u!1 &858207748
 GameObject:
   m_ObjectHideFlags: 0

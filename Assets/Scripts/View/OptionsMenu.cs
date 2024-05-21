@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -9,7 +8,7 @@ namespace Assets.Scripts.View
     public class OptionsMenu : MonoBehaviour
     {
         [SerializeField] private AudioMixer audioMixer;
-        [SerializeField] private SceneAsset _mainMenu;
+        [SerializeField] private string _mainMenu;
         public Action onBackToMainMenu;
 
         public void SetVolume(float volume)
@@ -30,7 +29,7 @@ namespace Assets.Scripts.View
         public void BackToMainMenu()
         {
             onBackToMainMenu?.Invoke();
-            SceneManager.LoadScene(_mainMenu.name);
+            SceneManager.LoadScene(_mainMenu);
         }
     }
 }

@@ -3430,7 +3430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 393cfc1300fe8384dbdf272332e78359, type: 2}
-  _mainMenu: {fileID: 102900000, guid: 50ff503c592f04e4da8321effc54cb90, type: 3}
+  _mainMenu: Menu
 --- !u!114 &1239585258
 MonoBehaviour:
   m_ObjectHideFlags: 0
