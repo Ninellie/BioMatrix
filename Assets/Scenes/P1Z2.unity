@@ -3461,7 +3461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 393cfc1300fe8384dbdf272332e78359, type: 2}
-  _mainMenu: {fileID: 102900000, guid: 50ff503c592f04e4da8321effc54cb90, type: 3}
+  _mainMenu: Menu
 --- !u!114 &1239585258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7847,7 +7847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c396d665bd1ceb640ace544247f41516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _winTime: 1500
+  _winTime: 600
   _textTimer: {fileID: 764700163}
   _onVictory: {fileID: 11400000, guid: 021c27d9e2d764e4bbbaedea2209a3ee, type: 2}
 --- !u!1 &2055218589
