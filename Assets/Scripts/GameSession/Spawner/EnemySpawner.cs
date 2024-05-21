@@ -44,13 +44,12 @@ namespace Assets.Scripts.GameSession.Spawner
 
         private void Start()
         {
-            if (!IsSpawnBlocked())
-            {
-                _spawnQueueSize += _maxEnemies
-                                   / _spawnData.FulfillSeconds
-                                   * _spawnData.IntervalMultiplier
-                                   * _spawnData.FirstWaveSizeMultiplier;
-            }
+            if (IsSpawnBlocked()) return;
+            if (_maxEnemies == 0) return;
+            _spawnQueueSize += _maxEnemies
+                               / _spawnData.FulfillSeconds
+                               * _spawnData.IntervalMultiplier
+                               * _spawnData.FirstWaveSizeMultiplier;
         }
 
         private void OnEnable()
