@@ -1348,81 +1348,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &555733600
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 555733602}
-  - component: {fileID: 555733601}
-  - component: {fileID: 555733603}
-  m_Layer: 0
-  m_Name: Kill counter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &555733601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555733600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86f24b8e5748d764eb572f732612dd8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 22f856f72a78d924aa8ccf08cbd6e6c5, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 555733603}
-        m_TargetAssemblyTypeName: KillCounter, Assembly-CSharp
-        m_MethodName: IncreaseKillCounter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!4 &555733602
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555733600}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &555733603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555733600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77ab7468fc3de4d458bdafc626c2b5a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerKills: {fileID: 11400000, guid: 172ee91b73dc7dd44891dc0bebde51cb, type: 2}
-  _resetOnAwake: 1
 --- !u!1 &569704433 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7908742593697305952, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
@@ -1696,6 +1621,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &635507463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4208899600817808132, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+  m_PrefabInstance: {fileID: 7698875575925222448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &635507466 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3612645272257967476, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+  m_PrefabInstance: {fileID: 7698875575925222448}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635507463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b87e24158d23db4390d498ab3a29e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &635507467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635507463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a33a002939ca564dbc6ebf10d213798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 611b16ad89d33064abe9ee63e6abcded, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 635507466}
+        m_TargetAssemblyTypeName: Assets.Scripts.View.Counter, Scripts
+        m_MethodName: UpdateCounter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &651501008
 GameObject:
   m_ObjectHideFlags: 0
@@ -3438,6 +3407,122 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1366306551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1366306552}
+  - component: {fileID: 1366306553}
+  - component: {fileID: 1366306554}
+  m_Layer: 0
+  m_Name: Biomass reserve
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1366306552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366306551}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1860839418}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1366306553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366306551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01468158b4899aa41a8c5e6e9b8e77bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _disableObjectOnEmpty: 0
+  _selfGameObject:
+    useConstant: 1
+    constantValue: {fileID: 1366306551}
+    variable: {fileID: 0}
+  _startAction: 1
+  _enableAction: 0
+  _currentValue:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 172ee91b73dc7dd44891dc0bebde51cb, type: 2}
+  _maximumValue:
+    useConstant: 1
+    constantValue: 500
+    variable: {fileID: 0}
+  _initialValue:
+    useConstant: 1
+    constantValue: 0
+    variable: {fileID: 0}
+  _edgeValue: 1
+  _gainMultiplier:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  _useMultiplier: 0
+  _onChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _onEmpty:
+    m_PersistentCalls:
+      m_Calls: []
+  _onEdge:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFill:
+    m_PersistentCalls:
+      m_Calls: []
+  _onDecrease:
+    m_PersistentCalls:
+      m_Calls: []
+  _onIncrease:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1366306554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366306551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a33a002939ca564dbc6ebf10d213798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 611b16ad89d33064abe9ee63e6abcded, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1366306553}
+        m_TargetAssemblyTypeName: Assets.Scripts.EntityComponents.Reserve, Scripts
+        m_MethodName: Increase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1369306771
 GameObject:
   m_ObjectHideFlags: 0
@@ -5552,6 +5637,38 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1860839417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1860839418}
+  m_Layer: 0
+  m_Name: Mutations
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1860839418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860839417}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1366306552}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1863068916
 GameObject:
   m_ObjectHideFlags: 0
@@ -8596,7 +8713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649112389834138286, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1.5
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 4955487594067877925, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_Layer
@@ -9752,6 +9869,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1605696030910094319, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: m_text
+      value: Biomass 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1804620654165456671, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9772,10 +9893,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2178388070478722168, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: m_Name
+      value: Health counter
+      objectReference: {fileID: 0}
     - target: {fileID: 2209993483368968136, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: onChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1805916243}
+    - target: {fileID: 2411635504449742482, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: gameEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: a0087ae9d7b8fd041b5aea51b339251e, type: 2}
     - target: {fileID: 3249533384510567087, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9804,6 +9933,34 @@ PrefabInstance:
       propertyPath: onChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1805916243}
+    - target: {fileID: 3612645272257967476, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: _counterName
+      value: Biomass
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612645272257967476, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: _value.variable
+      value: 
+      objectReference: {fileID: 11400000, guid: 172ee91b73dc7dd44891dc0bebde51cb, type: 2}
+    - target: {fileID: 3612645272257967476, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: _value.useConstant
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612645272257967476, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: _maximumValue.variable
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612645272257967476, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: _maximumValue.useConstant
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208899600817808132, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: m_Name
+      value: Biomass counter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942747744586326043, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: m_Name
+      value: Left counters
+      objectReference: {fileID: 0}
     - target: {fileID: 6057653931050930952, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9823,6 +9980,10 @@ PrefabInstance:
     - target: {fileID: 6057653931050930952, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790652031709087985, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7133636693806805252, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: m_Pivot.x
@@ -9944,10 +10105,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8607314746704660243, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: m_Name
+      value: Ammo counter
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4208899600817808132, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 635507467}
   m_SourcePrefab: {fileID: 100100000, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
 --- !u!1001 &7845937654429248470
 PrefabInstance:
@@ -10883,6 +11051,7 @@ SceneRoots:
   - {fileID: 1987610204}
   - {fileID: 990761598}
   - {fileID: 835886044}
+  - {fileID: 1860839418}
   - {fileID: 2103284665}
   - {fileID: 281020117}
   - {fileID: 282507448}
@@ -10900,4 +11069,3 @@ SceneRoots:
   - {fileID: 434373600}
   - {fileID: 1323216386}
   - {fileID: 80268049}
-  - {fileID: 555733602}

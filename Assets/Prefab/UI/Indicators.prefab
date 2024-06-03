@@ -435,7 +435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7923230205425849284, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
       propertyPath: m_text
-      value: Ammo 005/006
+      value: Ammo 006/006
       objectReference: {fileID: 0}
     - target: {fileID: 7923230205425849284, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
       propertyPath: m_fontSize
@@ -925,7 +925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7923230205425849284, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
       propertyPath: m_text
-      value: Level 4
+      value: Level 2
       objectReference: {fileID: 0}
     - target: {fileID: 7923230205425849284, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
       propertyPath: m_fontSize
@@ -1038,7 +1038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649112389834138286, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4955487594067877925, guid: e44f1b91b403d9048abce2c96532637c, type: 3}
       propertyPath: m_Layer
@@ -1356,13 +1356,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4743803403496090415, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2411635504449742482}
-    - targetCorrespondingSourceObject: {fileID: 4743803403496090415, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2209993483368968136}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
 --- !u!114 &1605696030910094319 stripped
 MonoBehaviour:
@@ -1375,78 +1369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3612645272257967476 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5304908656016702815, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
-  m_PrefabInstance: {fileID: 8916111231571134507}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4208899600817808132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b87e24158d23db4390d498ab3a29e01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &4208899600817808132 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4743803403496090415, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
-  m_PrefabInstance: {fileID: 8916111231571134507}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2411635504449742482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4208899600817808132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 7fcd3e3cf49dcf64689c571622d9fdfe, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3612645272257967476}
-        m_TargetAssemblyTypeName: Assets.Scripts.View.Counter, Scripts
-        m_MethodName: UpdateCounter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &2209993483368968136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4208899600817808132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 376f95b5a7f844d41bef4dae1347cfa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statChangedEvent: {fileID: 11400000, guid: df581dd996bef424391786e1a146ec3d, type: 2}
-  onChange:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Assets.Scripts.View.Counter, Scripts
-        m_MethodName: UpdateCounter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!224 &6057653931050930952 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3435542601198017315, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
