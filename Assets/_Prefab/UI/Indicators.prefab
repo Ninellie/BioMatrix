@@ -542,7 +542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7923230205425849284, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
       propertyPath: m_text
-      value: Ammo 006/006
+      value: Ammo 002/006
       objectReference: {fileID: 0}
     - target: {fileID: 7923230205425849284, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
       propertyPath: m_fontSize
@@ -785,7 +785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7923230205425849284, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
       propertyPath: m_text
-      value: Health 3/3
+      value: Health 2/3
       objectReference: {fileID: 0}
     - target: {fileID: 7923230205425849284, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
       propertyPath: m_fontSize
@@ -1032,7 +1032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7923230205425849284, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
       propertyPath: m_text
-      value: Level 1
+      value: Level 2
       objectReference: {fileID: 0}
     - target: {fileID: 7923230205425849284, guid: a3eb016e260912f4a802dcef49ed200e, type: 3}
       propertyPath: m_fontSize

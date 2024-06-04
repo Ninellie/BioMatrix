@@ -2015,6 +2015,9 @@ GameObject:
   - component: {fileID: 7391377192208848215}
   - component: {fileID: 7195721735441491596}
   - component: {fileID: 5400231852864158886}
+  - component: {fileID: 135024410629638961}
+  - component: {fileID: 1434203089715396952}
+  - component: {fileID: 5424693494904601203}
   m_Layer: 5
   m_Name: LevelUpScreen
   m_TagString: Untagged
@@ -2073,3 +2076,87 @@ MonoBehaviour:
   _decksArea: {fileID: 5674435825500700474}
   _cardInfoDisplay: {fileID: 3569476570626599207}
   _cardsToggleGroup: {fileID: 364203032448409690}
+--- !u!114 &135024410629638961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216421868276435156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 94198322c86616842be052af15134a0b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5400231852864158886}
+        m_TargetAssemblyTypeName: ComplexLevelUpDisplay, Scripts
+        m_MethodName: ActivateNextDeck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1434203089715396952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216421868276435156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: f8acea79f2e1d0a41a04b0a97ef45a4b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5400231852864158886}
+        m_TargetAssemblyTypeName: ComplexLevelUpDisplay, Scripts
+        m_MethodName: ActivatePreviousDeck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5424693494904601203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216421868276435156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: b3727c06e59922140a694ccedbcb0dc4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7195721735441491596}
+        m_TargetAssemblyTypeName: LevelUpController, Scripts
+        m_MethodName: LevelUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
