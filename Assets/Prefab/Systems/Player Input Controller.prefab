@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4044032953447736284}
   - component: {fileID: 4647258421082679635}
   - component: {fileID: 2327134367489472547}
+  - component: {fileID: 2544071253262040362}
+  - component: {fileID: 1213537618705785552}
   m_Layer: 0
   m_Name: Player Input Controller
   m_TagString: Untagged
@@ -158,15 +160,54 @@ MonoBehaviour:
     m_ActionId: 00eb4261-1dae-424a-9913-bcb7ebb403ec
     m_ActionName: LevelUpScreen/Pause[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2544071253262040362}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Input.LevelUpInputHandler,
+          Scripts
+        m_MethodName: OnDeckAccept
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3d5fd3d1-9919-4fd9-b8a0-ec506002cd7c
     m_ActionName: LevelUpScreen/LevelUp[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2544071253262040362}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Input.LevelUpInputHandler,
+          Scripts
+        m_MethodName: OnNextDeck
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c18e5375-167f-435a-82f7-41bdd7c9062c
     m_ActionName: LevelUpScreen/Next Deck[/Keyboard/s,/Mouse/scroll/down]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2544071253262040362}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Input.LevelUpInputHandler,
+          Scripts
+        m_MethodName: OnPreviousDeck
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 034c155f-79ad-416e-80f3-7716bbcfb5af
     m_ActionName: LevelUpScreen/Previous Deck[/Keyboard/w,/Mouse/scroll/up]
   m_NeverAutoSwitchControlSchemes: 0
@@ -199,7 +240,7 @@ MonoBehaviour:
   platformCheck: 1
   isMobile: 0
   fireButtonPressed: 0
-  aimMode: 1
+  autoAim: 1
 --- !u!114 &4647258421082679635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,3 +269,101 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onPause: {fileID: 11400000, guid: 05d7132dbb2e1244e8a30fb505a4f831, type: 2}
+--- !u!114 &2544071253262040362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936996738513542146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a8ba37c42865c47bf6144f4789a798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onNextDeck:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ComplexLevelUpDisplay, Scripts
+        m_MethodName: ActivateNextDeck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onPreviousDeck:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ComplexLevelUpDisplay, Scripts
+        m_MethodName: ActivatePreviousDeck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onDeckAccept:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Assets.Scripts.GameSession.UIScripts.SessionModel.GameSessionController,
+          Scripts
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LevelUpController, Scripts
+        m_MethodName: LevelUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1213537618705785552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936996738513542146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 8b05d123195981543827c7c70691cc73, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4044032953447736284}
+        m_TargetAssemblyTypeName: Assets.Scripts.Core.Input.ShootInputHandler, Scripts
+        m_MethodName: SetFireButtonPressed
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

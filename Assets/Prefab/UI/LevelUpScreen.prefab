@@ -1531,7 +1531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tap on aspect - Select aspect
+  m_text: Choose an aspect
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e49880e4f0c6b87468833251cb2fc2a2, type: 2}
   m_sharedMaterial: {fileID: -2415359308227069418, guid: e49880e4f0c6b87468833251cb2fc2a2, type: 2}

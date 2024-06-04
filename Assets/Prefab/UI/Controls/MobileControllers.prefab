@@ -493,7 +493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6351270102476345515
 RectTransform:
   m_ObjectHideFlags: 0
@@ -609,7 +609,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.25
+  m_fontSize: 40.65
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -742,21 +742,37 @@ MonoBehaviour:
   m_UseIsolatedInputActions: 0
   m_PointerDownAction:
     m_Name: Pointer Down
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: fcceff0b-941c-4a00-83dd-46433ec84d18
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: f535d7e3-8ae4-4305-8a1d-6abc1bf74403
+      m_Path: <Gamepad>/buttonWest
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pointer Down
+      m_Flags: 0
     m_Flags: 0
   m_PointerMoveAction:
     m_Name: Pointer Move
     m_Type: 0
-    m_ExpectedControlType: 
+    m_ExpectedControlType: Vector2
     m_Id: 4ed18c5d-3340-40de-b655-5069da788df3
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 4dbac24c-a673-4c46-8d1c-5f1cc5a7036b
+      m_Path: <Gamepad>/rightStick
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Pointer Move
+      m_Flags: 0
     m_Flags: 0
 --- !u!1 &4996059357659839739
 GameObject:
@@ -1118,7 +1134,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.05
+  m_fontSize: 38
   m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 1
