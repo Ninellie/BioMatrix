@@ -13361,6 +13361,10 @@ PrefabInstance:
       propertyPath: _invokeOnCollisionEnter2D
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1057223951671377957, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: ammoData.Array.data[0].ammoPool
+      value: 
+      objectReference: {fileID: 8760704559140711702}
     - target: {fileID: 1076399043442763524, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -14274,6 +14278,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8760704559140711702 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3507605600143269920, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+  m_PrefabInstance: {fileID: 5276462657670466870}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb0102b9abd5a241acba866151f43c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8800192796683626798 stripped
