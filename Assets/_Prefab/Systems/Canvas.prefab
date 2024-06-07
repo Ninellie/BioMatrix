@@ -3641,6 +3641,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4925661003274625345}
+        m_TargetAssemblyTypeName: ComplexLevelUpDisplay, Scripts
+        m_MethodName: DisplayRandomDecksFromHand
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7135388557617359171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7469,9 +7481,45 @@ PrefabInstance:
     m_TransformParent: {fileID: 1616056808747280045}
     m_Modifications:
     - target: {fileID: 429109272575145758, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 429109272575145758, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: b3727c06e59922140a694ccedbcb0dc4, type: 2}
+    - target: {fileID: 429109272575145758, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 7434020596802377766}
+    - target: {fileID: 429109272575145758, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 429109272575145758, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Assets.Scripts.Core.Events.GameEvent, Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400231852864158886, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+      propertyPath: _destroyOldDecks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5424693494904601203, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4925661003274625345}
+    - target: {fileID: 5424693494904601203, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TakeActiveCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5424693494904601203, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ComplexLevelUpDisplay, Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658390308140261614, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5658390308140261614, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -7560,11 +7608,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelUp Screen
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 7195721735441491596, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 286057194990520347, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+    - {fileID: 3821704873105805652, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+    - {fileID: 8353173905773957736, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+--- !u!114 &4925661003274625345 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5400231852864158886, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+  m_PrefabInstance: {fileID: 1056671184400817639}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8164254319744931123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb495f60febb4c841a0e5809c5fecd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7163946812348188807 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7908742593697305952, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}

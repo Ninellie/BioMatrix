@@ -19,6 +19,7 @@ public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
 {
     [SerializeField] private int _baseDeckAmount = 3;
     [Header("Display settings")]
+    [SerializeField] private bool _destroyOldDecks;
     [SerializeField] private GameObject _deckPanelPrefab;
     [SerializeField] private Transform _decksArea;
     [SerializeField] private CardInfoUIPanel _cardInfoDisplay;
@@ -28,22 +29,11 @@ public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
     private LinkedList<DeckPanel> _deckPanels;
     private LinkedListNode<DeckPanel> _activeDeck;
 
-    private void Awake()
-    {
-        _hand = FindObjectOfType<Hand>();
-    }
+    private void Awake() => _hand = FindObjectOfType<Hand>();
 
-
-    public void LevelUp()
-    {
-        _hand.TakeCardFromDeck(GetActiveDeckName());
-        DestroyAllDecks();
-    }
-
-    public void Initiate() => DisplayRandomDecks(_hand.GetHandData(), _baseDeckAmount);
-
+    public void TakeActiveCard() => _hand.TakeCardFromDeck(GetActiveDeckName());
+    public void DisplayRandomDecksFromHand() => DisplayRandomDecks(_hand.GetHandData(), _baseDeckAmount);
     public DeckPanel GetActiveDeck() => _activeDeck.Value;
-
     public string GetActiveDeckName() => _activeDeck.Value.GetName();
 
     public void ActivateDeck(DeckPanel deckPanel)
@@ -101,6 +91,7 @@ public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
 
     public void DisplayRandomDecks(List<HandDeckData> decksData, int amount)
     {
+        if (_destroyOldDecks) DestroyAllDecks();
         var trueAmount = Mathf.Clamp(amount, 0, decksData.Count);
         var decksDataTemp = GetOpenedDecksDataFromList(decksData);
         var selectedDecks = new List<HandDeckData>(trueAmount);
@@ -118,6 +109,7 @@ public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
     public void DestroyAllDecks()
     {
         _activeDeck = null;
+        if (_deckPanels == null) return;
         foreach (var deckPanel in _deckPanels)
         {
             deckPanel.gameObject.SetActive(false);
