@@ -2,7 +2,7 @@
     "name": "Controls",
     "maps": [
         {
-            "name": "Player",
+            "name": "Gameplay",
             "id": "de8cd0e1-f5d1-4526-8334-a779efb2f285",
             "actions": [
                 {
@@ -222,7 +222,7 @@
             ]
         },
         {
-            "name": "Menu",
+            "name": "Pause",
             "id": "ed9dbdba-c4f4-46d2-b883-d9a88ba8b454",
             "actions": [
                 {
@@ -272,13 +272,7 @@
             ]
         },
         {
-            "name": "Death",
-            "id": "b7ef492d-6b83-4bb6-86e4-327cf4c20cea",
-            "actions": [],
-            "bindings": []
-        },
-        {
-            "name": "LevelUpScreen",
+            "name": "LevelUp",
             "id": "11254ba8-5e7f-4514-95c0-ed984aee7dcc",
             "actions": [
                 {
