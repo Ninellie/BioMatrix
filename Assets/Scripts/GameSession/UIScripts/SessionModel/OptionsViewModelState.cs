@@ -16,7 +16,7 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         {
             _viewModel.ChangeState(ViewModelStateType.Menu);
             _viewController.CloseOptions();
-            _viewController.OpenMenu();
+            _viewController.OpenPauseScreen();
         }
         public void Resume()
         {

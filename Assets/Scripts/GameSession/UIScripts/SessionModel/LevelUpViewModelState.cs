@@ -18,7 +18,7 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         {
             _viewModel.IsFromLvlUpScreen = true;
             _viewModel.ChangeState(ViewModelStateType.Menu);
-            _viewController.OpenMenu();
+            _viewController.OpenPauseScreen();
         }
 
         public void Resume()

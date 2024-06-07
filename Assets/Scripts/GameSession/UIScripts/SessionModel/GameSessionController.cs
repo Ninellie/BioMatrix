@@ -1,23 +1,10 @@
-using Assets.Scripts.Core.Events;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 {
     public class GameSessionController : MonoBehaviour
     {
-        [SerializeField] private PlayerInput _playerInput;
-        [Space]
-        [Header("Game events")]
-        [SerializeField] private GameEvent _repulseEvent;
-        [Space]
-        [Header("Interface objects")]
-        [SerializeField] private GameObject _menuUi;
-        [SerializeField] private GameObject _optionsUi;
-        [SerializeField] private GameObject _levelUpUi;
-        [SerializeField] private GameObject _winScreenUi;
-        [SerializeField] private GameObject _loseScreenUi;
-        [SerializeField] private GameObject _startScreenUi;
+        [SerializeField] private ViewControllerOptions _controllerOptions;
 
         private ViewModel _viewModel;
 
@@ -28,10 +15,10 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 
         private void AwakeController()
         {
-            var viewController = new SimpleViewController(_playerInput, _repulseEvent, _menuUi, _optionsUi, _levelUpUi, _winScreenUi, _loseScreenUi, _startScreenUi);
+            var viewController = new SimpleViewController(_controllerOptions);
             _viewModel = new ViewModel(viewController);
             Time.timeScale = 0f;
-            _playerInput.SwitchCurrentActionMap("Menu");
+            _controllerOptions.PauseMapEvent.Raise();
         }
         public void Menu() { _viewModel.GetCurrentState().Menu(); }
         public void Resume() { _viewModel.GetCurrentState().Resume(); }

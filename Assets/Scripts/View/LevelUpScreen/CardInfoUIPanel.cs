@@ -10,9 +10,13 @@ public class CardInfoUIPanel : MonoBehaviour
     [SerializeField] private TMP_Text _activeCardTitle;
     [SerializeField] private TMP_Text _activeCardDescription;
 
-    [SerializeField] private PatternDeckRepository _deckRepository;
-
+    private PatternDeckRepository _deckRepository;
     private List<HandDeckData> _handData;
+
+    private void Awake()
+    {
+        _deckRepository = FindAnyObjectByType<PatternDeckRepository>();
+    }
 
     public void SetHandData(List<HandDeckData> decksData)
     {

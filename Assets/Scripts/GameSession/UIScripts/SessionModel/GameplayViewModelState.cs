@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 {
-    public class ActiveViewModelState : IViewModelState
+    public class GameplayViewModelState : IViewModelState
     {
         public ViewModelStateType Name => ViewModelStateType.Active;
         private readonly ViewModel _viewModel;
         private readonly IViewController _viewController;
-        public ActiveViewModelState(ViewModel viewModel, IViewController viewController)
+        public GameplayViewModelState(ViewModel viewModel, IViewController viewController)
         {
             _viewModel = viewModel;
             _viewController = viewController;
@@ -16,7 +16,7 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         {
             _viewModel.ChangeState(ViewModelStateType.Menu);
             _viewController.Freeze();
-            _viewController.OpenMenu();
+            _viewController.OpenPauseScreen();
         }
         public void Resume()
         {

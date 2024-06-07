@@ -5,8 +5,8 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
         void Freeze();
         void Unfreeze();
         void Repulse();
-        void OpenMenu();
-        void CloseMenu();
+        void OpenPauseScreen();
+        void ClosePauseScreen();
         void CloseStartScreen();
         void OpenOptions();
         void CloseOptions();

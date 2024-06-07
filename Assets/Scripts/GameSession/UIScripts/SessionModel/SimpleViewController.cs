@@ -1,69 +1,54 @@
-using System;
-using Assets.Scripts.Core.Events;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 {
     public class SimpleViewController : IViewController
     {
-        private readonly PlayerInput _playerInput;
-        private readonly GameEvent _repulseEvent;
-        private ILevelUpController _levelUpController;
-        private GameObject _menuUI;
-        private GameObject _optionsUI;
-        private GameObject _levelUpUI;
-        private GameObject _winScreenUI;
-        private GameObject _loseScreenUI;
-        private GameObject _startScreenUI;
+        private readonly ViewControllerOptions _options;
 
-        public SimpleViewController(PlayerInput playerInput, GameEvent repulseEvent, GameObject menuUI, GameObject optionsUI, GameObject levelUpUI, GameObject winScreenUI, GameObject loseScreenUI, GameObject startScreenUI)
+        public SimpleViewController(ViewControllerOptions options)
         {
-            _repulseEvent = repulseEvent;
-            _playerInput = playerInput ?? throw new ArgumentNullException(nameof(playerInput));
-            _menuUI = menuUI ?? throw new ArgumentNullException(nameof(menuUI));
-            _optionsUI = optionsUI ?? throw new ArgumentNullException(nameof(optionsUI));
-            _levelUpUI = levelUpUI ?? throw new ArgumentNullException(nameof(levelUpUI));
-            _levelUpController = _levelUpUI.GetComponent<ILevelUpController>();
-            _winScreenUI = winScreenUI ?? throw new ArgumentNullException(nameof(winScreenUI));
-            _loseScreenUI = loseScreenUI ?? throw new ArgumentNullException(nameof(loseScreenUI));
-            _startScreenUI = startScreenUI ?? throw new ArgumentNullException(nameof(loseScreenUI));
+            _options = options;
         }
+
         public void Freeze()
         {
             Time.timeScale = 0f;
-            _playerInput.SwitchCurrentActionMap("Menu");
+            _options.PauseMapEvent.Raise();
         }
+
         public void Unfreeze()
         {
             Time.timeScale = 1f;
-            _playerInput.SwitchCurrentActionMap("Player");
+            _options.GameplayMapEvent.Raise();
         }
+
         public void Repulse()
         {
-            _repulseEvent.Raise();
-            //_player.Shield.Layers.Increase();
-            //_player.Shield.Layers.Decrease();
+            _options.RepulseEvent.Raise();
         }
-        public void OpenMenu() => _menuUI.SetActive(true);
-        public void CloseMenu() => _menuUI.SetActive(false);
-        public void CloseStartScreen() => _startScreenUI.SetActive(false);
-        public void OpenOptions() => _optionsUI.SetActive(true);
-        public void CloseOptions() => _optionsUI.SetActive(false);
-        public void OpenWinScreen() => _winScreenUI.SetActive(true);
-        public void OpenLoseScreen() => _loseScreenUI.SetActive(true);
+
+        public void OpenPauseScreen() => _options.PauseScreen.SetActive(true);
+        public void ClosePauseScreen() => _options.PauseScreen.SetActive(false);
+        public void CloseStartScreen() => _options.StartScreen.SetActive(false);
+        public void OpenOptions() => _options.OptionsScreen.SetActive(true);
+        public void CloseOptions() => _options.OptionsScreen.SetActive(false);
+        public void OpenWinScreen() => _options.WinScreen.SetActive(true);
+        public void OpenLoseScreen()
+        {
+            _options.LoseScreen.SetActive(true);
+        }
+
         public void CloseLevelUp()
         {
-            _playerInput.SwitchCurrentActionMap("Player");
-            _levelUpUI.SetActive(false);
+            _options.GameplayMapEvent.Raise();
+            _options.LevelUpScreen.SetActive(false);
         }
 
         public void InitiateLevelUp()
         {
-            _playerInput.SwitchCurrentActionMap("LevelUpScreen");
-            _levelUpUI.SetActive(true);
-            _levelUpController.Initiate();
-            
+            _options.LevelUpMapEvent.Raise();
+            _options.LevelUpScreen.SetActive(true);
         }
     }
 }

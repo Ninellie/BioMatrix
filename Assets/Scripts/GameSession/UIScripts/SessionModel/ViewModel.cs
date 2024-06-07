@@ -17,9 +17,9 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 
         public ViewModel(IViewController viewController)
         {
-            _active = new ActiveViewModelState(this, viewController);
+            _active = new GameplayViewModelState(this, viewController);
             _options = new OptionsViewModelState(this, viewController);
-            _menuState = new MenuViewModelState(this, viewController);
+            _menuState = new PauseViewModelState(this, viewController);
             _gameEnd = new GameEndViewModelState(this, viewController);
             _levelUp = new LevelUpViewModelState(this, viewController);
             _start = new StartViewModelState(this, viewController);

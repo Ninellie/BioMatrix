@@ -17,13 +17,30 @@ public interface ILevelUpDisplay
 
 public class ComplexLevelUpDisplay : MonoBehaviour, ILevelUpDisplay
 {
+    [SerializeField] private int _baseDeckAmount = 3;
+    [Header("Display settings")]
     [SerializeField] private GameObject _deckPanelPrefab;
     [SerializeField] private Transform _decksArea;
     [SerializeField] private CardInfoUIPanel _cardInfoDisplay;
     [SerializeField] private ToggleGroup _cardsToggleGroup;
 
+    private Hand _hand;
     private LinkedList<DeckPanel> _deckPanels;
     private LinkedListNode<DeckPanel> _activeDeck;
+
+    private void Awake()
+    {
+        _hand = FindObjectOfType<Hand>();
+    }
+
+
+    public void LevelUp()
+    {
+        _hand.TakeCardFromDeck(GetActiveDeckName());
+        DestroyAllDecks();
+    }
+
+    public void Initiate() => DisplayRandomDecks(_hand.GetHandData(), _baseDeckAmount);
 
     public DeckPanel GetActiveDeck() => _activeDeck.Value;
 

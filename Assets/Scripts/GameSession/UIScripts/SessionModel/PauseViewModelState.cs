@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameSession.UIScripts.SessionModel
 {
-    public class MenuViewModelState : IViewModelState
+    public class PauseViewModelState : IViewModelState
     {
         public ViewModelStateType Name => ViewModelStateType.Menu;
         private readonly ViewModel _viewModel;
         private readonly IViewController _viewController;
-        public MenuViewModelState(ViewModel viewModel, IViewController viewController)
+        public PauseViewModelState(ViewModel viewModel, IViewController viewController)
         {
             _viewModel = viewModel;
             _viewController = viewController;
@@ -46,12 +46,12 @@ namespace Assets.Scripts.GameSession.UIScripts.SessionModel
                 }
             }
 
-            _viewController.CloseMenu();
+            _viewController.ClosePauseScreen();
         }
         public void Options()
         {
             _viewModel.ChangeState(ViewModelStateType.Options);
-            _viewController.CloseMenu();
+            _viewController.ClosePauseScreen();
             _viewController.OpenOptions();
         }
         public void LevelUp()
