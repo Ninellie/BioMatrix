@@ -1,23 +1,44 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.Core.Events;
+using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Core.Events;
 using UnityEngine;
 
 namespace Assets.Scripts.GameSession.Upgrades.Deck
 {
-    public class PatternDeckRepository : MonoBehaviour
+    [CreateAssetMenu]
+    public class PatternDeckRepository : ScriptableObject
     {
-        [SerializeField]
-        private PatternDeckPreset _preset;
+        [SerializeField] public List<PatternDeck> patternDeckList;
+        [SerializeField] private List<Deck> _decks;
+
+        public List<Deck> Decks => _decks;
+
+        private void OnValidate()
+        {
+            foreach (var patternCard in patternDeckList.SelectMany(patternDeck => patternDeck.cardsArray))
+            {
+                patternCard.name = patternCard.card.title;
+            }
+        }
+
+        private void Awake()
+        {
+            _decks = GetDecks();
+        }
+
+        private void OnEnable()
+        {
+            _decks = GetDecks();
+        }
 
         public List<Deck> GetDecks()
         {
-            return _preset.patternDeckList.Select(patternDeck => GetDeck(patternDeck.name)).ToList();
+            return patternDeckList.Select(patternDeck => GetDeck(patternDeck.name)).ToList();
         }
 
         public Deck GetDeck(string deckName)
         {
-            var patternDeck = _preset.patternDeckList.First(patternDeck => patternDeck.name == deckName);
+            var patternDeck = patternDeckList.First(patternDeck => patternDeck.name == deckName);
 
             var deck = new Deck
             {
@@ -69,10 +90,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
 
                 deck.cardsInspectorList[i].dropWeight = patternCard.card.dropWeight;
                 deck.cardsInspectorList[i].effectNames.AddRange(patternCard.card.effectNames);
-                deck.
-                    cardsInspectorList[i].
-                    onTaken.
-                    AddRange(patternCard.card.onTaken);
+                deck.cardsInspectorList[i].onTaken.AddRange(patternCard.card.onTaken);
             }
         }
     }

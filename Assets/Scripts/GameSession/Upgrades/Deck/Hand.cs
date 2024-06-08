@@ -58,12 +58,10 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
     public class Hand : MonoBehaviour
     {
         [SerializeField] private PatternDeckRepository _deckRepository;
-        [SerializeField] private List<Deck> _decks;
         [SerializeField] private List<HandDeckData> _hand;
         
         private void Start()
         {
-            _decks = _deckRepository.GetDecks();
             Identify();
         }
 
@@ -83,7 +81,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
                 deckData.openedCardPosition++;
             }
 
-            var deck = _decks.First(d => d.name.Equals(deckName));
+            var deck = _deckRepository.Decks.First(d => d.name.Equals(deckName));
             deck.cards.ToArray()[cardPos].status = CardStatus.Obtained;
 
             foreach (var onTakenEvent in deck.cards.ToArray()[cardPos].onTaken)
@@ -95,7 +93,7 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
         private void Identify()
         {
             _hand = new List<HandDeckData>();
-            foreach (var deck in _decks)
+            foreach (var deck in _deckRepository.Decks)
             {
                 var deckSize = deck.cards.Count;
                 var deckName = deck.name;

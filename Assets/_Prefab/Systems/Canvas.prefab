@@ -7500,6 +7500,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Assets.Scripts.Core.Events.GameEvent, Scripts
       objectReference: {fileID: 0}
+    - target: {fileID: 3569476570626599207, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
+      propertyPath: _deckRepository
+      value: 
+      objectReference: {fileID: 11400000, guid: b133bdf683c6a5444ba62a6956fc155c, type: 2}
     - target: {fileID: 5400231852864158886, guid: 6a879e082a527c348a87390f75fd25c3, type: 3}
       propertyPath: _destroyOldDecks
       value: 1

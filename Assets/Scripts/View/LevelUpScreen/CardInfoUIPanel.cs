@@ -6,17 +6,13 @@ using UnityEngine;
 
 public class CardInfoUIPanel : MonoBehaviour
 {
+    [SerializeField] private PatternDeckRepository _deckRepository;
+    [Header("Text components")]
     [SerializeField] private TMP_Text _activeCardDeckTitle;
     [SerializeField] private TMP_Text _activeCardTitle;
     [SerializeField] private TMP_Text _activeCardDescription;
 
-    private PatternDeckRepository _deckRepository;
     private List<HandDeckData> _handData;
-
-    private void Awake()
-    {
-        _deckRepository = FindAnyObjectByType<PatternDeckRepository>();
-    }
 
     public void SetHandData(List<HandDeckData> decksData)
     {
@@ -34,9 +30,8 @@ public class CardInfoUIPanel : MonoBehaviour
         _activeCardDeckTitle.text = deckName;
         _activeCardTitle.text = $"Level {cardPosition + 1}";
         _activeCardDescription.text = "";
-        var decks = _deckRepository.GetDecks();
+        var decks = _deckRepository.Decks;
         var deck = decks.First(d => d.name.Equals(deckName));
-        deck.cards.ToArray()[cardPosition].status = CardStatus.Obtained;
         _activeCardDescription.text = deck.cards.ToArray()[cardPosition].description;
     }
 }

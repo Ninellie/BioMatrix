@@ -214,8 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b7fd24f4e4ff34199ffeb341e16ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deckRepository: {fileID: 282507451}
-  _decks: []
+  _deckRepository: {fileID: 11400000, guid: b133bdf683c6a5444ba62a6956fc155c, type: 2}
   _hand: []
 --- !u!4 &147539001
 Transform:
@@ -289,51 +288,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad517419ec3577d4c9d06e4984cae768, type: 3}
---- !u!1 &282507447
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 282507448}
-  - component: {fileID: 282507451}
-  m_Layer: 0
-  m_Name: DeckRepository
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &282507448
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282507447}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &282507451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282507447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eb41c82f4be5b448acee6db66cdd28a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _preset: {fileID: 11400000, guid: b133bdf683c6a5444ba62a6956fc155c, type: 2}
 --- !u!1 &434373599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,6 +1067,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1194398999299539031, guid: 39afd01fdc1d8194fb1ecf8cafed7fe7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1616056808747280045, guid: 39afd01fdc1d8194fb1ecf8cafed7fe7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1598,7 +1556,6 @@ SceneRoots:
   - {fileID: 1860839418}
   - {fileID: 2103284665}
   - {fileID: 281020117}
-  - {fileID: 282507448}
   - {fileID: 147539001}
   - {fileID: 651501009}
   - {fileID: 3546113040322407131}
