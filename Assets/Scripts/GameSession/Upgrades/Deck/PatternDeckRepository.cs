@@ -31,12 +31,12 @@ namespace Assets.Scripts.GameSession.Upgrades.Deck
             _decks = GetDecks();
         }
 
-        public List<Deck> GetDecks()
+        private List<Deck> GetDecks()
         {
             return patternDeckList.Select(patternDeck => GetDeck(patternDeck.name)).ToList();
         }
 
-        public Deck GetDeck(string deckName)
+        private Deck GetDeck(string deckName)
         {
             var patternDeck = patternDeckList.First(patternDeck => patternDeck.name == deckName);
 
