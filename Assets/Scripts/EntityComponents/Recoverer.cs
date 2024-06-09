@@ -1,5 +1,5 @@
 using System.Collections;
-using Assets.Scripts.Core.Variables.References;
+using Core.Variables.References;
 using UnityEngine;
 using UnityEngine.Events;
 

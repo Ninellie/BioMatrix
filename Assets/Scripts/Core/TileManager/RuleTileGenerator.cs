@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 #if UNITY_EDITOR
-namespace Assets.Scripts.Core.TileManager
+namespace Core.TileManager
 {
     public class RuleTileGenerator : EditorWindow
     {

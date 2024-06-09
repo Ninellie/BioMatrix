@@ -1,5 +1,5 @@
-using Assets.Scripts.Core.Variables;
-using Assets.Scripts.Core.Variables.References;
+using Core.Variables;
+using Core.Variables.References;
 using UnityEngine;
 using UnityEngine.Events;
 

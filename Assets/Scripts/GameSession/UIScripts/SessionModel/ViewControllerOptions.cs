@@ -1,5 +1,5 @@
 using System;
-using Assets.Scripts.Core.Events;
+using Core.Events;
 using UnityEngine;
 
 namespace Assets.Scripts.GameSession.UIScripts.SessionModel

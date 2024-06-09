@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Core.Sets
+namespace Core.Sets
 {
     //[CreateAssetMenu(order = 51)]
 //public class VisibleThingRuntimeSet : RuntimeSet<VisibleThing>

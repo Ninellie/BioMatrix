@@ -1,8 +1,8 @@
-using Assets.Scripts.Core.Events;
+using Core.Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Core.Input
+namespace Core.Input
 {
     public class PauseInputHandler : MonoBehaviour
     {

@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts.Core.Sets;
-using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.FirearmComponents;
+using Core.Sets;
+using Core.Variables.References;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents

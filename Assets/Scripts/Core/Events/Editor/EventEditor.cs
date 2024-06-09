@@ -1,20 +1,22 @@
 #if UNITY_EDITOR
-using Assets.Scripts.Core.Events;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
-[CustomEditor(typeof(GameEvent), editorForChildClasses: true)]
-public class EventEditor : Editor
+namespace Core.Events.Editor
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(GameEvent), editorForChildClasses: true)]
+    public class EventEditor : UnityEditor.Editor
     {
-        base.OnInspectorGUI();
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
 
-        GUI.enabled = Application.isPlaying;
+            GUI.enabled = Application.isPlaying;
 
-        var e = target as GameEvent;
-        if (GUILayout.Button("Raise"))
-            e.Raise();
+            var e = target as GameEvent;
+            if (GUILayout.Button("Raise"))
+                e.Raise();
+        }
     }
 }
 #endif

@@ -1,6 +1,7 @@
+using Assets.Scripts.GameSession.Spawner;
 using UnityEngine;
 
-namespace Assets.Scripts.GameSession.Spawner
+namespace GameSession.Spawner
 {
     public class Circle
     {
@@ -27,7 +28,8 @@ namespace Assets.Scripts.GameSession.Spawner
         /// <param name="angularSpeed">In radians</param>
         /// <param name="timeInterval">In seconds</param>
         /// <returns>Vector2</returns>
-        public Vector2 GetNextPointOn(Vector2 position, Vector2 circleCentre, float radius, float angularSpeed, float timeInterval)
+        public Vector2 GetNextPointOn(Vector2 position, Vector2 circleCentre, float radius, float angularSpeed,
+            float timeInterval)
         {
             var currentAngle = Vector2.SignedAngle(circleCentre, position);
             var angleStep = angularSpeed * timeInterval;
@@ -89,6 +91,7 @@ namespace Assets.Scripts.GameSession.Spawner
 
             return positions;
         }
+
         private float GetHypotenuseLength(float sideALength, float sideBLength)
         {
             return Mathf.Sqrt(sideALength * sideALength + sideBLength * sideBLength);

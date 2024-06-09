@@ -1,7 +1,7 @@
 using System;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 
-namespace Assets.Scripts.Core.Variables.References
+namespace Core.Variables.References
 {
     [Serializable]
     public class TransformPoolReference

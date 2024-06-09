@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Assets.Scripts.Core.Events;
-using Assets.Scripts.SourceStatSystem;
+using Core.Events;
+using SourceStatSystem;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Variables
+namespace Core.Variables
 {
     [CreateAssetMenu(fileName = "New Stat Variable", menuName = "Variables/Stat", order = 51)]
     public class StatVariable : FloatVariable

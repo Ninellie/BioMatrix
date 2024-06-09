@@ -1,4 +1,4 @@
-using Assets.Scripts.Core;
+using Core;
 using UnityEngine;
 
 public static class MathFirearm

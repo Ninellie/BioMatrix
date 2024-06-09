@@ -1,9 +1,9 @@
-using Assets.Scripts.Core.Events;
-using Assets.Scripts.Core.Variables;
+using Core.Events;
+using Core.Variables;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Core.Input
+namespace Core.Input
 {
     public class MovementInputHandler : MonoBehaviour
     {

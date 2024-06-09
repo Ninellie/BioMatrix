@@ -1,4 +1,4 @@
-using Assets.Scripts.Core.Variables;
+using Core.Variables;
 using UnityEngine;
 using UnityEngine.Events;
 

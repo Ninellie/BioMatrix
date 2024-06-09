@@ -1,7 +1,7 @@
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Variables.Components
+namespace Core.Variables.Components
 {
     public class TransformPoolSetter : MonoBehaviour
     {

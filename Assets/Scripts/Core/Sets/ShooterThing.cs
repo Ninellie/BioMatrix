@@ -1,7 +1,7 @@
 using Assets.Scripts.FirearmComponents;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Sets
+namespace Core.Sets
 {
     public class ShooterThing : MonoBehaviour
     {

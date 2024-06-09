@@ -1,6 +1,6 @@
 using System;
 
-namespace Assets.Scripts.Core.Variables.References
+namespace Core.Variables.References
 {
     [Serializable]
     public class FloatReference

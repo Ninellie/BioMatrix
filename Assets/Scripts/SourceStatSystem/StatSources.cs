@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Core.Variables;
+using Core.Variables;
 using UnityEngine;
 
-namespace Assets.Scripts.SourceStatSystem
+namespace SourceStatSystem
 {
     [CreateAssetMenu(fileName = "New stat sources", menuName = "Source stat system/Stat sources", order = 51)]
     public class StatSources : ScriptableObject

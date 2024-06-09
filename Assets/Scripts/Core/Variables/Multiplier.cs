@@ -1,8 +1,8 @@
-using Assets.Scripts.Core.Variables.References;
+using Core.Variables.References;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.Scripts.Core.Variables
+namespace Core.Variables
 {
     public class Multiplier : MonoBehaviour
     {

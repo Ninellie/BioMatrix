@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Core.Events;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Core.Events;
 using UnityEngine;
 
-namespace Assets.Scripts.GameSession.Upgrades.Deck
+namespace GameSession.Upgrades.Deck
 {
     [CreateAssetMenu]
     public class PatternDeckRepository : ScriptableObject

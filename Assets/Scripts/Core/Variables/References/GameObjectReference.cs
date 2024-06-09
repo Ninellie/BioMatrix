@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Variables.References
+namespace Core.Variables.References
 {
     [Serializable]
     public class GameObjectReference

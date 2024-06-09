@@ -1,4 +1,4 @@
-using Assets.Scripts.Core.Events;
+using Core.Events;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.BoonComponents

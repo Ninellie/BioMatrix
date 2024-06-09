@@ -1,10 +1,10 @@
-using Assets.Scripts.Core.Events;
-using Assets.Scripts.Core.Variables;
-using Assets.Scripts.Core.Variables.References;
+using Core.Events;
+using Core.Variables;
+using Core.Variables.References;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Core.Input
+namespace Core.Input
 {
     public class ShootInputHandler : MonoBehaviour
     {

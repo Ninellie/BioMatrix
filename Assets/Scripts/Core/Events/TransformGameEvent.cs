@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Events
+namespace Core.Events
 {
     [CreateAssetMenu(fileName = "New Transform GameEvent", menuName = "GameEvents/Transform", order = 51)]
     public class TransformGameEvent : ScriptableObject

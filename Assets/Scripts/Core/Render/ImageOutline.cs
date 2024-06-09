@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Core.Render
+namespace Core.Render
 {
     [ExecuteInEditMode]
     public class ImageOutline : MonoBehaviour

@@ -1,8 +1,8 @@
 using System.Collections;
-using Assets.Scripts.Core.Variables.References;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
+using Core.Variables.References;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.Collisions

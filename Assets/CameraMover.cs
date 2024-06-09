@@ -1,4 +1,4 @@
-using Assets.Scripts.Core.Variables.References;
+using Core.Variables.References;
 using UnityEngine;
 
 public class CameraMover : MonoBehaviour

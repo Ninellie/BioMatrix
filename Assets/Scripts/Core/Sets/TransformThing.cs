@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Sets
+namespace Core.Sets
 {
     public class TransformThing : MonoBehaviour
     {

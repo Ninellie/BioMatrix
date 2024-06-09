@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Sets
+namespace Core.Sets
 {
     public abstract class RuntimeSet<T> : ScriptableObject
     {

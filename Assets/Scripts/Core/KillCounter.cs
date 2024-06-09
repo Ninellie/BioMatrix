@@ -1,19 +1,22 @@
-using Assets.Scripts.Core.Variables;
+using Core.Variables;
 using UnityEngine;
 
-public class KillCounter : MonoBehaviour
+namespace Core
 {
-    [SerializeField] private IntVariable _playerKills;
-    [SerializeField] private bool _resetOnAwake;
-
-    private void Awake()
+    public class KillCounter : MonoBehaviour
     {
-        if (!_resetOnAwake) return;
-        _playerKills.SetValue(0);
-    }
+        [SerializeField] private IntVariable _playerKills;
+        [SerializeField] private bool _resetOnAwake;
 
-    public void IncreaseKillCounter()
-    {
-        _playerKills.ApplyChange(1);
+        private void Awake()
+        {
+            if (!_resetOnAwake) return;
+            _playerKills.SetValue(0);
+        }
+
+        public void IncreaseKillCounter()
+        {
+            _playerKills.ApplyChange(1);
+        }
     }
 }

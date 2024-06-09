@@ -1,8 +1,8 @@
-using Assets.Scripts.Core.Variables;
+using Core.Variables;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.Core.Events
+namespace Core.Events
 {
     public class StatListener : MonoBehaviour
     {

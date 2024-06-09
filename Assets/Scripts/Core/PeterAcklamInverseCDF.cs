@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Core
+namespace Core
 {
     public static class PeterAcklamInverseCDF
     {

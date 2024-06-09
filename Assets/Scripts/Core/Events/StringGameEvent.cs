@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Events
+namespace Core.Events
 {
     [CreateAssetMenu(fileName = "New String Event", menuName = "GameEvents/String", order = 51)]
     public class StringGameEvent : ScriptableObject

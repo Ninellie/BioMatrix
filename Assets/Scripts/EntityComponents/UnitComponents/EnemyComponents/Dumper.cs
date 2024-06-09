@@ -1,5 +1,5 @@
-using Assets.Scripts.Core.Events;
-using Assets.Scripts.Core.Variables.References;
+using Core.Events;
+using Core.Variables.References;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents

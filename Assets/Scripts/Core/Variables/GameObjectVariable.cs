@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Variables
+namespace Core.Variables
 {
     [CreateAssetMenu(fileName = "New GameObject Variable", menuName = "Variables/GameObject", order = 51)]
     public class GameObjectVariable : ScriptableObject

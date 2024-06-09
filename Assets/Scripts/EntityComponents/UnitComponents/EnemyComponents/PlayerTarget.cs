@@ -1,5 +1,4 @@
-using Assets.Scripts.Core.Render;
-using Assets.Scripts.Core.Sets;
+using Core.Sets;
 using TMPro;
 using UnityEngine;
 

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Core.Variables.References;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
+using Core.Variables.References;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents

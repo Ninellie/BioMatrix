@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Render
+namespace Core.Render
 {
     public class SpriteOutline : MonoBehaviour
     {

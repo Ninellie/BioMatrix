@@ -1,5 +1,5 @@
 using System;
-using Assets.Scripts.Core.Variables.References;
+using Core.Variables.References;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

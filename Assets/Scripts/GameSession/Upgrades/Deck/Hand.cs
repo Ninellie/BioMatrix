@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Core.Events;
+using Core.Events;
 using UnityEngine;
 
-namespace Assets.Scripts.GameSession.Upgrades.Deck
+namespace GameSession.Upgrades.Deck
 {
     [Serializable]
     public class Card

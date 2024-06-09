@@ -1,7 +1,7 @@
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Variables
+namespace Core.Variables
 {
     [CreateAssetMenu(fileName = "New Transform Pool Variable", menuName = "Variables/Transform Pool", order = 51)]
     public class TransformPoolVariable : ScriptableObject

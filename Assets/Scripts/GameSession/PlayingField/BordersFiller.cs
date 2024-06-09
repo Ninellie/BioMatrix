@@ -1,5 +1,5 @@
 using System.Collections;
-using Assets.Scripts.Core.Variables;
+using Core.Variables;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static Assets.Scripts.GameSession.PlayingField.TilesCameraHelper;

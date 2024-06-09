@@ -1,5 +1,5 @@
 using System.Linq;
-using Assets.Scripts.Core.Sets;
+using Core.Sets;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
