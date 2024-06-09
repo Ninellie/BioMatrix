@@ -33,7 +33,7 @@ MonoBehaviour:
     <StatId>k__BackingField: {fileID: 11400000, guid: 2d195fe096bf5ff499afcf563c41e311, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 6
-  - <Id>k__BackingField: player_firearm_base_reload_time_flat_1
+  - <Id>k__BackingField: player_firearm_base_reload_speed_flat_1
     <StatId>k__BackingField: {fileID: 11400000, guid: 32348d0ee0a618b4081601b8fa05fe17, type: 2}
     <ImpactType>k__BackingField: 1
     <Value>k__BackingField: 1
@@ -50,6 +50,6 @@ MonoBehaviour:
   - _inspectorValue: 6_magazine_capacity
     <Id>k__BackingField: {fileID: 11400000, guid: 2d195fe096bf5ff499afcf563c41e311, type: 2}
     _value: 6
-  - _inspectorValue: 1_reload_time
+  - _inspectorValue: 1_reload_speed
     <Id>k__BackingField: {fileID: 11400000, guid: 32348d0ee0a618b4081601b8fa05fe17, type: 2}
     _value: 1

@@ -1,4 +1,4 @@
-using Assets.Scripts.FirearmComponents;
+using FirearmComponents;
 using UnityEngine;
 
 namespace Core.Sets

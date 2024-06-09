@@ -1,10 +1,9 @@
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Core.Variables.References;
-using GameSession.UIScripts.BasicElements.Indicators;
+using UIScripts.BasicElements.Indicators;
 using UnityEngine;
 using UnityEngine.Events;
-using View;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 {

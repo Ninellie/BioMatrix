@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.FirearmComponents
+namespace FirearmComponents
 {
     public abstract class ConditionComponent : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using Core.Variables.References;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Assets.Scripts.FirearmComponents
+namespace FirearmComponents
 {
     /// <summary>
     /// Берёт из Magazine _magazine снаряды и направляет их по принципу определённому в Aim _aim

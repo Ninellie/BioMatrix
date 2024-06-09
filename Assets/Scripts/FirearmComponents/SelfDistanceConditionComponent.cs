@@ -1,7 +1,7 @@
 using Core.Variables.References;
 using UnityEngine;
 
-namespace Assets.Scripts.FirearmComponents
+namespace FirearmComponents
 {
     public class SelfDistanceConditionComponent : ConditionComponent
     {

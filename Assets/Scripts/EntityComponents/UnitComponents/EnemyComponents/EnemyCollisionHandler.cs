@@ -1,9 +1,8 @@
 using System;
 using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Core.Variables.References;
-using GameSession.UIScripts.BasicElements.Indicators;
+using UIScripts.BasicElements.Indicators;
 using UnityEngine;
-using View;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
 {

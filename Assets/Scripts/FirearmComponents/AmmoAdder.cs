@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.FirearmComponents
+namespace FirearmComponents
 {
     public class AmmoAdder : MonoBehaviour
     {

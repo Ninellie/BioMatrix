@@ -5,7 +5,7 @@ using Core.Variables.References;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.FirearmComponents
+namespace FirearmComponents
 {
     public enum CastMode
     {

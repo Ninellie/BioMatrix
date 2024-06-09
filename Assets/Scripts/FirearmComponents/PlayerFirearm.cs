@@ -1,13 +1,12 @@
 using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
-using Assets.Scripts.GameSession.UIScripts;
 using Core.Events;
 using Core.Sets;
 using Core.Variables.References;
 using UnityEngine;
 
-namespace Assets.Scripts.FirearmComponents
+namespace FirearmComponents
 {
     public class PlayerFirearm : MonoBehaviour
     {

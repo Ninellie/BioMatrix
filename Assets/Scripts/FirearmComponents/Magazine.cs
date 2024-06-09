@@ -3,7 +3,7 @@ using System.Linq;
 using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using UnityEngine;
 
-namespace Assets.Scripts.FirearmComponents
+namespace FirearmComponents
 {
     /// <summary>
     /// Выдаёт объекты снарядов по весовому алгоритму из массива боеприпасов
