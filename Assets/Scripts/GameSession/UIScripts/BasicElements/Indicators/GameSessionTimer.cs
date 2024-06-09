@@ -1,8 +1,8 @@
-using Assets.Scripts.Core.Events;
+using Core.Events;
 using TMPro;
 using UnityEngine;
 
-namespace Assets.Scripts.View
+namespace GameSession.UIScripts.BasicElements.Indicators
 {
     public class GameSessionTimer : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Assets.Scripts.SourceStatSystem
+namespace SourceStatSystem
 {
     /// <summary>
     /// Contains data about single stat

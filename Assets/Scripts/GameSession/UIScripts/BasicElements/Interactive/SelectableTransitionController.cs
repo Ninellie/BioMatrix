@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.View
+namespace GameSession.UIScripts.BasicElements.Interactive
 {
     [Serializable]
     public enum ButtonState

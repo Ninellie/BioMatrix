@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.SourceStatSystem
+namespace SourceStatSystem
 {
     [CreateAssetMenu(fileName = "New Stat Id", menuName = "Source stat system/Stat Id", order = 51)]
     public class StatId : ScriptableObject

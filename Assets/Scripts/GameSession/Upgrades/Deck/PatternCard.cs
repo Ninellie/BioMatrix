@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts.GameSession.Upgrades.Deck
+namespace GameSession.Upgrades.Deck
 {
     [Serializable]
     public class PatternCard

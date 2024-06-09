@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.View
+namespace GameSession.UIScripts.BasicElements.Indicators
 {
     [AddComponentMenu("UI/Indicator/Bar")]
     public class Bar : Counter

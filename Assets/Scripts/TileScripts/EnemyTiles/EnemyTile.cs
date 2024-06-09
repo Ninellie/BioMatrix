@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Assets.Scripts.TileScripts.EnemyTiles
+namespace TileScripts.EnemyTiles
 {
     public class EnemyTile : MonoBehaviour
     {

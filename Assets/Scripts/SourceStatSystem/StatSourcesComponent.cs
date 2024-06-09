@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.SourceStatSystem
+namespace SourceStatSystem
 {
     /// <summary>
     /// Stat sources component for identical entities that require different stat values.

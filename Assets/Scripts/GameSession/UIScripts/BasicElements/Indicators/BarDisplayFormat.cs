@@ -1,6 +1,6 @@
 using System;
 
-namespace Assets.Scripts.View
+namespace GameSession.UIScripts.BasicElements.Indicators
 {
     [Serializable]
     public enum BarDisplayFormat

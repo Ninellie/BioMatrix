@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.GameSession.Upgrades.Deck
+﻿namespace GameSession.Upgrades.Deck
 {
     public enum CardStatus
     {

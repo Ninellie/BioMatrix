@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.SourceStatSystem
+namespace SourceStatSystem
 {
     [CreateAssetMenu(fileName = "New stat sources pack", menuName = "Source stat system/Stat source pack", order = 51)]
     public class StatSourcePack : ScriptableObject

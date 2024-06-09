@@ -1,4 +1,4 @@
-namespace Assets.Scripts.SourceStatSystem
+namespace SourceStatSystem
 {
     public enum ImpactType
     {

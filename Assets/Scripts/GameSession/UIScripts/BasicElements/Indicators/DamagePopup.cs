@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Assets.Scripts.View
+namespace GameSession.UIScripts.BasicElements.Indicators
 {
     public class DamagePopup : MonoBehaviour
     {

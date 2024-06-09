@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-namespace Assets.Scripts.View
+namespace GameSession.UIScripts.BasicElements.Interactive
 {
     [Serializable]
     [CreateAssetMenu(fileName = "NewButtonStyle", menuName = "ScriptableObjects/ButtonStyle", order = 1)]

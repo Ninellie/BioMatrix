@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets.Scripts.GameSession.Upgrades.Deck
+namespace GameSession.Upgrades.Deck
 {
     [Serializable]
     public class PatternDeck

@@ -1,4 +1,4 @@
-using Assets.Scripts.SourceStatSystem;
+using SourceStatSystem;
 using UnityEngine;
 
 namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents

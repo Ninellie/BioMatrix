@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
-namespace Assets.Scripts.View
+namespace View
 {
     public class OptionsMenu : MonoBehaviour
     {

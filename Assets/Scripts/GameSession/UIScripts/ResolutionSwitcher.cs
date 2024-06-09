@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-namespace Assets.Scripts.View
+namespace View
 {
     public class ResolutionSwitcher : MonoBehaviour
     {
