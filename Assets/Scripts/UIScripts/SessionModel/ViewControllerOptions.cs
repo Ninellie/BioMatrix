@@ -8,29 +8,31 @@ namespace UIScripts.SessionModel
     public class ViewControllerOptions
     {
         [Header("Screen objects")]
-        [SerializeField] private GameObject _startScreen;
-        [SerializeField] private GameObject _pauseScreen;
-        [SerializeField] private GameObject _optionsScreen;
-        [SerializeField] private GameObject _levelUpScreen;
-        [SerializeField] private GameObject _loseScreen;
-        [SerializeField] private GameObject _winScreen;
+        [SerializeField] private GameObject startScreen;
+        [SerializeField] private GameObject pauseScreen;
+        [SerializeField] private GameObject optionsScreen;
+        [SerializeField] private GameObject levelUpScreen;
+        [SerializeField] private GameObject mutationScreen;
+        [SerializeField] private GameObject loseScreen;
+        [SerializeField] private GameObject winScreen;
 
-        public GameObject StartScreen => _startScreen;
-        public GameObject PauseScreen => _pauseScreen;
-        public GameObject OptionsScreen => _optionsScreen;
-        public GameObject LevelUpScreen => _levelUpScreen;
-        public GameObject LoseScreen => _loseScreen;
-        public GameObject WinScreen => _winScreen;
+        public GameObject StartScreen => startScreen;
+        public GameObject PauseScreen => pauseScreen;
+        public GameObject OptionsScreen => optionsScreen;
+        public GameObject LevelUpScreen => levelUpScreen;
+        public GameObject MutationScreen => mutationScreen;
+        public GameObject LoseScreen => loseScreen;
+        public GameObject WinScreen => winScreen;
 
         [Header("Event assets")]
-        [SerializeField] private GameEvent _pauseMapEvent;
-        [SerializeField] private GameEvent _gameplayMapEvent;
-        [SerializeField] private GameEvent _levelUpMapEvent;
-        [SerializeField] private GameEvent _repulseEvent;
+        [SerializeField] private GameEvent pauseMapEvent;
+        [SerializeField] private GameEvent gameplayMapEvent;
+        [SerializeField] private GameEvent levelUpMapEvent;
+        [SerializeField] private GameEvent repulseEvent;
 
-        public GameEvent PauseMapEvent => _pauseMapEvent;
-        public GameEvent GameplayMapEvent => _gameplayMapEvent;
-        public GameEvent LevelUpMapEvent => _levelUpMapEvent;
-        public GameEvent RepulseEvent => _repulseEvent;
+        public GameEvent PauseMapEvent => pauseMapEvent;
+        public GameEvent GameplayMapEvent => gameplayMapEvent;
+        public GameEvent LevelUpMapEvent => levelUpMapEvent;
+        public GameEvent RepulseEvent => repulseEvent;
     }
 }

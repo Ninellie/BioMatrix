@@ -10,9 +10,11 @@ namespace UIScripts.SessionModel
         void CloseStartScreen();
         void OpenOptions();
         void CloseOptions();
-        void OpenWinScreen();
         void OpenLoseScreen();
-        void CloseLevelUp();
+        void OpenWinScreen();
         void InitiateLevelUp();
+        void CloseLevelUp();
+        void InitiateMutation();
+        void CloseMutationScreen();
     }
 }

@@ -4,7 +4,7 @@ namespace UIScripts.SessionModel
     {
         Active,
         Options,
-        Menu,
+        Pause,
         GameEnd,
         LevelUp,
         Mutation,

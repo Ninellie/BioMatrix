@@ -14,10 +14,10 @@ namespace UIScripts.SessionModel
             _viewController = viewController;
         }
 
-        public void Menu()
+        public void PauseScreen()
         {
             _viewModel.IsFromLvlUpScreen = true;
-            _viewModel.ChangeState(ViewModelStateType.Menu);
+            _viewModel.ChangeState(ViewModelStateType.Pause);
             _viewController.OpenPauseScreen();
         }
 
@@ -30,44 +30,10 @@ namespace UIScripts.SessionModel
             _viewController.Repulse();
         }
 
-        public void Options() => Debug.LogWarning("This state model does not implement this method");
-        public void LevelUp() => Debug.LogWarning("This state model does not implement this method");
-        public void Win() => Debug.LogWarning("This state model does not implement this method");
-        public void Lose() => Debug.LogWarning("This state model does not implement this method");
-    }
-    
-    
-    public class MutationViewModelState : IViewModelState
-    {
-        public ViewModelStateType Name => ViewModelStateType.Mutation;
-        private readonly ViewModel _viewModel;
-        private readonly IViewController _viewController;
-
-        public MutationViewModelState(ViewModel viewModel, IViewController viewController)
-        {
-            _viewModel = viewModel;
-            _viewController = viewController;
-        }
-
-        public void Menu()
-        {
-            _viewModel.IsFromLvlUpScreen = true;
-            _viewModel.ChangeState(ViewModelStateType.Menu);
-            _viewController.OpenPauseScreen();
-        }
-
-        public void Resume()
-        {
-            _viewModel.IsFromLvlUpScreen = false;
-            _viewModel.ChangeState(ViewModelStateType.Active);
-            _viewController.CloseLevelUp();
-            _viewController.Unfreeze();
-            _viewController.Repulse();
-        }
-
-        public void Options() => Debug.LogWarning("This state model does not implement this method");
-        public void LevelUp() => Debug.LogWarning("This state model does not implement this method");
-        public void Win() => Debug.LogWarning("This state model does not implement this method");
-        public void Lose() => Debug.LogWarning("This state model does not implement this method");
+        public void Options() => Debug.LogWarning($"Attempt to {nameof(Options)} from {Name} state");
+        public void LevelUp() => Debug.LogWarning($"Attempt to {nameof(LevelUp)} from {Name} state");
+        public void Mutate() => Debug.LogWarning($"Attempt to {nameof(Mutate)} from {Name} state");
+        public void Win() => Debug.LogWarning($"Attempt to {nameof(Win)} from {Name} state");
+        public void Lose() => Debug.LogWarning($"Attempt to {nameof(Lose)} from {Name} state");
     }
 }

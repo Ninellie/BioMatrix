@@ -14,36 +14,18 @@ namespace UIScripts.SessionModel
             _viewController = viewController;
         }
         
-        public void Menu()
+        public void PauseScreen()
         {
             _viewModel.IsFromGameEndScreen = true;
-            _viewModel.ChangeState(ViewModelStateType.Menu);
+            _viewModel.ChangeState(ViewModelStateType.Pause);
             _viewController.OpenPauseScreen();
         }
         
-        public void Resume()
-        {
-            Debug.LogWarning("Resume in Game End State");
-        }
-        
-        public void Options()
-        {
-            Debug.LogWarning("Options in Game End State");
-        }
-        
-        public void LevelUp()
-        {
-            Debug.LogWarning("LevelUp in Game End State");
-        }
-        
-        public void Win()
-        {
-            Debug.LogWarning("Win in Game End State");
-        }
-        
-        public void Lose()
-        {
-            Debug.LogWarning("Lose in Game End State");
-        }
+        public void Resume() => Debug.LogWarning($"Attempt to {nameof(Resume)} from {Name} state");
+        public void Options() => Debug.LogWarning($"Attempt to {nameof(Options)} from {Name} state");
+        public void LevelUp() => Debug.LogWarning($"Attempt to {nameof(LevelUp)} from {Name} state");
+        public void Mutate() => Debug.LogWarning($"Attempt to {nameof(Mutate)} from {Name} state");
+        public void Win() => Debug.LogWarning($"Attempt to {nameof(Win)} from {Name} state");
+        public void Lose() => Debug.LogWarning($"Attempt to {nameof(Lose)} from {Name} state");
     }
 }

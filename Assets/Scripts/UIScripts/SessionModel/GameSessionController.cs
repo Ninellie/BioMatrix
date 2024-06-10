@@ -16,7 +16,7 @@ namespace UIScripts.SessionModel
             _controllerOptions.PauseMapEvent.Raise();
         }
 
-        public void Menu() { _viewModel.GetCurrentState().Menu(); }
+        public void Menu() { _viewModel.GetCurrentState().PauseScreen(); }
         public void Resume() { _viewModel.GetCurrentState().Resume(); }
         public void Options() { _viewModel.GetCurrentState().Options(); }
         public void LevelUpEvent() { _viewModel.GetCurrentState().LevelUp(); }

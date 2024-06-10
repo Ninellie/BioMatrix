@@ -47,5 +47,17 @@ namespace UIScripts.SessionModel
             _options.LevelUpMapEvent.Raise();
             _options.LevelUpScreen.SetActive(true);
         }
+        
+        public void InitiateMutation()
+        {
+            _options.LevelUpMapEvent.Raise();
+            _options.MutationScreen.SetActive(true);
+        }
+        
+        public void CloseMutationScreen()
+        {
+            _options.GameplayMapEvent.Raise();
+            _options.MutationScreen.SetActive(false);
+        }
     }
 }

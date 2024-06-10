@@ -675,7 +675,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7195721735441491596}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelUpControllerScreen, Scripts
         m_MethodName: LevelUp
         m_Mode: 1
@@ -1326,10 +1326,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18040e0fe3afaa04db05234254059548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deckRepository: {fileID: 0}
   _activeCardDeckTitle: {fileID: 1447002114828619153}
   _activeCardTitle: {fileID: 2336473630828722576}
   _activeCardDescription: {fileID: 1723975125504038376}
-  _deckRepository: {fileID: 0}
 --- !u!1 &7241970062454620731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,7 +1691,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7195721735441491596}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelUpControllerScreen, Scripts
         m_MethodName: LevelUp
         m_Mode: 1
@@ -2013,7 +2013,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7391377192208848215}
-  - component: {fileID: 7195721735441491596}
   - component: {fileID: 5400231852864158886}
   - component: {fileID: 135024410629638961}
   - component: {fileID: 1434203089715396952}
@@ -2046,20 +2045,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7195721735441491596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9216421868276435156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a6b1baf072c48645912ae25c040569c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseDeckAmount: 3
-  _hand: {fileID: 0}
 --- !u!114 &5400231852864158886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2072,6 +2057,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb495f60febb4c841a0e5809c5fecd08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _baseDeckAmount: 3
+  _destroyOldDecks: 0
   _deckPanelPrefab: {fileID: 7686584683030057135, guid: 7210052bbc9bb3e46947d82fd572332f, type: 3}
   _decksArea: {fileID: 5674435825500700474}
   _cardInfoDisplay: {fileID: 3569476570626599207}
@@ -2148,9 +2135,10 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7195721735441491596}
-        m_TargetAssemblyTypeName: LevelUpController, Scripts
-        m_MethodName: LevelUp
+      - m_Target: {fileID: 5400231852864158886}
+        m_TargetAssemblyTypeName: UIScripts.LevelUpScreen.ComplexLevelUpDisplay,
+          Scripts
+        m_MethodName: TakeActiveCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
