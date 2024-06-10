@@ -34,10 +34,7 @@ namespace UIScripts.SessionModel
         public void OpenOptions() => _options.OptionsScreen.SetActive(true);
         public void CloseOptions() => _options.OptionsScreen.SetActive(false);
         public void OpenWinScreen() => _options.WinScreen.SetActive(true);
-        public void OpenLoseScreen()
-        {
-            _options.LoseScreen.SetActive(true);
-        }
+        public void OpenLoseScreen() => _options.LoseScreen.SetActive(true);
 
         public void CloseLevelUp()
         {

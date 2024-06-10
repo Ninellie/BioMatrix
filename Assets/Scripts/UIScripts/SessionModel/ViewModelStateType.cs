@@ -7,6 +7,7 @@ namespace UIScripts.SessionModel
         Menu,
         GameEnd,
         LevelUp,
+        Mutation,
         Start,
     }
 }
