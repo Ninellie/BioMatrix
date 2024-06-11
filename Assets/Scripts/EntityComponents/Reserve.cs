@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Core.Variables.References;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,8 +13,18 @@ namespace Assets.Scripts.EntityComponents
         Empty,
         Fill,
         UseInitialValue
+    } 
+    
+    [Serializable]
+    public class ReserveMark
+    {
+        [SerializeField] private IntReference value;
+        [SerializeField] private UnityEvent onReaching;
+        
+        public int Value => value;
+        public UnityEvent OnReaching => onReaching;
     }
-
+    
     public class Reserve : MonoBehaviour
     {
         [Header("Settings")]
@@ -35,6 +48,7 @@ namespace Assets.Scripts.EntityComponents
         [SerializeField] private UnityEvent _onFill;
         [SerializeField] private UnityEvent<int> _onDecrease;
         [SerializeField] private UnityEvent<int> _onIncrease;
+        [SerializeField] private List<ReserveMark> marks;
 
         public int Value => _currentValue;
         public bool IsEmpty => _currentValue == 0;
@@ -151,6 +165,11 @@ namespace Assets.Scripts.EntityComponents
                 _onEmpty.Invoke(oldValue);
                 if (!_disableObjectOnEmpty) return;
                 _selfGameObject.Value.SetActive(false);
+            }
+
+            foreach (var mark in marks.Where(mark => newValue == mark.Value))
+            {
+                mark.OnReaching.Invoke();
             }
         }
     }
