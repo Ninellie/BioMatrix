@@ -1,10 +1,10 @@
 using System;
-using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Core.Variables.References;
+using EntityComponents.UnitComponents.Knockback;
 using UIScripts.BasicElements.Indicators;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
+namespace EntityComponents.UnitComponents.EnemyComponents
 {
     [Serializable]
     public class ProjectileCollisionData

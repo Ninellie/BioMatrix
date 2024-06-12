@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
+namespace EntityComponents.UnitComponents.PlayerComponents
 {
     public class Pool<T> : MonoBehaviour where T : Component
     {

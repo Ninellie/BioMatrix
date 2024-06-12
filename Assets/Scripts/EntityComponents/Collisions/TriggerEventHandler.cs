@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.EntityComponents.Collisions
+namespace EntityComponents.Collisions
 {
     public class TriggerEventHandler : MonoBehaviour
     {

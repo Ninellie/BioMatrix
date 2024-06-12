@@ -1,11 +1,11 @@
-using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
-using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Core.Variables.References;
+using EntityComponents.UnitComponents.Knockback;
+using EntityComponents.UnitComponents.Movement;
 using UIScripts.BasicElements.Indicators;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
+namespace EntityComponents.UnitComponents.EnemyComponents
 {
     public class ArmoredEnemyCollisionHandler : MonoBehaviour
     {

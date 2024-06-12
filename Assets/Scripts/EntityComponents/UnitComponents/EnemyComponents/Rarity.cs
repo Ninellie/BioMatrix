@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
+namespace EntityComponents.UnitComponents.EnemyComponents
 {
     public class Rarity
     {

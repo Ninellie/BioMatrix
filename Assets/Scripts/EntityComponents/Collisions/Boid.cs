@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.EntityComponents.UnitComponents.Movement;
 using Core.Variables.References;
+using EntityComponents.UnitComponents.Movement;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.Collisions
+namespace EntityComponents.Collisions
 {
     public class Boid : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
+namespace EntityComponents.UnitComponents.Movement
 {
     public enum Direction
     {

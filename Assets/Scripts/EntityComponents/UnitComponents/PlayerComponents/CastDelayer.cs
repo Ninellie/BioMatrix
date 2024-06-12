@@ -2,7 +2,7 @@ using Core.Variables.References;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
+namespace EntityComponents.UnitComponents.PlayerComponents
 {
     public enum DelayMode
     {

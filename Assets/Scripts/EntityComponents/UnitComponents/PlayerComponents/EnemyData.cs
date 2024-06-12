@@ -1,7 +1,7 @@
-using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
+using EntityComponents.UnitComponents.EnemyComponents;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
+namespace EntityComponents.UnitComponents.PlayerComponents
 {
     public class EnemyData : MonoBehaviour
     {

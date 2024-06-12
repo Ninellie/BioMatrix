@@ -2,7 +2,7 @@ using Core.Variables;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
+namespace EntityComponents.UnitComponents.PlayerComponents
 {
     [ExecuteInEditMode]
     public class VariableEffectStack : MonoBehaviour

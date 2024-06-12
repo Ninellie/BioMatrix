@@ -2,7 +2,7 @@ using Core.Events;
 using Core.Variables.References;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
+namespace EntityComponents.UnitComponents.EnemyComponents
 {
     public class Dumper : MonoBehaviour
     {

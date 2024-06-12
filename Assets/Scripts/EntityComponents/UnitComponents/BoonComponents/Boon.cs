@@ -1,7 +1,7 @@
 using Core.Events;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.BoonComponents
+namespace EntityComponents.UnitComponents.BoonComponents
 {
     public class Boon : MonoBehaviour
     {

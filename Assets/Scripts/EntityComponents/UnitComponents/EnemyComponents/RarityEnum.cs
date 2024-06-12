@@ -1,4 +1,4 @@
-namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
+namespace EntityComponents.UnitComponents.EnemyComponents
 {
     public enum RarityEnum
     {

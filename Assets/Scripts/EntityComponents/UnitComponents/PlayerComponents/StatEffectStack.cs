@@ -1,7 +1,7 @@
 using SourceStatSystem;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
+namespace EntityComponents.UnitComponents.PlayerComponents
 {
     [ExecuteInEditMode]
     public class StatEffectStack : MonoBehaviour

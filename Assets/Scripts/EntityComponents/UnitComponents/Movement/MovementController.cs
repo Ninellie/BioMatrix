@@ -1,7 +1,7 @@
 using Core.Variables.References;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
+namespace EntityComponents.UnitComponents.Movement
 {
     public abstract class MovementController : MonoBehaviour, IMovementController
     {

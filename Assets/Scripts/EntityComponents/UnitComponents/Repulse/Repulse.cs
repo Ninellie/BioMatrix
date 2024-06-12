@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Repulse
+namespace EntityComponents.UnitComponents.Repulse
 {
     public class Repulse : MonoBehaviour
     {

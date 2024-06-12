@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
-using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Core.Variables.References;
+using EntityComponents.UnitComponents.EnemyComponents;
+using EntityComponents.UnitComponents.PlayerComponents;
 using GameSession.Spawner;
 using UnityEngine;
 

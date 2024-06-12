@@ -3,7 +3,7 @@ using Core.Variables.References;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.EntityComponents.Resources
+namespace EntityComponents
 {
     /// <summary>
     /// Посылает ивент каждый определённый промежуток времени. Промежуток времени определяется переменными speed и rate.

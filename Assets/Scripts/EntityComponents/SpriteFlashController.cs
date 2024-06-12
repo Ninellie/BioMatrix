@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents
+namespace EntityComponents
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class SpriteFlashController : MonoBehaviour

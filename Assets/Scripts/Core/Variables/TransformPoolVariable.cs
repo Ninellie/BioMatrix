@@ -1,4 +1,4 @@
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
+using EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
 namespace Core.Variables

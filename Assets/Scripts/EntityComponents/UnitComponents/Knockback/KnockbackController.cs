@@ -1,8 +1,8 @@
-using Assets.Scripts.EntityComponents.UnitComponents.Movement;
+using EntityComponents.UnitComponents.Movement;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Knockback
+namespace EntityComponents.UnitComponents.Knockback
 {
     [RequireComponent(typeof(IMovementController))]
     public class KnockbackController : MonoBehaviour

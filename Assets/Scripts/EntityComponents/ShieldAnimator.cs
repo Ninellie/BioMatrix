@@ -1,7 +1,7 @@
 using Core.Variables.References;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents
+namespace EntityComponents
 {
     public class ShieldAnimator : MonoBehaviour
     {

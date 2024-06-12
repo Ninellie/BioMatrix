@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.EntityComponents.UnitComponents.Movement;
+using EntityComponents.UnitComponents.Movement;
 using UnityEngine;
 
 namespace FirearmComponents

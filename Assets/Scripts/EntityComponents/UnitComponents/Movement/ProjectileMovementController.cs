@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
+namespace EntityComponents.UnitComponents.Movement
 {
     public class ProjectileMovementController : MovementController
     {

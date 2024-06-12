@@ -2,7 +2,7 @@ using System;
 using Core.Variables.References;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
+namespace EntityComponents.UnitComponents.PlayerComponents
 {
     public class ColliderRadiusUpdater : MonoBehaviour
     {

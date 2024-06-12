@@ -1,7 +1,7 @@
-using Assets.Scripts.EntityComponents.UnitComponents.Movement;
+using EntityComponents.UnitComponents.Movement;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Rotation
+namespace EntityComponents.UnitComponents.Rotation
 {
     public class RotationController : MonoBehaviour
     {

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.EntityComponents.UnitComponents.Knockback;
 using Core.Variables.References;
+using EntityComponents.UnitComponents.Knockback;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
+namespace EntityComponents.UnitComponents.PlayerComponents
 {
     public class ShieldRepulse : MonoBehaviour
     {

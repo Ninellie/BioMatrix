@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
+namespace EntityComponents.UnitComponents.ProjectileComponents
 {
     public class RenderEventInvoker : MonoBehaviour
     {

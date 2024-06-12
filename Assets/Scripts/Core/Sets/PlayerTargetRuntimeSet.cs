@@ -1,4 +1,4 @@
-using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
+using EntityComponents.UnitComponents.EnemyComponents;
 using UnityEngine;
 
 namespace Core.Sets

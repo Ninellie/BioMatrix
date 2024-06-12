@@ -1,5 +1,5 @@
 using System;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
+using EntityComponents.UnitComponents.PlayerComponents;
 
 namespace FirearmComponents
 {

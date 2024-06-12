@@ -1,7 +1,7 @@
 using Core.Variables.References;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.ProjectileComponents
+namespace EntityComponents.UnitComponents.ProjectileComponents
 {
     public class CircleColliderRadiusUpdater : MonoBehaviour
     {

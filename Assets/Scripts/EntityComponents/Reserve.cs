@@ -5,7 +5,7 @@ using Core.Variables.References;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.EntityComponents
+namespace EntityComponents
 {
     public enum ReserveAction
     {

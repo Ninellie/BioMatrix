@@ -2,7 +2,7 @@ using System.Linq;
 using Core.Sets;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
+namespace EntityComponents.UnitComponents.PlayerComponents
 {
     public class ThingPool : MonoBehaviour
     {

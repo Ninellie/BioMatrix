@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
+namespace EntityComponents.UnitComponents.Movement
 {
     public interface IMovementController
     {

@@ -1,8 +1,8 @@
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Core.Variables.References;
+using EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.Movement
+namespace EntityComponents.UnitComponents.Movement
 {
     public class PlayerMovementController : MovementController
     {

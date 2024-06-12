@@ -5,7 +5,7 @@ using Core.Variables.References;
 using FirearmComponents;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents
+namespace EntityComponents.UnitComponents.PlayerComponents
 {
     public class TurretShootDelaySetter : MonoBehaviour
     {

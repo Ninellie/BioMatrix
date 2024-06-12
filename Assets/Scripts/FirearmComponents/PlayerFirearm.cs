@@ -1,9 +1,9 @@
-using Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents;
-using Assets.Scripts.EntityComponents.UnitComponents.Movement;
-using Assets.Scripts.EntityComponents.UnitComponents.PlayerComponents;
 using Core.Events;
 using Core.Sets;
 using Core.Variables.References;
+using EntityComponents.UnitComponents.EnemyComponents;
+using EntityComponents.UnitComponents.Movement;
+using EntityComponents.UnitComponents.PlayerComponents;
 using UnityEngine;
 
 namespace FirearmComponents

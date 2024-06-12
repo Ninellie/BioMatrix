@@ -2,7 +2,7 @@ using Core.Sets;
 using TMPro;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityComponents.UnitComponents.EnemyComponents
+namespace EntityComponents.UnitComponents.EnemyComponents
 {
     public class PlayerTarget : MonoBehaviour
     {

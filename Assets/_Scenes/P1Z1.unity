@@ -1087,6 +1087,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1194398999299539031, guid: 39afd01fdc1d8194fb1ecf8cafed7fe7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 5.06
+      objectReference: {fileID: 0}
     - target: {fileID: 1616056808747280045, guid: 39afd01fdc1d8194fb1ecf8cafed7fe7, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1186,6 +1190,10 @@ PrefabInstance:
     - target: {fileID: 1927392908043934638, guid: 39afd01fdc1d8194fb1ecf8cafed7fe7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393441736943599853, guid: 39afd01fdc1d8194fb1ecf8cafed7fe7, type: 3}
+      propertyPath: _destroyOldDecks
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3798868665431701660, guid: 39afd01fdc1d8194fb1ecf8cafed7fe7, type: 3}
       propertyPath: m_AnchorMax.y
