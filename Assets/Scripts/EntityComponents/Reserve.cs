@@ -49,11 +49,13 @@ namespace EntityComponents
         [SerializeField] private UnityEvent<int> _onDecrease;
         [SerializeField] private UnityEvent<int> _onIncrease;
         [SerializeField] private List<ReserveMark> marks;
+        [SerializeField] private bool isLocked = false;
+        [SerializeField] private int lockedValue;
 
         public int Value => _currentValue;
         public bool IsEmpty => _currentValue == 0;
         public bool IsFull => _currentValue == _maximumValue;
-
+        
         private void Start()
         {
             DoAction(_startAction);
@@ -82,11 +84,25 @@ namespace EntityComponents
             }
         }
 
+        public void LockOnCurrentValue() => LockOnValue(_currentValue);
+
+        public void LockOnValue(int value)
+        {
+            SetValue(value);
+            isLocked = true;
+            lockedValue = value;
+        }
+
+        public void UnlockValue()
+        {
+            isLocked = false;
+        }
+        
         public void Increase(int amount)
         {
             if (IsFull)
             {
-                Debug.Log($"Cannot increase, reserve is already full");
+                Debug.Log($"Cannot increase, reserve is already full", this);
                 return;
             }
             if (amount <= 0) return;
@@ -104,7 +120,7 @@ namespace EntityComponents
         {
             if (IsEmpty)
             {
-                Debug.Log($"Cannot take more damage, reserve is already empty");
+                Debug.Log($"Cannot take more damage, reserve is already empty", this);
                 return;
             }
             if (amount <= 0) return;
@@ -135,6 +151,12 @@ namespace EntityComponents
 
         private void SetValue(int value)
         {
+            if (isLocked)
+            {
+                Debug.Log($"Cannot set value to {value}. Reserve is locked on value {lockedValue}.", this);           
+                return;
+            }
+            
             var oldValue = _currentValue.Value;
             value = Mathf.Clamp(value, 0, _maximumValue);
             
