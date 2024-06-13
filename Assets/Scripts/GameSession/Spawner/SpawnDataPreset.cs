@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.GameSession.Spawner
+namespace GameSession.Spawner
 {
     [CreateAssetMenu(fileName = "New spawn data", menuName = "Spawner/Spawn data")]
     public class SpawnDataPreset : ScriptableObject

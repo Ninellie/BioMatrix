@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Random = UnityEngine.Random;
 
-namespace Assets.Scripts.GameSession.Spawner
+namespace GameSession.Spawner
 {
     public class Grouping
     {

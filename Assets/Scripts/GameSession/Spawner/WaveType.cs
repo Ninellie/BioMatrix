@@ -1,4 +1,4 @@
-namespace Assets.Scripts.GameSession.Spawner
+namespace GameSession.Spawner
 {
     public enum WaveType
     {

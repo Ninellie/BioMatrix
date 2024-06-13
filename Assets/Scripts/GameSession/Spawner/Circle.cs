@@ -1,4 +1,3 @@
-using Assets.Scripts.GameSession.Spawner;
 using UnityEngine;
 
 namespace GameSession.Spawner

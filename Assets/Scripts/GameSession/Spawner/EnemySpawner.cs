@@ -3,10 +3,9 @@ using System.Collections;
 using Core.Variables.References;
 using EntityComponents.UnitComponents.EnemyComponents;
 using EntityComponents.UnitComponents.PlayerComponents;
-using GameSession.Spawner;
 using UnityEngine;
 
-namespace Assets.Scripts.GameSession.Spawner
+namespace GameSession.Spawner
 {
     /// <summary>
     /// Эта система спавна управляется слабо, но креативно.

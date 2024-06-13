@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Assets.Scripts.GameSession.Spawner
+namespace GameSession.Spawner
 {
     public class EnemyWaveProperties
     {
