@@ -4,7 +4,7 @@ using UnityEngine;
 namespace SourceStatSystem
 {
     /// <summary>
-    /// Contains data about single stat
+    /// Contains data about single stat and used only for unity inspector preview 
     /// </summary>
     [Serializable]
     public class StatData

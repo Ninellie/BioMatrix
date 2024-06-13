@@ -4,6 +4,7 @@ namespace SourceStatSystem
     {
         None,
         Flat,
-        Percentage
+        Percentage,
+        Locker
     }
 }
