@@ -121,10 +121,10 @@ namespace Assets.Scripts.GameSession.Spawner
             radius += enemy.GetComponent<CircleCollider2D>().radius;
             var angle = _circle.GetRandomAngle();
             var enemyPos = _circle.GetPointOn(radius, _playerPosition, angle);
-            enemy.transform.position = enemyPos;
+            enemy.EnemyTransform.position = enemyPos;
             _spawnQueueSize--;
-            if (enemy.spriteType.EnemyType != EnemyType.AboveView) return;
-            RotateRigidbody2DToTarget(_playerPosition, enemy.rigidbody2D);
+            if (enemy.EnemySpriteType.EnemyType != EnemyType.AboveView) return;
+            RotateRigidbody2DToTarget(_playerPosition, enemy.EnemyRigidbody2D);
         }
 
         private void RotateRigidbody2DToTarget(Vector2 targetPosition, Rigidbody2D rb2D)
