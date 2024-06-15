@@ -18,11 +18,24 @@ namespace EntityComponents
     [Serializable]
     public class ReserveMark
     {
+        [HideInInspector] [SerializeField] private string inspectorName;
         [SerializeField] private IntReference value;
         [SerializeField] private UnityEvent onReaching;
         
         public int Value => value;
         public UnityEvent OnReaching => onReaching;
+        public string InspectorName
+        {
+            get => inspectorName;
+            set => inspectorName = value;
+        }
+
+        public ReserveMark(IntReference intReference, UnityEvent onReachingEvent)
+        {
+            intReference = intReference;
+            onReaching = onReachingEvent;
+            InspectorName = intReference.Value.ToString();
+        }
     }
     
     public class Reserve : MonoBehaviour
@@ -64,6 +77,14 @@ namespace EntityComponents
         private void OnEnable()
         {
             DoAction(_enableAction);
+        }
+
+        private void OnValidate()
+        {
+            foreach (var mark in marks)
+            {
+                mark.InspectorName = mark.Value.ToString();
+            }
         }
 
         private void DoAction(ReserveAction action)
