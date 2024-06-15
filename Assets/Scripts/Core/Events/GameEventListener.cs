@@ -11,7 +11,7 @@ namespace Core.Events
 
         [Tooltip("Response to invoke when Event is raised.")]
         public UnityEvent response;
-
+        
         private void OnEnable()
         {
             gameEvent.RegisterListener(this);

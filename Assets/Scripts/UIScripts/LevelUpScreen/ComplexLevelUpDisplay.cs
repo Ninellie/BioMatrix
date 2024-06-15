@@ -31,8 +31,6 @@ namespace UIScripts.LevelUpScreen
         private LinkedList<DeckPanel> _deckPanels;
         private LinkedListNode<DeckPanel> _activeDeck;
 
-        private void Awake() => hand = FindObjectOfType<Hand>();
-
         public void TakeActiveCard() => hand.TakeCardFromDeck(GetActiveDeckName());
         public void DisplayRandomDecksFromHand() => DisplayRandomDecks(hand.GetHandData(), _baseDeckAmount);
         public DeckPanel GetActiveDeck() => _activeDeck.Value;

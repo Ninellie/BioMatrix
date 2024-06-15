@@ -19,6 +19,12 @@ namespace GameSession.Upgrades.Deck
 
         public void TakeCardFromDeck(string deckName)
         {
+            if (deckRepository == null)
+            { 
+                Debug.LogWarning($"Can't take card from deck. Deck Repository is null", this);
+                return;
+            }
+            
             var cardPos = 0;
             foreach (var deckData in handDeckData)
             {
@@ -39,6 +45,11 @@ namespace GameSession.Upgrades.Deck
 
         private void Identify()
         {
+            if (deckRepository == null)
+            { 
+                Debug.LogWarning($"Can't identify hand. Deck Repository is null", this);
+                return;
+            }
             handDeckData = new List<HandDeckData>();
             foreach (var deck in deckRepository.Decks)
             {
