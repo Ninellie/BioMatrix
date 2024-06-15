@@ -27,14 +27,14 @@ namespace UIScripts.LevelUpScreen
         [SerializeField] private CardInfoUIPanel _cardInfoDisplay;
         [SerializeField] private ToggleGroup _cardsToggleGroup;
 
-        private Hand _hand;
+        [SerializeField] private Hand hand;
         private LinkedList<DeckPanel> _deckPanels;
         private LinkedListNode<DeckPanel> _activeDeck;
 
-        private void Awake() => _hand = FindObjectOfType<Hand>();
+        private void Awake() => hand = FindObjectOfType<Hand>();
 
-        public void TakeActiveCard() => _hand.TakeCardFromDeck(GetActiveDeckName());
-        public void DisplayRandomDecksFromHand() => DisplayRandomDecks(_hand.GetHandData(), _baseDeckAmount);
+        public void TakeActiveCard() => hand.TakeCardFromDeck(GetActiveDeckName());
+        public void DisplayRandomDecksFromHand() => DisplayRandomDecks(hand.GetHandData(), _baseDeckAmount);
         public DeckPanel GetActiveDeck() => _activeDeck.Value;
         public string GetActiveDeckName() => _activeDeck.Value.GetName();
 
@@ -147,13 +147,13 @@ namespace UIScripts.LevelUpScreen
             _cardInfoDisplay.DisplayOpenedCardInfo(activeDeckName);
         }
 
-        private List<HandDeckData> GetOpenedDecksDataFromList(IEnumerable<HandDeckData> decksData)
+        private static List<HandDeckData> GetOpenedDecksDataFromList(IEnumerable<HandDeckData> decksData)
         {
             var decksWithOpenedCards = decksData.Where(deckData => deckData.openedCardPosition < deckData.size).ToList();
             return decksWithOpenedCards;
         }
 
-        private HandDeckData GetRandomDeckDataFromList(List<HandDeckData> decksData)
+        private static HandDeckData GetRandomDeckDataFromList(List<HandDeckData> decksData)
         {
             var sum = decksData.Sum(x => x.dropWeight);
             var next = Random.Range(0, sum);

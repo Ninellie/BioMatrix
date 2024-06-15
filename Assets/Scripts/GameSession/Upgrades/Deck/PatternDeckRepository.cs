@@ -69,7 +69,7 @@ namespace GameSession.Upgrades.Deck
             return deck;
         }
 
-        private void FillDeckWithPatternCard(Deck deck, PatternCard patternCard)
+        private static void FillDeckWithPatternCard(Deck deck, PatternCard patternCard)
         {
             for (int i = 0; i < deck.cardsInspectorList.Count; i++)
             {
