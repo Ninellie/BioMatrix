@@ -22,12 +22,9 @@ MonoBehaviour:
   - _inspectorValue: 3_maximum_health
     <Id>k__BackingField: {fileID: 11400000, guid: 0056aaa4eb48b6d458c89adf5bcf6f83, type: 2}
     _value: 3
-  - _inspectorValue: 300_movement_speed
+  - _inspectorValue: 120_movement_speed
     <Id>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
-    _value: 300
-  - _inspectorValue: 60_magnetism_radius
-    <Id>k__BackingField: {fileID: 11400000, guid: ab68be734ef4e284d8c10fc21ef91dd4, type: 2}
-    _value: 60
+    _value: 120
   - _inspectorValue: 1_experience_gain_multiplier
     <Id>k__BackingField: {fileID: 11400000, guid: d2e5e54cf960b08499d71b515ad5ecb8, type: 2}
     _value: 1
