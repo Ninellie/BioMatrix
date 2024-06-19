@@ -80,7 +80,13 @@ namespace SourceStatSystem
         private static void SetStatValue(IEnumerable<FloatVariable> statAssets, float value)
         {
             foreach (var statVariableAsset in statAssets)
-            { 
+            {
+                if (statVariableAsset.GetType() == typeof(StatVariable))
+                {
+                    var stat = statVariableAsset as StatVariable;
+                    if (stat != null) stat.SetValue(value);
+                    continue;
+                }
                 statVariableAsset.SetValue(value);
             }
         }

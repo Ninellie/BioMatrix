@@ -12,7 +12,6 @@ namespace Core.Events
         [Tooltip("Response to invoke when stat value changes")]
         public UnityEvent<float> onChange;
 
-
         private void OnEnable()
         {
             statChangedEvent.RegisterListener(this);
