@@ -17,6 +17,8 @@ namespace EntityComponents.UnitComponents.Movement
         [SerializeField] protected FloatReference speed;
         [SerializeField] private bool _clampToMaxSpeed;
         [SerializeField] protected FloatReference _maxSpeed;
+        [SerializeField] protected bool clampToMinSpeed;
+        [SerializeField] protected FloatReference minSpeed;
         [Space]
         [SerializeField] protected Transform _transform;
         [SerializeField] private Rigidbody2D _rigidbody2D;
@@ -37,11 +39,13 @@ namespace EntityComponents.UnitComponents.Movement
         {
             get
             {
+                var result = MovementVelocity + AddedVelocity;
+                
                 if (_clampToMaxSpeed)
                 { 
-                    return Vector2.ClampMagnitude(MovementVelocity + AddedVelocity, _maxSpeed);
+                    result = Vector2.ClampMagnitude(result, _maxSpeed);
                 }
-                return MovementVelocity + AddedVelocity;
+                return result;
             }
         }
 
