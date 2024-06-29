@@ -51,7 +51,6 @@ namespace GameSession.Upgrades.Deck
             {
                 var card = new Card
                 {
-                    effectNames = new List<string>(),
                     onTaken = new List<GameEvent>(3)
                 };
                 deck.cardsInspectorList.Add(card);
@@ -89,7 +88,6 @@ namespace GameSession.Upgrades.Deck
                         : "\r\n" + patternCard.card.description;
 
                 deck.cardsInspectorList[i].dropWeight = patternCard.card.dropWeight;
-                deck.cardsInspectorList[i].effectNames.AddRange(patternCard.card.effectNames);
                 deck.cardsInspectorList[i].onTaken.AddRange(patternCard.card.onTaken);
             }
         }

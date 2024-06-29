@@ -13,7 +13,6 @@ namespace GameSession.Upgrades.Deck
         [Multiline] public string description;
         public List<GameEvent> onTaken;
         public float dropWeight;
-        public List<string> effectNames;
         public CardStatus status;
     }
 }
