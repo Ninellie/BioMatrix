@@ -7948,6 +7948,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1616056808747280045}
     m_Modifications:
     - target: {fileID: 5400231852864158886, guid: 061f90cf17cebfb4680ca91cdf379809, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400231852864158886, guid: 061f90cf17cebfb4680ca91cdf379809, type: 3}
       propertyPath: _destroyOldDecks
       value: 1
       objectReference: {fileID: 0}

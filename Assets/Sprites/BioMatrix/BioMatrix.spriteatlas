@@ -122,6 +122,7 @@ SpriteAtlas:
     - 3fdb0a60d64ddc043805cbb5c37d77fa: -1013476454334267298
     - 3fdb0a60d64ddc043805cbb5c37d77fa: -3727708252540023451
     - 120cae800430c5b4d97089b9e262ed7b: 21300000
+    - e2d4a0e194dec76429c78af2dc35905f: 8977465543269484627
     - 4784a3e297868654998b6429cf5ae4e7: 21300000
     - 99c34683db11ed246882d45ee6c6ed3d: -6220627448938302799
     - 99c34683db11ed246882d45ee6c6ed3d: -712196230420099154
@@ -132,6 +133,7 @@ SpriteAtlas:
     - 99c34683db11ed246882d45ee6c6ed3d: -4559127517097981834
     - 99c34683db11ed246882d45ee6c6ed3d: 4718606258849289349
     - 99c34683db11ed246882d45ee6c6ed3d: -2503936372945681206
+    - 2b30b5a330712fc47aab06c69ea62ecf: 5190924664087152004
     - 145df9e40e2018e4eb6408aaca2e82a9: 21300000
     - a493cb95aae29af46b1cba06c929ada2: 1047002800
     - a493cb95aae29af46b1cba06c929ada2: 138781213
@@ -346,6 +348,7 @@ SpriteAtlas:
   - {fileID: -1013476454334267298, guid: 3fdb0a60d64ddc043805cbb5c37d77fa, type: 3}
   - {fileID: -3727708252540023451, guid: 3fdb0a60d64ddc043805cbb5c37d77fa, type: 3}
   - {fileID: 21300000, guid: 120cae800430c5b4d97089b9e262ed7b, type: 3}
+  - {fileID: 8977465543269484627, guid: e2d4a0e194dec76429c78af2dc35905f, type: 3}
   - {fileID: 21300000, guid: 4784a3e297868654998b6429cf5ae4e7, type: 3}
   - {fileID: -6220627448938302799, guid: 99c34683db11ed246882d45ee6c6ed3d, type: 3}
   - {fileID: -712196230420099154, guid: 99c34683db11ed246882d45ee6c6ed3d, type: 3}
@@ -356,6 +359,7 @@ SpriteAtlas:
   - {fileID: -4559127517097981834, guid: 99c34683db11ed246882d45ee6c6ed3d, type: 3}
   - {fileID: 4718606258849289349, guid: 99c34683db11ed246882d45ee6c6ed3d, type: 3}
   - {fileID: -2503936372945681206, guid: 99c34683db11ed246882d45ee6c6ed3d, type: 3}
+  - {fileID: 5190924664087152004, guid: 2b30b5a330712fc47aab06c69ea62ecf, type: 3}
   - {fileID: 21300000, guid: 145df9e40e2018e4eb6408aaca2e82a9, type: 3}
   - {fileID: 1047002800, guid: a493cb95aae29af46b1cba06c929ada2, type: 3}
   - {fileID: 138781213, guid: a493cb95aae29af46b1cba06c929ada2, type: 3}
@@ -569,6 +573,7 @@ SpriteAtlas:
   - Mite32_Frame_0
   - Mite32_Frame_1
   - BlastCascade
+  - CursorReload
   - Hive Queen
   - Mite_Frame_3
   - Mite_Frame_2
@@ -579,6 +584,7 @@ SpriteAtlas:
   - Mite_Frame_5
   - Mite_Frame_4
   - Mite_Frame_8
+  - Cursor
   - BiomatrixCard
   - BioMatrixAtlas_32_28
   - BioMatrixAtlas_32_29
