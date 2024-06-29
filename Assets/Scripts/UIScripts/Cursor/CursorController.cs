@@ -9,8 +9,17 @@ namespace UIScripts.Cursor
         
         private void Awake()
         {
+            var controllers = FindObjectsOfType<CursorController>();
+            foreach (var cursorController in controllers)
+            {
+                if (cursorController != this)
+                {
+                    Destroy(cursorController);
+                }
+            }
+            
             SetAimCursor();
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this);
         }
 
         public void SetAimCursor()
