@@ -7,7 +7,6 @@ namespace EntityComponents.UnitComponents.Movement
     public class PlayerMovementController : MovementController
     {
         [SerializeField] private float _aimingSpeedMultiplier = 0.5f;
-        //[SerializeField] private Shooter _firearm;
         [SerializeField] private CastDelayer _reload;
         [SerializeField] private CastDelayer _coolDown;
 
@@ -15,16 +14,19 @@ namespace EntityComponents.UnitComponents.Movement
         {
             get
             {
+                var result = 0f;
+                
                 if (_reload.IsCasting) // Оружие на перезарядке
-                    return NoAimingSpeed;
+                    result = NoAimingSpeed;
 
                 if (_coolDown.IsCasting) // Оружие на кулдауне, но не на перезарядке
-                    return AimingSpeed;
-
-                //if (_firearm.CanShoot) // Кнопка не нажата, оружие не на перезарядке и не на кд
-                    //return NoAimingSpeed;
-
-                return NoAimingSpeed; // Кнопка не нажата, оружие не на перезарядке, но совсем недавно стреляло и ещё не готово к стрельбе, потому что на кд
+                    result = AimingSpeed;
+                
+                if (clampToMinSpeed) // Если скорость меньше минимальной, применяется минимальная
+                    result = Mathf.Max(result, minSpeed);
+                
+                
+                return result; // Кнопка не нажата, оружие не на перезарядке, но совсем недавно стреляло и ещё не готово к стрельбе, потому что на кд
             }
         }
         protected float NoAimingSpeed => speed.Value * SpeedScale;
