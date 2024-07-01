@@ -50,9 +50,24 @@ namespace GameSession.Upgrades.Deck
                 Debug.LogWarning($"Can't identify hand. Deck Repository is null", this);
                 return;
             }
+            
+            var decks = deckRepository.GetDecks();
+            
+            if (decks == null)
+            { 
+                Debug.LogWarning($"Can't identify hand. Deck Repository вернул вместо массива decks null", this);
+                return;
+            }
+
             handDeckData = new List<HandDeckData>();
-            foreach (var deck in deckRepository.Decks)
+            
+            foreach (var deck in decks)
             {
+                if (deck.cards == null)
+                { 
+                    Debug.LogWarning($"Can't identify hand. Deck Repository's Cards is null", this);
+                    return;
+                }
                 handDeckData.Add(new HandDeckData(deck.name, deck.cards.Count));
             }
         }

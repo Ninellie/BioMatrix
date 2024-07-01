@@ -31,7 +31,7 @@ namespace GameSession.Upgrades.Deck
             _decks = GetDecks();
         }
 
-        private List<Deck> GetDecks()
+        public List<Deck> GetDecks()
         {
             return patternDeckList.Select(patternDeck => GetDeck(patternDeck.name)).ToList();
         }
