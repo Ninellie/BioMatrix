@@ -14,18 +14,20 @@ namespace EntityComponents.UnitComponents.Movement
         {
             get
             {
-                var result = 0f;
-                
-                if (_reload.IsCasting) // Оружие на перезарядке
-                    result = NoAimingSpeed;
+                var result = NoAimingSpeed;
 
-                if (_coolDown.IsCasting) // Оружие на кулдауне, но не на перезарядке
-                    result = AimingSpeed;
-                
-                if (clampToMinSpeed) // Если скорость меньше минимальной, применяется минимальная
+                if (_coolDown.IsCasting)
+                {
+                    result = AimingSpeed;// Оружие на кулдауне, но не на перезарядке
+                }    
+
+                if (clampToMinSpeed)
+                {
+                    // Если скорость меньше минимальной, применяется минимальная
                     result = Mathf.Max(result, minSpeed);
-                
-                
+                }
+
+
                 return result; // Кнопка не нажата, оружие не на перезарядке, но совсем недавно стреляло и ещё не готово к стрельбе, потому что на кд
             }
         }
