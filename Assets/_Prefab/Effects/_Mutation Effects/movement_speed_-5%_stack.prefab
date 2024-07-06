@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5472728059450105852}
   - component: {fileID: 5398246131599048777}
   m_Layer: 0
-  m_Name: agility_mut_stack
+  m_Name: movement_speed_-5%_stack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,4 +49,4 @@ MonoBehaviour:
   - <Id>k__BackingField: 
     <StatId>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
     <ImpactType>k__BackingField: 2
-    <Value>k__BackingField: -10
+    <Value>k__BackingField: -5
