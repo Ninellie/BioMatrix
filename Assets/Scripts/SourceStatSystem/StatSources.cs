@@ -39,113 +39,33 @@ namespace SourceStatSystem
             _statSources.Remove(statSourceData);
             UpdateStat(statSourceData.StatId, GetStatSources());
         }
-
-        private void UpdateStat(StatId statId, IEnumerable<StatSourceData> statSources)
-        {
-            var updatedStatValue = 0f;
-            
-            // Находим такие ассеты переменных, к которым подходит источники
-            var statAssets = _stats.FindAll(s => s.id == statId);
-            
-            // Считаем значение стата
-            var sources = statSources.Where(s => s.StatId == statId);
-            var sourcesList = sources.ToList();
-            if (sourcesList.FirstOrDefault(s=>s.ImpactType == ImpactType.Locker) is { } firstStatLocker)
-            {
-                updatedStatValue = firstStatLocker.Value;
-            }
-            else
-            {
-                updatedStatValue = CalculateStatValue(sourcesList);
-            }
-            
-            // Устанавливаем им обновлённое значение
-            SetStatValue(statAssets, updatedStatValue);
-
-#if UNITY_EDITOR
-            UpdatePreviewStat(statId, updatedStatValue);
-#endif
-        }
-
-        private static float CalculateStatValue(IReadOnlyCollection<StatSourceData> sourcesList)
-        {
-            var flatStatSources = sourcesList.Where(s => s.ImpactType == ImpactType.Flat);
-            var multiplierStatSources = sourcesList.Where(s => s.ImpactType == ImpactType.Percentage);
-            var flatSum = flatStatSources.Sum(s => s.Value);
-            var multiplierSum = multiplierStatSources.Sum(s => s.Value);
-            var updatedStatValue = flatSum * (1 + multiplierSum * 0.01f);
-            return updatedStatValue;
-        }
         
-        private static void SetStatValue(IEnumerable<FloatVariable> statAssets, float value)
+        private void ConstructStats(List<StatSourceData> statSources)
         {
-            foreach (var statVariableAsset in statAssets)
-            {
-                if (statVariableAsset.GetType() == typeof(StatVariable))
-                {
-                    var stat = statVariableAsset as StatVariable;
-                    if (stat != null) stat.SetValue(value);
-                    continue;
-                }
-                statVariableAsset.SetValue(value);
-            }
-        }
-
-        private void UpdatePreviewStat(StatId id, float updatedValue)
-        {
-            foreach (var statData in _preview.Where(s => s.Id == id))
-            {
-                statData.Value = updatedValue;
-            }
-        }
-
-        private static IEnumerable<StatId> GetUniqueStatIdList(IEnumerable<StatSourceData> statSources)
-        {
-            var idList = new List<StatId>();
-            foreach (var statData in statSources)
-            {
-                if (!idList.Contains(statData.StatId))
-                {
-                    idList.Add(statData.StatId);
-                }
-            }
-            return idList;
-        }
-        
-        private void ConstructStats(IEnumerable<StatSourceData> statSources)
-        {
-            var idList = GetUniqueStatIdList(statSources);
-            foreach (var id in idList)
+            var uniqueStatIdList = statSources.Select(s => s.StatId).ToHashSet();
+            foreach (var id in uniqueStatIdList)
             {
                 UpdateStat(id, statSources);
             }
-            
-            // var groupedById = statSourceList.GroupBy(statSource => statSource.StatId);
-            // var select = groupedById.Select(group => 
-            //     new StatData(group.Key, group.Where(statSource => statSource.ImpactType == ImpactType.Flat).Sum(statSource => statSource.Value)
-            //                             * (1 + group.Where(statSource => statSource.ImpactType == ImpactType.Percentage).Sum(statSource => statSource.Value)
-            //                                 * 0.01f)));
-//             
-//             var selectList = select.ToList();
-//             
-//             foreach (var statData in statSourceList)
-//             {
-//                 // Находим такие к которым подходит источник
-//                 var stat = _stats.FindAll(s => s.id == statData.StatId);
-//
-//                 // Устанавливаем им обновлённое значение
-//                 foreach (var statVariable in stat)
-//                 {
-//                     statVariable.SetValue(statData.Value);
-//                 }
-//             }
-//
-// #if UNITY_EDITOR
-//             _preview = selectList;
-// #endif
         }
 
-        private IEnumerable<StatSourceData> GetStatSources()
+        private void UpdateStat(StatId statId, List<StatSourceData> statSources)
+        {
+            // Находим такие ассеты переменных, к которым подходит источники
+            var statAssets = _stats.FindAll(s => s.id == statId);
+            // Считаем значение стата
+            var updatedStatValue = StatSourcesBuilder.CalculateStatValue(statId, statSources);
+            // Устанавливаем им обновлённое значение
+            foreach (var statAsset in statAssets)
+            {
+                StatSourcesBuilder.SetStatValue(statAsset, updatedStatValue);
+            }
+#if UNITY_EDITOR
+            StatSourcesBuilder.UpdateStatData(statId, updatedStatValue, _preview, statSources);
+#endif
+        }
+
+        private List<StatSourceData> GetStatSources()
         {
             var statSourceDataList = new List<StatSourceData>();
             statSourceDataList.AddRange(_statSources);

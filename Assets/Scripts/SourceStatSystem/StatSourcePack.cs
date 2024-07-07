@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SourceStatSystem
 {
@@ -8,60 +9,47 @@ namespace SourceStatSystem
     public class StatSourcePack : ScriptableObject
     {
         [SerializeField] private string _id = "";
-        [SerializeField] private StatSourceType _type = StatSourceType.Base;
+        [SerializeField] private StatSourceType type = StatSourceType.Base;
         [Space]
         [Header("Drop statId here to add new Stat Source")]
-        [SerializeField] private StatId _newFlatStatSource;
-        [SerializeField] private StatId _newPercentageStatSource;
+        [SerializeField] private StatId newFlatStatSource;
+        [SerializeField] private StatId newPercentageStatSource;
         [field: Space]
         [field: SerializeField] public List<StatSourceData> StatSources { get; private set; } = new();
         [field: Space]
-        [SerializeField] private List<StatData> _statsPreview = new();
+        [SerializeField] private List<StatData> preview = new();
 
         private void OnValidate()
         {
-            ValidateStatSource();
-            ConstructStats();
+            ValidateAddedStatSource();
+            StatSourcesBuilder.ValidateStatSources(StatSources, type, _id);
+            ConstructStatsPreview();
         }
 
-        private void ValidateStatSource()
+        private void ValidateAddedStatSource()
         {
-            if (_newFlatStatSource != null)
+            if (newFlatStatSource != null)
             {
-                StatSources.Add(new StatSourceData(_newFlatStatSource, ImpactType.Flat));
-                _newFlatStatSource = null;
+                StatSources.Add(new StatSourceData(newFlatStatSource, ImpactType.Flat));
+                newFlatStatSource = null;
             }
-
-            if (_newPercentageStatSource != null)
+            if (newPercentageStatSource != null)
             {
-                StatSources.Add(new StatSourceData(_newPercentageStatSource, ImpactType.Percentage));
-                _newPercentageStatSource = null;
-            }
-
-            foreach (var baseStatSource in StatSources)
-            {
-                baseStatSource.Type = _type;
-                var sourceId = _id.ToLower();
-                var baseStatSourceStatId = "nullStat";
-                if (baseStatSource.StatId != null)
-                {
-                    baseStatSourceStatId = baseStatSource.StatId.Value.ToLower();
-                }
-                var sourceImpactType = baseStatSource.ImpactType.ToString().ToLower();
-                var sourceType = _type.ToString().ToLower();
-                baseStatSource.Id = $"{sourceId}_{sourceType}_{baseStatSourceStatId}_{sourceImpactType}_{baseStatSource.Value}";
+                StatSources.Add(new StatSourceData(newPercentageStatSource, ImpactType.Percentage));
+                newPercentageStatSource = null;
             }
         }
 
-        private void ConstructStats()
+
+        private void ConstructStatsPreview()
         {
-            _statsPreview = StatSources.Where(baseStatSource => baseStatSource.StatId != null).
-                GroupBy(statSource => statSource.StatId).
-                Select(group => new StatData(group.Key,
-                    group.Where(statSource => statSource.ImpactType == ImpactType.Flat).Sum(statSource => statSource.Value)
-                        * (1 + group.Where(statSource => statSource.ImpactType == ImpactType.Percentage).Sum(statSource => statSource.Value) 
-                        * 0.01f))).
-                ToList();
+            preview = new List<StatData>();
+            var uniqueStatIdList = StatSources.Select(s => s.StatId).ToHashSet();
+            foreach (var statId in uniqueStatIdList)
+            {
+                var statValue = StatSourcesBuilder.CalculateStatValue(statId, StatSources);
+                preview.Add(new StatData(statId, statValue, StatSources));
+            }
         }
     }
 }

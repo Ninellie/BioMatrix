@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SourceStatSystem
 {
@@ -9,27 +12,29 @@ namespace SourceStatSystem
     [Serializable]
     public class StatData
     {
+        [FormerlySerializedAs("_inspectorValue")]
         [HideInInspector]
-        [field: SerializeField] private string _inspectorValue;
+        [SerializeField] private string inspectorValue;
         [field: SerializeField] public StatId Id { get; private set; }
-
-        [SerializeField] private float _value = 0;
+        [SerializeField] private float value = 0;
+        [field: SerializeField] public List<StatSourceData> Sources { get; set; }
 
         public float Value
         {
-            get => _value;
+            get => value;
             set
             {
-                _value = value;
-                _inspectorValue = $"{_value}_{Id.Value}";
+                this.value = value;
+                inspectorValue = $"{this.value}_{Id.Value}";
             }
         }
 
-        public StatData(StatId id, float value)
+        public StatData(StatId id, float value, List<StatSourceData> sources)
         {
-            _inspectorValue = $"{value}_{id.Value}";
+            this.Sources = sources;
+            inspectorValue = $"{value}_{id.Value}";
             Id = id;
-            _value = value;
+            this.value = value;
         }
     }
 }
