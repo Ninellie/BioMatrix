@@ -7662,6 +7662,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1616056808747280045}
     m_Modifications:
+    - target: {fileID: 325630313364357368, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: m_text
+      value: Level 1
+      objectReference: {fileID: 0}
     - target: {fileID: 838074669449449227, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: m_Name
       value: Indicators
@@ -7709,6 +7713,10 @@ PrefabInstance:
     - target: {fileID: 1019970651536773657, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1605696030910094319, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: m_text
+      value: Biomass 40
       objectReference: {fileID: 0}
     - target: {fileID: 1804620654165456671, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7777,6 +7785,14 @@ PrefabInstance:
     - target: {fileID: 6436969722428379280, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: _winTime
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580538351012675576, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: m_text
+      value: Ammo 006/006
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790652031709087985, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7133636693806805252, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: m_Pivot.x

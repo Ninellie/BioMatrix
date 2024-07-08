@@ -2063,6 +2063,7 @@ MonoBehaviour:
   _decksArea: {fileID: 5674435825500700474}
   _cardInfoDisplay: {fileID: 3569476570626599207}
   _cardsToggleGroup: {fileID: 364203032448409690}
+  hand: {fileID: 11400000, guid: 93c89f9f5f9d6f24aa0e697219377825, type: 2}
 --- !u!114 &135024410629638961
 MonoBehaviour:
   m_ObjectHideFlags: 0
