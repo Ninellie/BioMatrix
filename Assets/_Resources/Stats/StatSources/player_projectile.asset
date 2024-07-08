@@ -12,11 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398d76ed9a41c9144ae3720c71b6891b, type: 3}
   m_Name: player_projectile
   m_EditorClassIdentifier: 
-  _statSources:
-  - <Id>k__BackingField: 
-    <StatId>k__BackingField: {fileID: 0}
-    <ImpactType>k__BackingField: 0
-    <Value>k__BackingField: 0
+  _statSources: []
   _clearOnPlay: 1
   _baseStatSources: {fileID: 11400000, guid: 8bac07cf3317d4c499e3e655bbfd6b09, type: 2}
   _stats:
@@ -25,3 +21,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c3d545ab68211884293b6139a47ffaa8, type: 2}
   - {fileID: 11400000, guid: 7d952413cf4dbc142b651bbb4a095522, type: 2}
   - {fileID: 11400000, guid: 8c5c99569e7248948af7cd524f7bb91b, type: 2}
+  _preview:
+  - _inspectorValue: 10_damage
+    <Id>k__BackingField: {fileID: 11400000, guid: 4ab1f9f5c63c2a94d9175bde092e4cb0, type: 2}
+    _value: 10
+  - _inspectorValue: 1_maximum_health
+    <Id>k__BackingField: {fileID: 11400000, guid: 0056aaa4eb48b6d458c89adf5bcf6f83, type: 2}
+    _value: 1
+  - _inspectorValue: 1_size
+    <Id>k__BackingField: {fileID: 11400000, guid: 743d904a11d0d9d4997d148969ccff3d, type: 2}
+    _value: 1
+  - _inspectorValue: 650_movement_speed
+    <Id>k__BackingField: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
+    _value: 650
+  - _inspectorValue: 15_knockback_power
+    <Id>k__BackingField: {fileID: 11400000, guid: 54986c30c0fc01145b7f70f9a5275ab2, type: 2}
+    _value: 15
