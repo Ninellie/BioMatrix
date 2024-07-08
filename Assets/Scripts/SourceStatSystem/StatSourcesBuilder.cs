@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Core.Variables;
+using UnityEngine;
 
 namespace SourceStatSystem
 {
@@ -56,21 +58,45 @@ namespace SourceStatSystem
             }
         }
         
-        public static void ValidateStatSources(List<StatSourceData> sources, StatSourceType type, string packId)
+        public static void SetStatSourceInspectorId(StatSourceData statSource)
         {
-            foreach (var baseStatSource in sources)
+            var sourceId = statSource.PackId.ToLower();
+            var statId = "nullStat";
+            if (statSource.StatId != null)
             {
-                baseStatSource.Type = type;
-                var sourceId = packId.ToLower();
-                var baseStatSourceStatId = "nullStat";
-                if (baseStatSource.StatId != null)
-                {
-                    baseStatSourceStatId = baseStatSource.StatId.Value.ToLower();
-                }
-                var sourceImpactType = baseStatSource.ImpactType.ToString().ToLower();
-                var sourceType = type.ToString().ToLower();
-                baseStatSource.Id = $"{sourceId}_{sourceType}_{baseStatSourceStatId}_{sourceImpactType}_{baseStatSource.Value}";
+                statId = statSource.StatId.Value.ToLower();
             }
+            var sourceType = statSource.Type.ToString().ToLower();
+            switch (statSource.ImpactType)
+            {
+                case ImpactType.None:
+                    statSource.Id = $"{sourceId}_{sourceType}_{statId}_has_no_impact_{statSource.Value}";
+                    break;
+                case ImpactType.Flat:
+
+                    if (Mathf.Sign(statSource.Value).Equals(1))
+                    { 
+                        statSource.Id = $"{sourceId}_{sourceType}_{statId}_+{statSource.Value}";
+                        break;
+                    }
+                    statSource.Id = $"{sourceId}_{sourceType}_{statId}_{statSource.Value}";
+                    break;
+                case ImpactType.Percentage:
+
+                    if (Mathf.Sign(statSource.Value).Equals(1))
+                    { 
+                        statSource.Id = $"{sourceId}_{sourceType}_{statId}_+{statSource.Value}%";
+                        break;
+                    }
+                    statSource.Id = $"{sourceId}_{sourceType}_{statId}_{statSource.Value}%";
+                    break;
+                case ImpactType.Locker:
+                    statSource.Id = $"{sourceId}_{sourceType}_{statId}_lock_at_{statSource.Value}";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
         }
 
         private static float PercentageToCoefficient(float percentageValue)

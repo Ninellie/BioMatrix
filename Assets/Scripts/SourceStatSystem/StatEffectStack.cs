@@ -1,7 +1,6 @@
-using SourceStatSystem;
 using UnityEngine;
 
-namespace EntityComponents.UnitComponents.PlayerComponents
+namespace SourceStatSystem
 {
     [ExecuteInEditMode]
     public class StatEffectStack : MonoBehaviour
@@ -22,6 +21,16 @@ namespace EntityComponents.UnitComponents.PlayerComponents
             foreach (var source in _statSources)
             {
                 _list.RemoveStatSource(source);
+            }
+        }
+
+        private void OnValidate()
+        {
+            foreach (var statSource in _statSources)
+            {
+                statSource.Type = StatSourceType.Effect;
+                statSource.PackId = name;
+                StatSourcesBuilder.SetStatSourceInspectorId(statSource);
             }
         }
     }

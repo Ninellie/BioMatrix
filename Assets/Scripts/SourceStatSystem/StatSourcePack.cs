@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace SourceStatSystem
 {
@@ -14,6 +13,7 @@ namespace SourceStatSystem
         [Header("Drop statId here to add new Stat Source")]
         [SerializeField] private StatId newFlatStatSource;
         [SerializeField] private StatId newPercentageStatSource;
+        [SerializeField] private StatId newLockerStatSource;
         [field: Space]
         [field: SerializeField] public List<StatSourceData> StatSources { get; private set; } = new();
         [field: Space]
@@ -22,21 +22,36 @@ namespace SourceStatSystem
         private void OnValidate()
         {
             ValidateAddedStatSource();
-            StatSourcesBuilder.ValidateStatSources(StatSources, type, _id);
+            ValidateStatSources();
             ConstructStatsPreview();
         }
 
+        private void ValidateStatSources()
+        {
+            foreach (var statSource in StatSources)
+            {
+                statSource.PackId = _id;
+                statSource.Type = type;
+                StatSourcesBuilder.SetStatSourceInspectorId(statSource);
+            }
+        }
+        
         private void ValidateAddedStatSource()
         {
             if (newFlatStatSource != null)
             {
-                StatSources.Add(new StatSourceData(newFlatStatSource, ImpactType.Flat));
+                StatSources.Add(new StatSourceData(newFlatStatSource, ImpactType.Flat, type, _id));
                 newFlatStatSource = null;
             }
             if (newPercentageStatSource != null)
             {
-                StatSources.Add(new StatSourceData(newPercentageStatSource, ImpactType.Percentage));
+                StatSources.Add(new StatSourceData(newPercentageStatSource, ImpactType.Percentage, type, _id));
                 newPercentageStatSource = null;
+            }
+            if (newLockerStatSource != null)
+            {
+                StatSources.Add(new StatSourceData(newLockerStatSource, ImpactType.Locker, type, _id));
+                newLockerStatSource = null;
             }
         }
 
