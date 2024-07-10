@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: shoots_per_second
   m_EditorClassIdentifier: 
   <Value>k__BackingField: shoots_per_second
+  <Description>k__BackingField: actionSpeed (1 action / time in seconds)
