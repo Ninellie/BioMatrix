@@ -52,7 +52,7 @@ namespace SourceStatSystem
         private void UpdateStat(StatId statId, List<StatSourceData> statSources)
         {
             // Находим такие ассеты переменных, к которым подходит источники
-            var statAssets = _stats.FindAll(s => s.id == statId);
+            var statAssets = _stats.FindAll(s => s.IdList.Contains(statId));
             // Считаем значение стата
             var updatedStatValue = StatSourcesBuilder.CalculateStatValue(statId, statSources);
             // Устанавливаем им обновлённое значение
