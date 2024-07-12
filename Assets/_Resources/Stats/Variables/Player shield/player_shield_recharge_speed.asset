@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: player_shield_recharge_speed
   m_EditorClassIdentifier: 
   developerDescription: "\u0412 \u043C\u0438\u043D\u0443\u0442\u0443"
-  value: 3
+  value: 1
   id: {fileID: 11400000, guid: 1527b88ddc7bd9a46869a1a94628689e, type: 2}
+  idList:
+  - {fileID: 11400000, guid: 1527b88ddc7bd9a46869a1a94628689e, type: 2}

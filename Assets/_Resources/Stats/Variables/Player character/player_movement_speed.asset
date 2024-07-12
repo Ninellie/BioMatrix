@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: player_movement_speed
   m_EditorClassIdentifier: 
   developerDescription: 
-  value: 300
+  value: 120
   id: {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}
+  idList:
+  - {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}

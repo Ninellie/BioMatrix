@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: player_experience_per_level
   m_EditorClassIdentifier: 
   developerDescription: 
-  value: 50
+  value: 32
   id: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
+  idList:
+  - {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}

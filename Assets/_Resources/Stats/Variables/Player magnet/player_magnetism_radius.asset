@@ -16,3 +16,5 @@ MonoBehaviour:
     \u0431\u043E\u043D\u0443\u0441\u043E\u0432 \u043A \u0438\u0433\u0440\u043E\u043A\u0443"
   value: 50
   id: {fileID: 11400000, guid: ab68be734ef4e284d8c10fc21ef91dd4, type: 2}
+  idList:
+  - {fileID: 11400000, guid: ab68be734ef4e284d8c10fc21ef91dd4, type: 2}

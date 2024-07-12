@@ -9,11 +9,18 @@ namespace Core.Variables
     public class StatVariable : FloatVariable
     {
         public StatId id;
-
+        
+        [SerializeField] private List<StatId> idList;
+            
         /// <summary>
         /// The list of listeners that this event will notify if it is raised.
         /// </summary>
         private readonly List<StatListener> _eventListeners = new();
+
+        private void OnEnable()
+        {
+            idList = new List<StatId>() { id };
+        }
 
         public static implicit operator float(StatVariable reference)
         {

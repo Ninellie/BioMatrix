@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: max_player_blood
   m_EditorClassIdentifier: 
   developerDescription: 
-  value: 22
+  value: 0
   id: {fileID: 11400000, guid: 6b6787d845f22bf42be875066ec742ff, type: 2}
+  idList:
+  - {fileID: 11400000, guid: 6b6787d845f22bf42be875066ec742ff, type: 2}

@@ -16,3 +16,5 @@ MonoBehaviour:
     \u043D\u0443\u043B\u044F \u0434\u043E \u0435\u0434\u0438\u043D\u0438\u0446\u044B"
   value: 0.5
   id: {fileID: 0}
+  idList:
+  - {fileID: 0}

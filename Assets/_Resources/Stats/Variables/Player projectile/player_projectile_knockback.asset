@@ -15,3 +15,5 @@ MonoBehaviour:
   developerDescription: 
   value: 15
   id: {fileID: 11400000, guid: 54986c30c0fc01145b7f70f9a5275ab2, type: 2}
+  idList:
+  - {fileID: 11400000, guid: 54986c30c0fc01145b7f70f9a5275ab2, type: 2}

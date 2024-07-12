@@ -16,3 +16,5 @@ MonoBehaviour:
     = reload_time"
   value: 1
   id: {fileID: 11400000, guid: 32348d0ee0a618b4081601b8fa05fe17, type: 2}
+  idList:
+  - {fileID: 11400000, guid: 32348d0ee0a618b4081601b8fa05fe17, type: 2}

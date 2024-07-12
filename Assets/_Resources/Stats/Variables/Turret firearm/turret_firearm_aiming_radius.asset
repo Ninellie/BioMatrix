@@ -15,5 +15,7 @@ MonoBehaviour:
   developerDescription: "\u0420\u0430\u0434\u0438\u0443\u0441 \u0432 \u043A\u043E\u0442\u043E\u0440\u043E\u043C
     \u0442\u0443\u0440\u0435\u043B\u0438 \u0441\u0442\u0440\u0435\u043B\u044F\u044E\u0442
     \u043F\u0440\u0438\u0446\u0435\u043B\u044C\u043D\u043E"
-  value: 300
+  value: 200
   id: {fileID: 11400000, guid: 600904a1a8e1267408fc978431776421, type: 2}
+  idList:
+  - {fileID: 11400000, guid: 600904a1a8e1267408fc978431776421, type: 2}

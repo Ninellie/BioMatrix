@@ -16,5 +16,7 @@ MonoBehaviour:
     \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0441\u043B\u043E\u0451\u0432
     \u043A\u043E\u0442\u043E\u0440\u044B\u0435 \u043C\u043E\u0433\u0443\u0442\n\u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438
     \u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u0438\u0442\u044C\u0441\u044F"
-  value: 3
+  value: 0
   id: {fileID: 11400000, guid: 73d5ba7dd5ca03e41b6a2b38f1fbff8b, type: 2}
+  idList:
+  - {fileID: 11400000, guid: 73d5ba7dd5ca03e41b6a2b38f1fbff8b, type: 2}
