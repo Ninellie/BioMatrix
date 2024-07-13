@@ -1,19 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using Core.Sets;
 using Core.Variables.References;
-using FirearmComponents;
 using UnityEngine;
 
 namespace EntityComponents.UnitComponents.PlayerComponents
 {
     public class TurretShootDelaySetter : MonoBehaviour
     {
-        public FloatReference turretAttackSpeed;
-        public ShooterRuntimeSet turretShooters;
-        public float timeBetweenShoots;
-
-
+        [SerializeField] private FloatReference turretAttackSpeed;
+        [SerializeField] private ShooterRuntimeSet turretShooters;
+        [SerializeField] private float timeBetweenShoots;
+        
         private void OnDisable()
         {
             StopAllCoroutines();
@@ -22,7 +19,6 @@ namespace EntityComponents.UnitComponents.PlayerComponents
         public void ReShoot()
         {
             StopAllCoroutines();
-
             StartCoroutine(Co_Shoot());
         }
 
@@ -33,14 +29,7 @@ namespace EntityComponents.UnitComponents.PlayerComponents
 
         private IEnumerator Co_Shoot()
         {
-            var shooterList = new List<Shooter>();
-
-            foreach (var turretShootersItem in turretShooters.items)
-            {
-                shooterList.Add(turretShootersItem);
-            }
-
-            foreach (var shooter in shooterList)
+            foreach (var shooter in turretShooters.items)
             {
                 timeBetweenShoots = 1f / turretAttackSpeed / turretShooters.items.Count;
                 yield return new WaitForSeconds(timeBetweenShoots);

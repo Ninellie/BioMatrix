@@ -11,13 +11,15 @@ GameObject:
   - component: {fileID: 9034957501157506180}
   - component: {fileID: 5384950061153012680}
   - component: {fileID: 8339976463949705807}
+  - component: {fileID: 6048457522269194265}
+  - component: {fileID: -971234845943279328}
   - component: {fileID: -2438047304560794583}
   - component: {fileID: 2120831584645213085}
   - component: {fileID: -2428173502289445794}
-  - component: {fileID: 2300236971345187424}
-  m_Layer: 0
+  - component: {fileID: 4449750508476212649}
+  m_Layer: 10
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: TurretProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,6 +213,68 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 0
+--- !u!58 &6048457522269194265
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206584794608382483}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4
+--- !u!50 &-971234845943279328
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206584794608382483}
+  m_BodyType: 1
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 1000
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &-2438047304560794583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1afd1cee26c164fb469c4fde207e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visibleEnemies: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _targets: {fileID: 11400000, guid: 69521e5fddd5a834383b2255e97af379, type: 2}
+  _displayTarget: 0
   _mode: 1
   _selfAimDirection:
     useConstant: 0
@@ -233,6 +298,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 27061efd78cbe594bb204bcb452d6779, type: 2}
+  _inCamBounds: 0
 --- !u!114 &2120831584645213085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37722ef34fa1f34ea377263042941ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammo: {fileID: 2741946790039367102, guid: c07a370a0d54c3a4182798ecb9368192, type: 3}
+  _magazine: {fileID: 0}
+  _aim: {fileID: 0}
   _projectilesPerAttack:
     useConstant: 0
     constantValue: 0
@@ -254,6 +321,8 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: 46efe7fa285fc0547af5c79dbe693992, type: 2}
+  _roundShoot: 0
+  _randomAimDirection: 0
 --- !u!114 &-2428173502289445794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runtimeSet: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
---- !u!114 &2300236971345187424
+--- !u!114 &4449750508476212649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,26 +345,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9206584794608382483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d796efe4706d8324c8f18e671a2b81ec, type: 3}
+  m_Script: {fileID: 11500000, guid: f84a93f5bf6f51f4f8d670e0f1ca2324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _castsPerSecond:
-    useConstant: 0
-    constantValue: 0
-    variable: {fileID: 11400000, guid: bf92d1e7c8f2cb849af18fbd8a46bed1, type: 2}
-  _mode: 1
-  _onCast:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2120831584645213085}
-        m_TargetAssemblyTypeName: Assets.Scripts.FirearmComponents.Shooter, Scripts
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
