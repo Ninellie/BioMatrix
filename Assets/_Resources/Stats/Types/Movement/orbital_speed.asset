@@ -10,6 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efe87847409217044a03a12ceb060f43, type: 3}
-  m_Name: orbit_rotation_speed
+  m_Name: orbital_speed
   m_EditorClassIdentifier: 
-  <Value>k__BackingField: orbit_rotation_speed
+  <Value>k__BackingField: orbital_speed
+  <Description>k__BackingField: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C
+    \u0432\u0440\u0430\u0449\u0435\u043D\u0438\u044F \u043E\u0431\u044A\u0435\u043A\u0442\u0430
+    \u043F\u043E \u043E\u0440\u0431\u0438\u0442\u0435"

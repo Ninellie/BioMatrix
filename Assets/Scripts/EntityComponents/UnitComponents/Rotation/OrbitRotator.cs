@@ -1,4 +1,5 @@
 using Core.Sets;
+using Core.Variables.References;
 using GameSession.Spawner;
 using UnityEngine;
 
@@ -6,9 +7,9 @@ namespace EntityComponents.UnitComponents.Rotation
 {
     public class OrbitRotator : MonoBehaviour
     {
-        [SerializeField] private float _orbitRadius = 80;
-        [SerializeField] [Tooltip("In degrees per second")] private float _orbitalSpeed;
-        [SerializeField] private TransformRuntimeSet _pool;
+        [SerializeField] private FloatReference orbitRadius;
+        [SerializeField] [Tooltip("In degrees per second")] private FloatReference orbitalSpeed;
+        [SerializeField] private TransformRuntimeSet pool;
 
         private readonly Circle _circle = new();
         private float _currentAngle;
@@ -37,12 +38,12 @@ namespace EntityComponents.UnitComponents.Rotation
 
         private void OrbitalStep(float time)
         {
-            var gap = 360f / _pool.items.Count;
-            CurrentAngle += _orbitalSpeed * time;
-            foreach (var o in _pool.items)
+            var gap = 360f / pool.items.Count;
+            CurrentAngle += orbitalSpeed * time;
+            foreach (var o in pool.items)
             {
                 var fi = CurrentAngle * Mathf.Deg2Rad;
-                var nextPosition = _circle.GetPointOn(_orbitRadius, _attractionPoint.position, fi);
+                var nextPosition = _circle.GetPointOn(orbitRadius, _attractionPoint.position, fi);
                 o.Transform.position = nextPosition;
                 CurrentAngle += gap;
             }

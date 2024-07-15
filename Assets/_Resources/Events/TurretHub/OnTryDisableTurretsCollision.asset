@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de07b0703f40c014db9884ac7f392eb7, type: 3}
-  m_Name: turret_projectile_speed
+  m_Script: {fileID: 11500000, guid: b331492e464563c4897c754d415d94ba, type: 3}
+  m_Name: OnTryDisableTurretsCollision
   m_EditorClassIdentifier: 
-  developerDescription: 
-  value: 800
-  idList:
-  - {fileID: 11400000, guid: 3c8635436f0e1d94fbbb2994b7859642, type: 2}

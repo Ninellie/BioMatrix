@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bb1b0fb485f50439cfd2c7aad10afb, type: 3}
+  m_Name: turret_hub_base
+  m_EditorClassIdentifier: 
+  _id: turret_firearm
+  type: 0
+  enableValidation: 1
+  value: 0
+  newFlatStatSource: {fileID: 0}
+  newPercentageStatSource: {fileID: 0}
+  newLockerStatSource: {fileID: 0}
+  <StatSources>k__BackingField:
+  - <Id>k__BackingField: turret_firearm_base_projectile_count_+1
+    <PackId>k__BackingField: turret_firearm
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 669ba26595dba81409387c1b0e1e91ac, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 1
+  - <Id>k__BackingField: turret_firearm_base_shoot_deflection_+15
+    <PackId>k__BackingField: turret_firearm
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: dedfaeaa6846fef4a9e93113cf99547d, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 15
+  - <Id>k__BackingField: turret_firearm_base_aiming_radius_+200
+    <PackId>k__BackingField: turret_firearm
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 600904a1a8e1267408fc978431776421, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 200
+  - <Id>k__BackingField: turret_firearm_base_shoots_per_second_+1
+    <PackId>k__BackingField: turret_firearm
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 33316e8cac88b9f4b995b4847b8d7ccc, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 1
+  - <Id>k__BackingField: turret_firearm_base_shoots_per_second_-50%
+    <PackId>k__BackingField: turret_firearm
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 33316e8cac88b9f4b995b4847b8d7ccc, type: 2}
+    <ImpactType>k__BackingField: 2
+    <Value>k__BackingField: -50
+  - <Id>k__BackingField: turret_firearm_base_orbit_radius_+80
+    <PackId>k__BackingField: turret_firearm
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: d8ddc7e9f64382d4cb291c0917bc23be, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 80
+  - <Id>k__BackingField: turret_firearm_base_orbital_speed_+15
+    <PackId>k__BackingField: turret_firearm
+    <Type>k__BackingField: 0
+    <StatId>k__BackingField: {fileID: 11400000, guid: 3cb1219245566b445a260426ffbfee5f, type: 2}
+    <ImpactType>k__BackingField: 1
+    <Value>k__BackingField: 15
+  preview:
+  - inspectorValue: 1_projectile_count
+    <Id>k__BackingField: {fileID: 11400000, guid: 669ba26595dba81409387c1b0e1e91ac, type: 2}
+    value: 1
+    <Sources>k__BackingField:
+    - <Id>k__BackingField: turret_firearm_base_projectile_count_+1
+      <PackId>k__BackingField: turret_firearm
+      <Type>k__BackingField: 0
+      <StatId>k__BackingField: {fileID: 11400000, guid: 669ba26595dba81409387c1b0e1e91ac, type: 2}
+      <ImpactType>k__BackingField: 1
+      <Value>k__BackingField: 1
+  - inspectorValue: 15_shoot_deflection
+    <Id>k__BackingField: {fileID: 11400000, guid: dedfaeaa6846fef4a9e93113cf99547d, type: 2}
+    value: 15
+    <Sources>k__BackingField:
+    - <Id>k__BackingField: turret_firearm_base_shoot_deflection_+15
+      <PackId>k__BackingField: turret_firearm
+      <Type>k__BackingField: 0
+      <StatId>k__BackingField: {fileID: 11400000, guid: dedfaeaa6846fef4a9e93113cf99547d, type: 2}
+      <ImpactType>k__BackingField: 1
+      <Value>k__BackingField: 15
+  - inspectorValue: 200_aiming_radius
+    <Id>k__BackingField: {fileID: 11400000, guid: 600904a1a8e1267408fc978431776421, type: 2}
+    value: 200
+    <Sources>k__BackingField:
+    - <Id>k__BackingField: turret_firearm_base_aiming_radius_+200
+      <PackId>k__BackingField: turret_firearm
+      <Type>k__BackingField: 0
+      <StatId>k__BackingField: {fileID: 11400000, guid: 600904a1a8e1267408fc978431776421, type: 2}
+      <ImpactType>k__BackingField: 1
+      <Value>k__BackingField: 200
+  - inspectorValue: 0,5_shoots_per_second
+    <Id>k__BackingField: {fileID: 11400000, guid: 33316e8cac88b9f4b995b4847b8d7ccc, type: 2}
+    value: 0.5
+    <Sources>k__BackingField:
+    - <Id>k__BackingField: turret_firearm_base_shoots_per_second_+1
+      <PackId>k__BackingField: turret_firearm
+      <Type>k__BackingField: 0
+      <StatId>k__BackingField: {fileID: 11400000, guid: 33316e8cac88b9f4b995b4847b8d7ccc, type: 2}
+      <ImpactType>k__BackingField: 1
+      <Value>k__BackingField: 1
+    - <Id>k__BackingField: turret_firearm_base_shoots_per_second_-50%
+      <PackId>k__BackingField: turret_firearm
+      <Type>k__BackingField: 0
+      <StatId>k__BackingField: {fileID: 11400000, guid: 33316e8cac88b9f4b995b4847b8d7ccc, type: 2}
+      <ImpactType>k__BackingField: 2
+      <Value>k__BackingField: -50
+  - inspectorValue: 80_orbit_radius
+    <Id>k__BackingField: {fileID: 11400000, guid: d8ddc7e9f64382d4cb291c0917bc23be, type: 2}
+    value: 80
+    <Sources>k__BackingField:
+    - <Id>k__BackingField: turret_firearm_base_orbit_radius_+80
+      <PackId>k__BackingField: turret_firearm
+      <Type>k__BackingField: 0
+      <StatId>k__BackingField: {fileID: 11400000, guid: d8ddc7e9f64382d4cb291c0917bc23be, type: 2}
+      <ImpactType>k__BackingField: 1
+      <Value>k__BackingField: 80
+  - inspectorValue: 15_orbital_speed
+    <Id>k__BackingField: {fileID: 11400000, guid: 3cb1219245566b445a260426ffbfee5f, type: 2}
+    value: 15
+    <Sources>k__BackingField:
+    - <Id>k__BackingField: turret_firearm_base_orbital_speed_+15
+      <PackId>k__BackingField: turret_firearm
+      <Type>k__BackingField: 0
+      <StatId>k__BackingField: {fileID: 11400000, guid: 3cb1219245566b445a260426ffbfee5f, type: 2}
+      <ImpactType>k__BackingField: 1
+      <Value>k__BackingField: 15
