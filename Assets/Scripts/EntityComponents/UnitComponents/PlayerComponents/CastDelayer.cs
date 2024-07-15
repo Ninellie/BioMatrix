@@ -64,7 +64,6 @@ namespace EntityComponents.UnitComponents.PlayerComponents
                 case DelayMode.Singular:
                     if (IsInvoking(nameof(Cast))) break;
                     _onCastDelayed.Invoke();
-                    CancelInvoke(nameof(Cast)); 
                     Invoke(nameof(Cast), time);
                     break;
                 case DelayMode.Separate:
