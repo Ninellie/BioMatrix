@@ -15,6 +15,11 @@ GameObject:
   - component: {fileID: 5786093775013850615}
   - component: {fileID: 8917581052005254191}
   - component: {fileID: 3804558727442035438}
+  - component: {fileID: 4058244523576719034}
+  - component: {fileID: 2613255837106355349}
+  - component: {fileID: 2569346642639312577}
+  - component: {fileID: 1632594902718883390}
+  - component: {fileID: 7268757729236221728}
   m_Layer: 0
   m_Name: TurretHub
   m_TagString: Untagged
@@ -64,9 +69,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f33d09c33dfb7d44963c22058b79f70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _orbitRadius: 50
-  _orbitalSpeed: 15
-  _pool: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
+  orbitRadius:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 349856a8c39197545aafe7e30e8953ad, type: 2}
+  orbitalSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 11400000, guid: 7fb12e2a15c52e042b5dac34a9c42dc6, type: 2}
+  pool: {fileID: 11400000, guid: 069d75ee71a4a6946bb549f02ef7d3a6, type: 2}
 --- !u!114 &7006046227286731421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,12 +90,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc7c9b776cbd41479da78e434004c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _size: 0
+  _size: 15
   _active: 0
   _stack: {fileID: 9206584794608382483, guid: e4b56dd8ab154984597f19cc0101b423, type: 3}
   _transform: {fileID: 5218627659422222759}
   _enabled: []
-  _disabled: []
+  _disabled:
+  - {fileID: 2528771754343194291}
+  - {fileID: 5487844230986436754}
+  - {fileID: 8144433508600619343}
+  - {fileID: 1932866083064343412}
+  - {fileID: 2310079602083376685}
+  - {fileID: 3043970118313859783}
+  - {fileID: 2321677112663959441}
+  - {fileID: 4223759330546867003}
+  - {fileID: 7486049720587935954}
+  - {fileID: 2296380790077058330}
+  - {fileID: 5018960641434947013}
+  - {fileID: 5085021193425133360}
+  - {fileID: 1872968930960032880}
+  - {fileID: 1898806064092749046}
+  - {fileID: 4632739362649314910}
   _allowGettingActiveObjects: 0
 --- !u!114 &4916441894928229653
 MonoBehaviour:
@@ -199,6 +225,134 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &4058244523576719034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785819568117180162}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fee4cc96e7f40c3a2c7ff740892fd67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runtimeSet: {fileID: 11400000, guid: 97967a5a174c89d4187b90aad478e939, type: 2}
+  simulationEnabled: 0
+--- !u!114 &2613255837106355349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785819568117180162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 2d14e3ae6759a07469dd1b820bdd2340, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4058244523576719034}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2569346642639312577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785819568117180162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 85aed279f7adbd04ca4590bcfcf287e8, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4058244523576719034}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1632594902718883390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785819568117180162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 040ae071ec3732443bba64edd1010ab7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4058244523576719034}
+        m_TargetAssemblyTypeName: EntityComponents.UnitComponents.PlayerComponents.RigidbodySimulationSwitcher,
+          Scripts
+        m_MethodName: UpdateSimulationState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7268757729236221728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785819568117180162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd55cf15e31a35744a2c34bf5825cb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: b6e623374d1cba249b9ea175c5d342ef, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4058244523576719034}
+        m_TargetAssemblyTypeName: EntityComponents.UnitComponents.PlayerComponents.RigidbodySimulationSwitcher,
+          Scripts
+        m_MethodName: UpdateSimulationState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1872968930960032880
 GameObject:
