@@ -495,7 +495,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -545,7 +547,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -676,7 +680,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -805,6 +811,9 @@ MonoBehaviour:
   _onIncrease:
     m_PersistentCalls:
       m_Calls: []
+  marks: []
+  isLocked: 0
+  lockedValue: 0
 --- !u!1 &1436559202825228029
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +860,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -1471,7 +1482,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -1521,7 +1534,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -1856,7 +1871,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -1906,7 +1923,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -1956,7 +1975,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -2006,7 +2027,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -2056,7 +2079,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -7473,7 +7498,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -7523,7 +7550,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -7858,7 +7887,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -7908,7 +7939,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -7958,7 +7991,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -8008,7 +8043,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -8166,6 +8203,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  marks: []
+  isLocked: 0
+  lockedValue: 0
 --- !u!114 &8280180350120482510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8682,6 +8722,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  marks: []
+  isLocked: 0
+  lockedValue: 0
 --- !u!114 &8021525112388424157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8839,7 +8882,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -8889,7 +8934,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -8939,7 +8986,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -9403,6 +9452,9 @@ MonoBehaviour:
   _onIncrease:
     m_PersistentCalls:
       m_Calls: []
+  marks: []
+  isLocked: 0
+  lockedValue: 0
 --- !u!114 &5428630068273367844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9505,7 +9557,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -9555,7 +9609,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -9605,7 +9661,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -9667,6 +9725,11 @@ MonoBehaviour:
     variable: {fileID: 11400000, guid: 2e1a752507bdd354f976d465c7e9cdef, type: 2}
   _clampToMaxSpeed: 0
   _maxSpeed:
+    useConstant: 0
+    constantValue: 0
+    variable: {fileID: 0}
+  clampToMinSpeed: 0
+  minSpeed:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 0}
@@ -9829,6 +9892,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  marks: []
+  isLocked: 0
+  lockedValue: 0
 --- !u!1 &5533861175268521056
 GameObject:
   m_ObjectHideFlags: 0
@@ -10097,7 +10163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -10717,7 +10785,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -10943,7 +11013,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -11077,7 +11149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -11127,7 +11201,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -11177,7 +11253,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -11227,7 +11305,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -11324,7 +11404,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -11944,7 +12026,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -12674,7 +12758,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -12724,7 +12810,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -12774,7 +12862,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _list: {fileID: 11400000, guid: e0586e4c01b64184f9f5eec8d5933734, type: 2}
   _statSources:
-  - <Id>k__BackingField: 
+  - <Id>k__BackingField: expperlevel_stack(clone)_effect_experience_to_new_level_+50%
+    <PackId>k__BackingField: expPerLevel_stack(Clone)
+    <Type>k__BackingField: 1
     <StatId>k__BackingField: {fileID: 11400000, guid: a988136f3afd6f94188772c7e69ffcad, type: 2}
     <ImpactType>k__BackingField: 2
     <Value>k__BackingField: 50
@@ -14376,74 +14466,6 @@ PrefabInstance:
       propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[0]
-      value: 
-      objectReference: {fileID: 1454590899961082113}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[1]
-      value: 
-      objectReference: {fileID: 2818933900923045959}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[2]
-      value: 
-      objectReference: {fileID: 1965170148078039655}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[3]
-      value: 
-      objectReference: {fileID: 4087560601498059914}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[4]
-      value: 
-      objectReference: {fileID: 7884162603152992368}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[5]
-      value: 
-      objectReference: {fileID: 3389595451637218262}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[6]
-      value: 
-      objectReference: {fileID: 8369801268562007422}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[7]
-      value: 
-      objectReference: {fileID: 38123070719424151}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[8]
-      value: 
-      objectReference: {fileID: 5552903237254791421}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[9]
-      value: 
-      objectReference: {fileID: 8068929102303309224}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[10]
-      value: 
-      objectReference: {fileID: 1573101510210310979}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[11]
-      value: 
-      objectReference: {fileID: 9196057870197566160}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[12]
-      value: 
-      objectReference: {fileID: 2595766489460448412}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[13]
-      value: 
-      objectReference: {fileID: 7764339157941454555}
-    - target: {fileID: 7006046227286731421, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
-      propertyPath: _disabled.Array.data[14]
-      value: 
-      objectReference: {fileID: 5911442729056771370}
     - target: {fileID: 9034957501157506180, guid: 1c563daadd8620a4cbdc39385ea89d3d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
