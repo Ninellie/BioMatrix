@@ -10,6 +10,10 @@ namespace SourceStatSystem
         [SerializeField] private string _id = "";
         [SerializeField] private StatSourceType type = StatSourceType.Base;
         [Space]
+        [SerializeField] private bool enableValidation;
+        [Space]
+        [SerializeField] private int value;
+        //[SerializeField] private StatSourceType impactType; 
         [Header("Drop statId here to add new Stat Source")]
         [SerializeField] private StatId newFlatStatSource;
         [SerializeField] private StatId newPercentageStatSource;
@@ -21,9 +25,12 @@ namespace SourceStatSystem
 
         private void OnValidate()
         {
-            ValidateAddedStatSource();
-            ValidateStatSources();
-            ConstructStatsPreview();
+            if (enableValidation)
+            {
+                ValidateAddedStatSource();
+                ValidateStatSources();
+                ConstructStatsPreview();
+            }
         }
 
         private void ValidateStatSources()
@@ -40,21 +47,20 @@ namespace SourceStatSystem
         {
             if (newFlatStatSource != null)
             {
-                StatSources.Add(new StatSourceData(newFlatStatSource, ImpactType.Flat, type, _id));
+                StatSources.Add(new StatSourceData(newFlatStatSource, ImpactType.Flat, type, _id, value));
                 newFlatStatSource = null;
             }
             if (newPercentageStatSource != null)
             {
-                StatSources.Add(new StatSourceData(newPercentageStatSource, ImpactType.Percentage, type, _id));
+                StatSources.Add(new StatSourceData(newPercentageStatSource, ImpactType.Percentage, type, _id, value));
                 newPercentageStatSource = null;
             }
             if (newLockerStatSource != null)
             {
-                StatSources.Add(new StatSourceData(newLockerStatSource, ImpactType.Locker, type, _id));
+                StatSources.Add(new StatSourceData(newLockerStatSource, ImpactType.Locker, type, _id, value));
                 newLockerStatSource = null;
             }
         }
-
 
         private void ConstructStatsPreview()
         {

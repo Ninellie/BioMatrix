@@ -9,11 +9,11 @@ namespace SourceStatSystem
     [Serializable]
     public class StatSourceData
     {
-        public StatSourceData(StatId statId, ImpactType impactType, StatSourceType sourceType = StatSourceType.Effect, string packId = "")
+        public StatSourceData(StatId statId, ImpactType impactType, StatSourceType sourceType = StatSourceType.Effect, string packId = "", int value = 0)
         {
             StatId = statId;
             ImpactType = impactType;
-            Value = 0;
+            Value = value;
             Type = sourceType;
             PackId = packId;
             StatSourcesBuilder.SetStatSourceInspectorId(this);
