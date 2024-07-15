@@ -63,7 +63,8 @@ namespace SourceStatSystem
             foreach (var statId in uniqueStatIdList)
             {
                 var statValue = StatSourcesBuilder.CalculateStatValue(statId, StatSources);
-                preview.Add(new StatData(statId, statValue, StatSources));
+                var statIdSources = StatSources.Where(s => s.StatId == statId).ToList();
+                preview.Add(new StatData(statId, statValue, statIdSources));
             }
         }
     }
