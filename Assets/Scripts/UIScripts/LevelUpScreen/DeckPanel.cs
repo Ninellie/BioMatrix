@@ -15,7 +15,6 @@ namespace UIScripts.LevelUpScreen
         [SerializeField] private GameObject _cardFramePrefab;
         [Space]
         [SerializeField] private RectTransform _cardListScrollView;
-        [SerializeField] private RectTransform _viewport;
         [SerializeField] private RectTransform _cardListContent;
         [Space]
         [SerializeField] private GameObject _flapPanel;
@@ -40,7 +39,7 @@ namespace UIScripts.LevelUpScreen
         [SerializeField] private bool _isActive;
     
         [SerializeField] private ComplexLevelUpDisplay _parentDisplay;
-        public bool IsActive => _isActive;
+        public bool IsActive => _isActive;  
 
         private readonly LinkedList<CardUI> _cardList = new();
         private CardUI _openedCard;
@@ -51,6 +50,11 @@ namespace UIScripts.LevelUpScreen
         public string GetName() => _name;
         public CardUI GetOpenedCard() => _openedCard;
 
+        public void SetName(string deckName)
+        {
+            _name = deckName;
+        }
+        
         public void UpdateContentPositionToOpenedCard()
         {
             _cardsScrollRect.horizontalNormalizedPosition = 0f;
@@ -59,6 +63,7 @@ namespace UIScripts.LevelUpScreen
             var padding = _cardListContent.GetComponent<HorizontalOrVerticalLayoutGroup>().padding;
             var selectedCardRectTransform = _openedCard.GetComponent<RectTransform>();
             var overflow = (contentRect.rect.width - scrollRect.rect.width) / 2f;
+            
             var leftBorder = overflow - selectedCardRectTransform.offsetMin.x + padding.left;
             var rightBorder = contentRect.rect.width - overflow - selectedCardRectTransform.offsetMax.x - padding.right;
 
@@ -87,7 +92,7 @@ namespace UIScripts.LevelUpScreen
             UpdateContentPositionToOpenedCard();
             _openedCard.Deselect();
         }
-
+        
         public void DisplayDeck(string deckName, int deckSize, int openedCardIndex, ToggleGroup cardsToggleGroup)
         {
             _cardList.Clear();
@@ -95,56 +100,11 @@ namespace UIScripts.LevelUpScreen
             _name = deckName;
             _deckNameText.text = _name;
 
-            for (int i = 0; i < deckSize; i++)
+            for (var i = 0; i < deckSize; i++)
             {
-                var cardUIGameObject = Instantiate(_cardFramePrefab, _cardListContent.transform);
-                cardUIGameObject.name = $"{deckName} Card {i + 1}";
-                var cardUI = cardUIGameObject.GetComponentInChildren<CardUI>();
-                var cardNode = _cardList.AddLast(cardUI);
-                cardUI.SetText($"{i + 1}");
-                cardUI.SetColorTextPresets(_openedColorGradient, _closedColorGradient, _obtainedColorGradient);
-                cardUI.SetIndex(i);
-                cardUI.SetDeckName(_name);
-                cardUI.SetCardInfoPanel(_cardInfo);
-                cardUI.SetDeckPanel(this);
-
-                var toggle = cardUIGameObject.GetComponent<Toggle>();
-                toggle.group = cardsToggleGroup;
-
-                if (i < openedCardIndex)
-                {
-                    cardUI.Obtain();
-                }
-                if (i == openedCardIndex)
-                {
-                    cardUI.Open();
-                    _openedCard = cardUI;
-                }
-                if (i > openedCardIndex)
-                {
-                    cardUI.Close();
-                }
-
-                if ((i + 1) % 15 == 0)
-                {
-                    cardUI.TurnToGreat();
-                    continue;
-                }
-
-                if ((i + 1) % 5 == 0)
-                {
-                    cardUI.TurnToRare();
-                    continue;
-                }
-
-                if ((i + 1) % 3 == 0)
-                {
-                    cardUI.TurnToMagic();
-                    continue;
-                }
-            
-                cardUI.TurnToNormal();
+                DisplayCard(deckName, i, cardsToggleGroup, openedCardIndex);
             }
+            
             UpdateContentPositionToOpenedCard();
         }
 
@@ -179,6 +139,57 @@ namespace UIScripts.LevelUpScreen
             if (_isActive) return;
             _flapPanel.GetComponent<Image>().color = new Color(0, 0, 0, 0.5f);
             transform.localScale = new Vector3(0.75f, 0.75f, 1);
+        }
+
+        private void DisplayCard(string deckName, int i, ToggleGroup cardsToggleGroup, int openedCardIndex)
+        {
+            var cardUIGameObject = Instantiate(_cardFramePrefab, _cardListContent.transform);
+            cardUIGameObject.name = $"{deckName} Card {i + 1}";
+            var cardUI = cardUIGameObject.GetComponentInChildren<CardUI>();
+            _cardList.AddLast(cardUI);
+            cardUI.SetText($"{i + 1}");
+            cardUI.SetColorTextPresets(_openedColorGradient, _closedColorGradient, _obtainedColorGradient);
+            cardUI.SetIndex(i);
+            cardUI.SetDeckName(_name);
+            cardUI.SetCardInfoPanel(_cardInfo);
+            cardUI.SetDeckPanel(this);
+
+            var toggle = cardUIGameObject.GetComponent<Toggle>();
+            toggle.group = cardsToggleGroup;
+
+            if (i < openedCardIndex)
+            {
+                cardUI.Obtain();
+            }
+            if (i == openedCardIndex)
+            {
+                cardUI.Open();
+                _openedCard = cardUI;
+            }
+            if (i > openedCardIndex)
+            {
+                cardUI.Close();
+            }
+
+            if ((i + 1) % 15 == 0)
+            {
+                cardUI.TurnToGreat();
+                return;
+            }
+
+            if ((i + 1) % 5 == 0)
+            {
+                cardUI.TurnToRare();
+                return;
+            }
+
+            if ((i + 1) % 3 == 0)
+            {
+                cardUI.TurnToMagic();
+                return;
+            }
+            
+            cardUI.TurnToNormal();
         }
     }
 }

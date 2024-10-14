@@ -7664,7 +7664,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 325630313364357368, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: m_text
-      value: Level 1
+      value: Level 4
       objectReference: {fileID: 0}
     - target: {fileID: 838074669449449227, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: m_Name
@@ -7788,11 +7788,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6580538351012675576, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: m_text
-      value: Ammo 006/006
+      value: Ammo 000/006
       objectReference: {fileID: 0}
     - target: {fileID: 6790652031709087985, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7133636693806805252, guid: d1679098fe3b1134bb8a011003909c8d, type: 3}
       propertyPath: m_Pivot.x

@@ -13703,6 +13703,10 @@ PrefabInstance:
       propertyPath: _invokeOnCollisionEnter2D
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2749057667148597988, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3192226550488893894, guid: 88ca88bece14cf9428fafab533acf1cb, type: 3}
       propertyPath: m_Layer
       value: 10
