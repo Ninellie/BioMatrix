@@ -1,28 +1,16 @@
 # Biomatrix
-This is my 2D top-dawn shooter
 
-It is a pixelart-style top-down shooter where you need to survive 5 minutes while being besieged by hordes of monsters to win.
+**Biomatrix** — это top-down vampire-like шутер, разработанный на игровом движке Unity. В этой игре вам предстоит отстреливаться от врагов, собирать биомассу и улучшать своего персонажа в коротких, динамичных игровых сессиях.
 
-> click on gif for full video
+## [Играть на Itch.io](https://border-nine.itch.io/biomatrix)
 
-[![Alt Text](https://s12.gifyu.com/images/SQuYf.gif)](https://www.youtube.com/watch?v=JXmSUmM66nw)
+## Gameplay
+[![Alt Text](https://github.com/Ninellie/BioMatrix/blob/main/GitHubReadmeResources/Gameplay_14.10.24.gif?raw=true)](https://www.youtube.com/watch?v=JXmSUmM66nw)
 
-## [Click and try the game in browser](https://border-nine.itch.io/biomatrix)
+## Особенности игры
 
-You can find game scripts (c# classes) here: [C# Scripts](https://github.com/Ninellie/2d_game_prototype/tree/main/Assets/Scripts)
-
-In this project, I'm trying to put into practice iterative development and plan-do-check-act cycle methodologies, as well as try out some architectural patterns. In addition, I simply want to explore the Unity3d engine.
-
-To summarize, I'm trying to make a working layout of the game that can be conveniently expanded by adding various functionality and game mechanics in portions, so as not to drag out the addition of one feature for a long period.
-
-The most important code requirements I strive for when writing:
-- No repeating code
-- Separation of entities into different classes
-- Speaking names of classes, methotds and variables
-- I try to stick to Microsoft dotnet [C# Coding Conventions](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions)
-
-When adding new features, I am guided by the following principles:
-- Think about added functionality. Is it necessary in the game? And how will it work? Usually I use Miro or paper to complete my thoughts.
-- Add a small piece of code
-- Make sure it didn't break anything
-- Add it to the game
+- **Система эффектов и способностей**: Различные способности и эффекты, которые можно комбинировать для усиления персонажа.
+- **Редактируемые наборы бонусов**: Система бонусов, позволяющая легко добавлять и настраивать улучшения из редактора.
+- **Механика стрельбы и получения урона**: Простая но действенная система боевых взаимодействий с врагами и окружением
+- **Тайловая система Unity**: Используется для генерации игрового мира
+- **Поддержка мобильных устройств**: В игру можно играть на телефоне
